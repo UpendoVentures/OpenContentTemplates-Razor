@@ -1,0 +1,10 @@
+{
+  "fields": {
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "optionLabels": ["Default", "Full Width", "Masonry 1", "Masonry 2"],
+      "removeDefaultNone": true
+    }
+  }
+}

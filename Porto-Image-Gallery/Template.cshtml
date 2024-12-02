@@ -1,0 +1,143 @@
+@functions {
+    public bool ConvertToBool(dynamic value)
+    {
+        return value != null && value.ToString().ToLower() == "true";
+    }
+}
+
+@if (Model.Settings.Style == "Masonry 2")
+{
+    <div class="lightbox restaurant" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
+        <div class="masonry" data-plugin-masonry="masonry" data-plugin-options="{'itemSelector': '.masonry-item'}">
+            @foreach (var item in Model.Items)
+            {
+                <div class="masonry-item @(ConvertToBool(item.W2) ? "w2" : "")">
+                    <span class="thumb-info thumb-info-centered-icons thumb-info-no-borders">
+                        <span class="thumb-info-wrapper">
+                            <img src="@item.Image" class="img-fluid" alt="restaurant" />
+                            <span class="thumb-info-action thumb-info-action-custom">
+                                <a href="@item.Image">
+                                    <span class="thumb-info-icon-custom"></span>
+                                    <span class="btn-text-indent">Restaurant Gallery</span>
+                                </a>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+}
+else if (Model.Settings.Style == "Masonry 1")
+{
+    <div class="masonry" data-plugin-options="{'itemSelector': '.masonry-item'}" data-plugin-masonry="masonry">
+        @foreach (var item in Model.Items)
+        {
+            <div class="masonry-item">
+                <a href="@item.Image">
+                    <div class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                        <div class="thumb-info-wrapper">
+                            <img alt="Gallery-1" src="@item.Image" class="img-fluid" />
+                            <div class="thumb-info-title">
+                                <span class="thumb-info-inner">@item.ProjectTitle</span>
+                                <span class="thumb-info-type">@item.ProjectType</span>
+                            </div>
+                            <div class="thumb-info-action">
+                                <span class="thumb-info-action-icon">
+                                    <em class="fas fa-link"></em>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="btn-text-indent">@item.ProjectTitle</span>
+                </a>
+            </div>
+        }
+    </div>
+}
+else if (Model.Settings.Style == "Default")
+{
+    <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
+        <li data-option-value="*" class="nav-item active">
+            <a class="nav-link" href="#">SHOW All</a>
+        </li>
+        @foreach (var group in Model.Groups)
+        {
+            <li data-option-value=".@group.Item" class="nav-item">
+                <a class="nav-link" href="#" style="text-transform: uppercase;">
+                    @group.Item
+                </a>
+            </li>
+        }
+    </ul>
+    <ul class="row image-gallery sort-destination lightbox" data-sort-id="portfolio"
+        data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
+        @foreach (var item in Model.Items)
+        {
+            <li class="@item.GridWidth col-sm-6 isotope-item @item.Group">
+                <div class="image-gallery-item">
+                    <a href="@item.Image">
+                        <div class="thumb-info">
+                            <span class="thumb-info-wrapper">
+                                <img alt="Project-Image-1" src="@item.Image" class="img-fluid" />
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">
+                                        @item.ProjectTitle @item.GridWidth
+                                    </span>
+                                    <span class="thumb-info-type">@item.ProjectType</span>
+                                </span>
+                                <span class="thumb-info-action-icon">
+                                    <em class="fas fa-link"></em>
+                                </span>
+                            </span>
+                        </div>
+                        <span class="btn-text-indent">@item.ProjectTitle</span>
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else if (Model.Settings.Style == "full-width")
+{
+    <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
+        <li data-option-value="*" class="nav-item active">
+            <a class="nav-link" href="#">SHOW All</a>
+        </li>
+        @foreach (var group in Model.Groups)
+        {
+            <li data-option-value=".@group.Item" class="nav-item">
+                <a class="nav-link" href="#" style="text-transform: uppercase;">
+                    @group.Item
+                </a>
+            </li>
+        }
+    </ul>
+    <ul class="row image-gallery sort-destination lightbox full-width" data-sort-id="portfolio"
+        data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
+        @foreach (var item in Model.Items)
+        {
+            <li class="@item.GridWidth col-sm-6 isotope-item @item.Group">
+                <div class="image-gallery-item">
+                    <a href="@item.Image">
+                        <div class="thumb-info">
+                            <span class="thumb-info-wrapper">
+                                <img alt="Project-Image-1" src="@item.Image" class="img-fluid" />
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">
+                                        @item.ProjectTitle @item.GridWidth
+                                    </span>
+                                    <span class="thumb-info-type">@item.ProjectType</span>
+                                </span>
+                                <span class="thumb-info-action-icon">
+                                    <em class="fas fa-link"></em>
+                                </span>
+                            </span>
+                        </div>
+                        <span class="btn-text-indent">@item.ProjectTitle</span>
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+}

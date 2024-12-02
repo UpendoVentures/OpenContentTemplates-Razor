@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "Groups": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Item": {
+            "type": "text"
+          }
+        }
+      }
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Image": {
+            "type": "image"
+          },
+          "GridWidth": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ]
+          },
+          "ProjectTitle": {
+            "type": "text"
+          },
+          "ProjectType": {
+            "type": "text"
+          },
+          "Group": {
+            "type": "text"
+          },
+          "W2": {
+            "type": "checkbox"
+          }
+        }
+      }
+    }
+  }
+}

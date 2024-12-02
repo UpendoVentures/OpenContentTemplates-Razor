@@ -1,0 +1,39 @@
+{
+  "Groups": [
+    {
+      "Item": "websites"
+    },
+    {
+      "Item": "logos"
+    },
+    {
+      "Item": "brands"
+    }
+  ],
+  "Items": [
+    {
+      "Image": "",
+      "ProjectTitle": "Some title1",
+      "ProjectType": "Some type1",
+      "Group": "websites"
+    },
+    {
+      "Image": "",
+      "ProjectTitle": "Some title2",
+      "ProjectType": "Some type2",
+      "Group": "websites"
+    },
+    {
+      "Image": "",
+      "ProjectTitle": "Some title3",
+      "ProjectType": "Some type3",
+      "Group": "logos"
+    },
+    {
+      "Image": "",
+      "ProjectTitle": "Some title4",
+      "ProjectType": "Some type4",
+      "Group": "brands"
+    }
+  ]
+}
