@@ -1,0 +1,40 @@
+{
+    "type": "object",
+    "properties": {        
+        "ButtonColor": {
+            "title": "Button Color",
+            "type": "string",
+            "enum": [
+				"btn-default",
+				"btn-success",
+				"btn-info",
+				"btn-warning",
+				"btn-danger",
+				"btn-dark",
+				"btn-primary",
+				"btn-secondary",
+				"btn-tertiary",
+				"btn-quaternary"
+            ]
+        },
+        "ButtonSize": {
+            "title": "Button Size",
+            "type": "string",
+            "enum": [
+				"btn-lg",
+				"btn",
+				"btn-sm",				
+				"btn-xs"				
+            ]
+        },        
+        "ButtonStyle": {
+            "title": "Button Style",
+            "type": "string",
+            "enum": [
+				"btn",
+                "btn-borders",
+                "btn-3d"
+            ]
+        }
+    }    
+}

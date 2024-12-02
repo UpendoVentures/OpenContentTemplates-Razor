@@ -1,0 +1,9 @@
+<button type="button"
+    class="btn @Model.Settings.ButtonColor @Model.Settings.ButtonSize @Model.Settings.ButtonStyle mr-xs mb-sm">
+    @if (!string.IsNullOrEmpty(Model.Icon))
+    {
+        <em class="@Model.Icon"></em>
+        @:&nbsp;
+    }
+    @Model.Button
+</button>

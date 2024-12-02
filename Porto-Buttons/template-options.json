@@ -1,0 +1,42 @@
+{
+	"fields": {		
+		"ButtonColor": {
+			"title": "Button Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Success",
+				"Info",
+				"Warning",
+				"Danger",
+				"Dark",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},		
+		"ButtonSize": {
+			"title": "Button Size",
+			"type": "select",
+			"optionLabels": [
+				"Large",
+				"Default",
+				"Small",			
+				"Extra Small"			
+			],
+			"removeDefaultNone": true			
+		},
+		"ButtonStyle": {
+			"title": "Button Style",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Only Border",
+				"3D Button"			
+			],
+			"removeDefaultNone": true			
+		}
+	}
+}
