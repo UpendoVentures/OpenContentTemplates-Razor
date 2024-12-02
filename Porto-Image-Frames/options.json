@@ -1,0 +1,198 @@
+{
+  "fields": {
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "HoverStyles": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Default",
+              "Default Lighten",
+              "No Zoom",
+              "With Title and Type",
+              "Centered Icons",
+              "Icons Colors",
+              "Centered Info",
+              "Hide Info Hover",
+              "FadeIn",
+              "Animation Style"
+            ]
+          },
+          "DefaultStyles": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "rounded-circle",
+              "img-thumbnail d-inline-block"
+            ]
+          },
+          "Image": {
+            "type": "image"
+          },
+          "GridWidth": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ]
+          },
+          "ProjectTitle": {
+            "type": "text"
+          },
+          "ProjectType": {
+            "type": "text"
+          },
+          "SmallPicture": {
+            "type": "image",
+            "dependencies": {
+              "HoverStyles": [
+                "FadeIn"
+              ]
+            }
+          },
+          "FadeInTitle": {
+            "type": "text",
+            "dependencies": {
+              "HoverStyles": [
+                "FadeIn"
+              ]
+            }
+          },
+          "FadeInText": {
+            "type": "text",
+            "dependencies": {
+              "HoverStyles": [
+                "FadeIn"
+              ]
+            }
+          },
+          "FadeInButtomText": {
+            "type": "text",
+            "dependencies": {
+              "HoverStyles": [
+                "FadeIn"
+              ]
+            }
+          },
+          "FullName": {
+            "type": "text",
+            "dependencies": {
+              "HoverStyles": [
+                "Animation Style"
+              ]
+            }
+          },
+          "SocialMedia": {
+            "type": "array",
+            "dependencies": {
+              "HoverStyles": [
+                "Animation Style"
+              ]
+            },
+            "items": {
+              "fields": {
+                "Name": {
+                  "type": "text",
+                  "placeholder": "facebook"
+                },
+                "URL": {
+                  "type": "text"
+                }
+              }
+            }
+          },
+          "PricipalSocialMedia": {
+            "type": "text",
+            "dependencies": {
+              "HoverStyles": [
+                "Animation Style"
+              ]
+            }
+          },
+          "PricipalIcon": {
+            "type": "text",
+            "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+            "dependencies": {
+              "HoverStyles": [
+                "Animation Style"
+              ]
+            }
+          },
+          "CardText": {
+            "type": "array",
+            "dependencies": {
+              "HoverStyles": [
+                "Animation Style"
+              ]
+            },
+            "items": {
+              "fields": {
+                "Text": {
+                  "type": "textarea"
+                }
+              }
+            }
+          },
+          "Icons": {
+            "type": "array",
+            "dependencies": {
+              "HoverStyles": [
+                "Centered Icons"
+              ]
+            },
+            "items": {
+              "fields": {
+                "Icon": {
+                  "type": "text",
+                  "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+                },
+                "IconColor": {
+                  "type": "select",
+                  "sort": false,
+                  "optionLabels": [
+                    "Primary",
+                    "Secondary",
+                    "Tertiary"
+                  ]
+                },
+                "href": {
+                  "type": "text"
+                }
+              }
+            }
+          },
+          "Bottom": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Bottom Info",
+              "Bottom Info Dark"
+            ],
+            "dependencies": {
+              "HoverStyles": [
+                "Centered Icons",
+                "Icons Colors"
+              ]
+            }
+          },
+          "NoBorders": {
+            "type": "checkbox"
+          }
+        }
+      }
+    }
+  }
+}

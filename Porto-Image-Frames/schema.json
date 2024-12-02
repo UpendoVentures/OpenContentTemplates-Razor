@@ -1,0 +1,200 @@
+{
+  "type": "object",
+  "properties": {
+    "Items": {
+      "type": "array",
+      "title": "Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "HoverStyles": {
+            "type": "string",
+            "title": "Hover Styles",
+            "enum": [
+              "Default",
+              "thumb-info-lighten",
+              "thumb-info-no-zoom",
+              "With Title and Type",
+              "Centered Icons",
+              "Icons Colors",
+              "thumb-info-centered-info",
+              "Hide Info Hover",
+              "FadeIn",
+              "Animation Style"
+            ]
+          },
+          "DefaultStyles": {
+            "type": "string",
+            "title": "Default Styles",
+            "enum": [
+              "rounded-circle",
+              "img-thumbnail d-inline-block"
+            ]
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "GridWidth": {
+            "type": "string",
+            "title": "GridWidth",
+            "enum": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ],
+            "default": "col-md-12",
+            "required": true
+          },
+          "ProjectTitle": {
+            "type": "string",
+            "title": "Project Title"
+          },
+          "ProjectType": {
+            "type": "string",
+            "title": "Project Type"
+          },
+          "SmallPicture": {
+            "type": "string",
+            "title": "Small Picture",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "FadeInTitle": {
+            "type": "string",
+            "title": "FadeIn Title",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "FadeInText": {
+            "type": "string",
+            "title": "FadeIn Text",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "FadeInButtomText": {
+            "type": "string",
+            "title": "FadeIn Buttom Text",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "FullName": {
+            "type": "string",
+            "title": "FullName",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "SocialMedia": {
+            "type": "array",
+            "title": "Social Media",
+            "dependencies": [
+              "HoverStyles"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "title": "Name"
+                },
+                "URL": {
+                  "type": "string",
+                  "title": "URL"
+                }
+              }
+            }
+          },
+          "PricipalSocialMedia": {
+            "type": "string",
+            "title": "Pricipal Social Media",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "PricipalIcon": {
+            "type": "string",
+            "title": "Pricipal Icon",
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "CardText": {
+            "type": "array",
+            "title": "CardText",
+            "dependencies": [
+              "HoverStyles"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "Text": {
+                  "type": "string",
+                  "title": "Text"
+                }
+              }
+            }
+          },
+          "Icons": {
+            "type": "array",
+            "title": "Icons",
+            "dependencies": [
+              "HoverStyles",
+              "HoverStyles"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "Icon": {
+                  "type": "string",
+                  "title": "Icon"
+                },
+                "IconColor": {
+                  "type": "string",
+                  "title": "Icon Color",
+                  "enum": [
+                    "thumb-info-action-icon-primary",
+                    "thumb-info-action-icon-secondary",
+                    "thumb-info-action-icon-tertiary"
+                  ]
+                },
+                "href": {
+                  "type": "string",
+                  "title": "href"
+                }
+              }
+            }
+          },
+          "Bottom": {
+            "type": "string",
+            "title": "Bottom",
+            "enum": [
+              "thumb-info-bottom-info",
+              "thumb-info-bottom-info thumb-info-bottom-info-dark"
+            ],
+            "dependencies": [
+              "HoverStyles"
+            ]
+          },
+          "NoBorders": {
+            "type": "boolean",
+            "title": "No Borders"
+          }
+        }
+      }
+    }
+  }
+}
