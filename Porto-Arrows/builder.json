@@ -1,0 +1,124 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Content",
+      "title": "Content Text (required)",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {},
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Buttom",
+      "title": "Buttom",
+      "fieldtype": "object",
+      "subfields": [
+        {
+          "fieldname": "Text",
+          "title": "Text",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Color",
+          "title": "Color",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "btn-primary",
+              "text": "primary"
+            },
+            {
+              "value": "btn-secondary",
+              "text": "secondary"
+            },
+            {
+              "value": "btn-tertiary",
+              "text": "tertiary"
+            },
+            {
+              "value": "btn-quaternary",
+              "text": "quaternary"
+            }
+          ],
+          "removeDefaultNone": true,
+          "advanced": false
+        },
+        {
+          "fieldname": "Link",
+          "title": "Link",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "Arrow",
+      "title": "Arrow",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "vtl",
+          "text": "vtl"
+        },
+        {
+          "value": "vtr",
+          "text": "vtr"
+        },
+        {
+          "value": "vbl",
+          "text": "vbl"
+        },
+        {
+          "value": "vbr",
+          "text": "vbr"
+        },
+        {
+          "value": "hlb",
+          "text": "hlb"
+        },
+        {
+          "value": "hlt",
+          "text": "hlt"
+        },
+        {
+          "value": "hrb",
+          "text": "hrb"
+        },
+        {
+          "value": "hrt",
+          "text": "hrt"
+        }
+      ],
+      "removeDefaultNone": true,
+      "advanced": false
+    },
+    {
+      "fieldname": "ArrowPosition",
+      "title": "Arrow Position",
+      "fieldtype": "object",
+      "subfields": [
+        {
+          "fieldname": "Top",
+          "title": "Top",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Left",
+          "title": "Left",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

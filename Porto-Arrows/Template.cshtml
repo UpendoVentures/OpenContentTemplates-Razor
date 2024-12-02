@@ -1,0 +1,16 @@
+<section class="call-to-action with-borders with-button-arrow mb-xl">
+  <div class="call-to-action-content">
+    @if(Model.Content != null)
+    {
+       @Model.Content.ToString()
+    }
+   
+  </div>
+  <div class="call-to-action-btn mt-lg">
+    <a href="@Model.Buttom.Link" target="_blank" class="btn btn-lg mt-xs @Model.Buttom.Color">
+      @Model.Buttom.Text
+    </a>
+    <span class="arrow @Model.Arrow"
+      style="top: @(Model.ArrowPosition.Top)px; left: @(Model.ArrowPosition.Left)px;"></span>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+{
+  "fields": {
+    "Content": {
+      "type": "ckeditor"
+    },
+    "Buttom": {
+      "type": "object",
+      "fields": {
+        "Text": {
+          "type": "text"
+        },
+        "Color": {
+          "type": "select",
+          "sort": false,
+          "optionLabels": ["primary", "secondary", "tertiary", "quaternary"],
+          "removeDefaultNone": true
+        },
+        "Link": {
+          "type": "text"
+        }
+      }
+    },
+    "Arrow": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": ["vtl", "vtr", "vbl", "vbr", "hlb", "hlt", "hrb", "hrt"],
+      "removeDefaultNone": true
+    },
+    "ArrowPosition": {
+      "type": "object",
+      "fields": {
+        "Top": {
+          "type": "text"
+        },
+        "Left": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
