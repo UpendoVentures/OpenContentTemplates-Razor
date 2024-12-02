@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {        
+        "LabelColor": {
+            "title": "Label Color",
+            "type": "string",
+            "enum": [
+				"badge badge-default",
+				"badge badge-success",
+				"badge badge-info",
+				"badge badge-warning",
+				"badge badge-danger",
+				"badge badge-dark",
+				"badge badge-primary",
+				"badge badge-secondary",
+				"badge badge-tertiary",
+				"badge badge-quaternary"
+            ]
+        },
+        "LabelSize": {
+            "title": "Label Size",
+            "type": "string",
+            "enum": [
+				"badge badge-sm",
+				"badge",
+				"badge badge-lg"				
+            ]
+        }      
+    }
+}

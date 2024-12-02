@@ -1,0 +1,7 @@
+{
+  "fields": {
+    "Label": {
+      "type": "wysihtml"
+    }    
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Label",
+      "title": "Label Text (required)",
+      "fieldtype": "wysihtml",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }   
+  ],
+  "formtype": "object"
+}

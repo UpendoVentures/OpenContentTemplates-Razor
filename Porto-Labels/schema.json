@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "Label": {
+      "type": "string",
+      "title": "Label Text (required)",
+      "required": true
+    }    
+  }
+}
