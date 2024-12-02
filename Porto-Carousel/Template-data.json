@@ -1,0 +1,10 @@
+{
+  "NumberOfItems": "4",
+  "Navigation": "stage-margin",
+  "ShowData": "true",
+  "RoundedNav": "false",
+  "Loop": "true",
+  "Autoplay": "true",
+  "AutoplayTimeout": "3000",
+  "Style": "Default"
+}

@@ -1,0 +1,72 @@
+{
+  "fields": {
+    "InnerTopText": {
+      "type": "textarea"
+    },
+    "ItemsInnerText": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Text": {
+            "type": "textarea"
+          }
+        }
+      }
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Image": {
+            "type": "image"
+          },
+          "HoverStyleText": {
+            "type": "text"
+          },
+          "FullName": {
+            "type": "text"
+          },
+          "Ocupation": {
+            "type": "text"
+          },
+          "SocialMedia": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "Name": {
+                  "type": "text"
+                },
+                "Url": {
+                  "type": "text"
+                },
+                "Icon": {
+                  "type": "text",
+                  "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+                }
+              }
+            }
+          },
+          "FullWidthProjectTitle": {
+            "type": "text"
+          },
+          "FullWidthProjectType": {
+            "type": "text"
+          }
+        }
+      }
+    },
+    "Videos": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Url": {
+            "type": "text"
+          },
+          "TextIndent": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "fields": {
+    "NumberOfItems": {
+      "title": "Number of Items",
+      "type": "select",
+      "optionLabels": ["1", "4"],
+      "removeDefaultNone": true
+    },
+    "Navigation": {
+      "title": "Color",
+      "type": "select",
+      "optionLabels": [
+        "Stage Margin",
+        "Show Nav Hover",
+        "Show Nav Title",
+        "Nav Bottom"
+      ],
+      "removeDefaultNone": true
+    },
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "FullWidth",
+        "InsideText",
+        "HoverStyle",
+        "Videos"
+      ],
+      "removeDefaultNone": true
+    },
+    "ShowData": {
+      "label": "Show Data",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "RoundedNav": {
+      "label": "Rounded Nav",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "Loop": {
+      "label": "Loop",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "Autoplay": {
+      "label": "Autoplay",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "RoundedCircle": {
+      "label": "Image Rounded Circle",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "AutoplayTimeout": {
+      "title": "Autoplay Timeout",
+      "type": "text",
+      "removeDefaultNone": true
+    }
+  }
+}
