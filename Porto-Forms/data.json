@@ -1,0 +1,30 @@
+{
+  "FormTitle": "Form",
+  "ButtonText": "Post Comment",
+  "Items": [
+    {
+      "FormGroup": [
+        {
+          "Item": "name",
+          "DataType": "text",
+          "GridWidth": "col-md-6"
+        },
+        {
+          "Item": "email",
+          "DataType": "email",
+          "GridWidth": "col-md-6"
+        }
+      ]
+    },
+    {
+      "FormGroup": [
+        {
+          "Item": "comment",
+          "DataType": "textarea",
+          "GridWidth": "col-md-12",
+          "Rows": "10"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+<div type="post">
+    @foreach (var item in Model.Items)
+    {
+        <div class="form-group">
+            <div class="row">
+                @foreach (var formGroup in item.FormGroup)
+                {
+                    if (formGroup.DataType == "textarea")
+                    {
+                        <div class="@formGroup.GridWidth">
+                            <label for="@formGroup.Item">Your @formGroup.Item *</label>
+                            <textarea maxlength="5000" rows="@formGroup.Rows" class="form-control" name="@formGroup.Item"
+                                id="@formGroup.Item"></textarea>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="@formGroup.GridWidth">
+                            <label for="@formGroup.Item">Your @formGroup.Item *</label>
+                            <input type="@formGroup.DataType" maxlength="100" class="form-control" name="@formGroup.Item"
+                                id="@formGroup.Item" />
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" value="@Model.ButtonText" class="btn @Model.Settings.ButtonColor btn-lg"
+                data-loading-text="Loading..." />
+        </div>
+    </div>
+</div>
