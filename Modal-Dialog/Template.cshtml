@@ -1,0 +1,226 @@
+@using System.Net.Http
+@using System.Text
+@using System.Collections.Generic
+@using Newtonsoft.Json
+@using System.Net.Http.Headers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+@{
+  var headerBackgroundColor = Model.Settings.HeaderBackgroundColor;
+  var headerTextColor = Model.Settings.HeaderTextColor;
+  var headerTextType = Model.Settings.HeaderTextType;
+}
+
+<style>
+  .modal-body-title {
+    color: @headerTextColor;
+    padding-top: 15px;
+  }
+
+  .modal-header-bg-red {
+    background-color: @headerBackgroundColor;
+    color: @headerTextColor;
+    border-radius: 4px 4px 0px 0px;
+  }
+
+  .modal-body {
+    position: relative;
+    padding: 0px 15px 15px 15px;
+  }
+
+  .modalDialog-container {
+    margin: 10px;
+
+  }
+
+  .modalDialog-content {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .modal-btn-primary {
+    text-align: center;
+    padding: 5px;
+  }
+
+  .primary-style {
+    background-color: #CE3439;
+    border-color: #CE3439;
+    color: white;
+  }
+  .primary-style:hover {
+    background-color: #D65B61 !important; 
+    border-color: #D65B61!important; 
+    color: white;            
+}
+
+.primary-style:active {
+    background-color: #CE3439; 
+    border-color: #CE3439;   
+    color: white;            
+}
+
+.primary-style:visited {
+    background-color: #CE3439; 
+    border-color: #CE3439;   
+    color: white;            
+}
+
+  .modal-btn-secondary {
+    text-align: center;
+    padding: 5px;
+  }
+
+  .secondary-style {
+    background-color: #0069A5;
+    border-color: #0069A5;
+    color: white;
+  }
+  .secondary-style:hover {
+    background-color: #4D91BF!important;
+    border-color: #4D91BF!important;
+    color: white;
+  }
+  .secondary-style:active {
+    background-color: #0069A5;
+    border-color: #0069A5;
+    color: white;
+  }
+  .secondary-style:visited {
+    background-color: #0069A5;
+    border-color: #0069A5;
+    color: white;
+  }
+
+  .emailAccuracy-style{
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .mt-15{
+    margin-top: 15px;
+  }
+
+</style>
+
+@{
+  var moduleID = Dnn.Module.ModuleID;
+  var tabID = Dnn.Module.TabID;
+  var moduleTitle = Model.ModuleTitle;
+  var modalId = Model.ModalId;
+  var modalDialogTitle = Model.ModalDialogTitle;
+  var modalContent = Model.ModalContent;
+  var modalHTMLContent = Model.HTMLContent;
+  var primaryButtonText = Model.PrimaryButtonText;
+  var primaryButtonLink = Model.PrimaryButtonLink;
+  var secondaryButtonText = Model.SecondaryButtonText;
+  var secondaryButtonLink = Model.SecondaryButtonLink;
+  bool IsAuthenticated = User.Identity.IsAuthenticated;
+  var userEmail = User.Identity.IsAuthenticated ? User.Identity.Name : "No user logged in";
+  var cookieSetting = @Model.Settings.UseCookie;
+
+}
+
+<!-- ModalDialog -->
+<div class="modal fade" id="@modalId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="@modalId Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row modal-header-bg-red">
+          <div class="col-xs-12 text-center">
+            <@headerTextType class="modal-body-title text-center modalDialog-title">@modalDialogTitle</@headerTextType>
+          </div>
+        </div>
+        <div class="row col-12 modalDialog-container">
+          <div class="col-12 mt-15">
+            <p class="modalDialog-content">
+              @modalContent
+            </p>
+            @if(IsAuthenticated){
+            <p class="modalDialog-content">
+              <strong>Current email:</strong> @userEmail
+            </p>
+            }
+            <p class="modalDialog-content">
+            <div class="form-group emailAccuracy-style">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="emailAccuracy" /> My email address is accurate.
+                </label>
+              </div>
+            </div>
+            </p>
+          </div>
+          <div class="col-xs-12 modal-btn-primary">
+            <a class="btn primary-style elevation-button btn-mobile modal-dialog-btn"
+              href="@primaryButtonLink">
+              @primaryButtonText
+            </a>
+            <input id="mdId" type="hidden" value="@modalId" />
+          </div>
+          <div class="col-xs-12 modal-btn-secondary">
+            <a class="btn secondary-style elevation-button btn-mobile modal-dialog-btn"
+              href="@secondaryButtonLink">
+              @secondaryButtonText
+            </a>
+            <input id="mdId" type="hidden" value="@modalId" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/tu-kit-id.js" crossorigin="anonymous"></script>
+
+<script>
+  var openContentModalId = @moduleID;
+  var openContentTabId = @tabID;
+  var useCookieSetting = "@cookieSetting";
+
+  //COOKIES
+  function writeCookie(name, value, days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; ${expires}; path=/`;
+  }
+
+  function readCookie(name) {
+    var cookies = document.cookie.split("; ");
+    for (var i = 0; i < cookies.length; i++) {
+      var parts = cookies[i].split("=");
+      if (parts[0] === name) {
+        return decodeURIComponent(parts[1]);
+      }
+    }
+    return null;
+  }
+
+  $(document).ready(async function () {
+    var template = '@Model.Template';
+    console.log(useCookieSetting);
+    async function showModalDialog() {
+      try {
+        var firstRender = await readCookie("firstRender", openContentModalId, openContentTabId);
+        if(useCookieSetting === "False"){
+          document.cookie = "firstRender" + '=; Max-Age=-99999999;';
+          firstRender = null;
+        }
+        if (firstRender == null) {
+          var mdId = $('#mdId').val();
+          $(`#${mdId}`).modal('show');
+          if(useCookieSetting === "True"){
+            writeCookie("firstRender", true, 1, openContentModalId, openContentTabId);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    showModalDialog();
+  });
+
+</script>

@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModalId": {
+      "type": "string",
+      "title": "Modal Id"
+    },
+    "ModalDialogTitle": {
+      "type": "string",
+      "title": "Modal Dialog Title"
+    },
+    "ModalContent": {
+      "type": "string",
+      "title": "Modal Content",
+      "required": true
+    },
+    "PrimaryButtonText": {
+      "type": "string",
+      "title": "Primary Button Text"
+    },
+    "PrimaryButtonLink": {
+      "type": "string",
+      "title": "Primary Button Link"
+    },
+    "SecondaryButtonText": {
+      "type": "string",
+      "title": "Secondary Button Text"
+    },
+    "SecondaryButtonLink": {
+      "type": "string",
+      "title": "Secondary Button Link"
+    }
+  }
+}

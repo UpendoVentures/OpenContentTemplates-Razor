@@ -1,0 +1,74 @@
+{
+  "formfields": [
+    {
+      "fieldname": "HeaderBackgroundColor",
+      "title": "Header Background Color",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "#CE3439",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextColor",
+      "title": "Header Text Color",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "#FFFFFF",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextType",
+      "title": "Header Text Type",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "h1",
+          "text": "h1"
+        },
+        {
+          "value": "h2",
+          "text": "h2"
+        },
+        {
+          "value": "h3",
+          "text": "h3"
+        },
+        {
+          "value": "h4",
+          "text": "h4"
+        },
+        {
+          "value": "h5",
+          "text": "h5"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "h3",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "UseCookie",
+      "title": "Use Cookie Setting",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "true",
+      "helper": "If you enable this checkbox the modal will only open the first time the user accesses the page.",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
