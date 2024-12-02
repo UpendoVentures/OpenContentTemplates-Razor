@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "enum": [
+        "alert-default",
+        "alert-success",
+        "alert-info",
+        "alert-warning",
+        "alert-danger",
+        "alert-dark",
+        "alert-primary",
+        "alert-secondary",
+        "alert-tertiary",
+        "alert-quaternary"
+      ]
+    },
+    "Size": {
+      "title": "Size",
+      "type": "select",
+      "enum": ["", "alert-sm", "alert-lg"]
+    },
+    "ShowIcon": {
+      "title": "Show Icon",
+      "type": "boolean"
+    },
+    "ShowBtn": {
+      "title": "Show Buttons",
+      "type": "boolean"
+    },
+    "Dismissible": {
+      "title": "Show Close Buttons",
+      "type": "boolean"
+    }
+  }
+}

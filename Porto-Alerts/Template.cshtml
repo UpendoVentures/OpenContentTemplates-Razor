@@ -1,0 +1,36 @@
+<div class="alert @Model.Settings.Color @Model.Settings.Size">
+    @if (Model.Settings.Dismissible ?? false)
+    {
+        <button aria-label="Close" class="close btn-dark" data-dismiss="alert" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    }
+
+    <div class="dark" style="font-size: x-large; padding-bottom: inherit;">
+        @Model.Title
+    </div>
+
+    @if (Model.Settings.ShowIcon ?? false)
+    {
+        <div class="row" style="padding-bottom: inherit;">
+            <div class="col-md-1">
+                <em class="@Model.Icon m-auto" style="font-size: x-large;"></em>
+            </div>
+            <div class="col-md-11 dark">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="dark" style="font-size: x-large; padding-bottom: inherit;">
+            @Html.Raw(Model.Content)
+        </div>
+    }
+
+    @if (Model.Settings.ShowBtn ?? false)
+    {
+        <button class="btn btn-info mt-xs mb-xs mr-xs" type="button">@Model.btn1Text</button>
+        <button class="btn btn-default mt-xs mb-xs" type="button">@Model.btn2Text</button>
+    }
+</div>

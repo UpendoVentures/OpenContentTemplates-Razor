@@ -1,0 +1,11 @@
+{
+  "Title": "You are using a awesome theme!",
+  "Content": "We are extermely happy to announce our first admin. We dedicated a lot of effort to bring you tons of features, easily customization for an accessible price! Do you still have any doubts that this is the best choice?",
+  "Color": "alert-success",
+  "Size": "",
+  "ShowIcon": false,
+  "ShowBtn": false,
+  "Dismissible": false,
+  "btn1Text": "Save",
+  "btn2Text": "Cancel"
+}
