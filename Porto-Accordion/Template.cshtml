@@ -1,0 +1,34 @@
+@using System.Collections.Generic
+
+@{
+    var itemsWithIndex = new List<dynamic>();
+    for (int i = 0; i < Model.Items.Length; i++)
+    {
+        itemsWithIndex.Add(new { value = Model.Items[i], index = i });
+    }
+}
+
+<div class="accordion @(Model.Settings.Background == "default" ? Model.Settings.Color : "") @(Model.Settings.Size) @(Model.Settings.Background) @(Model.Settings.Border)" id="accordion-@Model.Context.ModuleId">
+    @foreach (var item in itemsWithIndex)
+    {
+        <div class="card card-default">
+            <div class="card-header">
+                <h4 class="card-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-@Model.Context.ModuleId"
+                        href="#collapse-@Model.Context.ModuleId-@item.index">
+                        @if (!string.IsNullOrEmpty(item.value.Icon))
+                        {
+                            <span class="@item.value.Icon"></span>
+                        }
+                        @item.value.Title
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-@Model.Context.ModuleId-@item.index" class="accordion-body collapse@(item.index == 0 ? " show" : "")">
+                <div class="card-body">
+                    @Html.Raw(item.value.Content)
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,43 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Content",
+          "title": "Content",
+          "fieldtype": "wysihtml",
+          "advanced": false
+        },
+        {
+          "fieldname": "Icon",
+          "title": "Icon (optional)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

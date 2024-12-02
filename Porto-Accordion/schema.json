@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon (optional)"
+          }
+        }
+      }
+    }
+  }
+}

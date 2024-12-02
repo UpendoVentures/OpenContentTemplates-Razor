@@ -1,0 +1,47 @@
+{
+	"fields": {
+		"Layout": {
+			"removeDefaultNone": true
+		},
+		"Color": {
+			"title": "Choose the Accordion Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"Size": {
+			"title": "Choose the Accordion Size",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Small",
+				"Large"
+			],
+			"removeDefaultNone": true
+		},
+		"Background": {
+			"title": "Include the Background?",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Remove"
+			],
+			"removeDefaultNone": true
+		},
+		"Border": {
+			"title": "Include the Borders?",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Remove"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}
