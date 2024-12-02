@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "CountdownsStyle": {
+      "title": "Countdowns Style",
+      "type": "string",
+      "enum": [
+        "countdown",
+        "countdown countdown-primary",
+        "countdown countdown-borders",
+        "countdown countdown-borders countdown-primary",
+        "parallax"
+      ]
+    }
+  }
+}

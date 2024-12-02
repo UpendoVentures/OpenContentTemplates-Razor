@@ -1,0 +1,17 @@
+{
+	"fields": {		
+		"CountdownsStyle": {
+			"title": "Countdowns Style",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Color",
+				"Border",
+				"Border Color",
+				"Inside Parallax"
+			],
+			"removeDefaultNone": true
+		}
+		
+	}
+}
