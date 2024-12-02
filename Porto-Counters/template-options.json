@@ -1,0 +1,10 @@
+{
+  "fields": {
+    "Size": {
+      "title": "Counters Size",
+      "type": "select",
+      "optionLabels": ["sm", "md", "lg"],
+      "removeDefaultNone": true
+    }
+  }
+}

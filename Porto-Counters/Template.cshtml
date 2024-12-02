@@ -1,0 +1,70 @@
+@{
+  var style = Model.Style;
+  var withBackground = Model.WithBackground !=null && Model.WithBackground.ToString().ToLower() == "true";
+  var withBorders = Model.WithBorders !=null && Model.WithBorders.ToString().ToLower() == "true";
+  var background = Model.Background;
+  var grid = Model.Grid; 
+  var parallaxImage = Model.ParallaxImage;
+  var inline = Model.Inline; 
+}
+
+@if (style == "Default")
+{
+  if (!withBackground)
+  {
+    <div class="@Model.Settings.Size @(withBorders ? "with-borders" : "")">
+      <div class="row">
+        @foreach (var item in Model.Items)
+        {
+          <div class="@grid">
+            <div class="counter @item.item.Color">
+              <em class="@item.item.Icon"></em>
+              <strong>@item.item.DataPrefix</strong>
+              <strong data-append="@item.item.DataAppend" data-to="@item.item.DataTo"
+                data-plugin-options="{'speed': @item.item.Speed }">@item.item.DataFrom</strong>
+              <label>@item.item.Text</label>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  if (withBackground)
+  {
+    <section
+      class="@(background == "parallax" ? "parallax section section-text-light section-parallax section-center mt-none" : background)"
+      data-plugin-options="{'speed': 1.5}" data-plugin-parallax="parallax" data-image-src="@parallaxImage">
+      <div class="container">
+        <div class="counters @(background == "section section-default" ? "counters-text-dark" : "counters-text-light")">
+          <div class="row">
+            @foreach (var item in Model.Items)
+            {
+              <div class="@grid col-sm-6">
+                <div class="counter @item.item.Color">
+                  <em class="@item.item.Icon"></em>
+                  <strong>@item.item.DataPrefix</strong>
+                  <strong data-append="@item.item.DataAppend" data-to="@item.item.DataTo"
+                    data-plugin-options="{'speed': @item.item.Speed }">@item.item.DataFrom</strong>
+                  <label>@item.item.Text</label>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+}
+
+@if (style == "Inline")
+{
+  <div class="row">
+    <div class="col-md-12">
+      <p>@inline.FirstText <strong class="@(inline.AlternativeFont ? "alternative-font" : "")" data-to="@inline.DataTo"
+          data-plugin-counter="DataCounter" data-plugin-options="{'speed': 3500}">
+          @inline.DataFrom</strong>
+        @inline.LastText</p>
+    </div>
+  </div>
+}

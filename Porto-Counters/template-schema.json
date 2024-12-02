@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "Size": {
+      "title": "Counters  Size",
+      "type": "string",
+      "enum": ["counters counters-sm", "counters", "counters counters-lg"],
+      "removeDefaultNone": true
+    }
+  }
+}
