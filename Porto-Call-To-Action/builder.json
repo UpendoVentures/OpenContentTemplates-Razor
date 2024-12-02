@@ -1,0 +1,221 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Heading",
+      "title": "Heading Text (required)",
+      "fieldtype": "wysihtml",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SubHeading",
+      "title": "Heading Subtitle",
+      "fieldtype": "wysihtml",
+      "advanced": false
+    },
+    {
+      "fieldname": "Button",
+      "title": "Button Text (optional)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ButtonLink",
+      "title": "Button Link",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "placeholder": "Example: https://github.com/UpendoVentures/OpenContentTemplates",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Style",
+      "title": "Style",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "Default",
+          "text": "Default"
+        },
+        {
+          "value": "WithBorders",
+          "text": "With Borders"
+        },
+        {
+          "value": "Featured",
+          "text": "Featured"
+        },
+        {
+          "value": "Colors",
+          "text": "Colors"
+        },
+        {
+          "value": "WithArrow",
+          "text": "With Arrow"
+        },
+        {
+          "value": "Animated",
+          "text": "Animated"
+        },
+        {
+          "value": "ButtonCentered",
+          "text": "Button Centered"
+        },
+        {
+          "value": "Small",
+          "text": "Small"
+        },
+        {
+          "value": "FullWidth",
+          "text": "Full Width"
+        },
+        {
+          "value": "Parallax",
+          "text": "Parallax"
+        },
+        {
+          "value": "Footer",
+          "text": "Footer"
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "WithBorders",
+      "title": "With Borders",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "none",
+          "text": "None"
+        },
+        {
+          "value": "with-borders",
+          "text": "With Borders"
+        },
+        {
+          "value": "with-full-borders",
+          "text": "With Full Borders"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "WithBorders"
+        }
+      ]
+    },
+    {
+      "fieldname": "Featured",
+      "title": "Featured",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "none",
+          "text": "None"
+        },
+        {
+          "value": "featured featured-primary",
+          "text": "Featured Primary"
+        },
+        {
+          "value": "featured featured-secondary",
+          "text": "Featured Secondary"
+        },
+        {
+          "value": "featured featured-tertiary",
+          "text": "Featured Tertiary"
+        },
+        {
+          "value": "featured featured-quaternary",
+          "text": "Featured Quaternary"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Featured"
+        }
+      ]
+    },
+    {
+      "fieldname": "Color",
+      "title": "Color",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "none",
+          "text": "None"
+        },
+        {
+          "value": "call-to-action-primary",
+          "text": "Primary"
+        },
+        {
+          "value": "call-to-action-secondary",
+          "text": "Secondary"
+        },
+        {
+          "value": "call-to-action-tertiary",
+          "text": "Tertiary"
+        },
+        {
+          "value": "call-to-action-quaternary",
+          "text": "Quaternary"
+        },
+        {
+          "value": "call-to-action-default",
+          "text": "Default"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Colors,Small,FullWidth"
+        }
+      ]
+    },
+    {
+      "fieldname": "ParallaxImage",
+      "title": "ParallaxImage",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Parallax"
+        }
+      ]
+    }
+  ],
+  "formtype": "object"
+}

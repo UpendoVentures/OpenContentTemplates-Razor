@@ -1,0 +1,108 @@
+@{
+    var isParallax = Model.Style == "Parallax";
+    var isSmall = Model.Style == "Small";
+    var isDefault = Model.Style == "Default";
+    var isWithBorders = Model.Style == "WithBorders";
+    var isFeatured = Model.Style == "Featured";
+    var isColors = Model.Style == "Colors";
+    var isWithArrow = Model.Style == "WithArrow";
+    var isAnimated = Model.Style == "Animated";
+    var isButtonCentered = Model.Style == "ButtonCentered";
+    var isFullWidth = Model.Style == "FullWidth";
+    var isFooter = Model.Style == "Footer";
+
+    var buttonClass = isColors || isSmall || isFullWidth ? "btn-default" : "btn-primary";
+    var sectionClass = "call-to-action mb-xl" +
+    (isWithBorders ? " " + Model.WithBorders : "") +
+    (isFeatured ? " " + Model.Featured : "") +
+    (isColors ? " " + Model.Color : "") +
+    (isWithArrow ? " with-button-arrow" : "") +
+    (isAnimated ? " with-borders" : "") +
+    (isButtonCentered ? " button-centered" : "") +
+    (isSmall ? " button-centered" : "") +
+    (isFullWidth ? " " + Model.Color : "") +
+    (isFooter ? " call-to-action-default with-button-arrow call-to-action-in-footer" : "") +
+    (isAnimated ? " data-appear-animation='fadeIn'" : "");
+}
+
+@if (isParallax)
+{
+    <section class="parallax section section-text-light section-parallax" data-plugin-options="{'speed': 1.5}"
+        data-plugin-parallax="parallax" data-image-src="@Model.ParallaxImage">
+        <section class="call-to-action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="call-to-action-content">
+                            <h3>@Model.Heading</h3>
+                            <p>@Model.SubHeading</p>
+                        </div>
+                        <div class="call-to-action-btn">
+                            <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg btn-primary">@Model.Button</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+}
+else if (isSmall)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <section class="@sectionClass">
+                <section class="@sectionClass">
+                    <div class="call-to-action-content">
+                        <h3>@Model.Heading</h3>
+                        <p>@Model.SubHeading</p>
+                    </div>
+                    <div class="call-to-action-btn">
+                        <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg @buttonClass">@Model.Button</a>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+}
+else
+{
+    <section class="@sectionClass">
+        @if (isFullWidth || isFooter)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="call-to-action-content">
+                            <h3>@Model.Heading</h3>
+                            <p>@Model.SubHeading</p>
+                        </div>
+                        <div class="call-to-action-btn">
+                            <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg @buttonClass">@Model.Button</a>
+                            @if (isFooter)
+                            {
+                                <span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft"
+                                    style="top: -12px;"></span>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="call-to-action-content">
+                <h3>@Model.Heading</h3>
+                <p>@Model.SubHeading</p>
+            </div>
+            <div class="call-to-action-btn">
+                <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg @buttonClass">@Model.Button</a>
+                @if (isWithArrow)
+                {
+                    <span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft"
+                        style="top: -12px;"></span>
+                }
+            </div>
+        }
+    </section>
+}

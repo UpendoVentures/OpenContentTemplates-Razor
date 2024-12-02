@@ -1,0 +1,91 @@
+{
+  "fields": {
+    "Heading": {
+      "type": "wysihtml"
+    },
+    "SubHeading": {
+      "type": "wysihtml"
+    },
+    "Button": {
+      "type": "text"
+    },
+    "ButtonLink": {
+      "type": "text",
+      "placeholder": "Example: https://github.com/UpendoVentures/OpenContentTemplates"
+    },
+    "Style": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Default",
+        "With Borders",
+        "Featured",
+        "Colors",
+        "With Arrow",
+        "Animated",
+        "Button Centered",
+        "Small",
+        "Full Width",
+        "Parallax",
+        "Footer"
+      ]
+    },
+    "WithBorders": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "None",
+        "With Borders",
+        "With Full Borders"
+      ],
+      "dependencies": {
+        "Style": [
+          "WithBorders"
+        ]
+      }
+    },
+    "Featured": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "None",
+        "Featured Primary",
+        "Featured Secondary",
+        "Featured Tertiary",
+        "Featured Quaternary"
+      ],
+      "dependencies": {
+        "Style": [
+          "Featured"
+        ]
+      }
+    },
+    "Color": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "None",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary",
+        "Default"
+      ],
+      "dependencies": {
+        "Style": [
+          "Colors",
+          "Small",
+          "FullWidth"
+        ]
+      }
+    },
+    "ParallaxImage": {
+      "type": "image",
+      "dependencies": {
+        "Style": [
+          "Parallax"
+        ]
+      }
+    }
+  }
+}

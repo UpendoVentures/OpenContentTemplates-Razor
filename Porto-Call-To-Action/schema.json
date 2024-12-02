@@ -1,0 +1,93 @@
+{
+  "type": "object",
+  "properties": {
+    "Heading": {
+      "type": "string",
+      "title": "Heading Text (required)"
+    },
+    "SubHeading": {
+      "type": "string",
+      "title": "Heading Subtitle"
+    },
+    "Button": {
+      "type": "string",
+      "title": "Button Text (optional)"
+    },
+    "ButtonLink": {
+      "type": "string",
+      "title": "Button Link"
+    },
+    "Style": {
+      "type": "string",
+      "title": "Style",
+      "enum": [
+        "Default",
+        "WithBorders",
+        "Featured",
+        "Colors",
+        "WithArrow",
+        "Animated",
+        "ButtonCentered",
+        "Small",
+        "FullWidth",
+        "Parallax",
+        "Footer"
+      ]
+    },
+    "WithBorders": {
+      "type": "string",
+      "title": "With Borders",
+      "enum": [
+        "none",
+        "with-borders",
+        "with-full-borders"
+      ],
+      "default": "none",
+      "required": true,
+      "dependencies": [
+        "Style"
+      ]
+    },
+    "Featured": {
+      "type": "string",
+      "title": "Featured",
+      "enum": [
+        "none",
+        "featured featured-primary",
+        "featured featured-secondary",
+        "featured featured-tertiary",
+        "featured featured-quaternary"
+      ],
+      "default": "none",
+      "required": true,
+      "dependencies": [
+        "Style"
+      ]
+    },
+    "Color": {
+      "type": "string",
+      "title": "Color",
+      "enum": [
+        "none",
+        "call-to-action-primary",
+        "call-to-action-secondary",
+        "call-to-action-tertiary",
+        "call-to-action-quaternary",
+        "call-to-action-default"
+      ],
+      "default": "none",
+      "required": true,
+      "dependencies": [
+        "Style"
+      ]
+    },
+    "ParallaxImage": {
+      "type": "string",
+      "title": "ParallaxImage",
+      "required": true,
+      "dependencies": [
+        "Style"
+      ]
+    }
+  }
+}
