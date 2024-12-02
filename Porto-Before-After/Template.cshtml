@@ -1,0 +1,117 @@
+@{
+    var settings = Model.Settings;
+}
+
+@if (settings.Style == "Default")
+{
+    <div class="row align-items-center">
+        <div class="col-sm-3">
+            <div class="pr-3 pr-sm-5 pb-3 pb-sm-0 border-right-light">
+                <h4 class="mb-2">
+                    @if (!string.IsNullOrEmpty(Model.Heading))
+                    {
+                        @Model.Heading
+                    }
+                    else
+                    {
+                        @:Default
+                    }
+                </h4>
+                <p class="m-0">
+                    @if (!string.IsNullOrEmpty(Model.SubHeading))
+                    {
+                        @Model.SubHeading
+                    }
+                    else
+                    {
+                        @:This is the default before / after style.
+                    }
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div data-plugin-before-after>
+                <!-- The before image is first -->
+                <img src="@Model.ImageBefore" />
+                <!-- The after image is last -->
+                <img src="@Model.ImageAfter" />
+            </div>
+        </div>
+    </div>
+}
+else if (settings.Style == "Move Slider on Hover")
+{
+    <div class="row align-items-center mt-xlg">
+        <div class="col-sm-3">
+            <div class="pr-3 pr-sm-5 pb-3 pb-sm-0 border-right-light">
+                <h4 class="mb-2">
+                    @if (!string.IsNullOrEmpty(Model.Heading))
+                    {
+                        @Model.Heading
+                    }
+                    else
+                    {
+                        @:Move Slider on Hover
+                    }
+                </h4>
+                <p class="m-0">
+                    @if (!string.IsNullOrEmpty(Model.SubHeading))
+                    {
+                        @Model.SubHeading
+                    }
+                    else
+                    {
+                         @:Move slider on mouse hover option for before / after element.
+                    }
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div data-plugin-before-after
+                data-plugin-options="{'move_slider_on_hover': true, 'move_with_handle_only': true, 'click_to_move': false}">
+                <!-- The before image is first -->
+                <img src="@Model.ImageBefore" />
+                <!-- The after image is last -->
+                <img src="@Model.ImageAfter" />
+            </div>
+        </div>
+    </div>
+}
+else if (settings.Style == "Vertical Orientation")
+{
+    <div class="row align-items-center mt-xlg">
+        <div class="col-sm-3">
+            <div class="pr-3 pr-sm-5 pb-3 pb-sm-0 border-right-light">
+                <h4 class="mb-2">
+                    @if (!string.IsNullOrEmpty(Model.Heading))
+                    {
+                        @Model.Heading
+                    }
+                    else
+                    {
+                        @:Vertical Orientation
+                    }
+                </h4>
+                <p class="m-0">
+                    @if (!string.IsNullOrEmpty(Model.SubHeading))
+                    {
+                        @Model.SubHeading
+                    }
+                    else
+                    {
+                        @:Demonstrates sliding up and down.
+                    }
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div data-plugin-before-after
+                data-plugin-options="{'default_offset_pct': 0.7, 'orientation': 'vertical', 'before_label': 'Before', 'after_label': 'After', 'no_overlay': true}">
+                <!-- The before image is first -->
+                <img src="@Model.ImageBefore" />
+                <!-- The after image is last -->
+                <img src="@Model.ImageAfter" />
+            </div>
+        </div>
+    </div>
+}

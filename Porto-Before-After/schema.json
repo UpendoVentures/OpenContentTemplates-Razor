@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "Heading": {
+      "type": "string",
+      "title": "Heading Text (optional)"
+    },
+    "SubHeading": {
+      "type": "string",
+      "title": "Heading Subtitle (optional)"
+    },
+    "ImageBefore": {
+      "type": "string",
+      "title": "Image Before (required)"
+    },
+    "ImageAfter": {
+      "type": "string",
+      "title": "Image After (required)"
+    }
+  }
+}

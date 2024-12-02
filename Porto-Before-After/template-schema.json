@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {        
+        "Style": {
+            "title": "Style",
+            "type": "string",
+            "enum": [
+				"Default",
+				"Move Slider on Hover",
+				"Vertical Orientation"
+            ]
+        }
+    }
+}

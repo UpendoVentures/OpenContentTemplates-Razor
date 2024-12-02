@@ -1,0 +1,14 @@
+{
+	"fields": {		
+		"Style": {
+			"title": "Style",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Move Slider on Hover",
+				"Vertical Orientation"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}
