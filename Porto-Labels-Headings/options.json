@@ -1,0 +1,10 @@
+{
+  "fields": {
+    "Heading": {
+      "type": "text"
+    },
+    "SubHeading": {
+      "type": "text"
+    }
+  }
+}

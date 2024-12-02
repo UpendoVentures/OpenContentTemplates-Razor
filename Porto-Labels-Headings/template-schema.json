@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {        
+        "SubHeadingColor": {
+            "title": "SubHeading Color",
+            "type": "string",
+            "enum": [
+				"badge badge-default",
+				"badge badge-success",
+				"badge badge-info",
+				"badge badge-warning",
+				"badge badge-danger",
+				"badge badge-dark",
+				"badge badge-primary",
+				"badge badge-secondary",
+				"badge badge-tertiary",
+				"badge badge-quaternary"
+            ]
+        },
+        "SubHeadingSize": {
+            "title": "SubHeading Size",
+            "type": "string",
+            "enum": [
+				"h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6"   			
+            ]
+        }
+    }
+}

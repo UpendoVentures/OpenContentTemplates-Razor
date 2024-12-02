@@ -1,0 +1,23 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Heading",
+      "title": "Heading Text (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SubHeading",
+      "title": "SubHeading",
+      "fieldtype": "text",
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}
