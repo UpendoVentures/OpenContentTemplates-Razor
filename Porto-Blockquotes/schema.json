@@ -1,0 +1,88 @@
+{
+  "type": "object",
+  "properties": {
+    "Blockquotes": {
+      "type": "string",
+      "title": "Blockquotes"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "TopText": {
+            "type": "string",
+            "title": "TopText"
+          },
+          "ColMdTopText": {
+            "type": "string",
+            "title": "Top Text Columns",
+            "enum": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ]
+          },
+          "Content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "Color": {
+            "type": "string",
+            "title": "Color",
+            "enum": [
+              "blockquote-primary",
+              "blockquote-secondary",
+              "blockquote-tertiary",
+              "blockquote-quaternary"
+            ]
+          },
+          "Align": {
+            "type": "string",
+            "title": "Align",
+            "enum": ["pull-right"]
+          },
+          "ColMdContent": {
+            "type": "string",
+            "title": "Content Text Columns",
+            "enum": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ]
+          },
+          "FooterText1": {
+            "type": "string",
+            "title": "Footer Text1"
+          },
+          "FooterText2": {
+            "type": "string",
+            "title": "Footer Text2"
+          },
+          "BottomText": {
+            "type": "string",
+            "title": "BottomText"
+          }
+        }
+      }
+    }
+  }
+}

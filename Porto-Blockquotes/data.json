@@ -1,0 +1,13 @@
+{
+  "ModuleTitle": "Blockquotes",
+  "Items": [
+    {
+      "TopText": "Skhk hkn",
+      "Content": "\n\n<p>Nisi mihi Phaedrum, inquam, tu mentitum aut Zenonem putas, quorum utrumque audivi, cum mihi nihil sane praeter sedulitatem probarent, omnes mihi Epicuri sententiae satis notae sunt. atque eos, quos nominavi, cum Attico nostro frequenter audivi, cum miraretur ille quidem utrumque, Phaedrum autem etiam amaret, cotidieque inter nos ea, quae audiebamus, conferebamus, neque erat umquam controversia, quid ego intellegerem, sed quid probarem.</p><p>Denique Antiochensis ordinis vertices sub uno elogio iussit occidi ideo efferatus, quod ei celebrari vilitatem intempestivam urgenti, cum inpenderet inopia, gravius rationabili responderunt; et perissent ad unum ni comes orientis tunc Honoratus fixa constantia restitisset.</p>\n\n<br><br>",
+      "Align": "",
+      "FooterText1": "some",
+      "FooterText2": "some",
+      "BottomText": "\n\n<p>Nisi mihi emus, conferebamus,a restitisset.</p>\n\n<br><br>"
+    }
+  ]
+}
