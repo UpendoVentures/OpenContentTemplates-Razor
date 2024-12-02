@@ -1,0 +1,23 @@
+{
+  "fields": {
+    "Title": {
+      "type": "text"
+    },
+    "Content": {
+      "type": "wysihtml"
+    },
+    "MessageType": {
+      "type": "radio",
+      "optionLabels": [
+        "Info",
+        "Error",
+        "Success",
+        "Warning"
+      ],
+      "removeDefaultNone": true
+    },
+    "Icon": {
+      "type": "text"
+    }
+  }
+}
