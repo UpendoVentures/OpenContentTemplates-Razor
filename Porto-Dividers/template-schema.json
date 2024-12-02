@@ -1,0 +1,140 @@
+{
+    "type": "object",
+    "properties": {  
+        "DividerType": {
+            "title": "Divider Type",
+            "type": "string",
+            "enum": [
+                "Classic",
+                "Divider with Icon",
+                "Small"
+            ],
+            "default": "Classic",
+            "required": true
+        },
+        "IconsSizes": {
+            "title": "Icons Sizes",
+            "type": "string",
+            "enum": [
+                "divider-icon-sm",
+                "",
+                "divider-icon-lg"
+            ],
+            "default": ""
+        },
+        "DividerSmallLocation": {
+            "title": "Small Divider Location",
+            "type": "string",
+            "enum": [
+                "",
+                "divider-small-center",
+                "divider-small-right"
+            ],
+            "default": ""
+        },
+        "DividerSmallSize": {
+            "title": "Small Divider Size",
+            "type": "string",
+            "enum": [
+                "divider-small-sm",
+                "",
+                "divider-small-lg"
+            ],
+            "default": ""
+        },
+        "IconsPosition": {
+            "title": "Icons Position",
+            "type": "string",
+            "enum": [
+                "",
+                "divider-left",
+                "divider-right"
+            ],
+            "default": ""
+        },
+        "FullWith": {    
+            "title": "Divider Full With",
+            "type": "boolean"        
+        },      
+        "Spacements": {
+            "title": "Spacements",
+            "type": "string",
+            "enum": [
+                "short",
+				"tall",
+				"taller"
+            ],
+            "default": "short"
+        },
+        "PatternStyle": {
+            "title": "Pattern Style",
+            "type": "string",
+            "enum": [
+                "solid",
+				"dashed",
+				"pattern",
+                "pattern pattern-2"
+            ],
+            "default": "solid"
+        },
+        "Color": {
+            "title": "Color",
+            "type": "string",
+            "enum": [
+                "",
+				"divider-primary",
+				"divider-secondary",
+				"divider-tertiary",
+				"divider-quaternary"
+            ],
+            "default": ""
+        },
+        "DividerStyle": {
+            "title": "Divider Style",
+            "type": "string",
+            "enum": [
+                "",
+				"divider-style-2",
+				"divider-style-3",
+				"divider-style-4"
+            ],
+            "default": ""
+        },
+        "EnableAnimations": {    
+            "title": "Enable Animations",
+            "type": "boolean"        
+        },
+        "AnimationType": {
+            "title": "Animation Type",
+            "type": "string",
+            "enum": [
+                "bounceIn"
+            ]
+        },
+        "AnimationDelay": {
+            "title": "Animation Delay",
+            "type": "string",
+            "enum": [
+                "0",
+                "300",
+                "600",
+                "900",
+                "1200"
+            ],
+            "default": "300"
+        }
+    },
+    "dependencies": {        
+        "PatternStyle": ["DividerType"],
+        "Color": ["DividerType"],
+        "DividerStyle": ["DividerType"],
+        "IconsSizes": ["DividerType"],
+        "DividerSmallLocation": ["DividerType"],
+        "DividerSmallSize": ["DividerType"],
+        "IconsPosition": ["DividerType"],
+        "FullWith": ["DividerType"],
+        "EnableAnimations": ["DividerType"],
+        "AnimationType": ["EnableAnimations"],
+        "AnimationDelay": ["EnableAnimations"]
+    }
+}
