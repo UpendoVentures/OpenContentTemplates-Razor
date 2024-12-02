@@ -20,6 +20,15 @@
     "UseCookie": {
       "type": "checkbox",
       "helper": "If you enable this checkbox the modal will only open the first time the user accesses the page."
+    },
+    "NoUserLoggedInText": {
+      "type": "text"
+    },
+    "MyEmailAddresIsAccurateText": {
+      "type": "text"
+    },
+    "CurrentEmailText": {
+      "type": "text"
     }
   }
 }

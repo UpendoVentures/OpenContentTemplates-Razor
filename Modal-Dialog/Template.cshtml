@@ -10,6 +10,12 @@
   var headerBackgroundColor = Model.Settings.HeaderBackgroundColor;
   var headerTextColor = Model.Settings.HeaderTextColor;
   var headerTextType = Model.Settings.HeaderTextType;
+  var noUserLoggedInText = Model.Settings.NoUserLoggedInText;
+  var myEmailAddresIsAccurateText = Model.Settings.MyEmailAddresIsAccurateText;
+  var currentEmailText = Model.Settings.CurrentEmailText;
+  bool enableCurrentEmailText = string.IsNullOrWhiteSpace(currentEmailText);
+  bool enableCheckBoxEmailAddresIsAccurate = string.IsNullOrWhiteSpace(myEmailAddresIsAccurateText);
+  var hiddenCheckBoxEmailAddresIsAccurate = enableCheckBoxEmailAddresIsAccurate ? "hidden" : "";
 }
 
 <style>
@@ -117,7 +123,7 @@
   var secondaryButtonText = Model.SecondaryButtonText;
   var secondaryButtonLink = Model.SecondaryButtonLink;
   bool IsAuthenticated = User.Identity.IsAuthenticated;
-  var userEmail = User.Identity.IsAuthenticated ? User.Identity.Name : "No user logged in";
+  var userEmail = User.Identity.IsAuthenticated ? User.Identity.Name : noUserLoggedInText;
   var cookieSetting = @Model.Settings.UseCookie;
 
 }
@@ -136,22 +142,24 @@
         <div class="row col-12 modalDialog-container">
           <div class="col-12 mt-15">
             <p class="modalDialog-content">
-              @modalContent
+              @modalContent 
             </p>
-            @if(IsAuthenticated){
+            @if(IsAuthenticated && !enableCurrentEmailText){
             <p class="modalDialog-content">
-              <strong>Current email:</strong> @userEmail
+              <strong>@currentEmailText</strong> @userEmail
             </p>
             }
+            @if(!enableCheckBoxEmailAddresIsAccurate){
             <p class="modalDialog-content">
             <div class="form-group emailAccuracy-style">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" id="emailAccuracy" /> My email address is accurate.
+                  <input type="checkbox" id="emailAccuracy" @hiddenCheckBoxEmailAddresIsAccurate /> @myEmailAddresIsAccurateText
                 </label>
               </div>
             </div>
             </p>
+            }
           </div>
           <div class="col-xs-12 modal-btn-primary">
             <a class="btn primary-style elevation-button btn-mobile modal-dialog-btn"

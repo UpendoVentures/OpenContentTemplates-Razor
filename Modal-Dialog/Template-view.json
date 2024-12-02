@@ -6,7 +6,10 @@
       "HeaderBackgroundColor": "#pos_1_1",
       "HeaderTextColor": "#pos_1_1",
       "HeaderTextType": "#pos_1_1",
-      "UseCookie": "#pos_1_1"
+      "UseCookie": "#pos_1_1",
+      "NoUserLoggedInText": "#pos_1_1",
+      "MyEmailAddresIsAccurateText": "#pos_1_1",
+      "CurrentEmailText": "#pos_1_1"
     }
   }
 }

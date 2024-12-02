@@ -27,6 +27,21 @@
       "type": "boolean",
       "title": "Use Cookie Setting",
       "default": "true"
+    },
+    "NoUserLoggedInText": {
+      "type": "string",
+      "title": "NoUserLoggedIn.Text",
+      "default": "No user logged in"
+    },
+    "MyEmailAddresIsAccurateText": {
+      "type": "string",
+      "title": "MyEmailAddresIsAccurate.Text",
+      "default": "My email address is accurate."
+    },
+    "CurrentEmailText": {
+      "type": "string",
+      "title": "CurrentEmail.Text",
+      "default": "Current email:"
     }
   }
 }

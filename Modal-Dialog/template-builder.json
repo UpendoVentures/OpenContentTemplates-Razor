@@ -68,6 +68,42 @@
       "helper": "If you enable this checkbox the modal will only open the first time the user accesses the page.",
       "position": "1col1",
       "dependencies": []
+    },
+    {
+      "fieldname": "NoUserLoggedInText",
+      "title": "NoUserLoggedIn.Text",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "No user logged in",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "MyEmailAddresIsAccurateText",
+      "title": "MyEmailAddresIsAccurate.Text",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "My email address is accurate.",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "CurrentEmailText",
+      "title": "CurrentEmail.Text",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Current email:",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
     }
   ],
   "formtype": "object"
