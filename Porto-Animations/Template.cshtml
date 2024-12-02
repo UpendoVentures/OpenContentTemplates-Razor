@@ -1,0 +1,11 @@
+<p>
+    <img alt="@Model.Settings.Animation"
+        class="appear-animation pull-left @Model.Settings.Animation appear-animation-visible"
+        data-appear-animation="@Model.Settings.Animation" height="140" src="@Model.Image" width="200"
+        style="margin-right: 10px!important;">
+</p>
+
+@foreach (var item in Model.Items)
+{
+    <p>@item.ParagraphsText</p>
+}
