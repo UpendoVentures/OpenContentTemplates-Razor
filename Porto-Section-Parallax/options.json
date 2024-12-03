@@ -1,0 +1,99 @@
+{
+  "fields": {
+    "Heading": {
+      "type": "wysihtml"
+    },
+    "SubHeading": {
+      "type": "wysihtml"
+    },
+    "TextLight": {
+      "type": "checkbox"
+    },
+    "StyleType": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Default Section",
+        "Background Section",
+        "Parallax Section",
+        "Half Section (With Custom Background)",
+        "Half Section (With Parallax)",
+        "Video Section"
+      ]
+    },
+    "StyleDefault": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Default Section",
+        "Color Scale 1 Section",
+        "Color Scale 2 Section",
+        "Color Scale 3 Section",
+        "Color Scale 4 Section",
+        "Color Scale 5 Section",
+        "Color Scale 6 Section",
+        "Color Scale 7 Section",
+        "Color Scale 8 Section",
+        "Color Scale 9 Section",
+        "Primary Section",
+        "Secondary Section",
+        "Tertiary Section",
+        "Quaternary Section",
+        "Removing Margin Top and Bottom",
+        "With Divider",
+        "Center-Aligned Content Section"
+      ],
+      "dependencies": {
+        "StyleType": [
+          "Default"
+        ]
+      }
+    },
+    "StyleParallax": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Default Parallax Section",
+        "Parallax Section (Fixed Image)",
+        "Parallax Section (Dark Text)"
+      ],
+      "dependencies": {
+        "StyleType": [
+          "ParallaxSection"
+        ]
+      }
+    },
+    "StyleBackground": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Custom Background Section",
+        "Custom Background Section (With Overlay)"
+      ],
+      "dependencies": {
+        "StyleType": [
+          "BackgroundSection"
+        ]
+      }
+    },
+    "Image": {
+      "type": "image",
+      "dependencies": {
+        "StyleType": [
+          "BackgroundSection",
+          "ParallaxSection",
+          "HalfSection",
+          "HalfSectionParallax"
+        ]
+      }
+    },
+    "VideoUrl": {
+      "type": "file",
+      "dependencies": {
+        "StyleType": [
+          "VideoSection"
+        ]
+      }
+    }
+  }
+}
