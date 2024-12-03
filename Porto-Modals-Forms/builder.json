@@ -1,0 +1,71 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ButtonTitle",
+      "title": "ButtonTitle",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModalTitle",
+      "title": "Modal Title (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Item",
+          "title": "Item Title  (required)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "DataType",
+          "title": "DataType",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "text",
+              "text": "text"
+            },
+            {
+              "value": "email",
+              "text": "email"
+            },
+            {
+              "value": "url",
+              "text": "url"
+            },
+            {
+              "value": "textarea",
+              "text": "textarea"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

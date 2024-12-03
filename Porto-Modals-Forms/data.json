@@ -1,0 +1,22 @@
+{
+  "ButtonTitle": "Launch Form Modal",
+  "ModalTitle": "Form Modal Title",
+  "Items": [
+    {
+      "Item": "Name",
+      "DataType": "text"
+    },
+    {
+      "Item": "Email",
+      "DataType": "email"
+    },
+    {
+      "Item": "URL",
+      "DataType": "url"
+    },
+    {
+      "Item": "Comment",
+      "DataType": "textarea"
+    }
+  ]
+}

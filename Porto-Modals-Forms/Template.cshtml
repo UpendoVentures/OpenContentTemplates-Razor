@@ -1,0 +1,47 @@
+<button class="btn @Model.Settings.ButtonColor" data-toggle="modal" data-target="#formModal">
+    @Model.ButtonTitle
+</button>
+
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="formModalLabel">@Model.ModalTitle</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+                    @foreach (var item in Model.Items)
+                    {
+                        if (item.DataType == "textarea")
+                        {
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="@item.Item" class="control-label">@item.Item</label>
+                                        <textarea rows="5" class="form-control" name="@item.Item" id="@item.Item" placeholder="Type your @item.Item..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="@item.Item" class="control-label">@item.Item</label>
+                                        <input type="@item.DataType" id="@item.Item" name="@item.Item" class="form-control" placeholder="Type your @item.Item..." />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
