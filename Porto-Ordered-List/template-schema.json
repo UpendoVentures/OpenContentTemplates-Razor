@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {        
+        "ListStyle": {
+            "title": "List Style",
+            "type": "string",
+            "enum": [
+                "",
+                " ",
+                "list-ordened-style-2",
+				"list-ordened-style-3"
+            ]
+        }
+    }
+}

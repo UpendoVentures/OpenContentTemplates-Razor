@@ -1,0 +1,10 @@
+@{
+    var className = string.IsNullOrEmpty(Model.Settings.ListStyle) ? "": string.Format("list list-ordened {0}", Model.Settings.ListStyle);   
+}
+
+<ol class="@className">
+    @foreach (var item in Model.Items)
+    {
+        <li>@item.ListItemText</li>
+    }
+</ol>
