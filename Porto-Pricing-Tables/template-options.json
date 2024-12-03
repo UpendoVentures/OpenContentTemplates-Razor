@@ -1,0 +1,16 @@
+{
+  "fields": {
+    "PricingTableStyle": {
+      "title": "Pricing Table Style",
+      "type": "select",
+      "optionLabels": ["Style 1", "Style 2", "Parallax"],
+      "removeDefaultNone": true
+    },
+    "PricingTableSize": {
+      "title": "Pricing Table Size",
+      "type": "select",
+      "optionLabels": ["Standard", "Small"],
+      "removeDefaultNone": true
+    }
+  }
+}

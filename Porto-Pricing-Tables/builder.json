@@ -1,0 +1,96 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ParallaxImage",
+      "title": "Parallax Image",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Title",
+          "title": "Title (required)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Description",
+          "title": "Description (optional)",
+          "fieldtype": "wysihtml",
+          "advanced": false
+        },
+        {
+          "fieldname": "Price",
+          "title": "Price (required)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ActionButtonText",
+          "title": "Action Button Text (required)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "MostPopular",
+          "fieldtype": "checkbox",
+          "advanced": false
+        },
+        {
+          "fieldname": "ShowPopularRibbon",
+          "fieldtype": "checkbox",
+          "advanced": false
+        },
+        {
+          "fieldname": "Features",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "FeatureDescriptionText",
+              "title": "Feature Description (required)",
+              "fieldtype": "wysihtml",
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            }
+          ],
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

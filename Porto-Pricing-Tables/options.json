@@ -1,0 +1,45 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ParallaxImage": {
+      "type": "image"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "wysihtml"
+          },
+          "Price": {
+            "type": "text"
+          },
+          "ActionButtonText": {
+            "type": "text"
+          },
+          "MostPopular": {
+            "type": "checkbox"
+          },
+          "ShowPopularRibbon": {
+            "type": "checkbox"
+          },
+          "Features": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "FeatureDescriptionText": {
+                  "type": "wysihtml"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

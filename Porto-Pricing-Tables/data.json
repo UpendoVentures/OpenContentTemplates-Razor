@@ -1,0 +1,93 @@
+{
+    "ModuleTitle": "Pricing Tables",
+    "Items": [
+      {
+        "Title": "Enterprice",
+        "Description": "<strong>100GB</strong> Disk Space",
+        "Price": 49,
+        "ActionButtonText": "Sign Up",
+        "MostPopular": false,
+        "ShowPopularRibbon": false,
+        "Features": [
+            {
+                "FeatureDescriptionText": "<strong>10GB</strong> Disk Space</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>100GB</strong> Monthly Bandwidth</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>20</strong> Email Accounts</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>Unlimited</strong> subdomains</li>"
+            }
+        ]
+      },
+      {
+        "Title": "Enterprice",
+        "Description": "<strong>100GB</strong> Disk Space",
+        "Price": 49,
+        "ActionButtonText": "Sign Up",
+        "MostPopular": true,
+        "ShowPopularRibbon": true,
+        "Features": [
+            {
+                "FeatureDescriptionText": "<strong>10GB</strong> Disk Space</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>100GB</strong> Monthly Bandwidth</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>20</strong> Email Accounts</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>Unlimited</strong> subdomains</li>"
+            }
+        ]
+      },
+      {
+        "Title": "Enterprice",
+        "Description": "<strong>100GB</strong> Disk Space",
+        "Price": 49,
+        "ActionButtonText": "Sign Up",
+        "MostPopular": false,
+        "ShowPopularRibbon": false,
+        "Features": [
+            {
+                "FeatureDescriptionText": "<strong>10GB</strong> Disk Space</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>100GB</strong> Monthly Bandwidth</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>20</strong> Email Accounts</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>Unlimited</strong> subdomains</li>"
+            }
+        ]
+      },
+      {
+        "Title": "Enterprice",
+        "Description": "<strong>100GB</strong> Disk Space",
+        "Price": 49,
+        "ActionButtonText": "Sign Up",
+        "MostPopular": false,
+        "ShowPopularRibbon": false,
+        "Features": [
+            {
+                "FeatureDescriptionText": "<strong>10GB</strong> Disk Space</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>100GB</strong> Monthly Bandwidth</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>20</strong> Email Accounts</li>"
+            },
+            {
+                "FeatureDescriptionText": "<strong>Unlimited</strong> subdomains</li>"
+            }
+        ]
+      }
+    ]
+  }
