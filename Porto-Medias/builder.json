@@ -1,0 +1,11 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Url",
+      "title": "Url Address (embed type - required)",
+      "fieldtype": "text",
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

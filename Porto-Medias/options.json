@@ -1,0 +1,8 @@
+{
+  "fields": {
+    "Url": {
+      "type": "text",
+      "helper": "Find documentation of embed videos at: <a href=\"https://support.google.com/youtube/answer/171780?hl=en\" target=\"_blank\">Click Here!</a>"
+    }
+  }
+}

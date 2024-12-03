@@ -1,0 +1,16 @@
+{
+	"fields": {		
+		"Style": {
+			"title": "Style",
+			"type": "select",
+			"optionLabels": [
+				"YouTube",
+				"Vimeo",
+				"4:3 aspect ratio",
+                "With Borders",
+                "Soundcloud"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}
