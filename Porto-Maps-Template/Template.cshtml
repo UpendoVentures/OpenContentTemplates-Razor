@@ -1,0 +1,37 @@
+@functions{
+    public string FormatMarkers(dynamic value)
+    {
+          var markers = new List<string>();
+          if (value != null)
+          {
+               foreach (var marker in value)
+               {
+                    markers.Add(string.Format("{0}+{1}+{2}", marker.Address, marker.Html, marker.MarkerIcon));
+               }
+          }
+          return string.Join("?", markers);
+    }
+}
+
+@if (Model.Settings.ShowBorders)
+{
+     <div class="google-map-borders">
+          <div class="google-map mt-none mb-none" id="googlemap" data-google-api-key="@Model.Context.GoogleApiKey"
+               data-lat="@Model.Latitud" data-lng="@Model.Longitud" data-pan-control="@Model.Settings.panControl"
+               data-zoom-control="@Model.Settings.zoomControl" data-map-type-control="@Model.Settings.mapTypeControl"
+               data-scale-control="@Model.Settings.scaleControl" data-street-view-control="@Model.Settings.streetViewControl"
+               data-overview-map-control="@Model.Settings.overviewMapControl" data-scroll-wheel="@Model.Settings.scrollwheel"
+               data-markers="@(FormatMarkers(Model.Markers))">
+          </div>
+     </div>
+}
+else
+{
+     <div class="google-map mt-none mb-none" id="googlemap" data-google-api-key="@Model.Context.GoogleApiKey"
+          data-lat="@Model.Latitud" data-lng="@Model.Longitud" data-pan-control="@Model.Settings.panControl"
+          data-zoom-control="@Model.Settings.zoomControl" data-map-type-control="@Model.Settings.mapTypeControl"
+          data-scale-control="@Model.Settings.scaleControl" data-street-view-control="@Model.Settings.streetViewControl"
+          data-overview-map-control="@Model.Settings.overviewMapControl" data-scroll-wheel="@Model.Settings.scrollwheel"
+          data-markers="@(FormatMarkers(Model.Markers))">
+     </div>
+}

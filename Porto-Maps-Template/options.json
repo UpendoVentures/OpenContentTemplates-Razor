@@ -1,0 +1,27 @@
+{
+    "fields": {
+      "Latitud": {
+        "type": "text"
+      },
+      "Longitud": {
+        "type": "text"
+      },
+      "MarkerIcon": {
+        "type": "image",
+        "helper": "Url of the image"
+      },
+      "Markers": {
+        "type": "array",
+        "items": {
+          "fields": {
+            "Address": {
+              "type": "text"
+            },
+            "Html": {
+              "type": "wysihtml"
+            }
+          }
+        }
+      }
+    }
+}
