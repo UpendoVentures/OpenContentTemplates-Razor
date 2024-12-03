@@ -1,0 +1,22 @@
+<ul class="@Model.Settings.ButtonSize">
+    <li class="page-item">
+        <a class="page-link" href="#">
+            <em class="fas fa-angle-double-left"></em>
+            <span class="btn-text-indent">Previous</span>
+        </a>
+    </li>
+
+    @foreach (var item in Model.Items)
+    {
+        <li class="page-item @(item.Active ? "active" : "")">
+            <a class="page-link" href="#">@item.ListItemNumber</a>
+        </li>
+    }
+
+    <li class="page-item">
+        <a class="page-link" href="#">
+            <em class="fas fa-angle-double-right"></em>
+            <span class="btn-text-indent">Next</span>
+        </a>
+    </li>
+</ul>

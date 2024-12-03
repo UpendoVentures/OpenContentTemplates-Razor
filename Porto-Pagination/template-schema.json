@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {        
+        "ButtonSize": {
+            "title": "Button Size",
+            "type": "string",
+            "enum": [
+				"pagination pagination-lg",
+				"pagination",
+				"pagination pagination-sm"				
+            ]
+        }
+    }    
+}

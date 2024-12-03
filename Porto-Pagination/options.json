@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "ListItemNumber": {
+            "type": "number"
+          },
+          "Active": {
+            "type": "checkbox"
+          }
+        }
+      }
+    }
+  }
+}

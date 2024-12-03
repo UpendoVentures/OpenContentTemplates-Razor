@@ -1,0 +1,14 @@
+{
+	"fields": {		
+		"ButtonSize": {
+			"title": "Button Size",
+			"type": "select",
+			"optionLabels": [
+				"Large",
+				"Default",
+				"Small"			
+			],
+			"removeDefaultNone": true			
+		}
+	}
+}

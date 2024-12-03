@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ListItemNumber": {
+            "type": "number",
+            "title": "List Item Number (required)",
+            "required": true
+          },
+          "Active": {
+            "type": "boolean",
+            "title": "Active (optional)"
+          }
+        }
+      }
+    }
+  }
+}
