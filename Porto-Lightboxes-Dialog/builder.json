@@ -1,0 +1,273 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ButtonText",
+      "title": "Button Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "DialogTitle",
+      "title": "Dialog Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "DialogText",
+      "title": "Dialog Text",
+      "fieldtype": "textarea",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "href",
+      "title": "href",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "FormTitle",
+      "title": "Form Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "FormSubTitle",
+      "title": "Form Sub Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "FormData",
+      "title": "FormData",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "InputText",
+          "title": "InputText",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "FormDataType",
+          "title": "FormDataType",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "text",
+              "text": "text"
+            },
+            {
+              "value": "email",
+              "text": "email"
+            },
+            {
+              "value": "url",
+              "text": "url"
+            },
+            {
+              "value": "textarea",
+              "text": "textarea"
+            }
+          ],
+          "advanced": false
+        },
+        {
+          "fieldname": "Row",
+          "title": "Row",
+          "fieldtype": "select",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "FormDataType",
+              "values": "textarea"
+            }
+          ],
+          "fieldoptions": [
+            {
+              "value": "col-md-12",
+              "text": "col-md-12"
+            },
+            {
+              "value": "col-md-11",
+              "text": "col-md-11"
+            },
+            {
+              "value": "col-md-10",
+              "text": "col-md-10"
+            },
+            {
+              "value": "col-md-9",
+              "text": "col-md-9"
+            },
+            {
+              "value": "col-md-8",
+              "text": "col-md-8"
+            },
+            {
+              "value": "col-md-7",
+              "text": "col-md-7"
+            },
+            {
+              "value": "col-md-6",
+              "text": "col-md-6"
+            },
+            {
+              "value": "col-md-5",
+              "text": "col-md-5"
+            },
+            {
+              "value": "col-md-4",
+              "text": "col-md-4"
+            },
+            {
+              "value": "col-md-3",
+              "text": "col-md-3"
+            },
+            {
+              "value": "col-md-2",
+              "text": "col-md-2"
+            },
+            {
+              "value": "col-md-1",
+              "text": "col-md-1"
+            }
+          ]
+        },
+        {
+          "fieldname": "GridWidth",
+          "title": "GridWidth",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "col-md-12",
+              "text": "col-md-12"
+            },
+            {
+              "value": "col-md-11",
+              "text": "col-md-11"
+            },
+            {
+              "value": "col-md-10",
+              "text": "col-md-10"
+            },
+            {
+              "value": "col-md-9",
+              "text": "col-md-9"
+            },
+            {
+              "value": "col-md-8",
+              "text": "col-md-8"
+            },
+            {
+              "value": "col-md-7",
+              "text": "col-md-7"
+            },
+            {
+              "value": "col-md-6",
+              "text": "col-md-6"
+            },
+            {
+              "value": "col-md-5",
+              "text": "col-md-5"
+            },
+            {
+              "value": "col-md-4",
+              "text": "col-md-4"
+            },
+            {
+              "value": "col-md-3",
+              "text": "col-md-3"
+            },
+            {
+              "value": "col-md-2",
+              "text": "col-md-2"
+            },
+            {
+              "value": "col-md-1",
+              "text": "col-md-1"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "FormButtonText1",
+      "title": "FormButtonText1",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "FormButtonText2",
+      "title": "FormButtonText2",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ColorFormButton1",
+      "title": "ColorFormButton1",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "btn-primary",
+          "text": "primary"
+        },
+        {
+          "value": "btn-secondary",
+          "text": "secondary"
+        },
+        {
+          "value": "btn-tertiary",
+          "text": "tertiary"
+        },
+        {
+          "value": "btn-quaternary",
+          "text": "quaternary"
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "ColorFormButton2",
+      "title": "ColorFormButton2",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "btn-primary",
+          "text": "primary"
+        },
+        {
+          "value": "btn-secondary",
+          "text": "secondary"
+        },
+        {
+          "value": "btn-tertiary",
+          "text": "tertiary"
+        },
+        {
+          "value": "btn-quaternary",
+          "text": "quaternary"
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}
