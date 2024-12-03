@@ -1,0 +1,166 @@
+{
+  "fields": {
+    "Style": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Posts",
+        "Church"
+      ]
+    },
+    "Posts": {
+      "type": "array",
+      "dependencies": {
+        "Style": [
+          "Posts"
+        ]
+      },
+      "items": {
+        "fields": {
+          "Post": {
+            "type": "object",
+            "fields": {
+              "UseCarousel": {
+                "type": "checkbox"
+              },
+              "Images": {
+                "type": "array",
+                "dependencies": {
+                  "UseCarousel": [
+                    "true"
+                  ]
+                },
+                "items": {
+                  "fields": {
+                    "Image": {
+                      "type": "image"
+                    }
+                  }
+                }
+              },
+              "Day": {
+                "type": "text"
+              },
+              "Month": {
+                "type": "text"
+              },
+              "Title": {
+                "type": "ckeditor"
+              },
+              "TitleLink": {
+                "type": "url"
+              },
+              "Content": {
+                "type": "ckeditor"
+              },
+              "ContentLink": {
+                "type": "url"
+              },
+              "UsePostMeta": {
+                "type": "checkbox"
+              },
+              "PostMeta": {
+                "type": "object",
+                "dependencies": {
+                  "UsePostMeta": [
+                    "true"
+                  ]
+                },
+                "fields": {
+                  "Date": {
+                    "type": "date",
+                    "picker": {
+                      "format": "dd/MM/yyyy"
+                    }
+                  },
+                  "FullName": {
+                    "type": "text"
+                  },
+                  "NewsLink": {
+                    "type": "text"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ChurchsStyle": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "inverted",
+        "info",
+        "blog"
+      ],
+      "dependencies": {
+        "Style": [
+          "Church"
+        ]
+      }
+    },
+    "GridWidth": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "col-md-1",
+        "col-md-2",
+        "col-md-3",
+        "col-md-4",
+        "col-md-5",
+        "col-md-6",
+        "col-md-7",
+        "col-md-8",
+        "col-md-9",
+        "col-md-10",
+        "col-md-11",
+        "col-md-12"
+      ],
+      "dependencies": {
+        "ChurchsStyle": [
+          "info"
+        ]
+      }
+    },
+    "Churchs": {
+      "type": "array",
+      "dependencies": {
+        "Style": [
+          "Church"
+        ]
+      },
+      "items": {
+        "fields": {
+          "Image": {
+            "type": "image"
+          },
+          "Day": {
+            "type": "text"
+          },
+          "Month": {
+            "type": "text"
+          },
+          "Year": {
+            "type": "text"
+          },
+          "Time": {
+            "type": "text"
+          },
+          "Location": {
+            "type": "text"
+          },
+          "Title": {
+            "type": "text"
+          },
+          "Content": {
+            "type": "ckeditor"
+          },
+          "FullName": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Style",
+      "title": "Style",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "Posts",
+          "text": "Posts"
+        },
+        {
+          "value": "Church",
+          "text": "Church"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Posts",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Posts",
+      "title": "Posts",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Post",
+          "title": "Post",
+          "fieldtype": "object",
+          "subfields": [
+            {
+              "fieldname": "UseCarousel",
+              "title": "Use Carousel",
+              "fieldtype": "checkbox",
+              "advanced": false
+            },
+            {
+              "fieldname": "Images",
+              "title": "Images",
+              "fieldtype": "array",
+              "subfields": [
+                {
+                  "fieldname": "Image",
+                  "title": "Image",
+                  "fieldtype": "image",
+                  "imageoptions": {},
+                  "advanced": false
+                }
+              ],
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "position": "1col1",
+              "dependencies": [
+                {
+                  "fieldname": "UseCarousel",
+                  "values": "true"
+                }
+              ]
+            },
+            {
+              "fieldname": "Day",
+              "title": "Day",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "Month",
+              "title": "Month",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "Title",
+              "title": "Title",
+              "fieldtype": "ckeditor",
+              "ckeditoroptions": {},
+              "advanced": false
+            },
+            {
+              "fieldname": "TitleLink",
+              "title": "Title Link",
+              "fieldtype": "url",
+              "advanced": false
+            },
+            {
+              "fieldname": "Content",
+              "title": "Content",
+              "fieldtype": "ckeditor",
+              "ckeditoroptions": {},
+              "advanced": false
+            },
+            {
+              "fieldname": "ContentLink",
+              "title": "Content Link",
+              "fieldtype": "url",
+              "advanced": false
+            },
+            {
+              "fieldname": "UsePostMeta",
+              "title": "Use Post Meta",
+              "fieldtype": "checkbox",
+              "advanced": false
+            },
+            {
+              "fieldname": "PostMeta",
+              "title": "Post Meta",
+              "fieldtype": "object",
+              "subfields": [
+                {
+                  "fieldname": "Date",
+                  "title": "Date",
+                  "fieldtype": "date",
+                  "dateoptions": {
+                    "format": "dd/MM/yyyy"
+                  },
+                  "advanced": false
+                },
+                {
+                  "fieldname": "FullName",
+                  "title": "Full Name",
+                  "fieldtype": "text",
+                  "advanced": false
+                },
+                {
+                  "fieldname": "NewsLink",
+                  "title": "News Link",
+                  "fieldtype": "text",
+                  "advanced": false
+                }
+              ],
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "position": "1col1",
+              "dependencies": [
+                {
+                  "fieldname": "UsePostMeta",
+                  "values": "true"
+                }
+              ]
+            }
+          ],
+          "advanced": false
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Posts"
+        }
+      ]
+    },
+    {
+      "fieldname": "ChurchsStyle",
+      "title": "Churchs Style",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "inverted",
+          "text": "inverted"
+        },
+        {
+          "value": "info",
+          "text": "info"
+        },
+        {
+          "value": "blog",
+          "text": "blog"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Church"
+        }
+      ]
+    },
+    {
+      "fieldname": "GridWidth",
+      "title": "GridWidth",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "col-md-1",
+          "text": "col-md-1"
+        },
+        {
+          "value": "col-md-2",
+          "text": "col-md-2"
+        },
+        {
+          "value": "col-md-3",
+          "text": "col-md-3"
+        },
+        {
+          "value": "col-md-4",
+          "text": "col-md-4"
+        },
+        {
+          "value": "col-md-5",
+          "text": "col-md-5"
+        },
+        {
+          "value": "col-md-6",
+          "text": "col-md-6"
+        },
+        {
+          "value": "col-md-7",
+          "text": "col-md-7"
+        },
+        {
+          "value": "col-md-8",
+          "text": "col-md-8"
+        },
+        {
+          "value": "col-md-9",
+          "text": "col-md-9"
+        },
+        {
+          "value": "col-md-10",
+          "text": "col-md-10"
+        },
+        {
+          "value": "col-md-11",
+          "text": "col-md-11"
+        },
+        {
+          "value": "col-md-12",
+          "text": "col-md-12"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "ChurchsStyle",
+          "values": "info"
+        }
+      ]
+    },
+    {
+      "fieldname": "Churchs",
+      "title": "Churchs",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "Day",
+          "title": "Day",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Month",
+          "title": "Month",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Year",
+          "title": "Year",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Time",
+          "title": "Time",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Location",
+          "title": "Location",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Content",
+          "title": "Content",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "FullName",
+          "title": "Full Name",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Church"
+        }
+      ]
+    }
+  ],
+  "formtype": "object"
+}

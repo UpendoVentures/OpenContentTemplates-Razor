@@ -1,0 +1,181 @@
+{
+  "type": "object",
+  "properties": {
+    "Style": {
+      "type": "string",
+      "title": "Style",
+      "enum": [
+        "Posts",
+        "Church"
+      ],
+      "default": "Posts"
+    },
+    "Posts": {
+      "type": "array",
+      "title": "Posts",
+      "dependencies": [
+        "Style"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "Post": {
+            "type": "object",
+            "title": "Post",
+            "properties": {
+              "UseCarousel": {
+                "type": "boolean",
+                "title": "Use Carousel"
+              },
+              "Images": {
+                "type": "array",
+                "title": "Images",
+                "dependencies": [
+                  "UseCarousel"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Image": {
+                      "type": "string",
+                      "title": "Image"
+                    }
+                  }
+                }
+              },
+              "Day": {
+                "type": "string",
+                "title": "Day"
+              },
+              "Month": {
+                "type": "string",
+                "title": "Month"
+              },
+              "Title": {
+                "type": "string",
+                "title": "Title"
+              },
+              "TitleLink": {
+                "type": "string",
+                "title": "Title Link"
+              },
+              "Content": {
+                "type": "string",
+                "title": "Content"
+              },
+              "ContentLink": {
+                "type": "string",
+                "title": "Content Link"
+              },
+              "UsePostMeta": {
+                "type": "boolean",
+                "title": "Use Post Meta"
+              },
+              "PostMeta": {
+                "type": "object",
+                "title": "Post Meta",
+                "dependencies": [
+                  "UsePostMeta"
+                ],
+                "properties": {
+                  "Date": {
+                    "title": "Date"
+                  },
+                  "FullName": {
+                    "type": "string",
+                    "title": "Full Name"
+                  },
+                  "NewsLink": {
+                    "type": "string",
+                    "title": "News Link"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ChurchsStyle": {
+      "type": "string",
+      "title": "Churchs Style",
+      "enum": [
+        "inverted",
+        "info",
+        "blog"
+      ],
+      "dependencies": [
+        "Style"
+      ]
+    },
+    "GridWidth": {
+      "type": "string",
+      "title": "GridWidth",
+      "enum": [
+        "col-md-1",
+        "col-md-2",
+        "col-md-3",
+        "col-md-4",
+        "col-md-5",
+        "col-md-6",
+        "col-md-7",
+        "col-md-8",
+        "col-md-9",
+        "col-md-10",
+        "col-md-11",
+        "col-md-12"
+      ],
+      "dependencies": [
+        "ChurchsStyle"
+      ]
+    },
+    "Churchs": {
+      "type": "array",
+      "title": "Churchs",
+      "dependencies": [
+        "Style"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "Day": {
+            "type": "string",
+            "title": "Day"
+          },
+          "Month": {
+            "type": "string",
+            "title": "Month"
+          },
+          "Year": {
+            "type": "string",
+            "title": "Year"
+          },
+          "Time": {
+            "type": "string",
+            "title": "Time"
+          },
+          "Location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "FullName": {
+            "type": "string",
+            "title": "Full Name"
+          }
+        }
+      }
+    }
+  }
+}
