@@ -1,0 +1,30 @@
+{
+  "fields": {
+    "SHOW": {
+      "title": "SHOW",
+      "type": "select",
+      "optionLabels": [
+        "Single Image",
+        "Image Gallery",
+        "Image Gallery Carousel"
+      ],
+      "removeDefaultNone": true
+    },
+    "DEFAULT_WITH_BORDER": {
+      "label": "DEFAULT WITH BORDER",
+      "type": "checkbox"
+    },
+    "WITH_ICON": {
+      "label": "WITH ICON",
+      "type": "checkbox"
+    },
+    "HOVER_EFFECT": {
+      "label": "HOVER EFFECT",
+      "type": "checkbox"
+    },
+    "ZOOM": {
+      "label": "ZOOM",
+      "type": "checkbox"
+    }
+  }
+}

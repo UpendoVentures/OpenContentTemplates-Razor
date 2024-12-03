@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "SingleImage": {
+      "type": "image"
+    },
+    "ImageGallery": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Image": {
+            "type": "image"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "formfields": [
+    {
+      "fieldname": "SingleImage",
+      "title": "Single Image",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "ImageGallery",
+      "title": "Image Gallery",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

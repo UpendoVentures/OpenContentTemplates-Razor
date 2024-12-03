@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "SHOW": {
+      "title": "SHOW",
+      "type": "select",
+      "enum": ["Single-Image", "Image-Gallery", "Image-GalleryCarousel"],
+      "removeDefaultNone": true
+    },
+    "DEFAULT_WITH_BORDER": {
+      "title": "DEFAULT WITH BORDER",
+      "type": "boolean"
+    },
+    "WITH_ICON": {
+      "title": "WITH ICON",
+      "type": "boolean"
+    },
+    "HOVER_EFFECT": {
+      "title": "HOVER EFFECT",
+      "type": "boolean"
+    },
+    "ZOOM": {
+      "title": "ZOOM",
+      "type": "boolean"
+    }
+  }
+}
