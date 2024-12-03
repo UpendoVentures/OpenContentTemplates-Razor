@@ -1,0 +1,18 @@
+{
+    "ModalTitle": {
+      "type": "text"
+    },
+    "ButtonText": {
+      "type": "text"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Item": {
+            "type": "wysihtml"
+        }
+      }
+    }
+  }
+}

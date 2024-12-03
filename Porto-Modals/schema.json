@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "ModalTitle": {
+      "type": "string",
+      "title": "Modal Title (required)",
+      "required": true
+    },
+    "ButtonText": {
+      "type": "string",
+      "title": "Button Text (required)",
+      "required": true
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Item": {
+            "type": "string",
+            "title": "Item Title  (required)",
+            "required": true
+          }         
+        }
+      }
+    }
+  }
+}

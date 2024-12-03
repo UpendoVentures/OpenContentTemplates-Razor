@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {        
+        "ButtonColor": {
+            "title": "Button Color",
+            "type": "string",
+            "enum": [
+				"btn-default",
+				"btn-success",
+				"btn-info",
+				"btn-warning",
+				"btn-danger",
+				"btn-dark",
+				"btn-primary",
+				"btn-secondary",
+				"btn-tertiary",
+				"btn-quaternary"
+            ]
+        },
+		"StyleModal": {
+            "title": "Style Modal",
+            "type": "string",
+            "enum": [
+				"defaultModal",
+				"largeModal",
+				"smallModal",
+				"noAnimModal"
+            ]
+        }				
+    }    
+}

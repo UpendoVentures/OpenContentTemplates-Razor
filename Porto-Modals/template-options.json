@@ -1,0 +1,32 @@
+{
+	"fields": {		
+		"ButtonColor": {
+			"title": "Button Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Success",
+				"Info",
+				"Warning",
+				"Danger",
+				"Dark",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"StyleModal": {
+			"title": "Style Modal",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Large",
+				"Small",
+				"No Animate"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}

@@ -1,0 +1,48 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModalTitle",
+      "title": "Modal Title (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ButtonText",
+      "title": "ButtonText (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Item",
+          "title": "Item Text  (required)",
+          "fieldtype": "wysihtml",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}
