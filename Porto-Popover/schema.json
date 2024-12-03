@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "Button": {
+      "type": "string",
+      "title": "Button Text (optional)",
+      "required": false
+    },
+    "PopoverTitle": {
+      "type": "string",
+      "title": "Popover Title (optional)"
+    },
+    "PopoverContent": {
+      "type": "string",
+      "title": "Popover Content (optional)"
+    }
+  }
+}

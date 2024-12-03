@@ -1,0 +1,13 @@
+{
+  "fields": {
+    "Button": {
+      "type": "text"
+    },
+    "PopoverTitle": {
+      "type": "text"
+    },
+    "PopoverContent": {
+      "type": "text"
+    }
+  }
+}
