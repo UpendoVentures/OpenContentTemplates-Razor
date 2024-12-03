@@ -1,0 +1,17 @@
+{
+    "formfields": [
+      {
+        "fieldname": "CompletedAmmount",
+        "title": "Completed Ammount (required)",
+        "fieldtype": "text",
+        "advanced": true,
+        "required":true,
+        "hidden": false,
+        "multilanguage": false,
+        "index": false,
+        "position": "1col1",
+        "dependencies": []
+      }
+    ],
+    "formtype": "object"
+}

@@ -1,0 +1,23 @@
+<div
+    class="progress @((Model.Settings.ProgressBarSize != null) ? Model.Settings.ProgressBarSize : string.Empty) @((Model.Settings.ProgressBorderRadius != null) ? Model.Settings.ProgressBorderRadius : string.Empty)">
+    <div class="progress-bar
+        @(Model.Settings.ApplyContextualClass == true ? string.Format("progress-bar-{0}", Model.Settings.ContextualClassType) : "progress-bar-primary")
+        @(Model.Settings.Striped == true ? "progress-bar-striped" : string.Empty)
+        @(Model.Settings.StripedAnimated == true ? "progress-bar-animated" : string.Empty)
+        @(Model.Settings.ProgressColor != null ? Model.Settings.ProgressColor : string.Empty)" @(Model.Settings.ProgressAnimated == true
+        ? string.Format("data-appear-progress-animation='{0}%' data-appear-animation-delay='{1}'", Model.CompletedAmmount,
+        Model.Settings.AnimationDelay) : "role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100'")
+        style="@(Model.Settings.ProgressAnimated == true ? string.Empty : (Model.CompletedAmmount == "0" ? "min-width: 2em;" : string.Format("width: {0}%;", Model.CompletedAmmount)))">
+
+        @if (Model.Settings.ShowCompletionText == true)
+        {
+            <text>@Model.CompletedAmmount%</text>  
+        }
+        else
+        {
+            <span class="@(Model.Settings.UseTooltip == true ? "progress-bar-tooltip" : "sr-only")">
+               <text>@Model.CompletedAmmount%</text>  
+            </span>
+        }
+    </div>
+</div>
