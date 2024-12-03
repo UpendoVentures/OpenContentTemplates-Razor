@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "Size": {
+      "type": "number",
+      "title": "Progress Bar Size",
+      "default": 175,
+      "minimum": 60
+    },
+    "lineWidth": {
+      "type": "number",
+      "title": "Progress Bar LineWith",
+      "default": 10,
+      "minimum": 4
+    },
+    "barColor": {
+      "type": "string",
+      "title": "Progress Bar Color",
+      "helper": "Find values at: <a href=\"https://www.htmlcsscolor.com\" target=\"_blank\">htmlcsscolor</a>",
+      "default": "#0088CC"
+    },
+    "lineCap": {
+      "type": "string",
+      "title": "Progress Bar line Cap",
+      "default": "square"
+    },
+    "scaleColor": {
+      "type": "string",
+      "title": "Progress Bar Scale Color",
+      "default": "#999"
+    },
+    "trackColor": {
+      "type": "string",
+      "title": "Progress Bar Track Color",
+      "default": "CCC"
+    }
+  }
+}

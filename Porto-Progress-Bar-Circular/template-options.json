@@ -1,0 +1,35 @@
+{
+  "fields": {
+    "Size": {
+      "label": "Progress Bar Size",
+      "type": "text",
+      "removeDefaultNone": true
+    },
+    "lineWidth": {
+      "label": "Progress Bar LineWith",
+      "type": "text",
+      "removeDefaultNone": true
+    },
+    "barColor": {
+      "label": "Progress Bar Color",
+      "type": "text",
+      "removeDefaultNone": true,
+      "helper": "Find values at: <a href=\"https://www.htmlcsscolor.com\" target=\"_blank\">htmlcsscolor</a>"
+    },
+    "lineCap": {
+      "label": "Progress Bar line Cap",
+      "type": "text",
+      "removeDefaultNone": true
+    },
+    "scaleColor": {
+      "label": "Progress Bar Scale Color",
+      "type": "text",
+      "removeDefaultNone": true
+    },
+    "trackColor": {
+      "label": "Progress Bar Track Color",
+      "type": "text",
+      "removeDefaultNone": true
+    }
+  }
+}

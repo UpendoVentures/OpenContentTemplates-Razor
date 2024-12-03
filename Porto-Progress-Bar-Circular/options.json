@@ -1,0 +1,10 @@
+{
+    "fields": {
+      "InnerContent": {
+        "type": "wysihtml"
+      },
+      "CompletedAmmount": {
+        "type": "text"
+      }
+    }
+}

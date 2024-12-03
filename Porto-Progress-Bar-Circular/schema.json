@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+      "InnerContent": {
+        "type": "string",
+        "title": "Title"
+      },
+      "CompletedAmmount": {
+        "type": "number",
+        "title": "Completed Ammount (required)",
+        "required": true,
+        "minimum": 0
+      }
+    }
+}
