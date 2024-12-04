@@ -1,0 +1,7 @@
+{
+  "fields": {
+    "Image": {
+      "type": "image"
+    }
+  }
+}
