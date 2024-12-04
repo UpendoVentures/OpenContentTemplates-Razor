@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+      "ModuleTitle": {
+        "type": "string",
+        "title": "Module Title"
+      },
+      "Items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Class": {
+              "type": "string",
+              "title": "Class (required)",
+              "required": true
+            },
+            "Href": {
+              "type": "string",
+              "title": "Href"
+            },
+            "Title": {
+              "type": "string",
+              "title": "Title"
+            },
+            "Content": {
+              "type": "string",
+              "title": "Content"
+            }
+          }
+        }
+      }
+    }
+  }

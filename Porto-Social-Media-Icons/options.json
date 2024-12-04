@@ -1,0 +1,27 @@
+{
+    "fields": {
+      "ModuleTitle": {
+        "type": "text"
+      },
+      "Items": {
+        "type": "array",
+        "items": {
+          "fields": {
+            "Class": {
+              "type": "text",
+              "helper": "Find values at: <a href=\"https://porto.mandeeps.com/shortcodes/shortcodes-1/social-media-icons\" target=\"_blank\">Porto Homepage</a>"
+            },
+            "Href": {
+              "type": "text"
+            },
+            "Title": {
+              "type": "text"
+            },
+            "Content": {
+              "type": "text"
+            }
+          }
+        }
+      }
+    }
+  }
