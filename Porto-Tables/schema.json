@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+      "ModuleTitle": {
+        "type": "string",
+        "title": "Module Title"
+      },
+      "TableHeadTD": {
+        "type": "array",
+        "title": "Table Head",
+        "items": {
+          "type": "object",
+          "title": "Add Table Headers",
+          "properties":{
+            "TableHeadTDContent": {             
+                "type": "string",
+                "title": "Table Column Header (required)",
+                "required": true
+            } 
+          }                   
+        }
+      },
+      "TableBodyTR": {
+        "type": "array",
+        "title": "Table Body",
+        "items": {
+          "type": "object",
+          "title": "Row",
+          "properties": {
+              "RowClass": {
+                "type": "radio",
+                "title": "Row Class",
+                "optionLabels": [
+                  "Info",
+                  "Error",
+                  "Success",
+                  "Warning"
+                ],
+                "enum": [
+                  "info",
+                  "danger",
+                  "success",
+                  "warning"
+                ]
+              },
+              "TableBodyTD":{
+              "type": "array",
+              "title": "Cells",
+               "items": {
+                "type": "object",
+                "properties": {
+                  "TableBodyTDContent": {
+                    "type": "string",
+                    "title": "Cell Content (required)",
+                    "required": true
+                  }
+                }
+               }
+            }
+          }
+        }
+      }
+    }
+}

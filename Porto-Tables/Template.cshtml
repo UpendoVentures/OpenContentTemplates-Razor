@@ -1,0 +1,42 @@
+@functions {
+    public bool ConvertToBool(dynamic value)
+    {
+        return value != null && value.ToString().ToLower() == "true";
+    }
+}
+
+<table class="table
+@(ConvertToBool(Model.Settings.Striped) ? "table-striped" : "")
+@(ConvertToBool(Model.Settings.Bordered) ? "table-bordered" : "")
+@(ConvertToBool(Model.Settings.HoverRows) ? "table-hover" : "")
+@(ConvertToBool(Model.Settings.Condensed) ? "table-sm" : "")
+">
+    <thead>
+        <tr>
+            @if (Model.TableHeadTD != null)
+            {
+                foreach (var th in Model.TableHeadTD)
+                {
+                    <td>@th.TableHeadTDContent</td>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.TableBodyTR != null)
+        {
+            foreach (var tr in Model.TableBodyTR)
+            {
+                <tr class="@tr.RowClass">
+                    @if (tr.TableBodyTD != null)
+                    {
+                        foreach (var td in tr.TableBodyTD)
+                        {
+                            <td>@td.TableBodyTDContent</td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>

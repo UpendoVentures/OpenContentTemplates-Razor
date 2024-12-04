@@ -1,0 +1,64 @@
+{
+    "ModuleTitle": "Tables",
+    "TableHeadTD":  [
+        {
+            "TableHeadTDContent": "Header1"
+        },
+        {
+            "TableHeadTDContent": "Header2"
+        },
+        {
+            "TableHeadTDContent": "Header3"
+        }
+    ],
+    "TableBodyTR":  [
+        {
+           "RowClass":"", 
+           "TableBodyTD": 
+           [
+                {
+                    "TableBodyTDContent": "Row0"
+                },
+                {
+                    "TableBodyTDContent": "Row0"
+                },
+                {
+                    "TableBodyTDContent": "Row0"
+                }
+           ]                             
+            
+        },
+        {       
+            "RowClass":"",
+            "TableBodyTD": 
+           [
+                {
+                    "TableBodyTDContent": "Row1"
+                },
+                {
+                    "TableBodyTDContent": "Row1"
+                },
+                {
+                    "TableBodyTDContent": "Row1"
+                }
+           ]      
+        
+        },
+        {       
+            "RowClass":"",
+            "TableBodyTD": 
+           [
+                {
+                    "TableBodyTDContent": "Row2"
+                },
+                {
+                    "TableBodyTDContent": "Row2"
+                },
+                {
+                    "TableBodyTDContent": "Row2"
+                }
+           ]      
+        
+        }
+    ]
+}

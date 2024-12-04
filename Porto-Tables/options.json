@@ -1,0 +1,40 @@
+{
+    "fields": {
+      "ModuleTitle": {
+        "type": "text"
+      },
+      "TableHeadTD": {
+        "type": "array",
+        "items": {
+          "TableHeadTDContent": {
+            "type": "text",
+            "label": "Table Header Text (required)"
+          }
+        }
+      },
+      "TableBodyTR": {
+        "type": "array",
+        "items": {          
+            "RowClass": {
+              "type": "radio",
+              "optionLabels": [                
+                "Info",
+                "Error",
+                "Success",
+                "Warning"
+              ],
+              "removeDefaultNone": true
+            },
+            "TableBodyTD": 
+            {
+              "type": "array",
+              "items": {
+                "TableBodyTDContent": {
+                  "type": "wysihtml"
+                }
+              }
+            }  
+         }
+      }     
+    }
+}

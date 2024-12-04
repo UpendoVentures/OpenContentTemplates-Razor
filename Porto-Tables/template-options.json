@@ -1,0 +1,26 @@
+{
+	"fields": {				
+		"Striped": {
+			"rightLabel": "Striped",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+        "Bordered": {
+			"rightLabel": "Bordered",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+        "HoverRows": {
+			"rightLabel": "Hover Rows",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+        "Condensed": {
+			"rightLabel": "Condensed Table",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		}
+
+
+	}
+}
