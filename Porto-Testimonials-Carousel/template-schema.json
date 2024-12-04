@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "enum": [
+        "testimonial-primary",
+        "testimonial-secondary",
+        "testimonial-tertiary",
+        "testimonial-quaternary"
+      ]
+    },
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "enum": [
+        "testimonial-style-2",
+        "testimonial-style-3",
+        "testimonial-style-4",
+        "testimonial-style-5"
+      ]
+    },
+    "Parallax": {
+      "title": "Parallax",
+      "type": "boolean"
+    },
+    "MultipleItems": {
+      "title": "MultipleItems",
+      "type": "boolean"
+    },
+    "Autoplay": {
+      "title": "Autoplay",
+      "type": "boolean"
+    },
+    "RoundedCircle": {
+      "title": "RoundedCircle",
+      "type": "boolean"
+    },
+    "AutoplayTimeout": {
+      "title": "AutoplayTimeout",
+      "type": "text"
+    }
+  }
+}

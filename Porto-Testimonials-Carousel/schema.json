@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "ParallaxImage": {
+      "type": "string",
+      "title": "ParallaxImage"
+    },
+    "Items": {
+      "type": "array",
+      "title": "Carousels Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Content": {
+            "type": "string",
+            "title": "Content Text",
+            "required": true
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "Fullname": {
+            "type": "string",
+            "title": "Full Name"
+          },
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Text1": {
+            "type": "string",
+            "title": "Text1"
+          }
+        }
+      }
+    }
+  }
+}

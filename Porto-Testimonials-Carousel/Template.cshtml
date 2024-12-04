@@ -1,0 +1,97 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+@if (ConvertToBool(Model.Settings.Parallax))
+{
+    <section class="parallax section section-text-light section-parallax section-center mt-none mb-none"
+             data-image-src="@Model.ParallaxImage"
+             data-plugin-options="{'speed': 1.5}"
+             data-plugin-parallax="parallax">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="owl-carousel nav-bottom rounded-nav"
+                         data-plugin-options="{'items': 1, 'autoplay': @(Model.Settings.Autoplay ? "true" : "false"), 
+                         'autoplayTimeout': @Model.Settings.AutoplayTimeout}">
+                        @foreach (var item in Model.Items)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="testimonial @Model.Settings.Color @Model.Settings.Style">
+                                        <div class="testimonial-author">
+                                            <img alt="Image" src="@item.Image" 
+                                                 class="img-fluid @(Model.Settings.RoundedCircle ? "rounded-circle" : "")" />
+                                        </div>
+                                        <blockquote>
+                                            <p>@item.Content</p>
+                                            <div class="testimonial-author">
+                                                <p>
+                                                    <strong>@item.Fullname</strong>
+                                                    <span>@string.Format("{0} &amp; {1}", item.Text, item.Text1)</span>
+                                                </p>
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else if (ConvertToBool(Model.Settings.MultipleItems))
+{
+    <div class="row mb-xlg">
+        @for (int i = 0; i < 3; i++)
+        {
+            <div class="col-md-4">
+                <div class="testimonial testimonial-style-5">
+                    <blockquote>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes"</p>
+                    </blockquote>
+                    <div class="testimonial-arrow-down"></div>
+                    <div class="testimonial-author">
+                        <p>
+                            <strong>John Smith</strong>
+                            <span>CEO &amp; Founder</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="owl-carousel"
+         data-plugin-options="{'items': 1, 'autoplay': @(ConvertToBool(Model.Settings.Autoplay) ? "true" : "false"), 
+         'autoplayTimeout': @Model.Settings.AutoplayTimeout}">
+        @foreach (var item in Model.Items)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="testimonial @Model.Settings.Color @Model.Settings.Style">
+                        <blockquote>
+                            <p>@item.Content</p>
+                        </blockquote>
+                        <div class="testimonial-arrow-down"></div>
+                        <div class="testimonial-author">
+                            <img alt="Image" src="@item.Image" 
+                                 class="img-fluid @(ConvertToBool(Model.Settings.RoundedCircle) ? "rounded-circle" : "")" />
+                            <p>
+                                <strong>@item.Fullname</strong>
+                                <span>@string.Format("{0} &amp; {1}", item.Text, item.Text1)</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
