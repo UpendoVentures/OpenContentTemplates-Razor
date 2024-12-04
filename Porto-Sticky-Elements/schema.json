@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "FirstParagraph": {
+      "type": "string",
+      "title": "First Paragraph"
+    },
+    "Content": {
+      "type": "string",
+      "title": "Image"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image"
+    },
+    "ImageText": {
+      "type": "string",
+      "title": "Image Text"
+    },
+    "LastParagraph": {
+      "type": "string",
+      "title": "Last Paragraph"
+    }
+  }
+}

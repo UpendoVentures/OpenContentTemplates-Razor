@@ -1,0 +1,24 @@
+<p>@Model.FirstParagraph</p>
+<div class="sticky-container">
+  <div class="row">
+    <div class="col-md-8">
+      <p>@Model.Content</p>
+    </div>
+    <div class="col-md-4">
+      <div
+        class="center"
+        data-plugin-options="{'minWidth': 991, 'containerSelector': '.sticky-container', 'padding': {'top': 110}}"
+        data-plugin-sticky="sticky"
+      >
+        <img
+          alt="device"
+          class="pull-right img-fluid"
+          height="140"
+          src="@Model.Image"
+          width="250"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<p>@Model.LastParagraph</p>

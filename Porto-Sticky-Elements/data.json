@@ -1,0 +1,6 @@
+{
+  "Title": "My DNN Message",
+  "Content": "<p>This is my default DNN message</p>",
+  "MessageType": "dnnFormInfo",
+  "Icon": "fas fa-info-circle"
+}
