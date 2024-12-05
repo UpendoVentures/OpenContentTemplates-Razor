@@ -1,0 +1,24 @@
+@if (Model.Sections != null)
+{
+    foreach (var item in Model.Sections)
+    {
+        if (item.Class == "default")
+        {
+            <@(item.Size) class="mb-sm word-rotator-title">
+                @item.Text
+            <span class="@item.Color">@item.TextWidthColor</span>
+            <span class="alternative-font">@item.AlternativeFont</span>
+                @item.OtherText
+            </@(item.Size)>
+        }
+        else
+        {
+            <p class="@item.Class">
+                @item.Text
+                <span class="@item.Color">@item.TextWidthColor</span>
+                <span class="alternative-font">@item.AlternativeFont</span>
+                @item.OtherText
+            </p>
+        }
+    }
+}
