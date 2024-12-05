@@ -1,0 +1,191 @@
+@functions {
+    public bool ConvertToBool(dynamic value)
+    {
+        return value != null && value.ToString().ToLower() == "true";
+    }
+}
+
+@if (Model.Settings.TabMode == "navigation")
+{
+    <div class="row" id="tabs-@Model.Context.ModuleId">
+        <div class="col-md-4">
+            <div class="@string.Format("tabs tabs-vertical tabs-left tabs-navigation{0}", Model.Settings.Color ?? "")">
+                <ul class="nav nav-tabs col-sm-3">
+                    @if (Model.Items != null)
+                    {
+                        var index = 0;
+                        foreach (var item in Model.Items)
+                        {
+                            var active = index == 0 ? "active" : "";
+                            var classNav = index == 0 ? "" : "nav-link";
+                            <li class="nav-item @active">
+                                <a href="#tab-@Model.Context.ModuleId-@index" data-toggle="tab" class="@classNav">
+                                    @if (!string.IsNullOrEmpty(item.Icon))
+                                    {
+                                        <span class="@item.Icon"></span>
+                                    }
+                                </a>
+                            </li>
+                            index++;
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            @if (Model.Items != null)
+            {
+                var index = 0;
+                foreach (var item in Model.Items)
+                {
+                    var active = index == 0 ? "active" : "";
+                    <div class="tab-pane tab-pane-navigation @active" id="tab-@Model.Context.ModuleId-@index">
+                        @item.Content
+                    </div>
+                    index++;
+                }
+            }
+        </div>
+    </div>
+    
+}
+else
+{
+    var tabClass = "";
+    if (Model.Settings.TabPosition == "vertical")
+    {
+        tabClass = "tabs-vertical tabs-left";
+    }
+    else if (Model.Settings.TabPosition == "bottom")
+    {
+        tabClass = "tabs-bottom";
+    }
+
+    var tabMode = Model.Settings.TabMode == "simple" ? "tabs-simple" : "";
+
+    <div id="tabs-@Model.Context.ModuleId" class="tabs @tabClass @Model.Settings.Color @tabMode">
+        @if (Model.Settings.TabPosition == "top")
+        {
+            <!-- top tabs layout -->
+            var tabAlignment = Model.Settings.TabAlignment == "right" ? "justify-content-end" : Model.Settings.TabAlignment == "centered" ? "justify-content-center" : Model.Settings.TabAlignment == "justified" ? "nav-justified flex-column flex-md-row" : "";
+            var tabPosition = Model.Settings.TabPosition == "vertical" ? "col-sm-3" : "";
+            var tabModeClass = "";
+            if (Model.Settings.TabMode == "simple")
+            {
+                tabModeClass = "justify-content-center";
+                if (Model.Settings.TabIconMode == "bigicons")
+                {
+                    tabModeClass += " center";
+                }
+            }
+            <ul class="nav nav-tabs @tabAlignment @tabPosition @tabModeClass">
+                @if (Model.Items != null)
+                {
+                    var index = 0;
+                    foreach (var item in Model.Items)
+                    {
+                        var liClass = Model.Settings.TabAlignment == "justified" ? "text-center" : "";
+                        var liActive = index == 0 ? "active" : "";
+                        <li class="@liClass nav-item @liActive">
+                            <a class="nav-link" href="#tab-@Model.Context.ModuleId-@index" data-toggle="tab">
+                                @if (Model.Settings.TabMode == "simple")
+                                {
+                                    if (Model.Settings.TabIconMode == "bigicons")
+                                    {
+                                        <div class="featured-boxes featured-boxes-style-6 p-none m-none">
+                                            <div class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+                                                <span class="box-content p-none m-none">
+                                                    @if (!string.IsNullOrEmpty(item.Icon))
+                                                    {
+                                                        <span class="icon-featured @item.Icon"></span>
+                                                    }
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                    <p class="mb-none pb-none">@item.Title</p>
+                                }
+                                else if (Model.Settings.TabMode == "standard")
+                                {
+                                    if (!string.IsNullOrEmpty(item.Icon))
+                                    {
+                                        <span class="@item.Icon"></span>
+                                    }
+                                    <text>@item.Title</text>
+                                }
+                            </a>
+                        </li>
+                        index++;
+                    }
+                }
+            </ul>
+        }
+        else if (Model.Settings.TabPosition == "vertical")
+        {
+            <ul class="nav nav-tabs col-sm-3">
+                @if (Model.Items != null)
+                {
+                    var index = 0;
+                    foreach (var item in Model.Items)
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#tab-@Model.Context.ModuleId-@index" data-toggle="tab">@item.Title</a>
+                        </li>
+                        index++;
+                    }
+                }
+            </ul>
+        }
+        <div class="tab-content">
+            @if (Model.Items != null)
+            {
+                var index = 0;
+                foreach (var item in Model.Items)
+                {
+                    var paneActiveClass = index == 0 ? "active" : "";
+
+                    <div id="tab-@Model.Context.ModuleId-@index" class="tab-pane @paneActiveClass">
+                        @if (Model.Settings.TabMode == "simple")
+                        {
+                            <div class="center">
+                                @Html.Raw(item.Content)
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.Raw(item.Content)
+                        }
+                    </div>
+                    index++;
+                }
+            }
+        </div>
+        @if (Model.Settings.TabPosition == "bottom")
+        {
+            var bTabAligmentClass = Model.Settings.TabAlignment == "right" ? "justify-content-end" : Model.Settings.TabAlignment == "centered" ? "justify-content-center" : Model.Settings.TabAlignment == "justified" ? "nav-justified flex-column flex-md-row" : "";
+            var bTabPosition = Model.Settings.TabPosition == "vertical" ? "col-sm-3" : "";
+            <!-- bottom tabs layout -->
+            <ul class="nav nav-tabs @bTabAligmentClass @bTabPosition">
+                @if (Model.Items != null)
+                {
+                    var index = 0;
+                    foreach (var item in Model.Items)
+                    {
+                        var liClass = Model.Settings.TabAlignment == "justified" ? "text-center" : "";
+                        var liActive = index == 0 ? "active" : "";
+                        <li class="@liClass nav-item @liActive">
+                            <a class="nav-link" href="#tab-@Model.Context.ModuleId-@index" data-toggle="tab">
+                                @if (!string.IsNullOrEmpty(item.Icon))
+                                {
+                                    <span class="@item.Icon"></span>
+                                }
+                                <text>@item.Title</text>
+                            </a>
+                        </li>
+                        index++;
+                    }
+                }
+            </ul>
+        }
+    </div>
+}
