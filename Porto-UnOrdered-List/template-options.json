@@ -1,0 +1,80 @@
+{
+	"fields": {		
+		"ListBorder": {
+			"title": "List Border",
+			"type": "select",
+			"optionLabels": [
+				"None",				
+				"Items Bottom",
+				"List Side"
+			],
+			"removeDefaultNone": true
+		},
+		"IconStyle": {
+			"title": "Icon Style",
+			"type": "select",
+			"optionLabels": [
+				"None",				
+				"Rounded Light",
+				"Rounded Bold"
+			],
+			"removeDefaultNone": true
+		},
+		"IconsPosition": {
+			"title": "Icons Position",
+			"type": "select",
+			"optionLabels": [
+				"Left",				
+				"Right"
+			],
+			"removeDefaultNone": true
+		},
+		"IconsSizes": {
+			"title": "Icons Sizes",
+			"type": "select",
+			"optionLabels": [
+				"Small",				
+				"Normal",
+				"Large"
+			],
+			"removeDefaultNone": true
+		},
+		"IconsColor": {
+			"title": "Icons Color",
+			"type": "select",
+			"optionLabels": [
+				"None",
+				"Primary",				
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"EnableAnimations": {
+			"label": "Enable Animations",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"AnimationType": {
+			"title": "Animation Type",
+			"type": "select",
+			"optionLabels": [
+				"Fade In Up"
+			],
+			"removeDefaultNone": true
+		},
+		"AnimationDelay": {
+			"title": "Animation Delay",
+			"type": "select",
+			"optionLabels": [
+				"0ms",
+				"300ms",				
+				"600ms",
+				"900ms",
+				"1200ms"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}
