@@ -1,0 +1,38 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Content",
+          "title": "Content",
+          "fieldtype": "textarea",
+          "advanced": false
+        },
+        {
+          "fieldname": "Active",
+          "title": "Open by Default?",
+          "fieldtype": "radio",
+          "vertical": false,
+          "fieldoptions": [],
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

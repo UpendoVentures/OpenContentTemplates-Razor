@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "Color": {
+            "title": "Choose the Toggle Color",
+            "type": "string",
+            "enum": [
+                "",
+                " toggle-primary",
+                " toggle-secondary",
+                " toggle-tertiary",
+                " toggle-quaternary"
+            ]
+        },
+        "Size": {
+            "title": "Choose the Toggle Size",
+            "type": "string",
+            "enum": [
+                "",
+                " toggle-sm",
+                " toggle-lg"
+            ]
+        },
+        "Mode": {
+            "title": "Display Mode",
+            "type": "string",
+            "enum": [
+                "",
+                " toggle-simple"
+            ]
+        },
+        "OneOnly": {
+            "title": "Only One Open at a Time?",
+            "type": "string",
+            "enum": [
+                "false",
+                "true"
+            ]
+        },
+        "Faq": {
+            "title": "Run as an FAQ?",
+            "type": "string",
+            "enum": [
+                "false",
+                "true"
+            ]
+        }
+    }
+}

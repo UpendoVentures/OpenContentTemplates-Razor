@@ -1,0 +1,30 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+<div class="toggle @Model.Settings.Color @Model.Settings.Size @Model.Settings.Mode"
+     @(ConvertToBool(Model.Settings.OneOnly) ? "data-plugin-options=\"{ 'isAccordion': true }\"" : "")
+     data-plugin-toggle="toggle" id="toggle-@Model.Context.ModuleId">
+    @{
+        int index = 0;
+    }
+    @foreach (var item in Model.Items)
+    {
+        <section class="toggle @(ConvertToBool(item.Active) ? "active" : "")" 
+                 id="toggle-@Model.Context.ModuleId-@index">
+            <button class="toggle-heading" type="button">@item.Title</button>
+            @if (Model.Settings.Faq == "false")
+            {
+                <div class="toggle-content">@Html.Raw(item.Content)</div>
+            }
+            else
+            {
+                <p>@Html.Raw(item.Content)</p>
+            }
+        </section>
+        index++;
+    }
+</div>

@@ -1,0 +1,56 @@
+{
+	"fields": {
+		"Layout": {
+			"removeDefaultNone": true
+		},
+		"Color": {
+			"title": "Choose the Toggle Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"Size": {
+			"title": "Choose the Toggle Size",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Small",
+				"Large"
+			],
+			"removeDefaultNone": true
+		},
+		"Mode": {
+			"title": "Display Mode",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Simple"
+			],
+			"removeDefaultNone": true
+		},
+		"OneOnly": {
+			"title": "Only One Open at a Time?",
+			"type": "radio",
+			"optionLabels": [
+				"False (default)",
+				"True"
+			],
+			"removeDefaultNone": true
+		},
+		"Faq": {
+			"title": "Run as a FAQ?",
+			"type": "radio",
+			"optionLabels": [
+				"False (default)",
+				"True"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}
