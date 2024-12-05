@@ -1,0 +1,154 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+@if (Model.Settings.IconBoxesType == "Classic")
+{
+    <div class="featured-boxes @Model.Settings.FeaturedBoxesStyle">
+        <div class="row">
+            @foreach (var item in Model.Items)
+            {
+                if (Model.Settings.DisplayAxis == "horizontally")
+                {
+                    <div class="col-md-3 col-sm-6">
+                         <div class="featured-box featured-box-@Model.Settings.Color
+                            @(Model.Settings.ContentContainers == "2" ? "featured-box-text-left" : "")
+                            @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)"
+                            @if (ConvertToBool(Model.Settings.EnableAnimations))
+                            {
+                                @:data-appear-animation="@Model.Settings.AnimationType"
+                                @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
+                            }>
+                            @RenderBoxContent(Model, item)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="featured-box featured-box-@Model.Settings.Color
+                    @(Model.Settings.ContentContainers == "2" ? "featured-box-text-left" : "")
+                    @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)"
+                    @if (ConvertToBool(Model.Settings.EnableAnimations))
+                    {
+                        @:data-appear-animation="@Model.Settings.AnimationType"
+                        @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
+                    }>
+                    @RenderBoxContent(Model, item)
+                </div>
+                }
+            }
+        </div>
+    </div>
+}
+else if (Model.Settings.IconBoxesType == "Simple")
+{
+    <div class="row">
+        @foreach (var item in Model.Items)
+        {
+            <div class="col-md-3">
+                <div class="feature-box 
+                    @Model.Settings.FeatureBoxStyle 
+                    feature-box-@Model.Settings.Color 
+                    @(ConvertToBool(Model.Settings.ApplyReverseClass) ? "reverse" : "")"
+                    @if (ConvertToBool(Model.Settings.EnableAnimations))
+                    {
+                        @:data-appear-animation="@Model.Settings.AnimationType"
+                        @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
+                    }>
+                    <div class="feature-box-icon">@RenderIconBox(Model, item)</div>
+                    <div class="feature-box-info">
+                        <h4 class="mb-sm @(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
+                        <p class="mb-lg">@item.Content</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="featured-boxes-full @Model.Settings.FeatureBoxFullStyle row m-0">
+        @foreach (var item in Model.Items)
+        {
+            <div class="col-md-3">
+                <div class="featured-box-full featured-box-full-primary">
+                    @RenderIconBox(Model,item)
+                    <h4 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
+                    <p>@item.Content</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@helper RenderDivider()
+{
+    <div class="divider divider-small divider-small-center">
+        <hr />
+    </div>
+}
+
+@helper RenderIconBox(dynamic Model, dynamic item)
+{
+    <em class="
+        @(Model.Settings.IconBoxesType == "Classic" ? "icon-featured" : "") 
+        @item.Icon
+        @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? "" : "m-none")
+        @(Model.Settings.IconPosition == "left" ? "pull-left mr-lg" : "")">
+    </em>
+}
+
+@helper RenderBoxContent(dynamic Model, dynamic item)
+{
+    <div class="box-content">
+    @if (Model.Settings.ContentContainers == "2")
+    {
+        <div class="row">
+            @if (Model.Settings.IconPosition == "right")
+            {
+                <div class="col-md-9">
+                    <h2 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h2>
+                </div>
+                <div class="col-md-3">
+                    <div class="align-right">@RenderIconBox(Model, item)</div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12">
+                    @RenderIconBox(Model, item)
+                    <h2 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h2>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@item.Content</p>
+                <button class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</button>
+            </div>
+        </div>
+    }
+    else if (Model.Settings.ContentContainers == "1")
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @RenderIconBox(Model, item)
+                <h2 class="mb-lg @(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h2>
+                @if (ConvertToBool(Model.Settings.AddTopDivider))
+                {
+                    @RenderDivider()
+                }
+                <p>@item.Content</p>
+                @if (ConvertToBool(Model.Settings.AddBottomDivider))
+                {
+                    @RenderDivider()
+                }
+                <button class="btn btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</button>
+            </div>
+        </div>
+    }
+</div>
+}
