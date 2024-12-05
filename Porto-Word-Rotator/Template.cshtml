@@ -1,0 +1,42 @@
+@if (Model.Sections != null)
+{
+    foreach (var item in Model.Sections)
+    {
+        <@(item.Size) class="mb-sm word-rotator-title">
+            @item.Text
+            @if (item.Color == "transparent")
+            {
+            <strong>
+                <span class="word-rotate" data-plugin-options="{'delay': 2000, 'animDelay': 300}">
+                    <span class="word-rotate-items">
+                            @if (item.WordRotate != null)
+                            {
+                                foreach (var word in item.WordRotate)
+                                {
+                                <span>@word.Value</span>
+                                }
+                            }
+                    </span>
+                </span>
+            </strong>
+            }
+            else
+            {
+            <strong class="inverted @item.Color">
+                <span class="word-rotate" data-plugin-options="{'delay': 2000, 'animDelay': 300}">
+                    <span class="word-rotate-items">
+                            @if (item.WordRotate != null)
+                            {
+                                foreach (var word in item.WordRotate)
+                                {
+                                <span>@word.Value</span>
+                                }
+                            }
+                    </span>
+                </span>
+            </strong>
+            }
+            @item.OtherText
+        </@(item.Size)>
+    }
+}

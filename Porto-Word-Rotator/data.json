@@ -1,0 +1,15 @@
+{
+  "Sections": [
+    {
+      "Text": "Some text",
+      "WordRotate": [
+        { "Value": "text1" },
+        { "Value": "text2" },
+        { "Value": "text3" }
+      ],
+      "Color": "inverted-primary",
+      "Size": "h1",
+      "OtherText": "Other Text in here"
+    }
+  ]
+}
