@@ -1,0 +1,29 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ButtonText",
+      "title": "Button Text (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TooltipTitle",
+      "title": "Tooltip Title (required)",
+      "fieldtype": "wysihtml",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
