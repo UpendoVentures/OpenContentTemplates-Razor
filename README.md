@@ -1,6 +1,6 @@
 # OpenContentTemplates (_Razor-based_) for OpenContent on DNN
 
-These are templates that we commonly use for various projects.
+These are templates that we commonly use for various projects. This repository replaces [the previous one which used Handlebars](https://github.com/UpendoVentures/OpenContentTemplates), instead of Razor.
 
 Learn more about DNN CMS at [the official DNN community website](https://dncommunity.org).
 
