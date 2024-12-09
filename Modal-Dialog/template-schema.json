@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "HeaderBackgroundColor": {
+      "type": "string",
+      "title": "Header Background Color",
+      "default": "#CE3439"
+    },
+    "HeaderTextColor": {
+      "type": "string",
+      "title": "Header Text Color",
+      "default": "#FFFFFF"
+    },
+    "HeaderTextType": {
+      "type": "string",
+      "title": "Header Text Type",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5"
+      ],
+      "default": "h3"
+    },
+    "UseCookie": {
+      "type": "boolean",
+      "title": "Use Cookie Setting",
+      "default": "true"
+    },
+    "NoUserLoggedInText": {
+      "type": "string",
+      "title": "NoUserLoggedIn.Text",
+      "default": "No user logged in"
+    },
+    "MyEmailAddresIsAccurateText": {
+      "type": "string",
+      "title": "MyEmailAddresIsAccurate.Text",
+      "default": "My email address is accurate."
+    },
+    "CurrentEmailText": {
+      "type": "string",
+      "title": "CurrentEmail.Text",
+      "default": "Current email:"
+    }
+  }
+}

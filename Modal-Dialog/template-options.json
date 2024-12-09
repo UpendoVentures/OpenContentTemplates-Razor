@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "HeaderBackgroundColor": {
+      "type": "text"
+    },
+    "HeaderTextColor": {
+      "type": "text"
+    },
+    "HeaderTextType": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5"
+      ]
+    },
+    "UseCookie": {
+      "type": "checkbox",
+      "helper": "If you enable this checkbox the modal will only open the first time the user accesses the page."
+    },
+    "NoUserLoggedInText": {
+      "type": "text"
+    },
+    "MyEmailAddresIsAccurateText": {
+      "type": "text"
+    },
+    "CurrentEmailText": {
+      "type": "text"
+    }
+  }
+}
