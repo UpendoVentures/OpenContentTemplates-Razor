@@ -1,0 +1,32 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Heading",
+      "title": "Heading Text (required)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "SubHeading",
+      "title": "Heading Subtitle",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ImageBefore",
+      "title": "Image Before (required)",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "ImageAfter",
+      "title": "Image After (required)",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    }
+
+  ],
+  "formtype": "object"
+}

@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "Title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "Content": {
+      "type": "string",
+      "title": "Content Text (required)",
+      "required": true
+    },
+    "Icon": {
+      "type": "string",
+      "title": "Icon"
+    },
+    "btn1Text": {
+      "type": "string",
+      "title": "Button Text 1"
+    },
+    "btn2Text": {
+      "type": "string",
+      "title": "Button Text 2"
+    }
+  }
+}

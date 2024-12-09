@@ -1,0 +1,75 @@
+{
+  "fields": {
+    "Blockquotes": {
+      "type": "text"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "TopText": {
+            "type": "textarea"
+          },
+          "ColMdTopText": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "col-12",
+              "col-11",
+              "col-10",
+              "col-9",
+              "col-8",
+              "col-7",
+              "col-6",
+              "col-5",
+              "col-4",
+              "col-3",
+              "col-2",
+              "col-1"
+            ]
+          },
+          "Content": {
+            "type": "textarea"
+          },
+          "Color": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": ["primary", "secondary", "tertiary", "quaternary"]
+          },
+          "Align": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": ["pull right"]
+          },
+          "ColMdContent": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "col-12",
+              "col-11",
+              "col-10",
+              "col-9",
+              "col-8",
+              "col-7",
+              "col-6",
+              "col-5",
+              "col-4",
+              "col-3",
+              "col-2",
+              "col-1"
+            ]
+          },
+          "FooterText1": {
+            "type": "text"
+          },
+          "FooterText2": {
+            "type": "text"
+          },
+          "BottomText": {
+            "type": "textarea"
+          }
+        }
+      }
+    }
+  }
+}

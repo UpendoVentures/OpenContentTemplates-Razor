@@ -1,0 +1,13 @@
+{
+  "Content": "Porto is everything you need to create an awesome website! The #1 Selling DNN theme on DNN Store",
+  "Buttom": {
+    "Text": "Buy Now!",
+    "Color": "btn-primary",
+    "Link": "http://www.mandeeps.com/products/dnn-themes/porto.aspx"
+  },
+  "Arrow": "hrb",
+  "ArrowPosition": {
+    "Top": "-25",
+    "Left": "-154"
+  }
+}

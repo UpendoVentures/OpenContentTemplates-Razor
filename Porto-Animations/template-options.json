@@ -1,0 +1,38 @@
+{
+	"fields": {		
+		"Animation": {
+			"title": "Animation",
+			"type": "select",
+			"helper": "Find examples of styles at: <br/> <a href=\"https://porto.mandeeps.com/shortcodes/shortcodes-4/animations\" target=\"_blank\">Shapes & Dividers</a>",
+			"optionLabels": [
+				"fadeInUp",
+				"fadeInDown",
+				"fadeIn",
+				"fadeInLeft",
+				"fadeInRight",
+				"fadeInUpBig",
+				"fadeInDownBig",
+				"fadeInLeftBig",
+				"fadeInRightBig",
+				"bounceIn",
+				"bounceInUp",
+				"bounceInDown",
+				"bounceInLeft",
+				"bounceInRight",
+				"rotateIn",
+				"rotateInUpLeft",
+				"rotateInDownLeft",
+				"rotateInUpRight",
+				"rotateInDownRight",
+				"flash",
+				"shake",
+				"bounce",
+				"tada",
+				"swing",
+				"wobble",
+				"wiggle"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}

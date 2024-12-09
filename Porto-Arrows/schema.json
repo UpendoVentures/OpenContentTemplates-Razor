@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "Content": {
+      "type": "string",
+      "title": "Content Text (required)"
+    },
+    "Buttom": {
+      "type": "object",
+      "title": "Buttom",
+      "properties": {
+        "Text": {
+          "type": "string",
+          "title": "Text"
+        },
+        "Color": {
+          "type": "string",
+          "title": "Color",
+          "enum": [
+            "btn-primary",
+            "btn-secondary",
+            "btn-tertiary",
+            "btn-quaternary"
+          ],
+          "removeDefaultNone": true
+        },
+        "Link": {
+          "type": "string",
+          "title": "Link"
+        }
+      }
+    },
+    "Arrow": {
+      "type": "string",
+      "title": "Arrow",
+      "enum": ["vtl", "vtr", "vbl", "vbr", "hlb", "hlt", "hrb", "hrt"],
+      "removeDefaultNone": true
+    },
+    "ArrowPosition": {
+      "type": "object",
+      "title": "Arrow Position",
+      "properties": {
+        "Top": {
+          "type": "string",
+          "title": "Top"
+        },
+        "Left": {
+          "type": "string",
+          "title": "Left"
+        }
+      }
+    }
+  }
+}

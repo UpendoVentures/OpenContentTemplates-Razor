@@ -1,0 +1,42 @@
+{
+  "fields": {
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Success",
+        "Info",
+        "Warning",
+        "Danger",
+        "Dark",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "removeDefaultNone": true
+    },
+    "Size": {
+      "title": "Size",
+      "type": "select",
+      "optionLabels": ["", "sm", "lg"],
+      "removeDefaultNone": true
+    },
+    "ShowIcon": {
+      "label": "Show Icon",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "ShowBtn": {
+      "label": "Show Action Buttons",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "Dismissible": {
+      "label": "Show Close Buttons",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    }
+  }
+}

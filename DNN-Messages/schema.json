@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "Title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "Content": {
+      "type": "string",
+      "title": "Content"
+    },
+    "MessageType": {
+      "type": "radio",
+      "title": "Message Type",
+      "optionLabels": [
+        "Info",
+        "Error",
+        "Success",
+        "Warning"
+      ],
+      "enum": [
+        "dnnFormInfo",
+        "dnnFormValidationSummary",
+        "dnnFormSuccess",
+        "dnnFormWarning"
+      ]
+    },
+    "Icon": {
+      "type": "string",
+      "title": "Icon (optional) - Example: fab fa-android",
+      "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+    }
+  }
+}

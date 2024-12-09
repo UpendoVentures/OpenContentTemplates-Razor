@@ -1,0 +1,16 @@
+{
+  "fields": {
+    "Heading": {
+      "type": "text"
+    },
+    "SubHeading": {
+      "type": "text"
+    },   
+    "ImageBefore": {
+      "type": "image"
+    },
+    "ImageAfter": {
+      "type": "image"
+    }
+  }
+}

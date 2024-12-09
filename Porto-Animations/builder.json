@@ -1,0 +1,37 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Image",
+      "title": "Image (optional)",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Items",
+      "title": "Paragraphs",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "ParagraphsText",
+          "title": "Paragraphs Text (required)",
+          "fieldtype": "textarea",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

@@ -1,0 +1,10 @@
+<div class="dnnFormMessage @Model.MessageType">
+    <h4>
+        @if (!string.IsNullOrEmpty(Model.Icon))
+        {
+            <span class="@Model.Icon"></span>
+        }
+        @Model.Title
+    </h4>
+    @Html.Raw(Model.Content)
+</div>

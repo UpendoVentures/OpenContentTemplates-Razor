@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {        
+        "Animation": {
+            "title": "Animation",
+            "type": "string",           
+            "enum": [
+				"fadeInUp",
+				"fadeInDown",
+				"fadeIn",
+				"fadeInLeft",
+				"fadeInRight",
+				"fadeInUpBig",
+				"fadeInDownBig",
+				"fadeInLeftBig",
+				"fadeInRightBig",
+				"bounceIn",
+				"bounceInUp",
+				"bounceInDown",
+				"bounceInLeft",
+				"bounceInRight",
+				"rotateIn",
+				"rotateInUpLeft",
+				"rotateInDownLeft",
+				"rotateInUpRight",
+				"rotateInDownRight",
+				"flash",
+				"shake",
+				"bounce",
+				"tada",
+				"swing",
+				"wobble",
+				"wiggle"
+			]
+        }
+    }
+}

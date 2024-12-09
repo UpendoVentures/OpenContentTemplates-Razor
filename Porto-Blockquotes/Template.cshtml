@@ -1,0 +1,21 @@
+@foreach (var item in Model.Items)
+{
+    <div class="row">
+        <div class="@item.ColMdTopText">
+            <p>
+                @item.TopText
+            </p>
+        </div>
+        <div class="@item.ColMdContent">
+            <blockquote class="@item.Color @Model.Settings.Reverse @Model.Settings.Borders @item.Align">
+                <p>
+                    @Html.Raw(item.Content)
+                </p>
+                <footer>@item.FooterText1<cite title="Source Title">@item.FooterText2</cite></footer>
+            </blockquote>
+        </div>
+        <p>
+            @item.BottomText
+        </p>
+    </div>
+}

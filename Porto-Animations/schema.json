@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "Image": {
+      "type": "string",
+      "title": "Image (optional)",
+      "required": true
+    },
+    "Items": {
+      "type": "array",
+      "title": "Paragraphs",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ParagraphsText": {
+            "type": "string",
+            "title": "Paragraphs Text (required)",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

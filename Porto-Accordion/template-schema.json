@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "Color": {
+      "title": "Choose the Accordion Color",
+      "type": "string",
+      "enum": [
+        "default",
+        " accordion-primary",
+        " accordion-secondary",
+        " accordion-tertiary",
+        " accordion-quaternary"
+      ]
+    },
+    "Size": {
+      "title": "Choose the Accordion Size",
+      "type": "string",
+      "enum": ["", " accordion-sm", " accordion-lg"]
+    },
+    "Background": {
+      "title": "Include the Background?",
+      "type": "string",
+      "enum": ["default", " without-bg"]
+    },
+    "Border": {
+      "title": "Include the Borders?",
+      "type": "string",
+      "enum": ["", " without-borders"]
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Blockquotes",
+      "title": "Blockquotes",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "TopText",
+          "title": "TopText",
+          "fieldtype": "textarea",
+          "advanced": false
+        },
+        {
+          "fieldname": "ColMdTopText",
+          "title": "Top Text Columns",
+          "fieldtype": "select",
+          "fieldoptions": [],
+          "advanced": false
+        },
+        {
+          "fieldname": "Content",
+          "title": "Content",
+          "fieldtype": "textarea",
+          "advanced": false
+        },
+        {
+          "fieldname": "Color",
+          "title": "Color",
+          "fieldtype": "select",
+          "fieldoptions": [],
+          "advanced": false
+        },
+        {
+          "fieldname": "Align",
+          "title": "Align",
+          "fieldtype": "select",
+          "fieldoptions": [],
+          "advanced": false
+        },
+        {
+          "fieldname": "ColMdContent",
+          "title": "Content Text Columns",
+          "fieldtype": "select",
+          "fieldoptions": [],
+          "advanced": false
+        },
+        {
+          "fieldname": "FooterText1",
+          "title": "Footer Text1",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "FooterText2",
+          "title": "Footer Text2",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "BottomText",
+          "title": "BottomText",
+          "fieldtype": "textarea",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

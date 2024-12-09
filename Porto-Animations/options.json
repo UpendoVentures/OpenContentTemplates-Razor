@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "Image": {
+      "type": "image"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "ParagraphsText": {
+            "type": "textarea"
+          }
+        }
+      }
+    }
+  }
+}
