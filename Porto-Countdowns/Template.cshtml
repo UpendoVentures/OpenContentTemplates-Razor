@@ -1,0 +1,25 @@
+@{
+  var countdownStyle = Model.Settings.CountdownsStyle;
+  var dateTime = Model.DateTime;
+  var parallaxImage = Model.ParallaxImage;
+}
+
+@if (countdownStyle == "parallax")
+{
+  <section class="parallax section section-text-light section-parallax section-center mt-none"
+    data-plugin-options="{'speed': 1.5}" data-plugin-parallax="parallax" data-image-src="@parallaxImage">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="countdown countdown-light" data-plugin-countdown
+            data-plugin-options="{'date': '@dateTime', 'numberClass': 'font-weight-extra-bold'}"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+else
+{
+  <div class="@countdownStyle" data-plugin-countdown
+    data-plugin-options="{'date': '@dateTime', 'numberClass': 'font-weight-extra-bold'}"></div>
+}

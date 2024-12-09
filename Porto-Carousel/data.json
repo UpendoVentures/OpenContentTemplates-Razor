@@ -1,0 +1,70 @@
+{
+  "Items": [
+    {
+      "FullName": "Melinda Doe",
+      "Ocupation": "CEO",
+      "HoverStyleText": "HoverStyleText",
+      "SocialMedia": [
+        {
+          "Name": "Facebook",
+          "Url": "http://www.facebook.com",
+          "Icon": "fab fa-facebook-f"
+        },
+        {
+          "Name": "Twitter",
+          "Url": "http://www.twitter.com",
+          "Icon": "fab fa-twitter"
+        },
+        {
+          "Name": "Linkedin",
+          "Url": "http://www.linkedin.com",
+          "Icon": "fab fa-linkedin-in"
+        }
+      ]
+    },
+    {
+      "FullName": "Craig Doe",
+      "Ocupation": "CEO",
+      "HoverStyleText": "HoverStyleText",
+      "SocialMedia": [
+        {
+          "Name": "Facebook",
+          "Url": "http://www.facebook.com",
+          "Icon": "fab fa-facebook-f"
+        },
+        {
+          "Name": "Twitter",
+          "Url": "http://www.twitter.com",
+          "Icon": "fab fa-twitter"
+        },
+        {
+          "Name": "Linkedin",
+          "Url": "http://www.linkedin.com",
+          "Icon": "fab fa-linkedin-in"
+        }
+      ]
+    },
+    {
+      "FullName": "Richard Doe",
+      "Ocupation": "CEO",
+      "HoverStyleText": "HoverStyleText",
+      "SocialMedia": [
+        {
+          "Name": "Facebook",
+          "Url": "http://www.facebook.com",
+          "Icon": "fab fa-facebook-f"
+        },
+        {
+          "Name": "Twitter",
+          "Url": "http://www.twitter.com",
+          "Icon": "fab fa-twitter"
+        },
+        {
+          "Name": "Linkedin",
+          "Url": "http://www.linkedin.com",
+          "Icon": "fab fa-linkedin-in"
+        }
+      ]
+    }
+  ]
+}

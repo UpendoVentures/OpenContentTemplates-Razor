@@ -1,0 +1,25 @@
+{
+  "formfields": [
+    {
+      "fieldname": "DateTime",
+      "title": "DateTime (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "placeholder": "Use Format Year/Month/Day Hour:Minutes/Seconds",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ParallaxImage",
+      "title": "Parallax Image (required if Countdowns Style is equal to \"Inside Parallax\" )",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

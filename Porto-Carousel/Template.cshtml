@@ -1,0 +1,132 @@
+@{
+    var style = Model.Settings.Style != null ? Model.Settings.Style.ToString() : string.Empty;
+}
+
+@switch ((string)style)
+{
+    case "FullWidth":
+        <div class="owl-carousel full-width" data-plugin-options="{'items': 5, 'loop': false, 'nav': true, 'dots': false}">
+            @foreach (var item in Model.Items)
+            {
+                <div>
+                    <a href="@item.Image">
+                        <div class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                            <span class="thumb-info-wrapper">
+                                <img alt="Project-Image-1" src="@item.Image" class="img-fluid" />
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">@item.FullWidthProjectTitle</span>
+                                    <span class="thumb-info-type">@item.FullWidthProjectType</span>
+                                </span>
+                                <span class="thumb-info-action-icon"> <em class="fas fa-link"></em> </span>
+                            </span>
+                        </div>
+                        <span class="btn-text-indent">Single Project</span>
+                    </a>
+                </div>
+            }
+        </div>
+        break;
+
+    case "InsideText":
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Model.InnerTopText</p>
+                <div class="owl-carousel nav-inside pull-left mr-lg mb-sm" style="width: 250px;" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut','autoplay': @(Model.Settings.Autoplay.ToString().ToLower()), 'autoplayTimeout': @Model.Settings.AutoplayTimeout}">
+                    @if(Model.Items != null)
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            <div>
+                                <img alt="Project-Image-1" class="img-fluid rounded" src="@item.Image" />
+                            </div>
+                        }
+                    }
+                </div>
+                  @if (Model.ItemsInnerText != null)
+                  {
+                        foreach (var textItem in Model.ItemsInnerText)
+                        {
+                            <p>@textItem.Text</p>
+                        }
+                  }
+            </div>
+        </div>
+        break;
+
+    case "HoverStyle":
+        <div class="event pt-md">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme custom-dots-style-1 custom-dots-color-primary" data-plugin-options="{'items': 4, 'margin': 0, 'loop': false}">
+                        @if(Model.Items != null)
+                        {
+                            foreach (var item in Model.Items)
+                            {
+                                <div class="carousel-logo-item background-color-light">
+                                    <div class="carousel-logo-pannel carousel-logo-pb center">
+                                        <img src="@item.Image" class="img-fluid" alt="logo-1" />
+                                    </div>
+                                    <div class="carousel-logo-pannel carousel-logo-hover pt-xlg pl-md pr-md pb-sm">
+                                        <div class="mb-lg">
+                                            <img src="@item.Image" class="img-fluid" alt="logo-1" />
+                                        </div>
+                                        <p class="carousel-logo-description font-weight-normal">
+                                            @item.HoverStyleText
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        break;
+
+    case "Default":
+        <div class="owl-carousel @Model.Settings.Navigation @((Model.Settings.RoundedNav.ToString().ToLower() == "true" ? "rounded-nav" : ""))" data-plugin-options="{'items': @Model.Settings.NumberOfItems, 'margin': 10, 'loop': @(Model.Settings.Loop.ToString().ToLower()), 'nav': true, 'dots': false, 'autoplay': @(Model.Settings.Autoplay.ToString().ToLower() ), 'autoplayTimeout': @Model.Settings.AutoplayTimeout.ToString().ToLower() }">
+            @if(Model.Items != null)
+            {
+                foreach (var item in Model.Items)
+                {
+                    <div class="center mb-lg">
+                        <img alt="Image" class="img-fluid rounded" src="@item.Image" />
+                        @if (Model.Settings.ShowData.ToString().ToLower() == "true")
+                        {
+                            <h4 class="mt-md mb-none">@item.FullName</h4>
+                            <p class="mb-none">@item.Ocupation</p>
+                            <span class="thumb-info-social-icons mt-sm pb-none">
+                                @if(item.SocialMedia != null)
+                                {
+                                    foreach (var social in item.SocialMedia)
+                                    {
+                                        <a href="@social.Url"><em class="@social.Icon"></em> <span>@social.Name</span> </a>
+                                    }
+                                }
+                                
+                            </span>
+                        }
+                    </div>
+                }
+            }
+        </div>
+        break;
+
+    case "Videos":
+        <div class="owl-carousel manual" id="videos">
+            @if(Model.Videos!=null)
+            {
+                foreach (var video in Model.Videos)
+                {
+                    <div class="item-video" data-merge="3">
+                        <a class="owl-video" href="@video.Url"> <span class="btn-text-indent">@video.TextIndent</span> </a>
+                    </div>
+                }
+            }
+        </div>
+        break;
+
+    default:
+        <div>No matching style found.</div>
+        break;
+}

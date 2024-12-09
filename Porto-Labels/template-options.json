@@ -1,0 +1,31 @@
+{
+	"fields": {		
+		"LabelColor": {
+			"title": "Label Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Success",
+				"Info",
+				"Warning",
+				"Danger",
+				"Dark",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},		
+		"LabelSize": {
+			"title": "Label Size",
+			"type": "select",
+			"optionLabels": [
+				"Small",
+				"Default",
+				"Large"			
+			],
+			"removeDefaultNone": true			
+		}
+	}
+}

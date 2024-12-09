@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "enum": ["Default", "full-width", "Masonry 1", "Masonry 2"]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "Items": [
+    {
+      "HoverStyles": "Default",
+      "DefaultStyles": "img-thumbnail d-inline-block",
+      "Image": "",
+      "ProjectTitle": "Some title1",
+      "ProjectType": "Some type1",
+      "GridWidth": "col-md-3"
+    },
+    {
+      "HoverStyles": "Default",
+      "DefaultStyles": "img-thumbnail d-inline-block",
+      "Image": "",
+      "ProjectTitle": "Some title2",
+      "ProjectType": "Some type2",
+      "GridWidth": "col-md-3"
+    },
+    {
+      "HoverStyles": "Default",
+      "DefaultStyles": "img-thumbnail d-inline-block",
+      "Image": "",
+      "ProjectTitle": "Some title3",
+      "ProjectType": "Some type3",
+      "GridWidth": "col-md-3"
+    },
+    {
+      "HoverStyles": "Default",
+      "DefaultStyles": "img-thumbnail d-inline-block",
+      "Image": "",
+      "ProjectTitle": "Some title4",
+      "ProjectType": "Some type4",
+      "GridWidth": "col-md-3"
+    }
+  ]
+}

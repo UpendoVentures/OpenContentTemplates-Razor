@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+      "Heading": {
+        "type": "string",
+        "title": "Heading Text (required)",
+        "required": true
+      },
+      "SubHeading": {
+        "type": "string",
+        "title": "Heading Subtitle"
+      }
+    }
+  }

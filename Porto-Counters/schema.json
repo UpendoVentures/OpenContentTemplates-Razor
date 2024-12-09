@@ -1,0 +1,138 @@
+{
+  "type": "object",
+  "properties": {
+    "Style": {
+      "type": "string",
+      "title": "Style",
+      "enum": ["Default", "Inline"],
+      "removeDefaultNone": true
+    },
+    "WithBorders": {
+      "type": "boolean",
+      "title": "With Borders",
+      "dependencies": ["Style"]
+    },
+    "WithBackground": {
+      "type": "boolean",
+      "title": "Counter with Background",
+      "dependencies": ["Style"]
+    },
+    "Background": {
+      "type": "string",
+      "title": "Background",
+      "enum": [
+        "section section-primary",
+        "section section-default",
+        "parallax"
+      ],
+      "dependencies": ["WithBackground", "Style"]
+    },
+    "ParallaxImage": {
+      "type": "string",
+      "title": "ParallaxImage",
+      "dependencies": ["Background", "Style"]
+    },
+    "Grid": {
+      "type": "string",
+      "title": "Grid",
+      "enum": [
+        "col-md-1 col-sm-6",
+        "col-md-2 col-sm-6",
+        "col-md-3 col-sm-6",
+        "col-md-4 col-sm-6",
+        "col-md-5 col-sm-6",
+        "col-md-6 col-sm-6",
+        "col-md-7 col-sm-6",
+        "col-md-8 col-sm-6",
+        "col-md-9 col-sm-6",
+        "col-md-10 col-sm-6",
+        "col-md-11 col-sm-6",
+        "col-md-12 col-sm-6"
+      ],
+      "dependencies": ["Style"]
+    },
+    "Items": {
+      "type": "array",
+      "title": "Items",
+      "dependencies": ["Style"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "Item": {
+            "type": "object",
+            "title": "Item",
+            "properties": {
+              "DataFrom": {
+                "type": "number",
+                "title": "Data From"
+              },
+              "DataTo": {
+                "type": "number",
+                "title": "Data To"
+              },
+              "DataPrefix": {
+                "type": "string",
+                "title": "Data Prefix"
+              },
+              "DataAppend": {
+                "type": "string",
+                "title": "DataAppend",
+                "default": "+"
+              },
+              "Icon": {
+                "type": "string",
+                "title": "Icon"
+              },
+              "Text": {
+                "type": "string",
+                "title": "Text"
+              },
+              "Color": {
+                "type": "string",
+                "title": "Color",
+                "enum": [
+                  "counter-primary",
+                  "counter-secondary",
+                  "counter-tertiary",
+                  "counter-quaternary"
+                ]
+              },
+              "Speed": {
+                "type": "string",
+                "title": "Speed",
+                "default": "5000"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Inline": {
+      "type": "object",
+      "title": "Inline",
+      "dependencies": ["Style"],
+      "properties": {
+        "FirstText": {
+          "type": "string",
+          "title": "First Text"
+        },
+        "DataTo": {
+          "type": "number",
+          "title": "Data To"
+        },
+        "DataFrom": {
+          "type": "number",
+          "title": "Data From"
+        },
+        "AlternativeFont": {
+          "type": "boolean",
+          "title": "Alternative Font"
+        },
+        "LastText": {
+          "type": "string",
+          "title": "Last Text"
+        }
+      }
+    }
+  }
+}

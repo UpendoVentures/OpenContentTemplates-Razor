@@ -1,0 +1,334 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Style",
+      "title": "Style",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "Default",
+          "text": "Default"
+        },
+        {
+          "value": "Inline",
+          "text": "Inline"
+        }
+      ],
+      "removeDefaultNone": true,
+      "advanced": false
+    },
+    {
+      "fieldname": "WithBorders",
+      "title": "With Borders",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "WithBackground",
+      "title": "Counter with Background",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "Background",
+      "title": "Background",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "section section-primary",
+          "text": "primary"
+        },
+        {
+          "value": "section section-default",
+          "text": "default"
+        },
+        {
+          "value": "parallax",
+          "text": "parallax"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "WithBackground",
+          "values": "true"
+        },
+        {
+          "fieldname": "Style",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "ParallaxImage",
+      "title": "ParallaxImage",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Background",
+          "values": "parallax"
+        },
+        {
+          "fieldname": "Style",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "Grid",
+      "title": "Grid",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "col-md-1 col-sm-6",
+          "text": "col-md-1"
+        },
+        {
+          "value": "col-md-2 col-sm-6",
+          "text": "col-md-2"
+        },
+        {
+          "value": "col-md-3 col-sm-6",
+          "text": "col-md-3"
+        },
+        {
+          "value": "col-md-4 col-sm-6",
+          "text": "col-md-4"
+        },
+        {
+          "value": "col-md-5 col-sm-6",
+          "text": "col-md-5"
+        },
+        {
+          "value": "col-md-6 col-sm-6",
+          "text": "col-md-6"
+        },
+        {
+          "value": "col-md-7 col-sm-6",
+          "text": "col-md-7"
+        },
+        {
+          "value": "col-md-8 col-sm-6",
+          "text": "col-md-8"
+        },
+        {
+          "value": "col-md-9 col-sm-6",
+          "text": "col-md-9"
+        },
+        {
+          "value": "col-md-10 col-sm-6",
+          "text": "col-md-10"
+        },
+        {
+          "value": "col-md-11 col-sm-6",
+          "text": "col-md-11"
+        },
+        {
+          "value": "col-md-12 col-sm-6",
+          "text": "col-md-12"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "Items",
+      "title": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Item",
+          "title": "Item",
+          "fieldtype": "object",
+          "subfields": [
+            {
+              "fieldname": "DataFrom",
+              "title": "Data From",
+              "fieldtype": "number",
+              "advanced": false
+            },
+            {
+              "fieldname": "DataTo",
+              "title": "Data To",
+              "fieldtype": "number",
+              "advanced": false
+            },
+            {
+              "fieldname": "DataPrefix",
+              "title": "Data Prefix",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "DataAppend",
+              "title": "DataAppend",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "default": "+",
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "Icon",
+              "title": "Icon",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "Text",
+              "title": "Text",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "Color",
+              "title": "Color",
+              "fieldtype": "select",
+              "fieldoptions": [
+                {
+                  "value": "counter-primary",
+                  "text": "primary"
+                },
+                {
+                  "value": "counter-secondary",
+                  "text": "secondary"
+                },
+                {
+                  "value": "counter-tertiary",
+                  "text": "tertiary"
+                },
+                {
+                  "value": "counter-quaternary",
+                  "text": "quaternary"
+                }
+              ],
+              "advanced": false
+            },
+            {
+              "fieldname": "Speed",
+              "title": "Speed",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "default": "5000",
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            }
+          ],
+          "advanced": false
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "Inline",
+      "title": "Inline",
+      "fieldtype": "object",
+      "subfields": [
+        {
+          "fieldname": "FirstText",
+          "title": "First Text",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "DataTo",
+          "title": "Data To",
+          "fieldtype": "number",
+          "advanced": false
+        },
+        {
+          "fieldname": "DataFrom",
+          "title": "Data From",
+          "fieldtype": "number",
+          "advanced": false
+        },
+        {
+          "fieldname": "AlternativeFont",
+          "title": "Alternative Font",
+          "fieldtype": "checkbox",
+          "advanced": false
+        },
+        {
+          "fieldname": "LastText",
+          "title": "Last Text",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Style",
+          "values": "Inline"
+        }
+      ]
+    }
+  ],
+  "formtype": "object"
+}

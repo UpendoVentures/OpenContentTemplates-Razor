@@ -1,0 +1,205 @@
+{
+  "formfields": [
+    {
+      "fieldname": "FormTitle",
+      "title": "Form Title (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ButtonText",
+      "title": "Button Text (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "FormGroup",
+          "title": "Form Group",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Item",
+              "title": "Item Label  (required)",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "DataType",
+              "title": "DataType",
+              "fieldtype": "select",
+              "fieldoptions": [
+                {
+                  "value": "text",
+                  "text": "text"
+                },
+                {
+                  "value": "email",
+                  "text": "email"
+                },
+                {
+                  "value": "url",
+                  "text": "url"
+                },
+                {
+                  "value": "textarea",
+                  "text": "textarea"
+                }
+              ],
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "GridWidth",
+              "title": "GridWidth",
+              "fieldtype": "select",
+              "fieldoptions": [
+                {
+                  "value": "col-md-12",
+                  "text": "col-md-12"
+                },
+                {
+                  "value": "col-md-11",
+                  "text": "col-md-11"
+                },
+                {
+                  "value": "col-md-10",
+                  "text": "col-md-10"
+                },
+                {
+                  "value": "col-md-9",
+                  "text": "col-md-9"
+                },
+                {
+                  "value": "col-md-8",
+                  "text": "col-md-8"
+                },
+                {
+                  "value": "col-md-7",
+                  "text": "col-md-7"
+                },
+                {
+                  "value": "col-md-6",
+                  "text": "col-md-6"
+                },
+                {
+                  "value": "col-md-5",
+                  "text": "col-md-5"
+                },
+                {
+                  "value": "col-md-4",
+                  "text": "col-md-4"
+                },
+                {
+                  "value": "col-md-3",
+                  "text": "col-md-3"
+                },
+                {
+                  "value": "col-md-2",
+                  "text": "col-md-2"
+                },
+                {
+                  "value": "col-md-1",
+                  "text": "col-md-1"
+                }
+              ],
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "Rows",
+              "title": "Rows",
+              "fieldtype": "select",
+              "fieldoptions": [
+                {
+                  "value": "10",
+                  "text": "10"
+                },
+                {
+                  "value": "9",
+                  "text": "9"
+                },
+                {
+                  "value": "8",
+                  "text": "8"
+                },
+                {
+                  "value": "7",
+                  "text": "7"
+                },
+                {
+                  "value": "6",
+                  "text": "6"
+                },
+                {
+                  "value": "5",
+                  "text": "5"
+                },
+                {
+                  "value": "4",
+                  "text": "4"
+                },
+                {
+                  "value": "3",
+                  "text": "3"
+                },
+                {
+                  "value": "2",
+                  "text": "2"
+                },
+                {
+                  "value": "1",
+                  "text": "1"
+                },
+                {}
+              ],
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": [
+                {
+                  "fieldname": "DataType",
+                  "values": "textarea"
+                }
+              ]
+            }
+          ],
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

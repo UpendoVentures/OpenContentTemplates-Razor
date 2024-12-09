@@ -1,0 +1,12 @@
+{
+    "ModuleTitle": "Icons",
+    "Items": [
+      {
+        "Icon": "fas fa-battery-full"      
+      },
+      {
+        "Icon": "fab fa-android"
+        
+      }
+    ]
+  }

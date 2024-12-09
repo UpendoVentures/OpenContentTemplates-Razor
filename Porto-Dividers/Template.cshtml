@@ -1,0 +1,34 @@
+@{
+    var dividerType = Model.Settings.DividerType.ToString();
+    var fullWidth = Model.Settings.FullWith ?? false;
+    var enableAnimations = Model.Settings.EnableAnimations ?? false;
+}
+
+@if (dividerType == "Divider with Icon")
+{
+    <div class="divider 
+        @(fullWidth ? "divider-solid" : "")
+        @Model.Settings.PatternStyle 
+        @Model.Settings.DividerStyle 
+        @Model.Settings.Color 
+        @Model.Settings.IconsSizes 
+        @Model.Settings.Spacements 
+        @Model.Settings.IconsPosition"
+        @(enableAnimations ? string.Format("data-appear-animation=\"{0}\" data-appear-animation-delay=\"{1}\"", Model.Settings.AnimationType, Model.Settings.AnimationDelay) : "")>
+        <em class="@Model.Icon"></em>
+    </div>
+}
+else if (dividerType == "Classic")
+{
+    <hr class="@Model.Settings.Spacements" />
+}
+else
+{
+    <div class="divider divider-small 
+        @Model.Settings.Color 
+        @Model.Settings.DividerSmallLocation 
+        @Model.Settings.DividerSmallSize 
+        @Model.Settings.Spacements">
+        <hr />
+    </div>
+}

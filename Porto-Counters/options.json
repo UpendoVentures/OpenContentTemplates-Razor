@@ -1,0 +1,129 @@
+{
+  "fields": {
+    "Style": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": ["Default", "Inline"],
+      "removeDefaultNone": true
+    },
+    "WithBorders": {
+      "type": "checkbox",
+      "dependencies": {
+        "Style": ["Default"]
+      }
+    },
+    "WithBackground": {
+      "type": "checkbox",
+      "dependencies": {
+        "Style": ["Default"]
+      }
+    },
+    "Background": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": ["primary", "default", "parallax"],
+      "dependencies": {
+        "WithBackground": ["true"],
+        "Style": ["Default"]
+      }
+    },
+    "ParallaxImage": {
+      "type": "image",
+      "dependencies": {
+        "Background": ["parallax"],
+        "Style": ["Default"]
+      }
+    },
+    "Grid": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "col-md-1",
+        "col-md-2",
+        "col-md-3",
+        "col-md-4",
+        "col-md-5",
+        "col-md-6",
+        "col-md-7",
+        "col-md-8",
+        "col-md-9",
+        "col-md-10",
+        "col-md-11",
+        "col-md-12"
+      ],
+      "dependencies": {
+        "Style": ["Default"]
+      }
+    },
+    "Items": {
+      "type": "array",
+      "dependencies": {
+        "Style": ["Default"]
+      },
+      "items": {
+        "fields": {
+          "Item": {
+            "type": "object",
+            "fields": {
+              "DataFrom": {
+                "type": "number"
+              },
+              "DataTo": {
+                "type": "number"
+              },
+              "DataPrefix": {
+                "type": "text"
+              },
+              "DataAppend": {
+                "type": "text"
+              },
+              "Icon": {
+                "type": "text",
+                "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+              },
+              "Text": {
+                "type": "text"
+              },
+              "Color": {
+                "type": "select",
+                "sort": false,
+                "optionLabels": [
+                  "primary",
+                  "secondary",
+                  "tertiary",
+                  "quaternary"
+                ]
+              },
+              "Speed": {
+                "type": "text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Inline": {
+      "type": "object",
+      "dependencies": {
+        "Style": ["Inline"]
+      },
+      "fields": {
+        "FirstText": {
+          "type": "text"
+        },
+        "DataTo": {
+          "type": "number"
+        },
+        "DataFrom": {
+          "type": "number"
+        },
+        "AlternativeFont": {
+          "type": "checkbox"
+        },
+        "LastText": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}

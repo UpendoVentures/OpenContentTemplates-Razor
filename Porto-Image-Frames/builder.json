@@ -1,0 +1,428 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Items",
+      "title": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "HoverStyles",
+          "title": "Hover Styles",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "Default",
+              "text": "Default"
+            },
+            {
+              "value": "thumb-info-lighten",
+              "text": "Default Lighten"
+            },
+            {
+              "value": "thumb-info-no-zoom",
+              "text": "No Zoom"
+            },
+            {
+              "value": "With Title and Type",
+              "text": "With Title and Type"
+            },
+            {
+              "value": "Centered Icons",
+              "text": "Centered Icons"
+            },
+            {
+              "value": "Icons Colors",
+              "text": "Icons Colors"
+            },
+            {
+              "value": "thumb-info-centered-info",
+              "text": "Centered Info"
+            },
+            {
+              "value": "Hide Info Hover",
+              "text": "Hide Info Hover"
+            },
+            {
+              "value": "FadeIn",
+              "text": "FadeIn"
+            },
+            {
+              "value": "Animation Style",
+              "text": "Animation Style"
+            }
+          ],
+          "advanced": false
+        },
+        {
+          "fieldname": "DefaultStyles",
+          "title": "Default Styles",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "rounded-circle",
+              "text": "rounded-circle"
+            },
+            {
+              "value": "img-thumbnail d-inline-block",
+              "text": "img-thumbnail d-inline-block"
+            }
+          ],
+          "advanced": false
+        },
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "GridWidth",
+          "title": "GridWidth",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "col-md-12",
+              "text": "col-md-12"
+            },
+            {
+              "value": "col-md-11",
+              "text": "col-md-11"
+            },
+            {
+              "value": "col-md-10",
+              "text": "col-md-10"
+            },
+            {
+              "value": "col-md-9",
+              "text": "col-md-9"
+            },
+            {
+              "value": "col-md-8",
+              "text": "col-md-8"
+            },
+            {
+              "value": "col-md-7",
+              "text": "col-md-7"
+            },
+            {
+              "value": "col-md-6",
+              "text": "col-md-6"
+            },
+            {
+              "value": "col-md-5",
+              "text": "col-md-5"
+            },
+            {
+              "value": "col-md-4",
+              "text": "col-md-4"
+            },
+            {
+              "value": "col-md-3",
+              "text": "col-md-3"
+            },
+            {
+              "value": "col-md-2",
+              "text": "col-md-2"
+            },
+            {
+              "value": "col-md-1",
+              "text": "col-md-1"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ProjectTitle",
+          "title": "Project Title",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "ProjectType",
+          "title": "Project Type",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "SmallPicture",
+          "title": "Small Picture",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "FadeIn"
+            }
+          ]
+        },
+        {
+          "fieldname": "FadeInTitle",
+          "title": "FadeIn Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "FadeIn"
+            }
+          ]
+        },
+        {
+          "fieldname": "FadeInText",
+          "title": "FadeIn Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "FadeIn"
+            }
+          ]
+        },
+        {
+          "fieldname": "FadeInButtomText",
+          "title": "FadeIn Buttom Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "FadeIn"
+            }
+          ]
+        },
+        {
+          "fieldname": "FullName",
+          "title": "FullName",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Animation Style"
+            }
+          ]
+        },
+        {
+          "fieldname": "SocialMedia",
+          "title": "Social Media",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Name",
+              "title": "Name",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "placeholder": "facebook",
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "URL",
+              "title": "URL",
+              "fieldtype": "text",
+              "advanced": false
+            }
+          ],
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Animation Style"
+            }
+          ]
+        },
+        {
+          "fieldname": "PricipalSocialMedia",
+          "title": "Pricipal Social Media",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Animation Style"
+            }
+          ]
+        },
+        {
+          "fieldname": "PricipalIcon",
+          "title": "Pricipal Icon",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Animation Style"
+            }
+          ]
+        },
+        {
+          "fieldname": "CardText",
+          "title": "CardText",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Text",
+              "title": "Text",
+              "fieldtype": "textarea",
+              "advanced": false
+            }
+          ],
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Animation Style"
+            }
+          ]
+        },
+        {
+          "fieldname": "Icons",
+          "title": "Icons",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Icon",
+              "title": "Icon",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "IconColor",
+              "title": "Icon Color",
+              "fieldtype": "select",
+              "fieldoptions": [
+                {
+                  "value": "thumb-info-action-icon-primary",
+                  "text": "Primary"
+                },
+                {
+                  "value": "thumb-info-action-icon-secondary",
+                  "text": "Secondary"
+                },
+                {
+                  "value": "thumb-info-action-icon-tertiary",
+                  "text": "Tertiary"
+                }
+              ],
+              "advanced": false
+            },
+            {
+              "fieldname": "href",
+              "title": "href",
+              "fieldtype": "text",
+              "advanced": false
+            }
+          ],
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Icons Colors"
+            },
+            {
+              "fieldname": "HoverStyles",
+              "values": "Centered Icons"
+            }
+          ]
+        },
+        {
+          "fieldname": "Bottom",
+          "title": "Bottom",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "thumb-info-bottom-info",
+              "text": "Bottom Info"
+            },
+            {
+              "value": "thumb-info-bottom-info thumb-info-bottom-info-dark",
+              "text": "Bottom Info Dark"
+            }
+          ],
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": [
+            {
+              "fieldname": "HoverStyles",
+              "values": "Centered Icons,Icons Colors"
+            }
+          ]
+        },
+        {
+          "fieldname": "NoBorders",
+          "title": "No Borders",
+          "fieldtype": "checkbox",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

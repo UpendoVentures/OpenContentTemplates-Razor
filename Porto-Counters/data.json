@@ -1,0 +1,37 @@
+{
+  "Style": "Default",
+  "Grid": "col-md-3 col-sm-6",
+  "Items": [
+    {
+      "Item": {
+        "DataFrom": 0,
+        "DataTo": 54,
+        "DataAppend": "+",
+        "Text": "John Doe",
+        "Color": "counter-primary",
+        "Speed": "5000"
+      }
+    },
+    {
+      "Item": {
+        "DataFrom": 0,
+        "DataTo": 154,
+        "DataAppend": "",
+        "Text": "Sara Doe",
+        "Color": "counter-secondary",
+        "Speed": "5000"
+      }
+    },
+    {
+      "Item": {
+        "DataFrom": 0,
+        "DataTo": 254,
+        "DataAppend": "",
+        "Text": "Currency",
+        "Color": "counter-tertiary",
+        "Speed": "5000",
+        "DataPrefix": "$"
+      }
+    }
+  ]
+}

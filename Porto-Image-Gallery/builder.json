@@ -1,0 +1,119 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Groups",
+      "title": "Groups",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Item",
+          "title": "Item",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "title": "Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "GridWidth",
+          "title": "GridWidth",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "col-md-12",
+              "text": "col-md-12"
+            },
+            {
+              "value": "col-md-11",
+              "text": "col-md-11"
+            },
+            {
+              "value": "col-md-10",
+              "text": "col-md-10"
+            },
+            {
+              "value": "col-md-9",
+              "text": "col-md-9"
+            },
+            {
+              "value": "col-md-8",
+              "text": "col-md-8"
+            },
+            {
+              "value": "col-md-7",
+              "text": "col-md-7"
+            },
+            {
+              "value": "col-md-6",
+              "text": "col-md-6"
+            },
+            {
+              "value": "col-md-5",
+              "text": "col-md-5"
+            },
+            {
+              "value": "col-md-4",
+              "text": "col-md-4"
+            },
+            {
+              "value": "col-md-3",
+              "text": "col-md-3"
+            },
+            {
+              "value": "col-md-2",
+              "text": "col-md-2"
+            },
+            {
+              "value": "col-md-1",
+              "text": "col-md-1"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ProjectTitle",
+          "title": "Project Title",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "ProjectType",
+          "title": "Project Type",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Group",
+          "title": "Group",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "W2",
+          "title": "W2",
+          "fieldtype": "checkbox",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

@@ -1,0 +1,230 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+<div class="row event">
+  @if (Model.Items != null)
+  {
+    foreach (var item in Model.Items)
+    {
+      if (item.HoverStyles == "Default")
+      {
+        <div class="@item.GridWidth">
+          <a href="#">
+            <div class="thumb-info @(ConvertToBool(item.NoBorders) ? "thumb-info-no-borders" : "")">
+              <span class="thumb-info-wrapper">
+                <img alt="Project-Image" src="@item.Image" class="img-fluid @item.DefaultStyles" />
+                <span class="thumb-info-action-icon">
+                  <em class="fas fa-link"></em>
+                </span>
+              </span>
+            </div>
+            <span class="btn-text-indent">Single Project</span>
+          </a>
+        </div>
+      }
+      else if (item.HoverStyles == "thumb-info-lighten")
+      {
+        <div class="@item.GridWidth">
+          <a href="#">
+            <div class="thumb-info thumb-info-lighten @(ConvertToBool(item.NoBorders) ? "thumb-info-no-borders" : "")">
+              <span class="thumb-info-wrapper">
+                <img alt="Project-Image" src="@item.Image" class="img-fluid @item.DefaultStyles" />
+                <span class="thumb-info-action-icon">
+                  <em class="fas fa-link"></em>
+                </span>
+              </span>
+            </div>
+            <span class="btn-text-indent">Single Project</span>
+          </a>
+        </div>
+      }
+      else if (item.HoverStyles == "With Title and Type")
+      {
+        <div class="@item.GridWidth">
+          <a href="#">
+            <div class="thumb-info @(ConvertToBool(item.NoBorders) ? "thumb-info-no-borders" : "")">
+              <span class="thumb-info-wrapper">
+                <img alt="Project-Image" src="@item.Image" class="img-fluid @item.DefaultStyles" />
+                <span class="thumb-info-title">
+                  <span class="thumb-info-inner">@item.ProjectTitle</span>
+                  <span class="thumb-info-type">@item.ProjectType</span>
+                </span>
+                <span class="thumb-info-action-icon">
+                  <em class="fas fa-link"></em>
+                </span>
+              </span>
+            </div>
+            <span class="btn-text-indent">Single Project</span>
+          </a>
+        </div>
+      }
+      else if (item.HoverStyles == "Centered Icons")
+      {
+        <div class="@item.GridWidth">
+          <div
+            class="thumb-info @(ConvertToBool(item.NoBorders) ? "thumb-info-no-borders" : "") thumb-info-lighten thumb-info-bottom-info @item.Bottom thumb-info-centered-icons">
+            <span class="thumb-info-wrapper">
+              <img alt="Project-Image" src="@item.Image" class="img-fluid @item.DefaultStyles" />
+              <span class="thumb-info-title">
+                <span class="thumb-info-inner">@item.ProjectTitle</span>
+                <span class="thumb-info-type">@item.ProjectType</span>
+              </span>
+              <span class="thumb-info-action">
+                @if (item.Icons != null)
+                {
+                  foreach (var icon in item.Icons)
+                  {
+                    <a href="@icon.href">
+                      <span class="thumb-info-action-icon @icon.IconColor">
+                        <em class="@icon.Icon"></em>
+                      </span>
+                      <span class="btn-text-indent">Single Project</span>
+                    </a>
+                  }
+                }
+
+              </span>
+            </span>
+          </div>
+        </div>
+      }
+      else if (item.HoverStyles == "Icons Colors")
+      {
+        <div class="@item.GridWidth">
+          <div
+            class="thumb-info thumb-info-centered-icons @item.Bottom @(ConvertToBool(item.NoBorders) ? "thumb-info-no-borders" : "")">
+            <span class="thumb-info-wrapper">
+              <img alt="Project-Image" src="@item.Image" class="img-fluid @item.DefaultStyles" />
+              <span class="thumb-info-action">
+                @if (item.Icons != null)
+                {
+                  foreach (var icon in item.Icons)
+                  {
+                    <a href="@icon.href">
+                      <span class="thumb-info-action-icon @icon.IconColor">
+                        <em class="@icon.Icon"></em>
+                      </span>
+                      <span class="btn-text-indent">Single Project</span>
+                    </a>
+                  }
+                }
+
+              </span>
+            </span>
+          </div>
+        </div>
+      }
+      else if (item.HoverStyles == "Hide Info Hover")
+      {
+        <div class="@item.GridWidth">
+          <a href="#">
+            <div class="thumb-info thumb-info-centered-info thumb-info-hide-info-hover">
+              <span class="thumb-info-wrapper">
+                <img alt="Project-Image" src="@item.Image" class="img-fluid" />
+                <span class="thumb-info-title">
+                  <span class="thumb-info-inner">@item.ProjectTitle</span>
+                  <span class="thumb-info-type">@item.ProjectType</span>
+                </span>
+              </span>
+            </div>
+            <span class="btn-text-indent">Single Project</span>
+          </a>
+        </div>
+      }
+      else if (item.HoverStyles == "thumb-info-centered-info")
+      {
+        <div class="@item.GridWidth">
+          <a href="#">
+            <div class="thumb-info thumb-info-centered-info">
+              <span class="thumb-info-wrapper">
+                <img alt="Project-Image" src="@item.Image" class="img-fluid" />
+                <span class="thumb-info-title">
+                  <span class="thumb-info-inner">@item.ProjectTitle</span>
+                  <span class="thumb-info-type">@item.ProjectType</span>
+                </span>
+                <span class="thumb-info-action-icon">
+                  <em class="fas fa-link"></em>
+                </span>
+              </span>
+            </div>
+            <span class="btn-text-indent">Single Project</span>
+          </a>
+        </div>
+      }
+      else if (item.HoverStyles == "FadeIn")
+      {
+        <div class="@item.GridWidth">
+          <div class="appear-animation restaurant" data-appear-animation="fadeIn" data-appear-animation-delay="0">
+            <div class="thumb-info thumb-info-no-zoom thumb-info-custom mb-xl center">
+              <img src="@item.Image" class="img-fluid rounded-0" alt="restaurant" />
+              <img class="thumb-info-custom-icon" src="@item.SmallPicture" alt="small picture" />
+              <div class="thumb-info-caption">
+                <div class="thumb-info-caption-text">
+                  <h2 class="mb-md mt-xs">@item.FadeInTitle</h2>
+                  <p>@item.FadeInText</p>
+                  <a class="btn btn-primary mt-md" href="#">@item.FadeInButtomText <em
+                      class="fas fa-long-arrow-alt-right"></em></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      else if (item.HoverStyles == "Animation Style")
+      {
+        <div class="@item.GridWidth mt-md mb-md">
+          <div class="custom-speaker-card m-auto">
+            <div class="speaker-photo">
+              <a href="#speaker-content-1" class="popup-with-zoom-anim">
+                <img alt="Speaker" src="@item.Image" class="img-fluid" />
+                <span class="btn-text-indent">Speaker</span>
+              </a>
+            </div>
+            <div class="speaker-info speaker-social-twitter p-xlg">
+              <a href="#" class="speaker-social center text-color-light">
+                <em class="@item.PricipalIcon" aria-hidden="true"></em>
+                <span class="btn-text-indent">Speaker</span>
+              </a>
+              <h3 class="text-color-dark custom-font-size-4 mb-xs">@item.FullName</h3>
+              <p class="mb-none">@item.PricipalSocialMedia</p>
+            </div>
+          </div>
+          <div id="speaker-content-1" class="dialog dialog-lg zoom-anim-dialog event mfp-hide p-xlg">
+            <div class="row">
+              <div class="col-md-4 col-sm-4">
+                <img alt="Speaker" src="@item.Image" class="img-fluid mb-lg" />
+                <ul class="social-icons center">
+                  @if (item.SocialMedia != null)
+                  {
+                    foreach (var social in item.SocialMedia)
+                    {
+                      <li class="@social.Name active">
+                        <a href="@social.URL" target="_blank" title="Stumbleupon">
+                          <span class="btn-text-indent">Stumbleupon</span>
+                        </a>
+                      </li>
+                    }
+                  }
+                </ul>
+              </div>
+              <div class="col-md-8 col-sm-8">
+                <h2 class="text-color-dark mb-xs">@item.FullName</h2>
+                @if (item.CardText != null)
+                {
+                  foreach (var text in item.CardText)
+                  {
+                    <p class="font-size-sm custom-line-height-1">@text.Text</p>
+                  }
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  }
+</div>

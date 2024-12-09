@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "properties": {
+    "FormTitle": {
+      "type": "string",
+      "title": "Form Title (required)",
+      "required": true
+    },
+    "ButtonText": {
+      "type": "string",
+      "title": "Button Text (required)",
+      "required": true
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "FormGroup": {
+            "type": "array",
+            "title": "Form Group",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Item": {
+                  "type": "string",
+                  "title": "Item Label  (required)",
+                  "required": true
+                },
+                "DataType": {
+                  "type": "string",
+                  "title": "DataType",
+                  "enum": [
+                    "text",
+                    "email",
+                    "url",
+                    "textarea"
+                  ],
+                  "default": "text",
+                  "required": true
+                },
+                "GridWidth": {
+                  "type": "string",
+                  "title": "GridWidth",
+                  "enum": [
+                    "col-md-12",
+                    "col-md-11",
+                    "col-md-10",
+                    "col-md-9",
+                    "col-md-8",
+                    "col-md-7",
+                    "col-md-6",
+                    "col-md-5",
+                    "col-md-4",
+                    "col-md-3",
+                    "col-md-2",
+                    "col-md-1"
+                  ],
+                  "default": "col-md-12",
+                  "required": true
+                },
+                "Rows": {
+                  "type": "string",
+                  "title": "Rows",
+                  "enum": [
+                    "10",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "5",
+                    "4",
+                    "3",
+                    "2",
+                    "1"
+                  ],
+                  "default": "10",
+                  "required": true,
+                  "dependencies": [
+                    "DataType"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

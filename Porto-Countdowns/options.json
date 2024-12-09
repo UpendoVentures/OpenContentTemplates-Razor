@@ -1,0 +1,11 @@
+{
+  "fields": {
+    "DateTime": {
+      "type": "text",
+      "placeholder": "Use Format Year/Month/Day Hour:Minutes/Seconds"
+    },
+    "ParallaxImage": {
+      "type": "image"
+    }
+  }
+}

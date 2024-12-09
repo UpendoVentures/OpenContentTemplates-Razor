@@ -1,0 +1,76 @@
+{
+  "fields": {
+    "FormTitle": {
+      "type": "text"
+    },
+    "ButtonText": {
+      "type": "text"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "FormGroup": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "Item": {
+                  "type": "text"
+                },
+                "DataType": {
+                  "type": "select",
+                  "sort": false,
+                  "optionLabels": [
+                    "text",
+                    "email",
+                    "url",
+                    "textarea"
+                  ]
+                },
+                "GridWidth": {
+                  "type": "select",
+                  "sort": false,
+                  "optionLabels": [
+                    "col-md-12",
+                    "col-md-11",
+                    "col-md-10",
+                    "col-md-9",
+                    "col-md-8",
+                    "col-md-7",
+                    "col-md-6",
+                    "col-md-5",
+                    "col-md-4",
+                    "col-md-3",
+                    "col-md-2",
+                    "col-md-1"
+                  ]
+                },
+                "Rows": {
+                  "type": "select",
+                  "sort": false,
+                  "optionLabels": [
+                    "10",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "5",
+                    "4",
+                    "3",
+                    "2",
+                    "1"
+                  ],
+                  "dependencies": {
+                    "DataType": [
+                      "textarea"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "fields": {
+      "ModuleTitle": {
+        "type": "text"
+      },
+      "Items": {
+        "type": "array",
+        "items": {
+          "fields": {
+            "Icon": {
+              "type": "text",
+              "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+            }
+          }
+        }
+      }
+    }
+  }

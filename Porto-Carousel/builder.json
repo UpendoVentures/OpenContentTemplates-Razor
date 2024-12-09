@@ -1,0 +1,123 @@
+{
+  "formfields": [
+    {
+      "fieldname": "InnerTopText",
+      "title": "Inner Top Text (Only InsideText true)",
+      "fieldtype": "textarea",
+      "advanced": false
+    },
+    {
+      "fieldname": "ItemsInnerText",
+      "title": "Inside Text (Only InsideText true)",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Text",
+          "title": "Text",
+          "fieldtype": "textarea",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "title": "Carousel Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "HoverStyleText",
+          "title": "HoverStyleText",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "FullName",
+          "title": "Full Name",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Ocupation",
+          "title": "Ocupation",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "SocialMedia",
+          "title": "Social Media",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Name",
+              "title": "Name",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "Url",
+              "title": "Url",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "Icon",
+              "title": "Icon",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": false,
+              "hidden": false,
+              "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            }
+          ],
+          "advanced": false
+        },
+        {
+          "fieldname": "FullWidthProjectTitle",
+          "title": "Full Width Project Title ( Only is FullWidth True )",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "FullWidthProjectType",
+          "title": "Full Width Project Type ( Only is FullWidth True )",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "Videos",
+      "title": "Videos",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Url",
+          "title": "Url",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "TextIndent",
+          "title": "Text Indent",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

@@ -1,0 +1,77 @@
+{
+    "type": "object",
+    "properties": {        
+        "HeadingType": {
+            "title": "Heading Type",
+            "type": "string",
+            "enum": [
+                "h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6"
+            ]
+        },
+        "HeadingColor": {
+            "title": "Heading Color",
+            "type": "string",
+            "enum": [
+                "",
+				"heading-primary",
+				"heading-secondary",
+				"heading-tertiary",
+				"heading-quaternary",
+				"heading-light"
+            ]
+        },
+        "Uppercase": {
+            "title": "Uppercase",
+            "type": "string",
+            "enum": [
+                "text-uppercase",
+				""
+            ]
+        },
+        "EnableHeadingBorder": {    
+            "title": "Enable Heading Border",
+            "type": "boolean"        
+        },
+        "BorderStyle": {
+            "title": "Border Style",
+            "type": "string",
+            "enum": [
+				"heading-bottom-border",
+                "heading-bottom-double-border",
+                "heading-middle-border",
+                "heading-middle-border heading-middle-border-reverse",
+                "heading-middle-border heading-middle-border-center"                
+            ]
+        },
+        "BorderSize": {
+            "title": "Border Size",
+            "type": "string",
+            "enum": [
+                "",
+				"heading-border-lg",
+                "heading-border-xl"           
+            ]
+        },
+        "BorderColor": {
+            "title": "Border Color",
+            "type": "string",
+            "enum": [
+				"heading-primary",
+				"heading-secondary",
+				"heading-tertiary",
+				"heading-quaternary",
+				"heading-light"
+            ]
+        }
+    },
+    "dependencies": {
+        "BorderStyle": ["EnableHeadingBorder"],
+        "BorderSize": ["EnableHeadingBorder"],
+        "BorderColor": ["EnableHeadingBorder"]
+    }
+}

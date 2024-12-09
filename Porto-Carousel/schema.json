@@ -1,0 +1,93 @@
+{
+  "type": "object",
+  "properties": {
+    "InnerTopText": {
+      "type": "string",
+      "title": "Inner Top Text (Only InsideText true)"
+    },
+    "ItemsInnerText": {
+      "type": "array",
+      "title": "Inside Text (Only InsideText true)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          }
+        }
+      }
+    },
+    "Items": {
+      "type": "array",
+      "title": "Carousel Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "HoverStyleText": {
+            "type": "string",
+            "title": "HoverStyleText"
+          },
+          "FullName": {
+            "type": "string",
+            "title": "Full Name"
+          },
+          "Ocupation": {
+            "type": "string",
+            "title": "Ocupation"
+          },
+          "SocialMedia": {
+            "type": "array",
+            "title": "Social Media",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "title": "Name"
+                },
+                "Url": {
+                  "type": "string",
+                  "title": "Url"
+                },
+                "Icon": {
+                  "type": "string",
+                  "title": "Icon"
+                }
+              }
+            }
+          },
+          "FullWidthProjectTitle": {
+            "type": "string",
+            "title": "Full Width Project Title ( Only is FullWidth True )"
+          },
+          "FullWidthProjectType": {
+            "type": "string",
+            "title": "Full Width Project Type ( Only is FullWidth True )"
+          }
+        }
+      }
+    },
+    "Videos": {
+      "type": "array",
+      "title": "Videos",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "TextIndent": {
+            "type": "string",
+            "title": "Text Indent"
+          }
+        }
+      }
+    }
+  }
+}

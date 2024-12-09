@@ -1,0 +1,18 @@
+{
+    "formfields": [
+      {
+        "fieldname": "Icon",
+        "title": "Icon (optional)",
+        "fieldtype": "text",
+        "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>",
+        "advanced": true,
+        "required":true,
+        "hidden": false,
+        "multilanguage": false,
+        "index": false,
+        "position": "1col1",
+        "dependencies": []
+      }
+    ],
+    "formtype": "object"
+  }
