@@ -1,0 +1,19 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "ButtonText": "#pos_1_1",
+      "DialogTitle": "#pos_1_1",
+      "DialogText": "#pos_1_1",
+      "href": "#pos_1_1",
+      "FormTitle": "#pos_1_1",
+      "FormSubTitle": "#pos_1_1",
+      "FormData": "#pos_1_1",
+      "FormButtonText1": "#pos_1_1",
+      "FormButtonText2": "#pos_1_1",
+      "ColorFormButton1": "#pos_1_1",
+      "ColorFormButton2": "#pos_1_1"
+    }
+  }
+}

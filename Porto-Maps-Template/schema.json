@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+      "Latitud": {
+        "type": "string",
+        "title": "Latitud (required)",
+        "required": true
+      },
+      "Longitud": {
+        "type": "string",
+        "title": "Longitud (required)",
+        "required": true
+      },
+      "MarkerIcon": {
+        "type": "string",
+        "title": "Marker Icon"
+      },
+      "Markers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Address": {
+              "type": "string",
+              "title": "Address (required)",
+              "required": true
+            },
+            "Html": {
+              "type": "string",
+              "title": "Html (required)",
+              "required": true
+            }
+          }
+        }
+      }
+    }
+}

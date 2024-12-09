@@ -1,0 +1,79 @@
+{
+  "fields": {
+    "ButtonText": {
+      "type": "text"
+    },
+    "DialogTitle": {
+      "type": "text"
+    },
+    "DialogText": {
+      "type": "textarea"
+    },
+    "href": {
+      "type": "text"
+    },
+    "FormTitle": {
+      "type": "text"
+    },
+    "FormSubTitle": {
+      "type": "text"
+    },
+    "FormData": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "InputText": {
+            "type": "text"
+          },
+          "FormDataType": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": ["text", "email", "url", "textarea"]
+          },
+          "Row": {
+            "type": "select",
+            "optionLabels": ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+            "removeDefaultNone": true,
+            "dependencies": {
+              "FormDataType": ["textarea"]
+            }
+          },
+          "GridWidth": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ]
+          }
+        }
+      }
+    },
+    "FormButtonText1": {
+      "type": "text"
+    },
+    "FormButtonText2": {
+      "type": "text"
+    },
+    "ColorFormButton1": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": ["primary", "secondary", "tertiary", "quaternary"]
+    },
+    "ColorFormButton2": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": ["primary", "secondary", "tertiary", "quaternary"]
+    }
+  }
+}

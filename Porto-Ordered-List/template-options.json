@@ -1,0 +1,15 @@
+{
+	"fields": {		
+		"ListStyle": {
+			"title": "List Style",
+			"type": "select",
+			"optionLabels": [
+				"Simple",
+				"Bold Numbers",
+				"Rounded Numbers Light",
+				"Rounded Numbers Bold"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}

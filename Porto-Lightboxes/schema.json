@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "SingleImage": {
+      "type": "string",
+      "title": "Single Image"
+    },
+    "ImageGallery": {
+      "type": "array",
+      "title": "Image Gallery",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          }
+        }
+      }
+    }
+  }
+}

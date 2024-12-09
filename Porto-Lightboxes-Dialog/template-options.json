@@ -1,0 +1,28 @@
+{
+  "fields": {
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "optionLabels": ["Animation", "Popup", "Form"],
+      "removeDefaultNone": true
+    },
+    "Animation": {
+      "title": "Animation",
+      "type": "select",
+      "optionLabels": ["with zoom anim", "with move anim"],
+      "removeDefaultNone": true
+    },
+    "Popup": {
+      "title": "Popup",
+      "type": "select",
+      "optionLabels": ["youtube", "vimeo", "gmaps"],
+      "removeDefaultNone": true
+    },
+    "Color": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": ["primary", "secondary", "tertiary", "quaternary"],
+      "removeDefaultNone": true
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@{
+    var styleModal = Model.Settings.StyleModal;
+}
+
+<button class="btn @Model.Settings.ButtonColor @((styleModal == "defaultModal") ? "btn-lg" : "")" data-toggle="modal" data-target="#@styleModal">
+    @Model.ButtonText
+</button>
+
+<div class="modal @((styleModal == "noAnimModal") ? "" : "fade")" id="@styleModal" tabindex="-1" role="dialog" @((styleModal == "noAnimModal") ? "" : string.Format("aria-labelledby=\"{0}Label\"", styleModal)) aria-hidden="true">
+    <div class="modal-dialog @((styleModal == "largeModal") ? "modal-lg" : "") @((styleModal == "smallModal") ? "modal-sm" : "")">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="@styleModal">@Model.ModalTitle</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                @if(Model.Items != null)
+                {
+                    foreach (var item in Model.Items)
+                    {
+                        <p>@item.item</p>
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

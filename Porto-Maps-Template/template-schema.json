@@ -1,0 +1,45 @@
+{
+    "type": "object",
+    "properties": {         
+        "ShowBorders": {    
+            "title": "Show Borders",
+            "type": "boolean",
+            "default": false       
+        },
+		"panControl": {
+			"title": "Show Control Panel",
+			"type": "boolean",
+			"default": true
+		},
+		"zoomControl": {
+			"title": "Show Zoom Control",
+			"type": "boolean",
+			"default": true
+		},
+		"mapTypeControl": {
+			"title": "Show Map Type Control",
+			"type": "boolean",
+			"default": true
+		},
+		"scaleControl": {
+			"title": "Show Scale Control",
+			"type": "boolean",
+			"default": true
+		},
+		"streetViewControl": {
+			"title": "Show Street View Control",
+			"type": "boolean",
+			"default": true
+		},
+		"overviewMapControl": {
+			"title": "Show Overview Map Control",
+			"type": "boolean",
+			"default": true
+		},
+		"scrollwheel": {
+			"title": "Show Scroll Wheel",
+			"type": "boolean",
+			"default": true
+		}
+    }
+}

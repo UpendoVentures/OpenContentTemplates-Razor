@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "ButtonText": {
+      "type": "string",
+      "title": "Button Text"
+    },
+    "DialogTitle": {
+      "type": "string",
+      "title": "Dialog Title"
+    },
+    "DialogText": {
+      "type": "string",
+      "title": "Dialog Text",
+      "required": true
+    },
+    "href": {
+      "type": "string",
+      "title": "href"
+    },
+    "FormTitle": {
+      "type": "string",
+      "title": "Form Title"
+    },
+    "FormSubTitle": {
+      "type": "string",
+      "title": "Form Sub Title"
+    },
+    "FormData": {
+      "type": "array",
+      "title": "FormData",
+      "items": {
+        "type": "object",
+        "properties": {
+          "InputText": {
+            "type": "string",
+            "title": "InputText"
+          },
+          "FormDataType": {
+            "type": "string",
+            "title": "FormDataType",
+            "enum": ["text", "email", "url", "textarea"]
+          },
+          "Row": {
+            "type": "string",
+            "title": "Row",
+            "enum": ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+            "removeDefaultNone": true,
+            "default": "5",
+            "dependencies": ["FormDataType"]
+          },
+          "GridWidth": {
+            "type": "string",
+            "title": "GridWidth",
+            "enum": [
+              "col-md-12",
+              "col-md-11",
+              "col-md-10",
+              "col-md-9",
+              "col-md-8",
+              "col-md-7",
+              "col-md-6",
+              "col-md-5",
+              "col-md-4",
+              "col-md-3",
+              "col-md-2",
+              "col-md-1"
+            ],
+            "default": "col-md-12",
+            "required": true
+          }
+        }
+      }
+    },
+    "FormButtonText1": {
+      "type": "string",
+      "title": "FormButtonText1"
+    },
+    "FormButtonText2": {
+      "type": "string",
+      "title": "FormButtonText2"
+    },
+    "ColorFormButton1": {
+      "type": "string",
+      "title": "ColorFormButton1",
+      "enum": ["btn-primary", "btn-secondary", "btn-tertiary", "btn-quaternary"]
+    },
+    "ColorFormButton2": {
+      "type": "string",
+      "title": "ColorFormButton2",
+      "enum": ["btn-primary", "btn-secondary", "btn-tertiary", "btn-quaternary"]
+    }
+  }
+}

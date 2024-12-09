@@ -1,0 +1,35 @@
+{
+	"fields": {		
+		"SubHeadingColor": {
+			"title": "SubHeading Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Success",
+				"Info",
+				"Warning",
+				"Danger",
+				"Dark",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},		
+		"SubHeadingSize": {
+			"title": "SubHeading Size",
+			"type": "select",
+			"optionLabels": [
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6"		
+			],
+			"removeDefaultNone": true			
+		}
+
+	}
+}

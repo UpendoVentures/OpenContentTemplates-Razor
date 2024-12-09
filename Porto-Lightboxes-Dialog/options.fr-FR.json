@@ -1,0 +1,18 @@
+{
+	"fields": {
+		"Boxes": {
+			"fields": {
+				"item": {
+					"fields": {
+						"FrontDescription": {
+							"label": "Content au recto"
+						},
+						"BackDescription": {
+							"label": "Content au verso"
+						}
+					}
+				}
+			}
+		}
+	}
+}

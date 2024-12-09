@@ -1,0 +1,28 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Button",
+      "title": "Button Text (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PopoverTitle",
+      "title": "Popover Title (optional)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "PopoverContent",
+      "title": "Popover Content (optional)",
+      "fieldtype": "text",
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

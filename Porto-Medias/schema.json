@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "Url": {
+      "type": "string",
+      "title": "Url Address (embed type - required)"
+    }
+  }
+}

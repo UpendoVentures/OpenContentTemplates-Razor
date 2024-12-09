@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "Heading": {
+      "position": "2col2",
+      "type": "string",
+      "title": "Heading Text (required)",
+      "required": true
+    },
+    "SubHeading": {
+      "type": "string",
+      "title": "SubHeading",
+      "required": true
+    }
+  }
+}

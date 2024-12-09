@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {        
+        "Style": {
+            "title": "Style",
+            "type": "string",
+            "enum": [
+				"YouTube",
+				"Vimeo",
+				"4:3 aspect ratio",
+                "With Borders",
+                "Soundcloud"
+            ]
+        }
+    }
+}

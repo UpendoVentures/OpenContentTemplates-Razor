@@ -1,0 +1,73 @@
+{
+    "formfields": [
+      {
+        "fieldname": "Latitud",
+        "title": "Latitud",
+        "fieldtype": "text",
+        "advanced": true,
+        "required":true,
+        "hidden": false,
+        "multilanguage": false,
+        "index": false,
+        "position": "1col1",
+        "dependencies": []
+      },
+      {
+        "fieldname": "Longitud",
+        "title": "Longitud",
+        "fieldtype": "text",
+        "advanced": true,
+        "required":true,
+        "hidden": false,
+        "multilanguage": false,
+        "index": false,
+        "position": "1col1",
+        "dependencies": []
+      },
+      {
+      "fieldname": "MarkerIcon",
+      "title": "Marker Icon",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Url of the image",
+      "multilanguage": false,
+      "dependencies": []
+      },
+      {
+        "fieldname": "Markers",
+        "fieldtype": "array",
+        "subfields": [
+          {
+            "fieldname": "Address",
+            "title": "Address (required)",
+            "fieldtype": "text",
+            "advanced": true,
+            "required": true,
+            "hidden": false,
+            "multilanguage": false,
+            "index": false,
+            "position": "1col1",
+            "dependencies": []
+          },
+          {
+            "fieldname": "Html",
+            "title": "Html (required)",
+            "fieldtype": "wysihtml",
+            "advanced": true,
+            "required": true,
+            "hidden": false,
+            "multilanguage": false,
+            "index": false,
+            "position": "1col1",
+            "dependencies": []
+          }
+
+        ],
+        "advanced": false
+      }
+    ],
+    "formtype": "object"
+}

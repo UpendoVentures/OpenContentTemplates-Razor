@@ -1,0 +1,44 @@
+{
+	"fields": {		
+		"ShowBorders": {
+			"label": "Show Borders",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"panControl": {
+			"label": "Show Control Panel",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"zoomControl": {
+			"label": "Show Zoom Control",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"mapTypeControl": {
+			"label": "Show Map Type Control",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"scaleControl": {
+			"label": "Show Scale Control",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"streetViewControl": {
+			"label": "Show Street View Control",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"overviewMapControl": {
+			"label": "Show Overview Map Control",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"scrollwheel": {
+			"label": "Show Scroll Wheel",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		}
+	}
+}

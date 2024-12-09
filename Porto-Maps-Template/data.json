@@ -1,0 +1,14 @@
+{
+    "Latitud": "37.09024",
+    "Longitud": "-95.71289",
+    "Markers": [
+        {
+          "Address": "217 Summit Boulevard, Birmingham, AL 35243",
+          "Html": "<strong>Alabama Office</strong><br>217 Summit Boulevard, Birmingham, AL 35243"  
+        },
+        {
+          "Address": "645 E. Shaw Avenue, Fresno, CA 93710",
+          "Html": "<strong>California Office</strong><br>645 E. Shaw Avenue, Fresno, CA 93710"          
+        }
+      ]
+}

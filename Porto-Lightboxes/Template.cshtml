@@ -1,0 +1,69 @@
+@functions {
+    public bool ConvertToBool(dynamic value)
+    {
+        return value != null && value.ToString().ToLower() == "true";
+    }
+}
+
+
+@if (Model.Settings.SHOW == "Single-Image")
+{
+    <div class="row">
+        <div class="col-md-3">
+            <a class="@(ConvertToBool(Model.Settings.DEFAULT_WITH_BORDER) ? "img-thumbnail" : "") @(ConvertToBool(Model.Settings.HOVER_EFFECT) ? "img-thumbnail-hover-icon" : "") lightbox d-block" 
+               href="@Model.SingleImage" 
+               data-plugin-options="{'type':'image'}">
+                <img class="img-fluid" src="@Model.SingleImage" alt="Project Image" />
+                @if (ConvertToBool(Model.Settings.WITH_ICON))
+                {
+                    <span class="zoom"><em class="fas fa-search"></em></span>
+                }
+                <span class="btn-text-indent">Lightbox</span>
+            </a>
+        </div>
+    </div>
+}
+else if (Model.Settings.SHOW == "Image-Gallery")
+{
+    if (Model.ImageGallery != null)
+    {
+        <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {
+            'enabled': @Model.Settings.ZOOM, 'duration': 300}}">
+            @foreach (var image in Model.ImageGallery)
+            {
+                <a class="@(ConvertToBool(Model.Settings.DEFAULT_WITH_BORDER) ? "img-thumbnail" : "") @(ConvertToBool(Model.Settings.HOVER_EFFECT) ? "img-thumbnail-hover-icon" : "") d-inline-block mb-xs mr-xs" href="@image.Image">
+                    <img class="img-fluid" src="@image.Image" alt="Project Image" width="110" height="110" />
+                    @if (ConvertToBool(Model.Settings.WITH_ICON))
+                    {
+                        <span class="zoom"><em class="fas fa-search"></em></span>
+                    }
+                    <span class="btn-text-indent">Lightbox</span>
+                </a>
+            }
+        </div>
+    }
+}
+else if (Model.Settings.SHOW == "Image-GalleryCarousel")
+{
+    if (Model.ImageGallery != null)
+    {
+        <div class="lightbox" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {
+            'enabled': @Model.Settings.ZOOM, 'duration': 300}}">
+            <div class="owl-carousel stage-margin" data-plugin-options="{'items': 6, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
+                @foreach (var image in Model.ImageGallery)
+                {
+                    <div>
+                        <a class="@(ConvertToBool(Model.Settings.DEFAULT_WITH_BORDER) ? "img-thumbnail" : "") @(ConvertToBool(Model.Settings.HOVER_EFFECT) ? "img-thumbnail-hover-icon" : "") d-inline-block mb-xs mr-xs" href="@image.Image">
+                            <img class="img-fluid" src="@image.Image" alt="Project Image" width="110" height="110" />
+                            @if (ConvertToBool(Model.Settings.WITH_ICON))
+                            {
+                                <span class="zoom"><em class="fas fa-search"></em></span>
+                            }
+                            <span class="btn-text-indent">Lightbox</span>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}

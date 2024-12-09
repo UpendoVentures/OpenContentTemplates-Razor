@@ -1,0 +1,24 @@
+{
+  "ButtonText": "Open Dialog",
+  "DialogTitle": "Some Title Here",
+  "DialogText": "Some text Here",
+  "href": "http://www.youtube.com/watch?v=0O2aH4XLbto",
+  "FormTitle": "Form Title Here",
+  "FormSubTitle": "Form Subtitle Here",
+  "FormData": [
+    {
+      "InputText": "name",
+      "FormDataType": "text",
+      "GridWidth": "col-md-6"
+    },
+    {
+      "InputText": "email",
+      "FormDataType": "email",
+      "GridWidth": "col-md-6"
+    }
+  ],
+  "FormButtonText1": "Submit",
+  "FormButtonText2": "Reset",
+  "ColorFormButton1": "btn-primary",
+  "ColorFormButton2": "btn-quaternary"
+}

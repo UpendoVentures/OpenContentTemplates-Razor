@@ -1,0 +1,89 @@
+@if (Model.Settings.Style == "Animation")
+{
+    <a
+        class="mt-xs mb-xs @Model.Settings.Animation btn @Model.Settings.Color"
+        href="#small-dialog"
+    >@Model.ButtonText</a>
+    <div
+        class="dialog dialog-sm @Model.Settings.Animation mfp-hide"
+        id="small-dialog"
+    >
+        <h1>@Model.DialogTitle</h1>
+        <p>@Model.DialogText</p>
+    </div>
+}
+else if (Model.Settings.Style == "Popup")
+{
+    <div class="row">
+        <div class="col-md-4">
+            <a
+                class="mt-xs mb-xs mr-xs @Model.Settings.Popup btn @Model.Settings.Color"
+                href="@Model.href"
+            >@Model.ButtonText</a>
+        </div>
+    </div>
+}
+else if (Model.Settings.Style == "Form")
+{
+    <a class="popup-with-form btn @Model.Settings.Color" href="#demo-form">@Model.ButtonText</a>
+    <div id="demo-form" class="white-popup-block mfp-hide form-horizontal">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>@Model.FormTitle</h4>
+                <p class="mb-lg">@Model.FormSubTitle</p>
+            </div>
+        </div>
+        <div class="form-group mt-lg">
+            <div class="row">
+                @if (Model.FormData != null)
+                {
+                    foreach (var formItem in Model.FormData)
+                    {
+                        if (formItem.FormDataType == "textarea")
+                        {
+                            <div class="@formItem.GridWidth">
+                                <label
+                                    for="@formItem.InputText"
+                                    class="control-label"
+                                >@formItem.InputText</label>
+                                <textarea
+                                    rows="@formItem.Row"
+                                    type="@formItem.FormDataType"
+                                    id="@formItem.InputText"
+                                    name="@formItem.InputText"
+                                    class="form-control"
+                                    placeholder="Type your @formItem.InputText..."
+                                ></textarea>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="@formItem.GridWidth">
+                                <label
+                                    for="@formItem.InputText"
+                                    class="control-label"
+                                >@formItem.InputText</label>
+                                <input
+                                    type="@formItem.FormDataType"
+                                    id="@formItem.InputText"
+                                    name="@formItem.InputText"
+                                    class="form-control"
+                                    placeholder="Type your @formItem.InputText..."
+                                ></input>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div class="row mb-lg">
+            <div class="col-sm-12">
+                <button class="btn @Model.ColorFormButton1">@Model.FormButtonText1</button>
+                <button
+                    type="reset"
+                    class="btn @Model.ColorFormButton2"
+                >@Model.FormButtonText2</button>
+            </div>
+        </div>
+    </div>
+}
