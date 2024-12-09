@@ -1,0 +1,10 @@
+{
+  "fields": {
+    "ButtonText": {
+      "type": "text"
+    },
+    "TooltipTitle": {
+      "type": "wysihtml"
+    }
+  }
+}

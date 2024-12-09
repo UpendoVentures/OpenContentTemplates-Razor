@@ -1,0 +1,32 @@
+{
+	"fields": {		
+		"ButtonColor": {
+			"title": "Button Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Success",
+				"Info",
+				"Warning",
+				"Danger",
+				"Dark",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"TooltipDirection": {
+			"title": "Tooltip Direction",
+			"type": "select",
+			"optionLabels": [
+				"left",
+				"top",
+				"bottom",
+				"right"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}

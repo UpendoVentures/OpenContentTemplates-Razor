@@ -1,0 +1,42 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Heading",
+      "title": "Heading Text (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Text1",
+      "title": "Text 1  (optional)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Text2",
+      "title": "Text 2 (optional)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Text3",
+      "title": "Text 3  (optional)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Image",
+      "title": "Image (optional)",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+      "ModuleTitle": {
+        "type": "string",
+        "title": "Module Title"
+      },
+      "Items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Title": {
+              "type": "string",
+              "title": "Title"
+            },
+            "Content": {
+              "type": "string",
+              "title": "Content"
+            },
+            "Icon": {
+              "type": "string",
+              "title": "Icon (optional) - Example: fab fa-android",
+              "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+            },
+            "ButtonText": {
+              "type": "string",
+              "title": "Button Text"
+            }
+          }
+        }
+      }
+    }
+  }

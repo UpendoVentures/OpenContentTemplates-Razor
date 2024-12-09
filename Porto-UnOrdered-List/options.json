@@ -1,0 +1,60 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Descriptionlists": {
+      "type": "checkbox"
+    },
+    "Items": {
+      "type": "array",
+      "dependencies": {
+        "Descriptionlists": [
+          "false"
+        ]
+      },
+      "items": {
+        "fields": {
+          "ListItemText": {
+            "type": "wysihtml"
+          },
+          "Icon": {
+            "type": "text",
+            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+          },
+          "SecondLevelItems": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "SecondLevelListItemText": {
+                  "type": "wysihtml"
+                },
+                "SecondLevelListItemIcon": {
+                  "type": "text"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ItemsDescription": {
+      "type": "array",
+      "dependencies": {
+        "Descriptionlists": [
+          "true"
+        ]
+      },
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "ListItemText": {
+            "type": "wysihtml"
+          }
+        }
+      }
+    }
+  }
+}

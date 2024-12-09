@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "TabMode": {
+            "title": "Tab Mode",
+            "type": "string",
+            "enum": [
+                "standard",
+                "simple",
+                "navigation"
+            ]
+        },
+        "TabPosition": {
+            "title": "Tab Position",
+            "type": "string",
+            "enum": [
+                "top",
+                "bottom",
+                "vertical"
+            ]
+        },
+        "TabAlignment": {
+            "title": "Tab Alignment",
+            "type": "string",
+            "enum": [
+                "left",
+                "right",
+                "centered",
+                "justified"
+            ]
+        },
+        "Color": {
+            "title": "Tab Color",
+            "type": "string",
+            "enum": [
+                "",
+                " tabs-primary",
+                " tabs-secondary",
+                " tabs-tertiary",
+                " tabs-quaternary"
+            ]
+        },
+        "TabIconMode": {
+            "title": "Tab Icon Mode (simple tab style only)",
+            "type": "string",
+            "enum": [
+                "default",
+                "bigicons"
+            ]
+        }
+    }
+}

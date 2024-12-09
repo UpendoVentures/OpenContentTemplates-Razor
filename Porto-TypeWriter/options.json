@@ -1,0 +1,19 @@
+{
+  "fields": {
+    "Heading": {
+      "type": "text"
+    },
+    "Text1": {
+      "type": "text"
+    },
+    "Text2": {
+      "type": "text"
+    },
+    "Text3": {
+      "type": "text"
+    },
+    "Image": {
+      "type": "image"
+    }
+  }
+}

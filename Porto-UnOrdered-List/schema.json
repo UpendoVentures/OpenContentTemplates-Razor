@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Descriptionlists": {
+      "type": "boolean",
+      "title": "Description lists"
+    },
+    "Items": {
+      "type": "array",
+      "dependencies": [
+        "Descriptionlists"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "ListItemText": {
+            "type": "string",
+            "title": "List Item Text (required)",
+            "required": true
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon (optional)"
+          },
+          "SecondLevelItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "SecondLevelListItemText": {
+                  "type": "string",
+                  "title": "List Item Text (required)",
+                  "required": true
+                },
+                "SecondLevelListItemIcon": {
+                  "type": "string",
+                  "title": "Icon (optional)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ItemsDescription": {
+      "type": "array",
+      "title": "Items Description",
+      "dependencies": [
+        "Descriptionlists"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "ListItemText": {
+            "type": "string",
+            "title": "List Item Text",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

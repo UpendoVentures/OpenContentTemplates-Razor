@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "Heading": {
+      "type": "string",
+      "title": "Heading Text (required)",
+      "required": true
+    },
+    "Text1": {
+      "type": "string",
+      "title": "Text 1  (optional)"
+    },
+    "Text2": {
+      "type": "string",
+      "title": "Text 2 (optional)"
+    },
+    "Text3": {
+      "type": "string",
+      "title": "Text 3  (optional)"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image (optional)"
+    }
+  }
+}

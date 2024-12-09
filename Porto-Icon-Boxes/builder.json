@@ -1,0 +1,56 @@
+{
+    "formfields": [
+      {
+        "fieldname": "ModuleTitle",
+        "title": "Module Title",
+        "fieldtype": "text",
+        "advanced": false
+      },
+      {
+        "fieldname": "Items",
+        "fieldtype": "array",
+        "subfields": [
+            {
+                "fieldname": "Title",
+                "title": "Title (required)",
+                "fieldtype": "text",
+                "advanced": true,
+                "required":true,
+                "hidden": false,
+                "multilanguage": false,
+                "index": false,
+                "position": "1col1",
+                "dependencies": []
+            },
+            {
+                "fieldname": "Content",
+                "title": "Content (required)",
+                "fieldtype": "wysihtml",
+                "advanced": true,
+                "required":true,
+                "hidden": false,
+                "multilanguage": false,
+                "index": false,
+                "position": "1col1",
+                "dependencies": []
+            },
+            {
+                "fieldname": "Icon",
+                "title": "Icon (optional)",
+                "fieldtype": "text",
+                "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>",
+                "advanced": false
+            },
+            {
+                "fieldname": "ButtonText",
+                "title": "Button Text (optional)",
+                "fieldtype": "text",
+                "advanced": false
+            }
+
+        ],
+        "advanced": false
+      }       
+    ],
+    "formtype": "object"
+}

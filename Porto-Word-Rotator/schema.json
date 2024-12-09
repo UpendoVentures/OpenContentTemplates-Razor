@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "Sections": {
+      "type": "array",
+      "title": "Sections",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "WordRotate": {
+            "type": "array",
+            "title": "Word Rotate",
+            "required": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "Value": {
+                  "type": "string",
+                  "title": "Value"
+                }
+              }
+            }
+          },
+          "Color": {
+            "type": "string",
+            "title": "Color",
+            "enum": [
+              "transparent",
+              "inverted-primary",
+              "inverted-secondary",
+              "inverted-tertiary",
+              "inverted-quaternary"
+            ],
+            "removeDefaultNone": true
+          },
+          "Size": {
+            "type": "string",
+            "title": "Size",
+            "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
+            "removeDefaultNone": true
+          },
+          "OtherText": {
+            "type": "string",
+            "title": "OtherText"
+          }
+        }
+      }
+    }
+  }
+}

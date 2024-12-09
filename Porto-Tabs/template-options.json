@@ -1,0 +1,59 @@
+{
+	"fields": {
+		"Layout": {
+			"removeDefaultNone": true
+		},
+		"TabMode": {
+			"title": "Tab Mode",
+			"type": "select",
+			"optionLabels": [
+				"Standard",
+				"Simple",
+				"Navigation (ignores most other settings)"
+			],
+			"removeDefaultNone": true
+		},
+		"TabPosition": {
+			"title": "Tab Position",
+			"type": "select",
+			"optionLabels": [
+				"Top",
+				"Bottom",
+				"Vertical"
+			],
+			"removeDefaultNone": true
+		},
+		"TabAlignment": {
+			"title": "Tab Alignment",
+			"type": "select",
+			"optionLabels": [
+				"Left",
+				"Right",
+				"Centered (ignored in Navigation mode)",
+				"Justified (ignored in Navigation mode)"
+			],
+			"removeDefaultNone": true
+		},
+		"Color": {
+			"title": "Tab Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"TabIconMode": {
+			"title": "Tab Icon Mode",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Big Icons"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}

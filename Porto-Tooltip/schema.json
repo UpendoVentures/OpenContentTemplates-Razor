@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "ButtonText": {
+      "type": "string",
+      "title": "Button Text (required)",
+      "required": true
+    },
+    "TooltipTitle": {
+      "type": "string",
+      "title": "Tooltip Title (required)",
+      "required": true
+    }
+  }
+}

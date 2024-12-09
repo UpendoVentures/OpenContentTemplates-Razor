@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {        
+        "TypeWriterStyle": {
+            "title": "Type Writer Style",
+            "type": "string",
+            "enum": [
+                "Default",
+				"Colors",
+				"Fade Out",
+				"In an input",
+				"Shuffled"
+            ]
+        },
+        "TextColor": {
+            "title": "Text Color",
+            "type": "string",
+            "enum": [
+				"heading-primary",
+				"heading-secondary",
+				"heading-tertiary",
+				"heading-quaternary"
+            ]
+        }
+    }
+}

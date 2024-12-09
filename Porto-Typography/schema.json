@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "Sections": {
+      "type": "array",
+      "title": "Sections",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Class": {
+            "type": "string",
+            "title": "Class",
+            "enum": ["default", "drop-caps", "drop-caps drop-caps-style-2"],
+            "removeDefaultNone": true
+          },
+          "AlternativeFont": {
+            "type": "string",
+            "title": "Alternative Font"
+          },
+          "TextWidthColor": {
+            "type": "string",
+            "title": "Text Width Color"
+          },
+          "Color": {
+            "type": "string",
+            "title": "Color",
+            "enum": [
+              "text-muted",
+              "text-primary",
+              "text-success",
+              "text-info",
+              "text-warning",
+              "text-danger"
+            ]
+          },
+          "Size": {
+            "type": "string",
+            "title": "Size",
+            "enum": ["h1", "h2", "h3", "h4", "h5", "h6"]
+          },
+          "OtherText": {
+            "type": "string",
+            "title": "OtherText"
+          }
+        }
+      }
+    }
+  }
+}

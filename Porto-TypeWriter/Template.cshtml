@@ -1,0 +1,94 @@
+@{ 
+    var typeWriterStyle = Model.Settings.TypeWriterStyle; 
+}
+
+@if (typeWriterStyle == "Default")
+{
+    <section class="section section-default-scale-9 center">
+        <div class="container">
+            <span class="text-light type-text-sm">@Model.Heading</span>
+            <div class="type-writer @Model.Settings.TextColor type-text-sm" 
+                 data-plugin-options="{'stringsElement': '#typed-strings', 'loop': true}">
+                <div id="typed-strings">
+                    <p>@Model.Text1</p>
+                    <p>@Model.Text2</p>
+                    <p>@Model.Text3</p>
+                </div>
+                <span id="typed"></span>
+            </div>
+        </div>
+    </section>
+}
+else if (typeWriterStyle == "Colors")
+{
+    <div class="center">
+        <span class="type-text-sm">@Model.Heading</span>
+        <div class="type-writer @Model.Settings.TextColor type-text-sm" 
+             data-plugin-options="{'stringsElement': '#typed-strings6', 'loop': true}">
+            <div id="typed-strings6">
+                <p>@Model.Text1</p>
+                <p>@Model.Text2</p>
+                <p>@Model.Text3</p>
+            </div>
+            <span id="typed6"></span>
+        </div>
+    </div>
+}
+else if (typeWriterStyle == "Fade Out")
+{
+    <section class="parallax section section-text-light section-parallax section-center" 
+             data-image-src="@Model.Image" 
+             data-plugin-options="{'speed': 1.5}" 
+             data-plugin-parallax="parallax">
+        <div class="container">
+            <div class="type-writer type-text-lg @Model.Settings.TextColor" 
+                 data-plugin-options="{'stringsElement': '#typed-strings4', 'fadeOut': true, 'loop': true}">
+                <div id="typed-strings4">
+                    <p>@Model.Text1</p>
+                    <p>@Model.Text2</p>
+                    <p>@Model.Text3</p>
+                </div>
+                <span id="typed4"></span>
+            </div>
+        </div>
+    </section>
+}
+else if (typeWriterStyle == "In an input")
+{
+    <section data-image-src="@Model.Image" 
+             class="parallax section section-text-light section-parallax section-center" 
+             data-plugin-options="{'speed': 0.5}" 
+             data-plugin-parallax="parallax">
+        <div class="container">
+            <div class="type-writer pt-lg pb-lg col-md-offset-4" 
+                 data-plugin-options="{'stringsElement': '#typed-strings2', 'loop': true, 'attr': 'placeholder', 'bindInputFocusEvents': true}">
+                <div id="typed-strings2">
+                    <p>@Model.Text1</p>
+                    <p>@Model.Text2</p>
+                    <p>@Model.Text3</p>
+                </div>
+                <label class="sr-only" for="typers">@Model.Heading</label>
+                <input id="typers" name="typers" type="text" class="type-input form-control" />
+            </div>
+        </div>
+    </section>
+}
+else if (typeWriterStyle == "Shuffled")
+{
+    <section data-image-src="@Model.Image" 
+             data-plugin-options="{'speed': 0.5}" 
+             data-plugin-parallax="parallax" 
+             class="parallax section section-text-light section-parallax section-center">
+        <div class="container">
+            <div class="type-writer text-light type-text-sm pt-lg pb-lg" 
+                 data-plugin-options="{'stringsElement': '#typed-strings3', 'shuffle': true, 'cursorChar': '_', 'loop': true}">
+                <div id="typed-strings3">
+                    <span>@Model.Text1</span>
+                    <p>@Model.Text2</p>
+                    <p>@Model.Text3</p>
+                </div>
+                <span id="typed3"></span>
+            </div>
+        </div>
+    </section>
+}

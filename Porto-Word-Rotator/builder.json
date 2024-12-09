@@ -1,0 +1,108 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Sections",
+      "title": "Sections",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Text",
+          "title": "Text",
+          "fieldtype": "textarea",
+          "advanced": false
+        },
+        {
+          "fieldname": "WordRotate",
+          "title": "Word Rotate",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Value",
+              "title": "Value",
+              "fieldtype": "text",
+              "advanced": false
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Color",
+          "title": "Color",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "transparent",
+              "text": "transparent"
+            },
+            {
+              "value": "inverted-primary",
+              "text": "primary"
+            },
+            {
+              "value": "inverted-secondary",
+              "text": "secondary"
+            },
+            {
+              "value": "inverted-tertiary",
+              "text": "tertiary"
+            },
+            {
+              "value": "inverted-quaternary",
+              "text": "quaternary"
+            }
+          ],
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Size",
+          "title": "Size",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "h1",
+              "text": "h1"
+            },
+            {
+              "value": "h2",
+              "text": "h2"
+            },
+            {
+              "value": "h3",
+              "text": "h3"
+            },
+            {
+              "value": "h4",
+              "text": "h4"
+            },
+            {
+              "value": "h5",
+              "text": "h5"
+            },
+            {
+              "value": "h6",
+              "text": "h6"
+            }
+          ],
+          "advanced": false
+        },
+        {
+          "fieldname": "OtherText",
+          "title": "OtherText",
+          "fieldtype": "textarea",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

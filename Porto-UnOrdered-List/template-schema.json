@@ -1,0 +1,77 @@
+{
+    "type": "object",
+    "properties": { 
+        "ListBorder": {
+            "title": "List Border",
+            "type": "string",
+            "enum": [
+                "",
+                "list-borders",
+				"list-side-borders"
+            ]
+        },
+        "IconStyle": {
+            "title": "Icon Style",
+            "type": "string",
+            "enum": [
+                "",
+                "list-icons-style-2",
+				"list-icons-style-3"
+            ]
+        },
+        "IconsPosition": {
+            "title": "Icons Position",
+            "type": "string",
+            "enum": [
+                "",
+                "list-icons-reverse"
+            ]
+        },
+        "IconsSizes": {
+            "title": "Icons Sizes",
+            "type": "string",
+            "enum": [
+                "list-icons-sm",
+                "",
+                "list-icons-lg"
+            ]
+        },
+        "IconsColor": {
+            "title": "Icons Color",
+            "type": "string",
+            "enum": [
+                "",
+                "list-primary",
+                "list-secondary",
+                "list-tertiary",
+                "list-quaternary"
+            ]
+        },
+        "EnableAnimations": {    
+            "title": "Enable Animations",
+            "type": "boolean"        
+        },
+        "AnimationType": {
+            "title": "Animation Type",
+            "type": "string",
+            "enum": [
+                "fadeInUp"
+            ]
+        },
+        "AnimationDelay": {
+            "title": "Animation Delay",
+            "type": "string",
+            "enum": [
+                "0",
+                "300",
+                "600",
+                "900",
+                "1200"
+            ]
+        }
+    },
+    "dependencies": {
+        "AnimationType": ["EnableAnimations"],
+        "AnimationSpeed": ["EnableAnimations"]
+    }
+}

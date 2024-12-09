@@ -1,0 +1,20 @@
+{
+    "ModuleTitle": "Lists",
+    "Items": [
+      {
+        "ListItemText": "List Item 1",
+        "Icon": "fas fa-check",
+        "SecondLevelItems": []
+      },
+      {
+        "ListItemText": "List Item 2",
+        "Icon": "fas fa-check",
+        "SecondLevelItems": []
+      },
+      {      
+        "ListItemText": "List Item 3",
+        "Icon": "",
+        "SecondLevelItems": []
+      }
+    ]
+  }

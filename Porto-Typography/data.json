@@ -1,0 +1,13 @@
+{
+  "Sections": [
+    {
+      "Text": "Some text",
+      "Class": "Default",
+      "AlternativeFont": "Alternative Font",
+      "TextWidthColor": "Text Width Color",
+      "Color": "text-primary",
+      "Size": "h1",
+      "OtherText": "Other Text in here"
+    }
+  ]
+}

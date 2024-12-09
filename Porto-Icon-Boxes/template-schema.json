@@ -1,0 +1,178 @@
+{
+    "type": "object",
+    "properties": {  
+        "IconBoxesType": {
+            "title": "Icon Boxes Type",
+            "type": "string",
+            "enum": [
+                "Classic",
+                "Simple",
+                "Full"
+            ],
+            "default": "Classic",
+            "required": true
+        },
+        "DisplayAxis": {
+            "title": "Display Axis",
+            "type": "string",
+            "enum": [
+                "vertically",
+                "horizontally"
+            ],
+            "default": "vertically"
+        },
+        "ContentContainers": {
+            "title": "Content Containers",
+            "type": "string",
+            "enum": [
+                "0",
+                "1",
+                "2"
+            ],
+            "default": "1"
+        },
+        "UppercaseTitle": {    
+            "title": "Uppercase Title",
+            "type": "boolean",
+            "default": false       
+        },
+        "EnableAnimations": {    
+            "title": "Enable Animations",
+            "type": "boolean",
+            "default": false        
+        },
+        "AnimationType": {
+            "title": "Animation Type",
+            "type": "string",
+            "enum": [
+                "bounceIn"
+            ]
+        },
+        "AnimationDelay": {
+            "title": "Animation Delay",
+            "type": "string",
+            "enum": [
+                "0",
+                "300",
+                "600",
+                "900",
+                "1200"
+            ],
+            "default": "300"
+        },
+        "IconPosition": {
+            "title": "Icon Position",
+            "type": "string",
+            "enum": [
+                "left",
+                "right"
+            ],
+            "default": "left"
+        },
+        "AddTopDivider": {    
+            "title": "Add Title Divider",
+            "type": "boolean",
+            "default": false       
+        },"AddBottomDivider": {    
+            "title": "Add Action Link Divider",
+            "type": "boolean",
+            "default": false         
+        },
+        "FeaturedBoxesStyle": {
+            "title": "Featured Boxes Style",
+            "type": "string",
+            "enum": [
+                "",
+                "featured-boxes-style-1",
+                "featured-boxes-style-2",
+                "featured-boxes-style-3",
+                "featured-boxes-style-4",
+                "featured-boxes-style-5",
+                "featured-boxes-style-6",
+                "featured-boxes-style-7",
+                "featured-boxes-style-8",
+                "featured-boxes-flat"
+            ],
+            "default": "featured-boxes-style-8"
+        },
+        "FeatureBoxStyle": {
+            "title": "Feature Box Style",
+            "type": "string",
+            "enum": [
+                "",
+                "feature-box-style-2",
+                "feature-box-style-3",
+                "feature-box-style-4",
+                "feature-box-style-5",
+                "feature-box-style-6"
+            ],
+            "default": ""
+        },
+        "FeatureBoxFullStyle": {
+            "title": "Feature Box Full Style",
+            "type": "string",
+            "enum": [
+                "featured-boxes-full-scale",
+                ""
+            ],
+            "default": "featured-boxes-full-scale"
+        },
+        "ApplyReverseClass": {    
+            "title": "Reverse Content",
+            "type": "boolean",
+            "default": false       
+        },
+        "Color": {
+            "title": "Color",
+            "type": "string",
+            "enum": [
+                "primary",
+                "secondary",
+                "tertiary",
+                "quaternary"
+            ],
+            "default": "primary"
+        },
+        "FeaturedBoxEffectFlat": {
+            "title": "Featured Box Flat Effects",
+            "type": "string",
+            "enum": [
+                "",
+                "featured-box-effect-1",
+                "featured-box-effect-2",
+                "featured-box-effect-3"
+            ],
+            "default": ""
+        },
+        "FeaturedBoxEffect": {
+            "title": "Featured Box Effect",
+            "type": "string",
+            "enum": [
+                "",
+                "featured-box-effect-4",
+                "featured-box-effect-3",
+                "featured-box-effect-5",
+                "featured-box-effect-6",
+                "featured-box-effect-7",
+                "featured-box-effect-8"
+            ],
+            "default": ""
+        }
+    },
+    "dependencies": {  
+        "DisplayAxis": ["IconBoxesType"],
+        "ContentContainers": ["IconBoxesType"],
+        "EnableAnimations": ["IconBoxesType"],
+        "AnimationType": ["IconBoxesType","EnableAnimations"],
+        "AnimationDelay": ["IconBoxesType","EnableAnimations"],
+        "IconPosition": ["ContentContainers","IconBoxesType"],
+        "FeaturedBoxesStyle": ["IconBoxesType"],
+        "FeatureBoxStyle": ["IconBoxesType"],
+        "FeatureBoxFullStyle": ["IconBoxesType"],
+        "ApplyReverseClass": ["IconBoxesType"],
+        "FeaturedBoxEffect": ["FeaturedBoxesStyle","IconBoxesType"],
+        "FeaturedBoxEffectFlat": ["FeaturedBoxesStyle","IconBoxesType"],
+        "AddTopDivider": ["ContentContainers","IconBoxesType"],
+        "AddBottomDivider": ["ContentContainers","IconBoxesType"]
+    }
+}

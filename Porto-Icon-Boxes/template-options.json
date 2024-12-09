@@ -1,0 +1,206 @@
+{
+	"fields": {					
+		"DisplayAxis": {
+			"title": "Display Axis",
+			"type": "select",
+			"optionLabels": [
+				"Display Vertically",
+				"Display Horizontally"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+                "IconBoxesType": ["Classic"]
+            } 
+		},
+		"ContentContainers": {
+			"title": "Content Containers",
+			"type": "select",
+			"optionLabels": [
+				"No Rows",
+				"One Row",
+				"Two Rows"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+                "IconBoxesType": ["Classic"]
+            } 
+		},		
+		"UppercaseTitle": {
+			"label": "Uppercase Title",
+			"type": "checkbox",
+			"removeDefaultNone": true
+		},
+		"EnableAnimations": {
+			"label": "Enable Animations",
+			"type": "checkbox",
+			"removeDefaultNone": true,
+            "dependencies": {
+                "IconBoxesType": ["Classic","Simple"]
+            } 
+		},
+		"AnimationType": {
+			"title": "Animation Type",
+			"type": "select",
+			"optionLabels": [
+				"Bounce In"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+                "IconBoxesType": ["Classic","Simple"],
+				"EnableAnimations": true
+            } 
+		},
+		"AnimationDelay": {
+			"title": "Animation Delay",
+			"type": "select",
+			"optionLabels": [
+				"0ms",
+				"300ms",				
+				"600ms",
+				"900ms",
+				"1200ms"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+                "IconBoxesType": ["Classic","Simple"],
+				"EnableAnimations": true
+            } 
+		},
+		"IconPosition": {
+			"title": "Icon Position",
+			"type": "select",
+			"optionLabels": [
+				"Left",
+				"Right"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Classic"],
+                "ContentContainers": ["2"]
+            }
+		},
+		"AddTopDivider": {
+			"label": "Add Title Divider",
+			"type": "checkbox",
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Classic"],
+                "ContentContainers": ["0","1"]
+            }
+		},
+		"AddBottomDivider": {
+			"label": "Add Action Link Divider",
+			"type": "checkbox",
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Classic"],
+                "ContentContainers": ["0","1"]
+            }
+		},
+		"FeaturedBoxesStyle": {
+			"title": "Featured Boxes Style",
+			"type": "select",
+			"optionLabels": [
+				"None",
+				"Style 1",
+				"Style 2",
+				"Style 3",
+				"Style 4",
+				"Style 5",
+				"Style 6",
+				"Style 7",
+				"Style 8",
+				"Style 9"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Classic"]
+            }
+		},
+		"FeatureBoxStyle": {
+			"title": "Feature Box Style",
+			"type": "select",
+			"optionLabels": [
+				"None",
+				"Style 1",
+				"Style 2",
+				"Style 3",
+				"Style 4",
+				"Style 5"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Simple"]
+            }
+		},
+		"FeatureBoxFullStyle": {
+			"title": "Feature Box Full Style",
+			"type": "select",
+			"optionLabels": [
+				"Scaled",
+				"Multicolor"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Full"]
+            }
+		},
+		"ApplyReverseClass": {
+			"label": "Reverse Content",
+			"type": "checkbox",
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Simple"]
+            }
+		},		
+		"Color": {
+			"title": "Color",
+			"type": "select",
+			"optionLabels": [
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"quaternary"
+			],
+			"removeDefaultNone": true
+		},		
+		"FeaturedBoxEffectFlat": {
+			"title": "Featured Box Flat Effects",
+			"type": "select",
+			"optionLabels": [
+				"None",
+				"Style 1",
+				"Style 2",
+				"Style 3"
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Classic"],
+                "FeaturedBoxesStyle": ["featured-boxes-flat"]
+            }
+		},
+		"FeaturedBoxEffect": {
+			"title": "Featured Box Effect",
+			"type": "select",
+			"optionLabels": [
+				"None",
+				"Style 1",
+				"Style 2",
+				"Style 3",
+				"Style 4",
+				"Style 5",
+				"Style 6",
+				"Style 7"
+
+			],
+			"removeDefaultNone": true,
+            "dependencies": {
+				"IconBoxesType": ["Classic"],
+                "FeaturedBoxesStyle": ["","featured-boxes-style-1","featured-boxes-style-2"
+				,"featured-boxes-style-3","featured-boxes-style-4","featured-boxes-style-5"
+			,"featured-boxes-style-6","featured-boxes-style-7","featured-boxes-style-8"]
+            }
+		}
+
+    }
+}

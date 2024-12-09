@@ -1,0 +1,63 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+@if (ConvertToBool(Model.DescriptionLists))
+{
+    <dl>
+        @if (Model.ItemsDescription != null)
+        {
+            foreach (var item in Model.ItemsDescription)
+            {
+                <dt>@item.Title</dt>
+                <dd>@item.ListItemText</dd>
+            }
+        }
+
+    </dl>
+}
+else
+{
+    <ul
+        class="list list-icons @Model.Settings.IconsColor @Model.Settings.ListBorder @Model.Settings.IconStyle @Model.Settings.IconsSizes @Model.Settings.IconsPosition">
+        @if (Model.Items != null)
+        {
+            foreach (var item in Model.Items)
+            {
+                <li @if (Model.Settings.EnableAnimations)
+                {
+                    <text>
+                        data-appear-animation="@Model.Settings.AnimationType"
+                        data-appear-animation-delay="@Model.Settings.AnimationDelay"
+                    </text>
+                }>
+                    @if (!string.IsNullOrEmpty(item.Icon))
+                    {
+                        <em class="@item.Icon"></em>
+                    }
+                    @item.ListItemText
+
+                    @if (item.SecondLevelListItems !=null)
+                    {
+                        <ul
+                            class="list list-icons @Model.Settings.IconsColor @Model.Settings.ListBorder @Model.Settings.IconStyle @Model.Settings.IconsSizes @Model.Settings.IconsPosition">
+                            @foreach (var secondLevelItem in item.SecondLevelListItems)
+                            {
+                                <li>
+                                    @if (!string.IsNullOrEmpty(secondLevelItem.SecondLevelListItemIcon))
+                                    {
+                                        <em class="@secondLevelItem.SecondLevelListItemIcon"></em>
+                                    }
+                                    @secondLevelItem.SecondLevelListItemText
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        }
+    </ul>
+}

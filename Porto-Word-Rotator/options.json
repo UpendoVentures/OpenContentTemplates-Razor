@@ -1,0 +1,45 @@
+{
+  "fields": {
+    "Sections": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Text": {
+            "type": "textarea"
+          },
+          "WordRotate": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "Value": {
+                  "type": "text"
+                }
+              }
+            }
+          },
+          "Color": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "transparent",
+              "primary",
+              "secondary",
+              "tertiary",
+              "quaternary"
+            ],
+            "removeDefaultNone": true
+          },
+          "Size": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": ["h1", "h2", "h3", "h4", "h5", "h6"],
+            "removeDefaultNone": true
+          },
+          "OtherText": {
+            "type": "textarea"
+          }
+        }
+      }
+    }
+  }
+}

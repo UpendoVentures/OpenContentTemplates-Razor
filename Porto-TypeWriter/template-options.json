@@ -1,0 +1,27 @@
+{
+	"fields": {		
+		"TypeWriterStyle": {
+			"title": "Type Writer Style",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Colors",
+				"Fade Out",
+				"In an input",
+				"Shuffled"
+			],
+			"removeDefaultNone": true
+		},
+		"TextColor": {
+			"title": "Text Color",
+			"type": "select",
+			"optionLabels": [
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		}	
+	}
+}
