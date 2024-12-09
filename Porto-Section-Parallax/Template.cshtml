@@ -1,0 +1,122 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+@if (Model.StyleType == "HalfSection")
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 p-none">
+                <section style="background-image: url('@Model.Image');" class="section section-text-light section-background section-center match-height">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12"> </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 p-none">
+                <section class="section section-default pl-lg pr-lg match-height">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>@Model.Heading</h5>
+                            <p class="mb-none">
+                                @Model.SubHeading
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+}
+else if (Model.StyleType == "HalfSectionParallax")
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 p-none">
+                <section class="section section-primary pl-lg pr-lg match-height">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>@Model.Heading</h5>
+                            <p class="mb-none"> @Model.SubHeading </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 p-none">
+                <section class="parallax section section-parallax match-height" data-plugin-parallax="parallax" data-image-src="@Model.Image"></section>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    string sectionClass = string.Empty;
+    switch ((string)Model.StyleType)
+    {
+        case "Default":
+            sectionClass = Model.StyleDefault;
+            break;
+        case "BackgroundSection":
+            sectionClass = Model.StyleBackground;
+            break;
+        case "ParallaxSection":
+            sectionClass = Model.StyleParallax;
+            break;
+        case "VideoSection":
+            sectionClass = "video section section-text-light section-video section-center";
+            break;
+        default:
+            sectionClass = string.Empty;
+            break;
+    }
+
+    string additionalAttributes = string.Empty;
+    switch ((string)Model.StyleType)
+    {
+        case "BackgroundSection":
+            additionalAttributes = string.Format("style=\"background-image: url('{0}');\"", Model.Image);
+            break;
+        case "VideoSection":
+            additionalAttributes = string.Format("data-plugin-options=\"{{'posterType': 'jpg', 'position': '50% 50%', 'overlay': true}}\" data-plugin-video-background=\"{0}\" data-video-path=\"{0}\"", Model.VideoUrl);
+            break;
+        case "ParallaxSection":
+            additionalAttributes = string.Format("data-image-src=\"{0}\" data-plugin-options=\"{{'speed': 1.5}}\" data-plugin-parallax=\"parallax\"", Model.Image);
+            break;
+        default:
+            additionalAttributes = string.Empty;
+            break;
+    }
+
+    <section class="@sectionClass" @Html.Raw(additionalAttributes)>
+        @if (Model.StyleDefault == "section section-default section-with-divider")
+        {
+            <div class="divider divider-solid divider-style-4">
+                <em class="fas fa-chevron-down"></em>
+            </div>
+        }
+        <div class="container">
+            <div class="row">
+                @if (Model.StyleType == "VideoSection" || Model.StyleType == "ParallaxSection")
+                {
+                    <div class="col-md-8 offset-md-2">
+                        <h4 class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.Heading</h4>
+                <p class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.SubHeading</p>
+                    </div>
+                }
+                else if (Model.StyleType == "BackgroundSection" || Model.StyleType == "Default")
+                {
+                    <div class="col-md-12">
+                        <h4 class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.Heading</h4>
+                <p class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.SubHeading</p>
+                    </div>
+                }
+                
+                </div>
+            </div>
+    </section>
+}

@@ -1,0 +1,42 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Content",
+      "title": "Content Text (required)",
+      "fieldtype": "textarea",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Image",
+      "title": "Image",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "Fullname",
+      "title": "Full Name",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Text",
+      "title": "Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Text1",
+      "title": "Text1",
+      "fieldtype": "text",
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

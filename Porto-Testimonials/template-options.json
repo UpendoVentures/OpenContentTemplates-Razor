@@ -1,0 +1,15 @@
+{
+  "fields": {
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "optionLabels": ["Primary", "Secondary", "Tertiary", "Quaternary"],
+      "removeDefaultNone": true
+    },
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "optionLabels": ["Style-2", "Style-3", "Style-4", "Style-5"]
+    }
+  }
+}

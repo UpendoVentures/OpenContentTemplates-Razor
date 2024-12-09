@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "Heading": {
+      "type": "string",
+      "title": "Heading Text (required)"
+    },
+    "SubHeading": {
+      "type": "string",
+      "title": "Heading Subtitle"
+    },
+    "TextLight": {
+      "type": "boolean",
+      "title": "Text-Light"
+    },
+    "StyleType": {
+      "type": "string",
+      "title": "Style Type",
+      "enum": [
+        "Default",
+        "BackgroundSection",
+        "ParallaxSection",
+        "HalfSection",
+        "HalfSectionParallax",
+        "VideoSection"
+      ]
+    },
+    "StyleDefault": {
+      "type": "string",
+      "title": "Style Default",
+      "enum": [
+        "section section-default",
+        "section section-default section-default-scale-1",
+        "section section-default section-default-scale-2",
+        "section section-default section-default-scale-3",
+        "section section-default section-default-scale-4",
+        "section section-default section-default-scale-5",
+        "section section-default section-default-scale-6",
+        "section section-default section-default-scale-7",
+        "section section-default section-default-scale-8",
+        "section section-default section-default-scale-9",
+        "section section-primary",
+        "section section-secondary",
+        "section section-tertiary",
+        "section section-quaternary",
+        "section section-default mt-none mb-none",
+        "section section-default section-with-divider",
+        "section section-default section-center"
+      ],
+      "dependencies": [
+        "StyleType"
+      ]
+    },
+    "StyleParallax": {
+      "type": "string",
+      "title": "Style Parallax",
+      "enum": [
+        "section section-text-light section-parallax section-center",
+        "parallax section section-text-light section-parallax section-center",
+        "parallax section section-parallax section-center"
+      ],
+      "dependencies": [
+        "StyleType"
+      ]
+    },
+    "StyleBackground": {
+      "type": "string",
+      "title": "Style Background",
+      "enum": [
+        "section section-text-light section-background section-center",
+        "section section-text-light section-background section-center section-overlay"
+      ],
+      "dependencies": [
+        "StyleType"
+      ]
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image",
+      "required": true,
+      "dependencies": [
+        "StyleType"
+      ]
+    },
+    "VideoUrl": {
+      "type": "string",
+      "title": "Video Url",
+      "required": true,
+      "dependencies": [
+        "StyleType"
+      ]
+    }
+  }
+}

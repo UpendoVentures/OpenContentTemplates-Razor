@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ParallaxImage": {
+      "type": "string",
+      "title": "Parallax Image"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title (required)",
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description (optional)"
+          },
+          "Price": {
+            "type": "string",
+            "title": "Price (required)",
+            "required": true
+          },
+          "ActionButtonText": {
+            "type": "string",
+            "title": "Action Button Text (required)",
+            "required": true
+          },
+          "MostPopular": {
+            "type": "boolean"
+          },
+          "ShowPopularRibbon": {
+            "type": "boolean"
+          },
+          "Features": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "FeatureDescriptionText": {
+                  "type": "string",
+                  "title": "Feature Description (required)",
+                  "required": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "enum": [
+        "testimonial-primary",
+        "testimonial-secondary",
+        "testimonial-tertiary",
+        "testimonial-quaternary"
+      ]
+    },
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "enum": [
+        "testimonial-style-2",
+        "testimonial-style-3",
+        "testimonial-style-4",
+        "testimonial-style-5"
+      ]
+    }
+  }
+}

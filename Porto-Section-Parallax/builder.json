@@ -1,0 +1,238 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Heading",
+      "title": "Heading Text (required)",
+      "fieldtype": "wysihtml",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SubHeading",
+      "title": "Heading Subtitle",
+      "fieldtype": "wysihtml",
+      "advanced": false
+    },
+    {
+      "fieldname": "TextLight",
+      "title": "Text-Light",
+      "fieldtype": "checkbox",
+      "advanced": false
+    },
+    {
+      "fieldname": "StyleType",
+      "title": "Style Type",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "Default",
+          "text": "Default Section"
+        },
+        {
+          "value": "BackgroundSection",
+          "text": "Background Section"
+        },
+        {
+          "value": "ParallaxSection",
+          "text": "Parallax Section"
+        },
+        {
+          "value": "HalfSection",
+          "text": "Half Section (With Custom Background)"
+        },
+        {
+          "value": "HalfSectionParallax",
+          "text": "Half Section (With Parallax)"
+        },
+        {
+          "value": "VideoSection",
+          "text": "Video Section"
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "StyleDefault",
+      "title": "Style Default",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "section section-default",
+          "text": "Default Section"
+        },
+        {
+          "value": "section section-default section-default-scale-1",
+          "text": "Color Scale 1 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-2",
+          "text": "Color Scale 2 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-3",
+          "text": "Color Scale 3 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-4",
+          "text": "Color Scale 4 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-5",
+          "text": "Color Scale 5 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-6",
+          "text": "Color Scale 6 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-7",
+          "text": "Color Scale 7 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-8",
+          "text": "Color Scale 8 Section"
+        },
+        {
+          "value": "section section-default section-default-scale-9",
+          "text": "Color Scale 9 Section"
+        },
+        {
+          "value": "section section-primary",
+          "text": "Primary Section"
+        },
+        {
+          "value": "section section-secondary",
+          "text": "Secondary Section"
+        },
+        {
+          "value": "section section-tertiary",
+          "text": "Tertiary Section"
+        },
+        {
+          "value": "section section-quaternary",
+          "text": "Quaternary Section"
+        },
+        {
+          "value": "section section-default mt-none mb-none",
+          "text": "Removing Margin Top and Bottom"
+        },
+        {
+          "value": "section section-default section-with-divider",
+          "text": "With Divider"
+        },
+        {
+          "value": "section section-default section-center",
+          "text": "Center-Aligned Content Section"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "StyleType",
+          "values": "Default"
+        }
+      ]
+    },
+    {
+      "fieldname": "StyleParallax",
+      "title": "Style Parallax",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "section section-text-light section-parallax section-center",
+          "text": "Default Parallax Section"
+        },
+        {
+          "value": "parallax section section-text-light section-parallax section-center",
+          "text": "Parallax Section (Fixed Image)"
+        },
+        {
+          "value": "parallax section section-parallax section-center",
+          "text": "Parallax Section (Dark Text)"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "StyleType",
+          "values": "ParallaxSection"
+        }
+      ]
+    },
+    {
+      "fieldname": "StyleBackground",
+      "title": "Style Background",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "section section-text-light section-background section-center",
+          "text": "Custom Background Section"
+        },
+        {
+          "value": "section section-text-light section-background section-center section-overlay",
+          "text": "Custom Background Section (With Overlay)"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "StyleType",
+          "values": "BackgroundSection"
+        }
+      ]
+    },
+    {
+      "fieldname": "Image",
+      "title": "Image",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "StyleType",
+          "values": "BackgroundSection,ParallaxSection,HalfSection,HalfSectionParallax"
+        }
+      ]
+    },
+    {
+      "fieldname": "VideoUrl",
+      "title": "Video Url",
+      "fieldtype": "file",
+      "fileoptions": {},
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "StyleType",
+          "values": "VideoSection"
+        }
+      ]
+    }
+  ],
+  "formtype": "object"
+}

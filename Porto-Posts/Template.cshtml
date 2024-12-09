@@ -1,0 +1,140 @@
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+@if (Model.Style == "Posts") {
+    <div
+        class="owl-carousel show-nav-title top-border"
+        data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 1}, '768': {'items': 2}, '979': {'items': 3}, '1199': {'items': 3}}, 'items': 3, 'margin': 20, 'loop': false, 'nav': true, 'dots': false}">
+        @if(Model.Posts != null)
+        {
+            foreach (var item in Model.Posts) {
+                var post = item.post as dynamic;
+                <div class="recent-posts">
+                    <article class="post">
+                        @if (ConvertToBool(post.UseCarousel)) {
+                            <div
+                                class="owl-carousel nav-inside pull-left mr-lg mb-sm"
+                                data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 3000}">
+                                @foreach (var image in post.Images) {
+                                    <div>
+                                        <img
+                                            alt="Image"
+                                            class="img-fluid rounded"
+                                            src="@image"
+                                            style="max-height:250px;min-height:250px;" />
+                                    </div>
+                                }
+                            </div>
+                        }
+                        <div class="date">
+                            <span class="day">@post.Day</span>
+                            <span class="month">@post.Month</span>
+                        </div>
+                        <h4><a href="@post.TitleLink">@post.Title</a></h4>
+                        <p>@post.Content</p>
+                        @if (ConvertToBool(post.UsePostMeta)) {
+                            <div class="post-meta">
+                                <span><em class="fas fa-calendar-alt"></em> @post.PostMeta.Date</span>
+                                <span><em class="fas fa-user"></em> By <a href="#">@post.PostMeta.FullName</a></span>
+                                <span><em class="fas fa-tag"></em> <a href="@post.PostMeta.NewsLink">News</a></span>
+                            </div>
+                        }
+                        <p>
+                            <a class="read-more" href="@post.ContentLink">read more
+                                <em class="fas fa-angle-right"></em>
+                            </a>
+                        </p>
+                    </article>
+                </div>
+            }
+        }
+    </div>
+} else if (Model.Style == "Church") {
+    if (Model.ChurchsStyle == "info") {
+        <div class="row">
+            @foreach (var church in Model.Churchs) {
+                <div class="church @Model.GridWidth">
+                    <div class="thumb-info custom-thumb-info custom-box-shadow thumb-info-hide-wrapper-bg custom-sm-margin-bottom-1">
+                        <span class="thumb-info-wrapper">
+                            <a href="#">
+                                <img alt="Image" src="@church.Image" class="img-fluid" />
+                            </a>
+                        </span>
+                        <div class="thumb-info-caption">
+                            <div class="custom-event-infos">
+                                <ul>
+                                    <li><em class="fas fa-clock"></em> @church.Time</li>
+                                    <li class="text-uppercase"><em class="fas fa-map-marker-alt"></em> @church.Location</li>
+                                </ul>
+                            </div>
+                            <div class="thumb-info-caption-text">
+                                <h4 class="font-weight-bold mb-sm"><a class="text-color-dark" href="#">@church.Title</a></h4>
+                                <p>@church.Content</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    } else if (Model.ChurchsStyle == "inverted") {
+        foreach (var church in Model.Churchs) {
+            <div class="church">
+                <div class="custom-post-event">
+                    <div class="post-event-date inverted center">
+                        <span class="month text-uppercase text-color-light">@church.Month</span>
+                        <span class="day font-weight-bold text-color-light">@church.Day</span>
+                        <span class="year text-color-light">@church.Year</span>
+                    </div>
+                    <div class="post-event-content custom-margin-1">
+                        <div class="custom-event-infos">
+                            <ul>
+                                <li><em class="fas fa-clock"></em> @church.Time</li>
+                                <li class="text-uppercase"><em class="fas fa-map-marker-alt"></em> @church.Location</li>
+                            </ul>
+                        </div>
+                        <h4 class="font-weight-bold"><a class="text-color-dark" href="#">@church.Title</a></h4>
+                        <p>@church.Content</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="solid" />
+        }
+        <p>
+            <a class="btn btn-primary custom-btn-style-1 text-uppercase mt-md" href="#">All Events</a>
+        </p>
+    } else if (Model.ChurchsStyle == "blog") {
+        <div class="row">
+            @foreach (var church in Model.Churchs) {
+                <div class="col-md-4 col-sm-8 custom-sm-margin-bottom-1">
+                    <div class="church custom-post-blog">
+                        <div class="thumb-info custom-thumb-info-2 thumb-info-hide-wrapper-bg">
+                            <div class="thumb-info-wrapper">
+                                <a href="#">
+                                    <img alt="church_post_img2" src="@church.Image" class="img-fluid" style="max-height: 230px;" />
+                                </a>
+                            </div>
+                            <div class="thumb-info-caption custom-box-shadow">
+                                <div class="thumb-info-caption-text">
+                                    <h4 class="font-weight-bold mb-lg">
+                                        <a href="#" class="text-decoration-none custom-secondary-font text-color-dark">@church.Title</a>
+                                    </h4>
+                                    <p>@church.Content</p>
+                                </div>
+                                <div class="custom-thumb-info-post-infos center">
+                                    <ul>
+                                        <li class="text-uppercase"><em class="far fa-calendar-alt"></em> @church.Month @church.Day</li>
+                                        <li class="text-uppercase"><em class="fas fa-user"></em> @church.FullName</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

@@ -1,0 +1,114 @@
+@{
+    var pricingTableStyle = Model.Settings.PricingTableStyle;
+    var pricingTableSize = Model.Settings.PricingTableSize;
+}
+
+@if (Model.Settings.PricingTableStyle == "Parallax")
+{
+    <section class="parallax section section-text-light section-parallax mt-none mb-none"
+        data-image-src="@Model.ParallaxImage" data-plugin-options="{'speed': 1.5}" data-plugin-parallax="parallax">
+        <div class="container">
+            <div class="pricing-table @pricingTableStyle @pricingTableSize">
+                <div class="row">
+                    @if (Model.Items != null)
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            var isSmall = pricingTableSize == "pricing-table-sm";
+                            var colClass = isSmall ? "col-md-2" : "col-md-3 col-sm-6";
+                            var isMostPopular = item.MostPopular;
+
+                            <div class="@colClass @(isMostPopular ? "center" : "")">
+                                <div class="plan @(isMostPopular ? "most-popular" : "")">
+                                    @if (isMostPopular && item.ShowPopularRibbon)
+                                    {
+                                        <div class="plan-ribbon-wrapper">
+                                            <div class="plan-ribbon">Popular</div>
+                                        </div>
+                                    }
+                                    <h3>
+                                        @item.Title
+                                        @if (!string.IsNullOrEmpty(item.Description))
+                                        {
+                                            <em class="desc">@item.Description</em>
+                                        }
+                                        <span>$@item.Price</span>
+                                    </h3>
+
+                                    <a class="btn btn-lg @(isMostPopular ? "btn-primary" : "btn-default")" href="#">
+                                        @item.ActionButtonText
+                                    </a>
+
+                                    @if (!isSmall)
+                                    {
+                                        <ul>
+                                            @if (item.Features != null)
+                                            {
+                                                foreach (var feature in item.Features)
+                                                {
+                                                    <li>@feature.FeatureDescriptionText</li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <div class="pricing-table @pricingTableStyle @pricingTableSize">
+        <div class="row">
+            @if (Model.Items != null)
+            {
+                foreach (var item in Model.Items)
+                {
+                    var isSmall = pricingTableSize == "pricing-table-sm";
+                    var colClass = isSmall ? "col-md-2" : "col-md-3 col-sm-6";
+                    var isMostPopular = item.MostPopular;
+
+                    <div class="@colClass @(isMostPopular ? "center" : "")">
+                        <div class="plan @(isMostPopular ? "most-popular" : "")">
+                            @if (isMostPopular && item.ShowPopularRibbon)
+                            {
+                                <div class="plan-ribbon-wrapper">
+                                    <div class="plan-ribbon">Popular</div>
+                                </div>
+                            }
+                            <h3>
+                                @item.Title
+                                @if (!string.IsNullOrEmpty(item.Description))
+                                {
+                                    <em class="desc">@item.Description</em>
+                                }
+                                <span>$@item.Price</span>
+                            </h3>
+
+                            <a class="btn btn-lg @(isMostPopular ? "btn-primary" : "btn-default")" href="#">
+                                @item.ActionButtonText
+                            </a>
+
+                            @if (!isSmall)
+                            {
+                                <ul>
+                                    @if (item.Features != null)
+                                    {
+                                        foreach (var feature in item.Features)
+                                        {
+                                            <li>@feature.FeatureDescriptionText</li>
+                                        }
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

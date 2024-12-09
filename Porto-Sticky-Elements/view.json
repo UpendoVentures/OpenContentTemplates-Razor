@@ -1,0 +1,13 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "FirstParagraph": "#pos_1_1",
+      "Content": "#pos_1_1",
+      "Image": "#pos_1_1",
+      "ImageText": "#pos_1_1",
+      "LastParagraph": "#pos_1_1"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ParallaxImage",
+      "title": "ParallaxImage",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "title": "Carousels Items",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Content",
+          "title": "Content Text",
+          "fieldtype": "textarea",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "Fullname",
+          "title": "Full Name",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Text",
+          "title": "Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "2col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Text1",
+          "title": "Text1",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "2col2",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

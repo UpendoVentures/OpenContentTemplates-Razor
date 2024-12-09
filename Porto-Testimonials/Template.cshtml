@@ -1,0 +1,34 @@
+<div class="@string.Format("testimonial {0} {1}", Model.Settings.Color, Model.Settings.Style)">
+    <blockquote>
+        <p>@Model.Content</p>
+    </blockquote>
+    <div class="testimonial-arrow-down"></div>
+    @if (Model.Settings.Style == "testimonial-style-5")
+    {
+        <div class="testimonial-author">
+            <p>
+                <strong>@Model.Fullname</strong>
+                <span>@string.Format("{0} &amp; {1}", Model.Text, Model.Text1)</span>
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="testimonial-author">
+            @if (Model.Settings.Style == "testimonial-style-2")
+            {
+                <img alt="Client-2" src="@Model.Image" class="img-fluid rounded-circle" />
+            }
+            else
+            {
+                <div class="testimonial-author-thumbnail img-thumbnail">
+                    <img alt="Image" src="@Model.Image" />
+                </div>
+            }
+            <p>
+                <strong>@Model.Fullname</strong>
+                <span>@string.Format("{0} &amp; {1}", Model.Text, Model.Text1)</span>
+            </p>
+        </div>
+    }
+</div>

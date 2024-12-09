@@ -1,0 +1,12 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Image",
+      "title": "Image (optional)",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

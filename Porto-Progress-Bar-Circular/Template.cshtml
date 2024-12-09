@@ -1,0 +1,10 @@
+@{
+    var completedAmmount = Model.CompletedAmmount ?? 0;
+}
+
+<div class="circular-bar">
+  <div class="circular-bar-chart" data-percent="@completedAmmount" data-plugin-options="@string.Format("{6}'size': '{0}' ,'lineWidth': '{1}' , 'barColor' : '{2}' ,'trackColor': '#{3}' , {4} 'lineCap' : '{5}'{7}", Model.Settings.Size,Model.Settings.lineWidth, Model.Settings.barColor, Model.Settings.trackColor, Model.Settings.scaleColor !=null ? string.Format("'scaleColor': '#{0}' ,", Model.Settings.scaleColor) : string.Empty, Model.Settings.lineCap, "{", "}")">
+    <strong>@Model.InnerContent</strong>
+    <label>@string.Format("{0}%", completedAmmount)</label>
+  </div>
+</div>

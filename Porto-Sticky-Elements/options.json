@@ -1,0 +1,19 @@
+{
+  "fields": {
+    "FirstParagraph": {
+      "type": "ckeditor"
+    },
+    "Content": {
+      "type": "ckeditor"
+    },
+    "Image": {
+      "type": "image"
+    },
+    "ImageText": {
+      "type": "text"
+    },
+    "LastParagraph": {
+      "type": "ckeditor"
+    }
+  }
+}

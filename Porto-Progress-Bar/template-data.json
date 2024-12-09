@@ -1,0 +1,9 @@
+{
+    "ShowCompletionText": true,
+    "ProgressBarSize": "",
+    "ProgressBorderRadius": "",
+    "ApplyContextualClass": false,
+    "ProgressColor": "progress-bar-primary",
+    "ProgressAnimated": false,
+    "Striped": false
+}

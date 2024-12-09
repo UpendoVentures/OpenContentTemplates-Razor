@@ -1,0 +1,13 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "Style": "#pos_1_1",
+      "Posts": "#pos_1_1",
+      "ChurchsStyle": "#pos_1_1",
+      "GridWidth": "#pos_1_1",
+      "Churchs": "#pos_1_1"
+    }
+  }
+}

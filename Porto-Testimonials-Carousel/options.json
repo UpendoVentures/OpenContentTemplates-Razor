@@ -1,0 +1,29 @@
+{
+  "fields": {
+    "ParallaxImage": {
+      "type": "image"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Content": {
+            "type": "textarea"
+          },
+          "Image": {
+            "type": "image"
+          },
+          "Fullname": {
+            "type": "text"
+          },
+          "Text": {
+            "type": "text"
+          },
+          "Text1": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

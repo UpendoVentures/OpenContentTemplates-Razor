@@ -1,0 +1,9 @@
+<ul class="social-icons">
+    @if (Model.Items != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            <li class="@item.Class"><a href="@item.Href" target="_blank" title="@item.Title">@item.Content</a></li>
+        }
+    }
+</ul>

@@ -1,0 +1,85 @@
+{
+    "type": "object",
+    "properties": { 
+        "ShowCompletionText": {    
+            "title": "Show Completion Text",
+            "type": "boolean"        
+        },
+        "UseTooltip": {    
+            "title": "Use Tooltip",
+            "type": "boolean"        
+        },
+        "ProgressBarSize": {
+            "title": "Progress Bar Size",
+            "type": "string",
+            "enum": [
+                "progress-sm",
+				"",
+                "progress-lg"           
+            ]
+        },
+        "ProgressBorderRadius": {
+            "title": "Progress Border Radius",
+            "type": "string",
+            "enum": [
+                "progress-border-radius",
+				"",
+                "progress-no-border-radius"           
+            ]
+        },
+        "ApplyContextualClass": {    
+            "title": "Striped Progress Bar",
+            "type": "boolean"        
+        },
+        "ContextualClassType": {
+            "title": "Contextual Class Type",
+            "type": "string",
+            "enum": [
+                "success",
+                "info",
+                "warning",
+                "danger"
+            ]
+        },
+        "ProgressColor": {
+            "title": "Progress Bar Color",
+            "type": "string",
+            "enum": [
+                "progress-bar-primary",
+				"progress-bar-secondary",
+                "progress-bar-tertiary",
+                "progress-bar-quaternary"           
+            ]
+        },
+        "ProgressAnimated": {    
+            "title": "Striped Progress Bar",
+            "type": "boolean"        
+        },
+        "AnimationDelay": {
+            "title": "Animation Delay",
+            "type": "string",
+            "enum": [
+                "0",
+                "300",
+                "600",
+                "900",
+                "1200"
+            ]
+        },
+        "Striped": {    
+            "title": "Striped Progress Bar",
+            "type": "boolean"        
+        },
+        "StripedAnimated": {    
+            "title": "Striped Animated",
+            "type": "boolean"        
+        }
+    },
+    "dependencies": {
+        "UseTooltip": ["ShowCompletionText"],
+        "StripedAnimated": ["Striped"],
+        "AnimationDelay": ["ProgressAnimated"],
+        "ContextualClassType": ["ApplyContextualClass"],
+        "ProgressColor": ["ApplyContextualClass"]
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "formfields": [
+      {
+        "fieldname": "ModuleTitle",
+        "title": "Module Title",
+        "fieldtype": "text",
+        "advanced": false
+      },
+      {        
+          "fieldname": "TableHeadTD",
+          "fieldtype": "array",
+          "subfields": [
+            {
+                "fieldname": "TableHeadTDContent",
+                "title": "Table Column Header (required)",
+                "fieldtype": "text",
+                "advanced": true,
+                "required": true,
+                "hidden": false,
+                "multilanguage": false,
+                "index": false,
+                "position": "1col1",
+                "dependencies": []
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "position": "1col1",
+          "dependencies": []      
+      },
+      {
+        "fieldname": "TableBodyTR",
+        "fieldtype": "array",
+        "subfields": [
+            {
+              "fieldname": "RowClass",
+              "title": "Row Class",
+              "fieldtype": "radio",
+              "optionLabels": [                
+                "Info",
+                "Error",
+                "Success",
+                "Warning"
+              ],
+              "enum": [                
+                "info",
+                "danger",
+                "success",
+                "warning"
+              ],
+              "removeDefaultNone": true,
+              "advanced": false
+            },
+            {
+              "fieldname": "TableBodyTD",
+              "fieldtype": "array",
+              "subfields": [
+                {
+                  "fieldname": "TableBodyTDContent",
+                  "title": "List Item Text (required)",
+                  "fieldtype": "wysihtml",
+                  "advanced": true,
+                  "required": true,
+                  "hidden": false,
+                  "multilanguage": false,
+                  "index": false,
+                  "position": "1col1",
+                  "dependencies": []
+                }   
+              ],
+              "advanced": false
+          }
+          
+        ],
+        "advanced": false
+       }
+    ],
+    "formtype": "object"
+  }

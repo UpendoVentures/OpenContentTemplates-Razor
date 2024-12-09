@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "optionLabels": ["Primary", "Secondary", "Tertiary", "Quaternary"],
+      "removeDefaultNone": true
+    },
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "optionLabels": ["Style-2", "Style-3", "Style-4", "Style-5"]
+    },
+    "Parallax": {
+      "label": "Parallax",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "MultipleItems": {
+      "label": "MultipleItems",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "Autoplay": {
+      "label": "Autoplay",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "RoundedCircle": {
+      "label": "Image Rounded Circle",
+      "type": "checkbox",
+      "removeDefaultNone": true
+    },
+    "AutoplayTimeout": {
+      "title": "Autoplay",
+      "type": "text",
+      "removeDefaultNone": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "ModuleTitle": "Social Media Icons",
+    "Items": [
+      {
+        "Class": "facebook",
+        "Href": "https://www.facebook.com",
+        "Title": "Facebook",
+        "Content": "Facebook"
+      },
+      {
+        "Class": "twitter",
+        "Href": "https://www.twitter.com",
+        "Title": "twitter",
+        "Content": "Twitter"      
+      },
+      {
+        "Class": "digg",
+        "Href": "https://www.digg.com",
+        "Title": "Digg",
+        "Content": "Digg"
+      }
+    ]
+  }

@@ -1,0 +1,49 @@
+{
+    "formfields": [
+      {
+        "fieldname": "ModuleTitle",
+        "title": "Module Title",
+        "fieldtype": "text",
+        "advanced": false
+      },
+      {
+        "fieldname": "Items",
+        "fieldtype": "array",
+        "subfields": [
+          {
+            "fieldname": "Class",
+            "title": "Class (required)",
+            "fieldtype": "text",
+            "helper": "Find values at: <a href=\"https://porto.mandeeps.com/shortcodes/shortcodes-1/social-media-icons\" target=\"_blank\">FontAwesome</a>",
+            "advanced": true,
+            "required":true,
+            "hidden": false,
+            "multilanguage": false,
+            "index": false,
+            "position": "1col1",
+            "dependencies": []
+          },
+          {
+            "fieldname": "Href",
+            "title": "Href",
+            "fieldtype": "text",
+            "advanced": false
+          },
+          {
+            "fieldname": "Title",
+            "title": "Title",
+            "fieldtype": "text",
+            "advanced": false
+          },
+          {
+            "fieldname": "Content",
+            "title": "Content",
+            "fieldtype": "text",
+            "advanced": false
+          }
+        ],
+        "advanced": false
+      }
+    ],
+    "formtype": "object"
+  }

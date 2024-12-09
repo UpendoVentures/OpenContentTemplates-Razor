@@ -1,0 +1,39 @@
+{
+  "formfields": [
+    {
+      "fieldname": "FirstParagraph",
+      "title": "First Paragraph",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "Content",
+      "title": "Image",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "Image",
+      "title": "Image",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": false
+    },
+    {
+      "fieldname": "ImageText",
+      "title": "Image Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "LastParagraph",
+      "title": "Last Paragraph",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {},
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

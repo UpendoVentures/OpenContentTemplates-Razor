@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {  
+        "Striped": {    
+            "title": "Enable Animations",
+            "type": "boolean",
+            "default": false        
+        },
+        "Bordered": {    
+            "title": "Bordered",
+            "type": "boolean",
+            "default": false         
+        },
+        "HoverRows": {    
+            "title": "Hover Rows",
+            "type": "boolean",
+            "default": false         
+        },
+        "Condensed": {    
+            "title": "Condensed Table",
+            "type": "boolean",
+            "default": false         
+        }
+    }
+}
