@@ -1,0 +1,65 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModalId",
+      "title": "Modal Id",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModalDialogTitle",
+      "title": "Modal Dialog Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModalContent",
+      "title": "Modal Content",
+      "fieldtype": "textarea",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "EmailText",
+      "title": "Email Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ConfirmText",
+      "title": "Confirm Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "PrimaryButtonText",
+      "title": "Primary Button Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "SecondaryButtonText",
+      "title": "Secondary Button Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "SecondaryButtonLink",
+      "title": "Secondary Button Link",
+      "fieldtype": "text",
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

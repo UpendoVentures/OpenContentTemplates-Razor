@@ -1,0 +1,17 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "ModuleTitle": "#pos_1_1",
+      "ModalId": "#pos_1_1",
+      "ModalDialogTitle": "#pos_1_1",
+      "ModalContent": "#pos_1_1",
+      "EmailText": "#pos_1_1",
+      "ConfirmText": "#pos_1_1",
+      "PrimaryButtonText": "#pos_1_1",
+      "SecondaryButtonText": "#pos_1_1",
+      "SecondaryButtonLink": "#pos_1_1"
+    }
+  }
+}

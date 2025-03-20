@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModalId": {
+      "type": "text"
+    },
+    "ModalDialogTitle": {
+      "type": "text"
+    },
+    "ModalContent": {
+      "type": "textarea"
+    },
+    "EmailText": {
+      "type": "text"
+    },
+    "ConfirmText": {
+      "type": "text"
+    },
+    "PrimaryButtonText": {
+      "type": "text"
+    },
+    "SecondaryButtonText": {
+      "type": "text"
+    },
+    "SecondaryButtonLink": {
+      "type": "text"
+    }
+  }
+}

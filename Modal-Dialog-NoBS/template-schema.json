@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "HeaderBackgroundColor": {
+      "type": "string",
+      "title": "Header Background Color",
+      "default": "#CE3439"
+    },
+    "HeaderTextColor": {
+      "type": "string",
+      "title": "Header Text Color",
+      "default": "#FFFFFF"
+    },
+    "HeaderTextType": {
+      "type": "string",
+      "title": "Header Text Type",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5"
+      ],
+      "default": "h3"
+    },
+    "VerificationEndPoint": {
+      "type": "string",
+      "title": "Verification EndPoint",
+      "default": "/API/PracticeWise/EmailVerification/NeedsEmailConfirmation"
+    },
+    "ConfirmationEndPoint": {
+      "type": "string",
+      "title": "Confirmation EndPoint",
+      "default": "/API/PracticeWise/EmailVerification/ConfirmEmail"
+    },
+    "ConfirmErrorMessage": {
+      "type": "string",
+      "title": "Error message when confirming",
+      "default": "Error confirming email"
+    },
+    "GenericErrorMessage": {
+      "type": "string",
+      "title": "Generic error message",
+      "default": "An error occurred while processing the request."
+    },
+    "NoUserLoggedInText": {
+      "type": "string",
+      "title": "NoUserLoggedIn.Text",
+      "default": "No user logged in"
+    },
+    "NonConfirmMessage": {
+      "type": "string",
+      "title": "Non-confirmation message",
+      "default": "Please check the box to confirm your email is accurate."
+    }
+  }
+}

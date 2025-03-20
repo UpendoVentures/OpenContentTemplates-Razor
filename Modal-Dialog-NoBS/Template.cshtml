@@ -1,0 +1,69 @@
+@using DotNetNuke.Entities.Users
+@{
+    var headerBackgroundColor = Model.Settings.HeaderBackgroundColor;
+    var headerTextColor = Model.Settings.HeaderTextColor;
+    var headerTagType = Model.Settings.HeaderTextType;
+    var nonConfirmMessage = Model.Settings.NonConfirmMessage ?? "Please check the box to confirm your email is accurate.";
+
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    var userInfo = UserController.Instance.GetCurrentUserInfo();
+    var userEmail = isAuthenticated ? userInfo.Email : Model.Settings.NoUserLoggedInText ?? "";
+}
+
+<!-- Modal -->
+<div id="@Model.ModalId" class="custom-modal">
+    <div class="custom-modal-content">
+        <@headerTagType class="custom-modal-header">
+            @Model.ModalDialogTitle
+        </@headerTagType>
+
+        <p>@Model.ModalContent</p>
+
+        @if (isAuthenticated)
+        {
+            <p>@Model.EmailText <strong>@userEmail</strong></p>
+        }
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="emailConfirm">
+            <label for="emailConfirm">@Model.ConfirmText</label>
+        </div>
+
+        <div class="button-container">
+            <button type="button" onclick="confirmEmail()">@Model.PrimaryButtonText</button>
+            <button type="button" onclick="redirectToProfile(@userInfo.UserID)">@Model.SecondaryButtonText</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --header-background-color:
+            @headerBackgroundColor
+        ;
+        --header-text-color:
+            @headerTextColor
+        ;
+    }
+</style>
+
+<script>
+    window.modalConfig = {
+        modalId: "@Model.ModalId",
+        verificationEndPoint: "@Model.Settings.VerificationEndPoint",
+        confirmationEndPoint: "@Model.Settings.ConfirmationEndPoint",
+        nonConfirmMessage: "@nonConfirmMessage",
+        moduleId: "@Dnn.Module.ModuleID",
+        tabId: "@Dnn.Module.TabID",
+        userId: "@userInfo.UserID",
+        confirmErrorMessage: "@Model.Settings.ConfirmErrorMessage",
+        genericErrorMessage: "@Model.Settings.GenericErrorMessage",
+        secondaryButtonLink: "@Model.SecondaryButtonLink"
+    };
+
+    var modelData = @Html.Raw(Json.Encode(Model));
+    console.log("Contenido de Model:", modelData);
+</script>
+
+<link rel="stylesheet" href="@Model.Context.TemplatePath/modal-styles.css">
+<script src="@Model.Context.TemplatePath/modal-scripts.js"></script>

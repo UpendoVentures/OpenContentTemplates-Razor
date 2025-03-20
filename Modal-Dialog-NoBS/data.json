@@ -1,0 +1,11 @@
+{
+  "ModuleTitle": "Modal-Dialog",
+  "ModalDialogTitle": "Verify Your Email Address",
+  "ModalId": "modalDialog",
+  "ModalContent": "Please confirm your email address to ensure your account information is accurate.",
+  "PrimaryButtonText": "Confirm Email",
+  "SecondaryButtonText": "Update Email ",
+  "SecondaryButtonLink": "/ActivityFeed/MyProfile/userId",
+  "ConfirmText": "My email address is accurate.",
+  "EmailText": "Current email:"
+}
