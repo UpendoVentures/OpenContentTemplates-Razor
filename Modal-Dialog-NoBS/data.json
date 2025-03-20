@@ -1,11 +1,11 @@
 {
   "ModuleTitle": "Modal-Dialog",
-  "ModalDialogTitle": "Verify Your Email Address",
+  "ModalDialogTitle": "Lorem ipsum dolor sit amet.",
   "ModalId": "modalDialog",
-  "ModalContent": "Please confirm your email address to ensure your account information is accurate.",
-  "PrimaryButtonText": "Confirm Email",
-  "SecondaryButtonText": "Update Email ",
-  "SecondaryButtonLink": "/ActivityFeed/MyProfile/userId",
+  "ModalContent": "Lorem ipsum dolor sit amet. Qui assumenda eius ea minus deserunt aut suscipit consectetur a atque aperiam vel cupiditate adipisci ea possimus consequatur. Cum nihil iusto sit fuga nisi a assumenda quas.",
+  "PrimaryButtonText": "Primary Button",
+  "SecondaryButtonText": "Secondary Button",
+  "SecondaryButtonLink": "",
   "ConfirmText": "My email address is accurate.",
   "EmailText": "Current email:"
 }
