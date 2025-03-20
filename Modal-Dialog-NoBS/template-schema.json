@@ -26,17 +26,17 @@
     "VerificationEndPoint": {
       "type": "string",
       "title": "Verification EndPoint",
-      "default": "/API/PracticeWise/EmailVerification/NeedsEmailConfirmation"
+      "default": "Endpoint to check if the modal should be displayed"
     },
     "ConfirmationEndPoint": {
       "type": "string",
       "title": "Confirmation EndPoint",
-      "default": "/API/PracticeWise/EmailVerification/ConfirmEmail"
+      "default": "Main button action endpoint"
     },
     "ConfirmErrorMessage": {
       "type": "string",
       "title": "Error message when confirming",
-      "default": "Error confirming email"
+      "default": "Error message when the main action fails"
     },
     "GenericErrorMessage": {
       "type": "string",
