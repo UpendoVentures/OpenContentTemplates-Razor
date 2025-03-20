@@ -62,7 +62,6 @@ async function confirmEmail() {
             alert(window.modalConfig.confirmErrorMessage);
         }
     } catch (error) {
-        console.error("Error confirming email:", error);
         alert(window.modalConfig.genericErrorMessage);
     }
 }
