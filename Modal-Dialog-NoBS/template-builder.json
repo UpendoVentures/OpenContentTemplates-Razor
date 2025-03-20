@@ -64,7 +64,7 @@
       "advanced": true,
       "required": false,
       "hidden": false,
-      "default": "/API/PracticeWise/EmailVerification/NeedsEmailConfirmation",
+      "default": "Endpoint to check if the modal should be displayed",
       "multilanguage": false,
       "position": "1col1",
       "dependencies": []
@@ -76,7 +76,7 @@
       "advanced": true,
       "required": false,
       "hidden": false,
-      "default": "/API/PracticeWise/EmailVerification/ConfirmEmail",
+      "default": "Main button action endpoint",
       "multilanguage": false,
       "position": "1col1",
       "dependencies": []
@@ -88,7 +88,7 @@
       "advanced": true,
       "required": false,
       "hidden": false,
-      "default": "Error confirming email",
+      "default": "Error message when the main action fails",
       "multilanguage": false,
       "position": "1col1",
       "dependencies": []
