@@ -1,0 +1,134 @@
+{
+  "formfields": [
+    {
+      "fieldname": "HeaderBackgroundColor",
+      "title": "Header Background Color",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "#CE3439",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextColor",
+      "title": "Header Text Color",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "#FFFFFF",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextType",
+      "title": "Header Text Type",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "h1",
+          "text": "h1"
+        },
+        {
+          "value": "h2",
+          "text": "h2"
+        },
+        {
+          "value": "h3",
+          "text": "h3"
+        },
+        {
+          "value": "h4",
+          "text": "h4"
+        },
+        {
+          "value": "h5",
+          "text": "h5"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "h3",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "VerificationEndPoint",
+      "title": "Verification EndPoint",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Endpoint to check if the modal should be displayed",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ConfirmationEndPoint",
+      "title": "Confirmation EndPoint",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Main button action endpoint",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ConfirmErrorMessage",
+      "title": "Error message when confirming",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Error message when the main action fails",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "GenericErrorMessage",
+      "title": "Generic error message",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "An error occurred while processing the request.",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "NoUserLoggedInText",
+      "title": "NoUserLoggedIn.Text",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "No user logged in",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "NonConfirmMessage",
+      "title": "Non-confirmation message",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Please check the box to confirm your email is accurate.",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

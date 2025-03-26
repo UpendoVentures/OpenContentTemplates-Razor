@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModalId": {
+      "type": "string",
+      "title": "Modal Id"
+    },
+    "ModalDialogTitle": {
+      "type": "string",
+      "title": "Modal Dialog Title"
+    },
+    "ModalContent": {
+      "type": "string",
+      "title": "Modal Content",
+      "required": true
+    },
+    "EmailText": {
+      "type": "string",
+      "title": "Email Text"
+    },
+    "ConfirmText": {
+      "type": "string",
+      "title": "Confirm Text"
+    },
+    "PrimaryButtonText": {
+      "type": "string",
+      "title": "Primary Button Text"
+    },
+    "SecondaryButtonText": {
+      "type": "string",
+      "title": "Secondary Button Text"
+    },
+    "SecondaryButtonLink": {
+      "type": "string",
+      "title": "Secondary Button Link"
+    }
+  }
+}

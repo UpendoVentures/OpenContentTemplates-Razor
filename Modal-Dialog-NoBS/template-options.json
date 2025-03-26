@@ -1,0 +1,39 @@
+{
+  "fields": {
+    "HeaderBackgroundColor": {
+      "type": "text"
+    },
+    "HeaderTextColor": {
+      "type": "text"
+    },
+    "HeaderTextType": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5"
+      ]
+    },
+    "VerificationEndPoint": {
+      "type": "text"
+    },
+    "ConfirmationEndPoint": {
+      "type": "text"
+    },
+    "ConfirmErrorMessage": {
+      "type": "text"
+    },
+    "GenericErrorMessage": {
+      "type": "text"
+    },
+    "NoUserLoggedInText": {
+      "type": "text"
+    },
+    "NonConfirmMessage": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "HeaderBackgroundColor": "#pos_1_1",
+      "HeaderTextColor": "#pos_1_1",
+      "HeaderTextType": "#pos_1_1",
+      "VerificationEndPoint": "#pos_1_1",
+      "ConfirmationEndPoint": "#pos_1_1",
+      "ConfirmErrorMessage": "#pos_1_1",
+      "GenericErrorMessage": "#pos_1_1",
+      "NoUserLoggedInText": "#pos_1_1",
+      "NonConfirmMessage": "#pos_1_1"
+    }
+  }
+}
