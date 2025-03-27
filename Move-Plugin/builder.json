@@ -1,0 +1,293 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "querySelector",
+      "title": "Query Selector",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "#",
+          "text": "Id"
+        },
+        {
+          "value": ".",
+          "text": "Class"
+        },
+        {
+          "value": "custom",
+          "text": "Custom"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "#",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "queryValue",
+      "title": "Value",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "editMode",
+      "title": "Only in DNN edit mode?",
+      "fieldtype": "checkbox",
+      "advanced": false
+    },
+    {
+      "fieldname": "modType",
+      "title": "Modification Type:",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "1",
+          "text": "Hidden"
+        },
+        {
+          "value": "2",
+          "text": "Move Position"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "1",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "moveTop",
+      "title": "Move up?",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "modType",
+          "values": "2"
+        }
+      ]
+    },
+    {
+      "fieldname": "currentTop",
+      "title": "Current Value:",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveTop",
+          "values": "true"
+        },
+        {
+          "fieldname": "editMode",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "newTop",
+      "title": "New Value:",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveTop",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "moveLeft",
+      "title": "Move Left?",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "modType",
+          "values": "2"
+        }
+      ]
+    },
+    {
+      "fieldname": "currentLeft",
+      "title": "Current Value:",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveLeft",
+          "values": "true"
+        },
+        {
+          "fieldname": "editMode",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "newLeft",
+      "title": "New Value:",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveLeft",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "moveRight",
+      "title": "Move Right?",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "modType",
+          "values": "2"
+        }
+      ]
+    },
+    {
+      "fieldname": "currentRight",
+      "title": "Current Value:",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveRight",
+          "values": "true"
+        },
+        {
+          "fieldname": "editMode",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "newRight",
+      "title": "New Value",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveRight",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "moveDown",
+      "title": "Move Down?",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "modType",
+          "values": "2"
+        }
+      ]
+    },
+    {
+      "fieldname": "currentBottom",
+      "title": "Current Value",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveDown",
+          "values": "true"
+        },
+        {
+          "fieldname": "editMode",
+          "values": "true"
+        }
+      ]
+    },
+    {
+      "fieldname": "newBottom",
+      "title": "New Value:",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "moveDown",
+          "values": "true"
+        }
+      ]
+    }
+  ],
+  "formtype": "object"
+}

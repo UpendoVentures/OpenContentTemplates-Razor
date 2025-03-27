@@ -1,0 +1,135 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "querySelector": {
+      "type": "string",
+      "title": "Query Selector",
+      "enum": [
+        "#",
+        ".",
+        "custom"
+      ],
+      "default": "#",
+      "required": true
+    },
+    "queryValue": {
+      "type": "string",
+      "title": "Value",
+      "required": true
+    },
+    "editMode": {
+      "type": "boolean",
+      "title": "Only in DNN edit mode?"
+    },
+    "modType": {
+      "type": "string",
+      "title": "Modification Type:",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "default": "1",
+      "required": true
+    },
+    "moveTop": {
+      "type": "boolean",
+      "title": "Move up?",
+      "dependencies": [
+        "modType"
+      ]
+    },
+    "currentTop": {
+      "type": "string",
+      "title": "Current Value:",
+      "required": true,
+      "dependencies": [
+        "moveTop",
+        "editMode"
+      ]
+    },
+    "newTop": {
+      "type": "string",
+      "title": "New Value:",
+      "required": true,
+      "dependencies": [
+        "moveTop"
+      ]
+    },
+    "moveLeft": {
+      "type": "boolean",
+      "title": "Move Left?",
+      "dependencies": [
+        "modType"
+      ]
+    },
+    "currentLeft": {
+      "type": "string",
+      "title": "Current Value:",
+      "required": true,
+      "dependencies": [
+        "moveLeft",
+        "editMode"
+      ]
+    },
+    "newLeft": {
+      "type": "string",
+      "title": "New Value:",
+      "required": true,
+      "dependencies": [
+        "moveLeft"
+      ]
+    },
+    "moveRight": {
+      "type": "boolean",
+      "title": "Move Right?",
+      "dependencies": [
+        "modType"
+      ]
+    },
+    "currentRight": {
+      "type": "string",
+      "title": "Current Value:",
+      "required": true,
+      "dependencies": [
+        "moveRight",
+        "editMode"
+      ]
+    },
+    "newRight": {
+      "type": "string",
+      "title": "New Value",
+      "required": true,
+      "dependencies": [
+        "moveRight"
+      ]
+    },
+    "moveDown": {
+      "type": "boolean",
+      "title": "Move Down?",
+      "dependencies": [
+        "modType"
+      ]
+    },
+    "currentBottom": {
+      "type": "string",
+      "title": "Current Value",
+      "required": true,
+      "dependencies": [
+        "moveDown",
+        "editMode"
+      ]
+    },
+    "newBottom": {
+      "type": "string",
+      "title": "New Value:",
+      "required": true,
+      "dependencies": [
+        "moveDown"
+      ]
+    }
+  }
+}

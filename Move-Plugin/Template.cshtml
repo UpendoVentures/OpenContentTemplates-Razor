@@ -1,0 +1,95 @@
+@{
+    var querySelector = Model.querySelector == "custom" ? Model.queryValue : string.Format("{0}{1}",
+    Model.querySelector, Model.queryValue);
+    var editMode = Model.editMode!=null ? Model.editMode.ToString().ToLower() : "false";
+    var moveTop = Model.moveTop != null ? Model.moveTop.ToString().ToLower() : "false";
+    var moveLeft = Model.moveLeft != null ? Model.moveLeft.ToString().ToLower() : "false";
+    var moveRight = Model.moveRight != null ? Model.moveRight.ToString().ToLower() : "false";
+    var moveDown = Model.moveDown != null ? Model.moveDown.ToString().ToLower() : "false";
+}
+
+<script type="text/javascript">
+    function adjustWidgetPosition() {
+        // Check if you are in DNN edit mode
+        var isEditMode = false;
+
+        if (@editMode) {
+            isEditMode = document.body.classList.contains("dnnEditState");
+        }
+        // Find all iframes (in case there are multiple ones)
+        var widgets = document.querySelectorAll('@querySelector');
+
+        widgets.forEach(function (widget) {
+            if (widget) {
+                if (@Model.modType== 1) {
+                    //Hide the widget
+                    if(@editMode){
+                        if(isEditMode){
+                            widget.style.display = 'none';
+                        }
+                    }else{
+                         widget.style.display = 'none';
+                    }
+                   
+                } else {
+                    //Move the widget
+                    if (isEditMode) {
+                        if (@moveTop) {
+                            widget.style.top = isEditMode ? '@Model.newTop' : '@Model.currentTop';
+                        }
+                        if (@moveLeft) {
+                            widget.style.left = isEditMode ? '@Model.newLeft' : '@Model.currentLeft';
+                        }
+                        if (@moveRight) {
+                            widget.style.right = isEditMode ? '@Model.newRight' : '@Model.currentRight';
+                        }
+                        if (@moveDown) {
+                            widget.style.bottom = isEditMode ? '@Model.newBottom' : '@Model.currentBottom';
+                        }
+                    } else {
+                        if (@moveTop) {
+                            widget.style.top = '@Model.newTop';
+                        }
+                        if (@moveLeft) {
+                            widget.style.left = '@Model.newLeft';
+                        }
+                        if (@moveRight) {
+                            widget.style.right = '@Model.newRight';
+                        }
+                        if (@moveDown) {
+                            widget.style.bottom = '@Model.newBottom';
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Start a continuous check interval
+    var checkInterval = setInterval(function () {
+        // Check if we are no longer on the page
+        if (!document.body) {
+            clearInterval(checkInterval);
+            return;
+        }
+
+        // Try to adjust the position
+        adjustWidgetPosition();
+    }, 1000); // Check every second
+
+    // Execute the function when the page loads
+    window.addEventListener('load', adjustWidgetPosition);
+
+    // Watch for DOM changes to handle dynamic changes
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                adjustWidgetPosition();
+            }
+        });
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // Listener for window size changes (sometimes helps with dynamic rendering)
+    window.addEventListener('resize', adjustWidgetPosition);
+</script>

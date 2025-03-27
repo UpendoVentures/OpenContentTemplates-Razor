@@ -1,0 +1,25 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "ModuleTitle": "#pos_1_1",
+      "querySelector": "#pos_1_1",
+      "queryValue": "#pos_1_1",
+      "editMode": "#pos_1_1",
+      "modType": "#pos_1_1",
+      "moveTop": "#pos_1_1",
+      "currentTop": "#pos_1_1",
+      "newTop": "#pos_1_1",
+      "moveLeft": "#pos_1_1",
+      "currentLeft": "#pos_1_1",
+      "newLeft": "#pos_1_1",
+      "moveRight": "#pos_1_1",
+      "currentRight": "#pos_1_1",
+      "newRight": "#pos_1_1",
+      "moveDown": "#pos_1_1",
+      "currentBottom": "#pos_1_1",
+      "newBottom": "#pos_1_1"
+    }
+  }
+}
