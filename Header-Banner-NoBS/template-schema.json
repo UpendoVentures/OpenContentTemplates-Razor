@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "HeaderBackgroundColor": {
+      "type": "string",
+      "title": "Header Background Color",
+      "default": "#CE3439"
+    },
+    "HeaderTextColor": {
+      "type": "string",
+      "title": "Header Text Color",
+      "default": "#FFFFFF"
+    },
+    "HeaderTextType": {
+      "type": "string",
+      "title": "Header Text Type",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "p"
+      ],
+      "default": "h3"
+    },
+    "HeaderTextStyle": {
+      "type": "string",
+      "title": "Header Text Style",
+      "enum": [
+        "bold",
+        "italic",
+        "underline"
+      ]
+    },
+    "TextAlign": {
+      "type": "string",
+      "title": "Text Align",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ],
+      "default": "center"
+    },
+    "HeaderTextShadow": {
+      "type": "boolean",
+      "title": "Header Text Shadow",
+      "default": "false"
+    },
+    "HeaderTextShadowValue": {
+      "type": "string",
+      "title": "Header Text Shadow Value",
+      "default": " 2px 2px 4px rgba(0, 0, 0, 0.5)"
+    },
+    "WithCloseButton": {
+      "type": "boolean",
+      "title": "With Close Button",
+      "default": "false"
+    }
+  }
+}
