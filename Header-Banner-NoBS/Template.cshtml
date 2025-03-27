@@ -1,0 +1,52 @@
+@{
+    var headerBackgroundColor = Model.Settings.HeaderBackgroundColor;
+    var headerTextColor = Model.Settings.HeaderTextColor;
+    var headerTagType = Model.Settings.HeaderTextType;
+    var headerTextStyle = Model.Settings.HeaderTextStyle;
+    var headerTextShadow = Model.Settings.HeaderTextShadow;
+    var headerTextShadowValue = Model.Settings.HeaderTextShadowValue;
+    var withCloseButton = Model.Settings.WithCloseButton;
+    var textAlign = Model.Settings.TextAlign;
+    var text = Model.BannerContent ?? "Your announcement text here"; 
+}
+
+<div id="announcement-bar" class="announcement-bar">
+  <div class="announcement-bar-content"
+       style="background-color: @headerBackgroundColor; text-align: @textAlign;">
+    @if (withCloseButton)
+    {
+        <button id="close-announcement" class="close-announcement">✖</button>
+    }
+    
+    @if (!string.IsNullOrEmpty(Model.BannerLink))
+    {
+        <div class="announcement-bar-text">
+            <div id="announcement-bar-text-inner-id" class="announcement-bar-text-inner">
+                <a href="@Model.BannerLink" style="color: @headerTextColor;
+                        @(headerTextStyle == "bold" ? "font-weight: " + headerTextStyle+";" : "")
+                        @(headerTextStyle == "italic" ? "font-style: " + headerTextStyle+";" : "")
+                        @(headerTextShadow ? "text-shadow: " + headerTextShadowValue + ";" : "")">
+                        <@headerTagType>@Html.Raw(text)</@headerTagType>
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="announcement-bar-text">
+          <div id="announcement-bar-text-inner-id" class="announcement-bar-text-inner">
+            <@headerTagType style="color: @headerTextColor;
+                     @(headerTextStyle == "bold" ? "font-weight: " + headerTextStyle +";"  : "")
+                     @(headerTextStyle == "italic" ? "font-style: " + headerTextStyle +";" : "")
+                     @(headerTextStyle == "underline" ? "text-decoration:  " + headerTextStyle+";" : "")
+                     @(headerTextShadow ? "text-shadow: " + headerTextShadowValue + ";" : "")">
+                @Html.Raw(text)
+            </@headerTagType>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+
+<link rel="stylesheet" href="@Model.Context.TemplatePath/banner-styles.css">
+<script src="@Model.Context.TemplatePath/banner-scripts.js"></script>
