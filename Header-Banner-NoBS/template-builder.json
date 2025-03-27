@@ -1,0 +1,145 @@
+{
+  "formfields": [
+    {
+      "fieldname": "HeaderBackgroundColor",
+      "title": "Header Background Color",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "#CE3439",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextColor",
+      "title": "Header Text Color",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "#FFFFFF",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextType",
+      "title": "Header Text Type",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "h1",
+          "text": "h1"
+        },
+        {
+          "value": "h2",
+          "text": "h2"
+        },
+        {
+          "value": "h3",
+          "text": "h3"
+        },
+        {
+          "value": "h4",
+          "text": "h4"
+        },
+        {
+          "value": "h5",
+          "text": "h5"
+        },
+        {
+          "value": "p",
+          "text": "p"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "h3",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextStyle",
+      "title": "Header Text Style",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "bold",
+          "text": "bold"
+        },
+        {
+          "value": "italic",
+          "text": "italic"
+        },
+        {
+          "value": "underline",
+          "text": "underline"
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "TextAlign",
+      "title": "Text Align",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "left",
+          "text": "left"
+        },
+        {
+          "value": "center",
+          "text": "center"
+        },
+        {
+          "value": "right",
+          "text": "right"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "center",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextShadow",
+      "title": "Header Text Shadow",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "false",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeaderTextShadowValue",
+      "title": "Header Text Shadow Value",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": " 2px 2px 4px rgba(0, 0, 0, 0.5)",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "WithCloseButton",
+      "title": "With Close Button",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "false",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
