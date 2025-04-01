@@ -13,6 +13,37 @@
       "advanced": false
     },
     {
+      "fieldname": "Type",
+      "title": "Type",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "Unordered",
+          "text": "Unordered"
+        },
+        {
+          "value": "Unstyled",
+          "text": "Unstyled"
+        },
+        {
+          "value": "Icons",
+          "text": "Icons"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "Unordered",
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Descriptionlists",
+          "values": "false"
+        }
+      ]
+    },
+    {
       "fieldname": "Items",
       "fieldtype": "array",
       "subfields": [
@@ -42,7 +73,8 @@
           "dependencies": []
         },
         {
-          "fieldname": "SecondLevelItems",
+          "fieldname": "SecondLevelListItems",
+          "title": "Second Level List Items",
           "fieldtype": "array",
           "subfields": [
             {

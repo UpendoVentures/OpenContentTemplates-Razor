@@ -219,16 +219,23 @@
         <table class="properties-table">
             <thead>
                 <tr>
-                    <th>Type</th>
-                    <th>Configuration</th>
+                    <th>Property</th>
+                    <th>Condition</th>
                     <th>Description</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Unordered, Unstyled, Icons -->
+                <tr>
+                    <td>Module Title</td>
+                    <td></td>
+                    <td>The Module Title property is used to define the module's title in the DNN page administration. This title serves as a
+                    visual identifier in the administration environment, making it easier to organize and recognize the module within the
+                    page.</td>
+            </tr>
+                <!-- Items -->
                 <tr>
                     <td rowspan="1"><strong>Items</strong></td>
-                    <td>Items(Description lists is set to <code>False</code>)</td>
+                    <td>Description lists is <code>false</code></td>
                     <td>
                         A list of items to display. This property is used when <strong>Type</strong> is set to
                         <code>Unordered</code>, <code>Unstyled</code>, or <code>Icons</code>. Each item includes:
@@ -236,33 +243,29 @@
                             <li><strong>List Item Text:</strong> The text of the list item. (Required)</li>
                             <li><strong>Icon:</strong> An optional icon for the list item. Example: <code>fas fa-check</code>.
                             </li>
-                            <li><strong>List Item:</strong> A nested list of items. Each nested item includes:
+                            <li><strong>Second Level List Items:</strong> A nested list of items. Each nested item includes:
                                 <ul>
-                                    <li><strong>List Item Text (required):</strong> The text of the nested item. (Required)</li>
-                                    <li><strong>Icon (optional):</strong> An optional icon for the nested item.</li>
-                                </ul>                               
-                            </li>                           
+                                    <li><strong>List Item Text:</strong> The text of the nested item. (Required)</li>
+                                    <li><strong>Icon:</strong> An optional icon for the nested item.</li>
+                                </ul>
+                            </li>
                         </ul>
-                        <p><strong>Note:</strong> When <strong>Description lists</strong> is set to <code>True</code>, the
-                            <strong>Description lists</strong> property will not be displayed.
-                        </p>
                     </td>
-                </tr>                  
-                <!-- Description -->               
+                </tr>                
+        
+                <!-- ItemsDescription -->
                 <tr>
                     <td rowspan="1"><strong>Items Description</strong></td>
-                    <td>Description lists: true</td>
+                    <td>Description lists is <code>true</code></td>
                     <td>
-                        A list of description items. This property is used only when <strong>Description lists</strong> is set to
+                        A list of description items. This property is used only when <strong>Descriptionlists</strong> is set to
                         <code>true</code>. Each item includes:
                         <ul>
                             <li><strong>Title:</strong> The title of the description item. (Required)</li>
                             <li><strong>List Item Text:</strong> The text of the description item. (Required)</li>
                         </ul>
-                        <p><strong>Note:</strong> When <strong>Description lists</strong> is set to <code>true</code>, the
-                            <strong>Items</strong> property will not be displayed.</p>
                     </td>
-                </tr>
+                </tr>                
             </tbody>
         </table>
 

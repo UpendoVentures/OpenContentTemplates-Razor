@@ -6,6 +6,20 @@
     "Descriptionlists": {
       "type": "checkbox"
     },
+    "Type": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Unordered",
+        "Unstyled",
+        "Icons"
+      ],
+      "dependencies": {
+        "Descriptionlists": [
+          "false"
+        ]
+      }
+    },
     "Items": {
       "type": "array",
       "dependencies": {
@@ -22,7 +36,7 @@
             "type": "text",
             "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
           },
-          "SecondLevelItems": {
+          "SecondLevelListItems": {
             "type": "array",
             "items": {
               "fields": {
