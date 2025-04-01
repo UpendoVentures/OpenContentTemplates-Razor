@@ -1,5 +1,6 @@
 {
     "Paragraph": {
-      "type": "ckeditor"
+      "type": "ckeditor",
+      "configset": "basic"
     }   
   }
