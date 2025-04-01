@@ -1,0 +1,16 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "BannerId": {
+      "type": "text"
+    },
+    "BannerContent": {
+      "type": "textarea"
+    },
+    "BannerLink": {
+      "type": "text"
+    }
+  }
+}

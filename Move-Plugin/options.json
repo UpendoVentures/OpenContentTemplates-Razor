@@ -1,0 +1,138 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "querySelector": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Id",
+        "Class",
+        "Custom"
+      ]
+    },
+    "queryValue": {
+      "type": "text"
+    },
+    "editMode": {
+      "type": "checkbox"
+    },
+    "modType": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Hidden",
+        "Move Position"
+      ]
+    },
+    "moveTop": {
+      "type": "checkbox",
+      "dependencies": {
+        "modType": [
+          "2"
+        ]
+      }
+    },
+    "currentTop": {
+      "type": "text",
+      "dependencies": {
+        "moveTop": [
+          "true"
+        ],
+        "editMode": [
+          "true"
+        ]
+      }
+    },
+    "newTop": {
+      "type": "text",
+      "dependencies": {
+        "moveTop": [
+          "true"
+        ]
+      }
+    },
+    "moveLeft": {
+      "type": "checkbox",
+      "dependencies": {
+        "modType": [
+          "2"
+        ]
+      }
+    },
+    "currentLeft": {
+      "type": "text",
+      "dependencies": {
+        "moveLeft": [
+          "true"
+        ],
+        "editMode": [
+          "true"
+        ]
+      }
+    },
+    "newLeft": {
+      "type": "text",
+      "dependencies": {
+        "moveLeft": [
+          "true"
+        ]
+      }
+    },
+    "moveRight": {
+      "type": "checkbox",
+      "dependencies": {
+        "modType": [
+          "2"
+        ]
+      }
+    },
+    "currentRight": {
+      "type": "text",
+      "dependencies": {
+        "moveRight": [
+          "true"
+        ],
+        "editMode": [
+          "true"
+        ]
+      }
+    },
+    "newRight": {
+      "type": "text",
+      "dependencies": {
+        "moveRight": [
+          "true"
+        ]
+      }
+    },
+    "moveDown": {
+      "type": "checkbox",
+      "dependencies": {
+        "modType": [
+          "2"
+        ]
+      }
+    },
+    "currentBottom": {
+      "type": "text",
+      "dependencies": {
+        "moveDown": [
+          "true"
+        ],
+        "editMode": [
+          "true"
+        ]
+      }
+    },
+    "newBottom": {
+      "type": "text",
+      "dependencies": {
+        "moveDown": [
+          "true"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "BannerId",
+      "title": "Banner Id",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "BannerContent",
+      "title": "Banner Content",
+      "fieldtype": "textarea",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "BannerLink",
+      "title": "Banner Link",
+      "fieldtype": "text",
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

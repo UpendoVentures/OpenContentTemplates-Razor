@@ -1,0 +1,16 @@
+{
+  "parent": "dnnbootstrap-edit-horizontal",
+  "layout": {
+    "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
+    "bindings": {
+      "HeaderBackgroundColor": "#pos_1_1",
+      "HeaderTextColor": "#pos_1_1",
+      "HeaderTextType": "#pos_1_1",
+      "HeaderTextStyle": "#pos_1_1",
+      "TextAlign": "#pos_1_1",
+      "HeaderTextShadow": "#pos_1_1",
+      "HeaderTextShadowValue": "#pos_1_1",
+      "WithCloseButton": "#pos_1_1"
+    }
+  }
+}

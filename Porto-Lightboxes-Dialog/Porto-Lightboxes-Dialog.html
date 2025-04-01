@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Lightboxes-Dialog Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+    
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+    
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+    
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+    
+        p {
+            margin-bottom: 15px;
+        }
+    
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+    
+        a:hover {
+            text-decoration: underline;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+    
+        .image-with-text {
+            text-align: center;
+            max-width: 1200px;
+        }
+    
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+    
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+    
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+    
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .note strong {
+            color: #6d5a2c;
+        }
+    
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+    
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+    
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+    
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+    
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+    
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Lightboxes-Dialog Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2>
+            <span class="Head">Overview</span>
+        </h2>
+        <p>The <strong>Porto-Lightboxes-Dialog</strong> component allows you to create interactive lightboxes and dialog
+            boxes with customizable styles, animations, and forms. It supports various configurations to match your
+            design needs.</p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Lightboxes-Dialog">
+                <strong>Porto-Lightboxes-Dialog repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-1/lightbox">
+                <strong>Porto documentation</strong></a>.
+        </p>
+
+        <h2>
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="Edit example" class="component-image">
+
+        <h3 class="Head">Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Options / Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ButtonText -->
+                <tr>
+                    <td>ButtonText</td>
+                    <td>String</td>
+                    <td>Defines the text displayed on the button that opens the dialog.</td>
+                    <td><code>Open Dialog</code></td>
+                </tr>
+        
+                <!-- DialogTitle -->
+                <tr>
+                    <td>DialogTitle</td>
+                    <td>String</td>
+                    <td>Defines the title of the dialog box.</td>
+                    <td><code>My Dialog Title</code></td>
+                </tr>
+        
+                <!-- DialogText -->
+                <tr>
+                    <td>DialogText</td>
+                    <td>String</td>
+                    <td>Defines the main text content of the dialog box. This property is required.</td>
+                    <td><code>This is the content of the dialog.</code></td>
+                </tr>
+        
+                <!-- href -->
+                <tr>
+                    <td>href</td>
+                    <td>String</td>
+                    <td>Defines the URL or link associated with the dialog.</td>
+                    <td><code>https://example.com</code></td>
+                </tr>
+        
+                <!-- FormTitle -->
+                <tr>
+                    <td>FormTitle</td>
+                    <td>String</td>
+                    <td>Defines the title of the form inside the dialog.</td>
+                    <td><code>Contact Us</code></td>
+                </tr>
+        
+                <!-- FormSubTitle -->
+                <tr>
+                    <td>FormSubTitle</td>
+                    <td>String</td>
+                    <td>Defines the subtitle of the form inside the dialog.</td>
+                    <td><code>We'd love to hear from you!</code></td>
+                </tr>
+        
+                <!-- FormData -->
+                <tr>
+                    <td>FormData</td>
+                    <td>Array</td>
+                    <td>A list of form fields to display inside the dialog.</td>
+                    <td>
+                        <ul>
+                            <li><strong>InputText:</strong> The label or placeholder for the input field. Example:
+                                <code>Your Name</code>.</li>
+                            <li><strong>FormDataType:</strong> The type of input field. Options include:
+                                <ul>
+                                    <li><code>text</code></li>
+                                    <li><code>email</code></li>
+                                    <li><code>url</code></li>
+                                    <li><code>textarea</code></li>
+                                </ul>
+                            </li>
+                            <li><strong>Row:</strong> Number of rows for the input field (for textareas). Options:
+                                <code>1</code> to <code>10</code>. Default: <code>5</code>.</li>
+                            <li><strong>GridWidth:</strong> Defines the width of the input field in the grid. Options include:
+                                <ul>
+                                    <li><code>col-md-12</code>: Full width.</li>
+                                    <li><code>col-md-6</code>: Half width.</li>
+                                    <li><code>col-md-4</code>: One-third width.</li>
+                                    <li>...and more (from <code>col-md-1</code> to <code>col-md-12</code>).</li>
+                                </ul>
+                                Default: <code>col-md-12</code>.
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- FormButtonText1 -->
+                <tr>
+                    <td>FormButtonText1</td>
+                    <td>String</td>
+                    <td>Defines the text for the first button in the form.</td>
+                    <td><code>Submit</code></td>
+                </tr>
+        
+                <!-- FormButtonText2 -->
+                <tr>
+                    <td>FormButtonText2</td>
+                    <td>String</td>
+                    <td>Defines the text for the second button in the form.</td>
+                    <td><code>Cancel</code></td>
+                </tr>
+        
+                <!-- ColorFormButton1 -->
+                <tr>
+                    <td>ColorFormButton1</td>
+                    <td>String</td>
+                    <td>Defines the color theme for the first button in the form.</td>
+                    <td>
+                        <ul>
+                            <li><code>btn-primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary color.</span>
+                            </li>
+                            <li><code>btn-secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color.</span></li>
+                            <li><code>btn-tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color.</span></li>
+                            <li><code>btn-quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color.</span></li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- ColorFormButton2 -->
+                <tr>
+                    <td>ColorFormButton2</td>
+                    <td>String</td>
+                    <td>Defines the color theme for the second button in the form.</td>
+                    <td>
+                        <ul>
+                            <li><code>btn-primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary color.</span>
+                            </li>
+                            <li><code>btn-secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color.</span></li>
+                            <li><code>btn-tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color.</span></li>
+                            <li><code>btn-quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color.</span></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Settings</h3>
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+
+        <h3 class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Style -->
+                <tr>
+                    <td>Style</td>
+                    <td>String</td>
+                    <td>Defines the style of the lightbox or dialog.</td>
+                    <td>
+                        <ul>
+                            <li><code>Animation</code>: Lightboxes with animation effects.</li>
+                            <li><code>Popup</code>: Lightboxes for embedding external content like YouTube, Vimeo, or Google
+                                Maps.</li>
+                            <li><code>Form</code>: Lightboxes with forms for user input.</li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- Animation -->
+                <tr>
+                    <td>Animation</td>
+                    <td>String</td>
+                    <td>Defines the type of animation for the lightbox. This property is used when <code>Style</code> is set to
+                        <code>Animation</code>.</td>
+                    <td>
+                        <ul>
+                            <li><code>with zoom anim</code>: Lightbox opens with a zoom animation.</li>
+                            <li><code>with move anim</code>: Lightbox opens with a move animation.</li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- Popup -->
+                <tr>
+                    <td>Popup</td>
+                    <td>String</td>
+                    <td>Defines the type of popup content. This property is used when <code>Style</code> is set to
+                        <code>Popup</code>.</td>
+                    <td>
+                        <ul>
+                            <li><code>youtube</code>: Embeds a YouTube video.</li>
+                            <li><code>vimeo</code>: Embeds a Vimeo video.</li>
+                            <li><code>gmaps</code>: Embeds a Google Maps location.</li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- Color -->
+                <tr>
+                    <td>Color</td>
+                    <td>String</td>
+                    <td>Defines the color theme for the lightbox or dialog.</td>
+                    <td>
+                        <ul>
+                            <li><code>primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary theme
+                                    color.</span>
+                            </li>
+                            <li><code>secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary theme
+                                    color.</span>
+                            </li>
+                            <li><code>tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary theme
+                                    color.</span>
+                            </li>
+                            <li><code>quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary theme
+                                    color.</span>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Views</h3>       
+        <img src="image/view.png" alt="Animation Style" class="component-image">
+        
+
+        <div class="note">
+            <strong>Note:</strong> Ensure that the <strong>Style</strong> property is set correctly in the settings to
+            achieve the desired layout and functionality.
+            <p>For more details, check out the <a href="https://porto.mandeeps.com/shortcodes/shortcodes-1/lightbox">
+                    <strong>Porto Lightboxes documentation</strong></a>.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

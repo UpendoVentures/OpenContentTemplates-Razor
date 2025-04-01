@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "BannerId": {
+      "type": "string",
+      "title": "Banner Id"
+    },
+    "BannerContent": {
+      "type": "string",
+      "title": "Banner Content",
+      "required": true
+    },
+    "BannerLink": {
+      "type": "string",
+      "title": "Banner Link"
+    }
+  }
+}

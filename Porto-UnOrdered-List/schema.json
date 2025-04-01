@@ -9,6 +9,19 @@
       "type": "boolean",
       "title": "Description lists"
     },
+    "Type": {
+      "type": "string",
+      "title": "Type",
+      "enum": [
+        "Unordered",
+        "Unstyled",
+        "Icons"
+      ],
+      "default": "Unordered",
+      "dependencies": [
+        "Descriptionlists"
+      ]
+    },
     "Items": {
       "type": "array",
       "dependencies": [
@@ -26,8 +39,9 @@
             "type": "string",
             "title": "Icon (optional)"
           },
-          "SecondLevelItems": {
+          "SecondLevelListItems": {
             "type": "array",
+            "title": "Second Level List Items",
             "items": {
               "type": "object",
               "properties": {
