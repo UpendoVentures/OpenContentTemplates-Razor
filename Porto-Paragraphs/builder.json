@@ -1,17 +1,18 @@
 {
-    "formfields": [
-      {
-        "fieldname": "Paragraph",
-        "title": "Paragraph Text (required)",
-        "fieldtype": "wysihtml",
-        "advanced": true,
-        "required":true,
-        "hidden": false,
-        "multilanguage": false,
-        "index": false,
-        "position": "1col1",
-        "dependencies": []
-      }
-    ],
-    "formtype": "object"
-  }
+  "formfields": [
+    {
+      "fieldname": "Paragraph",
+      "title": "Paragraph Text (required)",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {},
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
