@@ -3,6 +3,20 @@
   {
     return value != null && value.ToString().ToLower() == "true";
   }
+    public string GetListClass(string type)
+    {
+        switch (type)
+        {
+            case "Unordered":
+                return "";
+            case "Unstyled":
+                return "list-unstyled";
+            case "Icons":
+                return "list list-icons";
+            default:
+                return "";
+        }
+    }
 }
 
 @if (ConvertToBool(Model.DescriptionLists))
@@ -22,7 +36,7 @@
 else
 {
     <ul
-        class="list list-icons @Model.Settings.IconsColor @Model.Settings.ListBorder @Model.Settings.IconStyle @Model.Settings.IconsSizes @Model.Settings.IconsPosition">
+        class="@GetListClass(Model.Type) @Model.Settings.IconsColor @Model.Settings.ListBorder @Model.Settings.IconStyle @Model.Settings.IconsSizes @Model.Settings.IconsPosition">
         @if (Model.Items != null)
         {
             foreach (var item in Model.Items)
@@ -43,7 +57,7 @@ else
                     @if (item.SecondLevelListItems !=null)
                     {
                         <ul
-                            class="list list-icons @Model.Settings.IconsColor @Model.Settings.ListBorder @Model.Settings.IconStyle @Model.Settings.IconsSizes @Model.Settings.IconsPosition">
+                          class="@GetListClass(Model.Type) @Model.Settings.IconsColor @Model.Settings.ListBorder @Model.Settings.IconStyle @Model.Settings.IconsSizes @Model.Settings.IconsPosition">
                             @foreach (var secondLevelItem in item.SecondLevelListItems)
                             {
                                 <li>

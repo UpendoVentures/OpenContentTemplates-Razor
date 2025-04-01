@@ -5,6 +5,7 @@
     "bindings": {
       "ModuleTitle": "#pos_1_1",
       "Descriptionlists": "#pos_1_1",
+      "Type": "#pos_1_1",
       "Items": "#pos_1_1",
       "ItemsDescription": "#pos_1_1"
     }

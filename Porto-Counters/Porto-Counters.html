@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Counters Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+      
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px; 
+            justify-content: space-evenly; 
+        }
+
+        .image-with-text {
+            text-align: center;
+            flex-basis: calc(50% - 30px);
+            max-width: 600px; 
+        }
+
+        .component-image-800 {
+            width: 100%; 
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            font-size: 1.2rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Counters Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2>
+            <span class="Head">Overview</span>
+        </h2>
+        <p>The <strong>Porto-Counters</strong> component allows you to create dynamic and visually appealing counters
+            for your layout. It supports customizable styles, grid layouts, and animations to match your design needs.
+            You can define counters with prefixes, suffixes, icons, and text to display key metrics or statistics.</p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Counters">
+                <strong>Porto-Counters repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-3/counters">
+                <strong>Porto documentation</strong></a>.
+        </p>
+
+        <h2>
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <h4>Default Style</h4>
+        <img src="image/edit.png" alt="Edit example" class="component-image-800">
+        <img src="image/edit1.png" alt="Edit example" class="component-image-800">
+        
+        <h4>Inline Style</h4>
+        <img src="image/edit-inline.png" alt="Edit example" class="component-image-800">
+
+        <h3 class="Head">Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Style</th>
+                    <th>Configuration</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>                      
+                <!-- Default Style -->
+                <tr>
+                    <td rowspan="4"><strong>Default</strong></td>
+                    <td>With Borders</td>
+                    <td>Adds borders to the counters.</td>
+                </tr>
+                <tr>
+                    <td>Counter with Background</td>
+                    <td>Enables a background for the counters.</td>
+                </tr>
+                <tr>
+                    <td>Grid</td>
+                    <td>Defines the grid layout for the counters. Options include <code>col-md-1</code> to
+                        <code>col-md-12</code>.</td>
+                </tr>
+                <tr>
+                    <td>Items</td>
+                    <td>
+                        A list of counters to display. Each item can include the following properties:
+                        <ul>
+                            <li><strong>Data From:</strong> Starting value of the counter.</li>
+                            <li><strong>Data To:</strong> Ending value of the counter.</li>
+                            <li><strong>Data Prefix:</strong> Text displayed before the counter value.</li>
+                            <li><strong>Data Append:</strong> Text displayed after the counter value (e.g., <code>+</code>).
+                            </li>
+                            <li><strong>Icon:</strong> Icon displayed with the counter. Find values at <a
+                                    href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a>.</li>
+                            <li><strong>Text:</strong> Text displayed below the counter.</li>
+                            <li><strong>Color:</strong> Color theme for the counter. Options include <code>primary</code>,
+                                <code>secondary</code>, <code>tertiary</code>, and <code>quaternary</code>.</li>
+                            <li><strong>Speed:</strong> Animation speed for the counter (in milliseconds). Default is
+                                <code>5000</code>.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <!-- Inline Style -->
+                <tr>
+                    <td rowspan="5"><strong>Inline</strong></td>
+                    <td>First Text</td>
+                    <td>Text displayed before the counter value.</td>
+                </tr>
+                <tr>
+                    <td>Data From</td>
+                    <td>Starting value of the counter.</td>
+                </tr>
+                <tr>
+                    <td>Data To</td>
+                    <td>Ending value of the counter.</td>
+                </tr>
+                <tr>
+                    <td>Alternative Font</td>
+                    <td>Enables an alternative font for the counter.</td>
+                </tr>
+                <tr>
+                    <td>Last Text</td>
+                    <td>Text displayed after the counter value.</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 class="Head">Settings</h3>
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+        
+        <h3 class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Counters Size</td>
+                    <td>String</td>
+                    <td>Defines the size of the counters. This setting adjusts the visual size of the counters to match the
+                        design requirements.</td>
+                    <td>
+                        <ul>
+                            <li><code>sm</code>: Small size.</li>
+                            <li><code>md</code>: Medium size (default).</li>
+                            <li><code>lg</code>: Large size.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Views</h3>
+        <p>Below are examples of the different styles and configurations available for the <strong>Porto-Counters</strong>
+            component. Each style is customizable and can be adapted to your design needs.</p>
+        
+        <div class="image-grid">
+            <!-- Default Style -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Default:</strong> A standard counter layout with no additional features.</p>
+                <img src="image/view.png" alt="Default Style" class="component-image">
+            </div>
+        
+            <!-- Sizes -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Sizes:</strong> Counters available in different sizes: <code>sm</code>,
+                    <code>md</code>, and <code>lg</code>.</p>
+                <img src="image/view1.png" alt="Sizes" class="component-image">
+            </div>
+        
+            <!-- Colors -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Colors:</strong> Counters with customizable color themes (e.g., primary,
+                    secondary, tertiary).</p>
+                <img src="image/view2.png" alt="Colors" class="component-image">
+            </div>
+        
+            <!-- Counter with Background -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Counter with Background:</strong> Counters with a solid or parallax background
+                    for enhanced visual appeal.</p>
+                <img src="image/view3.png" alt="Counter with Background" class="component-image">
+            </div>
+        
+            <!-- Counter with Custom Background -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Counter with Custom Background:</strong> Counters with a custom image
+                    background.</p>
+                <img src="image/view4.png" alt="Counter with Custom Background" class="component-image">
+            </div>
+        
+            <!-- Parallax -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Parallax:</strong> Counters with a parallax background effect for dynamic
+                    visuals.</p>
+                <img src="image/view5.png" alt="Parallax Style" class="component-image">
+            </div>
+        
+            <!-- With Icons -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>With Icons:</strong> Counters with icons to represent metrics visually.</p>
+                <img src="image/view6.png" alt="With Icons" class="component-image">
+            </div>       
+                   
+            <!-- With Borders -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>With Borders:</strong> Counters with borders for a more defined layout.</p>
+                <img src="image/view7.png" alt="With Borders" class="component-image">
+            </div>
+        
+            <!-- Special Content -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Special Content:</strong> Counters with advanced configurations, such as
+                    decimals, currency, percentages, and appended symbols.</p>
+                <img src="image/view8.png" alt="Special Content" class="component-image">
+            </div>
+        
+            <!-- Inline -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Inline:</strong> Compact counters displayed inline with text for a seamless
+                    layout.</p>
+                <img src="image/view10.png" alt="Inline Style" class="component-image">
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> Ensure that the <strong>Style</strong> property is set to a valid option to achieve
+            the desired layout and functionality. Review the dependencies for each property:
+            <ul>
+                <li><strong>With Borders:</strong> Requires <code>Style</code> to be <code>Default</code>.</li>
+                <li><strong>With Background:</strong> Requires <code>Style</code> to be <code>Default</code>.</li>
+                <li><strong>Background:</strong> Requires <code>With Background</code> to be enabled and <code>Style</code> to
+                    be <code>Default</code>.</li>
+                <li><strong>Parallax Image:</strong> Requires <code>Background</code> to be <code>parallax</code> and
+                    <code>Style</code> to be <code>Default</code>.</li>
+                <li><strong>Inline:</strong> Requires <code>Style</code> to be <code>Inline</code>.</li>
+            </ul>
+        </div>
+</body>
+
+</html>
