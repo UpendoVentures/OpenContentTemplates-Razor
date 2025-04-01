@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="row @Model.MarginTop @Model.MarginBottom @Model.PaddingTop @Model.PaddingBottom">
+        if (Model.Paragraph != null)
+        {
+            @RawHtml(Model.Paragraph)
+        }
+    </div>
+</div>
