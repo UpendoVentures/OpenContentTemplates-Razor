@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Dividers Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-evenly;
+        }
+
+        .image-with-text {
+            text-align: center;
+            flex-basis: calc(50% - 30px);
+            margin-top: 3rem;
+        }
+
+        .component-image-800 {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            font-size: 1.2rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Dividers Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2>
+            <span class="Head">Overview</span>
+        </h2>
+        <p>The <strong>Porto-Dividers</strong> component allows you to create visually appealing dividers for your
+            layout. It supports customizable styles, icons, animations, and spacements to match your design needs.</p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Dividers">
+                <strong>Porto-Dividers repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-4/dividers">
+                <strong>Porto documentation</strong></a>.
+        </p>
+
+        <h2>
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="Edit example" class="component-image">
+
+        <h3 class="Head">Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Icon</td>
+                    <td>String</td>
+                    <td>Defines the icon to be displayed in the divider. This property is optional.</td>
+                    <td><code>fab fa-android</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Settings</h3>
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings2.png" alt="Screenshot of computer" class="component-image">
+        
+        <h3 class="Head">Settings Properties</h3>    
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Divider Type</th>
+                    <th>Configuration</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Classic -->
+                <tr>
+                    <td rowspan="2"><strong>Classic</strong></td>
+                    <td>Spacements</td>
+                    <td>Defines the spacing around the divider. Options include:
+                        <ul>
+                            <li><code>Short</code></li>
+                            <li><code>Tall</code></li>
+                            <li><code>Taller</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pattern Style</td>
+                    <td>Defines the pattern style of the divider. Options include:
+                        <ul>
+                            <li><code>Solid</code>: A continuous line, ideal for clean and minimalistic designs.</li>
+                            <li><code>Dashed</code>: A dashed line, often used to indicate separation or emphasis.</li>
+                            <li><code>Pattern</code>: A decorative pattern, suitable for more creative or themed layouts.</li>
+                            <li><code>Pattern 2</code>: An alternative decorative pattern for additional design variety.</li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- Divider with Icon -->
+                <tr>
+                    <td rowspan="8"><strong>Divider with Icon</strong></td>
+                    <td>Icons Sizes</td>
+                    <td>Defines the size of the icon in the divider. Options include:
+                        <ul>
+                            <li><code>Small</code></li>
+                            <li><code>Normal</code></li>
+                            <li><code>Large</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Icons Position</td>
+                    <td>Defines the position of the icon in the divider. Options include:
+                        <ul>
+                            <li><code>Center</code></li>
+                            <li><code>Left</code></li>
+                            <li><code>Right</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Divider Full Width</td>
+                    <td>Defines whether the divider spans the full width of the container. Options:
+                        <ul>
+                            <li><code>true</code></li>
+                            <li><code>false</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Spacements</td>
+                    <td>Defines the spacing around the divider. Options include:
+                        <ul>
+                            <li><code>None</code></li>
+                            <li><code>Short</code></li>
+                            <li><code>Tall</code></li>
+                            <li><code>Taller</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pattern Style</td>
+                    <td>Defines the pattern style of the divider. Options include:
+                        <ul>
+                            <li><code>Solid</code>: A continuous line, ideal for clean and minimalistic designs.</li>
+                            <li><code>Dashed</code>: A dashed line, often used to indicate separation or emphasis.</li>
+                            <li><code>Pattern</code>: A decorative pattern, suitable for more creative or themed layouts.</li>
+                            <li><code>Pattern 2</code>: An alternative decorative pattern for additional design variety.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>Defines the color theme of the divider. These colors are aligned with the Porto theme and can be used to match
+                        the
+                        divider with the overall design. Options include:
+                        <ul>
+                            <li><code>None</code>: <span
+                                    style="background-color: transparent; padding: 2px 6px; border: 1px solid #ccc;">No
+                                    color applied</span></li>
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color</span></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Divider Style</td>
+                    <td>Defines additional styles for the divider. Options include:
+                        <ul>
+                            <li><code>Style 1</code>: A simple and clean style.</li>
+                            <li><code>Style 2</code>: A slightly more decorative style.</li>
+                            <li><code>Style 3</code>: A bold and prominent style.</li>
+                            <li><code>Style 4</code>: A highly decorative style.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enable Animations</td>
+                    <td>Enables animations for the divider. Options:
+                        <ul>
+                            <li><code>true</code>: Enables animations and displays the following options:
+                                <ul>
+                                    <li><strong>Animation Type:</strong> Defines the type of animation. Options include:
+                                        <ul>
+                                            <li><code>Bounce In</code>: A bounce-in animation effect.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Animation Delay:</strong> Defines the delay for the animation. Options include:
+                                        <ul>
+                                            <li><code>0ms</code></li>
+                                            <li><code>300ms</code></li>
+                                            <li><code>600ms</code></li>
+                                            <li><code>900ms</code></li>
+                                            <li><code>1200ms</code></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><code>false</code>: Disables animations.</li>
+                        </ul>
+                    </td>
+                </tr>              
+        
+                <!-- Small -->
+                <tr>
+                    <td rowspan="4"><strong>Small</strong></td>
+                    <td>Small Divider Location</td>
+                    <td>Defines the location of the small divider. Options include:
+                        <ul>
+                            <li><code>Left</code></li>
+                            <li><code>Center</code></li>
+                            <li><code>Right</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Small Divider Size</td>
+                    <td>Defines the size of the small divider. Options include:
+                        <ul>
+                            <li><code>Small</code></li>
+                            <li><code>Classic</code></li>
+                            <li><code>Large</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Spacements</td>
+                    <td>Defines the spacing around the divider. Options include:
+                        <ul>
+                            <li><code>None</code></li>
+                            <li><code>Short</code></li>
+                            <li><code>Tall</code></li>
+                            <li><code>Taller</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>Defines the color theme of the divider. These colors are aligned with the Porto theme and can be used to match the
+                        divider with the overall design. Options include:
+                        <ul>
+                            <li><code>None</code>: <span style="background-color: transparent; padding: 2px 6px; border: 1px solid #ccc;">No
+                                    color applied</span></li>
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color</span></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Views</h3>
+        <p>Below are examples of the different styles and configurations available for the <strong>Porto-Dividers</strong>
+            component. Each style is customizable and can be adapted to your design needs.</p>
+        
+        <!-- Default -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Default:</strong> A standard divider layout with no additional features.</p>
+            <img src="image/view.png" alt="Default Divider" class="component-image">
+        </div>
+        
+        <!-- Spacements -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Spacements:</strong> Dividers with customizable spacing options:
+                <code>Short</code>, <code>Tall</code>, and <code>Taller</code>.
+            </p>
+            <img src="image/view1.png" alt="Spacements" class="component-image">
+        </div>
+        
+        <!-- Styles -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Styles:</strong> Dividers with different pattern styles, such as
+                <code>Solid</code>, <code>Dashed</code>, <code>Pattern</code>, and <code>Pattern 2</code>.
+            </p>
+            <img src="image/view2.png" alt="Styles" class="component-image">
+        </div>
+        <!-- Full Width -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Full Width:</strong> Dividers that span the full width of the container for a
+                seamless layout.</p>
+            <img src="image/view5.png" alt="Full Width" class="component-image">
+        </div>
+
+        <div class="image-grid">
+        <!-- Icons -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Icons:</strong> Dividers with icons for added emphasis. Icons can be positioned
+                <code>Center</code>, <code>Left</code>, or <code>Right</code>.
+            </p>
+            <img src="image/view3.png" alt="Icons" class="component-image">
+        </div>
+
+        <!-- Sizes -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Sizes:</strong> Dividers available in different sizes, such as
+                <code>Small</code>, <code>Classic</code>, and <code>Large</code>.
+            </p>
+            <img src="image/view8.png" alt="Sizes" class="component-image">
+        </div>
+        <!-- Icon Positions -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Icon Positions:</strong> Dividers with icons positioned <code>Center</code>,
+                <code>Left</code>, or <code>Right</code>.
+            </p>
+            <img src="image/view7.png" alt="Icon Positions" class="component-image">
+        </div>
+
+        <!-- Icon Sizes -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Icon Sizes:</strong> Dividers with icons available in different sizes:
+                <code>Small</code>, <code>Normal</code>, and <code>Large</code>.
+            </p>
+            <img src="image/view6.png" alt="Icon Sizes" class="component-image">
+        </div>
+        
+        <!-- Colors -->
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Colors:</strong> Dividers with customizable color themes, such as
+                <code>Primary</code>, <code>Secondary</code>, <code>Tertiary</code>, and <code>Quaternary</code>.
+            </p>
+            <img src="image/view4.png" alt="Colors" class="component-image">
+        </div>
+        
+        </div>
+           
+        <div class="note">
+            <strong>Note:</strong> Ensure that the <strong>Divider Type</strong> property is set correctly to achieve
+            the desired layout and functionality.
+            <p>For more details, check out the <a
+                    href="https://porto.mandeeps.com/shortcodes/shortcodes-4/dividers">
+                    <strong>Porto examples</strong></a>.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
