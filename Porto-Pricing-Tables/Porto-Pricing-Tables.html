@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Pricing-Tables Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+    
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+    
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+    
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+        h4{
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+    
+        p {
+            margin-bottom: 15px;
+        }
+    
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+    
+        a:hover {
+            text-decoration: underline;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+    
+        .image-with-text {
+            text-align: center;
+            max-width: 1200px;
+        }
+    
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+    
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+    
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+    
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .note strong {
+            color: #6d5a2c;
+        }
+    
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+    
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+    
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+    
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+    
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+    
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Pricing-Tables Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2>
+            <span class="Head">Overview</span>
+        </h2>
+        <p>The <strong>Porto-Pricing-Tables</strong> component allows you to create customizable pricing tables with features,
+            pricing details, and action buttons. It supports various configurations to match your design needs.</p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Pricing-Tables">
+                <strong>Porto-Pricing-Tables repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-3/pricing-tables">
+                <strong>Porto documentation</strong></a>.
+        </p>
+
+        <h2>
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+        
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="Edit example" class="component-image">
+        <img src="image/edit1.png" alt="Edit example" class="component-image">       
+
+        <h3 class="Head">Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ModuleTitle</td>
+                    <td>Defines the title of the pricing table module. Example: <code>Our Pricing Plans</code>.</td>
+                </tr>
+                <tr>
+                    <td>ParallaxImage</td>
+                    <td>Specifies the URL of the parallax background image. Example:
+                        <code>https://example.com/parallax.jpg</code>.</td>
+                </tr>
+                <tr>
+                    <td>Items</td>
+                    <td>
+                        A list of pricing table items. Each item includes:
+                        <ul>
+                            <li><strong>Title:</strong> The title of the pricing plan. Example: <code>Basic Plan</code>.
+                                (Required)</li>
+                            <li><strong>Description:</strong> A short description of the pricing plan. Example:
+                                <code>Perfect for individuals.</code> (Optional)</li>
+                            <li><strong>Price:</strong> The price of the plan. Example: <code>$19.99/month</code>. (Required)
+                            </li>
+                            <li><strong>ActionButtonText:</strong> The text for the action button. Example:
+                                <code>Sign Up</code>. (Required)</li>
+                            <li><strong>MostPopular:</strong> Boolean to mark the plan as the most popular. Example:
+                                <code>true</code> or <code>false</code>.</li>
+                            <li><strong>ShowPopularRibbon:</strong> Boolean to display a "Most Popular" ribbon on the plan.
+                                Example: <code>true</code> or <code>false</code>.</li>
+                            <li><strong>Features:</strong> A list of features included in the plan. Each feature includes:
+                                <ul>
+                                    <li><strong>FeatureDescriptionText:</strong> The description of the feature. Example:
+                                        <code>Unlimited access to all features.</code>. (Required)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Pricing Table Style -->
+                <tr>
+                    <td>Pricing Table Style</td>
+                    <td>Defines the visual style of the pricing table.</td>
+                    <td>
+                        <ul>
+                            <li><code>Style 1</code>: A clean and modern style.</li>
+                            <li><code>Style 2</code>: A more detailed and feature-rich style.</li>
+                            <li><code>Parallax</code>: Includes a parallax background effect.</li>
+                        </ul>
+                    </td>
+                </tr>
+        
+                <!-- Pricing Table Size -->
+                <tr>
+                    <td>Pricing Table Size</td>
+                    <td>Defines the size of the pricing table.</td>
+                    <td>
+                        <ul>
+                            <li><code>Standard</code>: Default size for the pricing table.</li>
+                            <li><code>Small</code>: A more compact version of the pricing table.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Views</h3>
+        <p>Below are examples of the different styles and configurations available for the <strong>Porto-Pricing-Tables</strong>
+            component. Each style is customizable and can be adapted to your design needs.</p>
+        
+        <div class="image-grid">
+            <!-- Four Plans -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Four Plans:</strong> Displays four pricing plans in a row with a clean and
+                    modern layout.</p>
+                <img src="image/view.png" alt="Four Plans" class="component-image">
+            </div>
+        
+            <!-- Three Plans -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Three Plans:</strong> Displays three pricing plans in a row, ideal for compact
+                    layouts.</p>
+                <img src="image/view1.png" alt="Three Plans" class="component-image">
+            </div>
+        
+            <!-- Alternative Style -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Alternative Style:</strong> A visually distinct style with unique design
+                    elements for pricing plans.</p>
+                <img src="image/view2.png" alt="Alternative Style" class="component-image">
+            </div>
+        
+            <!-- Small Blocks -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Small Blocks:</strong> Compact pricing plans displayed as small blocks,
+                    suitable for minimalistic designs.</p>
+                <img src="image/view3.png" alt="Small Blocks" class="component-image">
+            </div>
+        
+            <!-- Parallax -->
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Parallax:</strong> Pricing plans with a parallax background effect for a modern
+                    and dynamic look.</p>
+                <img src="image/view4.png" alt="Parallax" class="component-image">
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>Note:</strong>
+            <ul>
+                <li>Ensure that the <strong>PricingTableStyle</strong> property is set correctly to achieve the desired layout
+                    and functionality.</li>
+                <li>Use the <strong>Parallax</strong> style to add a dynamic background effect to your pricing tables.</li>
+                <li>For compact layouts, consider using the <strong>Small Blocks</strong> or <strong>Three Plans</strong>
+                    styles.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
