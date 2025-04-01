@@ -4,7 +4,9 @@
       "fieldname": "Paragraph",
       "title": "Paragraph Text (required)",
       "fieldtype": "ckeditor",
-      "ckeditoroptions": {},
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
       "advanced": true,
       "required": true,
       "hidden": false,
