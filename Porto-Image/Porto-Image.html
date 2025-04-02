@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Image Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .component-image {
+            width: 100%;
+            max-width: 900px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Image Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2>
+            <span class="Head">Overview</span>
+        </h2>
+        <p>The <strong>Porto-Image</strong> component allows you to display images with customizable margins, padding,
+            and additional CSS classes. This component is highly flexible and integrates seamlessly with
+            <strong>OpenContent</strong>.</p>
+
+        <p>For more details, check out the <a
+            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Image">
+            <strong>Porto-Image repository on GitHub</strong></a>.
+        </p>
+
+        <h2>
+            <span class="Head">Usage Example</span>
+        </h2>
+        <img src="images/usage-example.png" alt="Usage Example" class="component-image">
+
+        <h2>
+            <span class="Head">Properties</span>
+        </h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Image</td>
+                    <td>String</td>
+                    <td>The URL of the image to display. This field is required.</td>
+                </tr>
+                <tr>
+                    <td>Classes</td>
+                    <td>String</td>
+                    <td>Additional CSS classes to apply to the image. Default is <code>img-fluid</code>.</td>
+                </tr>
+                <tr>
+                    <td>AltText</td>
+                    <td>String</td>
+                    <td>The alt text for the image, used for SEO and accessibility. This field is required.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>
+            <span class="Head">Settings Properties</span>
+        </h2>
+
+        <img src="images/template-settings.png" alt="Settings Properties" class="component-image">
+
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MarginTop</td>
+                    <td>String</td>
+                    <td>Defines the top margin of the image. Options include <code>mt-0</code>, <code>mt-1</code>,
+                        <code>mt-2</code>, <code>mt-3</code>, <code>mt-4</code>, <code>mt-5</code>, and
+                        <code>mt-auto</code>.</td>
+                </tr>
+                <tr>
+                    <td>MarginBottom</td>
+                    <td>String</td>
+                    <td>Defines the bottom margin of the image. Options include <code>mb-0</code>, <code>mb-1</code>,
+                        <code>mb-2</code>, <code>mb-3</code>, <code>mb-4</code>, <code>mb-5</code>, and
+                        <code>mb-auto</code>.</td>
+                </tr>
+                <tr>
+                    <td>PaddingTop</td>
+                    <td>String</td>
+                    <td>Defines the top padding of the image. Options include <code>pt-0</code>, <code>pt-1</code>,
+                        <code>pt-2</code>, <code>pt-3</code>, <code>pt-4</code>, <code>pt-5</code>, and
+                        <code>pt-auto</code>.</td>
+                </tr>
+                <tr>
+                    <td>PaddingBottom</td>
+                    <td>String</td>
+                    <td>Defines the bottom padding of the image. Options include <code>pb-0</code>, <code>pb-1</code>,
+                        <code>pb-2</code>, <code>pb-3</code>, <code>pb-4</code>, <code>pb-5</code>, and
+                        <code>pb-auto</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>
+            <span class="Head">Views</span>
+        </h2>
+        <p>Below is an example of how the image component is rendered:</p>
+        <img src="images/view-example.png" alt="View Example" class="component-image">
+
+        <h2>
+            <span class="Head">Notes</span>
+        </h2>
+        <div class="note">
+            <strong>Note:</strong> Ensure that the <strong>Image</strong> and <strong>AltText</strong> fields are set
+            correctly to display the desired image. Additionally, verify that the <strong>Settings Properties</strong>
+            match your design requirements.
+        </div>
+    </div>
+</body>
+
+</html>
