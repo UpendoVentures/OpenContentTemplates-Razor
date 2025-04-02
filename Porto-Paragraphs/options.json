@@ -1,6 +1,8 @@
 {
+  "fields": {
     "Paragraph": {
       "type": "ckeditor",
-      "configset": "basic"
-    }   
+      "configset": "standard"
+    }
   }
+}

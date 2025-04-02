@@ -1,10 +1,10 @@
 {
-    "type": "object",
-    "properties": {
-      "Heading": {
-        "type": "string",
-        "title": "Paragraph Text (required)",
-        "required": true
-      }
+  "type": "object",
+  "properties": {
+    "Paragraph": {
+      "type": "string",
+      "title": "Paragraph Text (required)",
+      "required": true
     }
   }
+}
