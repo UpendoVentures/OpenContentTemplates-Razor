@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Modal-Dialog-NoBS Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .image-with-text {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+
+
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Modal-Dialog-NoBS Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#how-to-use">How to use it?</a></li>
+            <li><a href="#edit">Edit</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Modal-Dialog-NoBS</strong> is a generic <strong>OpenContent</strong> Razor template designed for
+            use in projects that require a confirmation modal. Its design is based on custom CSS, allowing it to render
+            correctly without dependencies on frameworks like Bootstrap. It includes a set of properties and
+            configurations that enable customization and adaptation to different environments and requirements.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Modal-Dialog-NoBS"><strong>Modal-Dialog-NoBS
+                    repository on GitHub</strong></a>.</p>
+
+        <h2 id="how-to-use" >
+            <span class="Head">How to use it?</span>
+        </h2>
+        <p>In this session, I will explain step by step how to use the Modal-Dialog-NoBS template, from its
+            installation on the website to its configuration and testing. It is essential to have Open Content
+            installed on the DNN site, as this template relies on that module for proper functionality. By following
+            these instructions, you will be able to integrate it correctly and ensure it works as expected.</p>
+
+        <h3>Template Installation</h3>
+        <p>Below are the steps to install the Modal-Dialog-NoBS template on a DNN site with Open Content:</p>
+        <ol>
+            <li><strong>Verify Open Content Installation</strong>
+                <ul>
+                    <li>Ensure that the Open Content module is installed on the DNN site. If it is not installed,
+                        <a href="https://github.com/sachatrauwaen/OpenContent/releases">download</a> and install it from
+                        the <a href="https://opencontent.readme.io/">official page</a> .
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Add the Open Content Module to the Page</strong>
+                <ul>
+                    <li>Navigate to the page where you want to use the template.</li>
+                    <li>Add a new Open Content module in the desired location.</li>
+                </ul>
+                <img src="image/add_module.png"/> <br>
+                <img src="image/add_opencontent.png"/>
+
+            </li>
+            <li><strong>Configuring the GitHub Repository</strong>
+                <ul>
+                    <li>Edit the newly added Open Content module.</li>
+                    <li>Select the option Edit Global Settings</li>
+                    <li>Set the repository name in the Github Templates Repository field. In this case, use
+                        UpendoVentures/OpenContentTemplates-Razor.</li>
+                    <li>Click on Save.</li>
+                </ul>
+                <img src="image/edit_global_settings.png"/> <br>
+                <img src="image/set_github_repository.png"/>
+            </li>
+            <li><strong>Add the template to the site.</strong>
+                <ul>
+                    <li>Click on Create new template folder.</li>
+                    <li>Select the Web (GitHub) option.</li>
+                    <li>Select the template you want to add, in this case, Modal-Dialog-NoBS.</li>
+                    <li>Click on Create.</li>
+                </ul>
+                <img src="image/create_new_template.png"/> <br>
+                <img src="image/add_modal_templete.png"/>
+            </li>
+            <li><strong>Configure the template.</strong>
+                <ul>
+                    <li>Click on the Template settings button.</li>
+                    <li>The template configuration options will be displayed, which are described in the <a href="#settings">Settings</a>
+                        section.</li>
+                </ul>
+                <img src="image/set_template_settings.png"/> <br>
+            </li>
+            <li><strong>Edit the template content.</strong>
+                <ul>
+                    <li>Click on the Edit button of the module.</li>
+                    <li>Click on the Edit option from the menu that appears.</li>
+                    <li>Set the necessary values for the content you want to display in the modal. Each of the fields
+                        is explained in the <a href="#edit">Edit</a> section.</li>
+                </ul>
+                <img src="image/edit_template.png"/> <br>
+            </li>
+        </ol>
+
+        <h3 id="edit">Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>Text</td>
+                    <td>Allows naming the component. </td>
+                </tr>
+                <tr>
+                    <td>Modal Id</td>
+                    <td>Text</td>
+                    <td>Allows you to set the modal's ID, which must be unique for each modal added to a page.</td>
+                </tr>
+                <tr>
+                    <td>Modal Dialog Title</td>
+                    <td>Text</td>
+                    <td>Allows you to set the title of the modal dialog box.</td>
+                </tr>
+                <tr>
+                    <td>Modal Content</td>
+                    <td>Text</td>
+                    <td>Allows you to set the content of the modal dialog box.</td>
+                </tr>
+                <tr>
+                    <td>Email Text</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text displayed before the user's email address.</td>
+                </tr>
+                <tr>
+                    <td>Confirm Text</td>
+                    <td>CheckBox</td>
+                    <td>Allows you to set the text for the checkbox to enable the functionality of the main button,</td>
+                </tr>
+                <tr>
+                    <td>Primary Button Text</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text of the modal dialog's main action button.</td>
+                </tr>
+                <tr>
+                    <td>Secondary Button Text</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text of the modal dialog's secondary action button.</td>
+                </tr>
+                <tr>
+                    <td>Secondary Button Link</td>
+                    <td>Text</td>
+                    <td>Allows you to set the link to navigate to when clicking the secondary action button.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="settings" class="Head">Settings</h3>
+
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
+
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Header Background Color</td>
+                    <td>Text</td>
+                    <td>It allows you to set the background color of the modal dialog title in various formats:
+                        <ul>
+                            <li>
+                                <code>hexadecimal </code>
+                                <span
+                                    style="background-color: #CE3439; color: white; padding: 2px 6px; border-radius: 4px;">#CE3439</span>
+                            </li>
+                            <li>
+                                <code>RGB </code>
+                                <span
+                                    style="background-color: rgb(116, 133, 204); color: white; padding: 2px 6px; border-radius: 4px;">rgb(206,
+                                    52, 57)</span>
+                            </li>
+                            <li>
+                                <code>HSL</code>
+                                <span
+                                    style="background-color: hsl(162, 82%, 42%); color: white; padding: 2px 6px; border-radius: 4px;">hsl(356,
+                                    60%, 51%)</span>
+                            </li>
+                            <li>
+                                <code>color names like</code>
+                                <span
+                                    style="background-color: red; color: white; padding: 2px 6px; border-radius: 4px;">red</span>,
+                                <span
+                                    style="background-color: blue; color: white; padding: 2px 6px; border-radius: 4px;">blue</span>,
+                                <span
+                                    style="background-color: darkorchid; color: white; padding: 2px 6px; border-radius: 4px;">darkorchid</span>,
+                                etc.
+                            </li>
+                        </ul>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Header Text Color</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text color of the modal dialog title in various formats:
+                        <ul>
+                            <li>
+                                <code>hexadecimal </code>
+                                <span style="color: #CE3439;  padding: 2px 6px; border-radius: 4px;">#CE3439</span>
+                            </li>
+                            <li>
+                                <code>RGB </code>
+                                <span style="color: rgb(116, 133, 204);  padding: 2px 6px; border-radius: 4px;">rgb(206,
+                                    52, 57)</span>
+                            </li>
+                            <li>
+                                <code>HSL</code>
+                                <span style="color: hsl(162, 82%, 42%);  padding: 2px 6px; border-radius: 4px;">hsl(356,
+                                    60%, 51%)</span>
+                            </li>
+                            <li>
+                                <code>color names like</code>
+                                <span style="color: red;  padding: 2px 6px; border-radius: 4px;">red</span>,
+                                <span style="color: blue;  padding: 2px 6px; border-radius: 4px;">blue</span>,
+                                <span
+                                    style="color: darkorchid;  padding: 2px 6px; border-radius: 4px;">darkorchid</span>,
+                                etc.
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Verification EndPoint</td>
+                    <td>Text</td>
+                    <td>Allows you to set the URL of an endpoint to check whether the modal should be shown or not. This
+                        endpoint must return a JSON object with a boolean property called <code>showModal</code>.</td>
+
+                </tr>
+                <tr>
+                    <td>Confirmation EndPoint</td>
+                    <td>Text</td>
+                    <td>Allows you to set the URL of an endpoint for the main button action of the modal dialog. This
+                        endpoint must return a JSON object with a boolean property called <code>success</code>, which
+                        indicates whether the functionality was executed correctly or not. If the value of
+                        <code>success</code> is <code>true</code>, the modal will close; if <code>false</code>, the
+                        error message defined in the <code>Error message when confirming</code> property will be
+                        displayed.
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Error message when confirming</td>
+                    <td>Text</td>
+                    <td>Allows you to set the message to be displayed when the response from the endpoint of the modal
+                        dialog's main action is false.</td>
+                </tr>
+                <tr>
+                    <td>Generic error message</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text to be displayed when an error occurs in the endpoint calls.</td>
+                </tr>
+                <tr>
+                    <td>NoUserLoggedIn.Text</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text to be displayed if the user is not authenticated or if the user's
+                        email cannot be loaded correctly.</td>
+                </tr>
+                <tr>
+                    <td>Non-confirmation message</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text of the message to be displayed when trying to click the main action
+                        button of the modal dialog without checking the confirmation checkbox.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
+
+
+        <img src="image/view.png" alt="Default" class="component-image">
+
+
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> When using the <strong>Modal-Dialog-NoBS</strong> component, ensure the following
+            considerations are met for proper functionality:
+            <ul>
+                <li><strong>Important:</strong> Configure the <code>VerificationEndPoint</code> correctly to determine
+                    whether the modal should be displayed. This endpoint must return a JSON object with a boolean
+                    property
+                    called <code>showModal</code>.</li>
+                <li><strong>Important:</strong> Configure the <code>ConfirmationEndPoint</code> correctly to handle the
+                    main
+                    button action. This endpoint must return a JSON object with a boolean property called
+                    <code>success</code>.
+                </li>
+                <li>Ensure that the <code>success</code> property in the <code>ConfirmationEndPoint</code> response is
+                    <code>true</code> to close the modal upon successful action, or <code>false</code> to display the
+                    error
+                    message.
+                </li>
+                <li>Ensure that the <code>showModal</code> property in the <code>VerificationEndPoint</code> response is
+                    <code>true</code> to show the modal or <code>false</code> to hide it.
+                </li>
+            </ul>
+            <p>Proper configuration and testing will help ensure that the <strong>Modal-Dialog-NoBS</strong> component
+                integrates seamlessly into your website and provides a professional and functional table layout.</p>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>
