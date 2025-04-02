@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row @Model.MarginTop @Model.MarginBottom @Model.PaddingTop @Model.PaddingBottom">
+        <div class="col-md-8">
+            @if (Model.Paragraph != null)
+            {
+                @Html.Raw(Model.Paragraph)
+            }
+            else
+            {
+                <!-- No Paragraph Found -->
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.Image != null)
+            {
+                <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" class="z-1 @Model.Classes" />
+            }
+            else
+            {
+                <!-- No Image Found -->
+            }
+    </div>
+</div>
