@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Tabs Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .image-with-text {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+
+
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Tabs Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#settings-properties">Settings Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Porto-Tabs</strong> component allows you to organize content into tabs, improving navigation
+            within a webpage. It is ideal for dividing information into sections without overloading the interface.
+            Porto defines the appearance and behavior, while its
+            implementation is managed
+            through
+            <strong>OpenContent</strong>, providing flexibility in configuration.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Tabs"><strong>Porto-Tabs
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-1/tabs"><strong>Porto
+                    documentation</strong></a>.</p>
+
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>Text</td>
+                    <td>The title of the module.</td>
+                </tr>
+                <tr>
+                    <td>Items</td>
+                    <td>Array</td>
+                    <td>Defines the tabs. Each item contains the following fields:</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;Title</td>
+                    <td>Text</td>
+                    <td>The title of the tab.</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;Content</td>
+                    <td>Text (WYSIWYG)</td>
+                    <td>The content displayed within the tab.</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;Icon</td>
+                    <td>Text</td>
+                    <td>
+                        An optional icon for the tab. Example: <code>fab fa-android</code>.
+                        <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icons are
+                        supported.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="settings" class="Head">Settings</h3>
+
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings2.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings3.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings4.png" alt="Screenshot of computer" class="component-image">
+
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Layout</td>
+                    <td>Select</td>
+                    <td>Defines the layout style of the tabs.</td>
+                    <td>
+                        <ul>
+                            <li><code>tab</code>: Standard tab layout.</li>
+                            <li><code>pill</code>: Pill-style layout.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tab Mode</td>
+                    <td>Select</td>
+                    <td>Specifies the mode of the tabs.</td>
+                    <td>
+                        <ul>
+                            <li><code>Standard</code>: Default tab behavior.</li>
+                            <li><code>Simple</code>: Simplified tab style.</li>
+                            <li><code>Navigation</code>: Navigation mode (ignores most other settings).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tab Position</td>
+                    <td>Select</td>
+                    <td>Determines the position of the tabs.</td>
+                    <td>
+                        <ul>
+                            <li><code>Top</code>: Tabs are positioned at the top.</li>
+                            <li><code>Bottom</code>: Tabs are positioned at the bottom.</li>
+                            <li><code>Vertical</code>: Tabs are displayed vertically.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tab Alignment</td>
+                    <td>Select</td>
+                    <td>Specifies the alignment of the tabs.</td>
+                    <td>
+                        <ul>
+                            <li><code>Left</code>: Tabs are aligned to the left.</li>
+                            <li><code>Right</code>: Tabs are aligned to the right.</li>
+                            <li><code>Centered</code>: Tabs are centered (ignored in Navigation mode).</li>
+                            <li><code>Justified</code>: Tabs are justified (ignored in Navigation mode).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tab Color</td>
+                    <td>Select</td>
+                    <td>Defines the color theme of the tabs.</td>
+                    <td>
+                        <ul>
+                            <li><code>Default</code>: <span
+                                    style="background-color: #fff; color: #666; padding: 2px 6px; border-radius: 4px;">No
+                                    specific color</span> </li>
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color theme</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color theme</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color theme</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color theme</span></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tab Icon Mode</td>
+                    <td>Select</td>
+                    <td>Specifies the icon style for tabs (applies to simple tab mode only).</td>
+                    <td>
+                        <ul>
+                            <li><code>Default</code>: Standard icon size.</li>
+                            <li><code>Big Icons</code>: Larger icon size.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
+        <div class="image-grid">
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Default:</strong></p>
+                <img src="image/view.png" alt="Default" class="component-image">
+            </div>
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Bottom:</strong></p>
+                <img src="image/view0.png" alt="Bottom" class="component-image">
+            </div>
+        </div>
+
+        <div class="image-grid">
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Justified:</strong></p>
+                <img src="image/view1.png" alt="Justified" class="component-image">
+            </div>
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Vertical:</strong></p>
+                <img src="image/view2.png" alt="Vertical" class="component-image">
+            </div>
+        </div>
+
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Simple:</strong></p>
+            <img src="image/view3.png" alt="Simple" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Big Icons:</strong></p>
+            <img src="image/view4.png" alt="Big Icons" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Navigation:</strong></p>
+            <img src="image/view5.png" alt="Navigation" class="component-image">
+        </div>
+
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> When using the <strong>Porto-Tabs</strong> component, ensure the following
+            considerations are met for proper functionality:
+            <ul>
+                <li>Configure the <strong>Tab Mode</strong> appropriately. For example, <code>Navigation</code> mode
+                    ignores most other settings.</li>
+                <li>Set the <strong>Tab Position</strong> (e.g., <code>Top</code>, <code>Bottom</code>,
+                    <code>Vertical</code>) to match your design requirements.</li>
+                <li>Use the <strong>Tab Alignment</strong> options (<code>Left</code>, <code>Right</code>,
+                    <code>Centered</code>, <code>Justified</code>) to control the visual alignment of tabs.</li>
+                <li>Choose a <strong>Tab Color</strong> that aligns with your website's theme. Options include
+                    <code>Primary</code>, <code>Secondary</code>, <code>Tertiary</code>, and more.</li>
+                <li>For <strong>Simple</strong> tab mode, consider using the <strong>Big Icons</strong> option for a
+                    more visually impactful design.</li>
+                <li>Ensure that all tab content is properly defined and tested for responsiveness across different
+                    devices and screen sizes.</li>
+                <li>Test the visual appearance of the tabs, including hover effects and alignment, to ensure it aligns
+                    with your website's design.</li>
+                <li>Use valid and accessible content for tab labels and content to maintain usability and compatibility.
+                </li>
+            </ul>
+            <p>Proper configuration and testing will help ensure that the <strong>Porto-Tabs</strong> component
+                integrates seamlessly into your website and provides a professional and functional tabbed interface.</p>
+        </div>
+    </div>
+</body>
+
+</html>
