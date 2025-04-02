@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Arrows Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .component-image {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        .button-properties td {
+            border: 1px solid #007BFF;
+        }
+
+        .arrow-position-properties td {
+            border: 1px solid #28a745;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Arrows Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Porto-Arrows</strong> component allows you to incorporate customizable arrows into your design,
+            enhancing navigation and user interaction.
+            With various styles, sizes, and positioning options, you can tailor the arrows to fit your interface's
+            needs.
+        </p>
+        <p>
+            Porto defines the appearance and behavior, but its implementation is managed via
+            <strong>OpenContent</strong> for greater flexibility.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Arrows"><strong>Porto-Arrows
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-4/arrows"><strong>Porto
+                    documentation</strong></a>.</p>
+
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Content Text</td>
+                    <td>Html (CK Editor)</td>
+                    <td>Allows you to set the content that accompanies the arrow and button.</td>
+                </tr>
+                <tr class="button-properties">
+                    <td colspan="3"><strong>Button</strong></td>
+                </tr>
+                <tr class="button-properties">
+                    <td>Text</td>
+                    <td>Text</td>
+                    <td>Allows you to set the text displayed on the button.</td>
+                </tr>
+                <tr class="button-properties">
+                    <td>Color</td>
+                    <td>Dropdown list (select)</td>
+                    <td>Allows you to select the button color.
+                        <ul>
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color</span></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="button-properties">
+                    <td>Link</td>
+                    <td>Text</td>
+                    <td>Allows you to set a link to which the user will navigate when the button is pressed.</td>
+                </tr>
+                <tr>
+                    <td>Arrow</td>
+                    <td>Dropdown list (select)</td>
+                    <td>Allows you to select the arrow direction.</td>
+                </tr>
+
+                <tr class="arrow-position-properties">
+                    <td colspan="3"><strong>Arrow Position</strong></td>
+                </tr>
+                <tr class="arrow-position-properties">
+                    <td>Top</td>
+                    <td>Text</td>
+                    <td>Allows you to set the top position of the arrow.</td>
+                </tr>
+                <tr class="arrow-position-properties">
+                    <td>Left</td>
+                    <td>Text</td>
+                    <td>Allows you to set the left position of the arrow.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
+        <img src="image/view.png" alt="Screenshot of computer" class="component-image">
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> The <strong>Porto-Arrows</strong> component allows you to add customizable arrows and
+            buttons to enhance navigation and user interaction.
+            Ensure the following properties are configured correctly:
+            <ul>
+                <li><code>Content Text</code>: Defines the content that accompanies the arrow and button (required).
+                </li>
+                <li><strong>Button:</strong>
+                    <ul>
+                        <li><code>Text</code>: Sets the text displayed on the button.</li>
+                        <li><code>Color</code>: Selects the button color from a dropdown list.</li>
+                        <li><code>Link</code>: Specifies the URL the button navigates to when clicked.</li>
+                    </ul>
+                </li>
+                <li><code>Arrow</code>: Selects the arrow direction (e.g., left, right, up, down).</li>
+                <li><strong>Arrow Position:</strong>
+                    <ul>
+                        <li><code>Top</code>: Sets the top position of the arrow.</li>
+                        <li><code>Left</code>: Sets the left position of the arrow.</li>
+                    </ul>
+                </li>
+            </ul>
+            Customize the component's appearance and behavior to align with your design needs. Examples of
+            configurations and styles are provided above.
+        </div>
+    </div>
+</body>
+
+</html>
