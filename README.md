@@ -8,7 +8,8 @@ Learn more about DNN CMS at [the official DNN community website](https://dncommu
 
 **IMPORTANT:** Using the Mandeeps Porto theme is NOT a requirement.    
 
-- [OpenContentTemplates-Razor Documentation](https://github.com/UpendoVentures/OpenContentTemplates-Razor/wiki)  
+- [How to Use these Content Templates](https://github.com/UpendoVentures/OpenContentTemplates-Razor/wiki)
+- [List of Available Content Templates](https://github.com/UpendoVentures/OpenContentTemplates-Razor/wiki/List-of-Templates)  
 
 <hr />  
 
