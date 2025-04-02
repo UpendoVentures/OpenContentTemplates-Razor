@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row @Model.MarginTop @Model.MarginBottom @Model.PaddingTop @Model.PaddingBottom">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         @if (Model.Image != null)
         {
             <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" class="z-1 @Model.Classes" />
