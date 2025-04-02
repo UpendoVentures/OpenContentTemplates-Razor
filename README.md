@@ -6,15 +6,9 @@ Learn more about DNN CMS at [the official DNN community website](https://dncommu
 
 ## How To Use These Templates
 
-1. Be sure you have [DNN installed](https://dnncommunity.org/How-To/Download-and-Install) with [the latest version of OpenContent](https://opencontent.readme.io/) installed as well.
-2. Have an OpenContent module added to any page.
-3. Go into Edit Mode in DNN with a superuser account.  
-4. Choose `Edit Global Settings` from the actions menu (one of the last menu items).
-5. Find the `Github Templates Repository` setting.
-6. Now, copy/paste the following value:  `,UpendoVentures/OpenContentTemplates-Razor`.  (Leave out the period, but include the comma.)
-7. Save your update.
+**IMPORTANT:** Using the Mandeeps Porto theme is NOT a requirement.    
 
-Now, when you choose to create a new template, all of these templates are available in addition to any others you might already have on your site.  
+- [OpenContentTemplates-Razor Documentation](https://github.com/UpendoVentures/OpenContentTemplates-Razor/wiki)  
 
 <hr />  
 
@@ -27,10 +21,6 @@ This solution is created and maintained by [Upendo Ventures](https://upendoventu
 - [Sponsor Us](https://github.com/sponsors/UpendoVentures) (we're grateful at any level 🙏🏽)  
 
 <hr />  
-
-# Documentation  
-
-- [OpenContentTemplates-Razor Documentation](https://github.com/UpendoVentures/OpenContentTemplates-Razor/wiki)  
 
 # Developers Only 🤓  
 
