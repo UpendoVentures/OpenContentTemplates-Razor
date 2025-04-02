@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Labels Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .image-with-text {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Labels Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#settings-properties">Settings Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Porto-Labels</strong> component allows you to add customizable labels to interface elements,
+            helping to highlight important information. You can customize the color, size, and style to fit different
+            design needs. Porto defines the appearance and behavior of labels, while their implementation is managed
+            through <strong>OpenContent</strong>,
+            providing greater flexibility.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Labels"><strong>Porto-Labels
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-2/labels"><strong>Porto
+                    documentation</strong></a>.</p>
+
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Label</td>
+                    <td>String</td>
+                    <td>Label Text (required)</td>
+                    <td>Yes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="settings" class="Head">Settings</h3>
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
+
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LabelColor</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the color of the label. Options include:
+                        <ul>
+                            <li><code>badge badge-default</code>: <span
+                                    style="background-color: #fff; color: #666; padding: 2px 6px; border-radius: 4px;">Default</span>
+                            </li>
+                            <li><code>badge badge-success</code>: <span
+                                    style="background-color: #47a447; color: white; padding: 2px 6px; border-radius: 4px;">Success</span>
+                            </li>
+                            <li><code>badge badge-info</code>: <span
+                                    style="background-color: #5bc0de; color: white; padding: 2px 6px; border-radius: 4px;">Info</span>
+                            </li>
+                            <li><code>badge badge-warning</code>: <span
+                                    style="background-color: #ed9c28; color: white; padding: 2px 6px; border-radius: 4px;">Warning</span>
+                            </li>
+                            <li><code>badge badge-danger</code>: <span
+                                    style="background-color: #bd2d29; color: white; padding: 2px 6px; border-radius: 4px;">Danger</span>
+                            </li>
+                            <li><code>badge badge-dark</code>: <span
+                                    style="background-color: #2e353e; color: white; padding: 2px 6px; border-radius: 4px;">Dark</span>
+                            </li>
+                            <li><code>badge badge-primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary</span>
+                            </li>
+                            <li><code>badge badge-secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary</span>
+                            </li>
+                            <li><code>badge badge-tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary</span>
+                            </li>
+                            <li><code>badge badge-quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary</span>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>LabelSize</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the size of the label. Options include:
+                        <ul>
+                            <li><code>badge badge-sm</code>: <span
+                                    style="font-size: 0.8rem; padding: 2px 6px; border-radius: 4px;">Small</span></li>
+                            <li><code>badge</code>: <span
+                                    style="font-size: 1rem; padding: 2px 6px; border-radius: 4px;">Default</span></li>
+                            <li><code>badge badge-lg</code>: <span
+                                    style="font-size: 1.2rem; padding: 2px 6px; border-radius: 4px;">Large</span></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
+        <div class="image-grid">
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Colors:</strong></p>
+                <img src="image/view.png" alt="Colors" class="component-image">
+            </div>
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Sizes:</strong></p>
+                <img src="image/view0.png" alt="Sizes" class="component-image">
+            </div>
+        </div>
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> Ensure that the component's properties are set properly to match the design and
+            layout needs of your page.
+            Here are some key points to consider:
+            <ul>
+                <li>Use <code>LabelColor</code> to select a predefined color style. For example, <span
+                        style="background-color: #47a447; color: white; padding: 2px 6px; border-radius: 4px;">Success</span>
+                    or <span
+                        style="background-color: #bd2d29; color: white; padding: 2px 6px; border-radius: 4px;">Danger</span>.
+                </li>
+                <li>Use <code>LabelSize</code> to adjust the size of the label. Options include <span
+                        style="font-size: 0.8rem; padding: 2px 6px; border-radius: 4px;">Small</span>, <span
+                        style="font-size: 1rem; padding: 2px 6px; border-radius: 4px;">Default</span>, and <span
+                        style="font-size: 1.2rem; padding: 2px 6px; border-radius: 4px;">Large</span>.</li>
+                <li>Ensure that the selected styles align with your page's overall design for consistency and
+                    readability.</li>
+                <li>Preview your changes to verify that the labels appear as expected in different screen sizes and
+                    layouts.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Section-Parallax Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .component-image {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Section-Parallax Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Porto-Sections Parallax</strong> component allows you to create sections with a parallax
+            scrolling effect,
+            enhancing depth and visual experience on the interface. You can customize background images, scrolling
+            speeds, and effects to fit different design needs. Porto defines the appearance and behavior of the popover,
+            while its implementation is managed
+            through <strong>OpenContent</strong>,
+            providing greater flexibility and customization.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Section-Parallax"><strong>Porto-Section-Parallax
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-3/sections-parallax"><strong>Porto
+                    documentation</strong></a>.</p>
+
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Heading</td>
+                    <td>String</td>
+                    <td><strong>Required</strong>. The main heading text for the section.</td>
+                </tr>
+                <tr>
+                    <td>Heading Subtitle</td>
+                    <td>String</td>
+                    <td>An optional subtitle to provide additional context or supporting information for the heading.</td>
+                </tr>
+                <tr>
+                    <td>Text-Light</td>
+                    <td>Boolean</td>
+                    <td><strong>Optional</strong>. Determines if the text should be styled as light-colored text.</td>
+                </tr>
+                <tr>
+                    <td>Style Type</td>
+                    <td>List</td>
+                    <td>
+                        Defines the overall style of the section. Available options include:
+                        <ul>
+                            <li><code>Default</code>: Standard section style.</li>
+                            <li><code>BackgroundSection</code>: Section with a custom background.</li>
+                            <li><code>ParallaxSection</code>: Section with a parallax scrolling effect.</li>
+                            <li><code>HalfSection</code>: Split section with a custom background on one side.</li>
+                            <li><code>HalfSectionParallax</code>: Split section with a parallax effect on one side.</li>
+                            <li><code>VideoSection</code>: Section with a video background.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Style Default</td>
+                    <td>List</td>
+                    <td>
+                        Specifies the style for the "Default" section type. Options include:
+                        <ul>
+                            <li>Default Section</li>
+                            <li>Color Scale 1-9</li>
+                            <li>Primary, Secondary, Tertiary, Quaternary Sections</li>
+                            <li>Removing Margin Top and Bottom</li>
+                            <li>With Divider</li>
+                            <li>Center-Aligned Content Section</li>
+                        </ul>
+                        <strong>Dependency:</strong> Only applicable when <code>StyleType</code> is set to "Default".
+                    </td>
+                </tr>
+                <tr>
+                    <td>Style Parallax</td>
+                    <td>List</td>
+                    <td>
+                        Specifies the style for the "ParallaxSection" type. Options include:
+                        <ul>
+                            <li>Default Parallax Section</li>
+                            <li>Parallax Section (Fixed Image)</li>
+                            <li>Parallax Section (Dark Text)</li>
+                        </ul>
+                        <strong>Dependency:</strong> Only applicable when <code>StyleType</code> is set to "ParallaxSection".
+                    </td>
+                </tr>
+                <tr>
+                    <td>Style Background</td>
+                    <td>String</td>
+                    <td>
+                        Specifies the style for the "BackgroundSection" type. Options include:
+                        <ul>
+                            <li>Custom Background Section</li>
+                            <li>Custom Background Section (With Overlay)</li>
+                        </ul>
+                        <strong>Dependency:</strong> Only applicable when <code>StyleType</code> is set to "BackgroundSection".
+                    </td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td>Image</td>
+                    <td>
+                        <strong>Required</strong>. The background image for the section. 
+                        <strong>Dependency:</strong> Required for <code>BackgroundSection</code>, <code>ParallaxSection</code>, <code>HalfSection</code>, and <code>HalfSectionParallax</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>VideoUrl</td>
+                    <td>String</td>
+                    <td>
+                        <strong>Required</strong>. The video file URL for the section background. 
+                        <strong>Dependency:</strong> Required for <code>VideoSection</code>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+
+        <h3 id="views" class="Head">Views</h3>
+        <p>Below are the different views available for the <strong>Porto-Section-Parallax</strong> component:</p>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Default Section:</strong></p>
+            <img src="image/view.png" alt="Default Section" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Primary Section:</strong></p>
+            <img src="image/view0.png" alt="Primary Section" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Custom Background Section:</strong></p>
+            <img src="image/view1.png" alt="Custom Background Section" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Parallax Section (Fixed Image):</strong></p>
+            <img src="image/view2.png" alt="Parallax Section (Fixed Image)" class="component-image">
+        </div>
+       
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> Keep the following in mind when using the <strong>Porto-Section-Parallax</strong> component:
+            <ul>
+                <li>Ensure that the <code>StyleType</code> is set correctly to match the desired section type (e.g., <code>ParallaxSection</code>, <code>BackgroundSection</code>, etc.).</li>
+                <li>Provide a valid <code>Image</code> or <code>VideoUrl</code> depending on the section type to ensure proper rendering.</li>
+                <li>Use the appropriate style properties (<code>StyleParallax</code>, <code>StyleBackground</code>, etc.) to customize the appearance of the section.</li>
+                <li>Test the parallax and background effects on different devices to ensure compatibility and responsiveness.</li>
+                <li>For sections with text, ensure that <code>TextLight</code> is set appropriately to maintain readability against the background.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

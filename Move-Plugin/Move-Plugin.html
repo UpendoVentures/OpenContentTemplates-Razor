@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Move-Plugin Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .image-with-text {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+
+
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Move-Plugin Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#how-to-use">How to use it?</a></li>
+            <li><a href="#edit">Edit</a></li>
+            <li><a href="#edit-properties">Edit Properties</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            <b>Move-Plugin</b> is a reusable template within the OpenContentTemplates-Razor repository that allows
+            modifying
+            the position of third-party iframes (such as chat buttons or other elements added through external scripts).
+            This template enables adjusting the iframe's location by configuring its <code>height</code>,
+            <code>left</code>, <code>right</code>, or <code>bottom</code>
+            position according to specific needs. It also offers the option to hide iframes when not needed. It can be
+            configured to work exclusively in DNN's editing mode or globally, providing flexibility in its
+            implementation.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Move-Plugin"><strong>Move-Plugin
+                    repository on GitHub</strong></a>.</p>
+
+        <h2 id="how-to-use">
+            <span class="Head">How to use it?</span>
+        </h2>
+        <p>In this session, I will explain step by step how to use the Move-Plugin template, from its
+            installation on the website to its configuration and testing. It is essential to have Open Content
+            installed on the DNN site, as this template relies on that module for proper functionality. By following
+            these instructions, you will be able to integrate it correctly and ensure it works as expected.</p>
+
+        <h3>Template Installation</h3>
+        <p>Below are the steps to install the Move-Plugin template on a DNN site with Open Content:</p>
+        <ol>
+            <li><strong>Verify Open Content Installation</strong>
+                <ul>
+                    <li>Ensure that the Open Content module is installed on the DNN site. If it is not installed,
+                        <a href="https://github.com/sachatrauwaen/OpenContent/releases">download</a> and install it from
+                        the <a href="https://opencontent.readme.io/">official page</a> .
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Add the Open Content Module to the Page</strong>
+                <ul>
+                    <li>Navigate to the page where you want to use the template.</li>
+                    <li>Add a new Open Content module in the desired location.</li>
+                </ul>
+                <img src="image/add_module.png" /> <br>
+                <img src="image/add_opencontent.png" />
+
+            </li>
+            <li><strong>Configuring the GitHub Repository</strong>
+                <ul>
+                    <li>Edit the newly added Open Content module.</li>
+                    <li>Select the option Edit Global Settings</li>
+                    <li>Set the repository name in the Github Templates Repository field. In this case, use
+                        UpendoVentures/OpenContentTemplates-Razor.</li>
+                    <li>Click on Save.</li>
+                </ul>
+                <img src="image/edit_global_settings.png" /> <br>
+                <img src="image/set_github_repository.png" />
+            </li>
+            <li><strong>Add the template to the site.</strong>
+                <ul>
+                    <li>Click on Create new template folder.</li>
+                    <li>Select the Web (GitHub) option.</li>
+                    <li>Select the template you want to add, in this case, Move-Plugin.</li>
+                    <li>Click on Create.</li>
+                </ul>
+                <img src="image/create_new_template.png" /> <br>
+                <img src="image/add_modal_templete.png" />
+            </li>
+
+            <li><strong>Edit the template content.</strong>
+                <ul>
+                    <li>Click on the Edit button of the module.</li>
+                    <li>Click on the Edit option from the menu that appears.</li>
+                    <li>Set the necessary values for the content you want to display in the modal. Each of the fields
+                        is explained in the <a href="#edit-properties">Edit Properties</a> section.</li>
+                </ul>
+                <img src="image/edit_template.png" /> <br>
+            </li>
+        </ol>
+
+        <h3 id="edit">Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+        <img src="image/edit0.png" alt="edit" class="component-image">
+        <img src="image/edit1.png" alt="edit" class="component-image">
+        <img src="image/edit2.png" alt="edit" class="component-image">
+        <img src="image/edit3.png" alt="edit" class="component-image">
+        <img src="image/edit4.png" alt="edit" class="component-image">
+
+        <h2 id="edit-properties" class="Head">Edit Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>Text</td>
+                    <td>Allows naming the component.</td>
+                </tr>
+                <tr>
+                    <td>Query Selector</td>
+                    <td>Select</td>
+                    <td>Specifies the type of selector to use for targeting elements:
+                        <ul>
+                            <li><code>Id</code></li>
+                            <li><code>Class</code></li>
+                            <li><code>Custom</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Value</td>
+                    <td>Text</td>
+                    <td>
+                        Specifies the value of the selector (e.g., the ID or class name). In the case of "custom," the
+                        selector can be defined using JavaScript code. Examples of what should go in this field when
+                        "Custom" is selected.
+                        <ul>
+                            <li><code>#myid</code> - Selects an element by its ID.</li>
+                            <li><code>.myclass</code> - Selects elements by their class name.</li>
+                            <li><code>div</code> - Selects all <code>&lt;div&gt;</code> elements.</li>
+                            <li><code>input[type="text"]</code> - Selects all text input fields.</li>
+                            <li><code>ul &gt; li:first-child</code> - Selects the first <code>&lt;li&gt;</code> child of
+                                every <code>&lt;ul&gt;</code>.</li>
+                            <li><code>a[href^="https://"]</code> - Selects all links that start with "https://".</li>
+                            <li><code>span.highlight</code> - Selects all <code>&lt;span&gt;</code> elements with the
+                                class "highlight".</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Only in DNN edit mode?</td>
+                    <td>Checkbox</td>
+                    <td>Determines if the changes should only apply in DNN edit mode.</td>
+                </tr>
+                <tr>
+                    <td>Modification Type:</td>
+                    <td>Select</td>
+                    <td>Specifies the type of modification:
+                        <ul>
+                            <li><code>Hide</code> - Hides the element.</li>
+                            <li><code>Move Position</code> - Moves the element to a new position.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Move up?</td>
+                    <td>Checkbox</td>
+                    <td>Enables moving the element upwards. Requires <code>Modification Type</code> to be "Move
+                        Position".</td>
+                </tr>
+                <tr>
+                    <td>Current Value (Top):</td>
+                    <td>Text</td>
+                    <td>Specifies the current top position of the element. Requires <code>Move up?</code> and <code>Only
+                            in DNN edit mode?</code> to be enabled.</td>
+                </tr>
+                <tr>
+                    <td>New Value (Top):</td>
+                    <td>Text</td>
+                    <td>Specifies the new top position of the element. Requires <code>Move up?</code> to be enabled.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Move Left?</td>
+                    <td>Checkbox</td>
+                    <td>Enables moving the element to the left. Requires <code>Modification Type</code> to be "Move
+                        Position".</td>
+                </tr>
+                <tr>
+                    <td>Current Value (Left):</td>
+                    <td>Text</td>
+                    <td>Specifies the current left position of the element. Requires <code>Move Left?</code> and
+                        <code>Only in DNN edit mode?</code> to be enabled.
+                    </td>
+                </tr>
+                <tr>
+                    <td>New Value (Left):</td>
+                    <td>Text</td>
+                    <td>Specifies the new left position of the element. Requires <code>Move Left?</code> to be enabled.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Move Right?</td>
+                    <td>Checkbox</td>
+                    <td>Enables moving the element to the right. Requires <code>Modification Type</code> to be "Move
+                        Position".</td>
+                </tr>
+                <tr>
+                    <td>Current Value (Right):</td>
+                    <td>Text</td>
+                    <td>Specifies the current right position of the element. Requires <code>Move Right?</code> and
+                        <code>Only in DNN edit mode?</code> to be enabled.
+                    </td>
+                </tr>
+                <tr>
+                    <td>New Value (Right):</td>
+                    <td>Text</td>
+                    <td>Specifies the new right position of the element. Requires <code>Move Right?</code> to be
+                        enabled.</td>
+                </tr>
+                <tr>
+                    <td>Move Down?</td>
+                    <td>Checkbox</td>
+                    <td>Enables moving the element downwards. Requires <code>Modification Type</code> to be "Move
+                        Position".</td>
+                </tr>
+                <tr>
+                    <td>Current Value (Bottom):</td>
+                    <td>Text</td>
+                    <td>Specifies the current bottom position of the element. Requires <code>Move Down?</code> and
+                        <code>Only in DNN edit mode?</code> to be enabled.
+                    </td>
+                </tr>
+                <tr>
+                    <td>New Value (Bottom):</td>
+                    <td>Text</td>
+                    <td>Specifies the new bottom position of the element. Requires <code>Move Down?</code> to be
+                        enabled.</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> When using the <strong>Move-Plugin</strong> component, ensure the following
+            considerations are met for proper functionality:
+            <ul>
+                <li><strong>Important:</strong> The <code>Query Selector</code> and <code>Value</code> fields must be
+                    configured correctly to target the desired element. An incorrect selector may result in the element
+                    not being found or modified.
+
+                </li>
+                <li><strong>Important:</strong> The <code>Modification Type</code> field determines whether the element
+                    will be hidden or moved. Ensure this is set to <code>Move Position</code> if you want to adjust the
+                    element's position.</li>
+                <li><strong>Move Properties:</strong> If you are using the <code>Move up?</code>, <code>Move
+                        Left?</code>, <code>Move Right?</code>, or <code>Move Down?</code> options, ensure the
+                    following:
+                    <ul>
+                        <li>The corresponding <code>Current Value</code> and <code>New Value</code> fields are set
+                            correctly to define the element's current and target positions.</li>
+                        <li>If <code>Only in DNN edit mode?</code> is enabled, the changes will only apply when the site
+                            is in edit mode. Ensure this is configured according to your requirements.</li>
+                    </ul>
+                </li>
+                <li><strong>Custom Selectors:</strong> When using the <code>Custom</code> option in <code>Query
+                        Selector</code>, you can define advanced selectors using JavaScript.
+                </li>
+            </ul>
+            <p>Proper configuration of these fields is critical to ensure the <strong>Move-Plugin</strong> works as
+                expected. Test thoroughly to verify the desired behavior.</p>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>
