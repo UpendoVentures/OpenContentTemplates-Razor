@@ -1,8 +1,12 @@
 <div class="container">
     <div class="row @Model.MarginTop @Model.MarginBottom @Model.PaddingTop @Model.PaddingBottom">
-        if (Model.Paragraph != null)
+        @if (Model.Paragraph != null)
         {
-            @RawHtml(Model.Paragraph)
+            @Html.Raw(Model.Paragraph)
+        }
+        else
+        {
+            <!-- No Paragraph Found -->
         }
     </div>
 </div>
