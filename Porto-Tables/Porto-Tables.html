@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Tables Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .image-with-text {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+
+
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Tables Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#settings-properties">Settings Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Porto-Tables</strong> component allows you to display organized data in a structured table
+            format with an attractive design.It provides an efficient way to present information in rows and columns,
+            ensuring a clear and professional layout. Porto defines the appearance and behavior, while its
+            implementation is managed
+            through
+            <strong>OpenContent</strong>, providing flexibility in configuration.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Tables"><strong>Porto-Tables
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-3/tables"><strong>Porto
+                    documentation</strong></a>.</p>
+
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+        <img src="image/edit0.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>Text</td>
+                    <td>The title of the module.</td>
+                </tr>
+                <tr>
+                    <td>Table Head</td>
+                    <td>Array</td>
+                    <td>Defines the table headers. Each item contains the column header text.</td>
+                </tr>
+                <tr>
+                    <td>Table Column Header</td>
+                    <td>Text</td>
+                    <td>The text for a table column header.</td>
+                </tr>
+                <tr>
+                    <td>Table Body</td>
+                    <td>Array</td>
+                    <td>Defines the table rows. Each item represents a row with optional classes and cells.</td>
+                </tr>
+                <tr>
+                    <td>Row Class</td>
+                    <td>List</td>
+                    <td>
+                        The class applied to a table row. Available options:
+                        <ul>
+                            <li><code>info</code>: <span
+                                    style="background-color: #5bc0de; color: white; padding: 2px 6px; border-radius: 4px;">Info</span>
+                            </li>
+                            <li><code>danger</code>: <span
+                                    style="background-color: #bd2d29; color: white; padding: 2px 6px; border-radius: 4px;">Error</span>
+                            </li>
+                            <li><code>success</code>: <span
+                                    style="background-color: #47a447; color: white; padding: 2px 6px; border-radius: 4px;">Success</span>
+                            </li>
+                            <li><code>warning</code>: <span
+                                    style="background-color: #ed9c28; color: white; padding: 2px 6px; border-radius: 4px;">Warning</span>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cells</td>
+                    <td>Array</td>
+                    <td>Defines the cells within a row. Each item contains the cell content.</td>
+                </tr>
+                <tr>
+                    <td>Cell Content (required)</td>
+                    <td>Text (WYSIWYG)</td>
+                    <td>The content of a table cell.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="settings" class="Head">Settings</h3>
+
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Striped</td>
+                    <td>Checkbox</td>
+                    <td>Applies striped rows to the table for better readability.</td>
+                    <td>
+                        <ul>
+                            <li><code>true</code>: Enable striped rows.</li>
+                            <li><code>false</code>: Disable striped rows (default).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bordered</td>
+                    <td>Checkbox</td>
+                    <td>Adds borders to all table cells.</td>
+                    <td>
+                        <ul>
+                            <li><code>true</code>: Enable bordered table.</li>
+                            <li><code>false</code>: Disable bordered table (default).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hover Rows</td>
+                    <td>Checkbox</td>
+                    <td>Highlights rows when hovered over.</td>
+                    <td>
+                        <ul>
+                            <li><code>true</code>: Enable hover effect on rows.</li>
+                            <li><code>false</code>: Disable hover effect (default).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Condensed</td>
+                    <td>Checkbox</td>
+                    <td>Reduces the padding in table cells for a more compact table.</td>
+                    <td>
+                        <ul>
+                            <li><code>true</code>: Enable condensed table.</li>
+                            <li><code>false</code>: Disable condensed table (default).</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Default:</strong></p>
+            <img src="image/view.png" alt="Default" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Striped:</strong></p>
+            <img src="image/view0.png" alt="Striped" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Bordered:</strong></p>
+            <img src="image/view1.png" alt="Bordered" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Hover Rows:</strong></p>
+            <img src="image/view2.png" alt="Hover Rows" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Condensed Table:</strong></p>
+            <img src="image/view3.png" alt="Condensed Table" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Contextual classes:</strong></p>
+            <img src="image/view4.png" alt="Contextual classes" class="component-image">
+        </div>
+
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> When using the <strong>Porto-Tables</strong> component, ensure the following
+            considerations are met for proper functionality:
+            <ul>
+                <li>Enable or disable table features (e.g., striped rows, borders, hover effects, condensed layout)
+                    using the settings provided in the configuration.</li>
+                <li>Ensure all table headers and rows are properly defined to display the desired content.</li>
+                <li>Verify that the table layout adapts correctly to different screen sizes and devices.</li>
+                <li>Test the visual appearance of the table, including hover effects and borders, to ensure it aligns
+                    with your website's design.</li>
+                <li>Use valid and accessible content for table cells to maintain usability and compatibility.</li>
+                <li>Check that all settings (e.g., striped, bordered, hover rows, condensed) are applied as expected in
+                    the rendered table.</li>
+            </ul>
+            <p>Proper configuration and testing will help ensure that the <strong>Porto-Tables</strong> component
+                integrates seamlessly into your website and provides a professional and functional table layout.</p>
+        </div>
+    </div>
+</body>
+
+</html>
