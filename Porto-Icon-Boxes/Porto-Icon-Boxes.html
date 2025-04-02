@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Porto-Icon-Boxes Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-grid .image-with-text {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+
+
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Icon-Boxes Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#settings-properties">Settings Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>
+            The <strong>Porto-Icon Boxes</strong> component allows you to display content with custom icons, enhancing
+            the visual presentation of your website.
+            It offers multiple design options, sizes, colors, and alignments, allowing full customization to fit any
+            style. Porto defines the appearance and behavior, while its implementation is managed through
+            <strong>OpenContent</strong>, providing flexibility in configuration.
+        </p>
+
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Icon-Boxes"><strong>Porto-Icon-Boxes
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-1/icon-boxes"><strong>Porto
+                    documentation</strong></a>.</p>
+
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
+
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ModuleTitle</td>
+                    <td>Text</td>
+                    <td>The title of the module.</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Items</td>
+                    <td>Array</td>
+                    <td>A collection of items to display in the icon boxes.</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>Text</td>
+                    <td>The title of the item.</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Content</td>
+                    <td>WYSIWYG</td>
+                    <td>The content or description of the item.</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Icon</td>
+                    <td>Text</td>
+                    <td>The icon for the item. Example: <code>fab fa-android</code>. Find values at <a
+                            href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a>.</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>ButtonText</td>
+                    <td>Text</td>
+                    <td>The text for the button associated with the item.</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="settings" class="Head">Settings</h3>
+
+        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
+        <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
+
+
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>IconBoxesType</th>
+                    <th>Setting</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Classic -->
+                <tr>
+                    <td rowspan="8"><strong>Classic</strong></td>
+                    <td>Display Axis</td>
+                    <td>Select</td>
+                    <td>
+                        Defines the display axis of the icon boxes.
+                        <ul>
+                            <li><code>Display Vertically</code></li>
+                            <li><code>Display Horizontally</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Content Containers</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the number of content container rows.
+                        <ul>
+                            <li><code>No Rows</code></li>
+                            <li><code>One Row</code></li>
+                            <li><code>Two Rows</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Uppercase Title</td>
+                    <td>Checkbox</td>
+                    <td>
+                        Applies uppercase styling to the title.
+                        <ul>
+                            <li><code>Enabled</code></li>
+                            <li><code>Disabled</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enable Animations</td>
+                    <td>Checkbox</td>
+                    <td>Enables animations for the icon boxes. Options:
+                        <ul>
+                            <li><code>true</code>: Enables animations and displays the following options:
+                                <ul>
+                                    <li><strong>Animation Type:</strong> Defines the type of animation. Options include:
+                                        <ul>
+                                            <li><code>Bounce In</code>: A bounce-in animation effect.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Animation Delay:</strong> Defines the delay for the animation. Options
+                                        include:
+                                        <ul>
+                                            <li><code>0ms</code></li>
+                                            <li><code>300ms</code></li>
+                                            <li><code>600ms</code></li>
+                                            <li><code>900ms</code></li>
+                                            <li><code>1200ms</code></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><code>false</code>: Disables animations.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Icon Position</td>
+                    <td>List</td>
+                    <td>
+                        Allows you to set the icon position.
+                        <ul>
+                            <li><code>Left</code></li>
+                            <li><code>Right</code></li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>Featured Boxes Style</td>
+                    <td>Select</td>
+                    <td>
+                        Defines the style of featured boxes.
+                        <ul>
+                            <li><code>None</code></li>
+                            <li><code>Style 1</code></li>
+                            <li><code>Style 2</code></li>
+                            <li><code>Style 3</code></li>
+                            <li><code>Style 4</code></li>
+                            <li><code>Style 5</code></li>
+                            <li><code>Style 6</code></li>
+                            <li><code>Style 7</code></li>
+                            <li><code>Style 8</code></li>
+                            <li><code>Style 9</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the color of the icon boxes.
+                        <ul>
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color</span></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Featured Box Effect</td>
+                    <td>Select</td>
+                    <td>
+                        Defines flat effects for featured boxes.
+                        <ul>
+                            <li><code>None</code></li>
+                            <li><code>Style 1</code></li>
+                            <li><code>Style 2</code></li>
+                            <li><code>Style 3</code></li>
+                            <li><code>Style 4</code></li>
+                            <li><code>Style 5</code></li>
+                            <li><code>Style 6</code></li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <!-- Full -->
+                <tr>
+                    <td rowspan="3"><strong>Full</strong></td>
+                    <td>Uppercase Title</td>
+                    <td>Checkbox</td>
+                    <td>
+                        Applies uppercase styling to the title.
+                        <ul>
+                            <li><code>Enabled</code></li>
+                            <li><code>Disabled</code></li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>Feature Box Full Style</td>
+                    <td>Select</td>
+                    <td>
+                        Defines the full style of feature boxes.
+                        <ul>
+                            <li><code>Scaled</code></li>
+                            <li><code>Multicolor</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the color of the icon boxes.
+                        <ul>
+
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color</span></li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <!-- Simple -->
+                <tr>
+                    <td rowspan="5"><strong>Simple</strong></td>
+                    <td>Uppercase Title</td>
+                    <td>Checkbox</td>
+                    <td>
+                        Applies uppercase styling to the title.
+                        <ul>
+                            <li><code>Enabled</code></li>
+                            <li><code>Disabled</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enable Animations</td>
+                    <td>Checkbox</td>
+                    <td>Enables animations for the icon boxes. Options:
+                        <ul>
+                            <li><code>true</code>: Enables animations and displays the following options:
+                                <ul>
+                                    <li><strong>Animation Type:</strong> Defines the type of animation. Options include:
+                                        <ul>
+                                            <li><code>Bounce In</code>: A bounce-in animation effect.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Animation Delay:</strong> Defines the delay for the animation. Options
+                                        include:
+                                        <ul>
+                                            <li><code>0ms</code></li>
+                                            <li><code>300ms</code></li>
+                                            <li><code>600ms</code></li>
+                                            <li><code>900ms</code></li>
+                                            <li><code>1200ms</code></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><code>false</code>: Disables animations.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Feature Box Style</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the style of feature boxes.
+                        <ul>
+                            <li><code>None</code></li>
+                            <li><code>Style 1</code></li>
+                            <li><code>Style 2</code></li>
+                            <li><code>Style 3</code></li>
+                            <li><code>Style 4</code></li>
+                            <li><code>Style 5</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reverse Content</td>
+                    <td>Checkbox</td>
+                    <td>
+                        Reverses the content layout.
+                        <ul>
+                            <li><code>Enabled</code></li>
+                            <li><code>Disabled</code></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the color of the icon boxes.
+                        <ul>
+
+                            <li><code>Primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary
+                                    color</span></li>
+                            <li><code>Secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary
+                                    color</span></li>
+                            <li><code>Tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary
+                                    color</span></li>
+                            <li><code>Quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary
+                                    color</span></li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
+        <p>Below are examples of the different styles and configurations available for the
+            <strong>Porto-Icon-Boxes</strong>
+            component. Each style is customizable and can be adapted to your design needs.
+        </p>
+        <div class="image-grid">
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Right Icon:</strong></p>
+                <img src="image/view.png" alt="Right Icon" class="component-image">
+            </div>
+           
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Left Icon:</strong>
+                </p>
+                <img src="image/view0.png" alt="Left Icon" class="component-image">
+            </div>
+        </div>
+
+
+        <div class="image-grid">
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Icon with Divider:</strong></p>
+            <img src="image/view1.png" alt="Icon with Divider" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Icon with Bottom Divider:</strong></p>
+            <img src="image/view2.png" alt="Icon with Bottom Divider" class="component-image">
+        </div>
+    </div>
+
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Inset Border:</strong></p>
+            <img src="image/view3.png" alt="Inset Border" class="component-image">
+        </div>
+
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Outset Border:</strong></p>
+            <img src="image/view4.png" alt="Outset Border" class="component-image">
+        </div>
+
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Box Shadow with Border:</strong></p>
+            <img src="image/view5.png" alt="Box Shadow with Border" class="component-image">
+        </div>
+
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Box Shadow:</strong></p>
+            <img src="image/view6.png" alt="Box Shadow" class="component-image">
+        </div>
+
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 1:</strong></p>
+            <img src="image/Style1.png" alt="Style1" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 2:</strong></p>
+            <img src="image/Style2.png" alt="Style2" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 3:</strong></p>
+            <img src="image/Style3.png" alt="Style3" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 4:</strong></p>
+            <img src="image/Style4.png" alt="Style4" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 5:</strong></p>
+            <img src="image/Style5.png" alt="Style5" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 6:</strong></p>
+            <img src="image/Style6.png" alt="Style6" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Style 7:</strong></p>
+            <img src="image/Style7.png" alt="Style7" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Colors:</strong></p>
+            <img src="image/Colors.png" alt="Colors" class="component-image">
+        </div>
+        <div class="image-with-text">
+            <p class="image-caption"><strong>Full Width:</strong></p>
+            <img src="image/Full Width.png" alt="Full Width" class="component-image">
+        </div>
+
+        <div class="image-grid">
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Reverse:</strong></p>
+                <img src="image/Reverse.png" alt="Reverse" class="component-image">
+            </div>
+            <div class="image-with-text">
+                <p class="image-caption"><strong>Normal:</strong></p>
+                <img src="image/Normal.png" alt="Normal" class="component-image">
+            </div>
+        </div>
+
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> The <strong>Porto-Icon-Boxes</strong> component is a versatile tool for displaying content 
+            with custom icons, enhancing the visual presentation of your website. Ensure the following properties are configured 
+            correctly:
+            <ul>
+                <li><code>ModuleTitle</code>: The title of the module (optional).</li>
+                <li><code>Items</code>: A collection of items to display (required).</li>
+                <li><code>Title</code>: The title of each item (required).</li>
+                <li><code>Content</code>: The description or content of each item (required).</li>
+                <li><code>Icon</code>: The icon for each item. Use values from 
+                    <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> (optional).</li>
+                <li><code>ButtonText</code>: The text for the button associated with the item (optional).</li>
+            </ul>
+            Explore the various styles and configurations available, such as <strong>Style 1</strong>, <strong>Style 2</strong>, 
+            and more, as shown in the examples above. 
+        </div>
+    </div>
+</body>
+
+</html>
