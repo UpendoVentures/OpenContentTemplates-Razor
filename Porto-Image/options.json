@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "Image": {
+      "type": "image"
+    },
+    "Classes": {
+      "type": "text"
+    },
+    "AltText": {
+      "type": "text",
+      "placeholder": "Used for SEO"
+    }
+  }
+}

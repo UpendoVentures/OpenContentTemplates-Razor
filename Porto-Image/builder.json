@@ -1,0 +1,43 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Image",
+      "title": "Image (required)",
+      "fieldtype": "image",
+      "imageoptions": {},
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Classes",
+      "title": "Classes",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "img-fluid",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "AltText",
+      "title": "Alt Text",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "placeholder": "Used for SEO",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
