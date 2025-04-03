@@ -1,40 +1,58 @@
 {
-    "type": "object",
-    "properties": {        
-        "ButtonColor": {
-            "title": "Button Color",
-            "type": "string",
-            "enum": [
-				"btn-default",
-				"btn-success",
-				"btn-info",
-				"btn-warning",
-				"btn-danger",
-				"btn-dark",
-				"btn-primary",
-				"btn-secondary",
-				"btn-tertiary",
-				"btn-quaternary"
-            ]
-        },
-        "ButtonSize": {
-            "title": "Button Size",
-            "type": "string",
-            "enum": [
-				"btn-lg",
-				"btn",
-				"btn-sm",				
-				"btn-xs"				
-            ]
-        },        
-        "ButtonStyle": {
-            "title": "Button Style",
-            "type": "string",
-            "enum": [
-				"btn",
-                "btn-borders",
-                "btn-3d"
-            ]
-        }
-    }    
+  "type": "object",
+  "properties": {
+    "ButtonColor": {
+      "type": "string",
+      "title": "Button Color",
+      "enum": [
+        "btn-default",
+        "btn-success",
+        "btn-info",
+        "btn-warning",
+        "btn-danger",
+        "btn-dark",
+        "btn-primary",
+        "btn-secondary",
+        "btn-tertiary",
+        "btn-quaternary"
+      ],
+      "default": "btn-default",
+      "required": true
+    },
+    "ButtonSize": {
+      "type": "string",
+      "title": "Button Size",
+      "enum": [
+        "btn-lg",
+        "btn",
+        "btn-sm",
+        "btn-xs"
+      ],
+      "default": "btn-lg",
+      "required": true
+    },
+    "ButtonStyle": {
+      "type": "string",
+      "title": "Button Style",
+      "enum": [
+        "btn",
+        "btn-borders",
+        "btn-3d"
+      ],
+      "default": "btn",
+      "required": true
+    },
+    "ButtonAlign": {
+      "type": "string",
+      "title": "Button Align",
+      "enum": [
+        "left",
+        "center",
+        "right",
+        "inherit"
+      ],
+      "default": "left",
+      "required": true
+    }
+  }
 }
