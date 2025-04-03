@@ -4,7 +4,12 @@
     "template": "<div><div class=\"row\"><div class=\"col-md-12\" id=\"pos_1_1\"></div></div></div>",
     "bindings": {
       "Button": "#pos_1_1",
-      "Icon": "#pos_1_1"
+      "Icon": "#pos_1_1",
+      "Link": "#pos_1_1",
+      "Rel": "#pos_1_1",
+      "CustomRel": "#pos_1_1",
+      "Target": "#pos_1_1",
+      "CustomTarget": "#pos_1_1"
     }
   }
 }
