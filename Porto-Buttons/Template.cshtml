@@ -1,9 +1,18 @@
-<button type="button"
-    class="btn @Model.Settings.ButtonColor @Model.Settings.ButtonSize @Model.Settings.ButtonStyle mr-xs mb-sm">
-    @if (!string.IsNullOrEmpty(Model.Icon))
-    {
-        <em class="@Model.Icon"></em>
-        @:&nbsp;
-    }
-    @Model.Button
-</button>
+@{
+    var rel = Model.Rel != null ? (Model.Rel == "custom" ? (Model.CustomRel ?? string.Empty) : Model.Rel) : string.Empty;
+    var target = Model.Target != null ? (Model.Target == "custom" ? (Model.CustomTarget ?? string.Empty) : Model.Target) : string.Empty;
+
+    rel = string.IsNullOrEmpty(rel) ? string.Empty : string.Format("rel=\"{0}\"", rel);
+    target = string.IsNullOrEmpty(target) ? string.Empty : string.Format("target=\"{0}\"", target);
+}
+
+<div style="text-align: @(Model.Settings != null ? Model.Settings.ButtonAlign : "left");">
+    <a href="@(Model.Link ?? "#")" @rel @target class="btn @(Model.Settings != null ? Model.Settings.ButtonColor : "") @(Model.Settings != null ? Model.Settings.ButtonSize : "") @(Model.Settings != null ? Model.Settings.ButtonStyle : "") mr-xs mb-sm" style="text-decoration: none;">
+        @if (!string.IsNullOrEmpty(Model.Icon))
+        {
+            <em class="@(Model.Icon)"></em>
+            @:&nbsp;
+        }
+        @(Model.Button ?? string.Empty)
+    </a>
+</div>

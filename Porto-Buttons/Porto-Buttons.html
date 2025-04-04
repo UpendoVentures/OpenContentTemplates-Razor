@@ -53,30 +53,33 @@
         a:hover {
             text-decoration: underline;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
+
         /* Component Image */
         .component-image {
             width: 100%;
-            max-width: 900px;
             margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .image-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px; 
-            justify-content: center; 
+            gap: 20px;
+            justify-content: center;
         }
 
         .image-grid .component-image {
-            flex: 1 1 calc(50% - 20px); 
+            flex: 1 1 calc(50% - 20px);
             max-width: calc(50% - 20px);
         }
+
         /* Table Styles */
         .properties-table {
             width: 100%;
@@ -128,11 +131,12 @@
             font-size: 1.8rem;
             color: #6d5a2c;
         }
+
         /* Header Styles */
         .header {
             display: flex;
             align-items: center;
-            gap: 15px; 
+            gap: 15px;
             background-color: #f9f9f9;
             color: #6d5a2c;
             padding: 20px 10px;
@@ -145,8 +149,8 @@
         }
 
         .header-content {
-            flex: 1; 
-            text-align: center; 
+            flex: 1;
+            text-align: center;
         }
 
         .header-content h1 {
@@ -161,118 +165,271 @@
             background-color: #6d5a2c;
             border-radius: 1px;
         }
+
         .image-with-text {
-            text-align: center; 
-            margin-bottom: 20px; 
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .image-caption {
             font-size: 1rem;
             color: #333333;
-            margin-top: 10px; 
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
 
 <body>
-<div class="container">
-    <div class="header">
-        <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png" alt="Logo">
-        <div class="header-content">
-            <h1>Porto-Buttons Documentation</h1>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Porto-Buttons Documentation</h1>
+            </div>
         </div>
-    </div>
-    <div class="header-divider"></div>
+        <div class="header-divider"></div>
 
-    <h2>
-        <span class="Head">Overview</span>
-    </h2>
-    <p>The <strong>Porto-Buttons</strong> component allows you to insert buttons in any desired location within your layout,
-        providing extensive customization options. You can modify the text, color, size, and style to match your interface.
-        While Porto defines the button’s appearance and behavior, its implementation is managed through
-        <strong>OpenContent</strong> for greater flexibility.</p>
-    
-    <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Buttons"><strong>Porto-Buttons
-                repository on GitHub</strong></a> or the <a
-            href="https://porto.mandeeps.com/shortcodes/shortcodes-2/buttons"><strong>Porto documentation</strong></a>.</p>
+        <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#settings-properties">Settings Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
 
-    <h2>
-        <span class="Head">Usage <strong>Example</strong></span>
-    </h2>
+        <h2 id="overview">
+            <span class="Head">Overview</span>
+        </h2>
+        <p>The <strong>Porto-Buttons</strong> component allows you to insert buttons in any desired location within your
+            layout,
+            providing extensive customization options. You can modify the text, color, size, and style to match your
+            interface.
+            While Porto defines the button’s appearance and behavior, its implementation is managed through
+            <strong>OpenContent</strong> for greater flexibility.
+        </p>
 
-    <h3>Edit</h3>
-    <img src="image/edit.png" alt="edit" class="component-image">
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Buttons"><strong>Porto-Buttons
+                    repository on GitHub</strong></a> or the <a
+                href="https://porto.mandeeps.com/shortcodes/shortcodes-2/buttons"><strong>Porto
+                    documentation</strong></a>.</p>
 
-    <h2 class="Head">Properties</h2>
-    <table class="properties-table">
-        <thead>
-            <tr>
-                <th>Property</th>
-                <th>Data Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Button Text</td>
-                <td>String</td>
-                <td>Defines the text displayed on the button.</td>
-            </tr>
-            <tr>
-                <td>Icon</td>
-                <td>String</td>
-                <td>Allows you to add an icon from <a href="https://fontawesome.com/icons?d=gallery"
-                        target="_blank">FontAwesome</a>.</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
+        </h2>
 
-    <h3 class="Head">Settings</h3>
-    <div class="image-grid">
-        <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
-        <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
-        <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
-        <img src="image/template settings2.png" alt="Screenshot of computer" class="component-image">
-    </div>
+        <h3>Edit</h3>
+        <img src="image/edit.png" alt="edit" class="component-image">
+        <img src="image/edit0.png" alt="edit" class="component-image">
+        <img src="image/edit1.png" alt="edit" class="component-image">
 
-    <h3 class="Head">Settings Properties</h3>
-    <table class="properties-table">
-        <thead>
-            <tr>
-                <th>Property</th>
-                <th>Data Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Button Color</td>
-                <td>List</td>
-                <td>Select a color theme for the button.</td>
-            </tr>
-            <tr>
-                <td>Button Size</td>
-                <td>List</td>
-                <td>Choose from different button sizes.</td>
-            </tr>
-            <tr>
-                <td>Button Style</td>
-                <td>List</td>
-                <td>Set the visual style of the button.</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Button Text</td>
+                    <td>String</td>
+                    <td>Defines the text displayed on the button.</td>
+                </tr>
+                <tr>
+                    <td>Icon</td>
+                    <td>String</td>
+                    <td>Allows you to add an icon from <a href="https://fontawesome.com/icons?d=gallery"
+                            target="_blank">FontAwesome</a>.</td>
+                </tr>
+                <tr>
+                    <td>Link</td>
+                    <td>String</td>
+                    <td>Specifies the URL the button will navigate to when clicked.</td>
+                </tr>
+                <tr>
+                    <td>Rel</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies the relationship between the current document and the linked document. Options
+                        include:
+                        <ul>
+                            <li><code>none</code>: Do not include the `rel` attribute.</li>
+                            <li><code>nofollow</code>: Prevents search engines from following the link.</li>
+                            <li><code>noopener</code>: Prevents the new page from accessing the `window.opener`
+                                property.</li>
+                            <li><code>noreferrer</code>: Prevents the browser from sending the HTTP referer header.</li>
+                            <li><code>author</code>: Indicates the link is to an author of the document.</li>
+                            <li><code>bookmark</code>: Indicates the link is a bookmark.</li>
+                            <li><code>custom</code>: Allows a custom value for the `rel` attribute.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CustomRel</td>
+                    <td>String</td>
+                    <td>Allows a custom value for the <code>rel</code> attribute when "custom" is selected in Rel.</td>
+                </tr>
+                <tr>
+                    <td>Target</td>
+                    <td>Select</td>
+                    <td>
+                        Specifies where to open the linked document. Options include:
+                        <ul>
+                            <li><code>none</code>: Do not include the `target` attribute.</li>
+                            <li><code>_self</code>: Opens the link in the same window or tab.</li>
+                            <li><code>_blank</code>: Opens the link in a new window or tab.</li>
+                            <li><code>_parent</code>: Opens the link in the parent frame.</li>
+                            <li><code>_top</code>: Opens the link in the full body of the window.</li>
+                            <li><code>custom</code>: Allows a custom value for the `target` attribute.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CustomTarget</td>
+                    <td>String</td>
+                    <td>Allows a custom value for the <code>target</code> attribute when "custom" is selected in Target.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h3 class="Head">Views</h3>
+        <h3 id="settings" class="Head">Settings</h3>
+        <div class="image-grid">
+            <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
+            <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
+            <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
+            <img src="image/template settings2.png" alt="Screenshot of computer" class="component-image">
+            <img src="image/template settings3.png" alt="Screenshot of computer" class="component-image">
+        </div>
+
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Button Color</td>
+                    <td>Select</td>
+                    <td>
+                        Select a color theme for the button. Options include:
+                        <ul>
+                            <li><code>btn-default</code>: <span
+                                    style="background-color: #fff; color: #666; padding: 2px 6px; border-radius: 4px;">Default</span>
+                            </li>
+                            <li><code>btn-success</code>: <span
+                                    style="background-color: #47a447; color: white; padding: 2px 6px; border-radius: 4px;">Success</span>
+                            </li>
+                            <li><code>btn-info</code>: <span
+                                    style="background-color: #5bc0de; color: white; padding: 2px 6px; border-radius: 4px;">Info</span>
+                            </li>
+                            <li><code>btn-warning</code>: <span
+                                    style="background-color: #ed9c28; color: white; padding: 2px 6px; border-radius: 4px;">Warning</span>
+                            </li>
+                            <li><code>btn-danger</code>: <span
+                                    style="background-color: #bd2d29; color: white; padding: 2px 6px; border-radius: 4px;">Danger</span>
+                            </li>
+                            <li><code>btn-dark</code>: <span
+                                    style="background-color: #2e353e; color: white; padding: 2px 6px; border-radius: 4px;">Dark</span>
+                            </li>
+                            <li><code>btn-primary</code>: <span
+                                    style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary</span>
+                            </li>
+                            <li><code>btn-secondary</code>: <span
+                                    style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary</span>
+                            </li>
+                            <li><code>btn-tertiary</code>: <span
+                                    style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary</span>
+                            </li>
+                            <li><code>btn-quaternary</code>: <span
+                                    style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary</span>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Button Size</td>
+                    <td>Select</td>
+                    <td>
+                        Choose from different button sizes. Options include:
+                        <ul>
+                            <li><code>btn-lg</code>: Large size.</li>
+                            <li><code>btn</code>: Default size.</li>
+                            <li><code>btn-sm</code>: Small size.</li>
+                            <li><code>btn-xs</code>: Extra small size.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Button Style</td>
+                    <td>Select</td>
+                    <td>
+                        Set the visual style of the button. Options include:
+                        <ul>
+                            <li><code>btn</code>: Default style.</li>
+                            <li><code>btn-borders</code>: Only border style.</li>
+                            <li><code>btn-3d</code>: 3D button style.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Button Align</td>
+                    <td>Select</td>
+                    <td>
+                        Align the button within its container. Options include:
+                        <ul>
+                            <li><code>left</code>: Align to the left.</li>
+                            <li><code>center</code>: Align to the center.</li>
+                            <li><code>right</code>: Align to the right.</li>
+                            <li><code>inherit</code>: Inherit alignment from the parent container.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="views" class="Head">Views</h3>
         <img src="image/view.png" alt="Screenshot of computer" class="component-image">
 
-    <h2 class="Head">Notes</h2>
-    <div class="note">
-        <strong>Note:</strong> Ensure that the component's properties are set properly to match the design and layout
-        needs of your page.
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> To ensure the <strong>Porto-Buttons</strong> component works as expected, please
+            consider the following:
+            <ul>
+                <li>Ensure that all required properties, such as <code>Button Text</code>, <code>Link</code>, and
+                    <code>Button Color</code>, are properly configured.</li>
+                <li>When using custom values for <code>Rel</code> or <code>Target</code>, make sure the corresponding
+                    <code>CustomRel</code> or <code>CustomTarget</code> fields are filled in.</li>
+                <li>Verify that the selected <code>Button Color</code>, <code>Button Size</code>, <code>Button
+                        Style</code>, and <code>Button Align</code> match the design and layout requirements of your
+                    page.</li>
+                <li>Icons should be selected from a valid source, such as <a
+                        href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a>, and the class
+                    name should be entered correctly in the <code>Icon</code> field.</li>
+                <li>Ensure that the <code>Link</code> field contains a valid URL to avoid broken links.</li>
+                <li>Test the button's appearance and functionality across different devices and browsers to ensure
+                    compatibility.</li>
+            </ul>
+        </div>
     </div>
-</div>
 </body>
 
 </html>

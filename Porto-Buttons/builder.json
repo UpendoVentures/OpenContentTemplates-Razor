@@ -3,14 +3,8 @@
     {
       "fieldname": "Button",
       "title": "Button Text (required)",
-      "fieldtype": "wysihtml",
-      "advanced": true,
-      "required": false,
-      "hidden": false,
-      "multilanguage": false,
-      "index": false,
-      "position": "1col1",
-      "dependencies": []
+      "fieldtype": "text",
+      "advanced": false
     },
     {
       "fieldname": "Icon",
@@ -24,6 +18,115 @@
       "index": false,
       "position": "1col1",
       "dependencies": []
+    },
+    {
+      "fieldname": "Link",
+      "title": "Link",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Rel",
+      "title": "Rel",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "nofollow",
+          "text": "Nofollow"
+        },
+        {
+          "value": "noopener",
+          "text": "Noopener"
+        },
+        {
+          "value": "noreferrer",
+          "text": "Noreferrer"
+        },
+        {
+          "value": "noopener ",
+          "text": "Noopener "
+        },
+        {
+          "value": "author",
+          "text": "Author"
+        },
+        {
+          "value": "bookmark",
+          "text": "Bookmark"
+        },
+        {
+          "value": "custom",
+          "text": "Custom"
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "CustomRel",
+      "title": "Custom Value",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Rel",
+          "values": "custom"
+        }
+      ]
+    },
+    {
+      "fieldname": "Target",
+      "title": "Target",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "_self",
+          "text": "Self"
+        },
+        {
+          "value": "_blank",
+          "text": "Blank"
+        },
+        {
+          "value": "_parent",
+          "text": "Parent"
+        },
+        {
+          "value": "_top",
+          "text": "Top"
+        },
+        {
+          "value": "custom",
+          "text": "Custom"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "CustomTarget",
+      "title": "Custom Value",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "Target",
+          "values": "custom"
+        }
+      ]
     }
   ],
   "formtype": "object"
