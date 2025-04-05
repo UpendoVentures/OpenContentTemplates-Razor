@@ -1,5 +1,6 @@
 {
   "ModuleTitle": "Tabs",
+  "ActiveTabDefault": "true",
   "Items": [
     {
       "Title": "Tab 1",
