@@ -3,6 +3,17 @@
     "ModuleTitle": {
       "type": "text"
     },
+    "ActiveTabDefault": {
+      "type": "checkbox"
+    },
+    "ActiveTabNumber": {
+      "type": "number",
+      "dependencies": {
+        "ActiveTabDefault": [
+          "false"
+        ]
+      }
+    },
     "Items": {
       "type": "array",
       "items": {
@@ -11,11 +22,15 @@
             "type": "text"
           },
           "Content": {
-            "type": "wysihtml"
+            "type": "ckeditor",
+            "configset": "standard"
           },
           "Icon": {
             "type": "text",
             "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+          },
+          "ActiveTab": {
+            "type": "checkbox"
           }
         }
       }
