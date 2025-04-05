@@ -5,6 +5,18 @@
       "type": "string",
       "title": "Module Title"
     },
+    "ActiveTabDefault": {
+      "type": "boolean",
+      "title": "ActiveTab-Default?",
+      "default": "true"
+    },
+    "ActiveTabNumber": {
+      "type": "number",
+      "title": "ActiveTab Number",
+      "dependencies": [
+        "ActiveTabDefault"
+      ]
+    },
     "Items": {
       "type": "array",
       "items": {
@@ -22,6 +34,10 @@
             "type": "string",
             "title": "Icon (optional) - Example: fab fa-android",
             "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+          },
+          "ActiveTab": {
+            "type": "boolean",
+            "title": "Active Tab"
           }
         }
       }

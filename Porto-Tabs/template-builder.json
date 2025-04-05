@@ -1,20 +1,138 @@
 {
-  "formtype": "object",
   "formfields": [
     {
-      "fieldname": "Layout",
+      "fieldname": "TabMode",
+      "title": "Tab Mode",
+      "fieldtype": "select",
       "fieldoptions": [
         {
-          "value": "tab",
-          "text": "tab"
+          "value": "standard",
+          "text": "Standard"
         },
         {
-          "value": "pill",
-          "text": "pill"
+          "value": "simple",
+          "text": "Simple"
+        },
+        {
+          "value": "navigation",
+          "text": "Navigation (ignores most other settings)"
         }
       ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "standard",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TabPosition",
+      "title": "Tab Position",
       "fieldtype": "select",
-      "title": "Layout"
+      "fieldoptions": [
+        {
+          "value": "top",
+          "text": "Top"
+        },
+        {
+          "value": "bottom",
+          "text": "Bottom"
+        },
+        {
+          "value": "vertical",
+          "text": "Vertical"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "top",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TabAlignment",
+      "title": "Tab Alignment",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "left",
+          "text": "Left"
+        },
+        {
+          "value": "right",
+          "text": "Right"
+        },
+        {
+          "value": "centered",
+          "text": "Centered (ignored in Navigation mode)"
+        },
+        {
+          "value": "justified",
+          "text": "Justified (ignored in Navigation mode)"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "left",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Color",
+      "title": "Tab Color",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "default",
+          "text": "Default"
+        },
+        {
+          "value": "primary",
+          "text": "Primary"
+        },
+        {
+          "value": "secondary",
+          "text": "Secondary"
+        },
+        {
+          "value": "tertiary",
+          "text": "Tertiary"
+        },
+        {
+          "value": "quaternary",
+          "text": "Quaternary"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "default",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TabIconMode",
+      "title": "Tab Icon Mode",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "default",
+          "text": "Default"
+        },
+        {
+          "value": "bigicons",
+          "text": "Big Icons"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "default",
+      "position": "1col1",
+      "dependencies": []
     }
-  ]
+  ],
+  "formtype": "object"
 }

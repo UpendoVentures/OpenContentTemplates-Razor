@@ -251,6 +251,27 @@
                     <td>The title of the module.</td>
                 </tr>
                 <tr>
+                    <td>ActiveTabDefault</td>
+                    <td>Checkbox</td>
+                    <td>Determines if the first tab is active by default.</td>
+                    <td>
+                        <ul>
+                            <li><code>true</code>: The first tab is active by default.</li>
+                            <li><code>false</code>: A specific tab can be set using <code>ActiveTabNumber</code>.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ActiveTabNumber</td>
+                    <td>Number</td>
+                    <td>Specifies the tab number to be active when <code>ActiveTabDefault</code> is set to <code>false</code>.</td>
+                    <td>
+                        <ul>
+                            <li>Enter a valid tab number (e.g., <code>1</code>, <code>2</code>, etc.).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
                     <td>Items</td>
                     <td>Array</td>
                     <td>Defines the tabs. Each item contains the following fields:</td>
@@ -262,7 +283,7 @@
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;Content</td>
-                    <td>Text (WYSIWYG)</td>
+                    <td>Text (CK Editor)</td>
                     <td>The content displayed within the tab.</td>
                 </tr>
                 <tr>

@@ -7,6 +7,35 @@
       "advanced": false
     },
     {
+      "fieldname": "ActiveTabDefault",
+      "title": "ActiveTab-Default?",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "true",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ActiveTabNumber",
+      "title": "ActiveTab Number",
+      "fieldtype": "number",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": [
+        {
+          "fieldname": "ActiveTabDefault",
+          "values": "false"
+        }
+      ]
+    },
+    {
       "fieldname": "Items",
       "fieldtype": "array",
       "subfields": [
@@ -19,7 +48,10 @@
         {
           "fieldname": "Content",
           "title": "Content",
-          "fieldtype": "wysihtml",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "standard"
+          },
           "advanced": false
         },
         {
@@ -34,6 +66,12 @@
           "index": false,
           "position": "1col1",
           "dependencies": []
+        },
+        {
+          "fieldname": "ActiveTab",
+          "title": "Active Tab",
+          "fieldtype": "checkbox",
+          "advanced": false
         }
       ],
       "advanced": false
