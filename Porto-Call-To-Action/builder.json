@@ -3,7 +3,10 @@
     {
       "fieldname": "Heading",
       "title": "Heading Text (required)",
-      "fieldtype": "wysihtml",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
       "advanced": true,
       "required": false,
       "hidden": false,
@@ -15,7 +18,10 @@
     {
       "fieldname": "SubHeading",
       "title": "Heading Subtitle",
-      "fieldtype": "wysihtml",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
       "advanced": false
     },
     {

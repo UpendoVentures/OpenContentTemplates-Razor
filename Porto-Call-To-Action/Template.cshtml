@@ -10,6 +10,10 @@
     var isButtonCentered = Model.Style == "ButtonCentered";
     var isFullWidth = Model.Style == "FullWidth";
     var isFooter = Model.Style == "Footer";
+    var marginTop = (!string.IsNullOrEmpty(Model.Settings.MarginTop)) ? Model.Settings.MarginTop : "mt-0";
+    var marginBottom = (!string.IsNullOrEmpty(Model.Settings.MarginBottom)) ? Model.Settings.MarginBottom : "mb-0";
+    var paddingTop = (!string.IsNullOrEmpty(Model.Settings.PaddingTop)) ? Model.Settings.PaddingTop : "pt-0";
+    var paddingBottom = (!string.IsNullOrEmpty(Model.Settings.PaddingBottom)) ? Model.Settings.PaddingBottom : "pb-0";
 
     var buttonClass = isColors || isSmall || isFullWidth ? "btn-default" : "btn-primary";
     var sectionClass = "call-to-action mb-xl" +
@@ -22,7 +26,8 @@
     (isSmall ? " button-centered" : "") +
     (isFullWidth ? " " + Model.Color : "") +
     (isFooter ? " call-to-action-default with-button-arrow call-to-action-in-footer" : "") +
-    (isAnimated ? " data-appear-animation='fadeIn'" : "");
+    (isAnimated ? " data-appear-animation='fadeIn'" : "") + 
+    (" " + marginTop) + (" " + marginBottom) + (" " + paddingTop) + (" " + paddingBottom);
 }
 
 @if (isParallax)
@@ -106,3 +111,8 @@ else
         }
     </section>
 }
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
