@@ -1,0 +1,137 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ButtonColor",
+      "title": "Button Color",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "btn-default",
+          "text": "Default"
+        },
+        {
+          "value": "btn-success",
+          "text": "Success"
+        },
+        {
+          "value": "btn-info",
+          "text": "Info"
+        },
+        {
+          "value": "btn-warning",
+          "text": "Warning"
+        },
+        {
+          "value": "btn-danger",
+          "text": "Danger"
+        },
+        {
+          "value": "btn-dark",
+          "text": "Dark"
+        },
+        {
+          "value": "btn-primary",
+          "text": "Primary"
+        },
+        {
+          "value": "btn-secondary",
+          "text": "Secondary"
+        },
+        {
+          "value": "btn-tertiary",
+          "text": "Tertiary"
+        },
+        {
+          "value": "btn-quaternary",
+          "text": "Quaternary"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ButtonSize",
+      "title": "Button Size",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "btn-lg",
+          "text": "Large"
+        },
+        {
+          "value": "btn",
+          "text": "Default"
+        },
+        {
+          "value": "btn-sm",
+          "text": "Small"
+        },
+        {
+          "value": "btn-xs",
+          "text": "Extra Small"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ButtonStyle",
+      "title": "Button Style",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "btn",
+          "text": "Default"
+        },
+        {
+          "value": "btn-borders",
+          "text": "Only Border"
+        },
+        {
+          "value": "btn-3d",
+          "text": "3D Button"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ButtonAlign",
+      "title": "Button Align",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "left",
+          "text": "Left"
+        },
+        {
+          "value": "center",
+          "text": "Center"
+        },
+        {
+          "value": "right",
+          "text": "Right"
+        },
+        {
+          "value": "inherit",
+          "text": "Inherit "
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

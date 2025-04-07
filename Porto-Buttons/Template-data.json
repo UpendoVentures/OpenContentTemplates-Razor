@@ -1,5 +1,6 @@
 {
     "ButtonColor": "btn-primary",
     "ButtonSize": "btn",
-    "ButtonStyle": "btn"
+    "ButtonStyle": "btn",
+    "ButtonAlign": "center"
 }

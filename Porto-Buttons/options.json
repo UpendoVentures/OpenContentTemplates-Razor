@@ -1,11 +1,54 @@
 {
   "fields": {
     "Button": {
-      "type": "wysihtml"
+      "type": "text"
     },
     "Icon": {
       "type": "text",
       "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+    },
+    "Link": {
+      "type": "text"
+    },
+    "Rel": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Nofollow",
+        "Noopener",
+        "Noreferrer",
+        "Noopener ",
+        "Author",
+        "Bookmark",
+        "Custom"
+      ]
+    },
+    "CustomRel": {
+      "type": "text",
+      "dependencies": {
+        "Rel": [
+          "custom"
+        ]
+      }
+    },
+    "Target": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Self",
+        "Blank",
+        "Parent",
+        "Top",
+        "Custom"
+      ]
+    },
+    "CustomTarget": {
+      "type": "text",
+      "dependencies": {
+        "Target": [
+          "custom"
+        ]
+      }
     }
   }
 }
