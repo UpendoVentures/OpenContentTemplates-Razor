@@ -4,9 +4,20 @@
         return value != null && value.ToString().ToLower() == "true";
     }
 }
+@{
+   var activeTabDefault = @Model.ActiveTabDefault;
+   var activeTabNumber = @Model.ActiveTabNumber;
+}
+
+
+<div id="error-message-container">
+    <p id="error-message" style="color: red; font-weight: bold; display: none;">Tab @activeTabNumber does not exist. Select another tab number.</p>
+</div>
+
 
 @if (Model.Settings.TabMode == "navigation")
 {
+     
     <div class="row" id="tabs-@Model.Context.ModuleId">
         <div class="col-md-4">
             <div class="@string.Format("tabs tabs-vertical tabs-left tabs-navigation{0}", Model.Settings.Color ?? "")">
@@ -189,3 +200,45 @@ else
         }
     </div>
 }
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var activeTabDefault = "@activeTabDefault".toLowerCase(); 
+        var activeTabNumber = parseInt("@activeTabNumber", 10);
+
+        var totalTabs = document.querySelectorAll(".nav-tabs .nav-item").length;
+
+        if (activeTabDefault === "false") {
+            if (activeTabNumber <= 0 || activeTabNumber > totalTabs) {
+                var errorMessage = document.getElementById("error-message");
+                if (errorMessage) {
+                    errorMessage.style.display = "block"; 
+                }
+                return; 
+            }
+
+            var activeNavItems = document.querySelectorAll(".nav-tabs .nav-item.active");
+            var activeTabPanes = document.querySelectorAll(".tab-content .tab-pane.active");
+
+            activeNavItems.forEach(function (navItem) {
+                navItem.classList.remove("active");
+            });
+
+            activeTabPanes.forEach(function (tabPane) {
+                tabPane.classList.remove("active");
+            });
+
+            var targetTab = document.querySelector(`.nav-tabs .nav-item:nth-child(${activeTabNumber})`);
+            var targetPane = document.querySelector(`#tab-@Model.Context.ModuleId-${activeTabNumber - 1}`); 
+
+            if (targetTab) {
+                targetTab.classList.add("active");
+            }
+
+            if (targetPane) {
+                targetPane.classList.add("active");
+            }
+        }
+    });
+</script>
