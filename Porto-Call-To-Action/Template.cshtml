@@ -14,6 +14,7 @@
     var marginBottom = (!string.IsNullOrEmpty(Model.Settings.MarginBottom)) ? Model.Settings.MarginBottom : "mb-0";
     var paddingTop = (!string.IsNullOrEmpty(Model.Settings.PaddingTop)) ? Model.Settings.PaddingTop : "pt-0";
     var paddingBottom = (!string.IsNullOrEmpty(Model.Settings.PaddingBottom)) ? Model.Settings.PaddingBottom : "pb-0";
+    var linkTarget = (!string.IsNullOrEmpty(Model.LinkTarget)) ? Model.LinkTarget : "_self";
 
     var buttonClass = isColors || isSmall || isFullWidth ? "btn-default" : "btn-primary";
     var sectionClass = "call-to-action mb-xl" +
@@ -43,7 +44,7 @@
                             <p>@Model.SubHeading</p>
                         </div>
                         <div class="call-to-action-btn">
-                            <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg btn-primary">@Model.Button</a>
+                            <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg btn-primary">@Model.Button</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@ else if (isSmall)
                         <p>@Model.SubHeading</p>
                     </div>
                     <div class="call-to-action-btn">
-                        <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg @buttonClass">@Model.Button</a>
+                        <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg @buttonClass">@Model.Button</a>
                     </div>
                 </section>
             </section>
@@ -82,7 +83,7 @@ else
                             <p>@Model.SubHeading</p>
                         </div>
                         <div class="call-to-action-btn">
-                            <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg @buttonClass">@Model.Button</a>
+                            <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg @buttonClass">@Model.Button</a>
                             @if (isFooter)
                             {
                                 <span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft"
@@ -101,7 +102,7 @@ else
                 <p>@Model.SubHeading</p>
             </div>
             <div class="call-to-action-btn">
-                <a href="@Model.ButtonLink" target="_blank" class="btn btn-lg @buttonClass">@Model.Button</a>
+                <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg @buttonClass">@Model.Button</a>
                 @if (isWithArrow)
                 {
                     <span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft"

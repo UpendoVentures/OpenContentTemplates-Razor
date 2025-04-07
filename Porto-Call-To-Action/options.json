@@ -15,6 +15,16 @@
       "type": "text",
       "placeholder": "Example: https://github.com/UpendoVentures/OpenContentTemplates"
     },
+    "LinkTarget": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "New Tab",
+        "Self",
+        "Parent",
+        "Top"
+      ]
+    },
     "Style": {
       "type": "select",
       "sort": false,

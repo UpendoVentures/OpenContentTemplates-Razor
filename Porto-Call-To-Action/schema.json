@@ -17,6 +17,17 @@
       "type": "string",
       "title": "Button Link"
     },
+    "LinkTarget": {
+      "type": "string",
+      "title": "Link Target",
+      "enum": [
+        "_blank",
+        "_self",
+        "_parent",
+        "_top"
+      ],
+      "default": "_blank"
+    },
     "Style": {
       "type": "string",
       "title": "Style",

@@ -44,6 +44,36 @@
       "dependencies": []
     },
     {
+      "fieldname": "LinkTarget",
+      "title": "Link Target",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "_blank",
+          "text": "New Tab"
+        },
+        {
+          "value": "_self",
+          "text": "Self"
+        },
+        {
+          "value": "_parent",
+          "text": "Parent"
+        },
+        {
+          "value": "_top",
+          "text": "Top"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "_self",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
       "fieldname": "Style",
       "title": "Style",
       "fieldtype": "select",
