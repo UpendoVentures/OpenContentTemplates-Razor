@@ -1,20 +1,24 @@
-@if (Model.Settings.EnableHeadingBorder)
-{
-    <div class="heading @Model.Settings.BorderColor heading-border @Model.Settings.BorderStyle @Model.Settings.BorderSize">
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+    @if (Model.Settings.EnableHeadingBorder)
+    {
+        <div class="heading @Model.Settings.BorderColor heading-border @Model.Settings.BorderStyle @Model.Settings.BorderSize">
+            <@Model.Settings.HeadingType class="@(Model.SubHeading != null ? "mb-none" : "") @Model.Settings.Uppercase @Model.Settings.HeadingColor">@Model.Heading</@Model.Settings.HeadingType>
+
+            @if (Model.SubHeading != null)
+            {
+                <p class="mb-xlg mt-sm">@Model.SubHeading</p>
+            }
+        </div>
+    }
+    else
+    {
         <@Model.Settings.HeadingType class="@(Model.SubHeading != null ? "mb-none" : "") @Model.Settings.Uppercase @Model.Settings.HeadingColor">@Model.Heading</@Model.Settings.HeadingType>
 
-        @if (Model.SubHeading != null)
-        {
-            <p class="mb-xlg">@Model.SubHeading</p>
-        }
+            if (Model.SubHeading != null)
+            {
+                <p class="mb-xlg mt-sm">@Model.SubHeading</p>
+            }
+    }
     </div>
-}
-else
-{
-     <@Model.Settings.HeadingType class="@(Model.SubHeading != null ? "mb-none" : "") @Model.Settings.Uppercase @Model.Settings.HeadingColor">@Model.Heading</@Model.Settings.HeadingType>
-
-        if (Model.SubHeading != null)
-        {
-            <p class="mb-xlg">@Model.SubHeading</p>
-        }
-}
+</div>

@@ -2,5 +2,9 @@
     "HeadingType": "h1" , 
     "HeadingColor": "",
     "Uppercase": "text-uppercase",
-    "EnableHeadingBorder": false
+    "EnableHeadingBorder": false, 
+    "MarginTop": "mt-auto",
+    "MarginBottom": "mb-auto",
+    "PaddingTop": "pt-auto",
+    "PaddingBottom": "pb-auto"
 }
