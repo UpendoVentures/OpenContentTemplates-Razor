@@ -34,10 +34,6 @@
             "type": "string",
             "title": "Icon (optional) - Example: fab fa-android",
             "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
-          },
-          "ActiveTab": {
-            "type": "boolean",
-            "title": "Active Tab"
           }
         }
       }

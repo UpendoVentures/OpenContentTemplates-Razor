@@ -66,12 +66,6 @@
           "index": false,
           "position": "1col1",
           "dependencies": []
-        },
-        {
-          "fieldname": "ActiveTab",
-          "title": "Active Tab",
-          "fieldtype": "checkbox",
-          "advanced": false
         }
       ],
       "advanced": false
