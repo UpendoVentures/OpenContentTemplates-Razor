@@ -1,10 +1,12 @@
 {
   "fields": {
     "Heading": {
-      "type": "wysihtml"
+      "type": "ckeditor",
+      "configset": "basic"
     },
     "SubHeading": {
-      "type": "wysihtml"
+      "type": "ckeditor",
+      "configset": "basic"
     },
     "Button": {
       "type": "text"
