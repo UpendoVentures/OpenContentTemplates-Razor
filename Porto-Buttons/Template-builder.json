@@ -129,6 +129,171 @@
       "advanced": true,
       "required": true,
       "hidden": false,
+      "default": "center",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "MarginTop",
+      "title": "Margin Top",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "mt-auto",
+          "text": "mt-auto"
+        },
+        {
+          "value": "mt-0",
+          "text": "mt-0"
+        },
+        {
+          "value": "mt-1",
+          "text": "mt-1"
+        },
+        {
+          "value": "mt-2",
+          "text": "mt-2"
+        },
+        {
+          "value": "mt-3",
+          "text": "mt-3"
+        },
+        {
+          "value": "mt-4",
+          "text": "mt-4"
+        },
+        {
+          "value": "mt-5",
+          "text": "mt-5"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "mt-auto",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "MarginTop",
+      "title": "Margin Top",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "mb-auto",
+          "text": "mb-auto"
+        },
+        {
+          "value": "mb-0",
+          "text": "mb-0"
+        },
+        {
+          "value": "mb-1",
+          "text": "mb-1"
+        },
+        {
+          "value": "mb-2",
+          "text": "mb-2"
+        },
+        {
+          "value": "mb-3",
+          "text": "mb-3"
+        },
+        {
+          "value": "mb-4",
+          "text": "mb-4"
+        },
+        {
+          "value": "mb-5",
+          "text": "mb-5"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "mb-auto",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PaddingTop",
+      "title": "Padding Top",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "pt-auto",
+          "text": "pt-auto"
+        },
+        {
+          "value": "pt-0",
+          "text": "pt-0"
+        },
+        {
+          "value": "pt-1",
+          "text": "pt-1"
+        },
+        {
+          "value": "pt-2",
+          "text": "pt-2"
+        },
+        {
+          "value": "pt-3",
+          "text": "pt-3"
+        },
+        {
+          "value": "pt-4",
+          "text": "pt-4"
+        },
+        {
+          "value": "pt-5",
+          "text": "pt-5"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "pt-auto",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PaddingBottom",
+      "title": "Padding Bottom",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "pb-auto",
+          "text": "pb-auto"
+        },
+        {
+          "value": "pb-0",
+          "text": "pb-0"
+        },
+        {
+          "value": "pb-1",
+          "text": "pb-1"
+        },
+        {
+          "value": "pb-2",
+          "text": "pb-2"
+        },
+        {
+          "value": "pb-3",
+          "text": "pb-3"
+        },
+        {
+          "value": "pb-4",
+          "text": "pb-4"
+        },
+        {
+          "value": "pb-5",
+          "text": "pb-5"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "pb-auto",
       "position": "1col1",
       "dependencies": []
     }

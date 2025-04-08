@@ -2,5 +2,9 @@
     "ButtonColor": "btn-primary",
     "ButtonSize": "btn",
     "ButtonStyle": "btn",
-    "ButtonAlign": "center"
+    "ButtonAlign": "center",
+    "MarginTop": "mt-auto" , 
+    "MarginBottom": "mb-auto",
+    "PaddingTop": "pt-auto",
+    "PaddingBottom": "pb-auto"
 }
