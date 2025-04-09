@@ -1,7 +1,14 @@
 {
     "type": "object",
     "properties": {        
-        "MarginTop": {
+        "ImagePosition": {
+			"title": "Image Position",
+			"type": "string",
+			"enum": [
+				"Right",
+				"Left"
+			]
+		},"MarginTop": {
             "title": "Margin (top)",
             "type": "string",
             "enum": [

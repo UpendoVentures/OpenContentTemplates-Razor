@@ -1,5 +1,14 @@
 {
 	"fields": {		
+		"ImagePosition": {
+			"title": "Image Position",
+			"type": "select",
+			"optionLabels": [
+				"Right",
+				"Left"
+			],
+			"removeDefaultNone": true
+		},		
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",
