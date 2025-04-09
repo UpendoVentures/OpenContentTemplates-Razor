@@ -19,7 +19,9 @@
       "fieldname": "Image",
       "title": "Image (required)",
       "fieldtype": "image",
-      "imageoptions": {},
+      "imageoptions": {
+        "folder": "Images"
+      },
       "advanced": true,
       "required": true,
       "hidden": false,
