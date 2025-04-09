@@ -5,10 +5,15 @@
       "configset": "basic"
     },
     "Image": {
-      "type": "image"
+      "type": "image",
+      "uploadfolder": "Images",
+      "typeahead": {
+        "Folder": "Images"
+      }
     },
     "Classes": {
-      "type": "text"
+      "type": "text",
+      "placeholder": "img-fluid"
     },
     "AltText": {
       "type": "text",
