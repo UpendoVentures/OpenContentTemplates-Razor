@@ -77,7 +77,7 @@ else
                 <div class="featured-box-full featured-box-full-primary">
                     @RenderIconBox(Model,item)
                     <h4 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
-                    <p>@item.Content</p>
+                    <div>@Html.Raw(item.Content)</div>
                 </div>
             </div>
         }
@@ -126,8 +126,8 @@ else
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p>@item.Content</p>
-                <button class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</button>
+                <div>@Html.Raw(item.Content)</div>
+                <a class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</a>
             </div>
         </div>
     }
@@ -141,12 +141,12 @@ else
                 {
                     @RenderDivider()
                 }
-                <p>@item.Content</p>
+                <div>@Html.Raw(item.Content)</div>
                 @if (ConvertToBool(Model.Settings.AddBottomDivider))
                 {
                     @RenderDivider()
                 }
-                <button class="btn btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</button>
+                <a class="btn btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</a>
             </div>
         </div>
     }
