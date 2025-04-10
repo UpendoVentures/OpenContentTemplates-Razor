@@ -1,26 +1,46 @@
 {
-    "fields": {
-      "ModuleTitle": {
-        "type": "text"
-      },
-      "Items": {
-        "type": "array",
-        "items": {
-          "fields": {
-            "Title": {
-              "type": "text"
-            },
-            "Content": {
-              "type": "wysihtml"
-            },
-            "Icon": {
-              "type": "text"
-            },
-            "ButtonText": {
-                "type": "text"
-            }
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Content": {
+            "type": "wysihtml"
+          },
+          "Icon": {
+            "type": "text",
+            "placeholder": "fa-solid fa-heart",
+            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+          },
+          "ButtonText": {
+            "type": "text"
+          },
+          "ButtonIcon": {
+            "type": "text",
+            "placeholder": "fa-solid fa-heart",
+            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+          },
+          "ButtonUrl": {
+            "type": "url"
+          },
+          "ButtonTarget": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "New Tab",
+              "Parent",
+              "Self",
+              "Top"
+            ]
           }
         }
       }
     }
+  }
 }

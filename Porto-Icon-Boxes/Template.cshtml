@@ -29,15 +29,15 @@
                 else
                 {
                     <div class="featured-box featured-box-@Model.Settings.Color
-                    @(Model.Settings.ContentContainers == "2" ? "featured-box-text-left" : "")
-                    @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)"
-                    @if (ConvertToBool(Model.Settings.EnableAnimations))
-                    {
-                        @:data-appear-animation="@Model.Settings.AnimationType"
-                        @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
-                    }>
-                    @RenderBoxContent(Model, item)
-                </div>
+                        @(Model.Settings.ContentContainers == "2" ? "featured-box-text-left" : "")
+                        @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)"
+                        @if (ConvertToBool(Model.Settings.EnableAnimations))
+                        {
+                            @:data-appear-animation="@Model.Settings.AnimationType"
+                            @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
+                        }>
+                        @RenderBoxContent(Model, item)
+                    </div>
                 }
             }
         </div>
@@ -127,7 +127,15 @@ else
         <div class="row">
             <div class="col-md-12">
                 <div>@Html.Raw(item.Content)</div>
-                <a class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</a>
+                @if (!String.IsNullOrEmpty(item.ButtonText))
+                {
+                <a class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" href="@item.ButtonUrl" target="@item.ButtonTarget">
+                    <span>@item.ButtonText</span>
+                    @if (!String.IsNullOrEmpty(item.ButtonIcon)) { 
+                        @Html.Raw(string.Concat("<i class=\"mx-2 ", item.ButtonIcon, "\"></i>"))
+                    }
+                </a>        
+                }
             </div>
         </div>
     }
@@ -146,9 +154,31 @@ else
                 {
                     @RenderDivider()
                 }
-                <a class="btn btn-@Model.Settings.Color mr-xs mb-lg" type="button">@item.ButtonText</a>
+                @if (!String.IsNullOrEmpty(item.ButtonText))
+                {
+                <a class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" href="@item.ButtonUrl" target="@item.ButtonTarget">
+                    <span>@item.ButtonText</span>
+                    @if (!String.IsNullOrEmpty(item.ButtonIcon)) { 
+                        @Html.Raw(string.Concat("<i class=\"mx-2 ", item.ButtonIcon, "\"></i>"))
+                    }
+                </a>        
+                }
             </div>
         </div>
     }
-</div>
+    else
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Unknown rendering request</h1>
+                <p>Please try another setting(s) and report this issue.</p>
+            </div>
+        </div>
+    }
+    </div>
 }
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
