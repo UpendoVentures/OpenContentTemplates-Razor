@@ -1,0 +1,44 @@
+{
+  "fields": {
+    "Extensions": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "ckeditor",
+            "configset": "basic"
+          },
+          "Category": {
+            "type": "checkbox",
+            "sort": false,
+            "optionLabels": [
+              "Developer",
+              "Module",
+              "Prompt",
+              "Provider",
+              "Scheduled",
+              "User Experience",
+              "Open-Source",
+              "Commercial"
+            ]
+          },
+          "Homepage": {
+            "type": "url"
+          },
+          "Download": {
+            "type": "url"
+          },
+          "Logo": {
+            "type": "text"
+          },
+          "BadgeText": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

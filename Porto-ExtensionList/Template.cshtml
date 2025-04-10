@@ -1,0 +1,141 @@
+@functions {
+    public string TruncateString(string description, int maxLength)
+    {
+        if (string.IsNullOrEmpty(description))
+        {
+            return string.Empty;
+        }
+
+        return description.Length > maxLength
+        ? description.Substring(0, maxLength).Trim() + "..."
+        : description.Trim();
+    }
+    public string GetCategoryLabel(string key)
+    {
+        var labels = new Dictionary<string, string>
+        {
+            { "devtool", "Developer" },
+            { "dnnmodule", "Module" },
+            { "dnnprompt", "Prompt" },
+            { "dnnprovider", "Provider" },
+            { "dnnjob", "Scheduled" },
+            { "dnnux", "User Experience" },
+            { "opensource", "Open-Source" },
+            { "commercial", "Commercial" }
+        };
+
+        return labels.ContainsKey(key) ? labels[key] : key;
+    }
+}
+@{
+    var categoriesArray = new List<string>();
+
+    if (Model.Extensions != null)
+    {
+        foreach (var item in Model.Extensions)
+        {
+            if (item.Category != null)
+            {
+                foreach (var category in item.Category)
+                {
+                    if (!categoriesArray.Contains(category))
+                    {
+                        categoriesArray.Add(category);
+                    }
+                }
+            }
+        }
+    }    
+
+    // Retrieve settings from the model
+    var columns = Model.Settings.Columns ?? "4";
+    var marginTop = Model.Settings.MarginTop ?? "mt-auto";
+    var marginBottom = Model.Settings.MarginBottom ?? "mb-auto";
+    var paddingTop = Model.Settings.PaddingTop ?? "pt-auto";
+    var paddingBottom = Model.Settings.PaddingBottom ?? "pb-auto";
+
+    // Combine classes for container styling
+    var containerClasses = string.Format("{0} {1} {2} {3}", marginTop, marginBottom, paddingTop, paddingBottom);
+}
+<div class="container @containerClasses">
+    <div class="row">      
+        <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
+            <li data-option-value="*" class="nav-item active">
+                <a class="nav-link" href="#">Show All</a>
+            </li>
+            @foreach (var category in categoriesArray)
+            {
+                <li data-option-value=".@category" class="nav-item">
+                    <a class="nav-link" href="#" style="color: #0077b3;">
+                    @GetCategoryLabel(category)            
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+    <hr/>
+    @if (Model.Extensions != null)
+    {        
+        <div class="row">
+            <ul class="row image-gallery sort-destination lightbox" data-sort-id="portfolio"
+            data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">                
+            @foreach (var item in Model.Extensions)
+                {
+                <li class="col-lg-@columns col-md-4 col-sm-6 col-xs-12 isotope-item @string.Join(" ", item.Category ?? new List<string>())">
+                    <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg d-flex flex-column flex-grow-1" style="min-height: 415px;">
+                        <span class="thumb-info-wrapper">
+                            <a href="@item.Download">
+                                <span class="thumb-info-wrapper d-flex align-items-center justify-content-center">
+                                    <img alt="@item.Title" title="@item.Title" src="@item.logo" class="img-fluid"
+                                        style="height: 200px; object-fit: cover;">
+                                </span>
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">@item.Title</span>
+                                    <span class="thumb-info-type">
+                                        @foreach (var category in item.Category)
+                                        {                                            
+                                            <span class="badge badge-lg badge-primary">@GetCategoryLabel(category)</span>                                            
+                                        }
+                                    </span>
+                                </span>
+                            </a>
+                        </span>
+                        <div class="thumb-info-caption flex-grow-1 p-0">
+                            <span class="thumb-info-caption-text p-0"
+                                style="text-overflow: ellipsis; display: block; font-size: unset">
+                                @TruncateString(item.Description, 211)
+                            </span>
+                        </div>
+                        <hr class="m-1"/>                       
+                        <div class="d-flex justify-content-around mb-2 mt-2">
+                            <div class="pull-left">
+                                @if(@item.BadgeText != null)
+                                {
+                                    <span class="badge badge-success" style="font-size: unset">@item.BadgeText</span>
+                                }
+                            </div>
+                            <div class="pull-right">
+                                 <a href="@item.HomePage" target="_blank" class="btn btn-sm btn-primary rounded-circle">
+                                    <i class="fa fa-home"></i>
+                                </a>
+                                <a href="@item.Download" target="_blank" class="btn btn-sm btn-primary rounded-circle">
+                                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                                </a>                               
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+            </ul>
+        </div>         
+    }
+    else
+    {
+        <div class="col-12">
+            <div class="dnnFormMessage info">
+                <h4>No Extensions Found</h4>
+                <p>Please add extensions to display them here.</p>
+            </div>
+        </div>
+    }
+</div>
