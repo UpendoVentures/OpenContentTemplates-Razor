@@ -1,0 +1,52 @@
+{
+  "Extensions": [
+    {
+      "Title": "DNN Prompt",
+      "Description": "A command-line interface for managing DNN sites.",
+      "Category": [
+        "Prompt",
+        "Open-Source"
+      ],
+      "Homepage": "https://example.com/dnn-prompt",
+      "Download": "https://example.com/dnn-prompt/download",
+      "Logo": "https://example.com/images/dnn-prompt-logo.png",
+      "BadgeText":"open-source"
+    },
+    {
+      "Title": "DNN Module Creator",
+      "Description": "A tool for creating custom DNN modules quickly.",
+      "Category": [
+        "Module",
+        "Developer"
+      ],
+      "Homepage": "https://example.com/dnn-module-creator",
+      "Download": "https://example.com/dnn-module-creator/download",
+      "Logo": "https://example.com/images/dnn-module-creator-logo.png",
+      "BadgeText": "open-source"
+    },
+    {
+      "Title": "DNN UX Enhancer",
+      "Description": "Enhance the user experience of your DNN site.",
+      "Category": [
+        "Commercial",
+        "Commercial"
+      ],
+      "Homepage": "https://example.com/dnn-ux-enhancer",
+      "Download": "https://example.com/dnn-ux-enhancer/download",
+      "Logo": "https://example.com/images/dnn-ux-enhancer-logo.png",
+      "BadgeText": "open-source"
+    },
+    {
+      "Title": "Open Source Scheduler",
+      "Description": "A job scheduler for DNN with open-source support.",
+      "Category": [
+        "Open-Source",
+        "Open-Source"
+      ],
+      "Homepage": "https://example.com/open-source-scheduler",
+      "Download": "https://example.com/open-source-scheduler/download",
+      "Logo": "https://example.com/images/open-source-scheduler-logo.png",
+      "BadgeText": "open-source"
+    }
+  ]
+}

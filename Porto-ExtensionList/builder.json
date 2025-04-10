@@ -1,0 +1,127 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Extensions",
+      "title": "Extensions",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Description",
+          "title": "Description",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Category",
+          "title": "Category(ies)",
+          "fieldtype": "multicheckbox",
+          "fieldoptions": [
+            {
+              "value": "devtool",
+              "text": "Developer "
+            },
+            {
+              "value": "dnnmodule",
+              "text": "Module"
+            },
+            {
+              "value": "dnnprompt",
+              "text": "Prompt"
+            },
+            {
+              "value": "dnnprovider",
+              "text": "Provider"
+            },
+            {
+              "value": "dnnjob",
+              "text": "Scheduled "
+            },
+            {
+              "value": "dnnux",
+              "text": "User Experience"
+            },
+            {
+              "value": "opensource",
+              "text": "Open-Source"
+            },
+            {
+              "value": "commercial",
+              "text": "Commercial"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Homepage",
+          "title": "Home Page",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Download",
+          "title": "Download",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Logo",
+          "title": "Logo",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "BadgeText",
+          "title": "Badge text",
+          "fieldtype": "text",
+          "advanced": false
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}
