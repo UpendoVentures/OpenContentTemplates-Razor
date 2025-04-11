@@ -5,6 +5,10 @@
     rel = string.IsNullOrEmpty(rel) ? string.Empty : string.Format("rel=\"{0}\"", rel);
     target = string.IsNullOrEmpty(target) ? string.Empty : string.Format("target=\"{0}\"", target);
 }
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="container">
     <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         <div class="col-md-12">
