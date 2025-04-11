@@ -1,6 +1,14 @@
 {
   "fields": {
     "Sections": {
+      "ModuleTitle": {
+        "type": "text"
+      },
+      "ModuleAnchor": {
+        "type": "text",
+        "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+        "showMessages": false
+      },
       "type": "array",
       "items": {
         "fields": {
@@ -10,7 +18,11 @@
           "Class": {
             "type": "select",
             "sort": false,
-            "optionLabels": ["Default", "Drop Caps", "Drop Caps Style-2"],
+            "optionLabels": [
+              "Default",
+              "Drop Caps",
+              "Drop Caps Style-2"
+            ],
             "removeDefaultNone": true
           },
           "AlternativeFont": {
@@ -34,7 +46,14 @@
           "Size": {
             "type": "select",
             "sort": false,
-            "optionLabels": ["h1", "h2", "h3", "h4", "h5", "h6"]
+            "optionLabels": [
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ]
           },
           "OtherText": {
             "type": "textarea"
