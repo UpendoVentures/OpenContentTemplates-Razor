@@ -61,12 +61,12 @@
     <div class="row">      
         <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
             <li data-option-value="*" class="nav-item active">
-                <a class="nav-link" href="#">Show All</a>
+                <a href="#">Show All</a>
             </li>
             @foreach (var category in categoriesArray)
             {
                 <li data-option-value=".@category" class="nav-item">
-                    <a class="nav-link" href="#" style="color: #0077b3;">
+                    <a href="#">
                     @GetCategoryLabel(category)            
                     </a>
                 </li>
