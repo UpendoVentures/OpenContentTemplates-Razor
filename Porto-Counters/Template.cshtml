@@ -8,6 +8,11 @@
   var inline = Model.Inline; 
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
 @if (style == "Default")
 {
   if (!withBackground)
