@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @foreach (var item in Model.Items)
 {
     <div class="row">
