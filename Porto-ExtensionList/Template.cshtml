@@ -1,3 +1,5 @@
+@using DotNetNuke.Entities.Modules
+
 @functions {
     public string TruncateString(string description, int maxLength)
     {
@@ -28,8 +30,23 @@
     }
 }
 @{
-    var categoriesArray = new List<string>();
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+            ? currentModule.TabModuleSettings["hideadminborder"]
+            : null;
+       
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
 
+    var categoriesArray = new List<string>();
     if (Model.Extensions != null)
     {
         foreach (var item in Model.Extensions)
@@ -71,7 +88,7 @@
             {
                 <li data-option-value=".@category" class="nav-item">
                     <a href="#">
-                    @GetCategoryLabel(category)            
+                        @GetCategoryLabel(category)            
                     </a>
                 </li>
             }
