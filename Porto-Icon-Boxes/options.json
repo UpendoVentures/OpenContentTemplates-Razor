@@ -1,7 +1,12 @@
 {
   "fields": {
-    "ModuleTitle": {
+   "ModuleTitle": {
       "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
     },
     "Items": {
       "type": "array",

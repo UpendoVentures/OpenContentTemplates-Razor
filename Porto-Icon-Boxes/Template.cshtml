@@ -4,7 +4,10 @@
     return value != null && value.ToString().ToLower() == "true";
   }
 }
-
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (Model.Settings.IconBoxesType == "Classic")
 {
     <div class="featured-boxes @Model.Settings.FeaturedBoxesStyle">
