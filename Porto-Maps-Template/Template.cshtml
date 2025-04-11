@@ -12,7 +12,10 @@
           return string.Join("?", markers);
     }
 }
-
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (Model.Settings.ShowBorders)
 {
      <div class="google-map-borders">
