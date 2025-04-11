@@ -1,0 +1,96 @@
+@using System
+@using System.Text
+@using System.Data.SqlClient
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+	var intPortalId = Dnn.Portal.PortalId;
+	var strPortalAlias = Dnn.Portal.PortalAlias;
+	
+	var db = Database.Open("SiteSqlServer");
+	var txtSql = @"SELECT Tabs.TabID, 
+	Tabs.PortalID, 
+	Tabs.TabName ,
+	Tabs.TabId,
+	Tabs.TabPath as Path,
+	Modules.ModuleID,
+	ModuleDefinitions.FriendlyName, 
+	ModuleSettings.SettingName, 
+	ModuleSettings.SettingValue as Template
+	FROM            ModuleDefinitions INNER JOIN
+	 Modules ON ModuleDefinitions.ModuleDefID = Modules.ModuleDefID INNER JOIN
+	 TabModules ON Modules.ModuleID = TabModules.ModuleID INNER JOIN
+	 Tabs ON TabModules.TabID = Tabs.TabID INNER JOIN
+	 ModuleSettings ON Modules.ModuleID = ModuleSettings.ModuleID
+	 WHERE ModuleDefinitions.FriendlyName = 'OpenContent' AND ModuleSettings.SettingName = 'template' {0}
+	 ORDER BY  ModuleSettings.SettingValue, Tabs.PortalID";
+	 
+
+	 var portalFilter = string.Empty;
+	 
+
+	 if (Model.Settings != null && Model.Settings.ThisPortal){
+			 portalFilter = " AND Tabs.PortalID =" + Dnn.Portal.PortalId.ToString();
+	 }
+
+	txtSql = string.Format(txtSql, portalFilter);
+
+	 int tables = 0;
+	 string lastTemplate = string.Empty;
+	 string tableOpen = "<table class='table table-striped table-hover'><tr><th scope='col' class='col-portal'>PortalId</th><th scope='col' class='col-page'>Page Name</th><th scope='col' class='col-path'>Path</th></tr>";
+	 string tableClose = "</table>";
+	 
+}
+
+<div class="section">
+	<div class="oc-template-list row">
+		<div class="col">
+		
+			@foreach(var row in db.Query(txtSql)) {
+			
+				string template = row.Template;
+
+				if (Model.Settings != null && Model.Settings.ShortPath != null){
+					if(Model.Settings.ShortPath){
+						string[] items = template.Split(new char[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
+						template = string.Join("/", items.Skip(4));
+					}
+				}			
+			
+				// Close previous tables to start a new one
+				if(lastTemplate != template && tables > 0){
+					@Html.Raw(tableClose);
+				}
+				
+				// Start a new table if there's a new template
+				if(lastTemplate != template){
+					<h5 class="oc-template-title"><span class="oc-title">Template:</span><span class="oc-template">@template</span></h5>
+					@Html.Raw(tableOpen);
+					tables++ ;
+				}
+
+				<tr scope="row">
+					<td>@row.PortalID</td>
+					<td><a href="/default.aspx?tabid=@row.Tabid#@row.ModuleID" target="_blank">@row.TabName</a> &raquo;</td>
+					<td><a href="/default.aspx?tabid=@row.Tabid#@row.ModuleID" target="_blank">@row.Path.Replace("//", "/")</a></td>
+				</tr>
+
+				lastTemplate = template;
+			}
+			
+			@{
+			
+				// Close previous tables
+				if(tables > 0){
+					@Html.Raw(tableClose);
+				}
+			
+			}
+		</div>
+	</div>
+</div>
+<div class="section">
+	<div class="row">
+		<p class="text-center muted"><strong>Attribution:</strong> This template is based on a template of the same name in <a href="https://github.com/sachatrauwaen/OpenContent-Templates" target="_blank">the original template repo</a>.</p>
+	</div>
+</div>

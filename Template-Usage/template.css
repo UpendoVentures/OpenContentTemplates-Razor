@@ -1,0 +1,37 @@
+.DnnModule-OpenContent .oc-template-list table{
+	border-collapse:collapse;
+	width: 100%;
+	
+}
+
+.DnnModule-OpenContent .oc-template-list .oc-template-title{
+	margin: 2.5em 0 0.5em;
+	line-height: 120%;
+	font-size: 1em;
+}
+
+.DnnModule-OpenContent .oc-template-list .oc-template-title .oc-title{
+	color: #888;
+	display:block;
+	margin-bottom: 0.2em;
+}
+
+.DnnModule-OpenContent .oc-template-list th{
+	font-weight:bold;
+}
+
+.DnnModule-OpenContent .oc-template-list .col-portal{
+	width: 4em;
+}
+
+.DnnModule-OpenContent .oc-template-list .col-page{
+	width: 50%;
+}
+
+.DnnModule-OpenContent .oc-template-list th, 
+.DnnModule-OpenContent .oc-template-list td{
+	padding:0.5rem;
+	text-align:left;
+	border: none;
+	border-bottom: solid 1px #ddd;
+}
