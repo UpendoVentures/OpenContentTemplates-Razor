@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <p>
     <img alt="@Model.Settings.Animation"
         class="appear-animation pull-left @Model.Settings.Animation appear-animation-visible"
