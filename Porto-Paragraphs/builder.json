@@ -1,6 +1,25 @@
 {
   "formfields": [
     {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
       "fieldname": "Paragraph",
       "title": "Paragraph Text (required)",
       "fieldtype": "ckeditor",
