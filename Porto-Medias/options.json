@@ -1,5 +1,13 @@
 {
   "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
     "Url": {
       "type": "text",
       "helper": "Find documentation of embed videos at: <a href=\"https://support.google.com/youtube/answer/171780?hl=en\" target=\"_blank\">Click Here!</a>"

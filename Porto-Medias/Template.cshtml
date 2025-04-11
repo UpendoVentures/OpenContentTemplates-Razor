@@ -3,6 +3,10 @@
     var url = Model.Url;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (style == "YouTube")
 {
     if (!string.IsNullOrEmpty(url))
