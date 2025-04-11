@@ -41,8 +41,15 @@
     {
       "fieldname": "Link",
       "title": "Link",
-      "fieldtype": "text",
-      "advanced": false
+      "fieldtype": "url",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Can be a local page (autosuggest) or any other text",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
     },
     {
       "fieldname": "Rel",
