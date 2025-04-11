@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="@string.Format("testimonial {0} {1}", Model.Settings.Color, Model.Settings.Style)">
     <blockquote>
         <p>@Model.Content</p>
