@@ -1,1 +1,5 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <span class="@Model.Settings.LabelSize @Model.Settings.LabelColor">@Model.Label</span>
