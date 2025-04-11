@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <ul class="social-icons">
     @if (Model.Items != null)
     {
