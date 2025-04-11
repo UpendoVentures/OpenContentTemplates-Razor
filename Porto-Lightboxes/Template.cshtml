@@ -5,7 +5,10 @@
     }
 }
 
-
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (Model.Settings.SHOW == "Single-Image")
 {
     <div class="row">
