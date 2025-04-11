@@ -1,40 +1,44 @@
 {
-    "fields": {
-      "ModuleTitle": {
-        "type": "text"
-      },
-      "TableHeadTD": {
-        "type": "array",
-        "items": {
-          "TableHeadTDContent": {
-            "type": "text",
-            "label": "Table Header Text (required)"
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "TableHeadTD": {
+      "type": "array",
+      "items": {
+        "TableHeadTDContent": {
+          "type": "text",
+          "label": "Table Header Text (required)"
+        }
+      }
+    },
+    "TableBodyTR": {
+      "type": "array",
+      "items": {
+        "RowClass": {
+          "type": "radio",
+          "optionLabels": [
+            "Info",
+            "Error",
+            "Success",
+            "Warning"
+          ],
+          "removeDefaultNone": true
+        },
+        "TableBodyTD": {
+          "type": "array",
+          "items": {
+            "TableBodyTDContent": {
+              "type": "wysihtml"
+            }
           }
         }
-      },
-      "TableBodyTR": {
-        "type": "array",
-        "items": {          
-            "RowClass": {
-              "type": "radio",
-              "optionLabels": [                
-                "Info",
-                "Error",
-                "Success",
-                "Warning"
-              ],
-              "removeDefaultNone": true
-            },
-            "TableBodyTD": 
-            {
-              "type": "array",
-              "items": {
-                "TableBodyTDContent": {
-                  "type": "wysihtml"
-                }
-              }
-            }  
-         }
-      }     
+      }
     }
+  }
 }

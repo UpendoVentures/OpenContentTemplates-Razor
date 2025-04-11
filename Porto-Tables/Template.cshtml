@@ -5,6 +5,10 @@
     }
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <table class="table
 @(ConvertToBool(Model.Settings.Striped) ? "table-striped" : "")
 @(ConvertToBool(Model.Settings.Bordered) ? "table-bordered" : "")
