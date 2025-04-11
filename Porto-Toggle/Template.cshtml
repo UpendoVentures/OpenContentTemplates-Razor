@@ -5,6 +5,10 @@
   }
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="toggle @Model.Settings.Color @Model.Settings.Size @Model.Settings.Mode"
      @(ConvertToBool(Model.Settings.OneOnly) ? "data-plugin-options=\"{ 'isAccordion': true }\"" : "")
      data-plugin-toggle="toggle" id="toggle-@Model.Context.ModuleId">
