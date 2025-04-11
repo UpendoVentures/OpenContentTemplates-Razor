@@ -7,7 +7,10 @@
         itemsWithIndex.Add(new { value = Model.Items[i], index = i });
     }
 }
-
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="accordion @(Model.Settings.Background == "default" ? Model.Settings.Color : "") @(Model.Settings.Size) @(Model.Settings.Background) @(Model.Settings.Border)" id="accordion-@Model.Context.ModuleId">
     @foreach (var item in itemsWithIndex)
     {
