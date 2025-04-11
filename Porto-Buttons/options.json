@@ -16,7 +16,8 @@
       "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
     },
     "Link": {
-      "type": "text"
+      "type": "url",
+      "helper": "Can be a local page (autosuggest) or any other text"
     },
     "Rel": {
       "type": "select",
