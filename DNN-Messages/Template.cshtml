@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="dnnFormMessage @Model.MessageType">
     <h4>
         @if (!string.IsNullOrEmpty(Model.Icon))
