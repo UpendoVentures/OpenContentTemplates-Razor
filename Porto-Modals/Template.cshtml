@@ -1,7 +1,10 @@
 @{
     var styleModal = Model.Settings.StyleModal;
 }
-
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <button class="btn @Model.Settings.ButtonColor @((styleModal == "defaultModal") ? "btn-lg" : "")" data-toggle="modal" data-target="#@styleModal">
     @Model.ButtonText
 </button>
