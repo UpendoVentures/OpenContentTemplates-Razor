@@ -5,9 +5,10 @@
     "bindings": {
       "ModuleTitle": "#pos_1_1",
       "ModuleAnchor": "#pos_1_1",
-      "ActiveTabDefault": "#pos_1_1",
-      "ActiveTabNumber": "#pos_1_1",
-      "Items": "#pos_1_1"
+      "Title": "#pos_1_1",
+      "Content": "#pos_1_1",
+      "MessageType": "#pos_1_1",
+      "Icon": "#pos_1_1"
     }
   }
 }

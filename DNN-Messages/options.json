@@ -1,5 +1,13 @@
 {
   "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
     "Title": {
       "type": "text"
     },
@@ -8,16 +16,19 @@
     },
     "MessageType": {
       "type": "radio",
+      "sort": false,
       "optionLabels": [
         "Info",
         "Error",
         "Success",
         "Warning"
       ],
+      "vertical": true,
       "removeDefaultNone": true
     },
     "Icon": {
-      "type": "text"
+      "type": "text",
+      "helper": "Find values at: <a href=https://fontawesome.com/icons?d=gallery target=_blank >FontAwesome</a>"
     }
   }
 }

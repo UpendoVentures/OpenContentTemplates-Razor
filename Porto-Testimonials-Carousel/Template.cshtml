@@ -5,6 +5,10 @@
   }
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (ConvertToBool(Model.Settings.Parallax))
 {
     <section class="parallax section section-text-light section-parallax section-center mt-none mb-none"

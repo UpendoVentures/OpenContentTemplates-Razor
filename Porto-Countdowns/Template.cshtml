@@ -4,6 +4,11 @@
   var parallaxImage = Model.ParallaxImage;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
 @if (countdownStyle == "parallax")
 {
   <section class="parallax section section-text-light section-parallax section-center mt-none"

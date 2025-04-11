@@ -10,6 +10,10 @@
     var text = Model.BannerContent ?? "Your announcement text here"; 
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div id="announcement-bar" class="announcement-bar">
   <div class="announcement-bar-content"
        style="background-color: @headerBackgroundColor; text-align: @textAlign;">

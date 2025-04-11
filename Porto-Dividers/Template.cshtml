@@ -4,6 +4,11 @@
     var enableAnimations = Model.Settings.EnableAnimations ?? false;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
 @if (dividerType == "Divider with Icon")
 {
     <div class="divider 

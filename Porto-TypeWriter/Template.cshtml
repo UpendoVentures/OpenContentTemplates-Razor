@@ -2,6 +2,10 @@
     var typeWriterStyle = Model.Settings.TypeWriterStyle; 
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (typeWriterStyle == "Default")
 {
     <section class="section section-default-scale-9 center">

@@ -5,6 +5,10 @@
   }
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (Model.StyleType == "HalfSection")
 {
     <div class="container-fluid">

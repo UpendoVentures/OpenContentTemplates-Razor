@@ -2,6 +2,10 @@
     var className = string.IsNullOrEmpty(Model.Settings.ListStyle) ? "": string.Format("list list-ordened {0}", Model.Settings.ListStyle);   
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <ol class="@className">
     @foreach (var item in Model.Items)
     {

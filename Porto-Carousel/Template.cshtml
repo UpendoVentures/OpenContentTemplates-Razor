@@ -2,6 +2,10 @@
     var style = Model.Settings.Style != null ? Model.Settings.Style.ToString() : string.Empty;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @switch ((string)style)
 {
     case "FullWidth":

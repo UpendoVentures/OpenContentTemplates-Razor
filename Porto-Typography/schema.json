@@ -1,6 +1,15 @@
 {
   "type": "object",
   "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
     "Sections": {
       "type": "array",
       "title": "Sections",
@@ -14,7 +23,11 @@
           "Class": {
             "type": "string",
             "title": "Class",
-            "enum": ["default", "drop-caps", "drop-caps drop-caps-style-2"],
+            "enum": [
+              "default",
+              "drop-caps",
+              "drop-caps drop-caps-style-2"
+            ],
             "removeDefaultNone": true
           },
           "AlternativeFont": {
@@ -40,7 +53,14 @@
           "Size": {
             "type": "string",
             "title": "Size",
-            "enum": ["h1", "h2", "h3", "h4", "h5", "h6"]
+            "enum": [
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ]
           },
           "OtherText": {
             "type": "string",

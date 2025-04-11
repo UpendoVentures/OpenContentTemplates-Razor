@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <p>@Model.FirstParagraph</p>
 <div class="sticky-container">
   <div class="row">

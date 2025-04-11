@@ -19,6 +19,10 @@
     }
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (ConvertToBool(Model.DescriptionLists))
 {
     <dl>

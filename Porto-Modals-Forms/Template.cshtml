@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <button class="btn @Model.Settings.ButtonColor" data-toggle="modal" data-target="#formModal">
     @Model.ButtonTitle
 </button>

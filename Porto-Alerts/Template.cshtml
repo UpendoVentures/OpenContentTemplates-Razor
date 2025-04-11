@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="alert @Model.Settings.Color @Model.Settings.Size">
     @if (Model.Settings.Dismissible ?? false)
     {

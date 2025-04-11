@@ -9,11 +9,13 @@
    var activeTabNumber = @Model.ActiveTabNumber;
 }
 
-
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div id="error-message-container">
     <p id="error-message" style="color: red; font-weight: bold; display: none;">Tab @activeTabNumber does not exist. Select another tab number.</p>
 </div>
-
 
 @if (Model.Settings.TabMode == "navigation")
 {

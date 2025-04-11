@@ -3,6 +3,10 @@
     var pricingTableSize = Model.Settings.PricingTableSize;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 @if (Model.Settings.PricingTableStyle == "Parallax")
 {
     <section class="parallax section section-text-light section-parallax mt-none mb-none"

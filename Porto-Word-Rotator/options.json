@@ -1,5 +1,13 @@
 {
   "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
     "Sections": {
       "type": "array",
       "items": {
@@ -32,7 +40,14 @@
           "Size": {
             "type": "select",
             "sort": false,
-            "optionLabels": ["h1", "h2", "h3", "h4", "h5", "h6"],
+            "optionLabels": [
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              "h5",
+              "h6"
+            ],
             "removeDefaultNone": true
           },
           "OtherText": {

@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <a 
     data-plugin-options="{'placement': 'right'}" 
     tabindex="0" 

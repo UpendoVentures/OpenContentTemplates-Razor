@@ -1,3 +1,7 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <section class="call-to-action with-borders with-button-arrow mb-xl">
   <div class="call-to-action-content">
     @if(Model.Content != null)
