@@ -57,6 +57,10 @@
     // Combine classes for container styling
     var containerClasses = string.Format("{0} {1} {2} {3}", marginTop, marginBottom, paddingTop, paddingBottom);
 }
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
 <div class="container @containerClasses">
     <div class="row">      
         <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
