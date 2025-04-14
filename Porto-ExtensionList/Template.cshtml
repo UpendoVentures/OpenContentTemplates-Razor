@@ -143,3 +143,20 @@
         </div>
     }
 </div>
+<script>
+    $(document).ready(function () {
+        var $grid = $('.sort-destination').isotope({
+            itemSelector: '.isotope-item',
+            layoutMode: 'fitRows'
+        });
+      
+        $('.sort-source').on('click', 'li', function (e) {
+            e.preventDefault();
+            var filterValue = $(this).attr('data-option-value');
+            $grid.isotope({ filter: filterValue });
+
+            $('.sort-source li').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
