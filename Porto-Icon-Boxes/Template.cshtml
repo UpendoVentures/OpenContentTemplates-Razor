@@ -109,7 +109,7 @@ else
     <div class="box-content">
     @if (Model.Settings.ContentContainers == "2")
     {
-        <div class="row">
+        <div class="row title-row @(Model.Settings.DisplayAxis == "horizontally" ? "title-horizontal-style" : "")">
             @if (Model.Settings.IconPosition == "right")
             {
                 <div class="col-md-9">
@@ -127,20 +127,27 @@ else
                 </div>
             }
         </div>
-        <div class="row">
+        <div class="row description-row">
             <div class="col-md-12">
                 <div>@Html.Raw(item.Content)</div>
-                @if (!String.IsNullOrEmpty(item.ButtonText))
-                {
+               
+            </div>
+        </div>
+        if(!String.IsNullOrEmpty(item.ButtonText))
+        {
+        <div class="row button-row">
+            <div class="col-md-12">
+             
                 <a class="btn btn-lg btn-@Model.Settings.Color mr-xs mb-lg" href="@item.ButtonUrl" target="@item.ButtonTarget">
                     <span>@item.ButtonText</span>
                     @if (!String.IsNullOrEmpty(item.ButtonIcon)) { 
                         @Html.Raw(string.Concat("<i class=\"mx-2 ", item.ButtonIcon, "\"></i>"))
                     }
                 </a>        
-                }
+               
             </div>
         </div>
+         }
     }
     else if (Model.Settings.ContentContainers == "1")
     {
