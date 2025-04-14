@@ -18,7 +18,7 @@
             { "dnnmodule", "Module" },
             { "dnnprompt", "Prompt" },
             { "dnnprovider", "Provider" },
-            { "dnnjob", "Scheduled" },
+            { "dnnjob", "Scheduler" },
             { "dnnux", "User Experience" },
             { "opensource", "Open-Source" },
             { "commercial", "Commercial" }
@@ -82,7 +82,7 @@
     {        
         <div class="row">
             <ul class="row image-gallery sort-destination lightbox" data-sort-id="portfolio"
-            data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">                
+            data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
             @foreach (var item in Model.Extensions)
                 {
                 <li class="col-lg-@columns col-md-4 col-sm-6 col-xs-12 isotope-item @string.Join(" ", item.Category ?? new List<string>())">
@@ -124,7 +124,12 @@
                                 </a>
                                 <a href="@item.Download" target="_blank" class="btn btn-sm btn-primary rounded-circle">
                                     <i class="fa-solid fa-cloud-arrow-down"></i>
-                                </a>                               
+                                </a>
+                                @if (!string.IsNullOrEmpty(item.Documentation)){
+                                <a href="@item.Documentation" target="_blank" class="btn btn-sm btn-primary rounded-circle">
+                                    <i class="fab fa-readme"></i>
+                                </a>
+                                }
                             </div>
                         </div>
                     </div>
@@ -147,7 +152,8 @@
     $(document).ready(function () {
         var $grid = $('.sort-destination').isotope({
             itemSelector: '.isotope-item',
-            layoutMode: 'fitRows'
+            layoutMode: 'fitRows', 
+            sortBy: '.thumb-info-inner'
         });
       
         $('.sort-source').on('click', 'li', function (e) {
