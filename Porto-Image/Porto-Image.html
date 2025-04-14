@@ -16,50 +16,85 @@
             line-height: 1.6;
             background-color: #f9f9f9;
         }
-
+    
         h1,
         h2,
         h3 {
             color: #6d5a2c;
             font-family: "Shadows Into Light", cursive;
         }
-
+    
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-
+    
         h2 {
             font-size: 2rem;
             margin-top: 30px;
             margin-bottom: 15px;
         }
-
+    
         h3 {
             font-size: 1.5rem;
             margin-top: 20px;
             margin-bottom: 1px;
         }
-
+    
         p {
             margin-bottom: 15px;
         }
-
+    
         a {
             color: #6d5a2c;
             text-decoration: none;
         }
-
+    
         a:hover {
             text-decoration: underline;
         }
-
+    
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+    
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-evenly;
+        }
+    
+        .image-with-text {
+            text-align: center;
+            flex-basis: calc(50% - 30px);
+            max-width: 600px;
+        }
+    
+        .component-image-800 {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .image-caption {
+            font-size: 1.2rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+    
+        /* Table Styles */
         .properties-table {
             width: 100%;
             border-collapse: collapse;
@@ -69,24 +104,25 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
+    
         .properties-table th,
         .properties-table td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
-
+    
         .properties-table th {
             background-color: #6d5a2c;
             color: white;
             font-weight: bold;
         }
-
+    
         .properties-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
+    
+        /* Note Box */
         .note {
             background-color: #fff8e5;
             padding: 15px;
@@ -95,11 +131,22 @@
             margin: 20px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+    
         .note strong {
             color: #6d5a2c;
         }
-
+    
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+    
+        /* Header Styles */
         .header {
             display: flex;
             align-items: center;
@@ -109,36 +156,33 @@
             padding: 20px 10px;
             border-bottom: 1px solid #ddd;
         }
-
+    
         .header img {
             max-width: 120px;
             height: auto;
         }
-
+    
         .header-content {
             flex: 1;
             text-align: center;
         }
-
+    
         .header-content h1 {
             font-size: 2rem;
             margin: 0;
             font-family: "Shadows Into Light", cursive;
         }
-
+    
         .header-divider {
             height: 2px;
             width: 100%;
             background-color: #6d5a2c;
             border-radius: 1px;
         }
-
-        .component-image {
-            width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -162,7 +206,7 @@
             <strong>OpenContent</strong>.</p>
 
         <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Image">
+            href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/main/Porto-Image">
             <strong>Porto-Image repository on GitHub</strong></a>.
         </p>
 
