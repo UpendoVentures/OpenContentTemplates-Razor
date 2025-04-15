@@ -1,0 +1,53 @@
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+@if (!string.IsNullOrEmpty(Model.JavaScript)){
+    @Html.Raw(Model.JavaScript)
+}
+
+<div class="container">
+    @if (Model.Columns != null)
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4 @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+            @foreach (var column in Model.Columns)
+            {
+                <div class="col">
+                    <div class="card h-100 border-0">
+                        @if (!string.IsNullOrWhiteSpace(column.Header))
+                        {
+                            <div class="card-header bg-transparent border-0">
+                                <h4 class="card-title h5">@Html.Raw(column.Header)</h4>
+                            </div>
+                        }
+
+                        <div class="card-body">
+                            @if (!string.IsNullOrWhiteSpace(column.Description))
+                            {
+                                <div class="card-text mb-3">
+                                    @Html.Raw(column.Description)
+                                </div>
+                            }
+
+                            <div class="d-flex justify-content-center w-100">
+                                @Html.Raw(column.HtmlSnippet)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-4" role="alert">
+            No content columns have been added yet.
+        </div>
+    }
+</div>
+
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
