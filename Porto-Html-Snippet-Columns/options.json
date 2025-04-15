@@ -1,0 +1,36 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Columns": {
+      "type": "accordion",
+      "helper": "At least one column is required. Columns will automatically wrap within their pane. ",
+      "items": {
+        "fields": {
+          "Header": {
+            "type": "text",
+            "helper": "If left blank, it's not rendered. "
+          },
+          "Description": {
+            "type": "ckeditor"
+          },
+          "HtmlSnippet": {
+            "type": "textarea",
+            "placeholder": "<!-- Expecting HTML snippets -->  ",
+            "helper": "Copy & paste the intended HTML snippets from the respective source. "
+          }
+        }
+      }
+    },
+    "JavaScript": {
+      "type": "textarea",
+      "placeholder": "<!-- Usually a <script> tag -->",
+      "helper": "Meant for a script scoped to all Content Columns. "
+    }
+  }
+}

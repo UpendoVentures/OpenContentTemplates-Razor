@@ -1,0 +1,85 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Columns",
+      "title": "Columns",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "Header",
+          "title": "Header (h3)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "If left blank, it's not rendered. ",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Description",
+          "title": "Description",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {},
+          "advanced": false
+        },
+        {
+          "fieldname": "HtmlSnippet",
+          "title": "HTML Snippet",
+          "fieldtype": "textarea",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Copy & paste the intended HTML snippets from the respective source. ",
+          "placeholder": "<!-- Expecting HTML snippets -->  ",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "At least one column is required. Columns will automatically wrap within their pane. ",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "JavaScript",
+      "title": "JavaScript Injection",
+      "fieldtype": "textarea",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Meant for a script scoped to all Content Columns. ",
+      "placeholder": "<!-- Usually a <script> tag -->",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

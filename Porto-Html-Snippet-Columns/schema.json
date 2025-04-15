@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Columns": {
+      "type": "array",
+      "title": "Columns",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Header": {
+            "type": "string",
+            "title": "Header (h3)"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "HtmlSnippet": {
+            "type": "string",
+            "title": "HTML Snippet",
+            "required": true
+          }
+        }
+      }
+    },
+    "JavaScript": {
+      "type": "string",
+      "title": "JavaScript Injection"
+    }
+  }
+}
