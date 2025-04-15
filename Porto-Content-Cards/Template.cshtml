@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        <div class="udnn-content-items col-md-12">
+            @if (Model.ContentItems != null)
+            {
+                if (!String.IsNullOrEmpty(@Model.ContentTitle)) 
+                {
+                <h3>
+                    @if (!String.IsNullOrEmpty(@Model.TitleIcon)) 
+                    {
+                        <i class="@Model.TitleIcon"></i>@:&nbsp; 
+                    }   
+                    @Model.ContentTitle
+                </h3>
+                }
+                
+                <div class="row mt-lg">
+                    @foreach(var item in Model.ContentItems) {
+
+                    <div class="col">
+                        <div class="card border-0 h-100 p-4">
+                            @if (!String.IsNullOrEmpty(item.ContentImage))
+                            {
+                                <img src="@item.ContentImage" alt="@item.ContentTitle" class="img-fluid w-25 h-25 mb-4" />
+                            }
+                            <div class="card-body">
+                                @if (!String.IsNullOrEmpty(item.ContentSubtitle))
+                                {
+                                <h4 class="card-subtitle mb-2 text-muted">@item.ContentSubtitle</h4>
+                                }
+                                @if (!String.IsNullOrEmpty(item.ContentTitle))
+                                {
+                                <h3 class="card-title h5">@item.ContentTitle</h3>
+                                }
+                                @if (!String.IsNullOrEmpty(item.ContentBody))
+                                {
+                                    @Html.Raw(item.ContentBody.Replace("<p>", "<p class=\"card-text\">"))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            }
+            else
+            {
+                <!-- No Content Items Found -->
+                <h1>No Content Found</h1>
+                <p>Please add one or more content items.</p>
+            }
+        </div>
+    </div>
+</div>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
