@@ -98,14 +98,14 @@
     @if (Model.Extensions != null)
     {        
         <div class="row">
-            <ul class="row image-gallery sort-destination lightbox" data-sort-id="portfolio"
-            data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
+            <ul class="row image-gallery sort-destination lightbox" data-sort-id="portfolio" 
+                data-plugin-options="{'delegate': 'a:not(.no-lightbox)', 'type': 'image', 'gallery': {'enabled': true}}">
             @foreach (var item in Model.Extensions)
                 {
                 <li class="col-lg-@columns col-md-4 col-sm-6 col-xs-12 isotope-item @string.Join(" ", item.Category ?? new List<string>())">
                     <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg d-flex flex-column flex-grow-1" style="min-height: 415px;">
                         <span class="thumb-info-wrapper">
-                            <a href="@item.Download">
+                            <a href="@item.Download" target="_blank" class="no-lightbox">
                                 <span class="thumb-info-wrapper d-flex align-items-center justify-content-center">
                                     <img alt="@item.Title" title="@item.Title" src="@item.logo" class="img-fluid"
                                         style="height: 200px; object-fit: cover;">
@@ -136,16 +136,17 @@
                                 }
                             </div>
                             <div class="pull-right">
-                                 <a href="@item.HomePage" target="_blank" class="btn btn-sm btn-primary rounded-circle">
+                                <a href="@item.HomePage" target="_blank" class="btn btn-sm btn-primary rounded-circle no-lightbox">
                                     <i class="fa fa-home"></i>
                                 </a>
-                                <a href="@item.Download" target="_blank" class="btn btn-sm btn-primary rounded-circle">
+                                <a href="@item.Download" target="_blank" class="btn btn-sm btn-primary rounded-circle no-lightbox">
                                     <i class="fa-solid fa-cloud-arrow-down"></i>
                                 </a>
-                                @if (!string.IsNullOrEmpty(item.Documentation)){
-                                <a href="@item.Documentation" target="_blank" class="btn btn-sm btn-primary rounded-circle">
-                                    <i class="fab fa-readme"></i>
-                                </a>
+                                @if (!string.IsNullOrEmpty(item.Documentation))
+                                {
+                                    <a href="@item.Documentation" target="_blank" class="btn btn-sm btn-primary rounded-circle no-lightbox">
+                                        <i class="fab fa-readme"></i>
+                                    </a>
                                 }
                             </div>
                         </div>
@@ -166,13 +167,21 @@
     }
 </div>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () {        
+        var sortByValue = '@Model.Settings.SortBy'.toLowerCase() || 'none'; // Default sort value
+
+        // Initialize Isotope
         var $grid = $('.sort-destination').isotope({
             itemSelector: '.isotope-item',
-            layoutMode: 'fitRows', 
-            sortBy: '.thumb-info-inner'
+            layoutMode: 'fitRows',
+             getSortData: {
+                title: '.thumb-info-inner', // Title selector
+                description: '.thumb-info-caption-text' // Description selector
+            },
+            sortBy: sortByValue === 'none' ? '' : sortByValue 
         });
-      
+
+        // Bind filter button click
         $('.sort-source').on('click', 'li', function (e) {
             e.preventDefault();
             var filterValue = $(this).attr('data-option-value');
