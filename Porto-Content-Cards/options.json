@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "ContentTitle": {
+      "type": "text",
+      "placeholder": "Optional - not rendered if left empty."
+    },
+    "TitleIcon": {
+      "type": "text",
+      "placeholder": "fa-solid fa-heart",
+      "helper": "Use the search at <a href=\\\"https://fontawesome.com/v5/search\\\" target=\\\"_blank\\\">FontAwesome</a> to help you."
+    },
+    "ContentItems": {
+      "type": "accordion",
+      "helper": "Add as many as you want, and it will stack/wrap as necessary in your theme.",
+      "items": {
+        "fields": {
+          "ContentTitle": {
+            "type": "text"
+          },
+          "ContentSubtitle": {
+            "type": "text",
+            "placeholder": "Not rendered if left empty"
+          },
+          "ContentImage": {
+            "type": "image",
+            "uploadfolder": "Images",
+            "typeahead": {
+              "Folder": "Images"
+            },
+            "helper": "Not rendered if left empty"
+          },
+          "ContentBody": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    }
+  }
+}
