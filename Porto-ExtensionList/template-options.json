@@ -13,6 +13,14 @@
       ],
       "removeDefaultNone": true
     },
+  "SortBy": {
+    "type": "select",
+    "sort": false,
+    "optionLabels": [
+      "Title",
+      "Description"
+    ]
+  },
     "Margin (top)": {
       "title": "Margin (top)",
       "type": "select",

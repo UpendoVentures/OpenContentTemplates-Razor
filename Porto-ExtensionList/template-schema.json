@@ -7,6 +7,14 @@
       "enum": ["2", "3", "4", "6"],
       "removeDefaultNone": true
     },
+    "SortBy": {
+      "type": "string",
+      "title": "SortBy",
+      "enum": [
+        "Title",
+        "Description"
+      ]
+    },
     "MarginTop": {
       "title": "Margin (top)",
       "type": "select",
