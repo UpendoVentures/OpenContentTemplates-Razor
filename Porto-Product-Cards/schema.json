@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "Products": {
+      "type": "array",
+      "title": "Product List",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ProductName": {
+            "type": "string",
+            "title": "Product Name",
+            "required": true
+          },
+          "ProductDescription": {
+            "type": "string",
+            "title": "Product Description",
+            "required": true
+          },
+          "MonthlyPrice": {
+            "type": "string",
+            "title": "Monthly Price"
+          },
+          "MonthlyLink": {
+            "type": "string",
+            "title": "Monthly Link",
+            "default": "#"
+          },
+          "YearlyPrice": {
+            "type": "string",
+            "title": "Yearly Price"
+          },
+          "YearlyLink": {
+            "type": "string",
+            "title": "Yearly Link",
+            "required": true,
+            "default": "#"
+          },
+          "HeaderImage": {
+            "type": "string",
+            "title": "Header Image",
+            "required": true
+          },
+          "IsFeatured": {
+            "type": "boolean",
+            "title": "Is Featured?"
+          }
+        }
+      }
+    }
+  }
+}

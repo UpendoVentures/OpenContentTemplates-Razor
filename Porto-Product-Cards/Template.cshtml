@@ -1,0 +1,128 @@
+@functions {
+    public bool ConvertToBool(dynamic value)
+    {
+        return value != null && value.ToString().ToLower() == "true";
+    }
+
+    public string GetColumns(dynamic value)
+    {
+        return (value != null) ? value.ToString() : "4";
+    }
+
+    public string GetLinkTarget(string href)
+    {
+        if (string.IsNullOrWhiteSpace(href)) return "_top";
+
+        // Normalize and check for internal links
+        href = href.ToLowerInvariant().Trim();
+
+        if (href.StartsWith("/") || href.StartsWith("~") || href.StartsWith("#") || href.Contains(Request.Url.Host)) return "_top";
+
+        // External link detected
+        return "_blank";
+    }
+}
+
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        <div class="udnn-product-highlight col-md-12">
+            @if (Model.Products != null)
+            {
+                <div class="row mt-lg row-cols-1 row-cols-md-@GetColumns(Model.Settings.Columns) g-4 align-items-stretch">
+                    @foreach(var product in Model.Products) {
+
+                    var productTitleOnly = System.Text.RegularExpressions.Regex.Replace(Model.ProductName ?? string.Empty, "<.*?>", string.Empty);
+
+                    <div class="col">
+                        <div class="product-card h-100 d-flex flex-column">
+                            <div class="appear-animation restaurant fadeIn appear-animation-visible h-100 d-flex flex-column" data-appear-animation="fadeIn" data-appear-animation-delay="0">
+                                <span class="thumb-info thumb-info-no-zoom thumb-info-custom mb-xl center">
+                                    <img src="@product.HeaderImage" class="img-responsive" alt="productTitleOnly" /> 
+                                    <span class="thumb-info-caption d-flex flex-column h-100"> 
+                                        <span class="thumb-info-caption-text d-flex flex-column h-100"> 
+                                            <h2 class="mb-md mt-xs">
+                                                @product.ProductName 
+                                                @if(ConvertToBool(product.IsFeatured)) {
+                                                    <span class="badge badge-sm badge-info"><i class="fa-solid fa-fire px-2"></i>Most Popular</span>
+                                                }
+                                            </h2> 
+                                            <span class="fs-6">
+                                                @Html.Raw(product.ProductDescription) 
+                                            </span>
+                                            <p class="fs-5 mt-auto">
+                                                <span class="mt-auto">
+                                                    <span class="price-monthly d-none">
+                                                    @if (!string.IsNullOrEmpty(product.MonthlyPrice))
+                                                    {
+                                                        <strong>@product.MonthlyPrice</strong> <span class="small">/ USD <em>month</em></span> 
+                                                    }
+                                                    else 
+                                                    {
+                                                        <span class="font-weight-bold">Contact us for pricing</span>
+                                                    }
+                                                    </span>
+                                                    <span class="price-yearly">
+                                                    @if (!string.IsNullOrEmpty(product.YearlyPrice))
+                                                    {
+                                                        <strong>@product.YearlyPrice</strong> <span class="small">/ USD <em>year</em></span> 
+                                                    }
+                                                    else 
+                                                    {
+                                                        <span class="font-weight-bold">Contact us for pricing</span>
+                                                    }
+                                                    </span>
+                                                </span>
+                                            </p>
+                                            <span class="price-monthly d-none">
+                                            @if (!string.IsNullOrEmpty(product.MonthlyPrice))
+                                            {
+                                                <a class="btn btn-primary mt-md" href="@product.MonthlyLink" target="@GetLinkTarget(product.MonthlyLink)" title="Purchase @productTitleOnly (monthly) securely using Stripe">Buy Now <i class="fas fa-cart-plus"></i></a> 
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-primary mt-md" href="/Contact" title="Purchase @productTitleOnly (monthly) securely using Stripe">Contact Us <i class="fa-solid fa-paper-plane"></i></a> 
+                                            }
+                                            </span>
+                                            <span class="price-yearly">
+                                            @if (!string.IsNullOrEmpty(product.YearlyPrice))
+                                            {
+                                                <a class="btn btn-primary mt-md" href="@product.YearlyLink" target="@GetLinkTarget(product.YearlyLink)" title="Purchase @productTitleOnly (yearly) securely using Stripe">Buy Now <i class="fas fa-cart-plus"></i></a> 
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-primary mt-md" href="/Contact" title="Purchase @productTitleOnly (yearly) securely using Stripe">Contact Us <i class="fa-solid fa-paper-plane"></i></a> 
+                                            }
+                                            </span>
+                                        </span> 
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <h1>No Products Found</h1>
+                <!-- No Products Found -->
+                <p>Add some products to getting started.</p>
+            }
+        </div>
+    </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => enableToooltips());
+
+  function enableToooltips() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  };
+</script>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
