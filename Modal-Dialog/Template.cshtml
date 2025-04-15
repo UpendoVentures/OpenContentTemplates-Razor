@@ -4,9 +4,26 @@
 @using Newtonsoft.Json
 @using System.Net.Http.Headers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@using DotNetNuke.Entities.Modules
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 @{
+  // Update or create the "hideadminborder" setting with the value "True"
+  var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+  if (currentModule != null && currentModule.TabModuleID > 0)
+  {
+    // Check if the "hideadminborder" setting is not set or is not "True"
+    var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+    ? currentModule.TabModuleSettings["hideadminborder"]
+    : null;
+
+    if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+    {
+      // Update or create the "hideadminborder" setting with the value "True"
+      ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+    }
+  }
+
   var headerBackgroundColor = Model.Settings.HeaderBackgroundColor;
   var headerTextColor = Model.Settings.HeaderTextColor;
   var headerTextType = Model.Settings.HeaderTextType;

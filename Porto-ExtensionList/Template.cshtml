@@ -1,3 +1,5 @@
+@using DotNetNuke.Entities.Modules
+
 @functions {
     public string TruncateString(string description, int maxLength)
     {
@@ -18,7 +20,7 @@
             { "dnnmodule", "Module" },
             { "dnnprompt", "Prompt" },
             { "dnnprovider", "Provider" },
-            { "dnnjob", "Scheduled" },
+            { "dnnjob", "Scheduler" },
             { "dnnux", "User Experience" },
             { "opensource", "Open-Source" },
             { "commercial", "Commercial" }
@@ -28,8 +30,23 @@
     }
 }
 @{
-    var categoriesArray = new List<string>();
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+            ? currentModule.TabModuleSettings["hideadminborder"]
+            : null;
+       
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
 
+    var categoriesArray = new List<string>();
     if (Model.Extensions != null)
     {
         foreach (var item in Model.Extensions)
@@ -71,7 +88,7 @@
             {
                 <li data-option-value=".@category" class="nav-item">
                     <a href="#">
-                    @GetCategoryLabel(category)            
+                        @GetCategoryLabel(category)            
                     </a>
                 </li>
             }
@@ -82,7 +99,7 @@
     {        
         <div class="row">
             <ul class="row image-gallery sort-destination lightbox" data-sort-id="portfolio"
-            data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">                
+            data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
             @foreach (var item in Model.Extensions)
                 {
                 <li class="col-lg-@columns col-md-4 col-sm-6 col-xs-12 isotope-item @string.Join(" ", item.Category ?? new List<string>())">
@@ -124,7 +141,12 @@
                                 </a>
                                 <a href="@item.Download" target="_blank" class="btn btn-sm btn-primary rounded-circle">
                                     <i class="fa-solid fa-cloud-arrow-down"></i>
-                                </a>                               
+                                </a>
+                                @if (!string.IsNullOrEmpty(item.Documentation)){
+                                <a href="@item.Documentation" target="_blank" class="btn btn-sm btn-primary rounded-circle">
+                                    <i class="fab fa-readme"></i>
+                                </a>
+                                }
                             </div>
                         </div>
                     </div>
@@ -147,7 +169,8 @@
     $(document).ready(function () {
         var $grid = $('.sort-destination').isotope({
             itemSelector: '.isotope-item',
-            layoutMode: 'fitRows'
+            layoutMode: 'fitRows', 
+            sortBy: '.thumb-info-inner'
         });
       
         $('.sort-source').on('click', 'li', function (e) {

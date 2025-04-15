@@ -58,7 +58,7 @@
           "fieldoptions": [
             {
               "value": "devtool",
-              "text": "Developer "
+              "text": "Developer"
             },
             {
               "value": "dnnmodule",
@@ -74,7 +74,7 @@
             },
             {
               "value": "dnnjob",
-              "text": "Scheduled "
+              "text": "Scheduler"
             },
             {
               "value": "dnnux",
@@ -119,6 +119,12 @@
           "index": false,
           "position": "1col1",
           "dependencies": []
+        },
+        {
+          "fieldname": "Documentation",
+          "title": "Documentation",
+          "fieldtype": "url",
+          "advanced": false
         },
         {
           "fieldname": "Logo",

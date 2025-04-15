@@ -7,8 +7,7 @@
     },
     "ModuleAnchor": {
       "type": "string",
-      "title": "Module Anchor",
-       "pattern": "^[a-zA-Z0-9\\-]+$"
+      "title": "Module Anchor"
     },
     "Extensions": {
       "type": "array",
@@ -39,16 +38,6 @@
               "opensource",
               "commercial"
             ],
-            "optionLabels": [
-              "Developer",
-              "Module",
-              "Prompt",
-              "Provider",
-              "Scheduled",
-              "User Experience",
-              "Open-Source",
-              "Commercial"
-            ],
             "default": "devtool",
             "required": true
           },
@@ -61,6 +50,10 @@
             "type": "string",
             "title": "Download",
             "required": true
+          },
+          "Documentation": {
+            "type": "string",
+            "title": "Documentation"
           },
           "Logo": {
             "type": "string",
