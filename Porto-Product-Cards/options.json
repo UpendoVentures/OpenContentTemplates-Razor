@@ -1,0 +1,48 @@
+{
+  "fields": {
+    "Products": {
+      "type": "accordion",
+      "helper": "As you add more products, they'll begin to wrap into rows naturally, based on the content pane used, screen size, and number of products.  ",
+      "items": {
+        "fields": {
+          "ProductName": {
+            "type": "text"
+          },
+          "ProductDescription": {
+            "type": "ckeditor",
+            "configset": "basic"
+          },
+          "MonthlyPrice": {
+            "type": "text",
+            "placeholder": "$999",
+            "helper": "If left blank, displays \"Contact for Pricing\" instead & the link is ignored."
+          },
+          "MonthlyLink": {
+            "type": "url",
+            "helper": "URL to where the checkout is found"
+          },
+          "YearlyPrice": {
+            "type": "text",
+            "placeholder": "$999",
+            "helper": "If left blank, displays \"Contact for Pricing\" instead & the link is ignored."
+          },
+          "YearlyLink": {
+            "type": "url",
+            "helper": "URL to where the checkout is found"
+          },
+          "HeaderImage": {
+            "type": "image",
+            "uploadfolder": "Images/Products",
+            "typeahead": {
+              "Folder": "Images/Products"
+            }
+          },
+          "IsFeatured": {
+            "type": "checkbox",
+            "helper": "Ideally, only one should be featured"
+          }
+        }
+      }
+    }
+  }
+}
