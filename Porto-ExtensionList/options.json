@@ -7,6 +7,14 @@
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
+    "SortBy": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Title",
+        "Description"
+      ]
+    },
     "Extensions": {
       "type": "accordion",
       "items": {

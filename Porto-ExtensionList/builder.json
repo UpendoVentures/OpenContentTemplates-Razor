@@ -20,6 +20,22 @@
       "dependencies": []
     },
     {
+      "fieldname": "SortBy",
+      "title": "SortBy",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "Title",
+          "text": "Title"
+        },
+        {
+          "value": "Description",
+          "text": "Description"
+        }
+      ],
+      "advanced": false
+    },
+    {
       "fieldname": "Extensions",
       "title": "Extensions",
       "fieldtype": "accordion",

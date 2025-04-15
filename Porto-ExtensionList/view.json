@@ -5,6 +5,7 @@
     "bindings": {
       "ModuleTitle": "#pos_1_1",
       "ModuleAnchor": "#pos_1_1",
+      "SortBy": "#pos_1_1",
       "Extensions": "#pos_1_1"
     }
   }
