@@ -209,14 +209,11 @@
         </p>
 
         <h3>Edit</h3>
+        <img src="images/edit0.png" alt="Usage Example" class="component-image">
         <img src="images/edit.png" alt="Usage Example" class="component-image">
         <img src="images/edit1.png" alt="Usage Example" class="component-image">
 
-        <h2>
-            <span class="Head">Properties</span>
-        </h2>
-        <p>The <strong>Extensions</strong> property is an array that contains a list of extension objects. Each extension object
-            includes the following properties:</p>
+               <h3 class="Head">Properties</h3>
         <table class="properties-table">
             <thead>
                 <tr>
@@ -226,21 +223,30 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Module Properties -->
                 <tr>
-                    <td>Title</td>
+                    <td rowspan="1">ModuleTitle</td>
                     <td>string</td>
-                    <td>The title of the extension. This field is required.</td>
+                    <td rowspan="1">Used to define the title of the module. This title is displayed in the DNN administration interface to help identify the module.</td>
                 </tr>
                 <tr>
-                    <td>Description</td>
+                    <td>ModuleAnchor</td>
                     <td>string</td>
-                    <td>A detailed description of the extension. This field is required.</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+        
+                <!-- Extensions Array -->
+                <tr>
+                    <td rowspan="8"><strong>Extensions</strong></td>
+                    <td rowspan="8">Array</td>
+                    <td><code>Title:</code> The title of the extension. This field is required.</td>
                 </tr>
                 <tr>
-                    <td>Category</td>
-                    <td>list</td>
+                    <td><code>Description:</code> A detailed description of the extension. This field is required.</td>
+                </tr>
+                <tr>
                     <td>
-                        The category or categories of the extension. Options include:
+                        <code>Category:</code> The category or categories of the extension. Options include:
                         <ul>
                             <li>Developer</li>
                             <li>Module</li>
@@ -255,27 +261,23 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Homepage</td>
-                    <td>string</td>
-                    <td>The URL of the extension's homepage. This field is required.</td>
+                    <td><code>Homepage:</code> The URL of the extension's homepage. This field is required.</td>
                 </tr>
                 <tr>
-                    <td>Download</td>
-                    <td>string</td>
-                    <td>The URL for downloading the extension. This field is required.</td>
+                    <td><code>Download:</code> The URL for downloading the extension. This field is required.</td>
                 </tr>
                 <tr>
-                    <td>Logo</td>
-                    <td>string</td>
-                    <td>The URL of the extension's logo. This field is required.</td>
+                    <td><code>Documentation:</code> An optional URL linking to the documentation for the extension.</td>
                 </tr>
                 <tr>
-                    <td>BadgeText</td>
-                    <td>string</td>
-                    <td>Optional text to display as a badge for the extension.</td>
+                    <td><code>Logo:</code> The URL of the extension's logo. This field is required.</td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td><code>BadgeText:</code> Optional text to display as a badge for the extension.</td>
+                </tr>
+                </tbody>
+            </table>
+
         <h3 class="Head">Settings</h3>
         <img src="images/template-settings.png" alt="Settings Properties" class="component-image">
         
@@ -293,6 +295,11 @@
                     <td>Columns</td>
                     <td>Select</td>
                     <td>Options include <code>2</code>, <code>3</code>, <code>4</code>, <code>6</code>
+                </tr>
+                <tr>
+                    <td>SortBy</td>
+                    <td>Select</td>
+                    <td>Defines the sorting criteria. Options include <code>Title</code> and <code>Description</code>.</td>
                 </tr>
                 <tr>
                     <td>Margin (top)</td>
