@@ -28,7 +28,7 @@
 
 @if (countdownStyle == "parallax")
 {
-  <section class="parallax section section-text-light section-parallax section-center mt-none"
+  <section class="parallax section section-text-light section-parallax section-center  @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom"
     data-plugin-options="{'speed': 1.5}" data-plugin-parallax="parallax" data-image-src="@parallaxImage">
     <div class="container">
       <div class="row">
@@ -42,6 +42,12 @@
 }
 else
 {
-  <div class="@countdownStyle" data-plugin-countdown
-    data-plugin-options="{'date': '@dateTime', 'numberClass': 'font-weight-extra-bold'}"></div>
+  <div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+      <div class="col-sm-12">
+        <div class="@countdownStyle" data-plugin-countdown
+          data-plugin-options="{'date': '@dateTime', 'numberClass': 'font-weight-extra-bold'}"></div>
+      </div>
+    </div>
+  </div>
 }

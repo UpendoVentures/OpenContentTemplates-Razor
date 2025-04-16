@@ -1,17 +1,24 @@
 {
-	"fields": {
-		"CountdownsStyle": {
-			"title": "Countdowns Style",
+	"fields": {		
+		"Columns": {
+			"title": "Number of Columns",
 			"type": "select",
 			"optionLabels": [
-				"Default",
-				"Color",
-				"Border",
-				"Border Color",
-				"Inside Parallax"
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				"6",
+				"7",
+				"8",
+				"9",
+				"10",
+				"11",
+				"12"
 			],
 			"removeDefaultNone": true
-		},
+		},		
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",
@@ -25,7 +32,7 @@
 				"mt-auto"
 			],
 			"removeDefaultNone": true
-		},
+		},		
 		"MarginBottom": {
 			"title": "Margin (bottom)",
 			"type": "select",
@@ -67,6 +74,7 @@
 				"pb-auto"
 			],
 			"removeDefaultNone": true
-		}
+		}	
+
 	}
 }

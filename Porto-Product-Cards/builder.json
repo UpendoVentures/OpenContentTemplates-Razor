@@ -1,0 +1,127 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Products",
+      "title": "Product List",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ProductName",
+          "title": "Product Name",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ProductDescription",
+          "title": "Product Description",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "MonthlyPrice",
+          "title": "Monthly Price",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "If left blank, displays \"Contact for Pricing\" instead & the link is ignored.",
+          "placeholder": "$999",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "MonthlyLink",
+          "title": "Monthly Link",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "default": "#",
+          "helper": "URL to where the checkout is found",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "YearlyPrice",
+          "title": "Yearly Price",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "If left blank, displays \"Contact for Pricing\" instead & the link is ignored.",
+          "placeholder": "$999",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "YearlyLink",
+          "title": "Yearly Link",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "#",
+          "helper": "URL to where the checkout is found",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "HeaderImage",
+          "title": "Header Image",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "Images/Products"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "IsFeatured",
+          "title": "Is Featured?",
+          "fieldtype": "checkbox",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Ideally, only one should be featured",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "As you add more products, they'll begin to wrap into rows naturally, based on the content pane used, screen size, and number of products.  ",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

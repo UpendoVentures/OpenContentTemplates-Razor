@@ -1,17 +1,5 @@
 {
-	"fields": {
-		"CountdownsStyle": {
-			"title": "Countdowns Style",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Color",
-				"Border",
-				"Border Color",
-				"Inside Parallax"
-			],
-			"removeDefaultNone": true
-		},
+	"fields": {		
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",
@@ -25,7 +13,7 @@
 				"mt-auto"
 			],
 			"removeDefaultNone": true
-		},
+		},		
 		"MarginBottom": {
 			"title": "Margin (bottom)",
 			"type": "select",
@@ -67,6 +55,7 @@
 				"pb-auto"
 			],
 			"removeDefaultNone": true
-		}
+		}	
+
 	}
 }

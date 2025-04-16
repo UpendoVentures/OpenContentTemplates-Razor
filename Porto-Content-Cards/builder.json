@@ -1,0 +1,94 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ContentTitle",
+      "title": "Content Title",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "placeholder": "Optional - not rendered if left empty.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TitleIcon",
+      "title": "Title Icon",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Use the search at <a href=\\\"https://fontawesome.com/v5/search\\\" target=\\\"_blank\\\">FontAwesome</a> to help you.",
+      "placeholder": "fa-solid fa-heart",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ContentItems",
+      "title": "Content Items",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ContentTitle",
+          "title": "Content Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ContentSubtitle",
+          "title": "Content Subtitle",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "placeholder": "Not rendered if left empty",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ContentImage",
+          "title": "Content Image",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "Images"
+          },
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Not rendered if left empty",
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ContentBody",
+          "title": "Content Body",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": false
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Add as many as you want, and it will stack/wrap as necessary in your theme.",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

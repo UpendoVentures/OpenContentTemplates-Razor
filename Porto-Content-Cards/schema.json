@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "ContentTitle": {
+      "type": "string",
+      "title": "Content Title"
+    },
+    "TitleIcon": {
+      "type": "string",
+      "title": "Title Icon"
+    },
+    "ContentItems": {
+      "type": "array",
+      "title": "Content Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ContentTitle": {
+            "type": "string",
+            "title": "Content Title",
+            "required": true
+          },
+          "ContentSubtitle": {
+            "type": "string",
+            "title": "Content Subtitle"
+          },
+          "ContentImage": {
+            "type": "string",
+            "title": "Content Image"
+          },
+          "ContentBody": {
+            "type": "string",
+            "title": "Content Body"
+          }
+        }
+      }
+    }
+  }
+}

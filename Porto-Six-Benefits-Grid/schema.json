@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Benefits": {
+      "type": "array",
+      "title": "Key Benefits",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Headline": {
+            "type": "string",
+            "title": "Headline",
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description",
+            "required": true
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

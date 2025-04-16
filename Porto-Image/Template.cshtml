@@ -25,11 +25,15 @@
     <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         @if (Model.Image != null)
         {
-            <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" class="z-1 @Model.Classes" />
+            <div class="col-auto text-center mx-auto">
+                <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" class="z-1 @Model.Classes" />
+            </div>
         }
         else
         {
             <!-- No Image Found  -->
+            <h1>No Image Found</h1>
+            <p>Please edit the template to continue.</p>
         }
     </div>
 </div>

@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Benefits": {
+      "type": "accordion",
+      "helper": "You should <b>add exactly 6 items</b> for this template to work correctly.",
+      "items": {
+        "fields": {
+          "Headline": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "ckeditor",
+            "helper": "A single sentence is usually more than enough."
+          },
+          "IconClass": {
+            "type": "text",
+            "placeholder": "fa-solid fa-heart",
+            "helper": "Find values at: <a href=\"https://fontawesome.com/search\" target=\"_blank\">FontAwesome</a>"
+          }
+        }
+      }
+    }
+  }
+}
