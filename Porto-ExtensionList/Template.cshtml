@@ -12,6 +12,10 @@
         ? description.Substring(0, maxLength).Trim() + "..."
         : description.Trim();
     }
+    protected string StripHtml(string Txt)
+    {
+        return System.Text.RegularExpressions.Regex.Replace(Txt, "<(.|\\n)*?>", string.Empty);
+    }    
     public string GetCategoryLabel(string key)
     {
         var labels = new Dictionary<string, string>
@@ -93,28 +97,32 @@
 <div class="container @containerClasses">
     <div class="row">
         <div class="col">
-            <ul class="list-inline pull-right">
-                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Homepage: This will lead you to the home respective extension." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fa fa-home"></i></a> - Project Home</li>
-                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Download Installer: This icon will take you to the latest installation package for the respective extension." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fa-solid fa-cloud-arrow-down"></i></a> - Downloads</li>
-                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Debug Symbols: Helps you to debug the given extension, once you install it." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fas fa-bug"></i></a> - Debugging Symbols</li>
-                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Documentation: If an extension has documentation, this icon will take you there." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fab fa-readme"></i></a> - Documentation</li>
-            </ul>
+            <div class="d-flex justify-content-between">
+                <ul class="list-inline ms-auto">
+                    <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Homepage: This will lead you to the home respective extension." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fa fa-home"></i></a> - Project Home</li>
+                    <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Download Installer: This icon will take you to the latest installation package for the respective extension." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fa-solid fa-cloud-arrow-down"></i></a> - Downloads</li>
+                    <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Debug Symbols: Helps you to debug the given extension, once you install it." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fas fa-bug"></i></a> - Debugging Symbols</li>
+                    <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Documentation: If an extension has documentation, this icon will take you there." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fab fa-readme"></i></a> - Documentation</li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="row">      
-        <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
-            <li data-option-value="*" class="nav-item active">
-                <a href="#">Show All</a>
-            </li>
-            @foreach (var category in categoriesArray.OrderBy(s => s))
-            {
-                <li data-option-value=".@category" class="nav-item">
-                    <a href="#">
-                        @GetCategoryLabel(category)            
-                    </a>
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
+                <li data-option-value="*" class="nav-item active">
+                    <a href="#">Show All</a>
                 </li>
-            }
-        </ul>
+                @foreach (var category in categoriesArray.OrderBy(s => s))
+                {
+                    <li data-option-value=".@category" class="nav-item">
+                        <a href="#">
+                            @GetCategoryLabel(category)            
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
     <hr/>
     @if (Model.Extensions != null)
@@ -144,10 +152,10 @@
                             </a>
                         </span>
                         <div class="thumb-info-caption flex-grow-1 p-0">
-                            <span class="thumb-info-caption-text p-0"
+                            <div class="thumb-info-caption-text p-3"
                                 style="text-overflow: ellipsis; display: block; font-size: unset">
-                                @TruncateString(item.Description, 211)
-                            </span>
+                                @TruncateString(StripHtml(item.Description), 211)
+                            </div>
                         </div>
                         <hr class="m-1"/>                       
                         <div class="d-flex justify-content-around mb-2 mt-2">
