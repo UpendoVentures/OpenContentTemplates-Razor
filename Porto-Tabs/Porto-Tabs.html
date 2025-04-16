@@ -251,10 +251,15 @@
                     <td>The title of the module.</td>
                 </tr>
                 <tr>
+                    <td>ModuleAnchor</td>
+                    <td>string</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
                     <td>ActiveTabDefault</td>
                     <td>Checkbox</td>
-                    <td>Determines if the first tab is active by default.</td>
-                    <td>
+                    <td>Determines if the first tab is active by default.                   
                         <ul>
                             <li><code>true</code>: The first tab is active by default.</li>
                             <li><code>false</code>: A specific tab can be set using <code>ActiveTabNumber</code>.</li>
@@ -264,8 +269,7 @@
                 <tr>
                     <td>ActiveTabNumber</td>
                     <td>Number</td>
-                    <td>Specifies the tab number to be active when <code>ActiveTabDefault</code> is set to <code>false</code>.</td>
-                    <td>
+                    <td>Specifies the tab number to be active when <code>ActiveTabDefault</code> is set to <code>false</code>.
                         <ul>
                             <li>Enter a valid tab number (e.g., <code>1</code>, <code>2</code>, etc.).</li>
                         </ul>
