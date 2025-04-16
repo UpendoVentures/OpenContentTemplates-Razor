@@ -137,6 +137,12 @@
           "dependencies": []
         },
         {
+          "fieldname": "Symbols",
+          "title": "Debugging Symbols",
+          "fieldtype": "url",
+          "advanced": false
+        },
+        {
           "fieldname": "Documentation",
           "title": "Documentation",
           "fieldtype": "url",

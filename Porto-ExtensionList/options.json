@@ -46,6 +46,9 @@
           "Download": {
             "type": "url"
           },
+          "Symbols": {
+            "type": "url"
+          },
           "Documentation": {
             "type": "url"
           },
