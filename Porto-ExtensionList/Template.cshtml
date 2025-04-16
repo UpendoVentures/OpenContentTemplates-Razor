@@ -28,6 +28,18 @@
 
         return labels.ContainsKey(key) ? labels[key] : key;
     }
+    public string GetLinkTarget(string href)
+    {
+        if (string.IsNullOrWhiteSpace(href)) return "_top";
+
+        // Normalize and check for internal links
+        href = href.ToLowerInvariant().Trim();
+
+        if (href.StartsWith("/") || href.StartsWith("~") || href.StartsWith("#") || href.Contains(Request.Url.Host)) return "_top";
+
+        // External link detected
+        return "_blank";
+    }
 }
 @{
     // Update or create the "hideadminborder" setting with the value "True"
@@ -79,12 +91,22 @@
     <div id="@Model.ModuleAnchor"></div>
 }
 <div class="container @containerClasses">
+    <div class="row">
+        <div class="col">
+            <ul class="list-inline pull-right">
+                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Homepage: This will lead you to the home respective extension." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fa fa-home"></i></a> - Project Home</li>
+                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Download Installer: This icon will take you to the latest installation package for the respective extension." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fa-solid fa-cloud-arrow-down"></i></a> - Downloads</li>
+                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Debug Symbols: Helps you to debug the given extension, once you install it." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fas fa-bug"></i></a> - Debugging Symbols</li>
+                <li class="list-inline-item"><a data-bs-toggle="tooltip" data-bs-title="Documentation: If an extension has documentation, this icon will take you there." href="javascript:void(0);" class="btn btn-sm btn-primary rounded-circle no-lightbox"><i class="fab fa-readme"></i></a> - Documentation</li>
+            </ul>
+        </div>
+    </div>
     <div class="row">      
         <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
             <li data-option-value="*" class="nav-item active">
                 <a href="#">Show All</a>
             </li>
-            @foreach (var category in categoriesArray)
+            @foreach (var category in categoriesArray.OrderBy(s => s))
             {
                 <li data-option-value=".@category" class="nav-item">
                     <a href="#">
@@ -132,19 +154,26 @@
                             <div class="pull-left">
                                 @if(@item.BadgeText != null)
                                 {
-                                    <span class="badge badge-success" style="font-size: unset">@item.BadgeText</span>
+                                    <span class="badge badge-success" style="font-size: unset" data-bs-toggle="tooltip" 
+                                        data-bs-title="@item.BadgeText">@item.BadgeText</span>
                                 }
                             </div>
                             <div class="pull-right">
-                                <a href="@item.HomePage" target="_blank" class="btn btn-sm btn-primary rounded-circle no-lightbox">
+                                <a href="@item.HomePage" data-bs-toggle="tooltip" data-bs-title="Home: @item.Title" target="@GetLinkTarget(item.HomePage)" class="btn btn-sm btn-primary rounded-circle no-lightbox">
                                     <i class="fa fa-home"></i>
                                 </a>
-                                <a href="@item.Download" target="_blank" class="btn btn-sm btn-primary rounded-circle no-lightbox">
+                                <a href="@item.Download" data-bs-toggle="tooltip" data-bs-title="Install/Upgrade: @item.Title" target="@GetLinkTarget(item.Download)" class="btn btn-sm btn-primary rounded-circle no-lightbox">
                                     <i class="fa-solid fa-cloud-arrow-down"></i>
                                 </a>
+                                @if (!string.IsNullOrEmpty(item.Symbols))
+                                {
+                                    <a href="@item.Symbols" data-bs-toggle="tooltip" data-bs-title="Dubug Symbols: @item.Title" target="@GetLinkTarget(item.Symbols)" class="btn btn-sm btn-primary rounded-circle no-lightbox">
+                                        <i class="fas fa-bug"></i>
+                                    </a>
+                                }
                                 @if (!string.IsNullOrEmpty(item.Documentation))
                                 {
-                                    <a href="@item.Documentation" target="_blank" class="btn btn-sm btn-primary rounded-circle no-lightbox">
+                                    <a href="@item.Documentation" data-bs-toggle="tooltip" data-bs-title="Documentation: @item.Title" target="@GetLinkTarget(item.Documentation)" class="btn btn-sm btn-primary rounded-circle no-lightbox">
                                         <i class="fab fa-readme"></i>
                                     </a>
                                 }
@@ -192,3 +221,8 @@
         });
     });
 </script>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@

@@ -9,6 +9,14 @@
       "type": "string",
       "title": "Module Anchor"
     },
+    "SortBy": {
+      "type": "string",
+      "title": "SortBy",
+      "enum": [
+        "Title",
+        "Description"
+      ]
+    },
     "Extensions": {
       "type": "array",
       "title": "Extensions",
@@ -50,6 +58,10 @@
             "type": "string",
             "title": "Download",
             "required": true
+          },
+          "Symbols": {
+            "type": "string",
+            "title": "Debugging Symbols"
           },
           "Documentation": {
             "type": "string",
