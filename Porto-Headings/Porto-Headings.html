@@ -242,13 +242,27 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Heading</td>
-                    <td>WYSIWYG</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Heading Text</td>
+                    <td>Wysihtml</td>
                     <td>The main heading text.</td>
                     <td>Yes</td>
                 </tr>
                 <tr>
-                    <td>SubHeading</td>
+                    <td>Heading Subtitle</td>
                     <td>Text</td>
                     <td>The subheading text.</td>
                     <td>No</td>
@@ -257,13 +271,8 @@
         </table>
 
         <h3 id="settings" class="Head">Settings</h3>
-
         <img src="image/template settings.png" alt="Screenshot of computer" class="component-image">
-        <img src="image/template settings0.png" alt="Screenshot of computer" class="component-image">
-        <img src="image/template settings1.png" alt="Screenshot of computer" class="component-image">
-        <img src="image/template settings2.png" alt="Screenshot of computer" class="component-image">
-
-
+       
         <h3 id="settings-properties" class="Head">Settings Properties</h3>
         <table class="properties-table">
             <thead>
@@ -276,13 +285,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>HeadingType</td>
+                    <td>Heading Type</td>
                     <td>Select</td>
                     <td>Defines the heading level.</td>
                     <td>h1, h2, h3, h4, h5, h6</td>
                 </tr>
                 <tr>
-                    <td>HeadingColor</td>
+                    <td>Heading Color</td>
                     <td>Select</td>
                     <td>Specifies the color of the heading.</td>
                     <td>
@@ -315,26 +324,26 @@
                     <td>Enabled, Disabled</td>
                 </tr>
                 <tr>
-                    <td>EnableHeadingBorder</td>
+                    <td>Enable Heading Border</td>
                     <td>Checkbox</td>
                     <td>Enables or disables the heading border.</td>
                     <td>true, false</td>
                 </tr>
                 <tr>
-                    <td>BorderStyle</td>
+                    <td>Border Style</td>
                     <td>Select</td>
                     <td>Defines the style of the border.</td>
                     <td>Single Border Bottom, Double Border Bottom, Left Heading With Border, Right Heading With Border,
                         Center Heading With Border</td>
                 </tr>
                 <tr>
-                    <td>BorderSize</td>
+                    <td>Border Size</td>
                     <td>Select</td>
                     <td>Specifies the size of the border.</td>
                     <td>Simple, Bold, Bolder</td>
                 </tr>
                 <tr>
-                    <td>BorderColor</td>
+                    <td>Border Color</td>
                     <td>Select</td>
                     <td>Specifies the color of the border.</td>
                     <td>
@@ -355,6 +364,42 @@
                                     style="background-color: #f9f9f9; color: black; padding: 2px 6px; border-radius: 4px;">Light
                                     color</span></li>
                         </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Margin (top)</td>
+                    <td>Select</td>
+                    <td>Defines the top margin of the component.</td>
+                    <td><code>mt-0</code>, <code>mt-1</code>,<code>mt-2</code>, <code>mt-3</code>, <code>mt-4</code>, <code>mt-5</code>, 
+                        and <code>mt-auto</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Margin (bottom)</td>
+                    <td>Select</td>
+                    <td>Defines the bottom margin of the component.
+                    </td>
+                    <td><code>mb-0</code>, <code>mb-1</code>,
+                        <code>mb-2</code>, <code>mb-3</code>, <code>mb-4</code>, <code>mb-5</code>, and
+                        <code>mb-auto</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Padding (top)</td>
+                    <td>Select</td>
+                    <td>Defines the top padding of the component.</td>
+                    <td><code>pt-0</code>, <code>pt-1</code>,
+                        <code>pt-2</code>, <code>pt-3</code>, <code>pt-4</code>, <code>pt-5</code>, and
+                        <code>pt-auto</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Padding (bottom)</td>
+                    <td>Select</td>
+                    <td>Defines the bottom padding of the component.</td>
+                    <td><code>pb-0</code>, <code>pb-1</code>,
+                        <code>pb-2</code>, <code>pb-3</code>, <code>pb-4</code>, <code>pb-5</code>, and
+                        <code>pb-auto</code>.
                     </td>
                 </tr>
             </tbody>
