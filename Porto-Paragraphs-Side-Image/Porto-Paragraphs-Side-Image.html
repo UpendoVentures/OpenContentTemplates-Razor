@@ -211,6 +211,7 @@
         </p>
 
         <h3>Edit</h3>
+        <img src="images/edit0.png" alt="Usage Example" class="component-image">
         <img src="images/edit.png" alt="Usage Example" class="component-image">
 
         <h2>
@@ -226,9 +227,36 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
                     <td>Paragraph</td>
-                    <td>string</td>
-                    <td>The paragraph text to display. This field is required and supports rich text formatting.</td>
+                    <td>HTML (CK Editor)</td>
+                    <td>The paragraph text to display. This field is required and supports rich text formatting. This field is required.</td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td>image</td>
+                    <td>Allows uploading an image. Images are stored in the <code>Images</code> folder. This field is required.</td>
+                </tr>
+                <tr>
+                    <td>Classes</td>
+                    <td>text</td>
+                    <td>CSS classes to apply to the image. Default placeholder: <code>img-fluid</code>.</td>
+                </tr>
+                <tr>
+                    <td>Alt Text</td>
+                    <td>text</td>
+                    <td>Alternative text for the image, used for SEO purposes. Default placeholder: <code>Used for SEO</code>. This field is required.</td>
                 </tr>
             </tbody>
         </table>
