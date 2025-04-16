@@ -16,50 +16,71 @@
             line-height: 1.6;
             background-color: #f9f9f9;
         }
-
+    
         h1,
         h2,
         h3 {
             color: #6d5a2c;
             font-family: "Shadows Into Light", cursive;
         }
-
+    
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-
+    
         h2 {
             font-size: 2rem;
             margin-top: 30px;
             margin-bottom: 15px;
         }
-
+    
         h3 {
             font-size: 1.5rem;
             margin-top: 20px;
             margin-bottom: 1px;
         }
-
+    
         p {
             margin-bottom: 15px;
         }
-
+    
         a {
             color: #6d5a2c;
             text-decoration: none;
         }
-
+    
         a:hover {
             text-decoration: underline;
         }
-
+    
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+    
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+    
+        .image-grid .component-image {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+    
+        /* Table Styles */
         .properties-table {
             width: 100%;
             border-collapse: collapse;
@@ -69,24 +90,25 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
+    
         .properties-table th,
         .properties-table td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
-
+    
         .properties-table th {
             background-color: #6d5a2c;
             color: white;
             font-weight: bold;
         }
-
+    
         .properties-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
+    
+        /* Note Box */
         .note {
             background-color: #fff8e5;
             padding: 15px;
@@ -95,11 +117,22 @@
             margin: 20px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+    
         .note strong {
             color: #6d5a2c;
         }
-
+    
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+    
+        /* Header Styles */
         .header {
             display: flex;
             align-items: center;
@@ -109,36 +142,44 @@
             padding: 20px 10px;
             border-bottom: 1px solid #ddd;
         }
-
+    
         .header img {
             max-width: 120px;
             height: auto;
         }
-
+    
         .header-content {
             flex: 1;
             text-align: center;
         }
-
+    
         .header-content h1 {
             font-size: 2rem;
             margin: 0;
             font-family: "Shadows Into Light", cursive;
         }
-
+    
         .header-divider {
             height: 2px;
             width: 100%;
             background-color: #6d5a2c;
             border-radius: 1px;
         }
-
-        .component-image {
-            width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+        .image-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        .image-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+    
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -186,19 +227,33 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>DateTime</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Date Time</td>
                     <td>String</td>
                     <td>The date and time for the countdown. Format: <code>YYYY/MM/DD HH:mm:ss</code>. This field is
                         required.</td>
                 </tr>
                 <tr>
-                    <td>ParallaxImage</td>
+                    <td>Parallax Image</td>
                     <td>String</td>
                     <td>The URL of the parallax background image (required if the style is "Inside Parallax").</td>
                 </tr>
             </tbody>
         </table>
 
+        <h3 id="settings" class="Head">Settings</h3>
+        <img src="images/template-settings.png" alt="Screenshot of computer" class="component-image">
         <h2>
             <span class="Head">Settings Properties</span>
         </h2>
@@ -212,10 +267,42 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>CountdownsStyle</td>
+                    <td>Countdowns Style</td>
                     <td>String</td>
                     <td>Defines the style of the countdown. Options include <code>Default</code>, <code>Color</code>,
                         <code>Border</code>, <code>Border Color</code>, and <code>Inside Parallax</code>.</td>
+                </tr>
+                <tr>
+                    <td>Margin (top)</td>
+                    <td>Select</td>
+                    <td>Defines the top margin of the component. Options include <code>mt-0</code>, <code>mt-1</code>,
+                        <code>mt-2</code>, <code>mt-3</code>, <code>mt-4</code>, <code>mt-5</code>, and
+                        <code>mt-auto</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Margin (bottom)</td>
+                    <td>Select</td>
+                    <td>Defines the bottom margin of the component. Options include <code>mb-0</code>, <code>mb-1</code>,
+                        <code>mb-2</code>, <code>mb-3</code>, <code>mb-4</code>, <code>mb-5</code>, and
+                        <code>mb-auto</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Padding (top)</td>
+                    <td>Select</td>
+                    <td>Defines the top padding of the component. Options include <code>pt-0</code>, <code>pt-1</code>,
+                        <code>pt-2</code>, <code>pt-3</code>, <code>pt-4</code>, <code>pt-5</code>, and
+                        <code>pt-auto</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Padding (bottom)</td>
+                    <td>Select</td>
+                    <td>Defines the bottom padding of the component. Options include <code>pb-0</code>, <code>pb-1</code>,
+                        <code>pb-2</code>, <code>pb-3</code>, <code>pb-4</code>, <code>pb-5</code>, and
+                        <code>pb-auto</code>.
+                    </td>
                 </tr>
             </tbody>
         </table>
