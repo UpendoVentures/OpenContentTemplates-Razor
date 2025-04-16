@@ -1,0 +1,64 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+<div class="section">
+    <div class="row">
+        <div class="col">
+            @if (Model.Benefits != null)
+            {
+                <div class="content-grid">
+                    @{
+                        var benefits = new List<dynamic>();
+                        foreach (var b in Model.Benefits)
+                        {
+                            if (b != null) { benefits.Add(b); }
+                        }
+
+                        var chunkSize = 3;
+                    }
+
+                    @for (int i = 0; i < benefits.Count; i += chunkSize)
+                    {
+                        <div class="row content-grid-row">
+                            @foreach (var item in benefits.Skip(i).Take(chunkSize))
+                            {
+                                <div class="col-lg-4 content-grid-item center p-5 text-center">
+                                    <i class="@item.IconClass fa-3x mb-5" aria-hidden="true"></i>
+                                    <h4 class="font-weight-semibold mb-3 fs-6">@item.Headline</h4>
+                                    <div class="mb-0 muted">@Html.Raw(item.Description)</div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info mt-4" role="alert">
+                    No content items have been added yet.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
