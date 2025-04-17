@@ -135,10 +135,13 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -186,13 +189,26 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>HoverStyles</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Hover Styles</td>
                     <td>String</td>
                     <td>Defines the hover style for the image. Options include <code>Default</code>,
                         <code>thumb-info-lighten</code>, <code>FadeIn</code>, and more.</td>
                 </tr>
                 <tr>
-                    <td>DefaultStyles</td>
+                    <td>Default Styles</td>
                     <td>String</td>
                     <td>Defines the default style for the image. Options include <code>rounded-circle</code> and
                         <code>img-thumbnail d-inline-block</code>.</td>
@@ -203,55 +219,28 @@
                     <td>The URL of the image to display.</td>
                 </tr>
                 <tr>
-                    <td>GridWidth</td>
+                    <td>Grid Width</td>
                     <td>String</td>
                     <td>Defines the grid width for the image. Options include <code>col-md-12</code>,
                         <code>col-md-6</code>, and more.</td>
                 </tr>
                 <tr>
-                    <td>ProjectTitle</td>
+                    <td>Project Title</td>
                     <td>String</td>
                     <td>The title of the project displayed on the image.</td>
                 </tr>
                 <tr>
-                    <td>ProjectType</td>
+                    <td>Project Type</td>
                     <td>String</td>
                     <td>The type of the project displayed on the image.</td>
                 </tr>
-            </tbody>
-        </table>
-
-        <h2>
-            <span class="Head">Settings Properties</span>
-        </h2>
-        <table class="properties-table">
-            <thead>
                 <tr>
-                    <th>Property</th>
-                    <th>Data Type</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Icons</td>
-                    <td>Array</td>
-                    <td>Defines the icons displayed on hover. Each icon includes properties like <code>Icon</code>,
-                        <code>IconColor</code>, and <code>href</code>.</td>
-                </tr>
-                <tr>
-                    <td>Bottom</td>
-                    <td>String</td>
-                    <td>Defines the bottom style for the image. Options include <code>thumb-info-bottom-info</code> and
-                        <code>thumb-info-bottom-info-dark</code>.</td>
-                </tr>
-                <tr>
-                    <td>NoBorders</td>
+                    <td>No Borders</td>
                     <td>Boolean</td>
                     <td>Specifies whether the image should have no borders.</td>
                 </tr>
             </tbody>
-        </table>
+        </table>       
 
         <h2>
             <span class="Head">Views</span>
@@ -264,7 +253,7 @@
         </h2>
         <div class="note">
             <strong>Note:</strong> Ensure that the <strong>Image</strong> field is set correctly to display the desired
-            image. Additionally, verify that the <strong>HoverStyles</strong> and <strong>GridWidth</strong> properties
+            image. Additionally, verify that the <strong>Hover Styles</strong> and <strong>Grid Width</strong> properties
             match your design requirements.
         </div>
     </div>
