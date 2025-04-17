@@ -135,10 +135,13 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -184,9 +187,17 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ModuleTitle</td>
+                    <td>Module Title</td>
                     <td>String</td>
-                    <td>The title displayed above the banner.</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
                 </tr>
                 <tr>
                     <td>BannerId</td>
@@ -194,12 +205,12 @@
                     <td>The unique identifier for the banner.</td>
                 </tr>
                 <tr>
-                    <td>BannerContent</td>
+                    <td>Banner Content</td>
                     <td>String</td>
                     <td>The main content displayed inside the banner. This field is required.</td>
                 </tr>
                 <tr>
-                    <td>BannerLink</td>
+                    <td>Banner Link</td>
                     <td>String</td>
                     <td>The link associated with the banner content.</td>
                 </tr>
@@ -222,47 +233,49 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>HeaderBackgroundColor</td>
+                    <td>Header Background Color</td>
                     <td>String</td>
-                    <td>Defines the background color of the banner. Default is <code>#CE3439</code>.</td>
+                    <td>Defines the background color of the banner. Default is <span style="background-color: #CE3439; color: white; padding: 2px 6px; border-radius: 4px;">#CE3439</span>.</td>
                 </tr>
                 <tr>
-                    <td>HeaderTextColor</td>
+                    <td>Header Text Color</td>
                     <td>String</td>
-                    <td>Defines the text color of the banner. Default is <code>#FFFFFF</code>.</td>
+                    <td>Defines the text color of the banner. Default is white (<code>#FFFFFF</code>).</td>
                 </tr>
                 <tr>
-                    <td>HeaderTextType</td>
+                    <td>Header Text Type</td>
                     <td>String</td>
                     <td>Defines the text type for the banner. Options include <code>h1</code>, <code>h2</code>,
                         <code>h3</code>, <code>h4</code>, <code>h5</code>, and <code>p</code>. Default is
                         <code>h3</code>.</td>
                 </tr>
                 <tr>
-                    <td>HeaderTextStyle</td>
+                    <td>Header Text Style</td>
                     <td>String</td>
                     <td>Defines the text style for the banner. Options include <code>bold</code>, <code>italic</code>,
                         and <code>underline</code>.</td>
                 </tr>
                 <tr>
-                    <td>TextAlign</td>
+                    <td>Text Align</td>
                     <td>String</td>
                     <td>Defines the text alignment for the banner. Options include <code>left</code>, <code>center</code>,
                         and <code>right</code>. Default is <code>center</code>.</td>
                 </tr>
                 <tr>
-                    <td>HeaderTextShadow</td>
+                    <td>Header Text Shadow</td>
                     <td>Boolean</td>
                     <td>Specifies whether to apply a shadow effect to the text. Default is <code>false</code>.</td>
                 </tr>
                 <tr>
-                    <td>HeaderTextShadowValue</td>
+                    <td>Header Text Shadow Value</td>
                     <td>String</td>
-                    <td>Defines the shadow value for the text. Default is <code>2px 2px 4px rgba(0, 0, 0, 0.5)</code>.
+                    <td>Defines the shadow value for the text. Default is
+                        <span
+                            style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); color: black; padding: 2px 6px; border-radius: 4px;">2px 2px 4px rgba(0, 0, 0, 0.5)</span>
                     </td>
                 </tr>
                 <tr>
-                    <td>WithCloseButton</td>
+                    <td>With Close Button</td>
                     <td>Boolean</td>
                     <td>Specifies whether the banner includes a close button. Default is <code>false</code>.</td>
                 </tr>
@@ -279,7 +292,7 @@
             <span class="Head">Notes</span>
         </h2>
         <div class="note">
-            <strong>Note:</strong> Ensure that the <strong>BannerContent</strong> field is set correctly to display the
+            <strong>Note:</strong> Ensure that the <strong>Banner Content</strong> field is set correctly to display the
             desired content. Additionally, verify that the <strong>Settings Properties</strong> match your design
             requirements.
         </div>
