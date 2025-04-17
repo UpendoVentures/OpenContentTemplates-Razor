@@ -133,12 +133,15 @@
             border-radius: 1px;
         }
 
-        .component-image {
+       .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -186,12 +189,25 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
                     <td>Title</td>
                     <td>String</td>
                     <td>The title of the alert.</td>
                 </tr>
                 <tr>
-                    <td>Content</td>
+                    <td>Content Text</td>
                     <td>String</td>
                     <td>The main content of the alert. This field is required.</td>
                 </tr>
@@ -201,12 +217,12 @@
                     <td>The icon to display in the alert. Example: <code>fa-check-circle</code>.</td>
                 </tr>
                 <tr>
-                    <td>btn1Text</td>
+                    <td>Button Text 1</td>
                     <td>String</td>
                     <td>The text for the first button.</td>
                 </tr>
                 <tr>
-                    <td>btn2Text</td>
+                    <td>Button Text 2</td>
                     <td>String</td>
                     <td>The text for the second button.</td>
                 </tr>
@@ -231,8 +247,18 @@
                 <tr>
                     <td>Color</td>
                     <td>String</td>
-                    <td>Defines the color of the alert. Options include <code>alert-success</code>,
-                        <code>alert-danger</code>, and more.</td>
+                    <td>Defines the color of the alert. Options include:
+                        <span style="background-color: #eaeaea; color: black; padding: 2px 6px; border-radius: 4px;">Default</span>,
+                        <span style="background-color: #d1e7dd; color: black; padding: 2px 6px; border-radius: 4px;">Success</span>,
+                        <span style="background-color: #cff4fc; color: black; padding: 2px 6px; border-radius: 4px;">Info</span>,
+                        <span style="background-color: #fff3cd; color: black; padding: 2px 6px; border-radius: 4px;">Warning</span>,
+                        <span style="background-color: #f8d7da; color: black; padding: 2px 6px; border-radius: 4px;">Danger</span>,
+                        <span style="background-color: #333a44; color: white; padding: 2px 6px; border-radius: 4px;">Dark</span>,
+                        <span style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary</span>,
+                        <span style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary</span>,
+                        <span style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary</span>,
+                        <span style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary</span>.
+                    </td>
                 </tr>
                 <tr>
                     <td>Size</td>
