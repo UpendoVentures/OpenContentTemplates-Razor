@@ -135,10 +135,12 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -187,12 +189,24 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>InnerContent</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
                     <td>String</td>
                     <td>The content displayed inside the circular progress bar.</td>
                 </tr>
                 <tr>
-                    <td>CompletedAmmount</td>
+                    <td>Completed Ammount</td>
                     <td>Number</td>
                     <td>The percentage of the progress bar that is completed. This field is required.</td>
                 </tr>
@@ -221,29 +235,29 @@
                         <code>60</code>.</td>
                 </tr>
                 <tr>
-                    <td>lineWidth</td>
+                    <td>Line Width</td>
                     <td>Number</td>
                     <td>Defines the width of the progress bar line. Default is <code>10</code>. Minimum is
                         <code>4</code>.</td>
                 </tr>
                 <tr>
-                    <td>barColor</td>
+                    <td>Bar Color</td>
                     <td>String</td>
                     <td>Defines the color of the progress bar. Default is <code>#0088CC</code>. Find values at <a
                             href="https://www.htmlcsscolor.com" target="_blank">htmlcsscolor</a>.</td>
                 </tr>
                 <tr>
-                    <td>lineCap</td>
+                    <td>Line Cap</td>
                     <td>String</td>
                     <td>Defines the line cap style. Default is <code>square</code>.</td>
                 </tr>
                 <tr>
-                    <td>scaleColor</td>
+                    <td>Scale Color</td>
                     <td>String</td>
                     <td>Defines the scale color of the progress bar. Default is <code>#999</code>.</td>
                 </tr>
                 <tr>
-                    <td>trackColor</td>
+                    <td>Track Color</td>
                     <td>String</td>
                     <td>Defines the track color of the progress bar. Default is <code>#CCC</code>.</td>
                 </tr>
@@ -260,7 +274,7 @@
             <span class="Head">Notes</span>
         </h2>
         <div class="note">
-            <strong>Note:</strong> Ensure that the <strong>CompletedAmmount</strong> field is set correctly to display
+            <strong>Note:</strong> Ensure that the <strong>Completed Ammount</strong> field is set correctly to display
             the desired progress. Additionally, verify that the <strong>Settings Properties</strong> match your design
             requirements.
         </div>
