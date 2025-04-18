@@ -63,7 +63,6 @@
         /* Component Image */
         .component-image {
             width: 100%;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -79,9 +78,6 @@
             flex: 1 1 calc(50% - 20px);
             max-width: calc(50% - 20px);
         }
-
-
-
 
         /* Table Styles */
         .properties-table {
@@ -229,6 +225,7 @@
         </h2>
 
         <h3>Edit</h3>
+        <img src="image/edit0.png" alt="edit" class="component-image">
         <img src="image/edit.png" alt="edit" class="component-image">
 
         <h2 id="properties" class="Head">Properties</h2>
@@ -243,9 +240,17 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ModuleTitle</td>
-                    <td>Text</td>
-                    <td>The title of the module.</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
                     <td>No</td>
                 </tr>
                 <tr>
