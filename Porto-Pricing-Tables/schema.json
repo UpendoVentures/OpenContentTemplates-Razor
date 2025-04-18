@@ -7,8 +7,7 @@
     },
     "ModuleAnchor": {
       "type": "string",
-      "title": "Module Anchor",
-       "pattern": "^[a-zA-Z0-9\\-]+$"
+      "title": "Module Anchor"
     },
     "ParallaxImage": {
       "type": "string",
@@ -39,10 +38,12 @@
             "required": true
           },
           "MostPopular": {
-            "type": "boolean"
+            "type": "boolean",
+            "title": "Most Popular"
           },
           "ShowPopularRibbon": {
-            "type": "boolean"
+            "type": "boolean",
+            "title": "Show Popular Ribbon"
           },
           "Features": {
             "type": "array",

@@ -74,11 +74,13 @@
         },
         {
           "fieldname": "MostPopular",
+          "title": "Most Popular",
           "fieldtype": "checkbox",
           "advanced": false
         },
         {
           "fieldname": "ShowPopularRibbon",
+          "title": "Show Popular Ribbon",
           "fieldtype": "checkbox",
           "advanced": false
         },
