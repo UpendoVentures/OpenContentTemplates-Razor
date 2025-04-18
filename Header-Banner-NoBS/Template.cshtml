@@ -1,5 +1,10 @@
+@using System
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @using DotNetNuke.Entities.Modules
 @{
+    RegisterScript(@Model.Context.TemplatePath + "/banner-scripts.js");
+    RegisterStyleSheet(Model.Context.TemplatePath + "/banner-styles.css");
+
     // Update or create the "hideadminborder" setting with the value "True"
     var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
     if (currentModule != null && currentModule.TabModuleID > 0)
@@ -25,6 +30,12 @@
     var withCloseButton = Model.Settings.WithCloseButton;
     var textAlign = Model.Settings.TextAlign;
     var text = Model.BannerContent ?? "Your announcement text here"; 
+}
+
+@if (Model.Context.IsEditMode){
+    <h3>Sticky Header Banner (Header-Banner-NoBS)</h3>
+    <p>Manage the header banner here.</p>
+    <p>(<em>This is only visible to you.</em>)</p>
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
@@ -68,6 +79,3 @@
     }
   </div>
 </div>
-
-<link rel="stylesheet" href="@Model.Context.TemplatePath/banner-styles.css">
-<script src="@Model.Context.TemplatePath/banner-scripts.js"></script>
