@@ -135,10 +135,12 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -186,7 +188,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>CompletedAmmount</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Completed Ammount</td>
                     <td>Number</td>
                     <td>The percentage of the progress bar that is completed. This field is required.</td>
                 </tr>
@@ -209,51 +223,51 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ShowCompletionText</td>
+                    <td>Show Completion Text</td>
                     <td>Boolean</td>
                     <td>Specifies whether to display the completion percentage as text inside the progress bar.</td>
                 </tr>
                 <tr>
-                    <td>UseTooltip</td>
+                    <td>Use Tooltip</td>
                     <td>Boolean</td>
                     <td>Specifies whether to display the completion percentage as a tooltip.</td>
                 </tr>
                 <tr>
-                    <td>ProgressBarSize</td>
+                    <td>Progress Bar Size</td>
                     <td>String</td>
                     <td>Defines the size of the progress bar. Options include <code>Small</code>, <code>Classic</code>,
                         and <code>Large</code>.</td>
                 </tr>
                 <tr>
-                    <td>ProgressBorderRadius</td>
+                    <td>Progress Border Radius</td>
                     <td>String</td>
                     <td>Defines the border radius of the progress bar. Options include <code>Small</code>,
                         <code>Classic</code>, and <code>Square</code>.</td>
                 </tr>
                 <tr>
-                    <td>ApplyContextualClass</td>
+                    <td>Apply Contextual Class</td>
                     <td>Boolean</td>
                     <td>Specifies whether to apply a contextual class to the progress bar.</td>
                 </tr>
                 <tr>
-                    <td>ContextualClassType</td>
+                    <td>Contextual Class Type</td>
                     <td>String</td>
                     <td>Defines the contextual class type. Options include <code>Success</code>, <code>Info</code>,
                         <code>Warning</code>, and <code>Danger</code>.</td>
                 </tr>
                 <tr>
-                    <td>ProgressColor</td>
+                    <td>Progress Color</td>
                     <td>String</td>
                     <td>Defines the color of the progress bar. Options include <code>Primary</code>,
                         <code>Secondary</code>, <code>Tertiary</code>, and <code>Quaternary</code>.</td>
                 </tr>
                 <tr>
-                    <td>ProgressAnimated</td>
+                    <td>Progress Animated</td>
                     <td>Boolean</td>
                     <td>Specifies whether the progress bar should be animated.</td>
                 </tr>
                 <tr>
-                    <td>AnimationDelay</td>
+                    <td>Animation Delay</td>
                     <td>String</td>
                     <td>Defines the delay for the animation in milliseconds. Options include <code>0ms</code>,
                         <code>300ms</code>, <code>600ms</code>, <code>900ms</code>, and <code>1200ms</code>.</td>
@@ -264,7 +278,7 @@
                     <td>Specifies whether the progress bar should have a striped style.</td>
                 </tr>
                 <tr>
-                    <td>StripedAnimated</td>
+                    <td>Striped Animated</td>
                     <td>Boolean</td>
                     <td>Specifies whether the striped progress bar should be animated.</td>
                 </tr>
@@ -281,7 +295,7 @@
             <span class="Head">Notes</span>
         </h2>
         <div class="note">
-            <strong>Note:</strong> Ensure that the <strong>CompletedAmmount</strong> field is set correctly to display
+            <strong>Note:</strong> Ensure that the <strong>Completed Ammount</strong> field is set correctly to display
             the desired progress. Additionally, verify that the <strong>Settings Properties</strong> match your design
             requirements.
         </div>
