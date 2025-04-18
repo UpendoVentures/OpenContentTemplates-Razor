@@ -221,6 +221,20 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                    <td>Porto-Maps-Template</td>
+                </tr>
+                <tr id="module-anchor">
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                    <td><code>example-module</code> (e.g., <a href="#note-section">Go to Note</a>)</td>
+                </tr>
                 <!-- Latitud -->
                 <tr>
                     <td>Latitud</td>
@@ -239,7 +253,7 @@
 
                 <!-- MarkerIcon -->
                 <tr>
-                    <td>MarkerIcon</td>
+                    <td>Marker Icon</td>
                     <td>String</td>
                     <td>Defines the URL of the custom marker icon.</td>
                     <td><code>https://example.com/marker-icon.png</code></td>
@@ -346,9 +360,11 @@
         <h3 class="Head">Views</h3>
         <img src="image/view.png" alt="Animation Style" class="component-image">
 
-        <div class="note">
+        <div id="note-section" class="note">
             <strong>Note:</strong> Ensure that the <strong>Latitud</strong> and <strong>Longitud</strong> properties are
             set correctly to center the map on the desired location.
+            <br><br>
+            <a href="#module-anchor" style="color: #6d5a2c; text-decoration: underline;">Back to Module Anchor</a>
         </div>
     </div>
 </body>
