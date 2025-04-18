@@ -1,0 +1,217 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Posts",
+      "title": "Blog Posts",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "PostTitle",
+          "title": "Post Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "placeholder": "Keep it short & catchy, if you can!",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "MonthName",
+          "title": "Month",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "Jan",
+              "text": "January"
+            },
+            {
+              "value": "Feb",
+              "text": "February"
+            },
+            {
+              "value": "Mar",
+              "text": "March"
+            },
+            {
+              "value": "Apr",
+              "text": "April"
+            },
+            {
+              "value": "May",
+              "text": "May"
+            },
+            {
+              "value": "Jun",
+              "text": "June"
+            },
+            {
+              "value": "Jul",
+              "text": "July"
+            },
+            {
+              "value": "Aug",
+              "text": "August"
+            },
+            {
+              "value": "Sep",
+              "text": "September"
+            },
+            {
+              "value": "Oct",
+              "text": "October"
+            },
+            {
+              "value": "Nov",
+              "text": "November"
+            },
+            {
+              "value": "Dec",
+              "text": "December"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "MonthDay",
+          "title": "Month Day",
+          "fieldtype": "number",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Must be a positive number between 1 and 31.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "PostUrl",
+          "title": "Post URL",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "It doesn't need to be a local page. ",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "PostIntro",
+          "title": "Post Intro",
+          "fieldtype": "textarea",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Should be no more than a short sentence.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Need at least one.",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Testimonials",
+      "title": "Testimonials",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ReviewerName",
+          "title": "Reviewer Name",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Jane Doe",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "TitleCompany",
+          "title": "Title & Company",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "placeholder": "CEO & Founder, ACME Corp.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ImageUrl",
+          "title": "Reviewer Image",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "Images"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Doesn't need to be a local file.",
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ReviewBody",
+          "title": "Review Body",
+          "fieldtype": "textarea",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Only include the highlight sentence.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Must include at least one.",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
