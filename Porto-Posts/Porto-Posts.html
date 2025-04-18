@@ -213,6 +213,8 @@
         </h2>
         
         <h3>Edit</h3>
+        <img src="image/edit0.png" alt="Edit example" class="component-image">
+        
         <h4>Posts Style</h4>
         <img src="image/edit.png" alt="Edit example" class="component-image">
         <img src="image/edit1.png" alt="Edit example" class="component-image">
@@ -224,12 +226,25 @@
         <table class="properties-table">
             <thead>
                 <tr>
-                    <th>Style</th>
-                    <th>Configuration</th>
+                    <th>Field Name</th>
+                    <th>Type</th>
                     <th>Description</th>
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+
                 <tr>
                     <td colspan="3"><p><strong>Style</strong>
                     Defines the style of the layout. Options:</p>
@@ -237,7 +252,14 @@
                         <li><code>Posts</code>: Standard posts layout.</li>
                         <li><code>Church</code>: Layout for church events.</li>
                     </ul></td>
-                </tr>                
+                </tr>          
+                <thead>
+                    <tr>
+                        <th>Style</th>
+                        <th>Configuration</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
                 <!-- Style: Posts -->
                 <tr>
                     <td rowspan="9"><strong>Posts</strong></td>
