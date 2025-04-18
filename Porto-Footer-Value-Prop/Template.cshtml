@@ -1,0 +1,151 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+<section class="section section-default section-footer">
+    <div class="container">
+        <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+            
+            <!-- #blog posts -->
+            <div class="col-md-6">
+                <div class="recent-posts mb-xl">
+                    <h2>Latest <strong>Blog</strong> Posts</h2>
+                    <div class="owl-carousel mb-none" data-plugin-options="{'items': 1}">
+
+                    @{
+                        int count = 0;
+                        var buffer = new List<dynamic>();
+                    }
+
+                    @if (Model.Posts != null)
+                    {
+                        foreach (var item in Model.Posts)
+                        {
+                            buffer.Add(item);
+                            count++;
+
+                            if (count == 2)
+                            {
+                                <div class="row">
+                                    @foreach (var post in buffer)
+                                    {
+                                        <div class="col-md-6">
+                                            <article>
+                                                <div class="date">
+                                                    <span class="day">@post.MonthDay</span><span class="month">@post.MonthName</span>
+                                                </div>
+                                                <h4 class="heading-primary">
+                                                    <a href="@post.PostUrl">@post.PostTitle</a>
+                                                </h4>
+                                                <p>
+                                                    @post.PostIntro<br />
+                                                    <a class="read-more" href="@post.PostUrl">read more <em class="fa fa-angle-right"></em></a>
+                                                </p>
+                                            </article>
+                                        </div>
+                                    }
+                                </div>
+                                buffer.Clear();
+                                count = 0;
+                            }
+                        }
+
+                        // Handle remainder (if count == 1)
+                        if (buffer.Count > 0)
+                        {
+                            <div class="row">
+                                @foreach (var post in buffer)
+                                {
+                                    <div class="col-md-6">
+                                        <article>
+                                            <div class="date">
+                                                <span class="day">@post.DayNumber</span><span class="month">@post.MonthName</span>
+                                            </div>
+                                            <h4 class="heading-primary">
+                                                <a href="@post.PostUrl">@post.PostTitle</a>
+                                            </h4>
+                                            <p>
+                                                @post.PostIntro<br />
+                                                <a class="read-more" href="@post.PostUrl">read more <em class="fa fa-angle-right"></em></a>
+                                            </p>
+                                        </article>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h1>No Posts Found</h1>
+                        <p>Add one or more posts.</p>
+                    }
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- #testimonials -->
+            <div class="col-md-6" id="testimonials">
+                <h2><strong>What</strong> Client’s Say</h2>
+                <div class="row">
+                    @if (Model.Testimonials != null)
+                    {
+                    <div class="owl-carousel mb-none" data-plugin-options="{'items': 1}">
+
+                        @foreach(var review in Model.Testimonials)
+                        {
+                        <div>
+                            <div class="col-md-12">
+                                <div class="testimonial testimonial-primary">
+                                <blockquote>
+                                    <p>@review.ReviewBody</p>
+                                </blockquote>
+                                <div class="testimonial-arrow-down">&nbsp;</div>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-author-thumbnail img-thumbnail">
+                                    <img alt="@review.ReviewerName, @review.TitleCompany" title="@review.ReviewerName, @review.TitleCompany" src="@review.ImageUrl" />
+                                    </div>
+                                    <p><strong>@review.ReviewerName</strong> <span>@review.TitleCompany</span></p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+                    }
+                    else
+                    {
+                    <h1>No Testimonials Found</h1>
+                    <p>Add one or more testimonials.</p>
+                    }
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@

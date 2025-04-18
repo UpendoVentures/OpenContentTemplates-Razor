@@ -1,0 +1,81 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Posts": {
+      "type": "accordion",
+      "helper": "Need at least one.",
+      "items": {
+        "fields": {
+          "PostTitle": {
+            "type": "text",
+            "placeholder": "Keep it short & catchy, if you can!"
+          },
+          "MonthName": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December"
+            ]
+          },
+          "MonthDay": {
+            "type": "number",
+            "helper": "Must be a positive number between 1 and 31."
+          },
+          "PostUrl": {
+            "type": "url",
+            "helper": "It doesn't need to be a local page. "
+          },
+          "PostIntro": {
+            "type": "textarea",
+            "helper": "Should be no more than a short sentence."
+          }
+        }
+      }
+    },
+    "Testimonials": {
+      "type": "accordion",
+      "helper": "Must include at least one.",
+      "items": {
+        "fields": {
+          "ReviewerName": {
+            "type": "text",
+            "helper": "Jane Doe"
+          },
+          "TitleCompany": {
+            "type": "text",
+            "placeholder": "CEO & Founder, ACME Corp."
+          },
+          "ImageUrl": {
+            "type": "image",
+            "uploadfolder": "Images",
+            "typeahead": {
+              "Folder": "Images"
+            },
+            "helper": "Doesn't need to be a local file."
+          },
+          "ReviewBody": {
+            "type": "textarea",
+            "helper": "Only include the highlight sentence."
+          }
+        }
+      }
+    }
+  }
+}

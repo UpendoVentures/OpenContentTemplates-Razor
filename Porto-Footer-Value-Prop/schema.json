@@ -1,0 +1,93 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Posts": {
+      "type": "array",
+      "title": "Blog Posts",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "PostTitle": {
+            "type": "string",
+            "title": "Post Title",
+            "required": true
+          },
+          "MonthName": {
+            "type": "string",
+            "title": "Month",
+            "enum": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "default": "Jan",
+            "required": true
+          },
+          "MonthDay": {
+            "type": "number",
+            "title": "Month Day",
+            "required": true
+          },
+          "PostUrl": {
+            "type": "string",
+            "title": "Post URL",
+            "required": true
+          },
+          "PostIntro": {
+            "type": "string",
+            "title": "Post Intro",
+            "required": true
+          }
+        }
+      }
+    },
+    "Testimonials": {
+      "type": "array",
+      "title": "Testimonials",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ReviewerName": {
+            "type": "string",
+            "title": "Reviewer Name",
+            "required": true
+          },
+          "TitleCompany": {
+            "type": "string",
+            "title": "Title & Company",
+            "required": true
+          },
+          "ImageUrl": {
+            "type": "string",
+            "title": "Reviewer Image",
+            "required": true
+          },
+          "ReviewBody": {
+            "type": "string",
+            "title": "Review Body",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}
