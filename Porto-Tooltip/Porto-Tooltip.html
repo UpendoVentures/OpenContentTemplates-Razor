@@ -135,10 +135,12 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -186,12 +188,24 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ButtonText</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Button Text</td>
                     <td>String</td>
                     <td>The text displayed on the button. This field is required.</td>
                 </tr>
                 <tr>
-                    <td>TooltipTitle</td>
+                    <td>Tooltip Title</td>
                     <td>String</td>
                     <td>The text displayed inside the tooltip. This field is required.</td>
                 </tr>
