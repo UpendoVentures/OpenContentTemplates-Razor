@@ -52,7 +52,7 @@
     <div class="col-md-4">
         @if (Model.Image != null)
         {
-            <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" data-bs-toggle="tooltip" data-bs-title="@Model.AltText" data-placement="bottom" class="z-1 @Model.Classes" />
+            <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" data-bs-toggle="tooltip" data-bs-title="@Model.AltText" data-placement="bottom" class="z-1 appear-animation @Model.Classes" data-appear-animation="fadeInUp" />
         }
         else
         {
