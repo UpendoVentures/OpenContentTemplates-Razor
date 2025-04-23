@@ -135,7 +135,7 @@
                 <li class="col-lg-@columns col-md-4 col-sm-6 col-xs-12 isotope-item @string.Join(" ", item.Category ?? new List<string>())">
                     <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg d-flex flex-column flex-grow-1" style="min-height: 415px;">
                         <span class="thumb-info-wrapper">
-                            <a href="@item.Download" target="_blank" class="no-lightbox">
+                            <a href="@item.Download" target="@GetLinkTarget(item.HomePage)" class="no-lightbox">
                                 <span class="thumb-info-wrapper d-flex align-items-center justify-content-center">
                                     <img alt="@item.Title" title="@item.Title" src="@item.logo" class="img-fluid"
                                         style="height: 200px; object-fit: cover;">
@@ -229,6 +229,127 @@
         });
     });
 </script>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
+<div class="text-muted small mt-2 d-flex align-items-center text-center">
+  <i class="fas fa-lock me-2 text-success"></i>
+  Worry-free checkout powered by <strong class="mx-2">Stripe</strong>
+</div>
+<div class="mt-2 d-flex align-items-center">
+  <p class="text-muted small text-center"><i class="fas fa-lock me-2 text-success"></i>
+  Worry-free checkout powered by <strong class="mx-2">Stripe</strong></p>
+</div>
+
+<div class="card-text mb-3">
+    <p class="text-muted small text-center"><i class="fas fa-lock me-2 text-success"></i>
+        Worry-free checkout powered by <strong class="mx-2">Stripe</strong></p>
+</div>
+
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+            ? currentModule.TabModuleSettings["hideadminborder"]
+            : null;
+       
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        @if (Model.Settings.EnableHeadingBorder)
+        {
+            <div class="heading @Model.Settings.BorderColor heading-border @Model.Settings.BorderStyle @Model.Settings.BorderSize">
+                <@Model.Settings.HeadingType class="@(Model.SubHeading != null ? "mb-0" : "") @Model.Settings.Uppercase @Model.Settings.HeadingColor">@Model.Heading</@Model.Settings.HeadingType>
+
+                @if (Model.SubHeading != null)
+                {
+                    <p class="mb-5 mt-1">@Model.SubHeading</p>
+                }
+            </div>
+        }
+        else
+        {
+            <@Model.Settings.HeadingType class="@(Model.SubHeading != null ? "mb-0" : "") @Model.Settings.Uppercase @Model.Settings.HeadingColor">@Model.Heading</@Model.Settings.HeadingType>
+
+            @if (Model.SubHeading != null)
+            {
+                <p class="mb-5 mt-1">@Model.SubHeading</p>
+            }
+        }
+    </div>
+</div>
+
+
+
+
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    var useHtmlWrapper = (Model.UseHtmlWrapper != null) ? Model.UseHtmlWrapper : true;
+    var useContentWrapper = (Model.IncludeContentWrapperClass != null) ? Model.IncludeContentWrapperClass : true;
+    var contentWrapper = (useContentWrapper) ? "content-wrapper" : string.Empty;
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+@if (!useHtmlWrapper)
+{
+<div class="@contentWrapper @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+  @if (!string.IsNullOrEmpty(Model.HtmlContent)){
+    @Html.Raw(Model.HtmlContent)
+  }else{
+  <h1>No HTML Content</h1>
+  <p>Edit this module to add any HTML-based content.</p>
+  }
+</div>
+}
+else
+{
+<div class="container @contentWrapper">
+  <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+      @if (!string.IsNullOrEmpty(Model.HtmlContent)){
+      	@Html.Raw(Model.HtmlContent)
+      }else{
+      <h1>No HTML Content</h1>
+      <p>Edit this module to add any HTML-based content.</p>
+      }
+  </div>
+</div>
+}
 @*
 <div class="dnnClear">
     @ObjectInfo.Print(Model)
