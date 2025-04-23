@@ -63,8 +63,6 @@
         /* Component Image */
         .component-image {
             width: 100%;
-
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -225,7 +223,7 @@
         </p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Accordion"><strong>Porto-Accordion
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Accordion"><strong>Porto-Accordion
                     repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-1/accordions"><strong>Porto
                     documentation</strong></a>.</p>
@@ -249,8 +247,16 @@
             <tbody>
                 <tr>
                     <td>Module Title</td>
-                    <td>Text</td>
-                    <td>Allows you to set the title of the accordion.</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
                 </tr>
                 <tr>
                     <td>Items</td>
@@ -298,8 +304,13 @@
                 <tr>
                     <td>Choose the Accordion Color</td>
                     <td>Dropdown list (Select)</td>
-                    <td>Allows you to set the accordion color by selecting one of the following values: Default,
-                        Primary, Quaternary, Secondary, or Tertiary.</td>
+                    <td>Allows you to set the accordion color by selecting one of the following values:
+                        <span style="background-color: #f7f7f7; color: black; padding: 2px 6px; border-radius: 4px;">Default</span>,
+                        <span style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary</span>,
+                        <span style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary</span>,
+                        <span style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary</span>,
+                        <span style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary</span>.
+                    </td>
                 </tr>
                 <tr>
                     <td>Choose the Accordion Size</td>

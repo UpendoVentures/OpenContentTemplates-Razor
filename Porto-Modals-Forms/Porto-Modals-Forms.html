@@ -162,9 +162,9 @@
             integrates seamlessly with <strong>OpenContent</strong>.</p>
 
         <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Modals-Forms">
+            href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Modals-Forms" target="_blank">
             <strong>Porto-Modals-Forms repository on GitHub</strong></a> or the <a
-            href="https://porto.mandeeps.com/shortcodes/shortcodes-2/modals">
+            href="https://porto.mandeeps.com/shortcodes/shortcodes-1/modals" target="_blank">
             <strong>Porto documentation</strong></a>.
         </p>
 
@@ -186,12 +186,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ButtonTitle</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Button Title</td>
                     <td>String</td>
                     <td>The text displayed on the button that triggers the modal.</td>
                 </tr>
                 <tr>
-                    <td>ModalTitle</td>
+                    <td>Modal Title</td>
                     <td>String</td>
                     <td>The title displayed at the top of the modal. This field is required.</td>
                 </tr>
@@ -220,7 +233,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ButtonColor</td>
+                    <td>Button Color</td>
                     <td>String</td>
                     <td>Defines the color of the button. Options include <code>btn-primary</code>,
                         <code>btn-secondary</code>, <code>btn-success</code>, <code>btn-warning</code>, and more.</td>

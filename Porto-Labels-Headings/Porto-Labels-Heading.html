@@ -135,8 +135,6 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -162,9 +160,9 @@
             <strong>OpenContent</strong>.</p>
 
         <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Labels-Headings">
+            href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Labels-Headings" target="_blank">
             <strong>Porto-Labels-Headings repository on GitHub</strong></a> or the <a
-            href="https://porto.mandeeps.com/shortcodes/shortcodes-2/labels-headings">
+            href="https://porto.mandeeps.com/shortcodes/shortcodes-2/labels" target="_blank">
             <strong>Porto documentation</strong></a>.
         </p>
 
@@ -186,7 +184,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Heading</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Heading Text</td>
                     <td>String</td>
                     <td>The main heading text for the component. This field is required.</td>
                 </tr>
@@ -198,11 +208,10 @@
             </tbody>
         </table>
 
-        <h2>
-            <span class="Head">Settings Properties</span>
-        </h2>
+        <h2><span class="Head">Settings</span></h2>
         <img src="images/template-settings.png" alt="View Example" class="component-image">
 
+        <h2><span class="Head">Settings Properties</span></h2>
         <table class="properties-table">
             <thead>
                 <tr>
@@ -213,13 +222,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>SubHeadingColor</td>
+                    <td>SubHeading Color</td>
                     <td>String</td>
-                    <td>Defines the color of the subheading. Options include <code>badge-default</code>,
-                        <code>badge-success</code>, <code>badge-info</code>, and more.</td>
+                    <td>Defines the color of the subheading. Options include:
+                        <span style="background-color: #777; color: white; padding: 2px 6px; border-radius: 4px;">Default</span>,
+                        <span style="background-color: #47a447; color: white; padding: 2px 6px; border-radius: 4px;">Success</span>,
+                        <span style="background-color: #5bc0de; color: white; padding: 2px 6px; border-radius: 4px;">Info</span>,
+                        <span style="background-color: #ed9c28; color: white; padding: 2px 6px; border-radius: 4px;">Warning</span>,
+                        <span style="background-color: #d2322d; color: white; padding: 2px 6px; border-radius: 4px;">Danger</span>,
+                        <span style="background-color: #2e353e; color: white; padding: 2px 6px; border-radius: 4px;">Dark</span>,
+                        <span style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary</span>,
+                        <span style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary</span>,
+                        <span style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary</span>,
+                        <span style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary</span>.
+                    </td>
                 </tr>
                 <tr>
-                    <td>SubHeadingSize</td>
+                    <td>SubHeading Size</td>
                     <td>String</td>
                     <td>Defines the size of the subheading. Options include <code>h1</code>, <code>h2</code>,
                         <code>h3</code>, and more.</td>
@@ -238,8 +257,8 @@
         </h2>
         <div class="note">
             <strong>Note:</strong> Ensure that the <strong>Heading</strong> and <strong>SubHeading</strong> fields are
-            set correctly to match your design requirements. Additionally, verify that the <strong>SubHeadingColor</strong>
-            and <strong>SubHeadingSize</strong> properties are configured as needed.
+            set correctly to match your design requirements. Additionally, verify that the <strong>SubHeading Color</strong>
+            and <strong>SubHeading Size</strong> properties are configured as needed.
         </div>
     </div>
 </body>

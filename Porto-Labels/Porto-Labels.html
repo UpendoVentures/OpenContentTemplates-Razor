@@ -220,7 +220,7 @@
         </p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Labels"><strong>Porto-Labels
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Labels"><strong>Porto-Labels
                     repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-2/labels"><strong>Porto
                     documentation</strong></a>.</p>
@@ -234,7 +234,7 @@
 
         <h2 id="properties" class="Head">Properties</h2>
         <table class="properties-table">
-            <thead>
+            <thead>               
                 <tr>
                     <th>Field Name</th>
                     <th>Type</th>
@@ -244,7 +244,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Label</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
+                    <td>Label Text</td>
                     <td>String</td>
                     <td>Label Text (required)</td>
                     <td>Yes</td>
@@ -268,7 +281,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>LabelColor</td>
+                    <td>Label Color</td>
                     <td>Select</td>
                     <td>
                         Specifies the color of the label. Options include:
@@ -307,7 +320,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>LabelSize</td>
+                    <td>Label Size</td>
                     <td>Select</td>
                     <td>
                         Specifies the size of the label. Options include:
@@ -342,12 +355,12 @@
             layout needs of your page.
             Here are some key points to consider:
             <ul>
-                <li>Use <code>LabelColor</code> to select a predefined color style. For example, <span
+                <li>Use <code>Label Color</code> to select a predefined color style. For example, <span
                         style="background-color: #47a447; color: white; padding: 2px 6px; border-radius: 4px;">Success</span>
                     or <span
                         style="background-color: #bd2d29; color: white; padding: 2px 6px; border-radius: 4px;">Danger</span>.
                 </li>
-                <li>Use <code>LabelSize</code> to adjust the size of the label. Options include <span
+                <li>Use <code>Label Size</code> to adjust the size of the label. Options include <span
                         style="font-size: 0.8rem; padding: 2px 6px; border-radius: 4px;">Small</span>, <span
                         style="font-size: 1rem; padding: 2px 6px; border-radius: 4px;">Default</span>, and <span
                         style="font-size: 1.2rem; padding: 2px 6px; border-radius: 4px;">Large</span>.</li>

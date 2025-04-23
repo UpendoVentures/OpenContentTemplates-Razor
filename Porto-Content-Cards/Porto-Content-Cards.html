@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
-    <title>Porto-Paragraphs Documentation</title>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="images/x-icon">
+    <title>Porto-Content-Cards Documentation</title>
     <style>
         /* General Styles */
         body {
@@ -60,6 +60,27 @@
             padding: 0 20px;
         }
 
+        /* Component Images */
+        .component-images {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .images-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .images-grid .component-images {
+            flex: 1 1 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+
+        /* Table Styles */
         .properties-table {
             width: 100%;
             border-collapse: collapse;
@@ -87,6 +108,7 @@
             background-color: #f9f9f9;
         }
 
+        /* Note Box */
         .note {
             background-color: #fff8e5;
             padding: 15px;
@@ -100,6 +122,17 @@
             color: #6d5a2c;
         }
 
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
         .header {
             display: flex;
             align-items: center;
@@ -133,12 +166,20 @@
             border-radius: 1px;
         }
 
-        .component-image {
-            width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .images-with-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .images-caption {
+            font-size: 1rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -149,31 +190,43 @@
             <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
                 alt="Logo">
             <div class="header-content">
-                <h1>Porto-Paragraphs Documentation</h1>
+                <h1>Porto-Content-Cards Documentation</h1>
             </div>
         </div>
         <div class="header-divider"></div>
 
         <h2>
+            <span class="Head">Table of Contents</span>
+        </h2>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#usage-example">Usage Example</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#settings-properties">Settings Properties</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+
+        <h2 id="overview">
             <span class="Head">Overview</span>
         </h2>
-        <p>The <strong>Porto-Paragraphs</strong> component allows you to create customizable paragraphs with adjustable
-            margins, padding, and rich text formatting. This component is highly flexible and integrates seamlessly
-            with <strong>OpenContent</strong>.</p>
-
-        <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Paragraphs">
-            <strong>Porto-Paragraphs repository on GitHub</strong></a>.
+        <p>The <strong>Porto-Content-Cards</strong>
         </p>
 
-        <h2>
-            <span class="Head">Usage Example</span>
-        </h2>
-        <img src="images/usage-example.png" alt="Usage Example" class="component-image">
+        <p>For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Content-Cards" target="_blank"><strong>Porto-Content-Cards
+                    repository on GitHub</strong></a>
 
-        <h2>
-            <span class="Head">Properties</span>
+        <h2 id="usage-example">
+            <span class="Head">Usage <strong>Example</strong></span>
         </h2>
+
+        <h3>Edit</h3>
+        <img src="images/edit.png" alt="edit" class="component-images">
+        <img src="images/edit1.png" alt="edit" class="component-images">
+
+        <h2 id="properties" class="Head">Properties</h2>
         <table class="properties-table">
             <thead>
                 <tr>
@@ -184,19 +237,34 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Paragraph</td>
+                    <td>Content Title</td>
                     <td>String</td>
-                    <td>The paragraph text to display. This field is required and supports rich text formatting.</td>
+                    <td>The title of the content card. Optional and not rendered if left empty.</td>
+                </tr>
+                <tr>
+                    <td>Title Icon</td>
+                    <td>String</td>
+                    <td>An optional FontAwesome icon class for the title. Example: <code>fa-solid fa-heart</code>.</td>
+                </tr>
+                <tr>
+                    <td>Content Items</td>
+                    <td>Array</td>
+                    <td>A list of content items. Each item includes:
+                        <ul>
+                            <li><code>Content Title:</code> The title of the content item (required).</li>
+                            <li><code>Content Subtitle:</code> An optional subtitle for the content item.</li>
+                            <li><code>Content Image:</code> An optional image for the content item.</li>
+                            <li><code>Content Body:</code> Rich text content for the content item.</li>
+                        </ul>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <h2>
-            <span class="Head">Settings Properties</span>
-        </h2>
+        <h3 id="settings" class="Head">Settings</h3>
+        <img src="images/template settings.png" alt="Screenshot of computer" class="component-images">
 
-        <img src="images/template-settings.png" alt="Settings Properties" class="component-image">
-
+        <h3 id="settings-properties" class="Head">Settings Properties</h3>
         <table class="properties-table">
             <thead>
                 <tr>
@@ -207,49 +275,47 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>MarginTop</td>
-                    <td>String</td>
+                    <td>Margin Top</td>
+                    <td>Select</td>
                     <td>Defines the top margin of the paragraph. Options include <code>mt-0</code>, <code>mt-1</code>,
                         <code>mt-2</code>, <code>mt-3</code>, <code>mt-4</code>, <code>mt-5</code>, and
-                        <code>mt-auto</code>.</td>
+                        <code>mt-auto</code>.
+                    </td>
                 </tr>
                 <tr>
-                    <td>MarginBottom</td>
-                    <td>String</td>
+                    <td>Margin Bottom</td>
+                    <td>Select</td>
                     <td>Defines the bottom margin of the paragraph. Options include <code>mb-0</code>, <code>mb-1</code>,
                         <code>mb-2</code>, <code>mb-3</code>, <code>mb-4</code>, <code>mb-5</code>, and
-                        <code>mb-auto</code>.</td>
+                        <code>mb-auto</code>.
+                    </td>
                 </tr>
                 <tr>
-                    <td>PaddingTop</td>
-                    <td>String</td>
+                    <td>Padding Top</td>
+                    <td>Select</td>
                     <td>Defines the top padding of the paragraph. Options include <code>pt-0</code>, <code>pt-1</code>,
                         <code>pt-2</code>, <code>pt-3</code>, <code>pt-4</code>, <code>pt-5</code>, and
-                        <code>pt-auto</code>.</td>
+                        <code>pt-auto</code>.
+                    </td>
                 </tr>
                 <tr>
-                    <td>PaddingBottom</td>
-                    <td>String</td>
+                    <td>Padding Bottom</td>
+                    <td>Select</td>
                     <td>Defines the bottom padding of the paragraph. Options include <code>pb-0</code>, <code>pb-1</code>,
                         <code>pb-2</code>, <code>pb-3</code>, <code>pb-4</code>, <code>pb-5</code>, and
-                        <code>pb-auto</code>.</td>
+                        <code>pb-auto</code>.
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <h2>
-            <span class="Head">Views</span>
-        </h2>
-        <p>Below is an example of how the paragraph component is rendered:</p>
-        <img src="images/view-example.png" alt="View Example" class="component-image">
+        <h3 id="views" class="Head">Views</h3>
+        <img src="images/view.png" alt="Screenshot of computer" class="component-images">
 
-        <h2>
-            <span class="Head">Notes</span>
-        </h2>
+        <h2 id="notes" class="Head">Notes</h2>
         <div class="note">
-            <strong>Note:</strong> Ensure that the <strong>Paragraph</strong> field is set correctly to display the
-            desired text. Additionally, verify that the <strong>Settings Properties</strong> match your design
-            requirements.
+            <strong>Note:</strong> Ensure that the <strong>Content Title</strong> and <strong>Content Items</strong> fields are
+            configured correctly. Use the <strong>Title Icon</strong> field to add an optional FontAwesome icon.
         </div>
     </div>
 </body>

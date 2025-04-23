@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/6611381?s=200&v=4" type="image/x-icon">
+    <title>Modal-Dialog Documentation</title>
+    <style>
+        /* General Styles */
+        body {
+            color: #333333;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #6d5a2c;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 1px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6d5a2c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Component Image */
+        .component-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-evenly;
+        }
+
+        .image-with-text {
+            text-align: center;
+            flex-basis: calc(50% - 30px);
+            max-width: 600px;
+        }
+
+        .component-image-700 {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            font-size: 1.2rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+
+        /* Table Styles */
+        .properties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .properties-table th,
+        .properties-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .properties-table th {
+            background-color: #6d5a2c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .properties-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #fff8e5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f1c232;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .note strong {
+            color: #6d5a2c;
+        }
+
+        /* Headings Style */
+        .Head {
+            display: block;
+            font-family: "Shadows Into Light", cursive;
+            font-weight: normal;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #6d5a2c;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #f9f9f9;
+            color: #6d5a2c;
+            padding: 20px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .header-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #6d5a2c;
+            border-radius: 1px;
+        }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upendo-website.s3-us-west-1.amazonaws.com/Portals/0/Images/Upendo-logo-trans-230x65.png"
+                alt="Logo">
+            <div class="header-content">
+                <h1>Modal-Dialog Documentation</h1>
+            </div>
+        </div>
+        <div class="header-divider"></div>
+
+        <h2 id="overview">Overview</h2>
+        <p>The <strong>Modal-Dialog</strong> component allows you to create customizable modal dialogs with configurable titles,
+            content, buttons, and styles. This component is designed to provide flexibility and control over how modal dialogs
+            are displayed and interacted with. It supports the following features:</p>
+        <ul>
+            <li><strong>Configurable Titles:</strong> The modal header can display a title with customizable text, color, and
+                HTML heading level (e.g., h1, h2, h3).</li>
+            <li><strong>Dynamic Content:</strong> The modal body supports plain text or HTML content, allowing for rich and
+                interactive user experiences.</li>
+            <li><strong>Action Buttons:</strong> Includes primary and secondary buttons with customizable text, links, and
+                styles to guide user actions.</li>
+            <li><strong>Cookie-Based Behavior:</strong> Optionally, the modal can use cookies to control its display. For
+                example, it can be configured to show only the first time a user visits the page.</li>
+            <li><strong>User-Specific Content:</strong> If a user is authenticated, the modal can display personalized
+                information, such as the user's email address.</li>
+            <li><strong>Customizable Styles:</strong> The modal's header, buttons, and other elements can be styled to match
+                your application's design using configurable settings like background color, text color, and hover effects.</li>
+        </ul>
+        <p>This component is ideal for scenarios where you need to display important information, collect user input, or guide
+            users through specific actions. For more details, check out the <a
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/main/Modal-Dialog"
+                target="_blank"><strong>Modal-Dialog repository on GitHub</strong></a>.</p>
+
+        <h3>Usage Example</h3>
+        <img src="images/edit.png" alt="Usage Example" class="component-image">
+
+        <h2 id="properties" class="Head">Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>The title of the module. Optional and not rendered if left empty.</td>
+                </tr>
+                <tr>
+                    <td>Modal Id</td>
+                    <td>String</td>
+                    <td>A unique identifier for the modal dialog.</td>
+                </tr>
+                <tr>
+                    <td>Modal Dialog Title</td>
+                    <td>String</td>
+                    <td>The title displayed in the modal header.</td>
+                </tr>
+                <tr>
+                    <td>Modal Content</td>
+                    <td>String</td>
+                    <td>The main content of the modal. This field is required and supports plain text or HTML.</td>
+                </tr>
+                <tr>
+                    <td>Primary Button Text</td>
+                    <td>String</td>
+                    <td>The text displayed on the primary button. Optional and not rendered if left empty.</td>
+                </tr>
+                <tr>
+                    <td>Primary Button Link</td>
+                    <td>String</td>
+                    <td>The URL or link associated with the primary button. Optional and not rendered if left empty.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Secondary Button Text</td>
+                    <td>String</td>
+                    <td>The text displayed on the secondary button. Optional and not rendered if left empty.</td>
+                </tr>
+                <tr>
+                    <td>Secondary Button Link</td>
+                    <td>String</td>
+                    <td>The URL or link associated with the secondary button. Optional and not rendered if left empty.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="Head">Settings</h3>
+        <img src="images/settings-properties.png" alt="Template settings example" class="component-image">
+
+        <h2 id="settings-properties" class="Head">Settings Properties</h2>
+        <table class="properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Header Background Color</td>
+                    <td>String</td>
+                    <td>Defines the background color of the modal header. Default:<span style="background-color: #FF5733; color: white; padding: 2px 6px; border-radius: 4px;">#CE3439</span>.</td>
+                </tr>
+                <tr>
+                    <td>Header Text Color</td>
+                    <td>String</td>
+                    <td>Defines the text color of the modal header. Default: <span style="background-color: #FF5733; color: #FFFFFF; padding: 2px 6px; border-radius: 4px;">#FFFFFF</span>.</td>
+                </tr>
+                <tr>
+                    <td>Header Text Type</td>
+                    <td>Select</td>
+                    <td>Specifies the HTML heading level for the modal title. Options include <code>h1</code>,
+                        <code>h2</code>, <code>h3</code>, <code>h4</code>, and <code>h5</code>. Default:
+                        <code>h3</code>.</td>
+                </tr>
+                <tr>
+                    <td>Use Cookie Setting</td>
+                    <td>Boolean</td>
+                    <td> If enabled, the modal will only open the first time the user accesses the page. Default: <code>true</code>.
+                        <br><br> When this setting is enabled, the component uses a cookie named <strong>"firstRender"</strong> to track
+                        whether the modal has already been displayed to the user. Here's how it works: <ul>
+                            <li><strong>Cookie Name:</strong> <code>firstRender</code></li>
+                            <li><strong>Purpose:</strong> Prevents the modal from being shown repeatedly by storing a flag in the user's
+                                browser.</li>
+                            <li><strong>Duration:</strong> The cookie is set to expire after 1 day by default.</li>
+                            <li><strong>Behavior:</strong>
+                                <ul>
+                                    <li>If the cookie <code>firstRender</code> does not exist, the modal will be displayed, and the
+                                        cookie will be created.</li>
+                                    <li>If the cookie exists, the modal will not be displayed again until the cookie expires or is
+                                        deleted.</li>
+                                </ul>
+                            </li>
+                        </ul> <br> <strong>How to Find or Delete the Cookie:</strong>
+                        <ul>
+                            <li>Open your browser's developer tools (usually accessible via <code>F12</code> or
+                                <code>Ctrl+Shift+I</code>).</li>
+                            <li>Go to the "Application" tab (in Chrome/Edge) or "Storage" tab (in Firefox).</li>
+                            <li>Under "Cookies," locate the domain of your website.</li>
+                            <li>Search for the cookie named <code>firstRender</code>.</li>
+                            <li>To delete the cookie, right-click on it and select "Delete" or use the browser's cookie management
+                                tools.</li>
+                        </ul> <br> <strong>Disabling the Cookie:</strong>
+                        <ul>
+                            <li>If you disable the <code>Use Cookie Setting</code> in the module's configuration, the cookie will not be
+                                created, and the modal will display every time the page is loaded.</li>
+                            <li>To disable the cookie programmatically, the following line in the script ensures the cookie is cleared:
+                                <pre><code>document.cookie = "firstRender=; Max-Age=-99999999;";</code></pre>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>No User Logged In Text</td>
+                    <td>String</td>
+                    <td>The text displayed when no user is logged in. Default: <code>No user logged in</code>.</td>
+                </tr>
+                <tr>
+                    <td>My Email Address Is Accurate Text</td>
+                    <td>String</td>
+                    <td>The text displayed for confirming the accuracy of the user's email address. Default:
+                        <code>My email address is accurate.</code>.</td>
+                </tr>
+                <tr>
+                    <td>Current Email Text</td>
+                    <td>String</td>
+                    <td>The label for displaying the user's current email address. Default: <code>Current email:</code>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Views</h3>
+        <div class="image-grid">
+            <img src="images/view.png" alt="Usage Example" class="component-image-700">
+            <img src="images/view1.png" alt="Usage Example" class="component-image-700">
+        </div>
+        
+        <h2 id="notes" class="Head">Notes</h2>
+        <div class="note">
+            <strong>Note:</strong> Ensure that the <strong>Modal Content</strong> field is populated, as it is required
+            for the modal to render correctly. Use the <strong>Use Cookie Setting</strong> option to control the modal's
+            display behavior.
+        </div>
+    </div>
+</body>
+
+</html>

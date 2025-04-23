@@ -206,7 +206,7 @@
             You can define counters with prefixes, suffixes, icons, and text to display key metrics or statistics.</p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Counters">
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Counters">
                 <strong>Porto-Counters repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-3/counters">
                 <strong>Porto documentation</strong></a>.
@@ -217,6 +217,8 @@
         </h2>
 
         <h3>Edit</h3>
+        <img src="image/edit0.png" alt="Edit example" class="component-image-800">
+
         <h4>Default Style</h4>
         <img src="image/edit.png" alt="Edit example" class="component-image-800">
         <img src="image/edit1.png" alt="Edit example" class="component-image-800">
@@ -228,15 +230,28 @@
         <table class="properties-table">
             <thead>
                 <tr>
-                    <th>Style</th>
+                    <th>Property</th>
                     <th>Configuration</th>
                     <th>Description</th>
                 </tr>
             </thead>
-            <tbody>                      
+            <tbody>        
+                <tr>
+                    <td>Module Title</td>
+                    <td></td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td></td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
                 <!-- Default Style -->
                 <tr>
-                    <td rowspan="4"><strong>Default</strong></td>
+                    <td rowspan="4"><strong>Default Style</strong></td>
                     <td>With Borders</td>
                     <td>Adds borders to the counters.</td>
                 </tr>
@@ -254,24 +269,28 @@
                     <td>
                         A list of counters to display. Each item can include the following properties:
                         <ul>
-                            <li><strong>Data From:</strong> Starting value of the counter.</li>
-                            <li><strong>Data To:</strong> Ending value of the counter.</li>
-                            <li><strong>Data Prefix:</strong> Text displayed before the counter value.</li>
-                            <li><strong>Data Append:</strong> Text displayed after the counter value (e.g., <code>+</code>).
+                            <li><code>Data From:</code> Starting value of the counter.</li>
+                            <li><code>Data To:</code> Ending value of the counter.</li>
+                            <li><code>Data Prefix:</code> Text displayed before the counter value.</li>
+                            <li><code>Data Append:</code> Text displayed after the counter value (e.g., <code>+</code>).
                             </li>
-                            <li><strong>Icon:</strong> Icon displayed with the counter. Find values at <a
+                            <li><code>Icon:</code> Icon displayed with the counter. Find values at <a
                                     href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a>.</li>
-                            <li><strong>Text:</strong> Text displayed below the counter.</li>
-                            <li><strong>Color:</strong> Color theme for the counter. Options include <code>primary</code>,
-                                <code>secondary</code>, <code>tertiary</code>, and <code>quaternary</code>.</li>
-                            <li><strong>Speed:</strong> Animation speed for the counter (in milliseconds). Default is
+                            <li><code>Text:</code> Text displayed below the counter.</li>
+                            <li><code>Color:</code> Color theme for the counter. Options include:
+                                <span style="background-color: #0088cc; color: white; padding: 2px 6px; border-radius: 4px;">Primary</span>,
+                                <span style="background-color: #E36159; color: white; padding: 2px 6px; border-radius: 4px;">Secondary</span>,
+                                <span style="background-color: #2BAAB1; color: white; padding: 2px 6px; border-radius: 4px;">Tertiary</span>,
+                                <span style="background-color: #383f48; color: white; padding: 2px 6px; border-radius: 4px;">Quaternary</span>.
+                            </li>
+                            <li><code>Speed:</code> Animation speed for the counter (in milliseconds). Default is
                                 <code>5000</code>.</li>
                         </ul>
                     </td>
                 </tr>
                 <!-- Inline Style -->
                 <tr>
-                    <td rowspan="5"><strong>Inline</strong></td>
+                    <td rowspan="5"><strong>Inline Style</strong></td>
                     <td>First Text</td>
                     <td>Text displayed before the counter value.</td>
                 </tr>

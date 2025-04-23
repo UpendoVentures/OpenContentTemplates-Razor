@@ -135,10 +135,12 @@
 
         .component-image {
             width: 100%;
-            max-width: 900px;
-            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-size: large;
+            color: #6d5a2c;
         }
     </style>
 </head>
@@ -162,7 +164,7 @@
             <strong>OpenContent</strong>.</p>
 
         <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Word-Rotator">
+            href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Word-Rotator">
             <strong>Porto-Word-Rotator repository on GitHub</strong></a> or the <a
             href="https://porto.mandeeps.com/shortcodes/shortcodes-2/word-rotator">
             <strong>Porto documentation</strong></a>.
@@ -171,6 +173,7 @@
         <h2>
             <span class="Head">Usage Example</span>
         </h2>
+        <img src="images/usage-example0.png" alt="Usage Example" class="component-image">
         <img src="images/usage-example.png" alt="Usage Example" class="component-image">
 
         <h2>
@@ -185,6 +188,18 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
                 <tr>
                     <td>Sections</td>
                     <td>Array</td>

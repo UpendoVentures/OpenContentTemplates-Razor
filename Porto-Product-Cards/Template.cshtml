@@ -1,3 +1,22 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
 @functions {
     public bool ConvertToBool(dynamic value)
     {
@@ -49,8 +68,8 @@
                                             <span class="fs-6">
                                                 @Html.Raw(product.ProductDescription) 
                                             </span>
-                                            <p class="fs-5 mt-auto">
-                                                <span class="mt-auto">
+                                            <p class="fs-5">
+                                                <span>
                                                     <span class="price-monthly d-none">
                                                     @if (!string.IsNullOrEmpty(product.MonthlyPrice))
                                                     {
