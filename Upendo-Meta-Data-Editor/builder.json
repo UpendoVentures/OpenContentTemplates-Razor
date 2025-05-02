@@ -1,0 +1,256 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "MetaTags",
+      "title": "<code>&lt;meta /&gt;</code> Tags",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ID",
+          "title": "<code>id</code>",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Only used for management & troubleshooting. Has no impact on your website.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Name",
+          "title": "<code>name</code>",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "N/A",
+              "text": "N/A"
+            },
+            {
+              "value": "application-name",
+              "text": "application-name"
+            },
+            {
+              "value": "author",
+              "text": "author"
+            },
+            {
+              "value": "generator",
+              "text": "generator"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "N/A",
+          "helper": "Specifies a name for the meta data. (Intentionally excludes: <code>description</code>, <code>keywords</code>, and <code>viewport</code>) Those should be done in the theme and/or page settings. ",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Content",
+          "title": "<code>content</code>",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Specifies the value associated with the name attribute.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Building <code>&lt;meta name=&quot;&quot; content=&quot;&quot; /&gt;</code> tags.",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "LinkTags",
+      "title": "<code>&lt;link /&gt;</code> Tags",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ID",
+          "title": "<code>id</code>",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Only used for editing and troubleshooting.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Rel",
+          "title": "<code>rel</code>",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "alternate",
+              "text": "alternate"
+            },
+            {
+              "value": "author",
+              "text": "author"
+            },
+            {
+              "value": "canonical",
+              "text": "canonical"
+            },
+            {
+              "value": "help",
+              "text": "help"
+            },
+            {
+              "value": "icon",
+              "text": "icon"
+            },
+            {
+              "value": "license",
+              "text": "license"
+            },
+            {
+              "value": "next",
+              "text": "next"
+            },
+            {
+              "value": "pingback",
+              "text": "pingback"
+            },
+            {
+              "value": "prev",
+              "text": "prev"
+            },
+            {
+              "value": "search",
+              "text": "search"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "icon",
+          "helper": "Required. Specifies the relationship between the current document and the linked document. (Intentionally excluded: <code>dns-prefetch</code>, <code>pingback</code>, <code>preconnect</code>, <code>prefetch</code>, <code>preload</code>, <code>prerender</code>, and <code>stylesheet</code>.)",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Href",
+          "title": "<code>href</code>",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Specifies the location of the linked document. Can be a local or external URL.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Type",
+          "title": "<code>type</code>",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "image/x-icon",
+              "text": "image/x-icon"
+            },
+            {
+              "value": "image/png",
+              "text": "image/png"
+            },
+            {
+              "value": "image/svg+xml",
+              "text": "image/svg+xml"
+            },
+            {
+              "value": "image/jpeg",
+              "text": "image/jpeg"
+            },
+            {
+              "value": "application/rss+xml",
+              "text": "application/rss+xml"
+            },
+            {
+              "value": "application/atom+xml",
+              "text": "application/atom+xml"
+            },
+            {
+              "value": "application/manifest+json",
+              "text": "application/manifest+json"
+            }
+          ],
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "(Intentionally excluded:  <code>text/css</code>)",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Hreflang",
+          "title": "<code>hreflang</code>",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Specifies the language of the text in the linked document",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Sizes",
+          "title": "<code>sizes</code>",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Specifies the size of the linked resource. Only for rel=\"icon\"",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Building <code>&lt;link rel=&quot;&quot; /&gt;</code> tags. (Attributes intentionally excluded: <code>media</code>, <code>title</code>, <code>as</code>, <code>crossorigin</code>, and <code>integrity</code>.)",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
