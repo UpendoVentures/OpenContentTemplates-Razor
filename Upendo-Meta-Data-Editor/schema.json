@@ -33,6 +33,10 @@
             "default": "N/A",
             "required": true
           },
+          "Property": {
+            "type": "string",
+            "title": "<code>property</code>"
+          },
           "Content": {
             "type": "string",
             "title": "<code>content</code>",

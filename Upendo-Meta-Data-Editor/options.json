@@ -27,6 +27,10 @@
             ],
             "helper": "Specifies a name for the meta data. (Intentionally excludes: <code>description</code>, <code>keywords</code>, and <code>viewport</code>) Those should be done in the theme and/or page settings. "
           },
+          "Property": {
+            "type": "text",
+            "helper": "Often used to define social tags, like Twitter Cards and Open Graph Protocol. (Example: <code>og:site_name</code> and <code>twitter:card</code>"
+          },
           "Content": {
             "type": "text",
             "helper": "Specifies the value associated with the name attribute."
