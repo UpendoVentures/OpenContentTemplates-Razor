@@ -36,68 +36,71 @@
                 This allows you to easily manage custom <code>@System.Net.WebUtility.HtmlEncode("<meta />")</code> and <code>@System.Net.WebUtility.HtmlEncode("<link />")</code> tags without editing the theme or site settings directly.
             </p>
         </div>
-        <h4>Meta Tags</h4>
-        <p class="text-muted">
-            <small>
-                <strong>Note:</strong> The <code>@System.Net.WebUtility.HtmlEncode("<meta />")</code> tags are typically used for SEO, social media sharing, and other metadata.
-                Ensure that the <code>@System.Net.WebUtility.HtmlEncode("name")</code> attribute is set correctly for the intended use.
-            </small>
-        </p>
-        @if (Model.MetaTags != null) {
-            <ul class="list-unstyled mb-3">
-                @foreach (var tag in Model.MetaTags) {
-                    var meta = new System.Text.StringBuilder();
-                    meta.Append("<meta");
-                    if (!string.IsNullOrEmpty(tag.ID)) { meta.AppendFormat(" id=\"{0}\"", tag.ID); }
-                    if (!string.IsNullOrEmpty(tag.Name)) { meta.AppendFormat(" name=\"{0}\"", tag.Name); }
-                    if (!string.IsNullOrEmpty(tag.Content)) { meta.AppendFormat(" content=\"{0}\"", tag.Content); }
-                    meta.Append(" />");
 
-                    <li><code>@System.Net.WebUtility.HtmlEncode(meta.ToString())</code></li>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Meta Tags</h4>
+                <p class="text-muted">
+                    <small>
+                        <strong>Note:</strong> The <code>@System.Net.WebUtility.HtmlEncode("<meta />")</code> tags are typically used for SEO, social media sharing, and other metadata.
+                        Ensure that the <code>@System.Net.WebUtility.HtmlEncode("name")</code> attribute is set correctly for the intended use.
+                    </small>
+                </p>
+                @if (Model.MetaTags != null) {
+                    <ul class="list-unstyled mb-3">
+                        @foreach (var tag in Model.MetaTags) {
+                            var meta = new System.Text.StringBuilder();
+                            meta.Append("<meta");
+                            if (!string.IsNullOrEmpty(tag.Name) && tag.Name.ToLower() != "n/a") { meta.AppendFormat(" name=\"{0}\"", tag.Name); }
+                            if (!string.IsNullOrEmpty(tag.Property)) { meta.AppendFormat(" property=\"{0}\"", tag.Property); }
+                            if (!string.IsNullOrEmpty(tag.Content)) { meta.AppendFormat(" content=\"{0}\"", tag.Content); }
+                            meta.Append(" />");
+
+                            <li><code>@System.Net.WebUtility.HtmlEncode(meta.ToString())</code></li>
+                        }
+                    </ul>
                 }
-            </ul>
-        }
-        else
-        {
-            <div class="alert alert-warning" role="alert">
-                <p class="mb-0">No meta tags found.</p>
-            </div>
-        }
-        <hr />
-
-        <h4>Link Tags</h4>
-        <p class="text-muted">
-            <small>
-                <strong>Note:</strong> The <code>@System.Net.WebUtility.HtmlEncode("<link />")</code> tags are typically used for stylesheets, icons, and other resources.
-                Ensure that the <code>@System.Net.WebUtility.HtmlEncode("rel")</code> attribute is set correctly for the intended use.
-            </small>
-        </p>
-        @if (Model.LinkTags != null) {
-            <ul class="list-unstyled mb-3">
-                @foreach (var tag in Model.LinkTags) {
-                    var link = new System.Text.StringBuilder();
-                    link.Append("<link");
-                    if (!string.IsNullOrEmpty(tag.ID)) { link.AppendFormat(" id=\"{0}\"", tag.ID); }
-                    if (!string.IsNullOrEmpty(tag.Rel)) { link.AppendFormat(" rel=\"{0}\"", tag.Rel); }
-                    if (!string.IsNullOrEmpty(tag.Href)) { link.AppendFormat(" href=\"{0}\"", tag.Href); }
-                    if (!string.IsNullOrEmpty(tag.Type)) { link.AppendFormat(" type=\"{0}\"", tag.Type); }
-                    if (!string.IsNullOrEmpty(tag.Hreflang)) { link.AppendFormat(" hreflang=\"{0}\"", tag.Hreflang); }
-                    if (!string.IsNullOrEmpty(tag.Sizes)) { link.AppendFormat(" sizes=\"{0}\"", tag.Sizes); }
-                    link.Append(" />");
-
-                    <li><code>@System.Net.WebUtility.HtmlEncode(link.ToString())</code></li>
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <p class="mb-0">No meta tags found.</p>
+                    </div>
                 }
-            </ul>
-        }
-        else
-        {
-            <div class="alert alert-warning" role="alert">
-                <p class="mb-0">No link tags found.</p>
             </div>
-        }
-        <hr />
+            <div class="col-md-6">
+                <h4>Link Tags</h4>
+                <p class="text-muted">
+                    <small>
+                        <strong>Note:</strong> The <code>@System.Net.WebUtility.HtmlEncode("<link />")</code> tags are typically used for stylesheets, icons, and other resources.
+                        Ensure that the <code>@System.Net.WebUtility.HtmlEncode("rel")</code> attribute is set correctly for the intended use.
+                    </small>
+                </p>
+                @if (Model.LinkTags != null) {
+                    <ul class="list-unstyled mb-3">
+                        @foreach (var tag in Model.LinkTags) {
+                            var link = new System.Text.StringBuilder();
+                            link.Append("<link");
+                            if (!string.IsNullOrEmpty(tag.Rel)) { link.AppendFormat(" rel=\"{0}\"", tag.Rel); }
+                            if (!string.IsNullOrEmpty(tag.Href)) { link.AppendFormat(" href=\"{0}\"", tag.Href); }
+                            if (!string.IsNullOrEmpty(tag.Type)) { link.AppendFormat(" type=\"{0}\"", tag.Type); }
+                            if (!string.IsNullOrEmpty(tag.Hreflang)) { link.AppendFormat(" hreflang=\"{0}\"", tag.Hreflang); }
+                            if (!string.IsNullOrEmpty(tag.Sizes)) { link.AppendFormat(" sizes=\"{0}\"", tag.Sizes); }
+                            link.Append(" />");
 
-        <p>
+                            <li><code>@System.Net.WebUtility.HtmlEncode(link.ToString())</code></li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <p class="mb-0">No link tags found.</p>
+                    </div>
+                }
+            </div>
+        </div>
+        <hr />
+        <p class="text-center">
             <a href="@Model.Context.EditUrl" noopener class="btn btn-lg btn-secondary">Edit Meta Data</a>
         </p>
     </div>

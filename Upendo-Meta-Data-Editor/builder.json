@@ -69,6 +69,19 @@
           "dependencies": []
         },
         {
+          "fieldname": "Property",
+          "title": "<code>property</code>",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Often used to define social tags, like Twitter Cards and Open Graph Protocol. (Example: <code>og:site_name</code> and <code>twitter:card</code>",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
           "fieldname": "Content",
           "title": "<code>content</code>",
           "fieldtype": "text",
