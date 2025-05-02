@@ -1,0 +1,109 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if (Model.Context.IsEditMode){
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        <div class="alert alert-info" role="alert">
+            <h2 class="alert-heading"><i class="fas fa-heartbeat me-2"></i>Upendo Meta Data Editor</h2>
+            <h3 class="alert-heading text-muted small fs-4">@Model.Context.ModuleTitle (<em>TabId: @Model.Context.TabId, ModuleId: @Model.Context.ModuleId)</em></h3>
+            <p class="text-muted small mt-2 mb-2">
+                <strong>IMPORTANT:</strong> Only people who are allowed to edit content can see this message (<em>auto-hiding</em>).
+            </p>
+            <p>
+                The tags defined below will be dynamically injected into the <code>@System.Net.WebUtility.HtmlEncode("<head>")</code> section of your web page.
+                This allows you to easily manage custom <code>@System.Net.WebUtility.HtmlEncode("<meta />")</code> and <code>@System.Net.WebUtility.HtmlEncode("<link />")</code> tags without editing the theme or site settings directly.
+            </p>
+        </div>
+        <h4>Meta Tags</h4>
+        <p class="text-muted">
+            <small>
+                <strong>Note:</strong> The <code>@System.Net.WebUtility.HtmlEncode("<meta />")</code> tags are typically used for SEO, social media sharing, and other metadata.
+                Ensure that the <code>@System.Net.WebUtility.HtmlEncode("name")</code> attribute is set correctly for the intended use.
+            </small>
+        </p>
+        @if (Model.MetaTags != null) {
+            <ul class="list-unstyled mb-3">
+                @foreach (var tag in Model.MetaTags) {
+                    var meta = new System.Text.StringBuilder();
+                    meta.Append("<meta");
+                    if (!string.IsNullOrEmpty(tag.ID)) { meta.AppendFormat(" id=\"{0}\"", tag.ID); }
+                    if (!string.IsNullOrEmpty(tag.Name)) { meta.AppendFormat(" name=\"{0}\"", tag.Name); }
+                    if (!string.IsNullOrEmpty(tag.Content)) { meta.AppendFormat(" content=\"{0}\"", tag.Content); }
+                    meta.Append(" />");
+
+                    <li><code>@System.Net.WebUtility.HtmlEncode(meta.ToString())</code></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                <p class="mb-0">No meta tags found.</p>
+            </div>
+        }
+        <hr />
+
+        <h4>Link Tags</h4>
+        <p class="text-muted">
+            <small>
+                <strong>Note:</strong> The <code>@System.Net.WebUtility.HtmlEncode("<link />")</code> tags are typically used for stylesheets, icons, and other resources.
+                Ensure that the <code>@System.Net.WebUtility.HtmlEncode("rel")</code> attribute is set correctly for the intended use.
+            </small>
+        </p>
+        @if (Model.LinkTags != null) {
+            <ul class="list-unstyled mb-3">
+                @foreach (var tag in Model.LinkTags) {
+                    var link = new System.Text.StringBuilder();
+                    link.Append("<link");
+                    if (!string.IsNullOrEmpty(tag.ID)) { link.AppendFormat(" id=\"{0}\"", tag.ID); }
+                    if (!string.IsNullOrEmpty(tag.Rel)) { link.AppendFormat(" rel=\"{0}\"", tag.Rel); }
+                    if (!string.IsNullOrEmpty(tag.Href)) { link.AppendFormat(" href=\"{0}\"", tag.Href); }
+                    if (!string.IsNullOrEmpty(tag.Type)) { link.AppendFormat(" type=\"{0}\"", tag.Type); }
+                    if (!string.IsNullOrEmpty(tag.Hreflang)) { link.AppendFormat(" hreflang=\"{0}\"", tag.Hreflang); }
+                    if (!string.IsNullOrEmpty(tag.Sizes)) { link.AppendFormat(" sizes=\"{0}\"", tag.Sizes); }
+                    link.Append(" />");
+
+                    <li><code>@System.Net.WebUtility.HtmlEncode(link.ToString())</code></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                <p class="mb-0">No link tags found.</p>
+            </div>
+        }
+        <hr />
+
+        <p>
+            <a href="@Model.Context.EditUrl" noopener class="btn btn-lg btn-secondary">Edit Meta Data</a>
+        </p>
+    </div>
+</div>
+}
+
+@*
+@ObjectInfo.Print(Model)
+*@
