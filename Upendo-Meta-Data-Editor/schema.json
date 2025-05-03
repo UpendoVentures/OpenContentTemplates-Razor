@@ -59,19 +59,6 @@
           "Rel": {
             "type": "string",
             "title": "<code>rel</code>",
-            "enum": [
-              "alternate",
-              "author",
-              "canonical",
-              "help",
-              "icon",
-              "license",
-              "next",
-              "pingback",
-              "prev",
-              "search"
-            ],
-            "default": "icon",
             "required": true
           },
           "Href": {

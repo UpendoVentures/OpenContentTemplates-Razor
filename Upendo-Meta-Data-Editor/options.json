@@ -48,20 +48,7 @@
             "helper": "Only used for editing and troubleshooting."
           },
           "Rel": {
-            "type": "select",
-            "sort": false,
-            "optionLabels": [
-              "alternate",
-              "author",
-              "canonical",
-              "help",
-              "icon",
-              "license",
-              "next",
-              "pingback",
-              "prev",
-              "search"
-            ],
+            "type": "text",
             "helper": "Required. Specifies the relationship between the current document and the linked document. (Intentionally excluded: <code>dns-prefetch</code>, <code>pingback</code>, <code>preconnect</code>, <code>prefetch</code>, <code>preload</code>, <code>prerender</code>, and <code>stylesheet</code>.)"
           },
           "Href": {

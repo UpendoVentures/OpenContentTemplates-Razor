@@ -123,54 +123,12 @@
         {
           "fieldname": "Rel",
           "title": "<code>rel</code>",
-          "fieldtype": "select",
-          "fieldoptions": [
-            {
-              "value": "alternate",
-              "text": "alternate"
-            },
-            {
-              "value": "author",
-              "text": "author"
-            },
-            {
-              "value": "canonical",
-              "text": "canonical"
-            },
-            {
-              "value": "help",
-              "text": "help"
-            },
-            {
-              "value": "icon",
-              "text": "icon"
-            },
-            {
-              "value": "license",
-              "text": "license"
-            },
-            {
-              "value": "next",
-              "text": "next"
-            },
-            {
-              "value": "pingback",
-              "text": "pingback"
-            },
-            {
-              "value": "prev",
-              "text": "prev"
-            },
-            {
-              "value": "search",
-              "text": "search"
-            }
-          ],
+          "fieldtype": "text",
           "advanced": true,
-          "required": true,
+          "required": false,
           "hidden": false,
-          "default": "icon",
-          "helper": "Required. Specifies the relationship between the current document and the linked document. (Intentionally excluded: <code>dns-prefetch</code>, <code>pingback</code>, <code>preconnect</code>, <code>prefetch</code>, <code>preload</code>, <code>prerender</code>, and <code>stylesheet</code>.)",
+          "helper": "Required. Specifies the relationship between the current document and the linked document.",
+          "multilanguage": false,
           "index": false,
           "position": "1col1",
           "dependencies": []
