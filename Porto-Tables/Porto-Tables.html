@@ -223,7 +223,7 @@
         </p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Tables"><strong>Porto-Tables
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Tables"><strong>Porto-Tables
                     repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-3/tables"><strong>Porto
                     documentation</strong></a>.</p>
@@ -233,6 +233,7 @@
         </h2>
 
         <h3>Edit</h3>
+        <img src="image/0edit.png" alt="edit" class="component-image">
         <img src="image/edit.png" alt="edit" class="component-image">
         <img src="image/edit0.png" alt="edit" class="component-image">
 
@@ -248,8 +249,15 @@
             <tbody>
                 <tr>
                     <td>Module Title</td>
-                    <td>Text</td>
-                    <td>The title of the module.</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
                 </tr>
                 <tr>
                     <td>Table Head</td>

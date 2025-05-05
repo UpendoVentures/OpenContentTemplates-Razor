@@ -1,0 +1,93 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "MetaTags": {
+      "type": "array",
+      "title": "<code>&lt;meta /&gt;</code> Tags",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "title": "<code>id</code>",
+            "required": true
+          },
+          "Name": {
+            "type": "string",
+            "title": "<code>name</code>",
+            "enum": [
+              "N/A",
+              "application-name",
+              "author",
+              "generator"
+            ],
+            "default": "N/A",
+            "required": true
+          },
+          "Property": {
+            "type": "string",
+            "title": "<code>property</code>"
+          },
+          "Content": {
+            "type": "string",
+            "title": "<code>content</code>",
+            "required": true
+          }
+        }
+      }
+    },
+    "LinkTags": {
+      "type": "array",
+      "title": "<code>&lt;link /&gt;</code> Tags",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "title": "<code>id</code>",
+            "required": true
+          },
+          "Rel": {
+            "type": "string",
+            "title": "<code>rel</code>",
+            "required": true
+          },
+          "Href": {
+            "type": "string",
+            "title": "<code>href</code>"
+          },
+          "Type": {
+            "type": "string",
+            "title": "<code>type</code>",
+            "enum": [
+              "image/x-icon",
+              "image/png",
+              "image/svg+xml",
+              "image/jpeg",
+              "application/rss+xml",
+              "application/atom+xml",
+              "application/manifest+json"
+            ]
+          },
+          "Hreflang": {
+            "type": "string",
+            "title": "<code>hreflang</code>"
+          },
+          "Sizes": {
+            "type": "string",
+            "title": "<code>sizes</code>"
+          }
+        }
+      }
+    }
+  }
+}

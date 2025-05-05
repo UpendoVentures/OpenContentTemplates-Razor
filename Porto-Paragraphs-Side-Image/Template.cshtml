@@ -21,6 +21,7 @@
 {
     <div id="@Model.ModuleAnchor"></div>
 }
+
 <div class="container">
     <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         @if ((Model.Settings.ImagePosition ?? "right").ToLower() == "left")
@@ -35,13 +36,23 @@
         }
     </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => enableToooltips());
+
+  function enableToooltips() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  };
+</script>
 
 @helper RenderImageColumn()
 {
     <div class="col-md-4">
         @if (Model.Image != null)
         {
-            <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" class="z-1 @Model.Classes" />
+            <img src="@Model.Image" alt="@Model.AltText" title="@Model.AltText" data-bs-toggle="tooltip" data-bs-title="@Model.AltText" data-placement="bottom" class="z-1 appear-animation @Model.Classes" data-appear-animation="fadeInUp" />
         }
         else
         {

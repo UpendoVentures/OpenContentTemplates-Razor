@@ -1,8 +1,51 @@
-# OpenContentTemplates (_Razor-based_) for OpenContent on DNN
+![UpendoDnn-OpenContentTemplates-Razor-banner-800x419](https://github.com/user-attachments/assets/46e462ff-12d6-4b37-8e6d-d03dfc56a08b)  
 
-These are templates that we commonly use for various projects. This repository replaces [the previous one which used Handlebars](https://github.com/UpendoVentures/OpenContentTemplates), instead of Razor.
+> These are templates that we commonly use for various projects. This repository replaces [the previous one which used Handlebars](https://github.com/UpendoVentures/OpenContentTemplates), instead of Razor.
 
 Learn more about DNN CMS at [the official DNN community website](https://dncommunity.org).
+
+---  
+
+# 🚀 Open Content Templates for Razor  
+### Supercharge Your DNN Sites with Developer-Friendly Templates
+
+---
+
+
+## ✅ Key Features  
+- **🔗 Bootstrap 5 Compatible**  
+- **🧩 Built for OpenContent & DNN 9+**  
+- **🛠️ 30+ Production-Ready Razor Templates**  
+- **📦 Drop-in Ready for Rapid Development**  
+- **🧪 Thoroughly Tested in Real Deployments**  
+- **🔒 Optional SLA-Based Support from UpendoDNN**
+- **⏩ Saves you hours and hours of time building content**  
+
+---
+
+## 🎯 Why Use These Templates?
+
+### ⚙️ **Designed for Developers**
+Templates are 100% Razor-based, giving you full control over logic, markup, and layout.
+
+### 🧪 **Production-Tested**
+These aren't sandbox experiments — they're running in live client environments right now.
+
+### ✨ **Feature-Rich by Default**
+- Bootstrap 5 layout & utility classes
+- Animations, tabs, tooltips, carousels, and more
+- Template settings: margins, padding, alignment
+- Troubleshooting snippets included
+
+---
+
+## 👥 Who Should Use This?
+
+- **DNN developers** who want modern, structured templates  
+- **Agencies** looking for reusable and maintainable components  
+- **Site owners** who need professional-grade design without starting from scratch
+
+---
 
 ## How To Use These Templates
 
@@ -20,6 +63,11 @@ Learn more about DNN CMS at [the official DNN community website](https://dncommu
 This solution is created and maintained by [Upendo Ventures](https://upendoventures.com/What/CMS/DNN) for the [DNN CMS Community](https://dnncommunity.org). Please consider [sponsoring us](https://github.com/sponsors/UpendoVentures) for this and [the many other open-source efforts we do](https://upendoventures.com/What/CMS/DNN/Extensions).  It's a lot.  :)  
 
 - [Sponsor Us](https://github.com/sponsors/UpendoVentures) (we're grateful at any level 🙏🏽)  
+
+## 🛠️ Need SLA-Based Support?  
+If you need more help than what we can provide here, we'd be happy to help you via [Upendo DNN Support](https://upendodnn.com).  
+
+>  😎 This is an **officially supported** extension! 🙌🏽   [DNN Extensions with Support](https://upendodnn.com/Extensions)  
 
 <hr />  
 

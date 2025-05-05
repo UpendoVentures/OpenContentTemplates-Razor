@@ -1,19 +1,56 @@
 @using DotNetNuke.Entities.Modules
 @{
-    // Update or create the "hideadminborder" setting with the value "True"
     var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
     if (currentModule != null && currentModule.TabModuleID > 0)
     {
-        // Check if the "hideadminborder" setting is not set or is not "True"
         var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
+            ? currentModule.TabModuleSettings["hideadminborder"]
+            : null;
 
         if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
         {
-            // Update or create the "hideadminborder" setting with the value "True"
             ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
         }
+    }
+
+    var smallTextCss = "";
+    if (!string.IsNullOrEmpty(Model.Settings.Size) && Model.Settings.Size.ToLower() == "alert-sm"){
+        smallTextCss = " fs-6";
+    }
+}
+@functions {
+    public static string AddCssClassToTag(string html, string tagName = "a", string className = "alert-link")
+    {
+        if (string.IsNullOrWhiteSpace(html) || string.IsNullOrWhiteSpace(tagName) || string.IsNullOrWhiteSpace(className))
+            return html;
+
+        string pattern = "<" + tagName + "\\b([^>]*?)>";
+
+        return System.Text.RegularExpressions.Regex.Replace(html, pattern, match =>
+        {
+            string tag = match.Value;
+
+            // Check for an existing class attribute
+            if (System.Text.RegularExpressions.Regex.IsMatch(tag, "\\bclass\\s*=\\s*[\"'][^\"']*[\"']", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            {
+                // Append the class name to the existing classes
+                return System.Text.RegularExpressions.Regex.Replace(tag, "\\bclass\\s*=\\s*[\"']([^\"']*)[\"']", delegate(System.Text.RegularExpressions.Match m)
+                {
+                    string classes = m.Groups[1].Value;
+
+                    if (classes.IndexOf(className, StringComparison.OrdinalIgnoreCase) >= 0)
+                        return m.Value;
+
+                    return "class=\"" + classes + " " + className + "\"";
+                }, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            }
+            else
+            {
+                // Insert class attribute
+                return tag.Replace(">", " class=\"" + className + "\">");
+            }
+
+        }, System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
     }
 }
 
@@ -21,39 +58,43 @@
 {
     <div id="@Model.ModuleAnchor"></div>
 }
-<div class="alert @Model.Settings.Color @Model.Settings.Size">
+
+<div class="alert @Model.Settings.Color @Model.Settings.Size @((Model.Settings.Dismissible ?? false) ? "alert-dismissible fade show" : "") px-4" role="alert">
     @if (Model.Settings.Dismissible ?? false)
     {
-        <button aria-label="Close" class="close btn-dark" data-dismiss="alert" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     }
 
-    <div class="dark" style="font-size: x-large; padding-bottom: inherit;">
-        @Model.Title
-    </div>
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <div class="fw-bold mt-3 mb-2 mx-2">
+            <h4 class="h5 fw-bold @smallTextCss">@Model.Title</h4>
+        </div>
+    }
 
     @if (Model.Settings.ShowIcon ?? false)
     {
-        <div class="row" style="padding-bottom: inherit;">
-            <div class="col-md-1">
-                <em class="@Model.Icon m-auto" style="font-size: x-large;"></em>
+        <div class="row align-items-center mb-2">
+            <div class="col-auto py-2 pe-1">
+                <em class="@Model.Icon fs-3"></em>
             </div>
-            <div class="col-md-11 dark">
-                @Html.Raw(Model.Content)
+            <div class="col py-2 pe-1 @smallTextCss">
+                @Html.Raw(AddCssClassToTag(Model.Content))
             </div>
         </div>
     }
     else
     {
-        <div class="dark" style="font-size: x-large; padding-bottom: inherit;">
+        <div class="mb-2">
             @Html.Raw(Model.Content)
         </div>
     }
 
     @if (Model.Settings.ShowBtn ?? false)
     {
-        <button class="btn btn-info mt-xs mb-xs mr-xs" type="button">@Model.btn1Text</button>
-        <button class="btn btn-default mt-xs mb-xs" type="button">@Model.btn2Text</button>
+        <div class="d-flex gap-2 mt-3">
+            <button type="button" class="btn btn-primary btn-sm">@Model.btn1Text</button>
+            <button type="button" class="btn btn-secondary btn-sm">@Model.btn2Text</button>
+        </div>
     }
 </div>

@@ -222,7 +222,7 @@
         </p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Icon-Boxes"><strong>Porto-Icon-Boxes
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Icon-Boxes"><strong>Porto-Icon-Boxes
                     repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-1/icon-boxes"><strong>Porto
                     documentation</strong></a>.</p>
@@ -246,9 +246,17 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ModuleTitle</td>
-                    <td>Text</td>
-                    <td>The title of the module.</td>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface
+                        to help identify the module.</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
                     <td>No</td>
                 </tr>
                 <tr>
@@ -265,7 +273,7 @@
                 </tr>
                 <tr>
                     <td>Content</td>
-                    <td>WYSIWYG</td>
+                    <td>Wysihtml</td>
                     <td>The content or description of the item.</td>
                     <td>Yes</td>
                 </tr>

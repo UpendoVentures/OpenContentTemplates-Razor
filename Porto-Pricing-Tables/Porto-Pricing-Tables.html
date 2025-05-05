@@ -201,7 +201,7 @@
             pricing details, and action buttons. It supports various configurations to match your design needs.</p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Pricing-Tables">
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Pricing-Tables">
                 <strong>Porto-Pricing-Tables repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-3/pricing-tables">
                 <strong>Porto documentation</strong></a>.
@@ -212,6 +212,7 @@
         </h2>
         
         <h3>Edit</h3>
+        <img src="image/edit0.png" alt="Edit example" class="component-image">
         <img src="image/edit.png" alt="Edit example" class="component-image">
         <img src="image/edit1.png" alt="Edit example" class="component-image">       
 
@@ -225,11 +226,22 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ModuleTitle</td>
+                    <td>Module Title</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+
+                <tr>
+                    <td>Module Title</td>
                     <td>Defines the title of the pricing table module. Example: <code>Our Pricing Plans</code>.</td>
                 </tr>
                 <tr>
-                    <td>ParallaxImage</td>
+                    <td>Parallax Image</td>
                     <td>Specifies the URL of the parallax background image. Example:
                         <code>https://example.com/parallax.jpg</code>.</td>
                 </tr>
@@ -244,15 +256,15 @@
                                 <code>Perfect for individuals.</code> (Optional)</li>
                             <li><strong>Price:</strong> The price of the plan. Example: <code>$19.99/month</code>. (Required)
                             </li>
-                            <li><strong>ActionButtonText:</strong> The text for the action button. Example:
+                            <li><strong>Action Button Text:</strong> The text for the action button. Example:
                                 <code>Sign Up</code>. (Required)</li>
-                            <li><strong>MostPopular:</strong> Boolean to mark the plan as the most popular. Example:
+                            <li><strong>Most Popular:</strong> Boolean to mark the plan as the most popular. Example:
                                 <code>true</code> or <code>false</code>.</li>
-                            <li><strong>ShowPopularRibbon:</strong> Boolean to display a "Most Popular" ribbon on the plan.
+                            <li><strong>Show Popular Ribbon:</strong> Boolean to display a "Most Popular" ribbon on the plan.
                                 Example: <code>true</code> or <code>false</code>.</li>
                             <li><strong>Features:</strong> A list of features included in the plan. Each feature includes:
                                 <ul>
-                                    <li><strong>FeatureDescriptionText:</strong> The description of the feature. Example:
+                                    <li><strong>Feature Description Text:</strong> The description of the feature. Example:
                                         <code>Unlimited access to all features.</code>. (Required)</li>
                                 </ul>
                             </li>

@@ -198,7 +198,7 @@
             design needs.</p>
 
         <p>For more details, check out the <a
-                href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Lightboxes-Dialog">
+                href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Lightboxes-Dialog">
                 <strong>Porto-Lightboxes-Dialog repository on GitHub</strong></a> or the <a
                 href="https://porto.mandeeps.com/shortcodes/shortcodes-1/lightbox">
                 <strong>Porto documentation</strong></a>.
@@ -209,6 +209,7 @@
         </h2>
 
         <h3>Edit</h3>
+        <img src="image/edit0.png" alt="Edit example" class="component-image">
         <img src="image/edit.png" alt="Edit example" class="component-image">
 
         <h3 class="Head">Properties</h3>
@@ -222,9 +223,24 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                    <td></td>
+                </tr>
                 <!-- ButtonText -->
                 <tr>
-                    <td>ButtonText</td>
+                    <td>Button Text</td>
                     <td>String</td>
                     <td>Defines the text displayed on the button that opens the dialog.</td>
                     <td><code>Open Dialog</code></td>
@@ -232,7 +248,7 @@
         
                 <!-- DialogTitle -->
                 <tr>
-                    <td>DialogTitle</td>
+                    <td>Dialog Title</td>
                     <td>String</td>
                     <td>Defines the title of the dialog box.</td>
                     <td><code>My Dialog Title</code></td>
@@ -240,7 +256,7 @@
         
                 <!-- DialogText -->
                 <tr>
-                    <td>DialogText</td>
+                    <td>Dialog Text</td>
                     <td>String</td>
                     <td>Defines the main text content of the dialog box. This property is required.</td>
                     <td><code>This is the content of the dialog.</code></td>
@@ -256,7 +272,7 @@
         
                 <!-- FormTitle -->
                 <tr>
-                    <td>FormTitle</td>
+                    <td>Form Title</td>
                     <td>String</td>
                     <td>Defines the title of the form inside the dialog.</td>
                     <td><code>Contact Us</code></td>
@@ -264,7 +280,7 @@
         
                 <!-- FormSubTitle -->
                 <tr>
-                    <td>FormSubTitle</td>
+                    <td>Form SubTitle</td>
                     <td>String</td>
                     <td>Defines the subtitle of the form inside the dialog.</td>
                     <td><code>We'd love to hear from you!</code></td>
@@ -272,7 +288,7 @@
         
                 <!-- FormData -->
                 <tr>
-                    <td>FormData</td>
+                    <td>Form Data</td>
                     <td>Array</td>
                     <td>A list of form fields to display inside the dialog.</td>
                     <td>
@@ -304,7 +320,7 @@
         
                 <!-- FormButtonText1 -->
                 <tr>
-                    <td>FormButtonText1</td>
+                    <td>Form Button Text1</td>
                     <td>String</td>
                     <td>Defines the text for the first button in the form.</td>
                     <td><code>Submit</code></td>
@@ -312,7 +328,7 @@
         
                 <!-- FormButtonText2 -->
                 <tr>
-                    <td>FormButtonText2</td>
+                    <td>Form Button Text2</td>
                     <td>String</td>
                     <td>Defines the text for the second button in the form.</td>
                     <td><code>Cancel</code></td>
@@ -320,7 +336,7 @@
         
                 <!-- ColorFormButton1 -->
                 <tr>
-                    <td>ColorFormButton1</td>
+                    <td>Color Form Button1</td>
                     <td>String</td>
                     <td>Defines the color theme for the first button in the form.</td>
                     <td>
@@ -343,7 +359,7 @@
         
                 <!-- ColorFormButton2 -->
                 <tr>
-                    <td>ColorFormButton2</td>
+                    <td>Color Form Button2</td>
                     <td>String</td>
                     <td>Defines the color theme for the second button in the form.</td>
                     <td>

@@ -140,6 +140,10 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
     </style>
 </head>
 
@@ -162,10 +166,8 @@
             <strong>OpenContent</strong>.</p>
 
         <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Pagination">
-            <strong>Porto-Pagination repository on GitHub</strong></a> or the <a
-            href="https://porto.mandeeps.com/shortcodes/shortcodes-2/pagination">
-            <strong>Porto documentation</strong></a>.
+            href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Pagination">
+            <strong>Porto-Pagination repository on GitHub</strong></a>.
         </p>
 
         <h2>
@@ -186,10 +188,17 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ModuleTitle</td>
+                    <td>Module Title</td>
                     <td>String</td>
-                    <td>The title displayed above the pagination component.</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
                 </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier. Only letters, numbers, and hyphens are allowed.</td>
+                </tr>                
                 <tr>
                     <td>Items</td>
                     <td>Array</td>
@@ -215,7 +224,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ButtonSize</td>
+                    <td>Button Size</td>
                     <td>String</td>
                     <td>Defines the size of the pagination buttons. Options include <code>Large</code>,
                         <code>Default</code>, and <code>Small</code>.</td>

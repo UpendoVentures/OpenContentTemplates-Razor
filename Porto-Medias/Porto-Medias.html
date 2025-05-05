@@ -140,6 +140,11 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        code {
+            font-size: large;
+            color: #6d5a2c;
+        }
     </style>
 </head>
 
@@ -158,13 +163,12 @@
             <span class="Head">Overview</span>
         </h2>
         <p>The <strong>Porto-Medias</strong> component allows you to embed media content such as YouTube videos, Vimeo
-            videos, SoundCloud tracks, and more. This component is highly flexible and integrates seamlessly with
-            <strong>OpenContent</strong>.</p>
+            videos, SoundCloud tracks, and more. This component is highly flexible.</p>
 
         <p>For more details, check out the <a
-            href="https://github.com/UpendoVentures/OpenContentTemplates/tree/master/Porto-Medias">
+            href="https://github.com/UpendoVentures/OpenContentTemplates-Razor/tree/master/Porto-Medias">
             <strong>Porto-Medias repository on GitHub</strong></a> or the <a
-            href="https://porto.mandeeps.com/shortcodes/shortcodes-2/media">
+            href="https://porto.mandeeps.com/shortcodes/shortcodes-4/medias">
             <strong>Porto documentation</strong></a>.
         </p>
 
@@ -186,9 +190,32 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>Module Title</td>
+                    <td>String</td>
+                    <td>Used to define the title of the module. This title is displayed in the DNN administration interface to
+                        help identify the module.</td>
+                </tr>
+                <tr>
+                    <td>Module Anchor</td>
+                    <td>String</td>
+                    <td>Used to create anchor links on the page. This allows users to link directly to the module using a unique
+                        identifier.
+                        Only letters, numbers, and hyphens are allowed.</td>
+                </tr>
+                <tr>
                     <td>Url</td>
                     <td>String</td>
-                    <td>The URL of the media content to embed. This field is required.</td>
+                    <td>The URL of the media content to embed. This field is required. You only need to provide the <code>src</code> value
+                        from the embed code.
+                        For example, from the following embed code:
+                        <p>
+                            &lt;iframe width="400" height="230" src="<strong>https://www.youtube.com/embed/lJIrF4YjHfQ?si=7YuiI5W26eRZbTnG</strong>" title="Embed videos and playlists" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;&lt;/iframe&gt;
+                        <p>
+                        You only need to use: <strong>https://www.youtube.com/embed/lJIrF4YjHfQ?si=7YuiI5W26eRZbTnG</strong>.
+                        <br>
+                        Find more documentation about embedding videos at: <a href="https://support.google.com/youtube/answer/171780?hl=en"
+                            target="_blank">Click Here!</a>
+                    </td>                
                 </tr>
             </tbody>
         </table>
