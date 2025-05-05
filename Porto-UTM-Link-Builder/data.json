@@ -1,0 +1,48 @@
+{
+    "ModuleTitle": "Potro-UTM-Link-Builder",
+    "ModuleAnchor": "",
+    "HeaderText": "UTM Builder - Free Google URL Builder to Generate UTM Codes",
+    "SubHeaderText": "Fill all the required fields (marked with *) and other campaign information. A final URL with UTM codes will be automatically created. Copy the generated URL and use it in your campaigns.",
+    "WebSiteUrl": {
+        "Label": "Website URL",
+        "Placeholder": "Start typing to search pages..."
+    },
+    "Fields": [
+        {
+            "Label": "UTM Source",
+            "Description": "e.g. newsletter, twitter, google, etc.",
+            "Parameter": "utm_source",
+            "IsRequired": true
+        },
+        {
+            "Label": "UTM Medium",
+            "Description": "e.g. email, social, cpc, etc.",
+            "Parameter": "utm_medium",
+            "IsRequired": true
+        },
+        {
+            "Label": "UTM Campaign",
+            "Description": "e.g. promotion, sale, etc.",
+            "Parameter": "utm_campaign",
+            "IsRequired": true
+        },
+        {
+            "Label": "UTM Content",
+            "Description": "Any call-to-action or headline, e.g. buy-now.",
+            "Parameter": "utm_content",
+            "IsRequired": false
+        },
+        {
+            "Label": "UTM Term",
+            "Description": "Keywords for your paid search campaigns",
+            "Parameter": "utm_term",
+            "IsRequired": false
+        }
+    ],
+    "GeneratedUTM": {
+        "Label": "Generated UTM tracking URL",
+        "ValidationMessage": "Please fill all the required fields before we can generate the UTM URL.",
+        "ButtonText": "Copy URL",
+        "CopiedMeesage": "Copied!"
+    }
+}

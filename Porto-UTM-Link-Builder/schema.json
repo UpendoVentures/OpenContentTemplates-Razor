@@ -1,0 +1,83 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+       "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "HeaderText": {
+      "type": "string",
+      "title": "Header Text"
+    },
+    "SubHeaderText": {
+      "type": "string",
+      "title": "Sub Header Text"
+    },
+    "WebSiteUrl": {
+      "type": "object",
+      "title": "Website URL",
+      "properties": {
+        "Label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "Placeholder": {
+          "type": "string",
+          "title": "Placeholder"
+        }
+      }
+    },
+    "Fields": {
+      "type": "array",
+      "title": "Fields",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Parameter": {
+            "type": "string",
+            "title": "Url Parameter"
+          },
+          "IsRequired": {
+            "type": "boolean",
+            "title": "Is Required"
+          }
+        }
+      }
+    },
+    "GeneratedUTM": {
+      "type": "object",
+      "title": "Generated UTM tracking URL",
+      "properties": {
+        "Label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "ValidationMessage": {
+          "type": "string",
+          "title": "Validation Message"
+        },
+        "ButtonText": {
+          "type": "string",
+          "title": "Button Text"
+        },
+        "CopiedMeesage": {
+          "type": "string",
+          "title": "Copied Message"
+        }
+      }
+    }
+  }
+}
