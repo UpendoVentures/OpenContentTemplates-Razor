@@ -1,0 +1,214 @@
+@using DotNetNuke.Entities.Modules
+@using DotNetNuke.Entities.Tabs
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+
+@functions {
+  public bool ConvertToBool(dynamic value)
+  {
+    return value != null && value.ToString().ToLower() == "true";
+  }
+}
+
+@{
+    RegisterStyleSheet("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+
+    // Get the URLs of the portal pages
+    var portalId = PortalSettings.Current.PortalId;
+    var tabs = TabController.Instance.GetTabsByPortal(portalId).Values
+        .Where(t => !t.IsDeleted && t.TabID != PortalSettings.Current.AdminTabId)
+        .Select(t => new { t.TabName, Url = Globals.NavigateURL(t.TabID) })
+        .ToList();
+
+    // Convert URLs to a JavaScript array
+    var pageUrlsJson = Newtonsoft.Json.JsonConvert.SerializeObject(tabs.Select(t => t.Url));
+
+    var index = 0;
+}
+
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<h2 class="mb-3 text-center">@Model.HeaderText</h2>
+<p class="text-center mb-5">@Model.SubHeaderText</p>
+
+<div class="container mb-5">
+
+    <div class="row align-items-center mb-4">
+        <div class="col-12 col-md-2">
+            <label for="websiteUrl" class="form-label fw-bold">
+                @Model.WebSiteUrl.Label <span class="text-danger" aria-hidden="true">*</span>
+                <span class="visually-hidden">required</span>
+            </label>
+        </div>
+        <div class="col-12 col-md-10">
+            <input type="url" class="form-control" id="websiteUrl" name="websiteUrl"
+                   placeholder="@Model.WebSiteUrl.Placeholder" required
+                   aria-required="true" />
+        </div>
+    </div>
+
+    @if (Model.Fields != null)
+    {
+        foreach (var field in Model.Fields)
+        {
+            var inputId = string.Format("field-{0}", index);
+            <div class="row align-items-center mb-4">
+                <div class="col-12 col-md-2">
+                    <label for="@inputId" class="form-label fw-bold">
+                        @field.Label
+                        @if (ConvertToBool(field.IsRequired))
+                        {
+                            <span class="text-danger" aria-hidden="true">*</span>
+                            <span class="visually-hidden">required</span>
+                        }
+                        <br />
+                        <small class="text-muted">(@field.Parameter)</small>
+                    </label>
+                </div>
+                <div class="col-12 col-md-10">
+                    <input type="text" class="form-control" id="@inputId" name="@inputId"
+                           data-parameter="@field.Parameter"
+                           data-required="@ConvertToBool(field.IsRequired)"
+                           aria-describedby="@inputId-desc"
+                           @(ConvertToBool(field.IsRequired) ? "required aria-required=\"true\"" : "") />
+                    <small id="@inputId-desc" class="form-text text-muted">@field.Description</small>
+                </div>
+            </div>
+            index++;
+        }
+    }
+
+    <hr class="my-4" />
+
+    <p class="fw-bold">@Model.GeneratedUTM.Label</p>
+    <textarea class="form-control mb-4" id="finalUrl" rows="2" readonly aria-label="Generated UTM URL"></textarea>
+
+    <button type="button" class="btn btn-primary" onclick="copyUrl()" aria-label="Copy generated URL">
+        <i class="fa-solid fa-copy me-2" aria-hidden="true"></i>@Model.GeneratedUTM.ButtonText
+    </button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // URLs of pages generated on the server
+        var pageUrls = @Html.Raw(pageUrlsJson);
+
+        // Initialize autocomplete
+        $("#websiteUrl").autocomplete({
+            source: pageUrls,
+            select: function (event, ui) {
+                // Set the selected value explicitly
+                $("#websiteUrl").val(ui.item.value);
+                // Trigger buildUrl when a value is selected from autocomplete
+                buildUrl();
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll("#websiteUrl, [id^='field-']");
+        inputs.forEach(input => {
+            input.addEventListener("input", buildUrl);
+        });
+    });
+
+    function buildUrl() {
+        var baseUrl = document.getElementById("websiteUrl").value.trim();
+        var params = [];
+
+        // Ensure baseUrl starts with http:// or https://
+        if (baseUrl && !baseUrl.startsWith("http://") && !baseUrl.startsWith("https://")) {
+            baseUrl = "http://" + baseUrl;
+        }
+
+        // Get all dynamic fields
+        var fields = document.querySelectorAll("[id^='field-']");
+        for (var i = 0; i < fields.length; i++) {
+            var field = fields[i];
+            var fieldValue = field.value.trim();
+            var parameter = field.getAttribute("data-parameter");
+            var isRequired = field.getAttribute("data-required") === "True";
+
+            // Validate required fields
+            if ((isRequired && !fieldValue) || !baseUrl) {
+                document.getElementById("finalUrl").value = "@Model.GeneratedUTM.ValidationMessage";
+                return;
+            }
+
+            // Add parameter if the field has a value
+            if (fieldValue) {
+                params.push(parameter + "=" + encodeURIComponent(fieldValue));
+            }
+        }
+
+        // Generate the final URL
+        var finalUrl = baseUrl + (baseUrl.indexOf("?") > -1 ? "&" : "?") + params.join("&");
+        document.getElementById("finalUrl").value = finalUrl;
+    }
+
+    function copyUrl() {
+        var finalUrl = document.getElementById("finalUrl").value;
+
+        // Fallback for unsupported Clipboard API
+        try {
+            // Create a temporary textarea element to copy the text
+            var tempTextarea = document.createElement("textarea");
+            tempTextarea.value = finalUrl;
+            document.body.appendChild(tempTextarea);
+
+            // Select the text and execute the copy command
+            tempTextarea.select();
+            document.execCommand("copy");
+
+            // Remove the temporary textarea
+            document.body.removeChild(tempTextarea);
+
+            // Show "Copied!" message next to the button
+            var copyButton = document.querySelector("button[onclick='copyUrl()']");
+            var copiedMessage = document.createElement("span");
+            copiedMessage.textContent = "@Model.GeneratedUTM.CopiedMeesage";
+            copiedMessage.style.marginLeft = "10px";
+            copiedMessage.style.color = "green";
+            copiedMessage.id = "copiedMessage";
+
+            // Remove any existing "Copied!" message
+            var existingMessage = document.getElementById("copiedMessage");
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            // Append the message next to the button
+            copyButton.parentNode.appendChild(copiedMessage);
+
+            // Remove the message after 3 seconds
+            setTimeout(function () {
+                if (copiedMessage) {
+                    copiedMessage.remove();
+                }
+            }, 3000);
+        } catch (err) {
+            console.error("Failed to copy URL: ", err);
+            alert("Failed to copy the URL. Please try manually.");
+        }
+    }
+</script>

@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "HeaderText": {
+      "type": "text"
+    },
+    "SubHeaderText": {
+      "type": "text"
+    },
+    "WebSiteUrl": {
+      "type": "object",
+      "fields": {
+        "Label": {
+          "type": "text"
+        },
+        "Placeholder": {
+          "type": "text"
+        }
+      }
+    },
+    "Fields": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Label": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "text"
+          },
+          "Parameter": {
+            "type": "text"
+          },
+          "IsRequired": {
+            "type": "checkbox"
+          }
+        }
+      }
+    },
+    "GeneratedUTM": {
+      "type": "object",
+      "fields": {
+        "Label": {
+          "type": "text"
+        },
+        "ValidationMessage": {
+          "type": "text"
+        },
+        "ButtonText": {
+          "type": "text"
+        },
+        "CopiedMeesage": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
