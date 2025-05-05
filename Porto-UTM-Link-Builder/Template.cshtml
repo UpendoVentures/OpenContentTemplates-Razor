@@ -11,6 +11,8 @@
 }
 
 @{
+    RegisterStyleSheet("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+
     // Get the URLs of the portal pages
     var portalId = PortalSettings.Current.PortalId;
     var tabs = TabController.Instance.GetTabsByPortal(portalId).Values
@@ -94,7 +96,6 @@
     </button>
 </div>
 
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
     $(document).ready(function () {
         // URLs of pages generated on the server
