@@ -1,7 +1,7 @@
 {
-    "ModuleTitle": "Potro-UTM-Link-Builder",
+    "ModuleTitle": "Porto-UTM-Link-Builder",
     "ModuleAnchor": "",
-    "HeaderText": "UTM Builder - Free Google URL Builder to Generate UTM Codes",
+    "HeaderText": "UTM Builder - Generate Google UTM Codes",
     "SubHeaderText": "Fill all the required fields (marked with *) and other campaign information. A final URL with UTM codes will be automatically created. Copy the generated URL and use it in your campaigns.",
     "WebSiteUrl": {
         "Label": "Website URL",
