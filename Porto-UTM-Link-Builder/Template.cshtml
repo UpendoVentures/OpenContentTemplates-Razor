@@ -48,51 +48,63 @@
     <div id="@Model.ModuleAnchor"></div>
 }
 
-<h2 class="mb-sm text-center">@Model.HeaderText</h2>
-<p class="text-center">@Model.SubHeaderText</p>
+<h2 class="mb-3 text-center">@Model.HeaderText</h2>
+<p class="text-center mb-5">@Model.SubHeaderText</p>
 
-<div class="mt-5 mb-5">
+<div class="container mb-5">
 
-     <div class="row mb-4">
+    <div class="row align-items-center mb-4">
         <div class="col-12 col-md-2">
-            <label for="websiteUrl"><b>@Model.WebSiteUrl.Label</b> <span class="text-danger">*</span></label>
+            <label for="websiteUrl" class="form-label fw-bold">
+                @Model.WebSiteUrl.Label <span class="text-danger" aria-hidden="true">*</span>
+                <span class="visually-hidden">required</span>
+            </label>
         </div>
-        <div class="col-12 col-md-10"> 
-            <input type="text" class="form-control" id="websiteUrl" placeholder="@Model.WebSiteUrl.Placeholder">
+        <div class="col-12 col-md-10">
+            <input type="url" class="form-control" id="websiteUrl" name="websiteUrl"
+                   placeholder="@Model.WebSiteUrl.Placeholder" required
+                   aria-required="true" />
         </div>
-     </div>
+    </div>
 
-    @if(Model.Fields!= null)
+    @if (Model.Fields != null)
     {
         foreach (var field in Model.Fields)
         {
-            <div class="row mb-4">
+            var inputId = string.Format("field-{0}", index);
+            <div class="row align-items-center mb-4">
                 <div class="col-12 col-md-2">
-                    <label for="field-@index"><b>@field.Label</b>
+                    <label for="@inputId" class="form-label fw-bold">
+                        @field.Label
                         @if (ConvertToBool(field.IsRequired))
                         {
-                            <span class="text-danger">*</span>
+                            <span class="text-danger" aria-hidden="true">*</span>
+                            <span class="visually-hidden">required</span>
                         }
-                        <br> <small class="text-muted">(@field.Parameter)</small>
+                        <br />
+                        <small class="text-muted">(@field.Parameter)</small>
                     </label>
                 </div>
                 <div class="col-12 col-md-10">
-                    <input type="text" class="form-control" id="field-@index" 
-                        data-parameter="@field.Parameter" 
-                        data-required="@ConvertToBool(field.IsRequired)" />
-                    <small class="text-muted">@field.Description</small>
+                    <input type="text" class="form-control" id="@inputId" name="@inputId"
+                           data-parameter="@field.Parameter"
+                           data-required="@ConvertToBool(field.IsRequired)"
+                           aria-describedby="@inputId-desc"
+                           @(ConvertToBool(field.IsRequired) ? "required aria-required=\"true\"" : "") />
+                    <small id="@inputId-desc" class="form-text text-muted">@field.Description</small>
                 </div>
             </div>
             index++;
         }
     }
-    
-    <p style="border-bottom: 1px solid #e5e5e5;">
-        <b>@Model.GeneratedUTM.Label</b>
-    </p>
-    <textarea class="form-control mb-4" id="finalUrl" rows="2" readonly></textarea>
-    <button type="button" class="btn btn-primary" onclick="copyUrl()">
-        <i class="fa fa-copy"></i> @Model.GeneratedUTM.ButtonText
+
+    <hr class="my-4" />
+
+    <p class="fw-bold">@Model.GeneratedUTM.Label</p>
+    <textarea class="form-control mb-4" id="finalUrl" rows="2" readonly aria-label="Generated UTM URL"></textarea>
+
+    <button type="button" class="btn btn-primary" onclick="copyUrl()" aria-label="Copy generated URL">
+        <i class="fa-solid fa-copy me-2" aria-hidden="true"></i>@Model.GeneratedUTM.ButtonText
     </button>
 </div>
 
