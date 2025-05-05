@@ -145,6 +145,9 @@
         var fields = document.querySelectorAll("[id^='field-']");
         for (var i = 0; i < fields.length; i++) {
             var field = fields[i];
+            if(field.id.endsWith('-desc')) {
+                continue; // Skip if field is null
+            }
             var fieldValue = field.value.trim();
             var parameter = field.getAttribute("data-parameter");
             var isRequired = field.getAttribute("data-required") === "True";
