@@ -1,0 +1,74 @@
+{
+  "formfields": [
+    {
+      "fieldname": "Paragraph",
+      "title": "Paragraph Text (required)",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "2col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Images",
+      "title": "Images",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "AltText",
+          "title": "Alt Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "placeholder": "Used for SEO",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ImagePath",
+          "title": "Image Path",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "Images"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "CssClass",
+          "title": "CSS Class(es)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "default": "img-fluid",
+          "placeholder": "img-fluid",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "At least one image is required. ",
+      "position": "2col2",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

@@ -1,0 +1,11 @@
+{
+    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>\n",
+    "Images": [
+      {
+        "AltText": "My first image",
+        "ImagePath": "https://placehold.co/600x400",
+        "CssClass": "img-fluid rounded"
+      }
+    ],
+    "_id": "67edaa2fc937df03e8d784fc"
+  }

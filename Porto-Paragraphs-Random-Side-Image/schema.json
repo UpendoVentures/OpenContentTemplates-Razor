@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "Paragraph": {
+      "type": "string",
+      "title": "Paragraph Text (required)",
+      "required": true
+    },
+    "Images": {
+      "type": "array",
+      "title": "Images",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "AltText": {
+            "type": "string",
+            "title": "Alt Text",
+            "required": true
+          },
+          "ImagePath": {
+            "type": "string",
+            "title": "Image Path",
+            "required": true
+          },
+          "CssClass": {
+            "type": "string",
+            "title": "CSS Class(es)",
+            "default": "img-fluid"
+          }
+        }
+      }
+    }
+  }
+}

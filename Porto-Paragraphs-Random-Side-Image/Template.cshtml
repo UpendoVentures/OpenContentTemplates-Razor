@@ -1,0 +1,69 @@
+@{
+    int imageCount = 0;
+    Exception error = null;
+    dynamic selectedImage = null;
+
+    try
+    {
+        var images = Model.Images as IEnumerable<dynamic>;
+
+        if (images != null && images.GetEnumerator().MoveNext())
+        {
+            imageCount = images.Count();
+            var random = new Random();
+            int index = random.Next(imageCount);
+            selectedImage = images.ElementAt(index);
+        }
+    }
+    catch (Exception ex)
+    {
+        error = ex;
+    }
+}
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        <div class="col-md-8">
+            @if (Model.Paragraph != null)
+            {
+                @Html.Raw(Model.Paragraph)
+            }
+            else
+            {
+                <!-- No Paragraph Found -->
+            }
+        </div>
+        <div class="col-md-4">
+            @if (selectedImage != null)
+            {
+                <img src="@selectedImage.ImagePath" alt="@selectedImage.AltText" title="@selectedImage.AltText" class="z-1 appear-animation @selectedImage.CssClass" 
+                    data-bs-toggle="tooltip" data-bs-title="@selectedImage.AltText" data-placement="bottom" data-appear-animation="fadeInUp" />
+            }
+            else
+            {
+                <!-- No Images Found -->
+            }
+        </div>
+    </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => enableToooltips());
+
+  function enableToooltips() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  };
+</script>
+@*
+@if (error != null){
+<div class="dnnClear">
+    @ObjectInfo.Print(error)
+</div>
+}
+*@
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
