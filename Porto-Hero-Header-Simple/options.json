@@ -1,0 +1,32 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Heading": {
+      "type": "text",
+      "placeholder": "Some really GREAT page!",
+      "helper": "This is the <code>&lt;h1&gt;</code> title on the top of the page.  "
+    },
+    "Images": {
+      "type": "array",
+      "helper": "At least one image is required. If more than one is saved, a random one will be displayed on each page load. ",
+      "items": {
+        "fields": {
+          "Image": {
+            "type": "image",
+            "uploadfolder": "Images",
+            "typeahead": {
+              "Folder": "Images"
+            },
+            "helper": "Can be an on- or off-site image. Uploads go to the <code>/Images</code> folder."
+          }
+        }
+      }
+    }
+  }
+}

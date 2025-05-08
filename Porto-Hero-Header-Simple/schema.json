@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading",
+      "required": true
+    },
+    "Images": {
+      "type": "array",
+      "title": "Images",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    int imageCount = 0;
+    Exception error = null;
+    dynamic selectedImage = null;
+
+    try
+    {
+        var images = Model.Images as IEnumerable<dynamic>;
+
+        if (images != null && images.GetEnumerator().MoveNext())
+        {
+            imageCount = images.Count();
+            var random = new Random();
+            int index = random.Next(imageCount);
+            selectedImage = images.ElementAt(index);
+        }
+    }
+    catch (Exception ex)
+    {
+        error = ex;
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if (selectedImage != null && string.IsNullOrEmpty(Model.Heading))
+{
+    <!-- Content Not Found  -->
+    <h1>Content Required</h1>
+    <p>Please edit the template to continue.</p>
+}
+else
+{
+<div class="what-header mb-none">
+    <section class="section section-default section-default-scale-8 header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="mb-none">@Html.Raw(Model.Heading)</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="parallax section section-text-light section-parallax section-center mb-none"
+        style="background-image: url('@selectedImage.Image'); background-position: center center; background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">&nbsp;</div>
+            </div>
+        </div>
+    </section>
+</div>
+}
