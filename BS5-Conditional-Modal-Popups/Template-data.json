@@ -1,0 +1,6 @@
+{
+    "ButtonColor": "btn-primary",
+    "StyleModal": "defaultModal",
+    "DismissFor": "1 day",
+    "Debug": "No"
+}

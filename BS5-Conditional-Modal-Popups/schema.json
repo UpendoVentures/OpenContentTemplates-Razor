@@ -1,0 +1,82 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Modals": {
+      "type": "array",
+      "title": "Modals",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ModalTitle": {
+            "type": "string",
+            "title": "Modal Title"
+          },
+          "ModalTitleIcon": {
+            "type": "string",
+            "title": "Model Title Icon"
+          },
+          "ModalLead": {
+            "type": "string",
+            "title": "Lead"
+          },
+          "ModalContent": {
+            "type": "string",
+            "title": "Content"
+          },
+          "ModalFooterCta": {
+            "type": "string",
+            "title": "Modal Footer CTA"
+          },
+          "CloseButtonText": {
+            "type": "string",
+            "title": "Close Button Text",
+            "required": true,
+            "default": "Close"
+          },
+          "CloseButtonIcon": {
+            "type": "string",
+            "title": "Close Button Icon",
+            "default": "fa-solid fa-times"
+          },
+          "Condition": {
+            "type": "string",
+            "title": "Condition",
+            "enum": [
+              "utm_campaign",
+              "utm_content",
+              "utm_term",
+              "utm_medium",
+              "utm_source",
+              "DomainIs"
+            ],
+            "default": "None",
+            "required": true
+          },
+          "ConditionValue": {
+            "type": "string",
+            "title": "Condition Value"
+          }
+        }
+      }
+    },
+    "DelayTime": {
+      "type": "number",
+      "title": "Delay Time",
+      "default": "0"
+    },
+    "ExitIntentTrigger": {
+      "type": "boolean",
+      "title": "Trigger on Exit",
+      "default": "false"
+    }
+  }
+}

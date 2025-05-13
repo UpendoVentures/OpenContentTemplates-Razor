@@ -1,0 +1,71 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Modals": {
+      "type": "accordion",
+      "helper": "Need a t least one.",
+      "items": {
+        "fields": {
+          "ModalTitle": {
+            "type": "text"
+          },
+          "ModalTitleIcon": {
+            "type": "text",
+            "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+          },
+          "ModalLead": {
+            "type": "text",
+            "placeholder": "Think of it as a tag line. (Not displayed if empty.)"
+          },
+          "ModalContent": {
+            "type": "ckeditor",
+            "configset": "basic"
+          },
+          "ModalFooterCta": {
+            "type": "text",
+            "helper": "Displayed to the left of the footer close button."
+          },
+          "CloseButtonText": {
+            "type": "text",
+            "placeholder": "\"Close\""
+          },
+          "CloseButtonIcon": {
+            "type": "text",
+            "placeholder": "fa-solid fa-times",
+            "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+          },
+          "Condition": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "UTM Campaign",
+              "UTM Content",
+              "UTM Term",
+              "UTM Medium",
+              "UTM Source",
+              "Referring Domain"
+            ]
+          },
+          "ConditionValue": {
+            "type": "text",
+            "helper": "Should match the value found in the selected condition (<em>not case sensitive</em>)."
+          }
+        }
+      }
+    },
+    "DelayTime": {
+      "type": "number",
+      "helper": "Delay time, in milliseconds.  <code>5000</code> would be 5 seconds. "
+    },
+    "ExitIntentTrigger": {
+      "type": "checkbox",
+      "helper": "Check if you want the pop-up to appear when the visitor attempts to leave the site (a.k.a., <code>Exit Intent</code>)."
+    }
+  }
+}

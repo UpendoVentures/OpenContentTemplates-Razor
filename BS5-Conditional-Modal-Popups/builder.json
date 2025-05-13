@@ -1,0 +1,204 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Modals",
+      "title": "Modals",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "ModalTitle",
+          "title": "Modal Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ModalTitleIcon",
+          "title": "Model Title Icon",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ModalLead",
+          "title": "Lead",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "placeholder": "Think of it as a tag line. (Not displayed if empty.)",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ModalContent",
+          "title": "Content",
+          "fieldtype": "ckeditor",
+          "ckeditoroptions": {
+            "configset": "basic"
+          },
+          "advanced": false
+        },
+        {
+          "fieldname": "ModalFooterCta",
+          "title": "Modal Footer CTA",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Displayed to the left of the footer close button.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "CloseButtonText",
+          "title": "Close Button Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "Close",
+          "placeholder": "\"Close\"",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "CloseButtonIcon",
+          "title": "Close Button Icon",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "default": "fa-solid fa-times",
+          "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+          "placeholder": "fa-solid fa-times",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Condition",
+          "title": "Condition",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "utm_campaign",
+              "text": "UTM Campaign"
+            },
+            {
+              "value": "utm_content",
+              "text": "UTM Content"
+            },
+            {
+              "value": "utm_term",
+              "text": "UTM Term"
+            },
+            {
+              "value": "utm_medium",
+              "text": "UTM Medium"
+            },
+            {
+              "value": "utm_source",
+              "text": "UTM Source"
+            },
+            {
+              "value": "DomainIs",
+              "text": "Referring Domain"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "None",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ConditionValue",
+          "title": "Condition Value",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "Should match the value found in the selected condition (<em>not case sensitive</em>).",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Need a t least one.",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "DelayTime",
+      "title": "Delay Time",
+      "fieldtype": "number",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "0",
+      "helper": "Delay time, in milliseconds.  <code>5000</code> would be 5 seconds. ",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ExitIntentTrigger",
+      "title": "Trigger on Exit",
+      "fieldtype": "checkbox",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "false",
+      "helper": "Check if you want the pop-up to appear when the visitor attempts to leave the site (a.k.a., <code>Exit Intent</code>).",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}
