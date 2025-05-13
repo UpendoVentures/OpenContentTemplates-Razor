@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {        
+        "ButtonColor": {
+            "title": "Button Color",
+            "type": "string",
+            "enum": [
+				"btn-default",
+				"btn-success",
+				"btn-info",
+				"btn-warning",
+				"btn-danger",
+				"btn-dark",
+				"btn-primary",
+				"btn-secondary",
+				"btn-tertiary",
+				"btn-quaternary"
+            ]
+        },
+		"StyleModal": {
+            "title": "Style Modal",
+            "type": "string",
+            "enum": [
+				"defaultModal",
+				"largeModal",
+				"smallModal",
+				"noAnimModal"
+            ]
+        },
+		"DismissFor": {
+            "title": "Dismiss Lasts How Long?",
+            "type": "string",
+            "enum": [
+				"1 day",
+				"1 week",
+                "1 month"
+            ]
+        },
+		"Debug": {
+            "title": "Turn on Debugging?",
+            "type": "string",
+            "enum": [
+				"No",
+				"Yes"
+            ]
+        }				
+    }    
+}

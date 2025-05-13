@@ -1,0 +1,51 @@
+{
+	"fields": {		
+		"ButtonColor": {
+			"title": "Button Color",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Success",
+				"Info",
+				"Warning",
+				"Danger",
+				"Dark",
+				"Primary",
+				"Secondary",
+				"Tertiary",
+				"Quaternary"
+			],
+			"removeDefaultNone": true
+		},
+		"StyleModal": {
+			"title": "Style Modal",
+			"type": "select",
+			"optionLabels": [
+				"Default",
+				"Large",
+				"Small",
+				"No Animate"
+			],
+			"removeDefaultNone": true
+		},
+		"DismissFor": {
+			"title": "Dismiss for How Long?",
+			"type": "select",
+			"optionLabels": [
+				"1 day",
+				"1 week",
+				"1 month"
+			],
+			"removeDefaultNone": true
+		},
+		"Debug": {
+			"title": "Turn on Debugging?",
+			"type": "select",
+			"optionLabels": [
+				"No",
+				"Yes"
+			],
+			"removeDefaultNone": true
+		}
+	}
+}

@@ -1,0 +1,402 @@
+@using DotNetNuke.Entities.Modules
+@functions {
+    public static string AddCssClassToTag(string html, string tagName = "a", string className = "alert-link")
+    {
+        if (string.IsNullOrWhiteSpace(html) || string.IsNullOrWhiteSpace(tagName) || string.IsNullOrWhiteSpace(className))
+            return html;
+
+        string pattern = "<" + tagName + "\\b([^>]*?)>";
+
+        return System.Text.RegularExpressions.Regex.Replace(html, pattern, match =>
+        {
+            string tag = match.Value;
+
+            // Check for an existing class attribute
+            if (System.Text.RegularExpressions.Regex.IsMatch(tag, "\\bclass\\s*=\\s*[\"'][^\"']*[\"']", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            {
+                // Append the class name to the existing classes
+                return System.Text.RegularExpressions.Regex.Replace(tag, "\\bclass\\s*=\\s*[\"']([^\"']*)[\"']", delegate(System.Text.RegularExpressions.Match m)
+                {
+                    string classes = m.Groups[1].Value;
+
+                    if (classes.IndexOf(className, StringComparison.OrdinalIgnoreCase) >= 0)
+                        return m.Value;
+
+                    return "class=\"" + classes + " " + className + "\"";
+                }, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            }
+            else
+            {
+                // Insert class attribute
+                return tag.Replace(">", " class=\"" + className + "\">");
+            }
+
+        }, System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    }
+}
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    // Referrer domain extraction
+    var fullReferrer = (Request.UrlReferrer != null) ? Request.UrlReferrer.ToString() : string.Empty;
+    var referrerDomain = "Direct";
+
+    if (!string.IsNullOrWhiteSpace(fullReferrer))
+    {
+        try
+        {
+            var uri = new Uri(fullReferrer);
+            referrerDomain = uri.Host;
+        }
+        catch
+        {
+            referrerDomain = fullReferrer; // fallback
+        }
+    }
+
+    // Query string collection
+    var queryStrings = new Dictionary<string, string>();
+    foreach (string key in Request.QueryString.Keys)
+    {
+        if (!string.IsNullOrEmpty(key))
+        {
+            queryStrings[key] = Request.QueryString[key];
+        }
+    }
+
+    var styleModal = Model.Settings.StyleModal;
+    var ModalId = "modal-" + Model.Context.ModuleID;
+    var debuggingEnabled = string.Equals(Model.Settings.Debug, "yes", StringComparison.OrdinalIgnoreCase);
+    var eiEnabled = false;
+    if (Model.ExitIntentTrigger != null){
+        var eiValue = Model.ExitIntentTrigger.ToString().Trim();
+        eiEnabled = eiValue.Equals("true", StringComparison.OrdinalIgnoreCase) ||
+                    eiValue.Equals("yes", StringComparison.OrdinalIgnoreCase) ||
+                    eiValue == "1";
+    }
+
+    var delayTime = (Model.DelayTime != null) ? Model.DelayTime : 0;  
+    if (delayTime < 10) {
+        // safe to assume the instructions were ignored... lets make it seconds
+        delayTime = delayTime  * 1000;
+    }
+
+    var dismissHours = 24;
+    if (Model.Settings.DismissFor != null)
+    {
+        if (Model.Settings.DismissFor.ToLower() == "1 day") { dismissHours = 24; }
+        if (Model.Settings.DismissFor.ToLower() == "1 week") { dismissHours = dismissHours * 7; }
+        if (Model.Settings.DismissFor.ToLower() == "1 month") { dismissHours = dismissHours * 30; }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if (Model.Context.IsEditMode)
+{
+    <h2 class="h3 heading-secondary"><i class="fa-regular fa-window-restore me-2" aria-hidden="true"></i>Modal Pop-Up Manager</h2>
+    <p class="text-small lead">This module is only visible to user accounts with Edit permissions. (<em>It hides itself when not in Edit mode.</em>)</p>
+
+    if (debuggingEnabled)
+    {
+    <p>The details below can be used to create/troubleshoot modal pop-ups on this page, loaded from the most recent page load.</p>
+    <div class="row">
+        <div class="col">
+            <h3 class="text-capitalize"><i class="fa-solid fa-right-from-bracket me-2" aria-hidden="true"></i>Referrer</h3>
+            <div id="referrer-container" class="alert alert-light border mt-3" role="note" aria-live="polite">
+                <strong>Referrer:</strong> <span id="referrer-value">Checking...</span>
+            </div>
+        </div>
+        <div class="col">
+            <h3 class="text-capitalize"><i class="fa-solid fa-link me-2" aria-hidden="true"></i>Query Strings</h3>
+            <div id="querystrings-container" class="alert alert-light border d-none mt-3" role="region" aria-live="polite">
+                <ul class="mb-0" id="querystrings-list"></ul>
+            </div>
+        </div>
+    </div>
+    }
+}
+
+@if(Model.Modals != null)
+{
+    var matchCount = 0;
+    foreach(var modal in Model.Modals)
+    {
+        if(!string.IsNullOrEmpty(modal.Condition))
+        {
+            if (debuggingEnabled)
+            {
+            <!-- Condition: @modal.Condition | Value: @modal.ConditionValue -->
+            }
+            if(modal.Condition == "DomainIs" && modal.ConditionValue.ToLower() == referrerDomain.ToLower())
+            {
+                if (debuggingEnabled)
+                {
+                <!-- Domain Condition Met -->
+                }
+                @RenderModalPopup(ModalId, modal);
+                matchCount++;
+                break;
+            }
+            else 
+            {
+                if (queryStrings.ContainsKey(modal.Condition) && queryStrings[modal.Condition] == modal.ConditionValue)
+                {
+                    if (debuggingEnabled)
+                    {
+                    <!-- Query String Condition Met -->
+                    <div class="alert alert-info d-flex align-items-start gap-2" role="alert" aria-live="polite">
+                        <i class="fa-solid fa-triangle-exclamation fa-lg mt-2" aria-hidden="true"></i>
+                        <div>
+                            <p class="mb-0">
+                                <strong>Modal Loaded:</strong> @modal.ModalTitle | 
+                                <strong>Condition:</strong> @modal.Condition | 
+                                <strong>Value:</strong> @modal.ConditionValue | 
+                                <strong>Dismissed Until:</strong> <span id="dismissed-until-display" class="text-monospace text-muted">(not set)</span> | 
+                                <strong>Delay:</strong> @delayTime <em>ms</em> | 
+                                <strong>Exit Intent:</strong> @eiEnabled.ToString()
+                            </p>
+                        </div>
+                    </div>
+                    }
+                    @RenderModalPopup(ModalId, modal);
+                    matchCount++;
+                    break;   
+                }
+            }
+        }
+        else
+        {
+        <div class="alert alert-warning d-flex align-items-start gap-2" role="alert" aria-live="polite">
+            <i class="fa-solid fa-triangle-exclamation fa-lg mt-1" aria-hidden="true"></i>
+            <div>
+                <h3 class="h5 text-capitalize mb-2">No Conditions Found</h3>
+                <p class="mb-0">Please update the template to display a conditional modal.</p>
+            </div>
+        </div>
+        }
+    }
+    if (matchCount == 0 && debuggingEnabled)
+    {        
+    <div class="alert alert-warning d-flex align-items-start gap-2" role="alert" aria-live="polite">
+        <i class="fa-solid fa-triangle-exclamation fa-lg mt-1" aria-hidden="true"></i>
+        <div>
+            <h3 class="h5 text-capitalize mb-2">No Conditions Met</h3>
+            <p class="mb-0">No modals were found matching the selected conditions.</p>
+        </div>
+    </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning d-flex align-items-start gap-2" role="alert" aria-live="polite">
+        <i class="fa-solid fa-triangle-exclamation fa-lg mt-1" aria-hidden="true"></i>
+        <div>
+            <h3 class="h5 mb-2">No Modals Found</h3>
+            <p class="mb-0">Please add one or more modals to display.</p>
+        </div>
+    </div>
+}
+
+<!-- Scoped Animation (only for modal appearance) -->
+<style>
+  .show-animation .modal-content {
+    animation: fadeInModal 0.6s ease-in-out both;
+  }
+
+  @@keyframes fadeInModal {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<!-- Auto-show Modal Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const modalId = '@ModalId';
+    const delayMs = @delayTime;
+    const pageLoadTime = Date.now();
+    const showAfter = pageLoadTime + delayMs;
+    @if (debuggingEnabled){ @Html.Raw("console.log('showAfter = ' + showAfter);") }
+    const storageKey = modalId + "-dismissedUntil";
+    @if (debuggingEnabled){ @Html.Raw("console.log('storageKey = ' + storageKey);") }
+    const now = new Date();
+    const dismissedUntil = localStorage.getItem(storageKey);
+    @if (debuggingEnabled){ @Html.Raw("console.log('dismissedUntil = ' + dismissedUntil);") }
+    const dismissHours = @dismissHours;
+
+    const modalEl = document.getElementById(modalId);
+    if (modalEl && (!dismissedUntil || new Date(dismissedUntil) < now)) {
+    const modal = new bootstrap.Modal(modalEl, {
+        backdrop: 'static',
+        keyboard: true
+    });
+
+    let modalShown = false;
+
+    function showModalIfAllowed() {
+        if (modalShown) return;
+
+        const now = Date.now();
+
+        if (now < showAfter) return; // Delay not expired yet
+        if (dismissedUntil && new Date(dismissedUntil) > new Date()) return; // Still suppressed
+
+        modal.show();
+        modalShown = true;
+
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            const expires = new Date();
+            expires.setHours(expires.getHours() + dismissHours);
+            localStorage.setItem(storageKey, expires.toISOString());
+        });
+        }
+
+        @if (eiEnabled)
+        {
+        <text>
+            document.addEventListener("mouseout", function (e) {
+                if (e.clientY <= 0 || e.relatedTarget === null) {
+                    showModalIfAllowed();
+                }
+            });
+        </text>
+        } else {
+        <text>
+            setTimeout(() => {
+                showModalIfAllowed();
+            }, delayMs);
+        </text>
+        }
+
+    modalEl.addEventListener('hidden.bs.modal', function () {
+        const expires = new Date();
+        expires.setHours(expires.getHours() + 24);
+        localStorage.setItem(storageKey, expires.toISOString());
+    });
+    }
+
+    const displayEl = document.getElementById("dismissed-until-display");
+    if (displayEl) {
+    if (dismissedUntil) {
+        const date = new Date(dismissedUntil);
+        displayEl.textContent = date.toLocaleString();
+    } else {
+        displayEl.textContent = "(not set)";
+    }
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const container = document.getElementById('querystrings-container');
+    const list = document.getElementById('querystrings-list');
+
+    if ([...params].length > 0) {
+      container.classList.remove('d-none');
+      params.forEach((value, key) => {
+        const item = document.createElement('li');
+        item.textContent = `${key}: ${value}`;
+        list.appendChild(item);
+      });
+    }else{
+      container.classList.remove('d-none');
+        const item = document.createElement('li');
+        item.textContent = `(none found)`;
+        list.appendChild(item);
+    }
+
+    const referrer = document.referrer;
+    const display = document.getElementById('referrer-value');
+
+    if (!referrer) {
+      display.textContent = 'Direct visit or manually entered URL';
+    } else {
+      try {
+        const domain = new URL(referrer).hostname;
+        display.textContent = domain;
+      } catch {
+        display.textContent = referrer; // fallback
+      }
+    }
+  });
+</script>
+@functions {
+    public HtmlString RenderModalPopup(string modalId, dynamic modal)
+    {
+        var builder = new System.Text.StringBuilder();
+
+        builder.AppendLine("<div class=\"modal fade show-animation\" id=\"" + modalId + "\" tabindex=\"-1\" aria-labelledby=\"" + modalId + "-Label\" aria-hidden=\"true\">");
+        builder.AppendLine("  <div class=\"modal-dialog modal-dialog-centered modal-lg\">");
+        builder.AppendLine("    <div class=\"modal-content shadow rounded-3 border-0\">");
+
+        // Header
+        builder.AppendLine("      <div class=\"modal-header bg-light text-dark border-0\">");
+        builder.AppendLine("        <h4 class=\"heading-primary modal-title d-flex align-items-center gap-2 mb-0 text-capitalize\" id=\"" + modalId + "-Label\">");
+        if (!string.IsNullOrEmpty(modal.ModalTitleIcon))
+            builder.AppendLine("          <i class=\"" + modal.ModalTitleIcon + " mx-2\" aria-hidden=\"true\"></i>");
+        builder.AppendLine("          <span>" + Html.Raw(modal.ModalTitle) + "</span>");
+        builder.AppendLine("        </h4>");
+        builder.AppendLine("        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>");
+        builder.AppendLine("      </div>");
+
+        // Body
+        builder.AppendLine("      <div class=\"modal-body py-4 px-4\">");
+        if (!string.IsNullOrEmpty(modal.ModalLead))
+        {
+            builder.AppendLine("        <p class=\"lead mb-3\">" + Html.Raw(modal.ModalLead) + "</p>");
+        }
+        if (!string.IsNullOrEmpty(modal.ModalContent))
+        {
+            builder.AppendLine("        <div class=\"row\"><div class=\"col\">" + Html.Raw(modal.ModalContent) + "</div></div>");
+        }
+        builder.AppendLine("      </div>");
+
+        // Footer
+        builder.AppendLine("      <div class=\"modal-footer d-flex justify-content-between bg-light border-0 py-3 px-4\">");
+        if (!string.IsNullOrEmpty(modal.ModalFooterCta))
+        {
+            builder.AppendLine("        <small class=\"text-muted\">" + Html.Raw(modal.ModalFooterCta) + "</small>");
+        }
+        builder.AppendLine("        <button type=\"button\" class=\"btn btn-outline-secondary\" data-bs-dismiss=\"modal\">");
+        if (!string.IsNullOrEmpty(modal.CloseButtonIcon))
+        {
+            builder.AppendLine("          <i class=\"" + modal.CloseButtonIcon + " mx-2\" aria-hidden=\"true\"></i>");
+        }
+        builder.AppendLine("          " + modal.CloseButtonText);
+        builder.AppendLine("        </button>");
+        builder.AppendLine("      </div>");
+
+        builder.AppendLine("    </div>");
+        builder.AppendLine("  </div>");
+        builder.AppendLine("</div>");
+
+        return new HtmlString(builder.ToString());
+    }
+}
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
