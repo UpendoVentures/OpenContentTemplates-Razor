@@ -270,6 +270,128 @@
           "values": "Parallax"
         }
       ]
+    },
+    {
+      "fieldname": "Animation",
+      "title": "Entrance Animation",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "none",
+          "text": "No Animation"
+        },
+        {
+          "value": "fadeIn",
+          "text": "Fade In"
+        },
+        {
+          "value": "fadeInUp",
+          "text": "Fade In, Up"
+        },
+        {
+          "value": "fadeInDown",
+          "text": "Fade In, Down"
+        },
+        {
+          "value": "fadeInLeft",
+          "text": "Fade In, Left"
+        },
+        {
+          "value": "fadeInRight",
+          "text": "Fade In, Right"
+        },
+        {
+          "value": "fadeInUpBig",
+          "text": "Fade In, Up (Big)"
+        },
+        {
+          "value": "fadeInDownBig",
+          "text": "Fade In, Down (Big)"
+        },
+        {
+          "value": "fadeInLeftBig",
+          "text": "Fade In, Left (Big)"
+        },
+        {
+          "value": "fadeInRightBig",
+          "text": "Fade In, Right (Big)"
+        },
+        {
+          "value": "bounceIn",
+          "text": "Bounce In"
+        },
+        {
+          "value": "bounceInUp",
+          "text": "Bounce In, Up"
+        },
+        {
+          "value": "bounceInDown",
+          "text": "Bounce In, Down"
+        },
+        {
+          "value": "bounceInLeft",
+          "text": "Bounce In, Left"
+        },
+        {
+          "value": "bounceInRight",
+          "text": "Bounce In, Right"
+        },
+        {
+          "value": "rotateIn",
+          "text": "Rotate In"
+        },
+        {
+          "value": "rotateInUpLeft",
+          "text": "Rotate In, Up, Left"
+        },
+        {
+          "value": "rotateInDownLeft",
+          "text": "Rotate In, Down, Left"
+        },
+        {
+          "value": "rotateInUpRight",
+          "text": "Rotate In, Up, Right"
+        },
+        {
+          "value": "rotateInDownRight",
+          "text": "Rotate In, Down, Right"
+        },
+        {
+          "value": "flash",
+          "text": "Flash"
+        },
+        {
+          "value": "shake",
+          "text": "Shake"
+        },
+        {
+          "value": "bounce",
+          "text": "Bounce"
+        },
+        {
+          "value": "tada",
+          "text": "Ta-Da"
+        },
+        {
+          "value": "swing",
+          "text": "Swing"
+        },
+        {
+          "value": "wobble",
+          "text": "Wobble"
+        },
+        {
+          "value": "wiggle",
+          "text": "Wiggle"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "If specified, how do you want the element to appear when it appears to the visitor?",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
     }
   ],
   "formtype": "object"

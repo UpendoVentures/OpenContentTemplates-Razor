@@ -32,6 +32,7 @@
     var paddingTop = (!string.IsNullOrEmpty(Model.Settings.PaddingTop)) ? Model.Settings.PaddingTop : "pt-0";
     var paddingBottom = (!string.IsNullOrEmpty(Model.Settings.PaddingBottom)) ? Model.Settings.PaddingBottom : "pb-0";
     var linkTarget = (!string.IsNullOrEmpty(Model.LinkTarget)) ? Model.LinkTarget : "_self";
+    var animationSnippet = !string.IsNullOrEmpty(Model.Animation) ? string.Format(" data-appear-animation=\"{0}\"", Model.Animation) : string.Empty;
 
     var buttonClass = isColors || isSmall || isFullWidth ? "btn-default" : "btn-primary";
     var sectionClass = "call-to-action mb-xl" +
@@ -78,7 +79,7 @@ else if (isSmall)
 {
     <div class="row">
         <div class="col-md-4">
-            <section class="@sectionClass">
+            <section class="@sectionClass"@animationSnippet>
                 <section class="@sectionClass">
                     <div class="call-to-action-content">
                         <h3>@Model.Heading</h3>
@@ -99,7 +100,7 @@ else
         {
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12"@animationSnippet>
                         <div class="call-to-action-content">
                             <h3>@Model.Heading</h3>
                             <p>@Model.SubHeading</p>
@@ -119,11 +120,11 @@ else
         }
         else
         {
-            <div class="call-to-action-content">
+            <div class="call-to-action-content"@animationSnippet>
                 <h3>@Model.Heading</h3>
                 <p>@Model.SubHeading</p>
             </div>
-            <div class="call-to-action-btn">
+            <div class="call-to-action-btn"@animationSnippet>
                 <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg @buttonClass">@Model.Button</a>
                 @if (isWithArrow)
                 {
