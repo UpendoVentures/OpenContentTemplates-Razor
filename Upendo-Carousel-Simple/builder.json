@@ -1,0 +1,127 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Heading",
+      "title": "Heading (required)",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeadingClasses",
+      "title": "Heading CSS Classes",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "MaxWidth",
+      "title": "Carousel Maximum Width",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "600px",
+      "helper": "Just use pixels, for example: 600px",
+      "placeholder": "600px",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Slides",
+      "title": "Slides",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "ImageTitle",
+          "title": "Title (required)",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ImageDescription",
+          "title": "Descriptions",
+          "fieldtype": "wysihtml",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ImagePath",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "/Images/Carousel/"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Can be a local image, or an offsite URL",
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ImageAlt",
+          "title": "Alternate Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Need at least one slide",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

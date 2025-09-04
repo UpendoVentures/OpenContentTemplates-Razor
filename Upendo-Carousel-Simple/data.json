@@ -1,0 +1,20 @@
+{
+  "Heading": "This is <strong>My Image Gallery</strong>",
+  "HeadingClasses": "text-center heading-secondary fw-bold mb-4",
+  "MaxWidth": "600px",
+  "Slides": [
+    {
+      "ImageTitle": "My first slide",
+      "ImageDescription": "This is just an example slide.<br>",
+      "ImagePath": "https://placehold.co/600x800",
+      "ImageAlt": "Created using a placeholder site."
+    },
+    {
+      "ImageTitle": "MY second slide is fun!",
+      "ImageDescription": "Did you see my first slide, though?",
+      "ImagePath": "https://placehold.co/600x800",
+      "ImageAlt": "Created using a placeholder site."
+    }
+  ],
+  "_id": "5"
+}

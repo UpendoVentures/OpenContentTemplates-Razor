@@ -1,0 +1,66 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<section class="py-5" aria-labelledby="portraitCarouselHeading">
+  <div class="container">
+    <h2 id="portraitCarouselHeading" class="@Model.HeadingClasses">
+      @Html.Raw(Model.Heading)
+    </h2>
+
+    <div id="bvePortraitCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" style="max-width: @Model.MaxWidth;">
+      <div class="carousel-inner rounded shadow-lg" style="aspect-ratio: 3 / 4;">
+
+        @{
+			var count = 0;
+			foreach (var slide in Model.Slides)
+			{
+			var isActive = count == 0 ? "active" : "";
+			
+			<div class="carousel-item @isActive" data-bs-interval="4000">
+			  <img src="@slide.ImagePath" class="d-block w-100 img-fluid object-fit-cover" alt="@slide.ImageAlt" loading="lazy" />
+			  <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+				<h5 class="fw-bold text-white">@slide.ImageTitle</h5>
+				<p class="text-light small mb-0">@slide.ImageDescription</p>
+			  </div>
+			</div>
+			
+			count++;
+			}
+		}
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#bvePortraitCarousel" data-bs-slide="prev" aria-label="Previous slide">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#bvePortraitCarousel" data-bs-slide="next" aria-label="Next slide">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>
+@*
+@ObjectInfo.Print(Model)
+*@
