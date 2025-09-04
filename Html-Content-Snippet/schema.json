@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "HtmlContent": {
+      "type": "string",
+      "title": "HTML Content (be careful!)",
+      "required": true
+    },
+    "UseHtmlWrapper": {
+      "type": "boolean",
+      "title": "Use BS3 Wrapper?",
+      "default": "True"
+    },
+    "IncludeContentWrapperClass": {
+      "type": "boolean",
+      "title": "Include `content-wrapper` Class",
+      "default": "True"
+    }
+  }
+}
