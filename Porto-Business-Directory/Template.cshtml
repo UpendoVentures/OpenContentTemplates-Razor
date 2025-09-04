@@ -1,0 +1,64 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    var showImage = string.Equals(Model.Settings.ShowImage, "yes", StringComparison.OrdinalIgnoreCase);
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<section class="mb-5">
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+    @if (Model.Items != null)
+    {
+        var itemList = ((IEnumerable<dynamic>)Model.Items).ToList();
+        var sortedItems = itemList.OrderBy((Func<dynamic, object>)(i => (i.BusinessName ?? "").ToString())).ToList();
+
+        foreach (var item in sortedItems)
+        {
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body p-4">
+                    @if (showImage)
+                    {
+                    <img src="@item.BusinessLogo" alt="@item.BusinessName" title="@item.BusinessName" class="img-fluid mb-3" style="max-height: 60px;" />
+                    }
+                    <h5 class="card-title fs-5 text-capitalize">@item.BusinessName</h5>
+                    <p class="card-text">@item.BusinessDescription</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="@item.BusinessUrl?utm_source=upendo-ventures" class="btn btn-sm btn-outline btn-secondary mb-3" target="_blank" rel="noopener">Visit Website<i class="fas fa-external-link-alt mx-2"></i></a>
+                </div>
+            </div>
+        </div>
+        }
+    }
+    else
+    {
+        <div class="col">
+            <div class="alert alert-info" role="alert">
+                No items found.
+            </div>
+        </div>
+    }
+
+  </div>
+</section>

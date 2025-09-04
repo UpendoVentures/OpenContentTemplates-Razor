@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+       "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "Paragraph": {
+      "type": "string",
+      "title": "Paragraph Text (required)",
+      "required": true
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image (required)",
+      "required": true
+    },
+    "Classes": {
+      "type": "string",
+      "title": "Classes",
+      "default": "img-fluid"
+    },
+    "AltText": {
+      "type": "string",
+      "title": "Alt Text",
+      "required": true
+    }
+  }
+}

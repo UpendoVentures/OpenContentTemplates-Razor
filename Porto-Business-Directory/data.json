@@ -1,0 +1,6 @@
+{
+    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>", 
+    "Image": "https://example.com/image.jpg",
+    "Classes": "img-fluid",
+    "AltText": "This is my default alt text"
+}
