@@ -35,16 +35,17 @@
   if (!withBackground)
   {
     <div class="@Model.Settings.Size @(withBorders ? "with-borders" : "")">
-      <div class="row">
+      <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         @foreach (var item in Model.Items)
         {
           <div class="@grid">
             <div class="counter @item.item.Color">
-              <em class="@item.item.Icon"></em>
-              <strong>@item.item.DataPrefix</strong>
-              <strong data-append="@item.item.DataAppend" data-to="@item.item.DataTo"
+              <em class="@item.item.Icon mb-3" aria-hidden="true"></em>
+              <span class="counter-prepend">@item.item.DataPrefix</span>
+              <strong data-to="@item.item.DataTo"
                 data-plugin-options="{'speed': @item.item.Speed }">@item.item.DataFrom</strong>
-              <label>@item.item.Text</label>
+              <span class="counter-append">@item.item.DataAppend</span>
+              <label class="mt-3">@item.item.Text</label>
             </div>
           </div>
         }
@@ -59,15 +60,16 @@
       data-plugin-options="{'speed': 1.5}" data-plugin-parallax="parallax" data-image-src="@parallaxImage">
       <div class="container">
         <div class="counters @(background == "section section-default" ? "counters-text-dark" : "counters-text-light")">
-          <div class="row">
+          <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
             @foreach (var item in Model.Items)
             {
               <div class="@grid col-sm-6">
                 <div class="counter @item.item.Color">
-                  <em class="@item.item.Icon"></em>
-                  <strong>@item.item.DataPrefix</strong>
-                  <strong data-append="@item.item.DataAppend" data-to="@item.item.DataTo"
+                  <em class="@item.item.Icon mb-3" aria-hidden="true"></em>
+                  <span class="counter-prepend">@item.item.DataPrefix</span>
+                  <strong data-to="@item.item.DataTo"
                     data-plugin-options="{'speed': @item.item.Speed }">@item.item.DataFrom</strong>
+                  <span class="counter-append">@item.item.DataAppend</span>
                   <label>@item.item.Text</label>
                 </div>
               </div>
@@ -90,3 +92,31 @@
     </div>
   </div>
 }
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function localizeCounters() {
+      document.querySelectorAll(".counter strong").forEach((counter) => {
+        const finalValue = parseFloat(counter.getAttribute("data-to"));
+        if (isNaN(finalValue)) return;
+
+        const currentValue = parseFloat(counter.textContent.replace(/[^0-9.-]+/g, ''));
+        if (isNaN(currentValue)) return;
+
+        // If the current number matches the final value but is not yet formatted, format it
+        const alreadyFormatted = counter.textContent.includes(",") || counter.textContent.includes(".");
+        if (currentValue === finalValue && !alreadyFormatted) {
+          counter.textContent = new Intl.NumberFormat(navigator.language).format(currentValue);
+        }
+      });
+    }
+
+    // Run immediately and then every 1 second
+    localizeCounters();
+    const intervalId = setInterval(() => {
+      localizeCounters();
+    }, 500);
+
+    // Optional: Stop after 10 seconds (adjust as needed)
+    setTimeout(() => clearInterval(intervalId), 10000);
+  });
+</script>

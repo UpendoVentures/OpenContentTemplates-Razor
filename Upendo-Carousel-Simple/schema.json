@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading (required)",
+      "required": true
+    },
+    "HeadingClasses": {
+      "type": "string",
+      "title": "Heading CSS Classes"
+    },
+    "MaxWidth": {
+      "type": "string",
+      "title": "Carousel Maximum Width",
+      "required": true,
+      "default": "600px"
+    },
+    "Slides": {
+      "type": "array",
+      "title": "Slides",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ImageTitle": {
+            "type": "string",
+            "title": "Title (required)",
+            "required": true
+          },
+          "ImageDescription": {
+            "type": "string",
+            "title": "Descriptions",
+            "required": true
+          },
+          "ImagePath": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          },
+          "ImageAlt": {
+            "type": "string",
+            "title": "Alternate Text",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

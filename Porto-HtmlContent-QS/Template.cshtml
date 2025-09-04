@@ -1,0 +1,74 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    var expectedKey = Model.QueryStringKey;
+    var expectedValue = Model.QueryStringValue;
+    var queryValue = string.Empty;
+    
+    if (HttpContext.Current != null &&
+        HttpContext.Current.Request != null &&
+        HttpContext.Current.Request.QueryString != null)
+    {
+        queryValue = HttpContext.Current.Request.QueryString[expectedKey];
+    }
+
+    var showContent = !string.IsNullOrEmpty(queryValue) &&
+                      queryValue.Equals(expectedValue, StringComparison.OrdinalIgnoreCase);
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if (showContent)
+{
+    <div class="@Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+    @if (!string.IsNullOrEmpty(Model.HtmlContent))
+    {
+        @Html.Raw(Model.HtmlContent)
+    } 
+    else 
+    {
+        <h1>No HTML Content</h1>
+        <p>Edit this module to add any HTML-based content.</p>
+    }
+    </div>
+} 
+else 
+{
+    if(Model.Context.IsEditMode)
+    {
+    <div class="dnnFormMessage dnnFormSuccess">
+        <h5>Content Template Message</h5>
+        <p>
+            <em>Only visible when in edit mode.</em><br />
+            Personalized content template iss loaded, but display conditions are not met. 
+        </p>
+    </div>
+    }
+    else
+    {
+    <!-- OC: HtmlContent (QS) module -->
+    }
+}
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@

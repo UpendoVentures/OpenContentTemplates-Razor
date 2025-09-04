@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "HtmlContent": {
+      "type": "string",
+      "title": "HTML Content (be careful!)",
+      "required": true
+    },
+    "QueryStringKey": {
+      "type": "string",
+      "title": "Query String Key",
+      "required": true
+    },
+    "QueryStringValue": {
+      "type": "string",
+      "title": "Query String Value",
+      "required": true
+    }
+  }
+}

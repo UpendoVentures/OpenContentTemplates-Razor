@@ -1,12 +1,15 @@
 {
-  "fields": {
-    "Size": {
-      "title": "Counters Size",
-      "type": "select",
-      "optionLabels": ["sm", "md", "lg"],
-      "removeDefaultNone": true
-    },
-    "MarginTop": {
+	"fields": {		
+		"ShowImage": {
+			"title": "Show Image",
+			"type": "select",
+			"optionLabels": [
+				"Yes",
+				"No"
+			],
+			"removeDefaultNone": true
+		},		
+		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",
 			"optionLabels": [
@@ -61,6 +64,7 @@
 				"pb-auto"
 			],
 			"removeDefaultNone": true
-		}
-  }
+		}	
+
+	}
 }

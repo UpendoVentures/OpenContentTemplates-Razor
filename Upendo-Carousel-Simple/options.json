@@ -1,0 +1,47 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Heading": {
+      "type": "text"
+    },
+    "HeadingClasses": {
+      "type": "text"
+    },
+    "MaxWidth": {
+      "type": "text",
+      "placeholder": "600px",
+      "helper": "Just used pixels, for example: 600px"
+    },
+    "Slides": {
+      "type": "array",
+      "helper": "Need at least one slide",
+      "items": {
+        "fields": {
+          "ImageTitle": {
+            "type": "text"
+          },
+          "ImageDescription": {
+            "type": "wysihtml"
+          },
+          "ImagePath": {
+            "type": "image",
+            "uploadfolder": "/Images/Carousel/",
+            "typeahead": {
+              "Folder": "/Images/Carousel/"
+            },
+            "helper": "Can be a local image, or an offsite URL"
+          },
+          "ImageAlt": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

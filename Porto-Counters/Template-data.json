@@ -1,3 +1,7 @@
 {
-  "Size": "counters"
+  "Size": "counters",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-auto",
+  "PaddingBottom": "pb-auto"
 }

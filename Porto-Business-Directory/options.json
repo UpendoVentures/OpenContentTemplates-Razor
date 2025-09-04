@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "Paragraph": {
+      "type": "ckeditor",
+      "configset": "basic"
+    },
+    "Image": {
+      "type": "image",
+      "uploadfolder": "Images",
+      "typeahead": {
+        "Folder": "Images"
+      }
+    },
+    "Classes": {
+      "type": "text",
+      "placeholder": "img-fluid"
+    },
+    "AltText": {
+      "type": "text",
+      "placeholder": "Used for SEO"
+    }
+  }
+}

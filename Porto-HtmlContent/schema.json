@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "HtmlContent": {
+      "type": "string",
+      "title": "HTML Content (be careful!)",
+      "required": true
+    }
+  }
+}
