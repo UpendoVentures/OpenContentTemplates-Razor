@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "HtmlContent": {
+      "type": "textarea",
+      "placeholder": "<!-- be sure the HTML is valid -->"
+    }, 
+    "QueryStringKey": {
+      "type": "text"
+    }, 
+    "QueryStringValue": {
+      "type": "text"
+    }
+  }
+}
