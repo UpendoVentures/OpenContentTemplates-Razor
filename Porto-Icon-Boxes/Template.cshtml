@@ -33,12 +33,14 @@
         <div class="row">
             @foreach (var item in Model.Items)
             {
+                var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
                 if (Model.Settings.DisplayAxis == "horizontally")
                 {
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4 col-sm-1">
                          <div class="featured-box featured-box-@Model.Settings.Color
                             @(Model.Settings.ContentContainers == "2" ? "featured-box-text-left" : "")
-                            @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)"
+                            @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)" 
+                            @animationSnippet 
                             @if (ConvertToBool(Model.Settings.EnableAnimations))
                             {
                                 @:data-appear-animation="@Model.Settings.AnimationType"
@@ -52,7 +54,8 @@
                 {
                     <div class="featured-box featured-box-@Model.Settings.Color
                         @(Model.Settings.ContentContainers == "2" ? "featured-box-text-left" : "")
-                        @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)"
+                        @(Model.Settings.FeaturedBoxesStyle == "featured-boxes-flat" ? Model.Settings.FeaturedBoxEffectFlat : Model.Settings.FeaturedBoxEffect)" 
+                        @animationSnippet 
                         @if (ConvertToBool(Model.Settings.EnableAnimations))
                         {
                             @:data-appear-animation="@Model.Settings.AnimationType"
@@ -70,7 +73,9 @@ else if (Model.Settings.IconBoxesType == "Simple")
     <div class="row">
         @foreach (var item in Model.Items)
         {
-            <div class="col-md-3">
+            var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
+
+            <div class="col-md-4"@animationSnippet>
                 <div class="feature-box 
                     @Model.Settings.FeatureBoxStyle 
                     feature-box-@Model.Settings.Color 
@@ -95,7 +100,9 @@ else
     <div class="featured-boxes-full @Model.Settings.FeatureBoxFullStyle row m-0">
         @foreach (var item in Model.Items)
         {
-            <div class="col-md-3">
+            var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
+
+            <div class="col-md-4"@animationSnippet>
                 <div class="featured-box-full featured-box-full-primary">
                     @RenderIconBox(Model,item)
                     <h4 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>

@@ -5,8 +5,7 @@
     },
     "ModuleAnchor": {
       "type": "text",
-      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-      "showMessages": false
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "Heading": {
       "type": "ckeditor",
@@ -106,6 +105,40 @@
           "Parallax"
         ]
       }
+    },
+    "Animation": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "No Animation",
+        "Fade In",
+        "Fade In, Up",
+        "Fade In, Down",
+        "Fade In, Left",
+        "Fade In, Right",
+        "Fade In, Up (Big)",
+        "Fade In, Down (Big)",
+        "Fade In, Left (Big)",
+        "Fade In, Right (Big)",
+        "Bounce In",
+        "Bounce In, Up",
+        "Bounce In, Down",
+        "Bounce In, Left",
+        "Bounce In, Right",
+        "Rotate In",
+        "Rotate In, Up, Left",
+        "Rotate In, Down, Left",
+        "Rotate In, Up, Right",
+        "Rotate In, Down, Right",
+        "Flash",
+        "Shake",
+        "Bounce",
+        "Ta-Da",
+        "Swing",
+        "Wobble",
+        "Wiggle"
+      ],
+      "helper": "If specified, how do you want the element to appear when it appears to the visitor?"
     }
   }
 }

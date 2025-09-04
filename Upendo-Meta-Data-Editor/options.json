@@ -63,6 +63,7 @@
               "image/png",
               "image/svg+xml",
               "image/jpeg",
+              "application/xml",
               "application/rss+xml",
               "application/atom+xml",
               "application/manifest+json"

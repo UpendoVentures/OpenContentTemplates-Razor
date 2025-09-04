@@ -14,7 +14,8 @@
       "WithBorders": "#pos_1_1",
       "Featured": "#pos_1_1",
       "Color": "#pos_1_1",
-      "ParallaxImage": "#pos_1_1"
+      "ParallaxImage": "#pos_1_1",
+      "Animation": "#pos_1_1"
     }
   }
 }

@@ -7,8 +7,8 @@
     },
     "ModuleAnchor": {
       "type": "string",
-      "title": "Module Anchor",
-       "pattern": "^[a-zA-Z0-9\\-]+$"
+      "title": "Module Anchor", 
+      "pattern": "^[a-zA-Z0-9\\-]+$" 
     },
     "Items": {
       "type": "array",
@@ -52,6 +52,39 @@
               "_top"
             ],
             "default": "_top"
+          },
+          "Animation": {
+            "type": "string",
+            "title": "Entrance Animation",
+            "enum": [
+              "none",
+              "fadeIn",
+              "fadeInUp",
+              "fadeInDown",
+              "fadeInLeft",
+              "fadeInRight",
+              "fadeInUpBig",
+              "fadeInDownBig",
+              "fadeInLeftBig",
+              "fadeInRightBig",
+              "bounceIn",
+              "bounceInUp",
+              "bounceInDown",
+              "bounceInLeft",
+              "bounceInRight",
+              "rotateIn",
+              "rotateInUpLeft",
+              "rotateInDownLeft",
+              "rotateInUpRight",
+              "rotateInDownRight",
+              "flash",
+              "shake",
+              "bounce",
+              "tada",
+              "swing",
+              "wobble",
+              "wiggle"
+            ]
           }
         }
       }

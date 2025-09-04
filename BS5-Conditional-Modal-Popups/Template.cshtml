@@ -184,13 +184,16 @@
         }
         else
         {
-        <div class="alert alert-warning d-flex align-items-start gap-2" role="alert" aria-live="polite">
-            <i class="fa-solid fa-triangle-exclamation fa-lg mt-1" aria-hidden="true"></i>
-            <div>
-                <h3 class="h5 text-capitalize mb-2">No Conditions Found</h3>
-                <p class="mb-0">Please update the template to display a conditional modal.</p>
+            if (debuggingEnabled)
+            {
+            <div class="alert alert-warning d-flex align-items-start gap-2" role="alert" aria-live="polite">
+                <i class="fa-solid fa-triangle-exclamation fa-lg mt-1" aria-hidden="true"></i>
+                <div>
+                    <h3 class="h5 text-capitalize mb-2">No Conditions Found</h3>
+                    <p class="mb-0">Please update the template to display a conditional modal.</p>
+                </div>
             </div>
-        </div>
+            }
         }
     }
     if (matchCount == 0 && debuggingEnabled)
