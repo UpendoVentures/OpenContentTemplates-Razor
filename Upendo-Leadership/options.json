@@ -1,0 +1,39 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Leaders": {
+      "type": "accordion",
+      "helper": "Must have at least one.",
+      "items": {
+        "fields": {
+          "FullName": {
+            "type": "text",
+            "helper": "first & last name"
+          },
+          "CompanyName": {
+            "type": "text"
+          },
+          "Title": {
+            "type": "text"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "/Images/Members/",
+            "typeahead": {
+              "Folder": "/Images/Members/"
+            }
+          },
+          "Email": {
+            "type": "email"
+          }
+        }
+      }
+    }
+  }
+}
