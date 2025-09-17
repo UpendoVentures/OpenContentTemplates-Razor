@@ -1,0 +1,76 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<section class="container my-5" aria-labelledby="qrCodesHeader">
+  <header class="mb-4 text-center">
+    <h1 id="qrCodesHeader" class="heading-primary h3 pt-4">
+      <i class="fas fa-qrcode me-2 text-primary" aria-hidden="true"></i>
+      Download Your QR Codes
+    </h1>
+    <p class="text-muted mb-1">
+      Easily share your website with these <strong>ready-to-use QR codes</strong>.
+    </p>
+    <p class="small text-muted">
+      To save a QR code, <strong>right-click (or long-press on mobile)</strong> and choose 
+      <em>“Save image as…”</em>. You can also use the <i class="fas fa-download text-primary" aria-hidden="true"></i> Download button below each QR code.
+    </p>
+  </header>
+
+  <div class="row g-4">
+  @if (Model.QRCodes != null){
+      foreach (var qr in Model.QRCodes) {
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <article class="card shadow-sm h-100 border-0">
+            <div class="card-body text-center d-flex flex-column justify-content-between p-3">
+
+              <h2 class="h6 fw-bold">@qr.Label</h2>
+
+              <img src="@qr.ImageUrl" alt="QR code for @qr.Label" class="img-fluid rounded mb-3" loading="lazy" decoding="async" />
+
+              <div class="d-flex justify-content-center gap-2 mt-3">
+                <a href="@qr.ImageUrl" class="btn btn-sm btn-outline-primary" download
+                  aria-label="Download QR code for @qr.Label">
+                  <i class="fas fa-download me-1" aria-hidden="true"></i> Download
+                </a>
+                <a href="@qr.TargetUrl" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener"
+                  aria-label="Visit link for @qr.Label">
+                  <i class="fas fa-external-link-alt me-1" aria-hidden="true"></i> Visit
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      }
+    }
+    else{
+      <h1>No QR Codes</h1>
+      <p>Please add one or more QR codes.</p>
+    }
+  </div>
+</section>
+
+</section>
+@*
+@ObjectInfo.Print(Model)
+*@

@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "QRCodes": {
+      "type": "array",
+      "title": "QR Codes",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Label": {
+            "type": "string",
+            "title": "Label",
+            "required": true
+          },
+          "TargetUrl": {
+            "type": "string",
+            "title": "Target Page",
+            "required": true
+          },
+          "ImageUrl": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

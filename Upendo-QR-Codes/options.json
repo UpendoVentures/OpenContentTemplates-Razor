@@ -1,0 +1,35 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "QRCodes": {
+      "type": "array",
+      "helper": "Need at least one slide",
+      "items": {
+        "fields": {
+          "Label": {
+            "type": "text",
+            "placeholder": "page name"
+          },
+          "TargetUrl": {
+            "type": "url",
+            "helper": "https://example.com/page-name"
+          },
+          "ImageUrl": {
+            "type": "image",
+            "uploadfolder": "/Images/Carousel/",
+            "typeahead": {
+              "Folder": "/Images/Carousel/"
+            },
+            "helper": "Can be a local image, or an offsite URL"
+          }
+        }
+      }
+    }
+  }
+}
