@@ -1,0 +1,124 @@
+@using DotNetNuke.Entities.Modules
+@using DotNetNuke.Entities.Users
+@using DotNetNuke.Entities.Controllers
+@using DotNetNuke.Common
+@using System
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+    // ---------------------------------------------
+    // Support Dashboard Header (Lean) – Compat fix for CS1513
+    // Notes:
+    //  - Removed local method declaration (Razor older engines require @functions for methods)
+    //  - Avoided multi-line ternary for strings
+    //  - Kept older-safe string checks (IsNullOrEmpty || Trim.Length == 0)
+    // ---------------------------------------------
+
+    // Read HostSettings directly (no local function)
+    var ticketsUrlRaw   = HostController.Instance.GetString("Upendo.Support.TicketsUrl", string.Empty);
+    var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
+    var docsUrlRaw      = HostController.Instance.GetString("Upendo.Support.DocsUrl", string.Empty);
+
+    var ticketsUrl   = (string.IsNullOrEmpty(ticketsUrlRaw)   ? string.Empty : ticketsUrlRaw);
+    var supportEmail = (string.IsNullOrEmpty(supportEmailRaw) ? string.Empty : supportEmailRaw);
+    var docsUrl      = (string.IsNullOrEmpty(docsUrlRaw)      ? string.Empty : docsUrlRaw);
+
+    if (string.IsNullOrEmpty(ticketsUrl) || ticketsUrl.Trim().Length == 0) { ticketsUrl = "#"; }
+    if (string.IsNullOrEmpty(docsUrl)    || docsUrl.Trim().Length    == 0) { docsUrl    = "#"; }
+
+    // Current user info (avoid null-conditional)
+    var user = (Dnn != null && Dnn.User != null) ? Dnn.User : UserController.Instance.GetCurrentUserInfo();
+    var displayName = (user != null && !string.IsNullOrEmpty(user.FirstName))
+        ? user.FirstName
+        : (user != null ? user.Username : "there");
+
+    // Last visit determination
+    DateTime lastVisit = DateTime.MinValue;
+    try
+    {
+        if (user != null)
+        {
+            var lastLoginDateProp = user.GetType().GetProperty("LastLoginDate");
+            if (lastLoginDateProp != null)
+            {
+                object valObj = lastLoginDateProp.GetValue(user, null);
+                if (valObj is DateTime)
+                {
+                    DateTime valDt = (DateTime)valObj;
+                    if (valDt != DateTime.MinValue) { lastVisit = valDt; }
+                }
+            }
+            if (lastVisit == DateTime.MinValue && user.Membership.LastLoginDate != DateTime.MinValue) { lastVisit = user.Membership.LastLoginDate; }
+            if (lastVisit == DateTime.MinValue && user.Membership.LastActivityDate != DateTime.MinValue) { lastVisit = user.Membership.LastActivityDate; }
+        }
+    }
+    catch { }
+
+    string lastVisitText;
+    if (lastVisit != DateTime.MinValue)
+    {
+        lastVisitText = lastVisit.ToLocalTime().ToString("MMM d, yyyy h:mm tt");
+    }
+    else
+    {
+        lastVisitText = "--";
+    }
+
+    var hdrId = "support-header-" + (user != null ? user.UserID.ToString() : DateTime.UtcNow.Ticks.ToString());
+}
+
+<section class="mb-3 p-3" aria-labelledby="@hdrId">
+  <div class="card shadow-sm border-0">
+    <div class="card-body d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
+      <div class="flex-grow-1">
+        <h1 id="@hdrId" class="h5 mb-1 heading-primary">
+          <i class="fas fa-heart me-2 text-danger" aria-hidden="true"></i>
+          Welcome back, <span class="fw-bold">@displayName</span>
+        </h1>
+        <p class="mb-0 text-muted">
+          <i class="far fa-clock me-2" aria-hidden="true"></i>
+          Last visit: <span aria-live="polite">@lastVisitText</span>
+        </p>
+      </div>
+
+      <div class="ms-md-auto d-flex flex-wrap gap-2" role="group" aria-label="Support quick links">
+
+        <a class="btn btn-sm btn-outline-secondary" href="@docsUrl" target="_blank" rel="noopener" aria-label="Open documentation in a new tab">
+          <i class="fas fa-book me-2" aria-hidden="true"></i>Documentation
+        </a>
+
+        @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
+        {
+          <a class="btn btn-sm btn-outline-primary" href="mailto:@supportEmail" aria-label="Email support at @supportEmail">
+            <i class="far fa-envelope me-2" aria-hidden="true"></i>Email Support
+          </a>
+        }
+        else
+        {
+          <button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled" aria-disabled="true">
+            <i class="far fa-envelope me-2" aria-hidden="true"></i>Support email not configured
+          </button>
+        }
+
+        <!--a class="btn btn-sm btn-outline-primary" href="@ticketsUrl" target="_blank" rel="noopener" aria-label="Open My Tickets in a new tab">
+          <i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>New Ticket
+        </a-->
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4" />
+</section>

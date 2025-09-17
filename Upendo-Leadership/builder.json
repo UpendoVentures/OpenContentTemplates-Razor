@@ -1,0 +1,99 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Leaders",
+      "title": "Leaders",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "FullName",
+          "title": "Name",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "first & last name",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "CompanyName",
+          "title": "Company",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Image",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "/Images/Members/"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Email",
+          "title": "Email",
+          "fieldtype": "email",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Must have at least one.",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

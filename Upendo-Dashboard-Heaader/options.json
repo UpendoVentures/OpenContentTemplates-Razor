@@ -1,0 +1,22 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "HtmlContent": {
+      "type": "textarea",
+      "placeholder": "<!-- be sure the HTML is valid -->"
+    },
+    "UseHtmlWrapper": {
+      "type": "checkbox",
+      "helper": "If checked, a BS3 contaner+row will be used. Otherwise, just a &lt;div&gt;."
+    },
+    "IncludeContentWrapperClass": {
+      "type": "checkbox"
+    }
+  }
+}

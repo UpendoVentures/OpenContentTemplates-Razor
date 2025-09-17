@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Leaders": {
+      "type": "array",
+      "title": "Leaders",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "FullName": {
+            "type": "string",
+            "title": "Name",
+            "required": true
+          },
+          "CompanyName": {
+            "type": "string",
+            "title": "Company",
+            "required": true
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          },
+          "Email": {
+            "type": "string",
+            "title": "Email",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}
