@@ -1,0 +1,70 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Members": {
+      "type": "accordion",
+      "helper": "Must have at least one.",
+      "items": {
+        "fields": {
+          "MemberName": {
+            "type": "text",
+            "helper": "first & last name"
+          },
+          "CompanyName": {
+            "type": "text"
+          },
+          "MemberTitle": {
+            "type": "text"
+          },
+          "MemberBio": {
+            "type": "ckeditor",
+            "configset": "basic"
+          },
+          "Category": {
+            "type": "text"
+          },
+          "MemberPage": {
+            "type": "url"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "/Images/Members/",
+            "typeahead": {
+              "Folder": "/Images/Members/"
+            }
+          },
+          "Website": {
+            "type": "url"
+          },
+          "LinkedIn": {
+            "type": "url"
+          },
+          "Instagram": {
+            "type": "url"
+          },
+          "Yelp": {
+            "type": "url"
+          },
+          "Facebook": {
+            "type": "url"
+          },
+          "YouTube": {
+            "type": "url"
+          },
+          "TikTok": {
+            "type": "url"
+          },
+          "Twitter": {
+            "type": "url"
+          }
+        }
+      }
+    }
+  }
+}
