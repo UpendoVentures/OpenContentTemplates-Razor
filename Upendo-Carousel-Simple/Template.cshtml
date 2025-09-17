@@ -38,7 +38,7 @@
 			var isActive = count == 0 ? "active" : "";
 			
 			<div class="carousel-item @isActive" data-bs-interval="4000">
-			  <img src="@slide.ImagePath" class="d-block w-100 img-fluid object-fit-cover" alt="@slide.ImageAlt" loading="lazy" />
+			  <img src="@slide.ImagePath" class="d-block w-100 img-fluid object-fit-cover" alt="@slide.ImageAlt" loading="lazy" decoding="async" />
 			  <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
 				<h5 class="fw-bold text-white">@slide.ImageTitle</h5>
 				<p class="text-light small mb-0">@slide.ImageDescription</p>
