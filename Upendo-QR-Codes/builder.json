@@ -1,0 +1,78 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "QRCodes",
+      "title": "QR Codes",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "Label",
+          "title": "Label",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "placeholder": "page name",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "TargetUrl",
+          "title": "Target Page",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "https://example.com/page-name",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ImageUrl",
+          "title": "Image",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "/Images/Carousel/"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Can be a local image, or an offsite URL",
+          "multilanguage": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Need at least one slide",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

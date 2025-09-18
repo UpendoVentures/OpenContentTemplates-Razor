@@ -1,0 +1,41 @@
+{
+  "ModuleTitle": "OC: QR Codes",
+  "QRCodes": [
+    {
+      "Label": "Home",
+      "TargetUrl": "https://bayvalleyelectric.com/",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-website-home.png"
+    },
+    {
+      "Label": "Email Now",
+      "TargetUrl": "mailto:info@bayvalleyelectric.com",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-email-now.png"
+    },
+    {
+      "Label": "Call Now",
+      "TargetUrl": "tel:+16509685405",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-call-now.png"
+    },
+    {
+      "Label": "Services",
+      "TargetUrl": "https://bayvalleyelectric.com/Services",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-website-services.png"
+    },
+    {
+      "Label": "Blog",
+      "TargetUrl": "https://bayvalleyelectric.com/Blog",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-website-blog.png"
+    },
+    {
+      "Label": "About Us",
+      "TargetUrl": "https://bayvalleyelectric.com/About-Us",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-website-blog.png"
+    },
+    {
+      "Label": "Contact Us",
+      "TargetUrl": "https://bayvalleyelectric.com/Contact-Us",
+      "ImageUrl": "/Portals/1/Images/QR-Codes/bve-qr-code-website-contact.png"
+    }
+  ],
+  "_id": "5"
+}
