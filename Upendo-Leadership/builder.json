@@ -85,6 +85,12 @@
           "index": false,
           "position": "1col1",
           "dependencies": []
+        },
+        {
+          "fieldname": "MemberPage",
+          "title": "Member Page",
+          "fieldtype": "url",
+          "advanced": false
         }
       ],
       "advanced": true,

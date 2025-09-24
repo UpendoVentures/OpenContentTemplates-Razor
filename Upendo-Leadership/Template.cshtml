@@ -32,9 +32,21 @@
             <div class="col" data-appear-animation="fadeInUp" data-appear-animation-delay="@(counter * 200)">
                 <div class="card h-100 shadow-lg border-0 p-4">
                     <div class="card-body text-center">
-                        <img src="@leader.Image" alt="@leader.FullName – @leader.Title" class="rounded-circle mb-3" loading="lazy" encoding="async" style="width: 120px; height: 120px; object-fit: cover;" />
+                      @if (!string.IsNullOrEmpty(leader.MemberPage)){
+                        <a href="@leader.MemberPage" class="mt-2" aria-label="Learn more about @leader.FullName">
+                          <img src="@leader.Image" alt="@leader.FullName – @leader.Title" class="rounded-circle mb-3 d-inline-block" loading="lazy" decoding="async" style="width: 120px; height: 120px; object-fit: cover;" />
+                        </a>
+                      }
+                      else{
+                        <img src="@leader.Image" alt="@leader.FullName – @leader.Title" class="rounded-circle mb-3 d-inline-block" loading="lazy" decoding="async" style="width: 120px; height: 120px; object-fit: cover;" />
+                      }
                         <h5 class="heading-secondary card-title fw-bold mb-1">@leader.FullName</h5>
                         <p class="text-primary fw-semibold mb-2">@leader.Title</p>
+                      @if (!string.IsNullOrEmpty(leader.MemberPage)){
+                      	<a href="@leader.MemberPage" class="btn btn-sm btn-outline-primary mt-2" aria-label="Learn more about @leader.FullName">
+                        	<i class="fas fa-user me-1" aria-hidden="true"></i> Member Page
+                        </a>
+                      }
                         <a href="mailto:@leader.Email" class="btn btn-sm btn-outline-primary mt-2 track-email" aria-label="Email @leader.FullName">
                         <i class="fas fa-envelope me-1" aria-hidden="true"></i> Contact @leader.FullName 
                         </a>

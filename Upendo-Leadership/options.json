@@ -31,6 +31,9 @@
           },
           "Email": {
             "type": "email"
+          },
+          "MemberPage": {
+            "type": "url"
           }
         }
       }

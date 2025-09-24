@@ -40,6 +40,10 @@
             "type": "string",
             "title": "Email",
             "required": true
+          },
+          "MemberPage": {
+            "type": "string",
+            "title": "Member Page"
           }
         }
       }
