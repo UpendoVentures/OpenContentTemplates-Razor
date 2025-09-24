@@ -1,24 +1,8 @@
-@using DotNetNuke.Entities.Modules
 @using DotNetNuke.Entities.Users
 @using DotNetNuke.Entities.Controllers
 @using DotNetNuke.Common
 @using System
 @{
-    // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        // Check if the "hideadminborder" setting is not set or is not "True"
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            // Update or create the "hideadminborder" setting with the value "True"
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
     // ---------------------------------------------
     // Support Dashboard Header (Lean) – Compat fix for CS1513
     // Notes:
@@ -96,26 +80,59 @@
 
       <div class="ms-md-auto d-flex flex-wrap gap-2" role="group" aria-label="Support quick links">
 
-        <a class="btn btn-sm btn-outline-secondary" href="@docsUrl" target="_blank" rel="noopener" aria-label="Open documentation in a new tab">
-          <i class="fas fa-book me-2" aria-hidden="true"></i>Documentation
-        </a>
-
         @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
         {
-          <a class="btn btn-sm btn-outline-primary" href="mailto:@supportEmail" aria-label="Email support at @supportEmail">
+          <a class="btn btn-sm btn-outline-primary" 
+             href="mailto:@supportEmail" 
+             aria-label="Email support at @supportEmail"
+             data-bs-toggle="tooltip" data-bs-placement="bottom"
+             title="Email our support team directly for help.">
             <i class="far fa-envelope me-2" aria-hidden="true"></i>Email Support
           </a>
         }
         else
         {
-          <button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled" aria-disabled="true">
+          <button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled" aria-disabled="true"
+                  data-bs-toggle="tooltip" data-bs-placement="bottom"
+                  title="Support email is not configured. Please contact your administrator.">
             <i class="far fa-envelope me-2" aria-hidden="true"></i>Support email not configured
           </button>
         }
 
-        <!--a class="btn btn-sm btn-outline-primary" href="@ticketsUrl" target="_blank" rel="noopener" aria-label="Open My Tickets in a new tab">
+        <a class="btn btn-sm btn-outline-secondary" 
+           href="https://upendoventures.com/Schedule-Us" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Schedule a meeting w/ Upendo Support"
+           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="Schedule a meeting with us right away">
+          <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>Need to Meet?
+        </a>
+
+        <!--
+        <a class="btn btn-sm btn-outline-primary" href="@ticketsUrl" target="_blank" rel="noopener" 
+           aria-label="Open My Tickets in a new tab"
+           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="Create or manage your support tickets.">
           <i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>New Ticket
-        </a-->
+        </a>
+        -->
+
+        <a class="btn btn-sm btn-outline-secondary" 
+           href="https://upendoventures.wetransfer.com/" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Send files via WeTransfer"
+           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="Securely send us files through WeTransfer.">
+          <i class="fas fa-file-upload me-2" aria-hidden="true"></i>Send Files
+        </a>
+
+        <a class="btn btn-sm btn-outline-secondary" 
+           href="@docsUrl" target="_blank" rel="noopener noreferrer" 
+           aria-label="View documentation in a new tab"
+           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           title="Browse our documentation to find answers quickly.">
+          <i class="fas fa-book me-2" aria-hidden="true"></i>Documentation
+        </a>
       </div>
     </div>
   </div>
