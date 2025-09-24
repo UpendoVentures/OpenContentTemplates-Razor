@@ -1,0 +1,73 @@
+{
+  "fields": {
+    "MemberName": {
+      "type": "text",
+      "helper": "first & last name"
+    },
+    "CompanyName": {
+      "type": "text"
+    },
+    "Slug": {
+      "type": "text",
+      "helper": "Something like <code>singleword</code> or <code>single-word</code> would be best."
+    },
+    "MemberTitle": {
+      "type": "text"
+    },
+    "MemberBio": {
+      "type": "ckeditor",
+      "configset": "basic"
+    },
+    "LongBio": {
+      "type": "ckeditor",
+      "configset": "basic"
+    },
+    "Category": {
+      "type": "text"
+    },
+    "Image": {
+      "type": "image",
+      "uploadfolder": "/Images/Members/",
+      "typeahead": {
+        "Folder": "/Images/Members/"
+      }
+    },
+    "Website": {
+      "type": "url"
+    },
+    "Website2": {
+      "type": "url"
+    },
+    "Website3": {
+      "type": "url"
+    },
+    "LinkedIn": {
+      "type": "url"
+    },
+    "Instagram": {
+      "type": "url"
+    },
+    "Yelp": {
+      "type": "url"
+    },
+    "Google": {
+      "type": "url"
+    },
+    "Facebook": {
+      "type": "url"
+    },
+    "YouTube": {
+      "type": "url"
+    },
+    "TikTok": {
+      "type": "url"
+    },
+    "Twitter": {
+      "type": "url"
+    },
+    "SortIndex": {
+      "type": "number",
+	  "hidden" : true
+    }
+  }
+}
