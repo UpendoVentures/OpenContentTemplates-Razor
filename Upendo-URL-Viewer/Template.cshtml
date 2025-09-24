@@ -1,0 +1,94 @@
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    var request = HttpContext.Current != null ? HttpContext.Current.Request : null;
+
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if (request != null)
+{
+    <table class="table table-bordered table-striped @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        <thead class="table-dark">
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Scheme</td>
+                <td>@request.Url.Scheme</td>
+            </tr>
+            <tr>
+                <td>Host</td>
+                <td>@request.Url.Host</td>
+            </tr>
+            <tr>
+                <td>Port</td>
+                <td>@request.Url.Port</td>
+            </tr>
+            <tr>
+                <td>Raw URL</td>
+                <td>@request.RawUrl</td>
+            </tr>
+            <tr>
+                <td>Absolute URI</td>
+                <td>@request.Url.AbsoluteUri</td>
+            </tr>
+            <tr>
+                <td>Absolute Path</td>
+                <td>@request.Url.AbsolutePath</td>
+            </tr>
+            <tr>
+                <td>Query String</td>
+                <td>@request.Url.Query</td>
+            </tr>
+            <tr>
+                <td>Path and Query</td>
+                <td>@request.Url.PathAndQuery</td>
+            </tr>
+            <tr>
+                <td>Referrer</td>
+                <td>@(request.UrlReferrer != null ? request.UrlReferrer.ToString() : "N/A")</td>
+            </tr>
+            <tr>
+                <td>User Agent</td>
+                <td>@request.UserAgent</td>
+            </tr>
+            <tr>
+                <td>Is Local</td>
+                <td>@request.IsLocal</td>
+            </tr>
+            <tr>
+                <td>Client IP</td>
+                <td>@request.UserHostAddress</td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Unable to access the request context.
+    </div>
+}
