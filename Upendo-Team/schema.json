@@ -55,6 +55,14 @@
             "type": "string",
             "title": "Website"
           },
+          "Website2": {
+            "type": "string",
+            "title": "Website2"
+          },
+          "Website3": {
+            "type": "string",
+            "title": "Website3"
+          },
           "LinkedIn": {
             "type": "string",
             "title": "LinkedIn"

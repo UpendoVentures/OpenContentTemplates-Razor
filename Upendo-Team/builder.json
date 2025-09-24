@@ -121,6 +121,18 @@
           "advanced": false
         },
         {
+          "fieldname": "Website2",
+          "title": "Website2",
+          "fieldtype": "url",
+          "advanced": false
+        },
+        {
+          "fieldname": "Website3",
+          "title": "Website3",
+          "fieldtype": "url",
+          "advanced": false
+        },
+        {
           "fieldname": "LinkedIn",
           "title": "LinkedIn",
           "fieldtype": "url",
