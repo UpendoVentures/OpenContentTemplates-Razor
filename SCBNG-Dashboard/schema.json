@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "PresentationSignUp": {
+      "type": "string",
+      "title": "Presentation Sign-Up",
+      "required": true
+    },
+    "MemberOnlineBinder": {
+      "type": "string",
+      "title": "Online Binder",
+      "required": true
+    },
+    "NextMeeting": {
+      "type": "array",
+      "title": "Next Meeting",
+      "items": {
+        "type": "object",
+        "properties": {
+          "MeetingTitle": {
+            "type": "string",
+            "title": "Meeting Title",
+            "required": true,
+            "default": "Next SCBNG Meeting"
+          },
+          "StartDate": {
+            "title": "Start Date",
+            "required": true
+          },
+          "EndDate": {
+            "title": "End Date",
+            "required": true
+          },
+          "ZoomLink": {
+            "type": "string",
+            "title": "Zoom Link"
+          },
+          "LocationName": {
+            "type": "string",
+            "title": "Location Name"
+          },
+          "MapUrl": {
+            "type": "string",
+            "title": "Map URL"
+          },
+          "Address": {
+            "type": "string",
+            "title": "Address"
+          }
+        }
+      }
+    }
+  }
+}

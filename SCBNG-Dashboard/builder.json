@@ -1,0 +1,152 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PresentationSignUp",
+      "title": "Presentation Sign-Up",
+      "fieldtype": "url",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "MemberOnlineBinder",
+      "title": "Online Binder",
+      "fieldtype": "url",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "NextMeeting",
+      "title": "Next Meeting",
+      "fieldtype": "array",
+      "subfields": [
+        {
+          "fieldname": "MeetingTitle",
+          "title": "Meeting Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "Next SCBNG Meeting",
+          "placeholder": "Next SCBNG Meeting",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "StartDate",
+          "title": "Start Date",
+          "fieldtype": "date",
+          "dateoptions": {
+            "format": "MM/DD/YYYY h:mm A"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "EndDate",
+          "title": "End Date",
+          "fieldtype": "date",
+          "dateoptions": {
+            "format": "MM/DD/YYYY h:mm A"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ZoomLink",
+          "title": "Zoom Link",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "If no Zoom, an in-person location should be specified.",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "LocationName",
+          "title": "Location Name",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "(required, if hybrid or in-person)",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "MapUrl",
+          "title": "Map URL",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "(required, if hybrid or in-person)",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Address",
+          "title": "Address",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "(required, if hybrid or in-person)",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}
