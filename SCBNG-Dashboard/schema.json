@@ -54,6 +54,27 @@
           "Address": {
             "type": "string",
             "title": "Address"
+          },
+          "Speakers": {
+            "type": "array",
+            "title": "Speaker(s)",
+            "items": {
+              "type": "object",
+              "properties": {
+                "SpeakerName": {
+                  "type": "string",
+                  "title": "Speaker Name"
+                },
+                "SpeakerPage": {
+                  "type": "string",
+                  "title": "Speaker Page"
+                },
+                "SpeakerSlot": {
+                  "type": "string",
+                  "title": "Speaker Slot"
+                }
+              }
+            }
           }
         }
       }

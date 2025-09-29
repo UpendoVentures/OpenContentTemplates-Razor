@@ -143,6 +143,32 @@
           "index": false,
           "position": "1col1",
           "dependencies": []
+        },
+        {
+          "fieldname": "Speakers",
+          "title": "Speaker(s)",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "SpeakerName",
+              "title": "Speaker Name",
+              "fieldtype": "text",
+              "advanced": false
+            },
+            {
+              "fieldname": "SpeakerPage",
+              "title": "Speaker Page",
+              "fieldtype": "url",
+              "advanced": false
+            },
+            {
+              "fieldname": "SpeakerSlot",
+              "title": "Speaker Slot",
+              "fieldtype": "text",
+              "advanced": false
+            }
+          ],
+          "advanced": false
         }
       ],
       "advanced": false
