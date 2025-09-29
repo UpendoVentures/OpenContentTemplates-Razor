@@ -1,0 +1,45 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Speakers": {
+      "type": "accordion",
+      "helper": "Must have at least one.",
+      "items": {
+        "fields": {
+          "MemberName": {
+            "type": "text",
+            "helper": "first & last name"
+          },
+          "CompanyName": {
+            "type": "text"
+          },
+          "MemberTitle": {
+            "type": "text"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "/Images/Members/",
+            "typeahead": {
+              "Folder": "/Images/Members/"
+            }
+          },
+          "MemberPage": {
+            "type": "url"
+          },
+          "SpeakerRole": {
+            "type": "text"
+          },
+          "RoleDescription": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

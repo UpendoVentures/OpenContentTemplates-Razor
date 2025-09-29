@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Speakers": {
+      "type": "array",
+      "title": "Speakers",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "MemberName": {
+            "type": "string",
+            "title": "Member Name",
+            "required": true
+          },
+          "CompanyName": {
+            "type": "string",
+            "title": "Company",
+            "required": true
+          },
+          "MemberTitle": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          },
+          "MemberPage": {
+            "type": "string",
+            "title": "Member Page"
+          },
+          "SpeakerRole": {
+            "type": "string",
+            "title": "Speaker Role",
+            "required": true
+          },
+          "RoleDescription": {
+            "type": "string",
+            "title": "Role Description",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}
