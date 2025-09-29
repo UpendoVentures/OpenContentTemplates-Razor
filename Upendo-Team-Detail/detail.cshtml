@@ -1,22 +1,27 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
    bool isEdit = Model.Context.IsEditable;
+   string utmSource = string.Empty;
+   if (!string.IsNullOrEmpty(Model.Settings.UtmSource)){
+      utmSource = string.Concat("?utm_source=", Model.Settings.UtmSource);
+   }
 }
-<div class="row">
-   <div class="col mb-0 text-left">
-      <a class="btn btn-outline btn-secondary" href="@Model.Context.MainUrl"><i class="fas fa-chevron-circle-left me-2" aria-hidden="true"></i>Back to Member List</a> 
-      @if (isEdit){ 
-      <a class="btn btn-outline btn-tertiary" href="@Model.Context.EditUrl"><i class="fas fa-user-edit me-2" aria-hidden="true"></i>Edit Member</a> 
-      }
-   </div>
-</div>
 
 <div class="container my-5">
-   <div class="row g-4 align-items-center">
+   <div class="row @Model.Settings.MarginTop @Model.Settings.PaddingTop">
+      <div class="col mb-5 text-left">
+         <a class="btn btn-outline btn-secondary" href="@Model.Context.MainUrl"><i class="fas fa-chevron-circle-left me-2" aria-hidden="true"></i>Back to Member List</a> 
+         @if (isEdit){ 
+         <a class="btn btn-outline btn-tertiary" href="@Model.Context.EditUrl"><i class="fas fa-user-edit me-2" aria-hidden="true"></i>Edit Member</a> 
+         }
+      </div>
+   </div>
+
+   <div class="row g-4 align-items-center py-5">
       <!-- Image -->
       <div class="col-md-4 text-center">
          <img src="@Model.Image" alt="@Model.MemberName – @Model.MemberTitle at @Model.CompanyName"
-            class="img-fluid rounded-circle shadow" style="max-width: 280px; height: auto;" loading="lazy" />
+            class="img-fluid rounded-circle shadow" style="max-width: 280px; height: auto;" loading="lazy" decoding="async" />
       </div>
 
       <!-- Info Block -->
@@ -24,7 +29,15 @@
          <h1 class="heading-primary fw-bold mb-2">@Model.MemberName</h1>
          <h5 class="text-primary mb-1">@Model.MemberTitle</h5>
          <p class="fw-semibold text-muted mb-2">@Model.CompanyName</p>
-         <span class="badge bg-secondary mb-3">@Model.Category</span>
+         
+         <p>
+            <span class="badge badge-lg bg-secondary mb-0" title="@Model.MemberName specializes in @Model.Category" data-toggle="tooltip" data-placement="top" title="Tooltip on top">@Model.Category</span>
+         </p>
+
+         <span class="badge bg-success mb-3" title="@Model.MemberName has been a SCBNG member since @Model.MemberSince" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Member Since @Model.MemberSince</span>
+         @if (!string.IsNullOrEmpty(Model.MemberRole)){
+         <span class="badge bg-info mb-3" title="@Model.MemberName is in the group's leadership, filling the following role(s): @Model.MemberRole" data-toggle="tooltip" data-placement="top" title="Tooltip on top">@Model.MemberRole</span>
+         }
 
          @if (!string.IsNullOrEmpty(Model.LongBio))
          {
@@ -33,16 +46,6 @@
          else
          {
             <div class="fs-5 text-dark">@Model.MemberBio</div>
-         }
-
-         @if (!string.IsNullOrEmpty(Model.MemberPage))
-         {
-            <p>
-               <a href="@Model.MemberPage" class="btn btn-outline-dark btn-sm mt-2 me-2" target="_blank"
-                  rel="noopener noreferrer" aria-label="Visit @Model.MemberName's SCBNG profile page">
-                  <i class="fas fa-id-card me-2"></i>Member Page
-               </a>
-            </p>
          }
       </div>
    </div>
@@ -58,14 +61,14 @@
 
             @if (!string.IsNullOrEmpty(Model.Yelp))
             {
-               <a href="@Model.Yelp" class="btn btn-outline-danger btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.Yelp" class="btn btn-outline-danger btn-sm track-review" target="_blank" rel="noopener noreferrer"
                   aria-label="Leave a Yelp review">
                   <i class="fab fa-yelp me-2"></i>Yelp Review
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.Google))
             {
-               <a href="@Model.Google" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.Google" class="btn btn-outline-success btn-sm track-review" target="_blank" rel="noopener noreferrer"
                   aria-label="Leave a Google review">
                   <i class="fab fa-google me-2"></i>Google Review
                </a>
@@ -82,42 +85,42 @@
 
             @if (!string.IsNullOrEmpty(Model.LinkedIn))
             {
-               <a href="@Model.LinkedIn" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.LinkedIn" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
                   aria-label="LinkedIn Profile">
                   <i class="fab fa-linkedin me-2"></i>LinkedIn
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.Instagram))
             {
-               <a href="@Model.Instagram" class="btn btn-outline-secondary btn-sm" target="_blank"
+               <a href="@Model.Instagram" class="btn btn-outline-secondary btn-sm track-social" target="_blank"
                   rel="noopener noreferrer" aria-label="Instagram Profile">
                   <i class="fab fa-instagram me-2"></i>Instagram
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.Facebook))
             {
-               <a href="@Model.Facebook" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.Facebook" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
                   aria-label="Facebook Profile">
                   <i class="fab fa-facebook me-2"></i>Facebook
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.Twitter))
             {
-               <a href="@Model.Twitter" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.Twitter" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
                   aria-label="Twitter/X Profile">
                   <i class="fab fa-x-twitter me-2"></i>X (Twitter)
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.YouTube))
             {
-               <a href="@Model.YouTube" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.YouTube" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
                   aria-label="YouTube Channel">
                   <i class="fab fa-youtube me-2"></i>YouTube
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.TikTok))
             {
-               <a href="@Model.TikTok" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"
+               <a href="@Model.TikTok" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
                   aria-label="TikTok Profile">
                   <i class="fab fa-tiktok me-2"></i>TikTok
                </a>
@@ -134,21 +137,21 @@
 
             @if (!string.IsNullOrEmpty(Model.Website))
             {
-               <a href="@Model.Website" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm"
+               <a href="@(string.Concat(Model.Website, utmSource))" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm track-referral"
                   aria-label="Visit website 1">
                   <i class="fas fa-link me-2" aria-hidden="true"></i>Website
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.Website2))
             {
-               <a href="@Model.Website2" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm"
+               <a href="@(string.Concat(Model.Website2, utmSource))" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm track-referral"
                   aria-label="Visit website 2">
                   <i class="fas fa-link me-2" aria-hidden="true"></i>Website 2
                </a>
             }
             @if (!string.IsNullOrEmpty(Model.Website3))
             {
-               <a href="@Model.Website3" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm"
+               <a href="@(string.Concat(Model.Website3, utmSource))" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm track-referral"
                   aria-label="Visit website 3">
                   <i class="fas fa-link me-2" aria-hidden="true"></i>Website 3
                </a>
@@ -185,7 +188,7 @@
   ]
 }
 </script>
-<div class="row mb-4">
+<div class="row mt-0 @Model.Settings.MarginBottom @Model.Settings.PaddingBottom">
    <div class="col mb-0 text-left">
       <a class="btn btn-outline btn-secondary" href="@Model.Context.MainUrl"><i class="fas fa-chevron-circle-left me-2" aria-hidden="true"></i>Back to Member List</a> 
       @if (isEdit){ 

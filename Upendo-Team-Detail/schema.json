@@ -18,6 +18,16 @@
       "oc:slug": true,
       "required": true
     },
+    "MemberSince": {
+      "type": "string",
+      "title": "Member Since",
+      "required": true
+    },
+    "MemberRole": {
+      "type": "string",
+      "title": "Member Role",
+      "required": false
+    },
     "MemberTitle": {
       "type": "string",
       "title": "Title",

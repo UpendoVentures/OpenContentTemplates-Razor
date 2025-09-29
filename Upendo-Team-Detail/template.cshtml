@@ -27,7 +27,7 @@
    
    var counter = 0;
    var utmSource = Model.Settings.UtmSource;
-   if (string.IsNullOrEmpty(utmSource))
+   if (!string.IsNullOrEmpty(utmSource))
    {
       utmSource = string.Concat("?utm_source=", utmSource);
    }
@@ -46,7 +46,7 @@
                {      
                counter++;
 
-               <li class="col-md-3 col-sm-6 col-xs-12 isotope-item" itemscope itemtype="https://schema.org/Person" data-appear-animation="fadeInUp" data-appear-animation-delay="@(counter * 200)">
+               <li class="col-md-3 col-sm-6 col-xs-12 isotope-item" itemscope itemtype="https://schema.org/Person" data-appear-animation="fadeInUp" data-appear-animation-delay="@(counter * 100)">
                   <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
                      <span class="thumb-info-wrapper">
                         <a href="@member.Context.DetailUrl">
@@ -68,8 +68,20 @@
                         </span> 
                         @if(!string.IsNullOrEmpty(member.Category))
                         {
+                        <span class="thumb-info-caption-taxt d-block mt-0 p-3">
+                           <span class="badge badge-lg badge-secondary">@member.Category</span>
+                        </span>
+                        }
+                        @if(!string.IsNullOrEmpty(member.MemberSince))
+                        {
                         <span class="thumb-info-caption-taxt mt-0 p-3">
-                           <span class="badge badge-secondary">@member.Category</span>
+                           <span class="badge badge-success">Member Since @member.MemberSince</span>
+                        </span>
+                        }
+                        @if(!string.IsNullOrEmpty(member.MemberRole))
+                        {
+                        <span class="thumb-info-caption-taxt mt-0 p-3" title="@member.MemberName is in the group's leadership, filling the following role(s): @member.MemberRole">
+                           <span class="badge badge-info">@member.MemberRole</span>
                         </span>
                         }
                         <span class="thumb-info-caption-text mt-0" itemprop="description">

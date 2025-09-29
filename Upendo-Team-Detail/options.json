@@ -11,6 +11,12 @@
       "type": "text",
       "helper": "Something like <code>singleword</code> or <code>single-word</code> would be best."
     },
+    "MemberSince": {
+      "type": "text"
+    },
+    "MemberRole": {
+      "type": "text"
+    },
     "MemberTitle": {
       "type": "text"
     },
