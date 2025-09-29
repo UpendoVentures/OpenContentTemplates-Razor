@@ -1,0 +1,122 @@
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+   bool isEdit = Model.Context.IsEditable;
+   if (isEdit)
+   {
+      // do nothing? 
+   }
+   
+   // Shuffle members if they exist
+   var membersSorted = new List<dynamic>();
+   if (Model.Items != null)
+   {
+      foreach (var m in Model.Items)
+      {
+         membersSorted.Add(m);
+      }
+
+      var random = new Random();
+      for (int i = membersSorted.Count - 1; i > 0; i--)
+      {
+         int j = random.Next(i + 1);
+         var temp = membersSorted[i];
+         membersSorted[i] = membersSorted[j];
+         membersSorted[j] = temp;
+      }
+   }
+   
+   var counter = 0;
+   var utmSource = Model.Settings.UtmSource;
+   if (!string.IsNullOrEmpty(utmSource))
+   {
+      utmSource = string.Concat("?utm_source=", utmSource);
+   }
+}
+@if (!string.IsNullOrEmpty(Model.Settings.ModuleAnchor))
+{
+    <div id="@Model.Settings.ModuleAnchor"></div>
+}
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+        <p class="text-muted text-center">
+            (member list is <strong>sorted randomly</strong> at page load)
+        </p>
+            <ul class="row team-list sort-destination" data-sort-id="team">
+               @foreach(var member in membersSorted)
+               {      
+               counter++;
+
+               <li class="col-md-3 col-sm-6 col-xs-12 isotope-item" itemscope itemtype="https://schema.org/Person" data-appear-animation="fadeInUp" data-appear-animation-delay="@(counter * 100)">
+                  <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
+                     <span class="thumb-info-wrapper">
+                        <a href="@member.Context.DetailUrl">
+                           <img alt="@member.MemberName" itemprop="image" src="@member.Image" class="img-fluid" loading="lazy" decoding="async" />
+                           <span class="thumb-info-title"> 
+                                 <span class="thumb-info-inner" itemprop="name">@member.MemberName</span> 
+                                 <span class="thumb-info-type" itemprop="jobTitle">@member.MemberTitle</span> 
+                           </span> 
+                        </a> 
+                     </span> 
+                     <span class="thumb-info-caption"> 
+                        @if(isEdit){
+                           <span class="thumb-info-caption-taxt mt-0 p-3">
+                              <a href="@member.Context.EditUrl" class="btn btn-sm btn-outline btn-tertiary me-2">Edit</a>
+                           </span>
+                        }
+                        <span class="thumb-info-caption-text fw-bold fs-6 mb-0" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                           @member.CompanyName
+                        </span> 
+                        @if(!string.IsNullOrEmpty(member.Category))
+                        {
+                        <span class="thumb-info-caption-taxt d-block mt-0 p-3">
+                           <span class="badge badge-lg badge-secondary">@member.Category</span>
+                        </span>
+                        }
+                        @if(!string.IsNullOrEmpty(member.MemberSince))
+                        {
+                        <span class="thumb-info-caption-taxt mt-0 p-3">
+                           <span class="badge badge-success">Member Since @member.MemberSince</span>
+                        </span>
+                        }
+                        @if(!string.IsNullOrEmpty(member.MemberRole))
+                        {
+                        <span class="thumb-info-caption-taxt mt-0 p-3" title="@member.MemberName is in the group's leadership, filling the following role(s): @member.MemberRole">
+                           <span class="badge badge-info">@member.MemberRole</span>
+                        </span>
+                        }
+                        <span class="thumb-info-caption-text mt-0" itemprop="description">
+                           @Html.Raw(member.MemberBio)
+                        </span> 
+                        <span class="thumb-info-social-icons"> 
+                           @if(!string.IsNullOrEmpty(member.Website)){
+                              <a target="_blank" href="@(member.Website + utmSource)" itemprop="url" class="track-referral" rel="noopener" title="Visit @member.CompanyName" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fas fa-link"></em><span>Website</span></a> 
+                           }
+                           @if(!string.IsNullOrEmpty(member.LinkedIn)){
+                              <a target="_blank" href="@(member.LinkedIn + utmSource)" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on LinkedIn" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-linkedin"></em><span>LinkedIn</span></a> 
+                           }
+                           @if(!string.IsNullOrEmpty(member.Instagram)){
+                              <a target="_blank" href="@(member.Instagram + utmSource)" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Instagram" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-instagram"></em><span>Instagram</span></a> 
+                           }
+                           @if(!string.IsNullOrEmpty(member.Facebook)){
+                              <a target="_blank" href="@(member.Facebook + utmSource)" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Facebook" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-facebook"></em><span>Facebook</span></a> 
+                           }
+                           @if(!string.IsNullOrEmpty(member.YouTube)){
+                              <a target="_blank" href="@(member.YouTube + utmSource)" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on YouTube" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-youtube"></em><span>YouTube</span></a> 
+                           }
+                           @if(!string.IsNullOrEmpty(member.TikTok)){
+                              <a target="_blank" href="@(member.TikTok + utmSource)" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on TikTok" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-tiktok"></em><span>TikTok</span></a> 
+                           }
+                           @if(!string.IsNullOrEmpty(member.Twitter)){
+                              <a target="_blank" href="@(member.Twitter + utmSource)" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Twitter (X)" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-twitter"></em><span>Twitter (X)</span></a> 
+                           }
+                        </span> 
+                     </span> 
+                  </div> 
+               </li> 
+               }
+         </ul>
+    </div>
+</div>
+@*
+@ObjectInfo.Print(Model)
+*@

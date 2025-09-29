@@ -17,6 +17,25 @@
     }
 
     var counter = 0;
+
+    // Shuffle members if they exist
+    var membersSorted = new List<dynamic>();
+    if (Model.Members != null)
+    {
+        foreach (var m in Model.Members)
+        {
+            membersSorted.Add(m);
+        }
+
+        var random = new Random();
+        for (int i = membersSorted.Count - 1; i > 0; i--)
+        {
+            int j = random.Next(i + 1);
+            var temp = membersSorted[i];
+            membersSorted[i] = membersSorted[j];
+            membersSorted[j] = temp;
+        }
+    }
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
@@ -25,33 +44,36 @@
 }
 <div class="container">
     <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
-        @if (Model.Members != null)
+        <p class="text-muted text-center">
+            (member list is <strong>sorted randomly</strong> at page load)
+        </p>
+        @if (membersSorted != null && membersSorted.Count > 0)
         {
             counter++;
             <ul class="row team-list sort-destination" data-sort-id="team">
-                @foreach(var member in Model.Members){
-                <li class="col-md-3 col-sm-6 col-xs-12 isotope-item" data-appear-animation="fadeInUp" data-appear-animation-delay="@(counter * 200)">
+                @foreach(var member in membersSorted){
+                <li class="col-md-3 col-sm-6 col-xs-12 isotope-item" itemscope itemtype="https://schema.org/Person" data-appear-animation="fadeInUp" data-appear-animation-delay="@(counter * 200)">
                     <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
                         <span class="thumb-info-wrapper">
                             @if(!string.IsNullOrEmpty(member.Website)){
-                            <a href="@member.Website?utm_source=scbng" target="_blank" rel="noopener noreferrer" class="track-referral">
-                                <img alt="@member.MemberName" src="@member.Image" class="img-fluid" />
+                            <a href="@member.Website?utm_source=scbng" target="_blank" rel="noopener" class="track-referral">
+                                <img alt="@member.MemberName" itemprop="image" src="@member.Image" class="img-fluid" loading="lazy" decoding="async" />
                                 <span class="thumb-info-title"> 
-                                    <span class="thumb-info-inner">@member.MemberName</span> 
-                                    <span class="thumb-info-type">@member.MemberTitle</span> 
+                                    <span class="thumb-info-inner" itemprop="name">@member.MemberName</span> 
+                                    <span class="thumb-info-type" itemprop="jobTitle">@member.MemberTitle</span> 
                                 </span> 
                             </a> 
                             }
                             else{
-                                <img alt="@member.MemberName" src="@member.Image" class="img-fluid" />
+                                <img alt="@member.MemberName" itemprop="image" src="@member.Image" class="img-fluid" loading="lazy" decoding="async" />
                                 <span class="thumb-info-title"> 
-                                    <span class="thumb-info-inner">@member.MemberName</span> 
-                                    <span class="thumb-info-type">@member.MemberTitle</span> 
+                                    <span class="thumb-info-inner" itemprop="name">@member.MemberName</span> 
+                                    <span class="thumb-info-type" itemprop="jobTitle">@member.MemberTitle</span> 
                                 </span> 
                             }
                         </span> 
                         <span class="thumb-info-caption"> 
-                            <span class="thumb-info-caption-text fw-bold fs-6 mb-0">
+                            <span class="thumb-info-caption-text fw-bold fs-6 mb-0" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
                                 @member.CompanyName
                             </span> 
                             @if(!string.IsNullOrEmpty(member.Category))
@@ -60,33 +82,39 @@
                                 <span class="badge badge-secondary">@member.Category</span>
                             </span>
                             }
-                            <span class="thumb-info-caption-text mt-0">
+                            <span class="thumb-info-caption-text mt-0" itemprop="description">
                                 @Html.Raw(member.MemberBio)
                             </span> 
                             <span class="thumb-info-social-icons"> 
                                 @if(!string.IsNullOrEmpty(member.Website)){
-                                    <a target="_blank" href="@member.Website?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-link"></em><span>Website</span></a> 
+                                    <a target="_blank" href="@member.Website?utm_source=scbng" itemprop="url" class="track-referral" rel="noopener" title="Visit @member.CompanyName" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fas fa-link"></em><span>Website</span></a> 
+                                }
+                                @if(!string.IsNullOrEmpty(member.Website2)){
+                                    <a target="_blank" href="@member.Website2?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName other website" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fas fa-link"></em><span>Website</span></a> 
+                                }
+                                @if(!string.IsNullOrEmpty(member.Website3)){
+                                    <a target="_blank" href="@member.Website3?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName other website (3 of 3)" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fas fa-link"></em><span>Website</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.LinkedIn)){
-                                    <a target="_blank" href="@member.LinkedIn?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on LinkedIn" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-linkedin"></em><span>LinkedIn</span></a> 
+                                    <a target="_blank" href="@member.LinkedIn?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on LinkedIn" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-linkedin"></em><span>LinkedIn</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.Instagram)){
-                                    <a target="_blank" href="@member.Instagram?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on Instagram" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-instagram"></em><span>Instagram</span></a> 
+                                    <a target="_blank" href="@member.Instagram?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Instagram" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-instagram"></em><span>Instagram</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.Yelp)){
-                                    <a target="_blank" href="@member.Yelp?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on Yelp" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-yelp"></em><span>Yelp</span></a> 
+                                    <a target="_blank" href="@member.Yelp?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Yelp" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-yelp"></em><span>Yelp</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.Facebook)){
-                                    <a target="_blank" href="@member.Facebook?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on Facebook" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-facebook"></em><span>Facebook</span></a> 
+                                    <a target="_blank" href="@member.Facebook?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Facebook" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-facebook"></em><span>Facebook</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.YouTube)){
-                                    <a target="_blank" href="@member.YouTube?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on YouTube" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-youtube"></em><span>YouTube</span></a> 
+                                    <a target="_blank" href="@member.YouTube?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on YouTube" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-youtube"></em><span>YouTube</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.TikTok)){
-                                    <a target="_blank" href="@member.TikTok?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on TikTok" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-tiktok"></em><span>TikTok</span></a> 
+                                    <a target="_blank" href="@member.TikTok?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on TikTok" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fab fa-tiktok"></em><span>TikTok</span></a> 
                                 }
                                 @if(!string.IsNullOrEmpty(member.Twitter)){
-                                    <a target="_blank" href="@member.Twitter?utm_source=scbng" class="track-referral" rel="noopener noreferrer" title="Visit @member.CompanyName on Twitter (X)" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-twitter"></em><span>Twitter (X)</span></a> 
+                                    <a target="_blank" href="@member.Twitter?utm_source=scbng" itemprop="sameAs" class="track-referral" rel="noopener" title="Visit @member.CompanyName on Twitter (X)" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top"><em class="fa fa-twitter"></em><span>Twitter (X)</span></a> 
                                 }
                             </span> 
                         </span> 

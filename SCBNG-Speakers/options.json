@@ -7,19 +7,19 @@
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
-    "Leaders": {
+    "Speakers": {
       "type": "accordion",
       "helper": "Must have at least one.",
       "items": {
         "fields": {
-          "FullName": {
+          "MemberName": {
             "type": "text",
             "helper": "first & last name"
           },
           "CompanyName": {
             "type": "text"
           },
-          "Title": {
+          "MemberTitle": {
             "type": "text"
           },
           "Image": {
@@ -29,11 +29,14 @@
               "Folder": "/Images/Members/"
             }
           },
-          "Email": {
-            "type": "email"
-          },
           "MemberPage": {
             "type": "url"
+          },
+          "SpeakerRole": {
+            "type": "text"
+          },
+          "RoleDescription": {
+            "type": "text"
           }
         }
       }

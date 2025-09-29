@@ -1,0 +1,201 @@
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+   bool isEdit = Model.Context.IsEditable;
+   string utmSource = string.Empty;
+   if (!string.IsNullOrEmpty(Model.Settings.UtmSource)){
+      utmSource = string.Concat("?utm_source=", Model.Settings.UtmSource);
+   }
+}
+
+<div class="container my-5">
+   <div class="row @Model.Settings.MarginTop @Model.Settings.PaddingTop">
+      <div class="col mb-5 text-left">
+         <a class="btn btn-outline btn-secondary" href="@Model.Context.MainUrl"><i class="fas fa-chevron-circle-left me-2" aria-hidden="true"></i>Back to Member List</a> 
+         @if (isEdit){ 
+         <a class="btn btn-outline btn-tertiary" href="@Model.Context.EditUrl"><i class="fas fa-user-edit me-2" aria-hidden="true"></i>Edit Member</a> 
+         }
+      </div>
+   </div>
+
+   <div class="row g-4 align-items-center py-5">
+      <!-- Image -->
+      <div class="col-md-4 text-center">
+         <img src="@Model.Image" alt="@Model.MemberName – @Model.MemberTitle at @Model.CompanyName"
+            class="img-fluid rounded-circle shadow" style="max-width: 280px; height: auto;" loading="lazy" decoding="async" />
+      </div>
+
+      <!-- Info Block -->
+      <div class="col-md-8">
+         <h1 class="heading-primary fw-bold mb-2">@Model.MemberName</h1>
+         <h5 class="text-primary mb-1">@Model.MemberTitle</h5>
+         <p class="fw-semibold text-muted mb-2">@Model.CompanyName</p>
+         
+         <p>
+            <span class="badge badge-lg bg-secondary mb-0" title="@Model.MemberName specializes in @Model.Category" data-toggle="tooltip" data-placement="top" title="Tooltip on top">@Model.Category</span>
+         </p>
+
+         <span class="badge bg-success mb-3" title="@Model.MemberName has been a SCBNG member since @Model.MemberSince" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Member Since @Model.MemberSince</span>
+         @if (!string.IsNullOrEmpty(Model.MemberRole)){
+         <span class="badge bg-info mb-3" title="@Model.MemberName is in the group's leadership, filling the following role(s): @Model.MemberRole" data-toggle="tooltip" data-placement="top" title="Tooltip on top">@Model.MemberRole</span>
+         }
+
+         @if (!string.IsNullOrEmpty(Model.LongBio))
+         {
+            <div class="fs-5 text-dark">@Html.Raw(Model.LongBio)</div>
+         }
+         else
+         {
+            <div class="fs-5 text-dark">@Model.MemberBio</div>
+         }
+      </div>
+   </div>
+
+   <div class="row mt-5">
+
+      <!-- Review Links -->
+      <div class="col-md-4">
+         <h4 class="heading-secondary mb-3">
+            <i class="fas fa-star me-2" aria-hidden="true"></i>Review
+         </h4>
+         <div class="d-flex flex-wrap gap-2">
+
+            @if (!string.IsNullOrEmpty(Model.Yelp))
+            {
+               <a href="@Model.Yelp" class="btn btn-outline-danger btn-sm track-review" target="_blank" rel="noopener noreferrer"
+                  aria-label="Leave a Yelp review">
+                  <i class="fab fa-yelp me-2"></i>Yelp Review
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Google))
+            {
+               <a href="@Model.Google" class="btn btn-outline-success btn-sm track-review" target="_blank" rel="noopener noreferrer"
+                  aria-label="Leave a Google review">
+                  <i class="fab fa-google me-2"></i>Google Review
+               </a>
+            }
+         </div>
+      </div>
+
+      <!-- Social & Review Links -->
+      <div class="col-md-4">
+         <h4 class="heading-secondary mb-3">
+            <i class="fas fa-share-alt me-2" aria-hidden="true"></i>Connect
+         </h4>
+         <div class="d-flex flex-wrap gap-2">
+
+            @if (!string.IsNullOrEmpty(Model.LinkedIn))
+            {
+               <a href="@Model.LinkedIn" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile">
+                  <i class="fab fa-linkedin me-2"></i>LinkedIn
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Instagram))
+            {
+               <a href="@Model.Instagram" class="btn btn-outline-secondary btn-sm track-social" target="_blank"
+                  rel="noopener noreferrer" aria-label="Instagram Profile">
+                  <i class="fab fa-instagram me-2"></i>Instagram
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Facebook))
+            {
+               <a href="@Model.Facebook" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
+                  aria-label="Facebook Profile">
+                  <i class="fab fa-facebook me-2"></i>Facebook
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Twitter))
+            {
+               <a href="@Model.Twitter" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
+                  aria-label="Twitter/X Profile">
+                  <i class="fab fa-x-twitter me-2"></i>X (Twitter)
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.YouTube))
+            {
+               <a href="@Model.YouTube" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
+                  aria-label="YouTube Channel">
+                  <i class="fab fa-youtube me-2"></i>YouTube
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.TikTok))
+            {
+               <a href="@Model.TikTok" class="btn btn-outline-secondary btn-sm track-social" target="_blank" rel="noopener noreferrer"
+                  aria-label="TikTok Profile">
+                  <i class="fab fa-tiktok me-2"></i>TikTok
+               </a>
+            }
+         </div>
+      </div>
+
+      <!-- Website Links -->
+      <div class="col-md-4">
+         <h4 class="heading-secondary mb-3">
+            <i class="fas fa-globe me-2" aria-hidden="true"></i>Websites & Profiles
+         </h4>
+         <div class="d-flex flex-wrap gap-2">
+
+            @if (!string.IsNullOrEmpty(Model.Website))
+            {
+               <a href="@(string.Concat(Model.Website, utmSource))" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm track-referral"
+                  aria-label="Visit website 1">
+                  <i class="fas fa-link me-2" aria-hidden="true"></i>Website
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Website2))
+            {
+               <a href="@(string.Concat(Model.Website2, utmSource))" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm track-referral"
+                  aria-label="Visit website 2">
+                  <i class="fas fa-link me-2" aria-hidden="true"></i>Website 2
+               </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Website3))
+            {
+               <a href="@(string.Concat(Model.Website3, utmSource))" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm track-referral"
+                  aria-label="Visit website 3">
+                  <i class="fas fa-link me-2" aria-hidden="true"></i>Website 3
+               </a>
+            }
+         </div>
+      </div>
+
+   </div>
+</div>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "Person",
+  "name": "@Model.MemberName",
+  "jobTitle": "@Model.MemberTitle",
+  "worksFor": {
+    "@@type": "Organization",
+    "name": "@Model.CompanyName"
+  },
+  "url": "@(Model.MemberPage ?? Model.Website ?? Request.RawUrl)",
+  "image": "@Model.Image",
+  "description": "@Model.MemberBio",
+  "sameAs": [
+    @(string.Join(",", new List<string> {
+      Model.LinkedIn,
+      Model.Instagram,
+      Model.Facebook,
+      Model.YouTube,
+      Model.Yelp,
+      Model.Google,
+      Model.Twitter,
+      Model.TikTok
+    }.Where(url => !string.IsNullOrEmpty(url)).Select(url => string.Format("\"{0}\"", url))))
+  ]
+}
+</script>
+<div class="row mt-0 @Model.Settings.MarginBottom @Model.Settings.PaddingBottom">
+   <div class="col mb-0 text-left">
+      <a class="btn btn-outline btn-secondary" href="@Model.Context.MainUrl"><i class="fas fa-chevron-circle-left me-2" aria-hidden="true"></i>Back to Member List</a> 
+      @if (isEdit){ 
+      <a class="btn btn-outline btn-tertiary" href="@Model.Context.EditUrl"><i class="fas fa-user-edit me-2" aria-hidden="true"></i>Edit Member</a> 
+      }
+   </div>
+</div>
+@*
+@ObjectInfo.Print(Model)
+*@

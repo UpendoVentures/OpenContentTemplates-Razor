@@ -9,16 +9,16 @@
       "type": "string",
       "title": "Module Anchor"
     },
-    "Leaders": {
+    "Speakers": {
       "type": "array",
-      "title": "Leaders",
+      "title": "Speakers",
       "required": true,
       "items": {
         "type": "object",
         "properties": {
-          "FullName": {
+          "MemberName": {
             "type": "string",
-            "title": "Name",
+            "title": "Member Name",
             "required": true
           },
           "CompanyName": {
@@ -26,7 +26,7 @@
             "title": "Company",
             "required": true
           },
-          "Title": {
+          "MemberTitle": {
             "type": "string",
             "title": "Title",
             "required": true
@@ -36,14 +36,19 @@
             "title": "Image",
             "required": true
           },
-          "Email": {
-            "type": "string",
-            "title": "Email",
-            "required": true
-          },
           "MemberPage": {
             "type": "string",
             "title": "Member Page"
+          },
+          "SpeakerRole": {
+            "type": "string",
+            "title": "Speaker Role",
+            "required": true
+          },
+          "RoleDescription": {
+            "type": "string",
+            "title": "Role Description",
+            "required": true
           }
         }
       }

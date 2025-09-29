@@ -1,0 +1,181 @@
+@using DotNetNuke.Entities.Users
+@using DotNetNuke.Entities.Controllers
+@using DotNetNuke.Common
+@using System
+@{
+   bool isEdit = Model.Context.IsEditable;
+    // Read HostSettings directly (no local function)
+    var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
+
+    var supportEmail = (string.IsNullOrEmpty(supportEmailRaw) ? string.Empty : supportEmailRaw);
+
+    // Current user info (avoid null-conditional)
+    var user = (Dnn != null && Dnn.User != null) ? Dnn.User : UserController.Instance.GetCurrentUserInfo();
+    var displayName = (user != null && !string.IsNullOrEmpty(user.FirstName))
+        ? user.FirstName
+        : (user != null ? user.Username : "there");
+
+    // Last visit determination
+    DateTime lastVisit = DateTime.MinValue;
+    try
+    {
+        if (user != null)
+        {
+            var lastLoginDateProp = user.GetType().GetProperty("LastLoginDate");
+            if (lastLoginDateProp != null)
+            {
+                object valObj = lastLoginDateProp.GetValue(user, null);
+                if (valObj is DateTime)
+                {
+                    DateTime valDt = (DateTime)valObj;
+                    if (valDt != DateTime.MinValue) { lastVisit = valDt; }
+                }
+            }
+            if (lastVisit == DateTime.MinValue && user.Membership.LastLoginDate != DateTime.MinValue) { lastVisit = user.Membership.LastLoginDate; }
+            if (lastVisit == DateTime.MinValue && user.Membership.LastActivityDate != DateTime.MinValue) { lastVisit = user.Membership.LastActivityDate; }
+        }
+    }
+    catch { }
+
+    string lastVisitText;
+    if (lastVisit != DateTime.MinValue)
+    {
+        lastVisitText = lastVisit.ToLocalTime().ToString("MMM d, yyyy h:mm tt");
+    }
+    else
+    {
+        lastVisitText = "--";
+    }
+
+    var hdrId = "growth-header-" + (user != null ? user.UserID.ToString() : DateTime.UtcNow.Ticks.ToString());
+}
+
+<section class="mb-3 p-3" aria-labelledby="@hdrId">
+  <div class="card shadow-sm border-0">
+    <div class="card-body d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
+      <div class="flex-grow-1">
+        <h1 id="@hdrId" class="h5 mb-1 heading-primary">
+          <i class="fas fa-heart me-2 text-danger" aria-hidden="true"></i>
+          Welcome back, <span class="fw-bold">@displayName</span>
+        </h1>
+        <p class="mb-0 text-muted">
+          <i class="far fa-clock me-2" aria-hidden="true"></i>
+          Last visit: <span aria-live="polite">@lastVisitText</span>
+        </p>
+      </div>
+
+      <div class="ms-md-auto d-flex flex-wrap gap-2" role="group" aria-label="Support quick links">
+
+
+        @if(!string.IsNullOrEmpty(Model.PresentationSignUp))
+        {
+        <a class="btn btn-sm btn-outline-primary" 
+           href="@Model.PresentationSignUp" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Sign up for a presentation slow"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Sign up to speak at a future meeting.">
+          <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>Want to Speak?
+        </a>
+        }
+
+        @if(!string.IsNullOrEmpty(Model.MemberOnlineBinder))
+        {
+        <a class="btn btn-sm btn-outline-secondary" 
+           href="@Model.MemberOnlineBinder" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Business contact details for all current/former SCBNG members"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Business contact details for all current/former SCBNG members">
+          <i class="far fa-file-excel me-2" aria-hidden="true"></i>Member Binder
+        </a>
+        }
+
+        @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
+        {
+          <a class="btn btn-sm btn-outline-secondary" 
+             href="mailto:@supportEmail" 
+             aria-label="Get support from @supportEmail"
+             data-bs-toggle="tooltip" data-bs-placement="top"
+             title="Email our support team directly for help.">
+            <i class="far fa-envelope me-2" aria-hidden="true"></i>Need Help?
+          </a>
+        }
+        else
+        {
+          <button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled" aria-disabled="true"
+                  data-bs-toggle="tooltip" data-bs-placement="top"
+                  title="Support email is not configured. Please contact your administrator.">
+            <i class="far fa-envelope me-2" aria-hidden="true"></i>Support email not configured
+          </button>
+        }
+
+        <a class="btn btn-sm btn-outline-secondary" 
+           href="https://upendoventures.wetransfer.com/" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Send files via WeTransfer"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Securely send us files through WeTransfer.">
+          <i class="fas fa-file-upload me-2" aria-hidden="true"></i>Send Media
+        </a>
+      </div>
+    </div>
+  </div>
+
+  @if (Model.NextMeeting != null)
+  {
+    <section class="bg-light p-4 rounded shadow-sm mb-4 mt-5" aria-labelledby="next-meeting-title">
+      <div class="row">
+    @foreach(var meeting in Model.NextMeeting)
+    {
+      DateTime parsedStart = DateTime.MinValue;
+      DateTime.TryParse(meeting.StartDate as string, out parsedStart);
+      DateTime parsedEnd = DateTime.MaxValue;
+      DateTime.TryParse(meeting.EndDate as string, out parsedEnd);
+
+      <div class="col">
+        <h2 id="next-meeting-title" class="heading-primary h4 fw-bold mb-3">
+          <i class="fas fa-calendar-day me-2 text-primary" aria-hidden="true"></i>
+          @(meeting.MeetingTitle + " - " + parsedStart.ToString("MM/dd"))
+        </h2>
+
+        <p class="text-muted mb-2">
+          <i class="fas fa-clock me-2 text-primary" aria-hidden="true"></i>
+          <strong>When:</strong>
+          @parsedStart.ToString("dddd, MMMM d, yyyy")
+          from @parsedStart.ToString("h:mm tt") to @parsedEnd.ToString("h:mm tt")
+        </p>
+
+        @if (!string.IsNullOrEmpty(meeting.ZoomLink))
+        {
+          <p class="text-muted mb-2"> 
+            <i class="fas fa-video me-2 text-primary" aria-hidden="true"></i> 
+            <strong>Zoom:</strong> <a href="@meeting.ZoomLink" target="_blank" rel="noopener noreferrer"> Join Zoom Meeting</a> (<em>please connect early!</em>) 
+          </p>
+        }
+
+        @if (!string.IsNullOrEmpty(meeting.LocationName) && !string.IsNullOrEmpty(meeting.Address) && !string.IsNullOrEmpty(meeting.MapUrl))
+        {
+          <p class="text-muted mb-2">
+            <i class="fas fa-map-marker-alt me-2 text-primary" aria-hidden="true"></i>
+            <strong>In-Person:</strong> @meeting.LocationName <a href="@meeting.MapUrl" target="_blank" rel="noopener noreferrer" class="">@meeting.Address</a>
+          </p>
+        }
+        </div>
+      }
+      </div>
+    </section>
+  }
+  else
+  {
+    <div class="alert alert-info mt-3 mb-0" role="alert">
+      <i class="fas fa-info-circle me-2" aria-hidden="true"></i>
+      Next meeting information is not yet available. Please check back later.
+    </div>
+  }
+
+  <hr class="my-4" />
+</section>
+@*
+@ObjectInfo.Print(Model)
+*@

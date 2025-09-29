@@ -20,13 +20,13 @@
       "dependencies": []
     },
     {
-      "fieldname": "Members",
-      "title": "Members",
+      "fieldname": "Speakers",
+      "title": "Speakers",
       "fieldtype": "accordion",
       "subfields": [
         {
           "fieldname": "MemberName",
-          "title": "Name",
+          "title": "Member Name",
           "fieldtype": "text",
           "advanced": true,
           "required": true,
@@ -62,45 +62,6 @@
           "dependencies": []
         },
         {
-          "fieldname": "MemberBio",
-          "title": "Introduction",
-          "fieldtype": "ckeditor",
-          "ckeditoroptions": {
-            "configset": "basic"
-          },
-          "advanced": true,
-          "required": true,
-          "hidden": false,
-          "multilanguage": false,
-          "index": false,
-          "position": "1col1",
-          "dependencies": []
-        },
-        {
-          "fieldname": "Category",
-          "title": "Category",
-          "fieldtype": "text",
-          "advanced": true,
-          "required": true,
-          "hidden": false,
-          "multilanguage": false,
-          "index": false,
-          "position": "1col1",
-          "dependencies": []
-        },
-        {
-          "fieldname": "MemberPage",
-          "title": "Member Page",
-          "fieldtype": "url",
-          "advanced": true,
-          "required": true,
-          "hidden": false,
-          "multilanguage": false,
-          "index": false,
-          "position": "1col1",
-          "dependencies": []
-        },
-        {
           "fieldname": "Image",
           "title": "Image",
           "fieldtype": "image",
@@ -115,64 +76,34 @@
           "dependencies": []
         },
         {
-          "fieldname": "Website",
-          "title": "Website",
+          "fieldname": "MemberPage",
+          "title": "Member Page",
           "fieldtype": "url",
           "advanced": false
         },
         {
-          "fieldname": "Website2",
-          "title": "Website2",
-          "fieldtype": "url",
-          "advanced": false
+          "fieldname": "SpeakerRole",
+          "title": "Speaker Role",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
         },
         {
-          "fieldname": "Website3",
-          "title": "Website3",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "LinkedIn",
-          "title": "LinkedIn",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "Instagram",
-          "title": "Instagram",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "Yelp",
-          "title": "Yelp",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "Facebook",
-          "title": "Facebook",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "YouTube",
-          "title": "YouTube",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "TikTok",
-          "title": "TikTok",
-          "fieldtype": "url",
-          "advanced": false
-        },
-        {
-          "fieldname": "Twitter",
-          "title": "Twitter (X)",
-          "fieldtype": "url",
-          "advanced": false
+          "fieldname": "RoleDescription",
+          "title": "Role Description",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
         }
       ],
       "advanced": true,

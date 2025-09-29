@@ -1,0 +1,58 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "PresentationSignUp": {
+      "type": "url"
+    },
+    "MemberOnlineBinder": {
+      "type": "url"
+    },
+    "NextMeeting": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "MeetingTitle": {
+            "type": "text",
+            "placeholder": "Next SCBNG Meeting"
+          },
+          "StartDate": {
+            "type": "date",
+            "picker": {
+              "format": "MM/DD/YYYY h:mm A"
+            },
+            "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM"
+          },
+          "EndDate": {
+            "type": "date",
+            "picker": {
+              "format": "MM/DD/YYYY h:mm A"
+            },
+            "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM"
+          },
+          "ZoomLink": {
+            "type": "url",
+            "helper": "If no Zoom, an in-person location should be specified."
+          },
+          "LocationName": {
+            "type": "text",
+            "helper": "(required, if hybrid or in-person)"
+          },
+          "MapUrl": {
+            "type": "url",
+            "helper": "(required, if hybrid or in-person)"
+          },
+          "Address": {
+            "type": "text",
+            "helper": "(required, if hybrid or in-person)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -42,6 +42,12 @@
           "Website": {
             "type": "url"
           },
+          "Website2": {
+            "type": "url"
+          },
+          "Website3": {
+            "type": "url"
+          },
           "LinkedIn": {
             "type": "url"
           },

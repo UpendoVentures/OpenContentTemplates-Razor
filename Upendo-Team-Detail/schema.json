@@ -1,0 +1,107 @@
+{
+  "type": "object",
+  "properties": {
+    "MemberName": {
+      "type": "string",
+      "title": "Name",
+      "required": true
+    },
+    "CompanyName": {
+      "type": "string",
+      "title": "Company",
+      "required": true
+    },
+    "Slug": {
+      "type": "string",
+      "title": "Slug",
+      "oc:unique": true,
+      "oc:slug": true,
+      "required": true
+    },
+    "MemberSince": {
+      "type": "string",
+      "title": "Member Since",
+      "required": true
+    },
+    "MemberRole": {
+      "type": "string",
+      "title": "Member Role",
+      "required": false
+    },
+    "MemberTitle": {
+      "type": "string",
+      "title": "Title",
+      "required": true
+    },
+    "MemberBio": {
+      "type": "string",
+      "title": "Introduction",
+      "required": true
+    },
+    "LongBio": {
+      "type": "string",
+      "title": "Introduction",
+      "required": false
+    },
+    "Category": {
+      "type": "string",
+      "title": "Category",
+      "required": true
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image",
+      "required": true
+    },
+    "Website": {
+      "type": "string",
+      "title": "Website"
+    },
+    "Website2": {
+      "type": "string",
+      "title": "Website2"
+    },
+    "Website3": {
+      "type": "string",
+      "title": "Website3"
+    },
+    "LinkedIn": {
+      "type": "string",
+      "title": "LinkedIn"
+    },
+    "Instagram": {
+      "type": "string",
+      "title": "Instagram"
+    },
+    "Yelp": {
+      "type": "string",
+      "title": "Yelp"
+    },
+    "Google": {
+      "type": "string",
+      "title": "Google"
+    },
+    "Facebook": {
+      "type": "string",
+      "title": "Facebook"
+    },
+    "YouTube": {
+      "type": "string",
+      "title": "YouTube"
+    },
+    "TikTok": {
+      "type": "string",
+      "title": "TikTok"
+    },
+    "Twitter": {
+      "type": "string",
+      "title": "Twitter (X)"
+    },
+    "SortIndex": {
+      "type": "number",
+      "title": "SortIndex",
+      "required": true,
+      "default": "0"
+    }
+  }
+}
