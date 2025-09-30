@@ -66,6 +66,11 @@
 
       <div class="ms-md-auto d-flex flex-wrap gap-2" role="group" aria-label="Support quick links">
 
+        <a href="mailto:?subject=Join%20Me%20at%20SCBNG!&body=Hello%2C%0D%0A%0D%0AI'd%20like%20to%20invite%20you%20to%20check%20out%20the%20San%20Carlos%20Business%20Networking%20Group%20(SCBNG).%20We%20meet%20every%20other%20Monday%20from%208%3A15%20to%209%3A30%20AM%20on%20Zoom%2C%20and%20it's%20a%20great%20way%20to%20connect%20with%20local%20business%20owners%20and%20professionals.%0D%0A%0D%0AHere's%20the%20link%20to%20see%20who%20you'll%20be%20networking%20with%3A%20https%3A%2F%2Fscbng.org%2FMembers%0D%0A%0D%0AHope%20you%20can%20make%20it!" 
+          class="btn btn-sm btn-primary" title="One-click and you can invite someone to our group!" aria-label="One-click and you can invite someone to our group!" data-bs-toggle="tooltip" data-bs-placement="top">
+          <i class="fas fa-envelope me-2" aria-hidden="true"></i>
+          Invite Someone
+        </a>
 
         @if(!string.IsNullOrEmpty(Model.PresentationSignUp))
         {
@@ -81,7 +86,7 @@
 
         @if(!string.IsNullOrEmpty(Model.MemberOnlineBinder))
         {
-        <a class="btn btn-sm btn-secondary" 
+        <a class="btn btn-sm btn-secondary d-none d-sm-block" 
            href="@Model.MemberOnlineBinder" 
            target="_blank" rel="noopener noreferrer" 
            aria-label="Business contact details for all current/former SCBNG members"
@@ -110,7 +115,7 @@
           </button>
         }
 
-        <a class="btn btn-sm btn-secondary" 
+        <a class="btn btn-sm btn-secondary d-none d-sm-block" 
            href="https://upendoventures.wetransfer.com/" 
            target="_blank" rel="noopener noreferrer" 
            aria-label="Send files via WeTransfer"
@@ -124,16 +129,18 @@
 
   @if (Model.NextMeeting != null)
   {
+    var meetingCount = 0;
     <section class="bg-light p-4 rounded shadow-sm mb-4 mt-5" aria-labelledby="next-meeting-title">
       <div class="row">
     @foreach(var meeting in Model.NextMeeting)
     {
+      meetingCount++;
       DateTime parsedStart = DateTime.MinValue;
       DateTime.TryParse(meeting.StartDate as string, out parsedStart);
       DateTime parsedEnd = DateTime.MaxValue;
       DateTime.TryParse(meeting.EndDate as string, out parsedEnd);
 
-      <div class="col">
+      <div class="col @if(meetingCount > 1){<text>d-none d-sm-block</text>}">
         <h2 id="next-meeting-title" class="heading-primary h4 fw-bold mb-3">
           <i class="fas fa-calendar-day me-2 text-primary" aria-hidden="true"></i>
           @(meeting.MeetingTitle + " - " + parsedStart.ToString("MM/dd"))
@@ -141,7 +148,7 @@
 
         <p class="text-muted mb-2">
           <i class="fas fa-clock me-2 text-primary" aria-hidden="true"></i>
-          <strong>When:</strong>
+          <strong>When:</strong> 
           @parsedStart.ToString("ddd, MMM d, yyyy")
           from @parsedStart.ToString("h:mm tt") to @parsedEnd.ToString("h:mm tt")
         </p>
@@ -166,7 +173,7 @@
           var speakerCount = 0;
           <p class="fw-bold d-line-block mb-1">Speaker(s):</p>
           foreach(var speaker in meeting.Speakers){
-            <a href="@speaker.SpeakerPage" class="btn btn-sm btn-outline btn-quaternary d-line-block">
+            <a href="@speaker.SpeakerPage" class="btn btn-sm btn-outline btn-quaternary d-line-block my-2">
             @if(speaker.SpeakerSlot == "educator"){
               <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>
             }
