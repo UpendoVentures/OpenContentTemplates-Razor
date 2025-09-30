@@ -121,7 +121,7 @@
            aria-label="Send files via WeTransfer"
            data-bs-toggle="tooltip" data-bs-placement="top"
            title="Securely send us files through WeTransfer.">
-          <i class="fas fa-file-upload me-2" aria-hidden="true"></i>Send Media
+          <i class="fas fa-file-upload me-2" aria-hidden="true"></i>Send Files
         </a>
       </div>
     </div>
@@ -171,13 +171,21 @@
 
         @if(meeting.Speakers != null){ 
           var speakerCount = 0;
+
           <p class="fw-bold d-line-block mb-1">Speaker(s):</p>
           foreach(var speaker in meeting.Speakers){
-            <a href="@speaker.SpeakerPage" class="btn btn-sm btn-outline btn-quaternary d-line-block my-2">
-            @if(speaker.SpeakerSlot == "educator"){
+            var isPromo = (speaker.SpeakerSlot == "promo");
+            var isEducation = (speaker.SpeakerSlot == "educator");
+            var educationTitle = string.Concat(speaker.SpeakerName, " will be teaching us something!");
+            var promoTitle = string.Concat(speaker.SpeakerName, " will show us how to refer business to them!");
+
+            <a href="@speaker.SpeakerPage" class="btn btn-sm btn-outline btn-quaternary d-line-block my-2" 
+              @if(isEducation){ <text> title="@educationTitle" aria-label="@educationTitle"</text> }
+              @if(isPromo){ <text> title="@promoTitle" aria-label="@promoTitle"</text> } data-bs-toggle="tooltip" data-bs-placement="top">
+            @if(isEducation){
               <i class="fas fa-chalkboard-teacher me-2" aria-hidden="true"></i>
             }
-            @if(speaker.SpeakerSlot == "promo"){
+            @if(isPromo){
               <i class="fas fa-bullhorn me-2" aria-hidden="true"></i>
             }
             @speaker.SpeakerName (@speaker.SpeakerSlot)
@@ -187,7 +195,10 @@
           }
 
           if (speakerCount < 2){
-            <a href="@Model.PresentationSignUp" class="btn btn-sm btn-outline btn-tertiary d-line-block" target="_blank" rel="noreferrer noopener"><i class="fas fa-file-signature me-2" aria-hidden="true"></i>Sign Up to Speak!</a>
+            <a href="@BuildSignUpLink(Model.PresentationSignUp, parsedStart)" 
+              class="btn btn-sm btn-outline btn-tertiary d-line-block" target="_blank" rel="noreferrer noopener" 
+              title="We're excited to see your presentation... Sign-up!" aria-label="We're excited to see your presentation... Sign-up!" 
+              data-bs-toggle="tooltip" data-bs-placement="top"><i class="fas fa-file-signature me-2" aria-hidden="true"></i>Sign Up to Speak!</a>
           }
         }
         </div>
@@ -208,3 +219,19 @@
 @*
 @ObjectInfo.Print(Model)
 *@
+@functions {
+    /// <summary>
+    /// Builds a presentation sign-up link with a text fragment that highlights the given date.
+    /// </summary>
+    /// <param name="baseUrl">The base PresentationSignUp URL</param>
+    /// <param name="date">The DateTime of the meeting start</param>
+    /// <returns>URL with text fragment</returns>
+    public static string BuildSignUpLink(string baseUrl, DateTime date)
+    {
+        if (string.IsNullOrEmpty(baseUrl) || date == DateTime.MinValue) return baseUrl;
+
+        // Format exactly as it appears on the target page: MM/dd/yyyy
+        var highlightText = Uri.EscapeDataString(date.ToString("MM/dd/yyyy")); 
+        return baseUrl + "#:~:text=" + highlightText;
+    }
+}
