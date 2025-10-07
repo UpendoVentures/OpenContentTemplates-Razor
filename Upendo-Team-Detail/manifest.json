@@ -4,7 +4,7 @@
     "detailMetaTitle": "{{#if MemberName}}{{MemberName}} {{#if MemberSince}}(since {{MemberSince}}){{/if}} - Member of the San Carlos Business Networking Group in the SF Bay Area Peninsula{{else}}San Carlos Business Networking Group in the SF Bay Area Peninsula{{/if}}",
     "detailMetaDescription": "{{#if MemberBio}}{{MemberBio}}{{else}}SCBNG Member - {{MemberName}}{{/if}}",
     "detailUrl": "{{#if Slug}}{{Slug}}{{else}}{{MemberName}}{{/if}}",
-    "detailMeta": "{{#if Image}}<meta property=\"og:image\" content=\"{{Image}}\" />{{/if}}<meta property=\"og:type\" content=\"article\" />",
+    "detailMeta": "{{#if Image}}<meta property=\"og:image\" content=\"{{Image}}\" />{{/if}}<meta property=\"og:type\" content=\"article\" /><link rel=\"canonical\" href=\"{{Context.DetailUrl}}\" /><meta property=\"og:url\" content=\"{{Context.DetailUrl}}\" /><meta property=\"twitter:url\" content=\"{{Context.DetailUrl}}\" />",
     "templates": {
         "template": {
             "type": "multiple",

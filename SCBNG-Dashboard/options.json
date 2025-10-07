@@ -50,6 +50,22 @@
           "Address": {
             "type": "text",
             "helper": "(required, if hybrid or in-person)"
+          },
+          "Speakers": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "SpeakerName": {
+                  "type": "text"
+                },
+                "SpeakerPage": {
+                  "type": "url"
+                },
+                "SpeakerSlot": {
+                  "type": "text"
+                }
+              }
+            }
           }
         }
       }

@@ -168,10 +168,6 @@
               "text": "image/jpeg"
             },
             {
-              "value": "application/xml",
-              "text": "application/xml"
-            },
-            {
               "value": "application/rss+xml",
               "text": "application/rss+xml"
             },

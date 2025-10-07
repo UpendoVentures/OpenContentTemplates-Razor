@@ -69,7 +69,7 @@
                         @if(!string.IsNullOrEmpty(member.Category))
                         {
                         <span class="thumb-info-caption-taxt d-block mt-0 p-3">
-                           <span class="badge badge-lg badge-secondary">@member.Category</span>
+                           <span class="badge badge-lg badge-secondary" title="@member.MemberName specializes in @member.Category" aria-label="@member.MemberName specializes in @member.Category" data-toggle="tooltip" data-placement="top">@member.Category</span>
                         </span>
                         }
                         @if(!string.IsNullOrEmpty(member.MemberSince))
@@ -80,7 +80,7 @@
                         }
                         @if(!string.IsNullOrEmpty(member.MemberRole))
                         {
-                        <span class="thumb-info-caption-taxt mt-0 p-3" title="@member.MemberName is in the group's leadership, filling the following role(s): @member.MemberRole">
+                        <span class="thumb-info-caption-taxt mt-0 p-3" title="@member.MemberName is in the group's leadership, filling the following role(s): @member.MemberRole" data-toggle="tooltip" data-placement="top">
                            <span class="badge badge-info">@member.MemberRole</span>
                         </span>
                         }
