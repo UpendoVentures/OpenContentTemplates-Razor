@@ -3,14 +3,6 @@
 @using DotNetNuke.Common
 @using System
 @{
-    // ---------------------------------------------
-    // Support Dashboard Header (Lean) – Compat fix for CS1513
-    // Notes:
-    //  - Removed local method declaration (Razor older engines require @functions for methods)
-    //  - Avoided multi-line ternary for strings
-    //  - Kept older-safe string checks (IsNullOrEmpty || Trim.Length == 0)
-    // ---------------------------------------------
-
     // Read HostSettings directly (no local function)
     var ticketsUrlRaw   = HostController.Instance.GetString("Upendo.Support.TicketsUrl", string.Empty);
     var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
@@ -82,60 +74,62 @@
 
         @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
         {
-          <a class="btn btn-sm btn-outline-primary" 
+          <a class="btn btn-sm btn-primary" 
              href="mailto:@supportEmail" 
              aria-label="Email support at @supportEmail"
-             data-bs-toggle="tooltip" data-bs-placement="bottom"
+             data-bs-toggle="tooltip" data-bs-placement="top"
              title="Email our support team directly for help.">
             <i class="far fa-envelope me-2" aria-hidden="true"></i>Email Support
           </a>
         }
         else
         {
-          <button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled" aria-disabled="true"
-                  data-bs-toggle="tooltip" data-bs-placement="bottom"
+          <button type="button" class="btn btn-sm btn-secondary" disabled="disabled" aria-disabled="true"
+                  data-bs-toggle="tooltip" data-bs-placement="top"
                   title="Support email is not configured. Please contact your administrator.">
             <i class="far fa-envelope me-2" aria-hidden="true"></i>Support email not configured
           </button>
         }
 
-        <a class="btn btn-sm btn-outline-secondary" 
+        <a class="btn btn-sm btn-secondary" 
            href="https://upendoventures.com/Schedule-Us" 
            target="_blank" rel="noopener noreferrer" 
            aria-label="Schedule a meeting w/ Upendo Support"
-           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           data-bs-toggle="tooltip" data-bs-placement="top"
            title="Schedule a meeting with us right away">
           <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>Need to Meet?
         </a>
 
         <!--
-        <a class="btn btn-sm btn-outline-primary" href="@ticketsUrl" target="_blank" rel="noopener" 
+        <a class="btn btn-sm btn-primary" href="@ticketsUrl" target="_blank" rel="noopener" 
            aria-label="Open My Tickets in a new tab"
-           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           data-bs-toggle="tooltip" data-bs-placement="top"
            title="Create or manage your support tickets.">
           <i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>New Ticket
         </a>
         -->
 
-        <a class="btn btn-sm btn-outline-secondary" 
+        <a class="btn btn-sm btn-secondary" 
            href="https://upendoventures.wetransfer.com/" 
            target="_blank" rel="noopener noreferrer" 
            aria-label="Send files via WeTransfer"
-           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           data-bs-toggle="tooltip" data-bs-placement="top"
            title="Securely send us files through WeTransfer.">
           <i class="fas fa-file-upload me-2" aria-hidden="true"></i>Send Files
         </a>
 
-        <a class="btn btn-sm btn-outline-secondary" 
+        <a class="btn btn-sm btn-secondary" 
            href="@docsUrl" target="_blank" rel="noopener noreferrer" 
            aria-label="View documentation in a new tab"
-           data-bs-toggle="tooltip" data-bs-placement="bottom"
+           data-bs-toggle="tooltip" data-bs-placement="top"
            title="Browse our documentation to find answers quickly.">
           <i class="fas fa-book me-2" aria-hidden="true"></i>Documentation
         </a>
       </div>
     </div>
   </div>
+
+  <div class="alert alert-default my-3"><strong>Coming soon!</strong> We're working in visualizing your website's analytics right here.</div>
 
   <hr class="my-4" />
 </section>
