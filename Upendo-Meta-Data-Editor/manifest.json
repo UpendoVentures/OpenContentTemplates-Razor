@@ -1,0 +1,14 @@
+{
+    "editWitoutPostback": true,
+    "index": true,
+    "templates": {
+        "template": {
+            "type": "single",
+            "title": "Meta Data Editor",
+            "main": {
+                "template": "template.cshtml",
+				"clientSideData": false
+            }			
+        }
+    }
+}
