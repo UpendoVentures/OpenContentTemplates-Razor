@@ -1,0 +1,97 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "UpendoNeeds": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Status": {
+            "type": "text",
+            "helper": "Ideally, a single, short word"
+          },
+          "StatusColor": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Default",
+              "Primary",
+              "Secondary",
+              "Success",
+              "Danger",
+              "Warning",
+              "Info",
+              "Light",
+              "Dark"
+            ]
+          },
+          "UpdateDate": {
+            "type": "date",
+            "picker": {
+              "format": "MM/DD/YYYY h:mm A"
+            },
+            "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM"
+          },
+          "Summary": {
+            "type": "textarea"
+          },
+          "Details": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    },
+    "SystemUpdates": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Status": {
+            "type": "text",
+            "helper": "Ideally, a single, short word"
+          },
+          "StatusColor": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Default",
+              "Primary",
+              "Secondary",
+              "Success",
+              "Danger",
+              "Warning",
+              "Info",
+              "Light",
+              "Dark"
+            ]
+          },
+          "UpdateDate": {
+            "type": "date",
+            "picker": {
+              "format": "MM/DD/YYYY h:mm A"
+            },
+            "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM"
+          },
+          "Summary": {
+            "type": "textarea"
+          },
+          "Details": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    }
+  }
+}

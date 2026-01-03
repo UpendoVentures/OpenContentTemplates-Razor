@@ -1,0 +1,31 @@
+.dashboard-column {
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  .needs-header { background-color: #e95420 !important; }
+  .updates-header { background-color: #772953 !important; }
+
+  .status-badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+
+  .accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(233, 84, 32, 0.25);
+    border-color: #e95420;
+  }
+
+  .timestamp {
+    font-size: 0.75rem;
+    color: #6c757d;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-column { max-height: 400px; }
+  }

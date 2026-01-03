@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Materials": {
+      "type": "array",
+      "title": "Marketing Materials",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description",
+            "required": true
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          },
+          "FilePath": {
+            "type": "string",
+            "title": "File",
+            "required": true
+          },
+          "Instructions": {
+            "type": "string",
+            "title": "Instructions"
+          }
+        }
+      }
+    }
+  }
+}

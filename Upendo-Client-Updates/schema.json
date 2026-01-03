@@ -1,0 +1,111 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "UpendoNeeds": {
+      "type": "array",
+      "title": "Upendo Needs From Client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Status": {
+            "type": "string",
+            "title": "Status",
+            "required": true
+          },
+          "StatusColor": {
+            "type": "string",
+            "title": "Status Color",
+            "enum": [
+              "default",
+              "primary",
+              "secondary",
+              "success",
+              "danger",
+              "warning text-dark",
+              "info text-dark",
+              "light text-dark",
+              "dark"
+            ],
+            "default": "default"
+          },
+          "UpdateDate": {
+            "title": "Update Date",
+            "required": true
+          },
+          "Summary": {
+            "type": "string",
+            "title": "Summary",
+            "required": true
+          },
+          "Details": {
+            "type": "string",
+            "title": "Details",
+            "required": true
+          }
+        }
+      }
+    },
+    "SystemUpdates": {
+      "type": "array",
+      "title": "System updates to show to client.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Status": {
+            "type": "string",
+            "title": "Status",
+            "required": true
+          },
+          "StatusColor": {
+            "type": "string",
+            "title": "Status Color",
+            "enum": [
+              "default",
+              "primary",
+              "secondary",
+              "success",
+              "danger",
+              "warning text-dark",
+              "info text-dark",
+              "light text-dark",
+              "dark"
+            ],
+            "default": "default"
+          },
+          "UpdateDate": {
+            "title": "Update Date",
+            "required": true
+          },
+          "Summary": {
+            "type": "string",
+            "title": "Summary",
+            "required": true
+          },
+          "Details": {
+            "type": "string",
+            "title": "Details",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

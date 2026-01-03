@@ -1,0 +1,42 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Materials": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "textarea"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "/Images/Marketing",
+            "typeahead": {
+              "Folder": "/Images/Marketing"
+            },
+            "helper": "Ideally use a 600x400 aspect ratio image. "
+          },
+          "FilePath": {
+            "type": "file",
+            "uploadfolder": "/Downloads/Marketing",
+            "typeahead": {
+              "Folder": "/Downloads/Marketing"
+            }
+          },
+          "Instructions": {
+            "type": "textarea"
+          }
+        }
+      }
+    }
+  }
+}

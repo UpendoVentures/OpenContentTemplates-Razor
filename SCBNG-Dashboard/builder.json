@@ -46,7 +46,7 @@
     {
       "fieldname": "NextMeeting",
       "title": "Next Meeting",
-      "fieldtype": "array",
+      "fieldtype": "accordion",
       "subfields": [
         {
           "fieldname": "MeetingTitle",
