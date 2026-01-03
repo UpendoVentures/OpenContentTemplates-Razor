@@ -1,0 +1,111 @@
+{
+    "ModuleTitle": "OC: System Updates",
+    "UpendoNeeds": [
+      {
+        "Title": "More Authentic Photos",
+        "Status": "Important",
+        "StatusColor": "danger",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "We need more photos with residents engaging in daily activities.",
+        "Details": "<p>Please share additional authentic photos, especially of people enjoying amenities, dining, or community activities. The more real-life images we have, the stronger the connection with visitors.</p>"
+      },
+      {
+        "Title": "Amenities & Activities Content",
+        "Status": "Pending",
+        "StatusColor": "warning text-dark",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "Expand content around amenities, activities, and daily life.",
+        "Details": "<p>To better showcase daily living, we’ll build out new sections for Amenities, Dining, Activities & Programs, Wellness & Safety, and optional Faith/Spiritual Support. Please provide notes, bullet points, or voice memos highlighting what makes these unique at Sunset Gardens.</p>"
+      },
+      {
+        "Title": "Brand Identity Refinement",
+        "Status": "Pending",
+        "StatusColor": "info",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "Help refine and finalize your brand identity.",
+        "Details": "<p>We’ll work with you to polish your visual identity and brand elements. Please share any feedback on colors, fonts, or imagery that you feel best represent your community. These refinements will also flow into the upcoming custom logo.</p>"
+      },
+      {
+        "Title": "Custom Logo Development",
+        "Status": "Upcoming",
+        "StatusColor": "primary",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "Next step: create a more concrete logo.",
+        "Details": "<p>We’ll design a professional custom logo you can use across all marketing materials. Please send over any sketches, inspiration images, or examples of logos you like, so we can capture your vision accurately.</p>"
+      },
+      {
+        "Title": "Support Subscription Enrollment",
+        "Status": "Action Needed",
+        "StatusColor": "success",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "Choose your Unlimited Support plan.",
+        "Details": "<p>You now have access to Ask Anything Unlimited Support! 🎉 Please select the option that works best for you:</p><ul><li>Monthly: <a href=\"https://buy.stripe.com/28EdR93UE3yW5aU5XK9EI0L\" target=\"_blank\" rel=\"noopener\">$199.99/month (20% off for 24 months with coupon SG2025)</a></li><li>Annual: <a href=\"https://buy.stripe.com/aFa28r9eY8Tg6eYfyk9EI0M\" target=\"_blank\" rel=\"noopener\">$2,649.99/year (12% discount included)</a></li></ul>"
+      },
+      {
+        "Title": "Iterative Content Process",
+        "Status": "Info",
+        "StatusColor": "info",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "Reminder: the site is designed to keep evolving.",
+        "Details": "<p>Don’t worry about providing finished content — just send quick notes, voice memos, or bullet points. We’ll expand and refine them into full pages over time to keep the site fresh and growing.</p>"
+      },
+      {
+        "Title": "Upcoming Page Builds",
+        "Status": "Planned",
+        "StatusColor": "secondary",
+        "UpdateDate": "2025-09-09T13:00:00",
+        "Summary": "Future expansion: brand, care options, lifestyle, social proof, resources, and conversion pages.",
+        "Details": "<p>We’ll be building out additional areas such as:</p><ul><li>Core Brand Pages: About Us, Our Story, Our Philosophy, Meet Katie, Our Team, Our Values</li><li>Care & Living Options: Assisted Living, Memory Care, Respite, Care Comparison</li><li>Lifestyle & Services: Amenities, Dining, Activities, Wellness, Spiritual Support</li><li>Social Proof: Gallery, Video Tours, Testimonials, Press/Recognition</li><li>Resources: Blog, Guides, FAQs, Financial Guidance, Caregiver Support, Moving Guide</li><li>Local SEO: Neighborhood/Location, Events, Partnerships</li><li>Conversion Pages: Schedule a Tour, Contact Us, Careers, Volunteer, Give Back</li></ul>"
+      }
+    ],
+    "SystemUpdates": [
+      {
+        "Title": "Google Analytics Views Added",
+        "Status": "Done",
+        "StatusColor": "success",
+        "UpdateDate": "2025-09-29T13:02:00",
+        "Summary": "New GA views created to better track engagement.",
+        "Details": "<p>We’ve added new views in your Google Analytics property to make it easier to track events by page and user behavior. This will help us refine your strategy and measure the success of marketing campaigns more accurately.</p>"
+      },
+      {
+        "Title": "UTM Builder Added",
+        "Status": "Info",
+        "StatusColor": "info",
+        "UpdateDate": "2025-09-18T11:12:00",
+        "Summary": "Built-in UTM builder now available for campaign tracking.",
+        "Details": "<p>Your site now includes a UTM Builder tool that any marketing person can use to generate campaign URLs. This ensures consistency and helps us track specific campaigns in Google Analytics.</p>"
+      },
+      {
+        "Title": "QR Codes Available",
+        "Status": "Done",
+        "StatusColor": "success",
+        "UpdateDate": "2025-09-17T14:49:00",
+        "Summary": "Marketing-ready QR codes created with UTM tracking.",
+        "Details": "<p>A library of QR codes has been created for use in marketing materials. Each QR code includes Google Analytics UTM tracking, giving us insights into how they are being used and performing.</p>"
+      },
+      {
+        "Title": "Review Request Page",
+        "Status": "Done",
+        "StatusColor": "success",
+        "UpdateDate": "2025-09-17T14:49:00",
+        "Summary": "Dedicated page for collecting reviews is live.",
+        "Details": "<p>A new review page has been added to your site. It encourages visitors to leave feedback via an onsite case study form, Google Business review, or Yelp review. This will help strengthen your online reputation and credibility.</p>"
+      },
+      {
+        "Title": "Dashboard Baseline Setup",
+        "Status": "In Progress",
+        "StatusColor": "primary",
+        "UpdateDate": "2025-09-07T17:12:00",
+        "Summary": "Dashboard launched to track analytics and KPIs.",
+        "Details": "<p>The dashboard at <code>/Manage</code> (login required) is now live. Once baseline analytics are collected, key data will be visualized here to provide a clear view of performance and growth.</p>"
+      },
+      {
+        "Title": "Dashboard Support Links",
+        "Status": "Updated",
+        "StatusColor": "warning text-dark",
+        "UpdateDate": "2025-09-12T14:33:00",
+        "Summary": "New support links added to the dashboard.",
+        "Details": "<p>The dashboard now includes additional support options: Email Support, Send Files, Ask for a Meeting, and Documentation. This ensures you can reach us quickly for any kind of assistance.</p>"
+      }
+    ]
+  }

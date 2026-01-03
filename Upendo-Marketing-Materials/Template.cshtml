@@ -1,0 +1,173 @@
+@using DotNetNuke.Entities.Users
+@using DotNetNuke.Entities.Controllers
+@using DotNetNuke.Common
+@using System
+@using DotNetNuke.Entities.Modules
+@{
+    var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
+    var supportEmail = (string.IsNullOrEmpty(supportEmailRaw) ? string.Empty : supportEmailRaw);
+
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    int itemCount = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<section class="container my-5" aria-labelledby="marketing-materials-heading">
+  <h2 id="marketing-materials-heading" class="heading-primary text-center text-capitalize mb-4">
+    <i class="fas fa-bullhorn text-muted me-2" aria-hidden="true"></i>
+    Marketing Materials Library
+  </h2>
+
+  <div class="row g-4 justify-content-center">
+    <div class="row g-4 justify-content-center @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+
+        <p>These marketing materials have been created and presented to you, as part of your Ask-Anything, Unlimited support plan.</p>
+
+        @if (!string.IsNullOrEmpty(supportEmail))
+        {
+        <div class="text-center">
+            <a href="@supportEmail" class="btn btn-primary btn-sm shadow-sm track-client"
+                target="_blank" rel="noopener noreferrer" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="bottom" title="We'll be happy to create most general marketing materials you might need, as part of your support plan."
+                aria-label="Contact support about marketing materials">
+                <i class="fas fa-envelope me-1" aria-hidden="true"></i> Need something?
+            </a>
+        </div>
+        }
+
+        <hr />
+
+        @if (Model.Materials != null)
+        {
+            foreach (var item in Model.Materials)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        
+                        <!-- Image with Lightbox Trigger -->
+                        <a href="@item.Image"
+                           data-bs-toggle="modal"
+                           data-bs-target="#lightboxModal"
+                           data-bs-image="@item.Image"
+                           aria-label="Open preview of @item.Title in lightbox">
+                            <img src="@item.Image"
+                                 class="card-img-top"
+                                 alt="@item.Title"
+                                 loading="lazy"
+                                 style="cursor: zoom-in;" />
+                        </a>
+
+                        <div class="card-body d-flex flex-column p-3">
+                            <h3 class="card-title h5 text-capitalize mt-3">
+                                <i class="fas fa-envelope-open-text text-secondary me-2" aria-hidden="true"></i>
+                                @item.Title
+                            </h3>
+
+                            <p class="card-text text-muted small mb-3">
+                                @item.Description
+                            </p>
+
+                            <div class="mt-auto">
+                                <a href="@item.FilePath"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="btn btn-primary w-100 track-client"
+                                   aria-label="Download @item.Title">
+                                    <i class="fas fa-download me-2" aria-hidden="true"></i>
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-footer bg-light small">
+                            <i class="fas fa-info-circle text-secondary me-2" aria-hidden="true"></i>
+                            @if (!string.IsNullOrEmpty(item.Instructions))
+                            {
+                                <span>@item.Instructions</span>
+                            }
+                            else
+                            {
+                                <span>None.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                itemCount++;
+            }
+        }
+        else
+        {
+            <div class="alert alert-default">
+                <strong>Oh no!</strong> No marketing materials have been created yet. 
+                @if (!string.IsNullOrEmpty(supportEmail))
+                {
+                    <text><a href="mailto:@supportEmail" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top" title="We'll be happy to create most general marketing materials you might need, as part of your support plan."
+                        class="fw-bold track-client">Do you need something? Just ask support.</a> 😎</text>
+                }
+                else
+                {
+                    <text>Do you need something? Just ask support. 😎</text>
+                }
+            </div>
+        }
+    </div>
+  </div>
+</section>
+
+@if (Model.Materials != null){
+
+<hr /> 
+<div class="row">
+    <div class="col text-center">
+        <p class="text-muted small">
+            <strong>Need help?</strong> If you want, we can print and ship these materials for you.<br />  
+                In most cases, we'll use <a class="fw-bold track-client" href="https://moo.com" target="_blank" rel="noreferrer noopener">Moo</a>, <a class="fw-bold track-client" href="https://canva.com" target="_blank" rel="noreferrer noopener">Canva</a>, or a similar online provider, and charge a <strong>30% service fee</strong> (<em>includes shipping</em>).
+        </p>
+    </div>
+</div>
+
+<!-- BEGIN: Bootstrap Lightbox Modal -->
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-labelledby="lightboxLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 text-center">
+        <button type="button"
+                class="btn-close position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"
+                aria-label="Close preview"></button>
+        <img src="" id="lightboxImage" class="img-fluid rounded shadow" alt="Expanded image preview" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    var lightboxModal = document.getElementById('lightboxModal');
+    lightboxModal.addEventListener('show.bs.modal', function (event) {
+      var trigger = event.relatedTarget;
+      var imageSrc = trigger.getAttribute('data-bs-image');
+      var lightboxImg = lightboxModal.querySelector('#lightboxImage');
+      lightboxImg.src = imageSrc;
+    });
+  });
+</script>
+}

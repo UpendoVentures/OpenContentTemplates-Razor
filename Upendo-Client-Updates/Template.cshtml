@@ -1,0 +1,208 @@
+@using DotNetNuke.Entities.Users
+@using DotNetNuke.Entities.Controllers
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Modules
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
+    var supportEmail = (string.IsNullOrEmpty(supportEmailRaw) ? string.Empty : supportEmailRaw);
+    var host = Context.Request.Url.Host;
+
+    // Normalize to remove "www." or other unwanted subdomains
+    string domainName = host.StartsWith("www.", StringComparison.OrdinalIgnoreCase)
+        ? host.Substring(4)
+        : host;
+
+    RegisterStyleSheet("Template.css");
+
+    var needsList = (Model.UpendoNeeds as IEnumerable<dynamic>)
+        .OrderByDescending(n => n.UpdateDate)
+        .Take(10)
+        .ToList();
+
+    var updatesList = (Model.SystemUpdates as IEnumerable<dynamic>)
+        .OrderByDescending(n => n.UpdateDate)
+        .Take(10)
+        .ToList();
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+<div class="container py-4">
+
+   <div class="row g-4 @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+
+    <!-- Left Column: Company Needs -->
+    <div class="col-lg-6">
+      <div class="card h-100">
+        <div class="card-header needs-header text-white">
+          <h2 id="needs-heading" class="h5 text-light mb-0">
+            <i class="fas fa-clipboard-check me-2" aria-hidden="true"></i>
+            Upendo Needs from You
+          </h2>
+        </div>
+        <div class="card-body p-0 dashboard-column" role="region" aria-labelledby="needs-heading">
+          <div class="accordion" id="needsAccordion">
+          @if(needsList != null)
+          {
+            foreach (var item in needsList)
+            {
+              var uid = "need-" + Guid.NewGuid().ToString("N");
+              DateTime updateDate = DateTime.MinValue;
+              DateTime.TryParse(item.UpdateDate as string, out updateDate);
+              <div class="accordion-item border-0">
+                <h3 class="accordion-header" id="@uid-Heading">
+                  <button class="accordion-button collapsed d-flex align-items-start py-3 px-4 track-client"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#@uid"
+                          aria-expanded="false"
+                          aria-controls="@uid"
+                          aria-label="Toggle details for @item.Title">
+                    <div class="me-auto">
+                      <div class="d-flex align-items-center mb-1">
+                        <strong class="me-2">@item.Title</strong>
+                        @if (!String.IsNullOrEmpty(item.Status))
+                        {
+                          <span class="badge bg-@item.StatusColor status-badge">@item.Status</span>
+                        }
+                      </div>
+                      @if (!String.IsNullOrEmpty(item.Summary))
+                      {
+                        <p class="text-muted mb-1 small">@item.Summary</p>
+                      }
+                      @if (updateDate != null)
+                      {
+                        <div class="timestamp">Requested: @updateDate.ToString("MMM dd, yyyy • h:mm tt")</div>
+                      }
+                    </div>
+                  </button>
+                </h3>
+                <div id="@uid" class="accordion-collapse collapse" aria-labelledby="@uid-Heading" data-bs-parent="#needsAccordion">
+                  <div class="accordion-body bg-light">
+                    @Html.Raw(item.Details)                    
+                    <hr class="short" />
+                    <div class="d-flex justify-content-between align-items-center">
+                      @if (updateDate != null)
+                      {
+                        <div class="timestamp">Requested: @updateDate.ToString("MMM dd, yyyy • h:mm tt")</div>
+                      }
+                      @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
+                      {
+                        <a href="mailto:@supportEmail?subject=@domainName: @item.Title" class="btn btn-sm btn-outline-primary ms-3 track-client"><i class="fas fa-question-circle me-2" aria-hidden="true"></i>Updates/Questions?</a>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          }
+          else{
+            <div class="alert alert-warning" role="alert">
+              <p>No client requests pending at this time.</p>
+            </div>
+          }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: General Updates -->
+    <div class="col-lg-6">
+      <div class="card h-100">
+        <div class="card-header updates-header text-white">
+          <h2 id="updates-heading" class="h5 text-light mb-0">
+            <i class="fas fa-bell me-2" aria-hidden="true"></i>
+            System Updates
+          </h2>
+        </div>
+        <div class="card-body p-0 dashboard-column" role="region" aria-labelledby="updates-heading">
+          <div class="accordion" id="updatesAccordion">
+          @if(updatesList != null)
+          {
+            foreach (var item in updatesList)
+            {
+              var uid = "update-" + Guid.NewGuid().ToString("N");
+              DateTime updateDate = DateTime.MinValue;
+              DateTime.TryParse(item.UpdateDate as string, out updateDate);
+              <div class="accordion-item border-0">
+                <h3 class="accordion-header" id="@uid-Heading">
+                  <button class="accordion-button collapsed d-flex align-items-start py-3 px-4"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#@uid"
+                          aria-expanded="false"
+                          aria-controls="@uid"
+                          aria-label="Toggle details for @item.Title">
+                    <div class="me-auto">
+                      <div class="d-flex align-items-center mb-1">
+                        <strong class="me-2">@item.Title</strong>
+                        @if (!String.IsNullOrEmpty(item.Status))
+                        {
+                          <span class="badge bg-@item.StatusColor status-badge">@item.Status</span>
+                        }
+                      </div>
+                      @if (!String.IsNullOrEmpty(item.Summary))
+                      {
+                        <p class="text-muted mb-1 small">@item.Summary</p>
+                      }
+                      @if (updateDate != null)
+                      {
+                        <div class="timestamp">Updated: @updateDate.ToString("MMM dd, yyyy • HH:mm tt")</div>
+                      }
+                    </div>
+                  </button>
+                </h3>
+                <div id="@uid" class="accordion-collapse collapse" aria-labelledby="@uid-Heading" data-bs-parent="#updatesAccordion">
+                  <div class="accordion-body bg-light">
+                    @Html.Raw(item.Details)
+                    <hr class="short" />
+                    <div class="d-flex justify-content-between align-items-center">
+                      @if (updateDate != null)
+                      {
+                        <div class="timestamp">Updated: @updateDate.ToString("MMM dd, yyyy HH:mm tt")</div>
+                      }
+                      @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
+                      {
+                        <a href="mailto:@supportEmail?subject=@domainName: @item.Title" class="btn btn-sm btn-outline-primary ms-3 track-client"><i class="fas fa-question-circle me-2" aria-hidden="true"></i>Updates/Questions?</a>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          }
+          else{
+            <div class="alert alert-warning" role="alert">
+              <p>No system-level notifications available at this time.</p>
+            </div>
+          }
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
