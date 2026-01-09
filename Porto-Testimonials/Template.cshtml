@@ -15,6 +15,25 @@
             ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
         }
     }
+
+    // Build the title line: "Text & Text1" only when both exist; otherwise show the one that exists.
+    var hasText = !string.IsNullOrWhiteSpace(Model.Text);
+    var hasText1 = !string.IsNullOrWhiteSpace(Model.Text1);
+
+    string titleLine = null;
+
+    if (hasText && hasText1)
+    {
+        titleLine = Model.Text + " &amp; " + Model.Text1;
+    }
+    else if (hasText)
+    {
+        titleLine = Model.Text;
+    }
+    else if (hasText1)
+    {
+        titleLine = Model.Text1;
+    }
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
@@ -31,7 +50,10 @@
         <div class="testimonial-author">
             <p>
                 <strong>@Model.Fullname</strong>
-                <span>@string.Format("{0} &amp; {1}", Model.Text, Model.Text1)</span>
+                @if (!string.IsNullOrEmpty(titleLine))
+                {
+                    <span>@Html.Raw(titleLine)</span>
+                }
             </p>
         </div>
     }
@@ -50,7 +72,10 @@
             }
             <p>
                 <strong>@Model.Fullname</strong>
-                <span>@string.Format("{0} &amp; {1}", Model.Text, Model.Text1)</span>
+                @if (!string.IsNullOrEmpty(titleLine))
+                {
+                    <span>@Html.Raw(titleLine)</span>
+                }
             </p>
         </div>
     }
