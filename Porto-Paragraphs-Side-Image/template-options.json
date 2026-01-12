@@ -9,6 +9,16 @@
 			],
 			"removeDefaultNone": true
 		},		
+		"DisplayWidth": {
+			"title": "Display Width",
+			"type": "select",
+			"optionLabels": [
+				"Full Width",
+				"Partial Width, Centered",
+				"Half, Centered"
+			],
+			"removeDefaultNone": true
+		},			
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",

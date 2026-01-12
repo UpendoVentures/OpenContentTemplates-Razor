@@ -15,6 +15,18 @@
             ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
         }
     }
+
+    var widthSetting = "full";
+    var widthValue = "col-12";
+    if (!string.IsNullOrEmpty(Model.Settings.DisplayWidth)){
+        widthSetting = Model.Settings.DisplayWidth;
+    }
+
+    if (widthSetting.ToLower() == "partial"){
+        widthValue = "col-12 col-lg-10 mx-auto";
+    } else if (widthSetting.ToLower() == "half"){
+        widthValue = "col-12 col-lg-6 mx-auto";
+    }
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
@@ -23,29 +35,23 @@
 }
 
 <div class="container">
-    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
-        @if ((Model.Settings.ImagePosition ?? "right").ToLower() == "left")
-        {
-            @RenderImageColumn()
-            @RenderTextColumn()
-        }
-        else
-        {
-            @RenderTextColumn()
-            @RenderImageColumn()
-        }
+    <div class="row">
+        <div class="@widthValue">
+            <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+                @if ((Model.Settings.ImagePosition ?? "right").ToLower() == "left")
+                {
+                    @RenderImageColumn()
+                    @RenderTextColumn()
+                }
+                else
+                {
+                    @RenderTextColumn()
+                    @RenderImageColumn()
+                }
+            </div>
+        </div>
     </div>
 </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => enableToooltips());
-
-  function enableToooltips() {
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-      new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-  };
-</script>
 
 @helper RenderImageColumn()
 {
