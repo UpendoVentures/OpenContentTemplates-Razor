@@ -1,0 +1,102 @@
+@using System
+@using DotNetNuke.Entities.Modules
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+    RegisterStyleSheet("css/template.css");
+
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if(!string.IsNullOrEmpty(Model.SectionTitle)) {
+<section class="uv-intro py-5 @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom" aria-labelledby="uv-intro-title">
+  <div class="container">
+    <div class="row justify-content-center">
+      
+    @if(Model.Settings.Display.ToLower() == "horizontal"){
+    <div class="col-12 col-lg-10">
+      <div class="uv-about-intro__card rounded-4 shadow-sm bg-white p-4 p-md-5">
+        <div class="d-flex align-items-start gap-3">
+
+          @if(!string.IsNullOrEmpty(Model.SectionIcon))
+          {
+          <div class="uv-about-intro__mark" aria-hidden="true">
+            <span class="uv-about-intro__icon">
+              <i class="@Model.SectionIcon.Trim()" aria-hidden="true"></i>
+            </span>
+          </div>
+          }
+
+          <div class="flex-grow-1">
+            <h2 id="uv-about-intro-title" class="h4 fw-bold mb-2 @Model.SectionTitleCssClass">
+              @if(!string.IsNullOrEmpty(Model.SectionTitleIcon)){
+                <i class="@Model.SectionTitleIcon me-2" aria-hidden="true"></i>
+              }
+              @Html.Raw(Model.SectionTitle)
+            </h2>
+
+            <p class="text-muted mb-0 @Model.SectionTextCssClass">
+              @Html.Raw(Model.SectionIntroText)
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    }else{
+      // centered 
+      <div class="col-12 col-lg-9 col-xl-8">
+        <div class="text-center">
+          @if(!string.IsNullOrEmpty(Model.SectionIcon)){
+          <div class="uv-about-intro__badge mb-3" aria-hidden="true">
+            <i class="@Model.SectionIcon"></i>
+          </div>
+          }
+
+          <h2 id="uv-about-intro-title" class="h4 fw-bold mb-3 @Model.SectionTitleCssClass">
+            @if(!string.IsNullOrEmpty(Model.SectionTitleIcon)){
+              <i class="@Model.SectionTitleIcon me-2" aria-hidden="true"></i>
+            }
+            @Html.Raw(Model.SectionTitle)
+          </h2>
+
+          <p class="text-muted mb-0 @Model.SectionTextCssClass">
+            @Html.Raw(Model.SectionIntroText)
+          </p>
+
+          <div class="uv-about-intro__rule mx-auto mt-4" aria-hidden="true"></div>
+        </div>
+      </div>
+    }
+
+    </div>
+  </div>
+</section>
+}
+else{
+  <h1>Not Configured</h1>
+  <p>Please configure this template to display the expected content.</p>
+}
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@

@@ -1,0 +1,57 @@
+/* Horizontal  Styles */
+.uv-about-intro__card{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle left accent bar (brand-friendly, not loud) */
+.uv-about-intro__card:before{
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: rgba(172, 26, 45, .85); /* chamber deep red, softened */
+}
+
+.uv-about-intro__mark{
+  padding-top: .1rem;
+}
+
+.uv-about-intro__icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(172, 26, 45, .10);
+  color: rgba(172, 26, 45, .95);
+  flex-shrink: 0;
+}
+
+/* Accessible focus if links ever get added later */
+.uv-about-intro a:focus-visible{
+  outline: 3px solid rgba(172, 26, 45, .30);
+  outline-offset: 3px;
+}
+
+/* Centered Styles */
+.uv-about-intro__badge{
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(172, 26, 45, .10);
+  color: rgba(172, 26, 45, .95);
+  font-size: 1.15rem;
+}
+
+/* Soft divider, not harsh */
+.uv-about-intro__rule{
+  width: 120px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(109, 111, 111, .30);
+}
