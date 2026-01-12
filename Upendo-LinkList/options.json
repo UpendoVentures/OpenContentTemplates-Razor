@@ -1,0 +1,81 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "SectionTitle": {
+      "type": "text"
+    },
+    "SectionTitleTag": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ]
+    },
+    "SectionIconClass": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find Icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Describe the section for downlevel browsers and handicapped visitors.  "
+    },
+    "LinkList": {
+      "type": "accordion",
+      "helper": "At least one link is required.",
+      "items": {
+        "fields": {
+          "LinkText": {
+            "type": "text"
+          },
+          "LinkUrl": {
+            "type": "url",
+            "helper": "Can be a local or external URL. "
+          },
+          "LinkCssClass": {
+            "type": "text"
+          },
+          "LinkRel": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "None",
+              "NoFollow",
+              "NoOpener",
+              "NoReferrrer"
+            ]
+          },
+          "OpenInNewTab": {
+            "type": "checkbox",
+            "helper": "If checked, <code>noopener</code> &amp; <code>noreferrer</code> will be added to the link for you."
+          },
+          "ItemProp": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "None",
+              "Address",
+              "Email",
+              "Hours",
+              "Same As",
+              "Telephone",
+              "URL"
+            ],
+            "helper": "If not sure, choose \"None.\""
+          }
+        }
+      }
+    }
+  }
+}

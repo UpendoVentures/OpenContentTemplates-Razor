@@ -1,0 +1,15 @@
+{
+  "ModuleTitle": "Link List",
+  "SectionTitle": "Link List",
+  "SectionTitleTag": "h3",
+  "SectionAriaLabel": "List of resourceful links related to this page.",
+  "LinkList": [
+    {
+      "LinkText": "Upendo Ventures",
+      "LinkUrl": "https://upendoventures.com",
+      "LinkRel": "nofollow",
+      "OpenInNewTab": false,
+      "ItemProp": "url"
+    }
+  ]
+}

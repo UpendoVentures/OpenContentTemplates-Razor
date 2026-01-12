@@ -1,0 +1,5 @@
+  .uv-link-list__link:focus-visible{
+    outline: 3px solid rgba(255,255,255,.45);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
