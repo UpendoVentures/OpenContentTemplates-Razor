@@ -1,17 +1,25 @@
 {
     "type": "object",
     "properties": {        
+        "Display": {
+            "title": "Display Format",
+            "type": "string",
+            "enum": [
+				"centered",
+				"horizontal"
+            ]
+        },     
         "MarginTop": {
             "title": "Margin (top)",
             "type": "string",
             "enum": [
-				"mb-1",
-				"mb-1",
-				"mb-2",
-				"mb-3",
-				"mb-4",
-				"mb-5",
-				"mb-auto"
+				"mt-0",
+				"mt-1",
+				"mt-2",
+				"mt-3",
+				"mt-4",
+				"mt-5",
+				"mt-auto"
             ]
         },
         "MarginBottom": {

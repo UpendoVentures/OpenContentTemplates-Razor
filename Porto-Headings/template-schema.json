@@ -30,7 +30,7 @@
             "type": "string",
             "enum": [
                 "text-uppercase",
-				""
+				"text-capitalize"
             ]
         },
         "EnableHeadingBorder": {    

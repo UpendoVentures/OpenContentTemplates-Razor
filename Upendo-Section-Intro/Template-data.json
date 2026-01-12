@@ -1,6 +1,6 @@
 {
-    "ImagePosition": "Right",
-    "MarginTop": "mt-5", 
+    "Display": "centered", 
+    "MarginTop": "mt-0", 
     "MarginBottom": "mb-5",
     "PaddingTop": "pt-auto",
     "PaddingBottom": "pb-auto"

@@ -1,0 +1,98 @@
+@using System
+@using DotNetNuke.Entities.Modules
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+    RegisterStyleSheet("css/template.css");
+
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if(!string.IsNullOrEmpty(Model.Image)) {
+<section class="uv-page-hero @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom" aria-labelledby="uv-page-hero-title">
+
+  <div class="uv-page-hero__media" aria-hidden="true">
+    <img src="@Model.Image" alt="@Model.ImageAlt" loading="eager" decoding="async" class="uv-page-hero__img" />
+    <div class="uv-page-hero__overlay" aria-hidden="true"></div>
+  </div>
+
+  <div class="container">
+    <div class="uv-page-hero__content">
+
+      <div class="uv-page-hero__panel shadow-lg" data-appear-animation="fadeIn">
+
+        <h1 id="uv-page-hero-title" class="uv-page-hero__title @Model.TitleCssClass">
+          @if (!string.IsNullOrEmpty(Model.TitleIcon))
+          {
+            <i class="@Model.TitleIcon me-2" aria-hidden="true"></i>
+          }
+          @Html.Raw(Model.PageTitle)
+        </h1>
+
+        <p class="uv-page-hero__subtitle mb-4 @Model.SubtitleCssClass">
+          @if (!string.IsNullOrEmpty(Model.SubtitleIcon))
+          {
+            <i class="@Model.SubtitleIcon me-2" aria-hidden="true"></i>
+          } 
+          @Html.Raw(Model.Subtitle)
+        </p>
+
+        @if(!string.IsNullOrEmpty(Model.PaText) || !string.IsNullOrEmpty(Model.SaText)){
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+
+          @if(!string.IsNullOrEmpty(Model.PaText)){
+          <a href="@Model.PaUrl" class="btn btn-primary rounded-pill shadow-sm fw-bold @Model.PaCssClass" aria-label="@Model.PaLabel">
+            @if (!string.IsNullOrEmpty(Model.PaIcon))
+            {
+              <i class="@Model.PaIcon me-2" aria-hidden="true"></i>
+            } 
+            @Html.Raw(Model.PaText)
+          </a>
+          }
+
+          @if(!string.IsNullOrEmpty(Model.SaText)){
+          <a href="@Model.SaUrl" class="btn btn-outline-light rounded-pill shadow-sm fw-bold @Model.SaCssClass" aria-label="@Model.SaLabel">
+            @if (!string.IsNullOrEmpty(Model.PaIcon))
+            {
+              <i class="@Model.PaIcon me-2" aria-hidden="true"></i>
+            } 
+            @Html.Raw(Model.SaText)
+          </a>
+          }
+
+        </div>
+        }
+
+      </div>
+
+    </div>
+  </div>
+</section>
+}
+else{
+  <h1>Not Configured</h1>
+  <p>Please configure this template to display the expected content.</p>
+}
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@

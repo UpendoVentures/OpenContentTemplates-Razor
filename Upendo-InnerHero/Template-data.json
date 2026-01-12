@@ -1,6 +1,6 @@
 {
-    "MarginTop": "mt-5", 
-    "MarginBottom": "mb-5",
+    "MarginTop": "mt-auto" , 
+    "MarginBottom": "mb-auto",
     "PaddingTop": "pt-auto",
     "PaddingBottom": "pb-auto"
 }

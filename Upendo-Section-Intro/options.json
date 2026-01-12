@@ -1,0 +1,85 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Image": {
+      "type": "image",
+      "uploadfolder": "/Content/Hero",
+      "typeahead": {
+        "Folder": "/Content/Hero"
+      },
+      "helper": "Use a 2400 × 1200 px (2:1) image, preferably WebP (JPG fallback), optimized to ≤ 350 KB (WebP) or ≤ 500 KB (JPG), with important content centered so it crops cleanly on all screen sizes."
+    },
+    "ImageAlt": {
+      "type": "text",
+      "helper": "Describe the image for screenreader & other nonvisual web browsers."
+    },
+    "PageTitle": {
+      "type": "text"
+    },
+    "TitleCssClass": {
+      "type": "text"
+    },
+    "TitleIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+    },
+    "Subtitle": {
+      "type": "text"
+    },
+    "SubtitleCssClass": {
+      "type": "text"
+    },
+    "SubtitleIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+    },
+    "PaText": {
+      "type": "text",
+      "helper": "If any text is entered, the primary action button will attempt to render."
+    },
+    "PaUrl": {
+      "type": "url"
+    },
+    "PaCssClass": {
+      "type": "text",
+      "helper": "Applied to the primary action link."
+    },
+    "PaLabel": {
+      "type": "text",
+      "helper": "Describe the button's action for screenreaders & other nonvisual web browsers."
+    },
+    "PaIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+    },
+    "SaText": {
+      "type": "text",
+      "helper": "If any text is entered, the primary action button will attempt to render."
+    },
+    "SaUrl": {
+      "type": "url"
+    },
+    "SaCssClass": {
+      "type": "text",
+      "helper": "Applied to the secondary action link."
+    },
+    "SaLabel": {
+      "type": "text",
+      "helper": "Describe the button's action for screenreaders & other nonvisual web browsers."
+    },
+    "SaIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+    }
+  }
+}
