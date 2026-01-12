@@ -78,7 +78,7 @@
           var rel = (link.LinkRel ?? string.Empty).Trim();
           var icon = (link.LinkIconClass ?? string.Empty).Trim();
           var itemProp = (link.ItemProp ?? string.Empty).Trim();
-          if(itemProp.ToLower() == "none") {
+          if(itemProp.ToLower() == "url" || itemProp.ToLower() == "none") {
             itemProp = string.Empty;
           }
 
