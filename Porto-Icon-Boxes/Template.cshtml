@@ -15,6 +15,18 @@
             ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
         }
     }
+
+    var widthSetting = "full";
+    var widthValue = "col-12";
+    if (!string.IsNullOrEmpty(Model.Settings.DisplayWidth)){
+        widthSetting = Model.Settings.DisplayWidth;
+    }
+
+    if (widthSetting.ToLower() == "partial"){
+        widthValue = "col-12 col-lg-10 mx-auto";
+    } else if (widthSetting.ToLower() == "half"){
+        widthValue = "col-12 col-lg-6 mx-auto";
+    }
 }
 
 @functions {
@@ -27,9 +39,10 @@
 {
     <div id="@Model.ModuleAnchor"></div>
 }
+<div class="container @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
 @if (Model.Settings.IconBoxesType == "Classic")
 {
-    <div class="featured-boxes @Model.Settings.FeaturedBoxesStyle">
+    <div class="featured-boxes @widthValue @Model.Settings.FeaturedBoxesStyle">
         <div class="row">
             @foreach (var item in Model.Items)
             {
@@ -71,45 +84,53 @@
 else if (Model.Settings.IconBoxesType == "Simple")
 {
     <div class="row">
-        @foreach (var item in Model.Items)
-        {
-            var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
+        <div class="@widthValue">
+            <div class="row">
+            @foreach (var item in Model.Items)
+            {
+                var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
 
-            <div class="col-md-4"@animationSnippet>
-                <div class="feature-box 
-                    @Model.Settings.FeatureBoxStyle 
-                    feature-box-@Model.Settings.Color 
-                    @(ConvertToBool(Model.Settings.ApplyReverseClass) ? "reverse" : "")"
-                    @if (ConvertToBool(Model.Settings.EnableAnimations))
-                    {
-                        @:data-appear-animation="@Model.Settings.AnimationType"
-                        @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
-                    }>
-                    <div class="feature-box-icon">@RenderIconBox(Model, item)</div>
-                    <div class="feature-box-info">
-                        <h4 class="mb-sm @(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
-                        <p class="mb-lg">@item.Content</p>
+                <div class="col-md-4"@animationSnippet>
+                    <div class="feature-box 
+                        @Model.Settings.FeatureBoxStyle 
+                        feature-box-@Model.Settings.Color 
+                        @(ConvertToBool(Model.Settings.ApplyReverseClass) ? "reverse" : "")"
+                        @if (ConvertToBool(Model.Settings.EnableAnimations))
+                        {
+                            @:data-appear-animation="@Model.Settings.AnimationType"
+                            @:data-appear-animation-delay="@Model.Settings.AnimationDelay"
+                        }>
+                        <div class="feature-box-icon">@RenderIconBox(Model, item)</div>
+                        <div class="feature-box-info">
+                            <h4 class="mb-sm @(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
+                            <p class="mb-lg">@item.Content</p>
+                        </div>
                     </div>
                 </div>
+            }
             </div>
-        }
+        </div>
     </div>
 }
 else
 {
-    <div class="featured-boxes-full @Model.Settings.FeatureBoxFullStyle row m-0">
-        @foreach (var item in Model.Items)
-        {
-            var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
+    <div class="row">
+        <div class="@widthValue">
+            <div class="featured-boxes-full @Model.Settings.FeatureBoxFullStyle row m-0">
+                @foreach (var item in Model.Items)
+                {
+                    var animationSnippet = !string.IsNullOrEmpty(item.Animation) ? string.Format(" data-appear-animation=\"{0}\"", item.Animation) : string.Empty;
 
-            <div class="col-md-4"@animationSnippet>
-                <div class="featured-box-full featured-box-full-primary">
-                    @RenderIconBox(Model,item)
-                    <h4 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
-                    <div>@Html.Raw(item.Content)</div>
-                </div>
+                    <div class="col-md-4"@animationSnippet>
+                        <div class="featured-box-full featured-box-full-primary">
+                            @RenderIconBox(Model,item)
+                            <h4 class="@(ConvertToBool(Model.Settings.UppercaseTitle) ? "text-uppercase" : "")">@item.Title</h4>
+                            <div>@Html.Raw(item.Content)</div>
+                        </div>
+                    </div>
+                }
             </div>
-        }
+        </div>
     </div>
 }
 
@@ -213,6 +234,7 @@ else
     }
     </div>
 }
+</div>
 @*
 <div class="dnnClear">
     @ObjectInfo.Print(Model)
