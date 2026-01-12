@@ -5,13 +5,13 @@
             "title": "Margin (top)",
             "type": "string",
             "enum": [
-				"pt-0",
-				"pt-1",
-				"pt-2",
-				"pt-3",
-				"pt-4",
-				"pt-5",
-				"pt-auto"
+				"mb-1",
+				"mb-1",
+				"mb-2",
+				"mb-3",
+				"mb-4",
+				"mb-5",
+				"mb-auto"
             ]
         },
         "MarginBottom": {
