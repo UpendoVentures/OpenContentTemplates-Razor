@@ -10,6 +10,9 @@
     "SectionTitle": {
       "type": "text"
     },
+    "SectionCssClass": {
+      "type": "text"
+    },
     "SectionTitleTag": {
       "type": "select",
       "sort": false,
@@ -64,7 +67,6 @@
             "type": "select",
             "sort": false,
             "optionLabels": [
-              "None",
               "Address",
               "Email",
               "Hours",
@@ -72,7 +74,7 @@
               "Telephone",
               "URL"
             ],
-            "helper": "If not sure, choose \"None.\""
+            "helper": "If not sure, choose \"URL.\""
           }
         }
       }
