@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Hero Image",
+      "required": true,
+      "default": "https://placehold.co/2400x1200"
+    },
+    "ImageAlt": {
+      "type": "string",
+      "title": "Image Alt"
+    },
+    "PageTitle": {
+      "type": "string",
+      "title": "Page Title",
+      "required": true
+    },
+    "TitleCssClass": {
+      "type": "string",
+      "title": "Title CSS Class"
+    },
+    "TitleIcon": {
+      "type": "string",
+      "title": "Title Icon"
+    },
+    "Subtitle": {
+      "type": "string",
+      "title": "Subtitle",
+      "required": true
+    },
+    "SubtitleCssClass": {
+      "type": "string",
+      "title": "Subtitle CSS Class"
+    },
+    "SubtitleIcon": {
+      "type": "string",
+      "title": "Subtitle Icon"
+    },
+    "PaText": {
+      "type": "string",
+      "title": "Primary Action Text"
+    },
+    "PaUrl": {
+      "type": "string",
+      "title": "Primary Action URL"
+    },
+    "PaCssClass": {
+      "type": "string",
+      "title": "Primary Action CSS Class"
+    },
+    "PaLabel": {
+      "type": "string",
+      "title": "Primary Action Accessibility Label"
+    },
+    "PaIcon": {
+      "type": "string",
+      "title": "Primary Action Icon"
+    },
+    "SaText": {
+      "type": "string",
+      "title": "Secondary Action Text"
+    },
+    "SaUrl": {
+      "type": "string",
+      "title": "Secondary Action URL"
+    },
+    "SaCssClass": {
+      "type": "string",
+      "title": "Secondary Action CSS Class"
+    },
+    "SaLabel": {
+      "type": "string",
+      "title": "Secondary Action Accessibility Label"
+    },
+    "SaIcon": {
+      "type": "string",
+      "title": "Secondary Action Icon"
+    }
+  }
+}

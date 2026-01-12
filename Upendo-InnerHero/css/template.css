@@ -1,0 +1,104 @@
+  /* Internal Page Hero (scoped) */
+  .uv-page-hero{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Media frame: responsive height, no layout jump */
+  .uv-page-hero__media{
+    position: absolute;
+    inset: 0;
+  }
+
+  .uv-page-hero__img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Soft overlay for text readability without harsh contrast */
+  .uv-page-hero__overlay{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0,0,0,.55) 0%,
+      rgba(0,0,0,.35) 45%,
+      rgba(0,0,0,.15) 100%
+    );
+  }
+
+  /* Content positioning */
+  .uv-page-hero .container{
+    position: relative;
+    z-index: 1;
+  }
+
+  .uv-page-hero__content{
+    padding: 4rem 0;
+    max-width: 48rem;
+    color: #fff;
+  }
+
+  .uv-page-hero__title{
+    margin: 0 0 .75rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    line-height: 1.1;
+  }
+
+  .uv-page-hero__subtitle{
+    margin: 0;
+    opacity: .92;
+    max-width: 42rem;
+  }
+
+  /* Height behavior: consistent across devices */
+  .uv-page-hero{
+    min-height: 320px;
+  }
+
+  @media (min-width: 768px){
+    .uv-page-hero{
+      min-height: 420px;
+    }
+    .uv-page-hero__content{
+      padding: 5.5rem 0;
+    }
+  }
+
+  /* Accessible focus visibility in the hero area */
+  .uv-page-hero a:focus-visible{
+    outline: 3px solid rgba(255,255,255,.55);
+    outline-offset: 3px;
+  }
+
+  /* Respect reduced motion (no animation here, but leaving room if you add later) */
+  @media (prefers-reduced-motion: reduce){
+    .uv-page-hero *{
+      scroll-behavior: auto !important;
+    }
+  }
+  .uv-page-hero .container{
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .uv-page-hero__panel{
+    display: inline-block;
+    padding: 1.25rem 1.25rem 1.1rem;
+    border-radius: 1rem; /* matches your rounded-4 vibe */
+    background: rgba(0,0,0,.38);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
+    .uv-page-hero__panel{
+      background: rgba(0,0,0,.45);
+    }
+  }
