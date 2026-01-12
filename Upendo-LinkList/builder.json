@@ -32,6 +32,12 @@
       "dependencies": []
     },
     {
+      "fieldname": "SectionCssClass",
+      "title": "Heading Css Class",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
       "fieldname": "SectionTitleTag",
       "title": "Heading Type",
       "fieldtype": "select",
@@ -178,9 +184,6 @@
           "fieldtype": "select",
           "fieldoptions": [
             {
-              "text": "None"
-            },
-            {
               "value": "address",
               "text": "Address"
             },
@@ -208,8 +211,8 @@
           "advanced": true,
           "required": true,
           "hidden": false,
-          "default": "None",
-          "helper": "If not sure, choose \"None.\"",
+          "default": "URL",
+          "helper": "If not sure, choose \"URL.\"",
           "index": false,
           "position": "1col1",
           "dependencies": []

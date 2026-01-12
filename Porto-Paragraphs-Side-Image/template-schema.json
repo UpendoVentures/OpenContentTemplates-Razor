@@ -8,7 +8,18 @@
 				"Right",
 				"Left"
 			]
-		},"MarginTop": {
+		},
+        "DisplayWidth": {
+            "title": "Display Width",
+            "type": "string",
+            "enum": [
+                "full",
+                "partial", 
+                "half"
+            ],
+            "default": "full"
+        },
+		"MarginTop": {
             "title": "Margin (top)",
             "type": "string",
             "enum": [

@@ -1,9 +1,14 @@
 {
     "IconBoxesType": "Classic",
+    "DisplayWidth": "full",
     "DisplayAxis": "vertically",
     "ContentContainers": "2",
     "IconPosition": "left",
     "FeaturedBoxesStyle": "featured-boxes-style-8",
     "FeaturedBoxColor": "primary",
-    "FeaturedBoxEffect": ""
+    "FeaturedBoxEffect": "",
+    "MarginTop": "mt-5" , 
+    "MarginBottom": "mb-5",
+    "PaddingTop": "pt-auto",
+    "PaddingBottom": "pb-auto"
 }
