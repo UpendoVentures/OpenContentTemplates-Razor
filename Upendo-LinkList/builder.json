@@ -1,0 +1,227 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SectionTitle",
+      "title": "Section Heading",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SectionTitleTag",
+      "title": "Heading Type",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "h1",
+          "text": "H1"
+        },
+        {
+          "value": "h2",
+          "text": "H2"
+        },
+        {
+          "value": "h3",
+          "text": "H3"
+        },
+        {
+          "value": "h4",
+          "text": "H4"
+        },
+        {
+          "value": "h5",
+          "text": "H5"
+        },
+        {
+          "value": "h6",
+          "text": "H6"
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "default": "h3",
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SectionIconClass",
+      "title": "Heading Icon",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Find Icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>",
+      "placeholder": "fas fa-heart",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SectionAriaLabel",
+      "title": "Section ARIA Helper",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "Describe the section for downlevel browsers and handicapped visitors.  ",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "LinkList",
+      "title": "Link List",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "LinkText",
+          "title": "Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "LinkUrl",
+          "title": "URL",
+          "fieldtype": "url",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "Can be a local or external URL. ",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "LinkCssClass",
+          "title": "CSS Class(es)",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "LinkRel",
+          "title": "Rel",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "text": "None"
+            },
+            {
+              "value": "nofollow",
+              "text": "NoFollow"
+            },
+            {
+              "value": "noopener",
+              "text": "NoOpener"
+            },
+            {
+              "value": "noreferrer",
+              "text": "NoReferrrer"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "OpenInNewTab",
+          "title": "Open in New Tab?",
+          "fieldtype": "checkbox",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "If checked, <code>noopener</code> &amp; <code>noreferrer</code> will be added to the link for you.",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "ItemProp",
+          "title": "Schema Type",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "text": "None"
+            },
+            {
+              "value": "address",
+              "text": "Address"
+            },
+            {
+              "value": "email",
+              "text": "Email"
+            },
+            {
+              "value": "openingHours",
+              "text": "Hours"
+            },
+            {
+              "value": "sameAs",
+              "text": "Same As"
+            },
+            {
+              "value": "telephone",
+              "text": "Telephone"
+            },
+            {
+              "value": "url",
+              "text": "URL"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "default": "None",
+          "helper": "If not sure, choose \"None.\"",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "helper": "At least one link is required.",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

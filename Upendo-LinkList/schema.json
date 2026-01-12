@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Heading",
+      "required": true
+    },
+    "SectionTitleTag": {
+      "type": "string",
+      "title": "Heading Type",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ],
+      "default": "h3",
+      "required": true
+    },
+    "SectionIconClass": {
+      "type": "string",
+      "title": "Heading Icon"
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section ARIA Helper",
+      "required": true
+    },
+    "LinkList": {
+      "type": "array",
+      "title": "Link List",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "LinkText": {
+            "type": "string",
+            "title": "Text",
+            "required": true
+          },
+          "LinkUrl": {
+            "type": "string",
+            "title": "URL",
+            "required": true
+          },
+          "LinkCssClass": {
+            "type": "string",
+            "title": "CSS Class(es)"
+          },
+          "LinkRel": {
+            "type": "string",
+            "title": "Rel",
+            "enum": [
+              "nofollow",
+              "noopener",
+              "noreferrer"
+            ],
+            "default": "nofollow",
+            "required": true
+          },
+          "OpenInNewTab": {
+            "type": "boolean",
+            "title": "Open in New Tab?"
+          },
+          "ItemProp": {
+            "type": "string",
+            "title": "Schema Type",
+            "enum": [
+              "address",
+              "email",
+              "openingHours",
+              "sameAs",
+              "telephone",
+              "url"
+            ],
+            "default": "None",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

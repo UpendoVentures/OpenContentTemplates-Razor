@@ -1,0 +1,162 @@
+@using System
+@using DotNetNuke.Entities.Modules
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+    RegisterStyleSheet("css/template.css");
+
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    // Helper-ish variables with older Razor compatibility in mind
+    var title = (Model.SectionTitle ?? string.Empty).Trim();
+    var titleTag = (Model.SectionTitleTag ?? "h5").Trim().ToLower();
+    if (string.IsNullOrEmpty(titleTag)) { titleTag = "h5"; }
+
+    var sectionIcon = (Model.SectionIconClass ?? string.Empty).Trim();
+    var ariaLabel = (Model.SectionAriaLabel ?? string.Empty).Trim();
+    if (string.IsNullOrEmpty(ariaLabel))
+    {
+        ariaLabel = !string.IsNullOrEmpty(title) ? title : "Link list";
+    }
+
+    // Create a stable ID for aria-labelledby if possible
+    var safeId = "uv-link-list-" + (title.Replace(" ", "-").ToLower());
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<div class="uv-link-list @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+  
+  <nav aria-label="@ariaLabel" aria-labelledby="@safeId">
+
+    @* Section title (optional) *@
+    @if (!string.IsNullOrEmpty(title))
+    {
+      if (titleTag != "h1" && titleTag != "h2" && titleTag != "h3" && titleTag != "h4" && titleTag != "h5" && titleTag != "h6")
+      {
+        titleTag = "h3";
+      }
+
+      @Html.Raw("<" + titleTag + " id=\"" + safeId + "\" class=\"uv-link-list__title mb-3\">")
+
+        @* Optional section icon *@
+        if (!string.IsNullOrEmpty(sectionIcon))
+        {
+          <i class="@sectionIcon me-2" aria-hidden="true"></i>
+        }
+
+        @Html.Raw(title)
+
+      @Html.Raw("</" + titleTag + ">")
+    }
+
+    @* Links list *@
+    <ul class="list-unstyled mb-0 uv-link-list__list">
+      @if (Model.LinkList != null)
+      {
+        foreach (var link in Model.LinkList)
+        {
+          var text = (link.LinkText ?? string.Empty).Trim();
+          var url = (link.LinkUrl ?? string.Empty).Trim();
+          var css = (link.LinkCssClass ?? string.Empty).Trim();
+          var rel = (link.LinkRel ?? string.Empty).Trim();
+          var icon = (link.LinkIconClass ?? string.Empty).Trim();
+          var itemProp = (link.ItemProp ?? string.Empty).Trim();
+          if(itemProp.ToLower() == "none") {
+            itemProp = string.Empty;
+          }
+
+          // Boolean flags can vary by OC version - guard defensively
+          var openNewTab = false;
+          try { openNewTab = link.OpenInNewTab; } catch { openNewTab = false; }
+
+          if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(url))
+          {
+            continue; // skip incomplete rows
+          }
+
+          // If opening in new tab, enforce noopener for security
+          var targetAttr = openNewTab ? " target=\"_blank\"" : string.Empty;
+          var finalRel = rel;
+          if (openNewTab)
+          {
+              // Always enforce security when opening new tab
+              var relLower = string.Empty; 
+              if(!string.IsNullOrEmpty(finalRel))
+              {
+                  relLower = finalRel.ToLower();
+              }
+              if (relLower.IndexOf("noopener") < 0) { finalRel = (finalRel + " noopener").Trim(); }
+              if (relLower.IndexOf("noreferrer") < 0) { finalRel = (finalRel + " noreferrer").Trim(); }
+
+              // If rel was empty, this ensures it still becomes "noopener noreferrer"
+              if (string.IsNullOrEmpty(finalRel)) { finalRel = "noopener noreferrer"; }
+          }
+
+          // Compose link classes safely
+          var linkClass = "uv-link-list__link d-inline-flex align-items-center text-decoration-none";
+          if (!string.IsNullOrEmpty(css)) { linkClass += " " + css; }
+
+          <li class="uv-link-list__item mb-2">
+
+          @if (openNewTab)
+          {
+            <a href="@url" class="@linkClass" title="@text" aria-label="@text" target="_blank" rel="@finalRel" itemProp="@itemProp">
+              @if (!string.IsNullOrEmpty(icon))
+              {
+                <i class="@icon me-2" aria-hidden="true"></i>
+              }
+              <span>@text</span>
+            </a>
+          }
+          else
+          {
+            if (!string.IsNullOrEmpty(finalRel))
+            {
+              <a href="@url" class="@linkClass" title="@text" aria-label="@text" rel="@finalRel" itemProp="@itemProp">
+                @if (!string.IsNullOrEmpty(icon))
+                {
+                  <i class="@icon me-2" aria-hidden="true"></i>
+                }
+                <span>@text</span>
+              </a>
+            }
+            else
+            {
+              <a href="@url" class="@linkClass" title="@text" aria-label="@text">
+                @if (!string.IsNullOrEmpty(icon))
+                {
+                  <i class="@icon me-2" aria-hidden="true"></i>
+                }
+                <span>@text</span>
+              </a>
+            }
+          }
+        </li>
+        }
+      }
+    </ul>
+
+  </nav>
+</div>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
