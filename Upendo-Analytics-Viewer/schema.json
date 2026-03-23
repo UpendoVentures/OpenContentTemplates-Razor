@@ -1,0 +1,99 @@
+{
+    "title": "Analytics Dashboard",
+    "type": "object",
+    "properties": {
+      "DashboardTitle": {
+        "type": "string",
+        "title": "Dashboard Title"
+      },
+      "SiteId": {
+        "type": "integer",
+        "title": "Site ID"
+      },
+      "DataSourceId": {
+        "type": "integer",
+        "title": "Data Source ID"
+      },
+      "DateStart": {
+        "type": "string",
+        "format": "date",
+        "title": "Default Start Date"
+      },
+      "DateEnd": {
+        "type": "string",
+        "format": "date",
+        "title": "Default End Date"
+      },
+      "DefaultRange": {
+        "type": "string",
+        "title": "Default Timeframe",
+        "enum": [
+          "custom",
+          "7d",
+          "30d",
+          "mtd",
+          "prevmonth"
+        ],
+        "default": "30d"
+      },
+      "ShowComparison": {
+        "type": "boolean",
+        "title": "Show Comparison",
+        "default": true
+      },
+      "ShowTrend": {
+        "type": "boolean",
+        "title": "Show Trend",
+        "default": true
+      },
+      "ShowTrendEngagedSessions": {
+        "type": "boolean",
+        "title": "Show Trend in Table - Engaged Sessions",
+        "default": true
+      },
+      "ShowTrendEventCount": {
+        "type": "boolean",
+        "title": "Show Trend in Table - Event Count",
+        "default": true
+      },
+      "ShowTrendEngagementRate": {
+        "type": "boolean",
+        "title": "Show Trend in Table - Engagement Rate",
+        "default": true
+      },
+      "ShowTrendBounceRate": {
+        "type": "boolean",
+        "title": "Show Trend in Table - Bounce Rate",
+        "default": true
+      },
+      "ShowTrendAvgSessionDuration": {
+        "type": "boolean",
+        "title": "Show Trend in Table - Avg Session Duration",
+        "default": true
+      },
+      "ShowChannels": {
+        "type": "boolean",
+        "title": "Show Channels",
+        "default": true
+      },
+      "ShowEvents": {
+        "type": "boolean",
+        "title": "Show Events",
+        "default": true
+      },
+      "ShowTopPages": {
+        "type": "boolean",
+        "title": "Show Top Pages",
+        "default": true
+      },
+      "TopN": {
+        "type": "integer",
+        "title": "Top N Rows",
+        "default": 10
+      }
+    },
+    "required": [
+      "DashboardTitle",
+      "SiteId"
+    ]
+  }
