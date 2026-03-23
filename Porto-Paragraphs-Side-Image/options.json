@@ -5,12 +5,10 @@
     },
     "ModuleAnchor": {
       "type": "text",
-      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-      "showMessages": false
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "Paragraph": {
-      "type": "ckeditor",
-      "configset": "basic"
+      "type": "textarea"
     },
     "Image": {
       "type": "image",
@@ -20,8 +18,7 @@
       }
     },
     "Classes": {
-      "type": "text",
-      "placeholder": "img-fluid"
+      "type": "text"
     },
     "AltText": {
       "type": "text",

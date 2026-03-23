@@ -1,0 +1,2090 @@
+@using System
+@using System.Linq
+@using Upendo.SkinObjects.OpenContentHelper.Analytics
+@using Upendo.SkinObjects.OpenContentHelper.Analytics.Models.Requests
+@using Upendo.SkinObjects.OpenContentHelper.Analytics.Models.Responses
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+
+@{
+    RegisterScript("https://cdn.jsdelivr.net/npm/chart.js");
+
+    var dashboardTitle = string.Empty;
+    var siteId = 0;
+    var dataSourceId = 0;
+    var dateStart = DateTime.Today.AddDays(-30);
+    var dateEnd = DateTime.Today;
+    var showComparison = true;
+    var showTrend = true;
+    var showChannels = true;
+    var showEvents = true;
+    var showTopPages = true;
+    var topN = 10;
+    var showTrendEngagedSessions = true;
+    var showTrendEventCount = true;
+    var showTrendEngagementRate = true;
+    var showTrendBounceRate = true;
+    var showTrendAvgSessionDuration = true;
+    
+    /* charting support */    
+    var defaultTrendMetric = "Users";
+    var enableTrendComparisonOverlay = true;
+    var defaultShowTrendComparisonOverlay = false;
+    var defaultTopPagesChartMetric = "Views";
+    var defaultChannelChartMetric = "EngagedSessions";
+
+    if (Model != null)
+    {
+        dashboardTitle = Convert.ToString(Model.DashboardTitle ?? string.Empty);
+        siteId = Model.SiteId != null ? Convert.ToInt32(Model.SiteId) : 0;
+        dataSourceId = Model.DataSourceId != null ? Convert.ToInt32(Model.DataSourceId) : 0;
+
+        if (Model.DateStart != null)
+        {
+            DateTime.TryParse(Convert.ToString(Model.DateStart), out dateStart);
+        }
+
+        if (Model.DateEnd != null)
+        {
+            DateTime.TryParse(Convert.ToString(Model.DateEnd), out dateEnd);
+        }
+
+        if (Model.ShowComparison != null)
+        {
+            showComparison = Convert.ToBoolean(Model.ShowComparison);
+        }
+
+        if (Model.ShowTrend != null)
+        {
+            showTrend = Convert.ToBoolean(Model.ShowTrend);
+        }
+
+        if (Model.ShowChannels != null)
+        {
+            showChannels = Convert.ToBoolean(Model.ShowChannels);
+        }
+
+        if (Model.ShowEvents != null)
+        {
+            showEvents = Convert.ToBoolean(Model.ShowEvents);
+        }
+
+        if (Model.ShowTopPages != null)
+        {
+            showTopPages = Convert.ToBoolean(Model.ShowTopPages);
+        }
+
+        if (Model.TopN != null)
+        {
+            topN = Convert.ToInt32(Model.TopN);
+            if (topN <= 0)
+            {
+                topN = 10;
+            }
+        }
+
+        if (Model.ShowTrendEngagedSessions != null)
+        {
+            showTrendEngagedSessions = Convert.ToBoolean(Model.ShowTrendEngagedSessions);
+        }
+
+        if (Model.ShowTrendEventCount != null)
+        {
+            showTrendEventCount = Convert.ToBoolean(Model.ShowTrendEventCount);
+        }
+
+        if (Model.ShowTrendEngagementRate != null)
+        {
+            showTrendEngagementRate = Convert.ToBoolean(Model.ShowTrendEngagementRate);
+        }
+
+        if (Model.ShowTrendBounceRate != null)
+        {
+            showTrendBounceRate = Convert.ToBoolean(Model.ShowTrendBounceRate);
+        }
+
+        if (Model.ShowTrendAvgSessionDuration != null)
+        {
+            showTrendAvgSessionDuration = Convert.ToBoolean(Model.ShowTrendAvgSessionDuration);
+        }
+
+        if (Model.DefaultTrendMetric != null)
+        {
+            defaultTrendMetric = Convert.ToString(Model.DefaultTrendMetric ?? "Users");
+        }
+    }
+
+    var service = new AnalyticsService();
+    var request = new AnalyticsDateRangeRequestDto
+    {
+        SiteId = siteId,
+        DataSourceId = dataSourceId > 0 ? (int?)dataSourceId : null,
+        DateStart = dateStart,
+        DateEnd = dateEnd
+    };
+    var topNRequest = new AnalyticsTopNRequestDto
+    {
+        SiteId = siteId,
+        DataSourceId = dataSourceId > 0 ? (int?)dataSourceId : null,
+        DateStart = dateStart,
+        DateEnd = dateEnd,
+        TopN = topN
+    };
+
+    AnalyticsSummaryDto summary = null;
+    AnalyticsComparisonSummaryDto comparison = null;
+    var trend = Enumerable.Empty<AnalyticsTrendPointDto>();
+    string errorMessage = null;
+    var channels = Enumerable.Empty<AnalyticsChannelBreakdownDto>();
+    var events = Enumerable.Empty<AnalyticsEventBreakdownDto>();
+    var topPages = Enumerable.Empty<AnalyticsTopPageDto>();
+    var baseUrl = string.Concat("https://", Model.Context.HTTPAlias);
+
+    /* charting support */
+    var previousTrend = Enumerable.Empty<AnalyticsTrendPointDto>();
+    var hasPreviousTrendData = false;
+    var previousTrendMessage = string.Empty;
+    var selectedRangeDays = (dateEnd.Date - dateStart.Date).Days + 1;
+    if (selectedRangeDays < 1)
+    {
+        selectedRangeDays = 1;
+    }
+    var previousDateEnd = dateStart.Date.AddDays(-1);
+    var previousDateStart = previousDateEnd.AddDays(-(selectedRangeDays - 1));
+    var previousRequest = new AnalyticsDateRangeRequestDto
+    {
+        SiteId = siteId,
+        DataSourceId = dataSourceId > 0 ? (int?)dataSourceId : null,
+        DateStart = previousDateStart,
+        DateEnd = previousDateEnd
+    };
+
+    try
+    {
+        if (siteId > 0)
+        {
+            summary = service.GetSummary(request);
+            comparison = service.GetComparisonSummary(request);
+            trend = service.GetTrend(request) ?? Enumerable.Empty<AnalyticsTrendPointDto>();
+            if (enableTrendComparisonOverlay)
+            {
+                previousTrend = service.GetTrend(previousRequest) ?? Enumerable.Empty<AnalyticsTrendPointDto>();
+                hasPreviousTrendData = previousTrend.Any();
+
+                if (!hasPreviousTrendData)
+                {
+                    previousTrendMessage = "No previous-period trend data is available yet for this date range.";
+                }
+            }
+            channels = (service.GetChannelBreakdown(topNRequest) ?? Enumerable.Empty<AnalyticsChannelBreakdownDto>()).ToList();
+            events = service.GetEventBreakdown(topNRequest) ?? Enumerable.Empty<AnalyticsEventBreakdownDto>();
+            topPages = (service.GetTopPages(topNRequest) ?? Enumerable.Empty<AnalyticsTopPageDto>()).ToList();
+        }
+        else
+        {
+            errorMessage = "A valid Site ID is required.";
+        }
+    }
+    catch (Exception ex)
+    {
+        errorMessage = ex.Message;
+    }
+
+    /* charting support */
+    var trendLabels = trend != null
+        ? trend.Select(x => x.MetricDate.ToString("MMM d")).ToArray()
+        : new string[0];
+    var trendUsers = trend != null
+        ? trend.Select(x => x.Users ?? 0).ToArray()
+        : new int[0];
+    var trendSessions = trend != null
+        ? trend.Select(x => x.Sessions ?? 0).ToArray()
+        : new int[0];
+    var trendPageViews = trend != null
+        ? trend.Select(x => x.PageViews ?? 0).ToArray()
+        : new int[0];
+    var trendConversions = trend != null
+        ? trend.Select(x => x.Conversions ?? 0M).ToArray()
+        : new decimal[0];
+    var trendRevenue = trend != null
+        ? trend.Select(x => x.Revenue ?? 0M).ToArray()
+        : new decimal[0];
+    var previousTrendUsers = previousTrend != null
+        ? previousTrend.Select(x => x.Users ?? 0).ToArray()
+        : new int[0];
+    var previousTrendSessions = previousTrend != null
+        ? previousTrend.Select(x => x.Sessions ?? 0).ToArray()
+        : new int[0];
+    var previousTrendPageViews = previousTrend != null
+        ? previousTrend.Select(x => x.PageViews ?? 0).ToArray()
+        : new int[0];
+    var previousTrendConversions = previousTrend != null
+        ? previousTrend.Select(x => x.Conversions ?? 0M).ToArray()
+        : new decimal[0];
+    var previousTrendRevenue = previousTrend != null
+        ? previousTrend.Select(x => x.Revenue ?? 0M).ToArray()
+        : new decimal[0];
+    var topPagesChartItems = topPages != null
+        ? topPages.Take(10).ToList()
+        : new List<AnalyticsTopPageDto>();
+    var topPagesChartLabels = topPagesChartItems
+        .Select(x =>
+            !string.IsNullOrWhiteSpace(x.PageTitle)
+                ? TemplateHelper.Labels.TruncateLabel(x.PageTitle, 50)
+                : !string.IsNullOrWhiteSpace(x.PagePath)
+                    ? TemplateHelper.Labels.TruncateLabel(x.PagePath, 50)
+                    : "(Untitled Page)")
+        .ToArray();
+    var topPagesChartViews = topPagesChartItems
+        .Select(x => x.Views ?? 0)
+        .ToArray();
+    var topPagesChartEntrances = topPagesChartItems
+        .Select(x => x.Entrances ?? 0)
+        .ToArray();
+    var channelChartItems = channels != null
+        ? channels.Take(10).ToList()
+        : new List<AnalyticsChannelBreakdownDto>();
+    var channelChartLabels = channelChartItems
+        .Select(x => TemplateHelper.Labels.FormatChannelLabel(x.ChannelName))
+        .ToArray();
+    var channelChartUsers = channelChartItems
+        .Select(x => x.Users ?? 0)
+        .ToArray();
+    var channelChartSessions = channelChartItems
+        .Select(x => x.Sessions ?? 0)
+        .ToArray();
+    var channelChartEngagedSessions = channelChartItems
+        .Select(x => x.EngagedSessions ?? 0)
+        .ToArray();
+    var channelChartConversions = channelChartItems
+        .Select(x => x.Conversions ?? 0M)
+        .ToArray();
+        var eventChartItems = events != null
+        ? events.Take(10).ToList()
+        : new List<AnalyticsEventBreakdownDto>();
+    var eventChartLabels = eventChartItems
+        .Select(x =>
+            !string.IsNullOrWhiteSpace(x.EventName)
+                ? TemplateHelper.Labels.TruncateLabel(x.EventName, 50)
+                : "(Unnamed Event)")
+        .ToArray();
+    var eventChartEventCount = eventChartItems
+        .Select(x => x.EventCount ?? 0)
+        .ToArray();
+    var eventChartUsers = eventChartItems
+        .Select(x => x.Users ?? 0)
+        .ToArray();
+    var eventChartConversions = eventChartItems
+        .Select(x => x.Conversions ?? 0M)
+        .ToArray();
+    previousTrendUsers = TemplateHelper.Arrays.NormalizeIntArray(previousTrendUsers, trendLabels.Length);
+    previousTrendSessions = TemplateHelper.Arrays.NormalizeIntArray(previousTrendSessions, trendLabels.Length);
+    previousTrendPageViews = TemplateHelper.Arrays.NormalizeIntArray(previousTrendPageViews, trendLabels.Length);
+    previousTrendConversions = TemplateHelper.Arrays.NormalizeDecimalArray(previousTrendConversions, trendLabels.Length);
+    previousTrendRevenue = TemplateHelper.Arrays.NormalizeDecimalArray(previousTrendRevenue, trendLabels.Length);
+    
+    Func<System.Collections.IEnumerable, int> getCount = source =>
+    {
+        if (source == null)
+        {
+            return 0;
+        }
+
+        var count = 0;
+        var enumerator = source.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            count++;
+        }
+
+        return count;
+    };
+}
+
+<style>
+    .metric-card {
+        transition: all 0.2s ease-in-out;
+        background-color: #f9fafb;
+    }
+
+    .metric-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    }
+
+    .metric-value {
+        letter-spacing: -0.5px;
+    }
+
+    .metric-card a,
+    table a {
+        text-decoration: none;
+    }
+
+    .metric-card a:hover,
+    table a:hover {
+        text-decoration: underline;
+    }
+
+    #uvTrendChart {
+        min-height: 320px;
+    }
+
+    .uv-dashboard-section-nav {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+    }
+
+    .uv-dashboard-section-nav-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.75rem;
+        overflow-x: auto;
+        padding: 0.75rem 1rem;
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 1rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+        scrollbar-width: thin;
+    }
+
+    .uv-dashboard-section-link {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #0f5c6e;
+        background-color: #f8f9fa;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .uv-dashboard-section-link:hover,
+    .uv-dashboard-section-link:focus {
+        color: #0b4452;
+        background-color: #e9f7fa;
+        border-color: #bfe7ef;
+        text-decoration: none;
+    }
+
+    .uv-dashboard-section-link.active {
+        color: #ffffff;
+        background-color: #0f5c6e;
+        border-color: #0f5c6e;
+    }
+
+    .uv-dashboard-section-link i {
+        font-size: 0.875rem;
+    }
+
+    @@media (max-width: 767.98px) {
+        .uv-dashboard-section-nav {
+            top: 0.5rem;
+        }
+
+        .uv-dashboard-section-nav-inner {
+            padding: 0.65rem 0.75rem;
+            border-radius: 0.85rem;
+        }
+
+        .uv-dashboard-section-link {
+            font-size: 0.875rem;
+            padding: 0.45rem 0.75rem;
+        }
+    }
+
+    .uv-back-to-top {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #0f5c6e;
+        text-decoration: none;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        background-color: transparent;
+        transition: all 0.15s ease-in-out;
+    }
+
+    .uv-back-to-top:hover,
+    .uv-back-to-top:focus {
+        color: #0b4452;
+        background-color: #e9f7fa;
+        text-decoration: none;
+    }
+
+    .uv-back-to-top i {
+        font-size: 0.75rem;
+    }
+
+    .uv-back-to-top-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0.75rem;
+    }
+</style>
+
+<div id="uv-section-overview" class="uv-analytics-dashboard-test container-fluid my-4">
+    <div class="row mt-4 mb-4">
+        <div class="col-12">
+            <h2 class="heading-primary mb-2">
+                <i class="fas fa-chart-pie me-2" aria-hidden="true"></i>@dashboardTitle
+            </h2>
+            <p class="text-muted mb-0">
+                Showing Date Range:
+                <strong>@dateStart.ToString("MMM d, yyyy")</strong>
+                to
+                <strong>@dateEnd.ToString("MMM d, yyyy")</strong>
+            </p>
+            @if(Model.Context.IsEditMode){
+            <p class="text-muted mb-0">
+                Site ID: <strong>@siteId</strong>
+                @if (dataSourceId > 0)
+                {
+                    <text> | Data Source ID: <strong>@dataSourceId</strong></text>
+                }
+            </p>
+            }
+        </div>
+    </div>
+
+    @if (!String.IsNullOrWhiteSpace(errorMessage))
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Analytics Test Error:</strong> @errorMessage
+                </div>
+            </div>
+        </div>
+    }
+    else if (summary == null)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    No summary data was returned.
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row mb-3">
+            <div class="col-12">
+                <nav id="uvDashboardSectionNav" class="uv-dashboard-section-nav" aria-label="Dashboard section navigation">
+                    <div class="uv-dashboard-section-nav-inner">
+                        <a class="uv-dashboard-section-link active" href="#uv-section-overview" data-target="uv-section-overview">
+                            <i class="fas fa-chart-pie me-1" aria-hidden="true"></i>Overview
+                        </a>
+
+                        @if (showComparison)
+                        {
+                            <a class="uv-dashboard-section-link" href="#uv-section-comparison" data-target="uv-section-comparison">
+                                <i class="fas fa-exchange-alt me-1" aria-hidden="true"></i>Comparison
+                            </a>
+                        }
+
+                        @if (showTrend)
+                        {
+                            <a class="uv-dashboard-section-link" href="#uv-section-trend" data-target="uv-section-trend">
+                                <i class="fas fa-chart-line me-1" aria-hidden="true"></i>Trend
+                            </a>
+                        }
+
+                        @if (showChannels)
+                        {
+                            <a class="uv-dashboard-section-link" href="#uv-section-channels" data-target="uv-section-channels">
+                                <i class="fas fa-diagram-project me-1" aria-hidden="true"></i>Channels
+                            </a>
+                        }
+
+                        @if (showEvents)
+                        {
+                            <a class="uv-dashboard-section-link" href="#uv-section-events" data-target="uv-section-events">
+                                <i class="fas fa-bolt me-1" aria-hidden="true"></i>Events
+                            </a>
+                        }
+
+                        @if (showTopPages)
+                        {
+                            <a class="uv-dashboard-section-link" href="#uv-section-pages" data-target="uv-section-pages">
+                                <i class="fas fa-file-lines me-1" aria-hidden="true"></i>Pages
+                            </a>
+                        }
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card mb-3 shadow-sm rounded-4 border-0">
+                    <div class="card-body p-3 p-md-4">
+                        <div class="mb-3">
+                            <h3 class="heading-secondary h4 mb-1">
+                                <i class="fas fa-tachometer-alt me-2" aria-hidden="true"></i>Key Metrics
+                            </h3>
+                            <p class="text-muted small mb-0">A quick snapshot of overall site performance for the selected date range.</p>
+                        </div>
+
+                        <div class="row g-3">
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Total number of unique users during the selected date range.">Users</div>
+                                                <i class="fas fa-users text-primary" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h2 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatInt(summary.Users)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.UsersDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.UsersDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.UsersDeltaPctVsPrevious) vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Total number of visits during the selected date range.">Sessions</div>
+                                                <i class="fas fa-chart-line text-success" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h2 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatInt(summary.Sessions)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.SessionsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.SessionsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.SessionsDeltaPctVsPrevious) vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Total number of page views recorded during the selected date range.">Page Views</div>
+                                                <i class="fas fa-eye text-info" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h2 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatInt(summary.PageViews)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.PageViewsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.PageViewsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.PageViewsDeltaPctVsPrevious) vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Total tracked conversions recorded during the selected date range.">Conversions</div>
+                                                <i class="fas fa-bullseye text-warning" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h2 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatDecimal(summary.Conversions)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.ConversionsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.ConversionsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.ConversionsDeltaPctVsPrevious) vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Total tracked revenue recorded during the selected date range.">Revenue</div>
+                                                <i class="fas fa-dollar-sign text-success" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatCurrency(summary.Revenue)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.RevenueDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.RevenueDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.RevenueDeltaPctVsPrevious) vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Percentage of sessions considered engaged during the selected date range.">Engagement Rate</div>
+                                                <i class="fas fa-heartbeat text-info" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatPercent(summary.EngagementRate)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.EngagementRateDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.EngagementRateDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.EngagementRateDeltaVsPrevious) pts vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Percentage of sessions that were not engaged during the selected date range.">Bounce Rate</div>
+                                                <i class="fas fa-undo text-danger" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatPercent(summary.BounceRate)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.BounceRateDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.BounceRateDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.BounceRateDeltaVsPrevious) pts vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="The most recent date for which analytics data is available in this report.">Latest Metric Date</div>
+                                                <i class="fas fa-calendar-alt text-primary" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h5 fw-bold mb-0 letter-spacing-tight">@TemplateHelper.Formatting.FormatDate(summary.LatestMetricDate)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 text-muted">
+                                                    Current reporting period
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        if (showComparison && comparison != null)
+        {
+            <div id="uv-section-comparison" class="row mt-4 mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm rounded-4 border-0">
+                        <div class="card-body p-4">
+                            <h3 class="heading-secondary h4 mb-3">
+                                <i class="fas fa-balance-scale me-2" aria-hidden="true"></i>Comparison Summary
+                            </h3>
+                            <p class="text-muted small mb-3">Compare the selected period against the previous period and the same period last year.</p>
+
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Metric</th>
+                                            <th scope="col" class="text-end">Current</th>
+                                            <th scope="col" class="text-end">Previous</th>
+                                            <th scope="col" class="text-end">Last Year</th>
+                                            <th scope="col" class="text-end">Delta vs Previous</th>
+                                            <th scope="col" class="text-end">% vs Previous</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Users</th>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.CurrentUsers)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.PreviousUsers)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.LastYearUsers)</td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.UsersDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.UsersDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedInt(comparison.UsersDeltaVsPrevious)
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.UsersDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.UsersDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.UsersDeltaPctVsPrevious)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sessions</th>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.CurrentSessions)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.PreviousSessions)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.LastYearSessions)</td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.SessionsDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.SessionsDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedInt(comparison.SessionsDeltaVsPrevious)
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.SessionsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.SessionsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.SessionsDeltaPctVsPrevious)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Page Views</th>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.CurrentPageViews)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.PreviousPageViews)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatInt(comparison.LastYearPageViews)</td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.PageViewsDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.PageViewsDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedInt(comparison.PageViewsDeltaVsPrevious)
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.PageViewsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.PageViewsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.PageViewsDeltaPctVsPrevious)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Conversions</th>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(comparison.CurrentConversions)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(comparison.PreviousConversions)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(comparison.LastYearConversions)</td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.ConversionsDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.ConversionsDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.ConversionsDeltaVsPrevious)
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.ConversionsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.ConversionsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.ConversionsDeltaPctVsPrevious)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Revenue</th>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatCurrency(comparison.CurrentRevenue)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatCurrency(comparison.PreviousRevenue)</td>
+                                            <td class="text-end">@TemplateHelper.Formatting.FormatCurrency(comparison.LastYearRevenue)</td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.RevenueDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.RevenueDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedCurrency(comparison.RevenueDeltaVsPrevious)
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="@TemplateHelper.Deltas.GetDeltaClass(comparison.RevenueDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.RevenueDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.RevenueDeltaPctVsPrevious)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p class="text-muted mb-0">
+                                Previous period data available:
+                                <strong>@comparison.HasPreviousPeriodData</strong>
+                                |
+                                Last year data available:
+                                <strong>@comparison.HasLastYearData</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-muted small">
+                No comparison data is available for the selected date range.
+            </div>
+        }
+
+        if (showTrend)
+        {
+            <div id="uv-section-trend" class="row">
+                <div class="col-12">
+                    <div class="card mb-3 shadow-sm rounded-4 border-0">
+                        <div class="card-body p-4">
+                            <h3 class="heading-secondary h4 mb-3">
+                                <i class="fas fa-chart-line me-2" aria-hidden="true"></i>Daily Trend
+                            </h3>
+                            <p class="text-muted small mb-3">A day-by-day view of traffic and conversion activity for the selected range.</p>
+
+                            <div class="row g-3 align-items-end mb-4">
+                                <div class="col-12 col-lg-8">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <h4 class="h6 mb-0">
+                                            <i class="fas fa-wave-square me-2" aria-hidden="true"></i>Performance Over Time
+                                        </h4>
+                                        <span
+                                            class="text-muted"
+                                            data-bs-toggle="tooltip"
+                                            title="This chart shows how the selected metric changed day by day during the chosen date range.">
+                                            <i class="fas fa-circle-info" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p class="text-muted small mb-0">
+                                        Choose one metric to make the trend easier to read.
+                                    </p>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label for="uvTrendMetricSelector" class="form-label small text-muted mb-1">Metric</label>
+                                    <select id="uvTrendMetricSelector" class="form-select">
+                                        <option value="Users">Users</option>
+                                        <option value="Sessions">Sessions</option>
+                                        <option value="PageViews">Page Views</option>
+                                        <option value="Conversions">Conversions</option>
+                                        <option value="Revenue">Revenue</option>
+                                    </select>
+                                    @if (enableTrendComparisonOverlay && hasPreviousTrendData)
+                                    {
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input" type="checkbox" id="uvTrendComparisonToggle" checked="checked" />
+                                            <label class="form-check-label small text-muted" for="uvTrendComparisonToggle">
+                                                Compare to previous period
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="bg-light rounded-4 p-3 p-md-4">
+                                    <canvas id="uvTrendChart" aria-label="Performance over time chart" role="img"></canvas>
+                                </div>
+                                @if (enableTrendComparisonOverlay && !hasPreviousTrendData)
+                                {
+                                    <div class="alert alert-light border mt-3 mb-0 small text-muted" role="status">
+                                        <i class="fas fa-circle-info me-2" aria-hidden="true"></i>@previousTrendMessage
+                                    </div>
+                                }
+                                @if (enableTrendComparisonOverlay && hasPreviousTrendData)
+                                {
+                                    <p class="text-muted small mt-3 mb-0">
+                                        When enabled, the dashed line shows the immediately previous date range for the same number of days.
+                                    </p>
+                                }
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col" class="text-end">Users</th>
+                                            <th scope="col" class="text-end">Sessions</th>
+                                            <th scope="col" class="text-end">Page Views</th>
+                                            @if (showTrendEventCount)
+                                            {
+                                                <th scope="col" class="text-end">Event Count</th>
+                                            }
+                                            @if (showTrendEngagedSessions)
+                                            {
+                                                <th scope="col" class="text-end">Engaged Sessions</th>
+                                            }
+                                            @if (showTrendEngagementRate)
+                                            {
+                                                <th scope="col" class="text-end">Engagement Rate</th>
+                                            }
+                                            @if (showTrendBounceRate)
+                                            {
+                                                <th scope="col" class="text-end">Bounce Rate</th>
+                                            }
+                                            @if (showTrendAvgSessionDuration)
+                                            {
+                                                <th scope="col" class="text-end">Avg Session Duration</th>
+                                            }
+                                            <th scope="col" class="text-end">Conversions</th>
+                                            <th scope="col" class="text-end">Revenue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (trend != null && trend.Any())
+                                        {
+                                            foreach (var item in trend)
+                                            {
+                                                <tr>
+                                                    <td>@item.MetricDate.ToString("MMM d, yyyy")</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Users)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Sessions)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.PageViews)</td>
+                                                    @if (showTrendEventCount)
+                                                    {
+                                                        <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.EventCount)</td>
+                                                    }
+                                                    @if (showTrendEngagedSessions)
+                                                    {
+                                                        <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.EngagedSessions)</td>
+                                                    }
+                                                    @if (showTrendEngagementRate)
+                                                    {
+                                                        <td class="text-end">@TemplateHelper.Formatting.FormatPercent(item.EngagementRate)</td>
+                                                    }
+                                                    @if (showTrendBounceRate)
+                                                    {
+                                                        <td class="text-end">@TemplateHelper.Formatting.FormatPercent(item.BounceRate)</td>
+                                                    }
+                                                    @if (showTrendAvgSessionDuration)
+                                                    {
+                                                        <td class="text-end">@TemplateHelper.Formatting.FormatDurationFromSeconds(item.AvgSessionDurationSeconds)</td>
+                                                    }
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(item.Conversions)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatCurrency(item.Revenue)</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="6">No trend data was returned for this range.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="uv-back-to-top-container">
+                                <a href="#uv-section-overview"
+                                class="uv-back-to-top"
+                                aria-label="Back to top of dashboard">
+                                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                    <span>Back to Top</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        } 
+
+        if (showChannels)
+        {
+            <div id="uv-section-channels" class="row mt-4 mb-4">
+                <div class="col-12">
+                    <div class="card mb-3 shadow-sm rounded-4 border-0">
+                        <div class="card-body p-4">
+                            <h3 class="heading-secondary h4 mb-3">
+                                <i class="fas fa-project-diagram me-2" aria-hidden="true"></i>Channel Breakdown
+                            </h3>
+                            <p class="text-muted small mb-3">See which acquisition channels are driving visits, engagement, and results.</p>
+
+                            <div class="row g-3 align-items-end mb-4">
+                                <div class="col-12 col-lg-8">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <h4 class="h6 mb-0">
+                                            <i class="fas fa-share-alt me-2" aria-hidden="true"></i>Traffic Sources at a Glance
+                                        </h4>
+                                        <span
+                                            class="text-muted"
+                                            data-bs-toggle="tooltip"
+                                            title="This shows which types of traffic sent people to your website.">
+                                            <i class="fas fa-circle-info" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p class="text-muted small mb-0">
+                                        This chart shows where your visitors came from. Use the dropdown to change how it is measured.
+                                    </p>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label for="uvChannelMetricSelector" class="form-label small text-muted mb-1">Metric</label>
+                                    <select id="uvChannelMetricSelector" class="form-select">
+                                        <option value="Sessions">Sessions (Total Visits)</option>
+                                        <option value="Users">Users (People)</option>
+                                        <option value="EngagedSessions">Engaged Sessions (Active Visits)</option>
+                                        <option value="Conversions">Conversions (Leads / Actions)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="text-muted small mb-2">
+                                    Showing performance by traffic source. The top bar is your strongest channel for the selected metric.
+                                </p>
+                                <div class="bg-light rounded-4 p-3 p-md-4" style="height: 360px;">
+                                    <canvas id="uvChannelChart" aria-label="Channel breakdown chart" role="img"></canvas>
+                                </div>
+                                @if (channelChartLabels == null || channelChartLabels.Length == 0)
+                                {
+                                    <div class="alert alert-light border small text-muted mt-3 mb-4" role="status">
+                                        <i class="fas fa-circle-info me-2" aria-hidden="true"></i>No channel data is available for this date range.
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Channel</th>
+                                            <th scope="col" class="text-end">Users</th>
+                                            <th scope="col" class="text-end">Sessions</th>
+                                            <th scope="col" class="text-end">Engaged Sessions</th>
+                                            <th scope="col" class="text-end">Conversions</th>
+                                            <th scope="col" class="text-end">Revenue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (channels != null && channels.Any())
+                                        {
+                                            foreach (var item in channels)
+                                            {
+                                                <tr>
+                                                    <td>@item.ChannelName</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Users)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Sessions)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.EngagedSessions)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(item.Conversions)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatCurrency(item.Revenue)</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="6">No channel data was returned for this range.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="uv-back-to-top-container">
+                                <a href="#uv-section-overview"
+                                class="uv-back-to-top"
+                                aria-label="Back to top of dashboard">
+                                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                    <span>Back to Top</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        } 
+
+        if (showEvents)
+        {
+            <div id="uv-section-events" class="row mt-4 mb-4">
+                <div class="col-12">
+                    <div class="card mb-3 shadow-sm rounded-4 border-0">
+                        <div class="card-body p-4">
+                            <h3 class="heading-secondary h4 mb-3">
+                                <i class="fas fa-bolt me-2" aria-hidden="true"></i>Top Events
+                            </h3>
+                            <p class="text-muted small mb-3">The most active tracked events for the selected period.</p>
+
+                            <div class="row g-3 align-items-end mb-4">
+                                <div class="col-12 col-lg-8">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <h4 class="h6 mb-0">
+                                            <i class="fas fa-chart-bar me-2" aria-hidden="true"></i>Event Activity at a Glance
+                                        </h4>
+                                        <span
+                                            class="text-muted"
+                                            data-bs-toggle="tooltip"
+                                            title="This chart shows which tracked events happened most often during the selected date range.">
+                                            <i class="fas fa-circle-info" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p class="text-muted small mb-0">
+                                        Use this chart to quickly spot the actions people took most often on the site.
+                                    </p>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label for="uvEventsMetricSelector" class="form-label small text-muted mb-1">Metric</label>
+                                    <select id="uvEventsMetricSelector" class="form-select">
+                                        <option value="EventCount">Event Count</option>
+                                        <option value="Users">Users</option>
+                                        <option value="Conversions">Conversions</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="bg-light rounded-4 p-3 p-md-4" style="height: 420px;">
+                                    <canvas id="uvEventsChart" aria-label="Top events chart" role="img"></canvas>
+                                </div>
+                                <p class="text-muted small mb-3">
+                                    This helps you see which tracked actions happened most often. Use the dropdown to switch how event performance is measured.
+                                </p>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Event</th>
+                                            <th scope="col" class="text-end">Event Count</th>
+                                            <th scope="col" class="text-end">Users</th>
+                                            <th scope="col" class="text-end">Conversions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (events != null && events.Any())
+                                        {
+                                            foreach (var item in events)
+                                            {
+                                                <tr>
+                                                    <td>@item.EventName</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.EventCount)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Users)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(item.Conversions)</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="4">No event data was returned for this range.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p class="text-muted mb-0">Showing up to @topN events.</p>
+
+                            <div class="uv-back-to-top-container">
+                                <a href="#uv-section-overview"
+                                class="uv-back-to-top"
+                                aria-label="Back to top of dashboard">
+                                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                    <span>Back to Top</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        if (showTopPages)
+        {
+            <div id="uv-section-pages" class="row mt-4 mb-4">
+                <div class="col-12">
+                    <div class="card mb-3 shadow-sm rounded-4 border-0">
+                        <div class="card-body p-4">
+                            <h3 class="heading-secondary h4 mb-3">
+                                <i class="fas fa-file-alt me-2" aria-hidden="true"></i>Top Pages
+                            </h3>
+                            <p class="text-muted small mb-3">Your most visited pages based on entrances, views, and user activity.</p>
+
+                            <div class="row g-3 align-items-end mb-4">
+                                <div class="col-12 col-lg-8">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <h4 class="h6 mb-0">
+                                            <i class="fas fa-chart-bar me-2" aria-hidden="true"></i>Top Content at a Glance
+                                        </h4>
+                                        <span
+                                            class="text-muted"
+                                            data-bs-toggle="tooltip"
+                                            title="This chart highlights which pages received the most attention during the selected date range.">
+                                            <i class="fas fa-circle-info" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p class="text-muted small mb-0">
+                                        Use this chart to quickly see which pages attracted the most traffic.
+                                    </p>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <label for="uvTopPagesMetricSelector" class="form-label small text-muted mb-1">Metric</label>
+                                    <select id="uvTopPagesMetricSelector" class="form-select">
+                                        <option value="Views">Views</option>
+                                        <option value="Entrances">Entrances</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="bg-light rounded-4 p-3 p-md-4" style="height: 420px;">
+                                    <canvas id="uvTopPagesChart" aria-label="Top pages chart" role="img"></canvas>
+                                </div>
+                                <p class="text-muted small mb-3">
+                                    This shows which pages brought in the most traffic. Use the dropdown to switch how it's measured.
+                                </p>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Page Title</th>
+                                            <th scope="col">Page Path</th>
+                                            <th scope="col" class="text-end">Entrances</th>
+                                            <th scope="col" class="text-end">Views</th>
+                                            <th scope="col" class="text-end">Users</th>
+                                            <th scope="col" class="text-end">Conversions</th>
+                                            <th scope="col" class="text-end">Avg. Time on Page (sec)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (topPages != null && topPages.Any())
+                                        {
+                                            foreach (var item in topPages)
+                                            {
+                                                var pageUrl = TemplateHelper.Urls.BuildPageUrl(baseUrl, item.PagePath);
+                                                <tr>
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(pageUrl))
+                                                        {
+                                                            <a href="@pageUrl" target="_blank" title="View the page in a new tab">
+                                                                @item.PageTitle
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            @item.PageTitle
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(pageUrl))
+                                                        {
+                                                            <a href="@pageUrl" target="_blank" class="text-muted small" title="View the page in a new tab">
+                                                                @item.PagePath
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            @item.PagePath
+                                                        }
+                                                    </td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Entrances)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Views)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Users)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(item.Conversions)</td>
+                                                    <td class="text-end">@TemplateHelper.Formatting.FormatDecimal(item.AvgTimeOnPageSeconds)</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="7">No top page data was returned for this range.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p class="text-muted mb-0">Showing up to @topN pages.</p>
+
+                            <div class="uv-back-to-top-container">
+                                <a href="#uv-section-overview"
+                                class="uv-back-to-top"
+                                aria-label="Back to top of dashboard">
+                                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                    <span>Back to Top</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var uvTrendLabels = @Html.Raw(Json.Encode(trendLabels));
+                var uvTrendData = {
+                    Users: @Html.Raw(Json.Encode(trendUsers)),
+                    Sessions: @Html.Raw(Json.Encode(trendSessions)),
+                    PageViews: @Html.Raw(Json.Encode(trendPageViews)),
+                    Conversions: @Html.Raw(Json.Encode(trendConversions)),
+                    Revenue: @Html.Raw(Json.Encode(trendRevenue))
+                };
+                var uvPreviousTrendData = {
+                    Users: @Html.Raw(Json.Encode(previousTrendUsers)),
+                    Sessions: @Html.Raw(Json.Encode(previousTrendSessions)),
+                    PageViews: @Html.Raw(Json.Encode(previousTrendPageViews)),
+                    Conversions: @Html.Raw(Json.Encode(previousTrendConversions)),
+                    Revenue: @Html.Raw(Json.Encode(previousTrendRevenue))
+                };
+                var uvHasPreviousTrendData = @(hasPreviousTrendData ? "true" : "false");
+                var uvTopPagesLabels = @Html.Raw(Json.Encode(topPagesChartLabels));
+                var uvTopPagesData = {
+                    Views: @Html.Raw(Json.Encode(topPagesChartViews)),
+                    Entrances: @Html.Raw(Json.Encode(topPagesChartEntrances))
+                };
+                var uvChannelLabels = @Html.Raw(Json.Encode(channelChartLabels));
+                var uvChannelData = {
+                    Users: @Html.Raw(Json.Encode(channelChartUsers)),
+                    Sessions: @Html.Raw(Json.Encode(channelChartSessions)),
+                    EngagedSessions: @Html.Raw(Json.Encode(channelChartEngagedSessions)),
+                    Conversions: @Html.Raw(Json.Encode(channelChartConversions))
+                };
+                var uvEventLabels = @Html.Raw(Json.Encode(eventChartLabels));
+                var uvEventData = {
+                    EventCount: @Html.Raw(Json.Encode(eventChartEventCount)),
+                    Users: @Html.Raw(Json.Encode(eventChartUsers)),
+                    Conversions: @Html.Raw(Json.Encode(eventChartConversions))
+                };
+            </script>
+
+            <script>
+                (function () {
+                    var chartCanvas = document.getElementById('uvTrendChart');
+                    var metricSelector = document.getElementById('uvTrendMetricSelector');
+                    var comparisonToggle = document.getElementById('uvTrendComparisonToggle');
+
+                    if (!chartCanvas || !metricSelector || typeof Chart === 'undefined') {
+                        return;
+                    }
+
+                    var defaultMetric = '@defaultTrendMetric';
+                    var currentMetric = uvTrendData[defaultMetric] ? defaultMetric : 'Users';
+
+                    metricSelector.value = currentMetric;
+
+                    function getYAxisLabel(metricName) {
+                        switch (metricName) {
+                            case 'Users':
+                                return 'Users';
+                            case 'Sessions':
+                                return 'Sessions';
+                            case 'PageViews':
+                                return 'Page Views';
+                            case 'Conversions':
+                                return 'Conversions';
+                            case 'Revenue':
+                                return 'Revenue';
+                            default:
+                                return 'Value';
+                        }
+                    }
+
+                    function getDatasetLabel(metricName) {
+                        switch (metricName) {
+                            case 'PageViews':
+                                return 'Page Views';
+                            default:
+                                return metricName;
+                        }
+                    }
+
+                    var trendChart = new Chart(chartCanvas, {
+                        type: 'line',
+                        data: {
+                            labels: uvTrendLabels,
+                            datasets: buildDatasets(currentMetric)
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                mode: 'index',
+                                intersect: false
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    callbacks: {
+                                        label: function (context) {
+                                            var label = context.dataset.label || '';
+                                            var value = context.parsed.y;
+
+                                            if (currentMetric === 'Revenue') {
+                                                return label + ': $' + Number(value).toFixed(2);
+                                            }
+
+                                            if (currentMetric === 'Conversions') {
+                                                return label + ': ' + Number(value).toFixed(2);
+                                            }
+
+                                            return label + ': ' + Number(value).toLocaleString();
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: getYAxisLabel(currentMetric)
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    function updateTrendChart(metricName) {
+                        if (!uvTrendData[metricName]) {
+                            return;
+                        }
+
+                        currentMetric = metricName;
+                        trendChart.data.datasets = buildDatasets(currentMetric);
+                        trendChart.options.scales.y.title.text = getYAxisLabel(currentMetric);
+                        trendChart.update();
+                    }
+
+                    function buildDatasets(metricName) {
+                        var datasets = [
+                            {
+                                label: getDatasetLabel(metricName),
+                                data: uvTrendData[metricName],
+                                tension: 0.25,
+                                fill: false
+                            }
+                        ];
+
+                        if (
+                            comparisonToggle &&
+                            comparisonToggle.checked &&
+                            uvHasPreviousTrendData &&
+                            uvPreviousTrendData[metricName]
+                        ) {
+                            datasets.push({
+                                label: 'Previous Period',
+                                data: uvPreviousTrendData[metricName],
+                                tension: 0.25,
+                                fill: false,
+                                borderDash: [6, 4]
+                            });
+                        }
+
+                        return datasets;
+                    }
+
+                    metricSelector.addEventListener('change', function () {
+                        updateTrendChart(this.value);
+                    });
+
+                    if (comparisonToggle) {
+                        comparisonToggle.addEventListener('change', function () {
+                            updateTrendChart(metricSelector.value);
+                        });
+                    }
+                })();
+            </script>
+
+            <script>
+                (function () {
+                    var chartCanvas = document.getElementById('uvChannelChart');
+                    var metricSelector = document.getElementById('uvChannelMetricSelector');
+
+                    if (!chartCanvas || !metricSelector || typeof Chart === 'undefined') {
+                        return;
+                    }
+
+                    var currentMetric = '@defaultChannelChartMetric';
+                    if (!uvChannelData[currentMetric]) {
+                        currentMetric = 'Sessions';
+                    }
+
+                    metricSelector.value = currentMetric;
+
+                    function getSortedChannelData(metricName) {
+                        var combined = uvChannelLabels.map(function (label, i) {
+                            return {
+                                label: label,
+                                value: uvChannelData[metricName][i]
+                            };
+                        });
+
+                        combined.sort(function (a, b) {
+                            return b.value - a.value;
+                        });
+
+                        return {
+                            labels: combined.map(function (x) { return x.label; }),
+                            data: combined.map(function (x) { return x.value; })
+                        };
+                    }
+
+                    function getDatasetLabel(metricName) {
+                        switch (metricName) {
+                            case 'Users':
+                                return 'Users';
+                            case 'EngagedSessions':
+                                return 'Engaged Sessions';
+                            case 'Conversions':
+                                return 'Conversions';
+                            case 'Sessions':
+                            default:
+                                return 'Sessions';
+                        }
+                    }
+
+                    var sorted = getSortedChannelData(currentMetric);
+                    var channelChart = new Chart(chartCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: sorted.labels,
+                            datasets: [
+                                {
+                                    label: getDatasetLabel(currentMetric),
+                                    data: sorted.data,
+                                    borderWidth: 1,
+                                    backgroundColor: sorted.data.map(function (value, index) {
+                                        return index === 0
+                                            ? 'rgba(54, 162, 235, 0.9)'
+                                            : 'rgba(54, 162, 235, 0.4)';
+                                    }),
+                                    borderColor: sorted.data.map(function (value, index) {
+                                        return index === 0
+                                            ? 'rgba(40, 167, 69, 1)'
+                                            : 'rgba(54, 162, 235, 1)';
+                                    })
+                                }
+                            ]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    callbacks: {
+                                        title: function (context) {
+                                            if (!context || !context.length) {
+                                                return '';
+                                            }
+
+                                            var index = context[0].dataIndex;
+                                            return uvChannelLabels[index] || '';
+                                        },
+                                        label: function (context) {
+                                            var value = context.parsed.x;
+
+                                            if (currentMetric === 'Sessions') {
+                                                return value.toLocaleString() + ' sessions (total visits from this source)';
+                                            }
+
+                                            if (currentMetric === 'Users') {
+                                                return value.toLocaleString() + ' users (people from this source)';
+                                            }
+
+                                            if (currentMetric === 'EngagedSessions') {
+                                                return value.toLocaleString() + ' engaged sessions (visits where people interacted)';
+                                            }
+
+                                            if (currentMetric === 'Conversions') {
+                                                return value.toLocaleString() + ' conversions';
+                                            }
+
+                                            return value.toLocaleString();
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        precision: 0
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: getDatasetLabel(currentMetric)
+                                    }
+                                },
+                                y: {
+                                    ticks: {
+                                        autoSkip: false
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    function updateChannelChart(metricName) {
+                        if (!uvChannelData[metricName]) {
+                            return;
+                        }
+
+                        currentMetric = metricName;
+
+                        var sorted = getSortedChannelData(currentMetric);
+
+                        channelChart.data.labels = sorted.labels;
+                        channelChart.data.datasets[0].label = getDatasetLabel(currentMetric);
+                        channelChart.data.datasets[0].data = sorted.data;
+                        channelChart.data.datasets[0].backgroundColor = sorted.data.map(function (value, index) {
+                            return index === 0
+                                ? 'rgba(54, 162, 235, 0.9)'
+                                : 'rgba(54, 162, 235, 0.4)';
+                        });
+                        channelChart.options.scales.x.title.text = getDatasetLabel(currentMetric);
+                        channelChart.update();
+                    }
+
+                    metricSelector.addEventListener('change', function () {
+                        updateChannelChart(this.value);
+                    });
+                })();
+            </script>
+
+            <script>
+                (function () {
+                    var chartCanvas = document.getElementById('uvEventsChart');
+                    var metricSelector = document.getElementById('uvEventsMetricSelector');
+
+                    if (!chartCanvas || !metricSelector || typeof Chart === 'undefined') {
+                        return;
+                    }
+
+                    var currentMetric = 'EventCount';
+                    if (!uvEventData[currentMetric]) {
+                        currentMetric = 'Users';
+                    }
+
+                    metricSelector.value = currentMetric;
+
+                    function getSortedEventData(metricName) {
+                        var combined = uvEventLabels.map(function (label, i) {
+                            return {
+                                label: label,
+                                value: uvEventData[metricName][i]
+                            };
+                        });
+
+                        combined.sort(function (a, b) {
+                            return b.value - a.value;
+                        });
+
+                        return {
+                            labels: combined.map(function (x) { return x.label; }),
+                            data: combined.map(function (x) { return x.value; })
+                        };
+                    }
+
+                    function getDatasetLabel(metricName) {
+                        switch (metricName) {
+                            case 'EventCount':
+                                return 'Event Count';
+                            case 'Users':
+                                return 'Users';
+                            case 'Conversions':
+                                return 'Conversions';
+                            default:
+                                return 'Value';
+                        }
+                    }
+
+                    var sorted = getSortedEventData(currentMetric);
+
+                    var eventsChart = new Chart(chartCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: sorted.labels,
+                            datasets: [
+                                {
+                                    label: getDatasetLabel(currentMetric),
+                                    data: sorted.data,
+                                    borderWidth: 1,
+                                    backgroundColor: sorted.data.map(function (value, index) {
+                                        return index === 0
+                                            ? 'rgba(54, 162, 235, 0.9)'
+                                            : 'rgba(54, 162, 235, 0.4)';
+                                    }),
+                                    borderColor: 'rgba(54, 162, 235, 1)'
+                                }
+                            ]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    callbacks: {
+                                        title: function (context) {
+                                            if (!context || !context.length) {
+                                                return '';
+                                            }
+
+                                            var index = context[0].dataIndex;
+                                            return sorted.labels[index] || '';
+                                        },
+                                        label: function (context) {
+                                            var value = context.parsed.x;
+
+                                            if (currentMetric === 'EventCount') {
+                                                return value.toLocaleString() + ' total event triggers';
+                                            }
+
+                                            if (currentMetric === 'Users') {
+                                                return value.toLocaleString() + ' users triggered this event';
+                                            }
+
+                                            if (currentMetric === 'Conversions') {
+                                                return Number(value).toFixed(2) + ' conversions';
+                                            }
+
+                                            return value.toLocaleString();
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        precision: 0
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: getDatasetLabel(currentMetric)
+                                    }
+                                },
+                                y: {
+                                    ticks: {
+                                        autoSkip: false
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    function updateEventsChart(metricName) {
+                        if (!uvEventData[metricName]) {
+                            return;
+                        }
+
+                        currentMetric = metricName;
+                        sorted = getSortedEventData(currentMetric);
+
+                        eventsChart.data.labels = sorted.labels;
+                        eventsChart.data.datasets[0].label = getDatasetLabel(currentMetric);
+                        eventsChart.data.datasets[0].data = sorted.data;
+                        eventsChart.data.datasets[0].backgroundColor = sorted.data.map(function (value, index) {
+                            return index === 0
+                                ? 'rgba(54, 162, 235, 0.9)'
+                                : 'rgba(54, 162, 235, 0.4)';
+                        });
+                        eventsChart.options.scales.x.title.text = getDatasetLabel(currentMetric);
+                        eventsChart.update();
+                    }
+
+                    metricSelector.addEventListener('change', function () {
+                        updateEventsChart(this.value);
+                    });
+                })();
+            </script>
+
+            <script>
+                (function () {
+                    var chartCanvas = document.getElementById('uvTopPagesChart');
+                    var metricSelector = document.getElementById('uvTopPagesMetricSelector');
+
+                    if (!chartCanvas || !metricSelector || typeof Chart === 'undefined') {
+                        return;
+                    }
+
+                    var currentMetric = '@defaultTopPagesChartMetric';
+                    if (!uvTopPagesData[currentMetric]) {
+                        currentMetric = 'Views';
+                    }
+
+                    metricSelector.value = currentMetric;
+                    var uvTopPagesDisplayLabels = uvTopPagesLabels.map(function (label) {
+                        if (!label) {
+                            return '(Untitled Page)';
+                        }
+
+                        return label.length > 40 ? label.substring(0, 40) + '...' : label;
+                    });
+
+                    function getDatasetLabel(metricName) {
+                        switch (metricName) {
+                            case 'Entrances':
+                                return 'Entrances';
+                            case 'Views':
+                            default:
+                                return 'Views';
+                        }
+                    }
+
+                    var topPagesChart = new Chart(chartCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: uvTopPagesDisplayLabels,
+                            datasets: [
+                                {
+                                    label: getDatasetLabel(currentMetric),
+                                    data: uvTopPagesData[currentMetric],
+                                    borderWidth: 1,
+                                    backgroundColor: uvTopPagesData[currentMetric].map(function (value, index) {
+                                        return index === 0
+                                            ? 'rgba(54, 162, 235, 0.9)'   // strongest
+                                            : 'rgba(54, 162, 235, 0.4)'; // lighter
+                                    }),
+                                    borderColor: 'rgba(54, 162, 235, 1)'
+                                }
+                            ]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    callbacks: {
+                                        title: function (context) {
+                                            if (!context || !context.length) {
+                                                return '';
+                                            }
+
+                                            var index = context[0].dataIndex;
+                                            return uvTopPagesLabels[index] || '';
+                                        },
+                                        label: function (context) {
+                                            var label = context.dataset.label || '';
+                                            var value = context.parsed.x;
+
+                                            if (label === 'Views') {
+                                                return value.toLocaleString() + ' views (total times this page was seen)';
+                                            }
+
+                                            if (label === 'Entrances') {
+                                                return value.toLocaleString() + ' entrances (users who started here)';
+                                            }
+
+                                            return label + ': ' + value.toLocaleString();
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        precision: 0
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: getDatasetLabel(currentMetric)
+                                    }
+                                },
+                                y: {
+                                    ticks: {
+                                        autoSkip: false
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    function updateTopPagesChart(metricName) {
+                        if (!uvTopPagesData[metricName]) {
+                            return;
+                        }
+
+                        currentMetric = metricName;
+                        topPagesChart.data.datasets[0].label = getDatasetLabel(currentMetric);
+                        topPagesChart.data.datasets[0].data = uvTopPagesData[currentMetric];
+                        topPagesChart.options.scales.x.title.text = getDatasetLabel(currentMetric);
+                        topPagesChart.update();
+                    }
+
+                    metricSelector.addEventListener('change', function () {
+                        updateTopPagesChart(this.value);
+                    });
+                })();
+            </script>
+            <script>
+                (function () {
+                    var nav = document.getElementById('uvDashboardSectionNav');
+                    if (!nav) {
+                        return;
+                    }
+
+                    var links = nav.querySelectorAll('.uv-dashboard-section-link');
+                    if (!links || !links.length) {
+                        return;
+                    }
+
+                    var sections = [];
+
+                    for (var i = 0; i < links.length; i++) {
+                        var targetId = links[i].getAttribute('data-target');
+                        if (!targetId) {
+                            continue;
+                        }
+
+                        var section = document.getElementById(targetId);
+                        if (section) {
+                            sections.push({
+                                id: targetId,
+                                link: links[i],
+                                section: section
+                            });
+                        }
+                    }
+
+                    function clearActiveLinks() {
+                        for (var i = 0; i < sections.length; i++) {
+                            sections[i].link.classList.remove('active');
+                        }
+                    }
+
+                    function setActiveLink(sectionId) {
+                        clearActiveLinks();
+
+                        for (var i = 0; i < sections.length; i++) {
+                            if (sections[i].id === sectionId) {
+                                sections[i].link.classList.add('active');
+                                break;
+                            }
+                        }
+                    }
+
+                    function getStickyOffset() {
+                        var navHeight = nav.offsetHeight || 0;
+                        return navHeight + 24;
+                    }
+
+                    function scrollToSection(sectionId) {
+                        var target = document.getElementById(sectionId);
+                        if (!target) {
+                            return;
+                        }
+
+                        var offset = getStickyOffset();
+                        var targetTop = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: targetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    for (var i = 0; i < sections.length; i++) {
+                        (function (item) {
+                            item.link.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                setActiveLink(item.id);
+                                scrollToSection(item.id);
+                            });
+                        })(sections[i]);
+                    }
+
+                    function updateActiveSectionOnScroll() {
+                        var scrollPosition = window.pageYOffset + getStickyOffset() + 20;
+                        var currentId = sections.length ? sections[0].id : null;
+
+                        for (var i = 0; i < sections.length; i++) {
+                            var sectionTop = sections[i].section.offsetTop;
+                            if (scrollPosition >= sectionTop) {
+                                currentId = sections[i].id;
+                            }
+                        }
+
+                        if (currentId) {
+                            setActiveLink(currentId);
+                        }
+                    }
+
+                    window.addEventListener('scroll', updateActiveSectionOnScroll);
+                    window.addEventListener('load', updateActiveSectionOnScroll);
+                    window.addEventListener('resize', updateActiveSectionOnScroll);
+                })();
+            </script>
+            <script>
+                (function () {
+                    function getScrollOffset() {
+                        var nav = document.getElementById('uvDashboardSectionNav');
+                        var navHeight = nav ? nav.offsetHeight : 0;
+
+                        var fixedTop = window.innerWidth < 768 ? 65 : 80;
+
+                        return navHeight + fixedTop + 16;
+                    }
+
+                    function scrollToTopSmooth() {
+                        var target = document.getElementById('uv-section-overview');
+                        if (!target) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            return;
+                        }
+
+                        var offset = getScrollOffset();
+                        var targetTop = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: targetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    document.addEventListener('click', function (e) {
+                        var el = e.target.closest('.uv-back-to-top');
+                        if (!el) return;
+
+                        e.preventDefault();
+                        scrollToTopSmooth();
+                    });
+                })();
+            </script>
+        }
+    }
+</div>

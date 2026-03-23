@@ -22,10 +22,7 @@
     {
       "fieldname": "Paragraph",
       "title": "Paragraph Text (required)",
-      "fieldtype": "ckeditor",
-      "ckeditoroptions": {
-        "configset": "basic"
-      },
+      "fieldtype": "textarea",
       "advanced": true,
       "required": true,
       "hidden": false,
