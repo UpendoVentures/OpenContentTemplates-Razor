@@ -542,6 +542,26 @@
                                         <div class="card-body p-3 p-md-4">
                                             <div class="d-flex align-items-center justify-content-between mb-2">
                                                 <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
+                                                    data-bs-toggle="tooltip" title="Percentage of sessions considered engaged during the selected date range.">Engagement Rate</div>
+                                                <i class="fas fa-heartbeat text-info" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="metric-value h2 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatPercent(summary.EngagementRate)</div>
+                                            @if (showComparison && comparison != null)
+                                            {
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.EngagementRateDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.EngagementRateDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.EngagementRateDeltaVsPrevious) pts vs previous
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
+                                        <div class="card-body p-3 p-md-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
                                                     data-bs-toggle="tooltip" title="Total number of unique users during the selected date range.">Users</div>
                                                 <i class="fas fa-users text-primary" aria-hidden="true"></i>
                                             </div>
@@ -596,29 +616,29 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="row g-3 mb-4">
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
                                         <div class="card-body p-3 p-md-4">
                                             <div class="d-flex align-items-center justify-content-between mb-2">
                                                 <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
-                                                    data-bs-toggle="tooltip" title="Total tracked conversions recorded during the selected date range.">Conversions</div>
-                                                <i class="fas fa-bullseye text-warning" aria-hidden="true"></i>
+                                                    data-bs-toggle="tooltip" title="Percentage of sessions that were not engaged during the selected date range.">Bounce Rate</div>
+                                                <i class="fas fa-undo text-danger" aria-hidden="true"></i>
                                             </div>
-                                            <div class="metric-value h2 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatDecimal(summary.Conversions)</div>
+                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatPercent(summary.BounceRate)</div>
                                             @if (showComparison && comparison != null)
                                             {
-                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.ConversionsDeltaPctVsPrevious)">
-                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.ConversionsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
-                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.ConversionsDeltaPctVsPrevious) vs previous
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.BounceRateDeltaVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.BounceRateDeltaVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.BounceRateDeltaVsPrevious) pts vs previous
                                                 </div>
                                             }
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row g-3 mb-4">
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
                                         <div class="card-body p-3 p-md-4">
@@ -644,35 +664,15 @@
                                         <div class="card-body p-3 p-md-4">
                                             <div class="d-flex align-items-center justify-content-between mb-2">
                                                 <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
-                                                    data-bs-toggle="tooltip" title="Percentage of sessions considered engaged during the selected date range.">Engagement Rate</div>
-                                                <i class="fas fa-heartbeat text-info" aria-hidden="true"></i>
+                                                    data-bs-toggle="tooltip" title="Total tracked conversions recorded during the selected date range.">Conversions</div>
+                                                <i class="fas fa-bullseye text-warning" aria-hidden="true"></i>
                                             </div>
-                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatPercent(summary.EngagementRate)</div>
+                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatDecimal(summary.Conversions)</div>
                                             @if (showComparison && comparison != null)
                                             {
-                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.EngagementRateDeltaVsPrevious)">
-                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.EngagementRateDeltaVsPrevious) me-1" aria-hidden="true"></i>
-                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.EngagementRateDeltaVsPrevious) pts vs previous
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="card metric-card h-100 border-0 shadow-sm rounded-4 bg-light">
-                                        <div class="card-body p-3 p-md-4">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div class="metric-label text-muted small text-uppercase fw-normal mb-0 opacity-75" 
-                                                    data-bs-toggle="tooltip" title="Percentage of sessions that were not engaged during the selected date range.">Bounce Rate</div>
-                                                <i class="fas fa-undo text-danger" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="metric-value h4 fw-bold mb-0 text-dark letter-spacing-tight">@TemplateHelper.Formatting.FormatPercent(summary.BounceRate)</div>
-                                            @if (showComparison && comparison != null)
-                                            {
-                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.BounceRateDeltaVsPrevious)">
-                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.BounceRateDeltaVsPrevious) me-1" aria-hidden="true"></i>
-                                                    @TemplateHelper.Formatting.FormatSignedDecimal(comparison.BounceRateDeltaVsPrevious) pts vs previous
+                                                <div class="small mt-2 @TemplateHelper.Deltas.GetDeltaClass(comparison.ConversionsDeltaPctVsPrevious)">
+                                                    <i class="fas @TemplateHelper.Deltas.GetDeltaIconClass(comparison.ConversionsDeltaPctVsPrevious) me-1" aria-hidden="true"></i>
+                                                    @TemplateHelper.Formatting.FormatSignedPercentNoMultiply(comparison.ConversionsDeltaPctVsPrevious) vs previous
                                                 </div>
                                             }
                                         </div>
