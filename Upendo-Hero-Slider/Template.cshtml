@@ -1,0 +1,266 @@
+@using DotNetNuke.Entities.Modules
+@using System
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    RegisterScript("js/swiper-bundle.min.js");
+
+    // Unique ID without Guid formatting or LINQ; ticks are fine for uniqueness per render.
+    var uid = "ocSwiper_" + DateTime.UtcNow.Ticks.ToString();
+    var items = Model.HeroSlides;
+    var hasItems = false;
+
+    if (items != null)
+    {
+        foreach (var _x in items)
+        {
+            hasItems = true;
+            break;
+        }
+    }
+
+    var carouselLabel = "Featured content"; // change per module instance
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+<div class="@Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+
+@if (hasItems)
+{
+  <section class="oc-swiper position-relative" aria-label="@carouselLabel">
+    <div id="@uid" class="swiper" role="region" aria-roledescription="carousel" aria-label="@carouselLabel">
+      <div class="swiper-wrapper">
+
+        @{
+            var slideCount = 0;
+        }
+
+        @foreach (var it in items)
+        {
+          slideCount++;
+
+          // Defensive reads (avoid fancy stuff; keep it simple)
+          var title = (string)(it.Title ?? string.Empty);
+          var body  = (string)(it.Body ?? string.Empty);
+          var img   = (string)(it.Image ?? string.Empty);
+          var alt   = (string)(it.ImageAlt ?? string.Empty);
+
+          if (string.IsNullOrWhiteSpace(alt))
+          {
+              alt = title; // fallback
+          }
+
+          var url   = (string)(it.PrimaryUrl ?? string.Empty);
+          var cta   = (string)(it.PrimaryText ?? string.Empty);
+          if (string.IsNullOrWhiteSpace(cta))
+          {
+              cta = "Learn more";
+          }
+
+          <div class="swiper-slide h-auto" data-oc-slide="true">
+            <article class="card h-100 shadow-sm">
+
+              @if (!string.IsNullOrWhiteSpace(img))
+              {
+                <img class="card-img-top" src="@img" alt="@alt" loading="lazy" decoding="async" />
+              }
+
+              <div class="card-body">
+
+                @if (!string.IsNullOrWhiteSpace(title))
+                {
+                  <h3 class="h5 card-title">@title</h3>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(body))
+                {
+                  <p class="card-text">@body</p>
+                }
+              </div>
+
+              @if (!string.IsNullOrWhiteSpace(url))
+              {
+                <div class="card-footer bg-transparent border-0 pt-0">
+                  <a class="btn btn-primary" href="@url" rel="noopener">
+                    @cta
+                    @if (!string.IsNullOrWhiteSpace(title))
+                    {
+                      <span class="visually-hidden">: @title</span>
+                    }
+                  </a>
+                </div>
+              }
+            </article>
+          </div>
+        }
+
+      </div>
+
+      @* Controls *@
+      <button type="button"
+              class="oc-swiper-prev btn btn-light position-absolute top-50 start-0 translate-middle-y ms-2"
+              aria-label="Previous slide">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <button type="button"
+              class="oc-swiper-next btn btn-light position-absolute top-50 end-0 translate-middle-y me-2"
+              aria-label="Next slide">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+
+      @* Pagination *@
+      <div class="oc-swiper-pagination swiper-pagination" aria-label="Carousel pagination"></div>
+
+      @* Play/Pause *@
+      <div class="position-absolute bottom-0 end-0 m-2">
+        <button type="button"
+                class="oc-swiper-toggle btn btn-outline-light btn-sm"
+                aria-pressed="true"
+                aria-label="Pause autoplay">
+          <i class="fa-solid fa-pause" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      @* Live region *@
+      <p class="visually-hidden" aria-live="polite" data-oc-swiper-live></p>
+
+      @* Store slide count for JS (no querying / LINQ needed) *@
+      <input type="hidden" data-oc-slide-count value="@slideCount" />
+    </div>
+  </section>
+
+  <style>
+    #@uid .oc-swiper-prev,
+    #@uid .oc-swiper-next { z-index: 5; }
+    #@uid .swiper-pagination-bullet { width: 12px; height: 12px; }
+  </style>
+
+  <script>
+    (function () {
+      var root = document.getElementById("@uid");
+      if (!root || typeof Swiper === "undefined") return;
+
+      var prefersReducedMotion = false;
+      if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      }
+
+      var prevBtn = root.querySelector(".oc-swiper-prev");
+      var nextBtn = root.querySelector(".oc-swiper-next");
+      var toggleBtn = root.querySelector(".oc-swiper-toggle");
+      var live = root.querySelector("[data-oc-swiper-live]");
+      var slideCountEl = root.querySelector("[data-oc-slide-count]");
+      var totalSlides = 0;
+
+      if (slideCountEl && slideCountEl.value) {
+        // parseInt safety
+        var n = parseInt(slideCountEl.value, 10);
+        if (!isNaN(n)) totalSlides = n;
+      }
+
+      var swiper = new Swiper(root, {
+        loop: false,
+        speed: 450,
+        grabCursor: true,
+        watchOverflow: true,
+
+        slidesPerView: 1,
+        spaceBetween: 16,
+        breakpoints: {
+          576: { slidesPerView: 1.2 },
+          768: { slidesPerView: 2 },
+          992: { slidesPerView: 3 }
+        },
+
+        navigation: {
+          prevEl: prevBtn,
+          nextEl: nextBtn
+        },
+
+        pagination: {
+          el: root.querySelector(".oc-swiper-pagination"),
+          clickable: true
+        },
+
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true
+        },
+
+        autoplay: prefersReducedMotion ? false : {
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        },
+
+        preloadImages: false,
+        lazy: { loadPrevNext: true },
+
+        on: {
+          slideChange: function () {
+            if (!live || !totalSlides) return;
+            var idx = this.realIndex + 1;
+            live.textContent = "Slide " + idx + " of " + totalSlides;
+          }
+        }
+      });
+
+      // Play/Pause
+      if (toggleBtn && swiper.autoplay) {
+        function setState(isPlaying) {
+          toggleBtn.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+          toggleBtn.setAttribute("aria-label", isPlaying ? "Pause autoplay" : "Play autoplay");
+          var icon = toggleBtn.querySelector("i");
+          if (icon) {
+            icon.className = isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
+          }
+        }
+
+        setState(true);
+
+        toggleBtn.addEventListener("click", function () {
+          if (!swiper.autoplay) return;
+          if (swiper.autoplay.running) {
+            swiper.autoplay.stop();
+            setState(false);
+          } else {
+            swiper.autoplay.start();
+            setState(true);
+          }
+        });
+      }
+    })();
+  </script>
+}
+else{
+    <div class="alert alert-success" role="alert">
+        <h2>Hero Slides Not Configured</h2>
+        <p>Please add one or more slides to see content in this area.</p>
+    </div>
+}
+
+</div>
+@*
+<div class="dnnClear">
+    @ObjectInfo.Print(Model)
+</div>
+*@
