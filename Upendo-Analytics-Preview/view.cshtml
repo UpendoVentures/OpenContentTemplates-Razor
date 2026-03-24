@@ -6,6 +6,8 @@
 @using Upendo.SkinObjects.OpenContentHelper.Helpers
 
 @{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+
     var dashboardTitle = string.Empty;
     var siteId = 0;
     var dataSourceId = 0;

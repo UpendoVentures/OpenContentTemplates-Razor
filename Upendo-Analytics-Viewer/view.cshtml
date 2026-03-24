@@ -6,6 +6,8 @@
 @using Upendo.SkinObjects.OpenContentHelper.Helpers
 
 @{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+
     RegisterScript("https://cdn.jsdelivr.net/npm/chart.js");
 
     var dashboardTitle = string.Empty;
