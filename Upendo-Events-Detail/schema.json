@@ -1,0 +1,58 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor"
+        },
+        "DetailBasePath": {
+            "type": "string",
+            "title": "Detail Base Path",
+            "default": "/events"
+        },
+        "DefaultPageSize": {
+            "type": "integer",
+            "title": "Default Page Size",
+            "default": 10
+        },
+        "ShowTopCategories": {
+            "type": "boolean",
+            "title": "Show Top Categories",
+            "default": true
+        },
+        "ShowTopTags": {
+            "type": "boolean",
+            "title": "Show Top Tags",
+            "default": true
+        },
+        "ShowTopOrganizers": {
+            "type": "boolean",
+            "title": "Show Top Organizers",
+            "default": true
+        },
+        "RelatedEventCount": {
+            "type": "integer",
+            "title": "Related Event Count",
+            "default": 3
+        },
+        "ShowRelatedEvents": {
+            "type": "boolean",
+            "title": "Show Related Events",
+            "default": true
+        },
+        "ShowAudiences": {
+            "type": "boolean",
+            "title": "Show Audiences",
+            "default": true
+        },
+        "ShowFeatures": {
+            "type": "boolean",
+            "title": "Show Features",
+            "default": true
+        }
+    }
+}

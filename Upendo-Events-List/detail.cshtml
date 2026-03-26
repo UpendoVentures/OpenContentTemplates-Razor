@@ -1,0 +1,547 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.OpenContentHelper.Features.Events
+@using Upendo.OpenContentHelper.Features.Events.Helpers
+@using Upendo.OpenContentHelper.Features.Events.Models
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+
+    public string GetInitials(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return "?";
+        }
+
+        string[] parts = name.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        string result = string.Empty;
+
+        for (int i = 0; i < parts.Length; i++)
+        {
+            if (!string.IsNullOrWhiteSpace(parts[i]))
+            {
+                result += parts[i][0];
+            }
+        }
+
+        return result.ToUpperInvariant();
+    }
+
+    public string GetSafeString(object value)
+    {
+        return value == null ? string.Empty : Convert.ToString(value);
+    }
+
+    public bool GetBoolValue(object value, bool defaultValue)
+    {
+        if (value == null)
+        {
+            return defaultValue;
+        }
+
+        bool parsed;
+        if (bool.TryParse(Convert.ToString(value), out parsed))
+        {
+            return parsed;
+        }
+
+        return defaultValue;
+    }
+
+    public int GetIntValue(object value, int defaultValue)
+    {
+        if (value == null)
+        {
+            return defaultValue;
+        }
+
+        int parsed;
+        if (int.TryParse(Convert.ToString(value), out parsed))
+        {
+            return parsed;
+        }
+
+        return defaultValue;
+    }
+
+    public string GetSlugFromRequest(HttpRequest request)
+    {
+        if (request == null)
+        {
+            return string.Empty;
+        }
+
+        string[] segments = request.Url.AbsolutePath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+        if (segments == null || segments.Length == 0)
+        {
+            return string.Empty;
+        }
+
+        return segments[segments.Length - 1];
+    }
+}
+
+@{
+    RegisterStyleSheet("css/template.css");
+
+    int portalId = -1;
+    if (Dnn != null && Dnn.Portal != null)
+    {
+        portalId = Dnn.Portal.PortalId;
+    }
+
+    string detailBasePath = "/events";
+    int relatedEventCount = 3;
+    bool showRelatedEvents = true;
+    bool showAudiences = true;
+    bool showFeatures = true;
+
+    if (Model != null)
+    {
+        if (Model.DetailBasePath != null)
+        {
+            detailBasePath = GetSafeString(Model.DetailBasePath);
+        }
+
+        if (Model.RelatedEventCount != null)
+        {
+            relatedEventCount = GetIntValue(Model.RelatedEventCount, 3);
+        }
+
+        if (Model.ShowRelatedEvents != null)
+        {
+            showRelatedEvents = GetBoolValue(Model.ShowRelatedEvents, true);
+        }
+
+        if (Model.ShowAudiences != null)
+        {
+            showAudiences = GetBoolValue(Model.ShowAudiences, true);
+        }
+
+        if (Model.ShowFeatures != null)
+        {
+            showFeatures = GetBoolValue(Model.ShowFeatures, true);
+        }
+    }
+
+    HttpRequest httpRequest = HttpContext.Current != null ? HttpContext.Current.Request : null;
+
+    string slug = httpRequest != null ? httpRequest.QueryString["slug"] : null;
+    if (string.IsNullOrWhiteSpace(slug))
+    {
+        slug = GetSlugFromRequest(httpRequest);
+    }
+
+    if (!string.IsNullOrWhiteSpace(detailBasePath))
+    {
+        string normalizedBasePath = detailBasePath.Trim().Trim('/');
+        string normalizedSlug = slug != null ? slug.Trim().Trim('/') : string.Empty;
+
+        if (!string.IsNullOrWhiteSpace(normalizedSlug) &&
+            !string.IsNullOrWhiteSpace(normalizedBasePath) &&
+            normalizedSlug.Equals(normalizedBasePath, StringComparison.OrdinalIgnoreCase))
+        {
+            slug = string.Empty;
+        }
+    }
+
+    EventDetailViewModel vm = null;
+
+    if (!string.IsNullOrWhiteSpace(slug) && portalId > -1)
+    {
+        vm = EventFacade.GetDetailViewModel(portalId, slug, detailBasePath, relatedEventCount);
+    }
+
+    EventDetailDto evt = vm != null ? vm.Event : null;
+
+    if (evt == null)
+    {
+        Response.StatusCode = 404;
+        <div class="alert alert-warning my-4">Event not found.</div>
+        return;
+    }
+
+    string displayDate = EventFormattingHelper.GetDisplayDate(evt);
+    string displayTime = EventFormattingHelper.GetDisplayTime(evt);
+    string displayPrice = EventFormattingHelper.GetDisplayPrice(evt);
+
+    string imageUrl = !string.IsNullOrWhiteSpace(evt.HeroImageUrl)
+        ? evt.HeroImageUrl
+        : evt.ListImageUrl;
+
+    string locationText = !string.IsNullOrWhiteSpace(evt.PublicLocationText)
+        ? evt.PublicLocationText
+        : (!string.IsNullOrWhiteSpace(evt.VenueName)
+            ? evt.VenueName
+            : string.Concat(
+                evt.City,
+                !string.IsNullOrWhiteSpace(evt.Region) ? string.Concat(", ", evt.Region) : string.Empty));
+
+    bool hasMetaBlock = !string.IsNullOrWhiteSpace(displayDate)
+        || !string.IsNullOrWhiteSpace(displayTime)
+        || !string.IsNullOrWhiteSpace(locationText);
+
+    bool hasTags = evt.Tags != null && evt.Tags.Count > 0;
+    bool hasFeatures = showFeatures && evt.Features != null && evt.Features.Count > 0;
+    bool hasAudiences = showAudiences && evt.Audiences != null && evt.Audiences.Count > 0;
+    bool hasRelated = showRelatedEvents && evt.RelatedEvents != null && evt.RelatedEvents.Count > 0;
+}
+<div class="container my-4 my-lg-5">
+
+    <div class="mb-3">
+        <a href="@detailBasePath" class="small text-decoration-none">
+            <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i>
+            Back to Events
+        </a>
+    </div>
+
+    <section class="mb-5">
+        <div class="row g-4 g-lg-5 align-items-start">
+
+            <div class="col-12 col-lg-7">
+
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    @if (evt.IsUpcoming)
+                    {
+                        <span class="badge rounded-pill text-bg-primary">Upcoming</span>
+                    }
+                    else
+                    {
+                        <span class="badge rounded-pill text-bg-secondary">Past</span>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(evt.CategoryName))
+                    {
+                        <span class="badge rounded-pill bg-light text-dark border">@evt.CategoryName</span>
+                    }
+
+                    @if (hasTags)
+                    {
+                        foreach (var tag in evt.Tags)
+                        {
+                            <span class="badge rounded-pill bg-light text-dark border">#@tag.TagName</span>
+                        }
+                    }
+                </div>
+
+                <h1 class="mb-3">@evt.Title</h1>
+
+                @if (!string.IsNullOrWhiteSpace(evt.ShortSummary))
+                {
+                    <p class="lead text-muted mb-4">@evt.ShortSummary</p>
+                }
+
+                @if (hasMetaBlock)
+                {
+                    <div class="row g-3 mb-4">
+
+                        @if (!string.IsNullOrWhiteSpace(displayDate))
+                        {
+                            <div class="col-12 col-sm-6">
+                                <div class="d-flex align-items-start gap-3">
+                                    <span class="fs-4 text-primary">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <div>
+                                        <div class="small text-uppercase text-muted fw-bold">Date</div>
+                                        <div>@displayDate</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(displayTime))
+                        {
+                            <div class="col-12 col-sm-6">
+                                <div class="d-flex align-items-start gap-3">
+                                    <span class="fs-4 text-primary">
+                                        <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                                    </span>
+                                    <div>
+                                        <div class="small text-uppercase text-muted fw-bold">Time</div>
+                                        <div>@displayTime</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(locationText))
+                        {
+                            <div class="col-12">
+                                <div class="d-flex align-items-start gap-3">
+                                    <span class="fs-4 text-primary">
+                                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                    </span>
+                                    <div>
+                                        <div class="small text-uppercase text-muted fw-bold">Location</div>
+                                        <div>@locationText</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl))
+                {
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="@evt.RegistrationUrl"
+                           class="btn btn-primary"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            @(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText)
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(vm.IcsDownloadUrl))
+                        {
+                            <a href="@vm.IcsDownloadUrl"
+                               class="btn btn-outline-secondary">
+                                Add to Calendar
+                            </a>
+                        }
+                    </div>
+                }
+                else if (!string.IsNullOrWhiteSpace(vm.IcsDownloadUrl))
+                {
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="@vm.IcsDownloadUrl"
+                           class="btn btn-outline-secondary">
+                            Add to Calendar
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+            <div class="col-12 col-lg-5">
+                @if (!string.IsNullOrWhiteSpace(imageUrl))
+                {
+                    <div class="overflow-hidden rounded shadow-sm border">
+                        <img src="@imageUrl"
+                             alt="@evt.Title"
+                             class="img-fluid w-100 object-fit-cover"
+                             style="max-height: 420px;" />
+                    </div>
+                }
+            </div>
+
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <div class="row g-4 g-lg-5">
+
+            <div class="col-12 col-lg-8">
+
+                @if (!string.IsNullOrWhiteSpace(evt.FullDescription))
+                {
+                    <article class="mb-5">
+                        <h2 class="h3 mb-3">Event Description</h2>
+                        <div class="event-body-copy">
+                            @Html.Raw(evt.FullDescription)
+                        </div>
+                    </article>
+                }
+
+                @if (hasFeatures)
+                {
+                    <article class="mb-5">
+                        <h2 class="h3 mb-3">What to Expect</h2>
+
+                        <div class="row g-3">
+                            @foreach (var feature in evt.Features)
+                            {
+                                <div class="col-12 col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body">
+                                            @if (!string.IsNullOrWhiteSpace(feature.Title))
+                                            {
+                                                <h3 class="h6 mb-2">@feature.Title</h3>
+                                            }
+
+                                            @if (!string.IsNullOrWhiteSpace(feature.Description))
+                                            {
+                                                <p class="mb-0 text-muted">@feature.Description</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </article>
+                }
+
+                @if (hasAudiences)
+                {
+                    <article class="mb-5">
+                        <h2 class="h3 mb-3">Who It's For</h2>
+
+                        <div class="row g-3">
+                            @foreach (var audience in evt.Audiences)
+                            {
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-body">
+                                            @if (!string.IsNullOrWhiteSpace(audience.Title))
+                                            {
+                                                <h3 class="h6 mb-2">@audience.Title</h3>
+                                            }
+
+                                            @if (!string.IsNullOrWhiteSpace(audience.Description))
+                                            {
+                                                <p class="mb-0 text-muted">@audience.Description</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </article>
+                }
+
+                @if (hasRelated)
+                {
+                    <section class="mt-5 pt-4 border-top">
+                        <h2 class="h3 mb-4">Related Events</h2>
+
+                        <div class="row g-4">
+                            @foreach (var rel in evt.RelatedEvents)
+                            {
+                                string relUrl = EventUrlHelper.GetDetailUrl(rel, vm.DetailBasePath);
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <article class="card h-100 border-0 shadow-sm">
+                                        @if (!string.IsNullOrWhiteSpace(rel.ListImageUrl))
+                                        {
+                                            <img src="@rel.ListImageUrl"
+                                                 class="card-img-top object-fit-cover"
+                                                 style="height: 200px;"
+                                                 alt="@rel.Title" />
+                                        }
+
+                                        <div class="card-body">
+                                            @if (!string.IsNullOrWhiteSpace(rel.CategoryName))
+                                            {
+                                                <div class="small text-uppercase text-muted fw-bold mb-2">@rel.CategoryName</div>
+                                            }
+
+                                            <h3 class="h5 mb-2">
+                                                <a href="@relUrl" class="text-decoration-none">@rel.Title</a>
+                                            </h3>
+
+                                            <div class="small text-muted">
+                                                @EventFormattingHelper.GetDisplayDate(rel)
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                }
+
+            </div>
+
+            <aside class="col-12 col-lg-4">
+
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="h5 mb-3">Key Details</h2>
+
+                        <ul class="list-unstyled mb-0">
+
+                            @if (!string.IsNullOrWhiteSpace(displayDate))
+                            {
+                                <li class="mb-3">
+                                    <div class="small text-uppercase text-muted fw-bold">Date</div>
+                                    <div>@displayDate</div>
+                                </li>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(displayTime))
+                            {
+                                <li class="mb-3">
+                                    <div class="small text-uppercase text-muted fw-bold">Time</div>
+                                    <div>@displayTime</div>
+                                </li>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(locationText))
+                            {
+                                <li class="mb-3">
+                                    <div class="small text-uppercase text-muted fw-bold">Location</div>
+                                    <div>@locationText</div>
+                                </li>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(displayPrice))
+                            {
+                                <li class="mb-3">
+                                    <div class="small text-uppercase text-muted fw-bold">Price</div>
+                                    <div>@displayPrice</div>
+                                </li>
+                            }
+
+                        </ul>
+
+                        <div class="d-grid gap-2 mt-3">
+                            @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl))
+                            {
+                                <a href="@evt.RegistrationUrl"
+                                   class="btn btn-primary"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    @(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText)
+                                </a>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(vm.IcsDownloadUrl))
+                            {
+                                <a href="@vm.IcsDownloadUrl"
+                                   class="btn btn-outline-secondary">
+                                    Add to Calendar
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(evt.OrganizerName))
+                {
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <h2 class="h5 mb-3">Organizer</h2>
+
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="rounded-circle bg-light border d-inline-flex align-items-center justify-content-center fw-bold"
+                                     style="width: 52px; height: 52px;">
+                                    @GetInitials(evt.OrganizerName)
+                                </div>
+
+                                <div>
+                                    <div class="fw-semibold">@evt.OrganizerName</div>
+
+                                    @if (!string.IsNullOrWhiteSpace(evt.OrganizerWebsiteUrl))
+                                    {
+                                        <a href="@evt.OrganizerWebsiteUrl"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="small">
+                                            Visit Website
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </aside>
+
+        </div>
+    </section>
+
+</div>
