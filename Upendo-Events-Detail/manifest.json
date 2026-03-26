@@ -6,7 +6,7 @@
       "type": "simple",
       "title": "Detail",
       "main": {
-        "template": "detail.cshtml",
+        "template": "Template.cshtml",
         "clientSideData": false
       }
     }
