@@ -1,0 +1,471 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.OpenContentHelper.Features.Events
+@using Upendo.OpenContentHelper.Features.Events.Helpers
+@using Upendo.OpenContentHelper.Features.Events.Models
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+
+    public string BuildUrl(EventListRequest request, string categorySlug)
+    {
+        var query = HttpUtility.ParseQueryString(string.Empty);
+
+        bool isUpcoming = true;
+        if (request != null)
+        {
+            isUpcoming = request.IsUpcoming;
+        }
+
+        query["upcoming"] = isUpcoming ? "true" : "false";
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.TagSlug))
+        {
+            query["tag"] = request.TagSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.OrganizerSlug))
+        {
+            query["organizer"] = request.OrganizerSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.Keyword))
+        {
+            query["q"] = request.Keyword;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.SortBy))
+        {
+            query["sort"] = request.SortBy;
+        }
+
+        if (!string.IsNullOrWhiteSpace(categorySlug))
+        {
+            query["category"] = categorySlug;
+        }
+
+        string qs = query.ToString();
+        return string.IsNullOrWhiteSpace(qs) ? "?" : "?" + qs;
+    }
+
+    public string BuildPageUrl(EventListRequest request, int pageNumber)
+    {
+        var query = HttpUtility.ParseQueryString(string.Empty);
+
+        bool isUpcoming = true;
+        if (request != null)
+        {
+            isUpcoming = request.IsUpcoming;
+        }
+
+        query["upcoming"] = isUpcoming ? "true" : "false";
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.CategorySlug))
+        {
+            query["category"] = request.CategorySlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.TagSlug))
+        {
+            query["tag"] = request.TagSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.OrganizerSlug))
+        {
+            query["organizer"] = request.OrganizerSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.Keyword))
+        {
+            query["q"] = request.Keyword;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.SortBy))
+        {
+            query["sort"] = request.SortBy;
+        }
+
+        if (pageNumber > 1)
+        {
+            query["page"] = pageNumber.ToString();
+        }
+
+        string qs = query.ToString();
+        return string.IsNullOrWhiteSpace(qs) ? "?" : "?" + qs;
+    }
+
+    public string GetInitials(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return "?";
+        }
+
+        var parts = name.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+        if (parts.Length == 1)
+        {
+            return parts[0].Substring(0, 1).ToUpperInvariant();
+        }
+
+        return (parts[0][0].ToString() + parts[parts.Length - 1][0].ToString()).ToUpperInvariant();
+    }
+}
+
+@{
+    RegisterStyleSheet("template.css");
+    
+    int portalId = -1;
+    if (Dnn != null && Dnn.Portal != null)
+    {
+        portalId = Dnn.Portal.PortalId;
+    }
+
+    string listPagePath = EventConstants.EventListPageRoute;
+    string detailPagePath = EventConstants.EventDetailPageRoute;
+    int defaultPageSize = 10;
+    bool showTopCategories = true;
+    bool showTopTags = true;
+    bool showTopOrganizers = true;
+
+    if (Model != null)
+    {
+        if (Model.ListPagePath != null)
+        {
+            listPagePath = Convert.ToString(Model.ListPagePath);
+        }
+
+        if (Model.DetailPagePath != null)
+        {
+            detailPagePath = Convert.ToString(Model.DetailPagePath);
+        }
+
+        if (Model.DefaultPageSize != null)
+        {
+            int parsedPageSize;
+            if (int.TryParse(Convert.ToString(Model.DefaultPageSize), out parsedPageSize) && parsedPageSize > 0)
+            {
+                defaultPageSize = parsedPageSize;
+            }
+        }
+
+        if (Model.ShowTopCategories != null)
+        {
+            bool parsed;
+            if (bool.TryParse(Convert.ToString(Model.ShowTopCategories), out parsed))
+            {
+                showTopCategories = parsed;
+            }
+        }
+
+        if (Model.ShowTopTags != null)
+        {
+            bool parsed;
+            if (bool.TryParse(Convert.ToString(Model.ShowTopTags), out parsed))
+            {
+                showTopTags = parsed;
+            }
+        }
+
+        if (Model.ShowTopOrganizers != null)
+        {
+            bool parsed;
+            if (bool.TryParse(Convert.ToString(Model.ShowTopOrganizers), out parsed))
+            {
+                showTopOrganizers = parsed;
+            }
+        }
+    }
+
+    var httpRequest = HttpContext.Current != null ? HttpContext.Current.Request : null;
+
+    int pageNumber = 1;
+    string pageRaw = httpRequest != null ? httpRequest.QueryString["page"] : null;
+    if (!string.IsNullOrWhiteSpace(pageRaw))
+    {
+        int parsedPage;
+        if (int.TryParse(pageRaw, out parsedPage) && parsedPage > 0)
+        {
+            pageNumber = parsedPage;
+        }
+    }
+
+    bool isUpcoming = true;
+    string upcomingRaw = httpRequest != null ? httpRequest.QueryString["upcoming"] : null;
+    if (!string.IsNullOrWhiteSpace(upcomingRaw))
+    {
+        bool parsedUpcoming;
+        if (bool.TryParse(upcomingRaw, out parsedUpcoming))
+        {
+            isUpcoming = parsedUpcoming;
+        }
+    }
+
+    string categorySlug = httpRequest != null ? httpRequest.QueryString["category"] : null;
+    string tagSlug = httpRequest != null ? httpRequest.QueryString["tag"] : null;
+    string organizerSlug = httpRequest != null ? httpRequest.QueryString["organizer"] : null;
+    string keyword = httpRequest != null ? httpRequest.QueryString["q"] : null;
+    string sortBy = httpRequest != null ? httpRequest.QueryString["sort"] : null;
+
+    EventListRequest listRequest = new EventListRequest
+    {
+        PortalId = portalId,
+        PageNumber = pageNumber,
+        PageSize = defaultPageSize,
+        CategorySlug = categorySlug,
+        TagSlug = tagSlug,
+        OrganizerSlug = organizerSlug,
+        Keyword = keyword,
+        IsUpcoming = isUpcoming,
+        SortBy = sortBy
+    };
+
+    EventListViewModel vm = EventFacade.GetListViewModel(listRequest, listPagePath, detailPagePath);
+
+    EventListRequest request = vm != null ? vm.Request : null;
+    PagedResult<EventListItemDto> results = vm != null ? vm.Results : null;
+    IList<EventListItemDto> items = results != null && results.Items != null
+        ? results.Items
+        : new List<EventListItemDto>();
+}
+
+@{
+    RegisterStyleSheet("css/template.css");
+}
+
+<div class="container my-4 my-lg-5 event-shell">
+
+    @if (showTopCategories && vm != null && vm.ActiveCategories != null && vm.ActiveCategories.Count > 0)
+    {
+        <div class="event-filter-bar mb-4">
+            <div class="event-section-heading">Browse by Category</div>
+
+            <div class="event-chip-row">
+                <a href="@BuildUrl(request, null)" class="category-chip @(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "active" : "")">
+                    All
+                </a>
+
+                @foreach (var cat in vm.ActiveCategories)
+                {
+                    bool isActive = vm.ActiveCategorySlug == cat.CategorySlug;
+
+                    <a href="@BuildUrl(request, cat.CategorySlug)" class="category-chip @(isActive ? "active" : "")">
+                        @cat.CategoryName
+                        <span class="count-badge">@cat.EventCount</span>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+
+    <div class="row g-4">
+
+        <div class="col-12 col-lg-8">
+
+            @if (items == null || items.Count == 0)
+            {
+                <div class="event-empty-state">
+                    <div class="event-empty-icon">
+                        <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+                    </div>
+
+                    <h2 class="h4 mb-2">@(vm != null ? vm.EmptyStateTitle : "No Events Found")</h2>
+                    <p class="text-secondary mb-0">@(vm != null ? vm.EmptyStateText : "There are no events matching the current filters.")</p>
+                </div>
+            }
+            else
+            {
+                foreach (var item in items)
+                {
+                    var detailUrl = EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath);
+                    string displayDate = EventFormattingHelper.GetDisplayDate(item);
+                    string displayTime = EventFormattingHelper.GetDisplayTime(item);
+
+                    string imageUrl = !string.IsNullOrEmpty(item.ListImageUrl)
+                        ? item.ListImageUrl
+                        : item.ThumbnailImageUrl;
+
+                    string locationText = !string.IsNullOrEmpty(item.PublicLocationText)
+                        ? item.PublicLocationText
+                        : (!string.IsNullOrEmpty(item.VenueName)
+                            ? item.VenueName
+                            : string.Concat(
+                                item.City,
+                                !string.IsNullOrEmpty(item.Region) ? string.Concat(", ", item.Region) : string.Empty));
+
+                    string monthText = item.StartDateTimeUtc.ToString("MMM");
+
+                    string dayText = item.StartDateTimeUtc.ToString("dd");
+
+                    <article class="event-card mb-4">
+                        <div class="row g-0 h-100">
+
+                            <div class="col-12 col-md-4">
+                                <div class="event-card-media">
+                                    @if (!string.IsNullOrWhiteSpace(imageUrl))
+                                    {
+                                        <a href="@detailUrl" aria-label="View details for @item.Title">
+                                            <img src="@imageUrl" alt="@item.Title" />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <div class="event-card-media-placeholder" aria-hidden="true">
+                                            <i class="fa-regular fa-image"></i>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(monthText) && !string.IsNullOrWhiteSpace(dayText))
+                                    {
+                                        <div class="event-date-badge" aria-hidden="true">
+                                            <span class="event-date-badge-day">@dayText</span>
+                                            <span class="event-date-badge-month">@monthText</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-8">
+                                <div class="event-card-body">
+
+                                    <div class="event-card-kicker">
+                                        @if (!string.IsNullOrWhiteSpace(item.CategoryName))
+                                        {
+                                            <span class="category-chip">@item.CategoryName</span>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(displayDate))
+                                        {
+                                            <span class="event-meta-inline">
+                                                <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                                @displayDate
+                                            </span>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(displayTime))
+                                        {
+                                            <span class="event-meta-inline">
+                                                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                                                @displayTime
+                                            </span>
+                                        }
+                                    </div>
+
+                                    <h2 class="event-title h4">
+                                        <a href="@detailUrl">@item.Title</a>
+                                    </h2>
+
+                                    @if (!string.IsNullOrWhiteSpace(item.ShortSummary))
+                                    {
+                                        <p class="event-summary">@item.ShortSummary</p>
+                                    }
+
+                                    @if (item.Tags != null && item.Tags.Count > 0)
+                                    {
+                                        <div class="event-chip-row mb-0">
+                                            @foreach (var tag in item.Tags)
+                                            {
+                                                <span class="tag-chip">#@tag.TagName</span>
+                                            }
+                                        </div>
+                                    }
+
+                                    <div class="event-card-footer">
+                                        <div>
+                                            @if (!string.IsNullOrWhiteSpace(locationText))
+                                            {
+                                                <span class="event-location">
+                                                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                                    @locationText
+                                                </span>
+                                            }
+                                        </div>
+
+                                        <div>
+                                            <a href="@detailUrl" class="btn btn-outline-primary btn-sm">
+                                                View Details
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+                }
+
+                if (results != null && results.TotalPages > 1)
+                {
+                    <div class="event-pagination-wrap mt-4">
+                        <nav aria-label="Event results pages">
+                            <ul class="pagination event-pagination flex-wrap">
+
+                                @for (int i = 1; i <= results.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == results.PageNumber ? "active" : "")">
+                                        <a class="page-link" href="@BuildPageUrl(request, i)">
+                                            @i
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </nav>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <aside class="col-12 col-lg-4">
+
+            @if (showTopTags && vm != null && vm.TrendingTags != null && vm.TrendingTags.Count > 0)
+            {
+                <div class="event-sidebar-card mb-4">
+                    <h3 class="sidebar-heading">Popular Topics</h3>
+
+                    <div class="event-chip-row">
+                        @foreach (var tag in vm.TrendingTags)
+                        {
+                            <a href="?tag=@tag.Slug" class="topic-chip">
+                                #@tag.TagName
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (showTopOrganizers && vm != null && vm.TopOrganizers != null && vm.TopOrganizers.Count > 0)
+            {
+                <div class="event-sidebar-card">
+                    <h3 class="sidebar-heading">Organizers</h3>
+
+                    <div class="organizer-list">
+                        @foreach (var org in vm.TopOrganizers)
+                        {
+                            <div class="organizer-row">
+                                <div class="organizer-avatar">
+                                    @GetInitials(org.OrganizerName)
+                                </div>
+
+                                <div>
+                                    <div class="fw-semibold">@org.OrganizerName</div>
+                                    <div class="small text-secondary">@org.HostedEventCount events</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+        </aside>
+
+    </div>
+
+</div>
+@*
+@ObjectInfo.Print(Model)
+@ObjectInfo.Print(vm)
+*@

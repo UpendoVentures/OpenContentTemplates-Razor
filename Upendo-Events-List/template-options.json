@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "ListPagePath": {
+      "title": "List Page Path",
+      "type": "text",
+      "default": "/events"
+    },
+    "DetailPagePath": {
+      "title": "Detail Page Path",
+      "type": "text",
+      "default": "/events/detail"
+    },
+    "DefaultPageSize": {
+      "title": "Default Page Size",
+      "type": "number",
+      "default": 10
+    },
+    "ShowTopCategories": {
+      "title": "Show Top Categories",
+      "type": "checkbox",
+      "default": true
+    },
+    "ShowTopTags": {
+      "title": "Show Top Tags",
+      "type": "checkbox",
+      "default": true
+    },
+    "ShowTopOrganizers": {
+      "title": "Show Top Organizers",
+      "type": "checkbox",
+      "default": true
+    }
+  }
+}

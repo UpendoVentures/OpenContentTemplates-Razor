@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "ListPagePath": {
+      "title": "List Page Path",
+      "type": "text",
+      "default": "/events"
+    },
+    "DetailPagePath": {
+      "title": "Detail Page Path",
+      "type": "text",
+      "default": "/events/detail"
+    },
+    "RelatedEventCount": {
+      "title": "Related Event Count",
+      "type": "number",
+      "default": 3
+    },
+    "ShowRelatedEvents": {
+      "title": "Show Related Events",
+      "type": "checkbox",
+      "default": true
+    },
+    "ShowAudiences": {
+      "title": "Show Audiences",
+      "type": "checkbox",
+      "default": true
+    },
+    "ShowFeatures": {
+      "title": "Show Features",
+      "type": "checkbox",
+      "default": true
+    }
+  }
+}

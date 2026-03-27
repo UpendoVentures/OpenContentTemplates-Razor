@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "ListPagePath": {
+      "title": "List Page Path",
+      "type": "string",
+      "default": "/events"
+    },
+    "DetailPagePath": {
+      "title": "Detail Page Path",
+      "type": "string",
+      "default": "/events/detail"
+    },
+    "RelatedEventCount": {
+      "title": "Related Event Count",
+      "type": "integer",
+      "default": 3
+    },
+    "ShowRelatedEvents": {
+      "title": "Show Related Events",
+      "type": "boolean",
+      "default": true
+    },
+    "ShowAudiences": {
+      "title": "Show Audiences",
+      "type": "boolean",
+      "default": true
+    },
+    "ShowFeatures": {
+      "title": "Show Features",
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

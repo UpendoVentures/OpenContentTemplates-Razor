@@ -1,0 +1,14 @@
+{
+  "editWitoutPostback": true,
+  "index": true,
+  "templates": {
+    "template": {
+      "type": "simple",
+      "title": "Detail",
+      "main": {
+        "template": "Template.cshtml",
+        "clientSideData": false
+      }
+    }
+  }
+}
