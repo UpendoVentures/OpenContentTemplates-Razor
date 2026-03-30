@@ -4,6 +4,7 @@
 @using Upendo.OpenContentHelper.Features.Events
 @using Upendo.OpenContentHelper.Features.Events.Helpers
 @using Upendo.OpenContentHelper.Features.Events.Models
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
@@ -114,6 +115,7 @@
 }
 
 @{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
     RegisterStyleSheet("template.css");
     
     int portalId = -1;
@@ -228,10 +230,10 @@
     IList<EventListItemDto> items = results != null && results.Items != null
         ? results.Items
         : new List<EventListItemDto>();
-}
 
-@{
-    RegisterStyleSheet("css/template.css");
+    bool showEdit = (Model.Context.IsEditMode || TemplateHelper.CurrentUserCanEdit());
+
+    RegisterStyleSheet("template.css");
 }
 
 <div class="container my-4 my-lg-5 event-shell">
@@ -355,6 +357,13 @@
                                     <h2 class="event-title h4">
                                         <a href="@detailUrl">@item.Title</a>
                                     </h2>
+
+                                    @if (showEdit){
+                                        <a href="@EventUrlHelper.GetEditUrl(item.EventId)" class="btn btn-outline-secondary btn-sm mb-3">
+                                            <i class="fa-solid fa-pen-to-square me-1" aria-hidden="true"></i>
+                                            Edit Event
+                                        </a>
+                                    }
 
                                     @if (!string.IsNullOrWhiteSpace(item.ShortSummary))
                                     {
