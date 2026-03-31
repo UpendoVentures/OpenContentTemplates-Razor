@@ -231,6 +231,42 @@
     string imageAbsoluteUrl = TemplateHelper.BuildAbsoluteUrl(imageUrl);
     string imageAltText = EventFormattingHelper.GetImageAltText(evt);
     string venueAddressText = evt.Venue != null ? EventFormattingHelper.GetVenueAddressText(evt.Venue) : string.Empty;
+
+    bool hasMapCoordinates = evt != null
+        && evt.Venue != null
+        && evt.Venue.Latitude.HasValue
+        && evt.Venue.Longitude.HasValue;
+
+    string mapEmbedUrl = string.Empty;
+    string mapLinkUrl = string.Empty;
+
+    if (hasMapCoordinates)
+    {
+        decimal latitude = evt.Venue.Latitude.Value;
+        decimal longitude = evt.Venue.Longitude.Value;
+        decimal delta = 0.01m;
+
+        decimal left = longitude - delta;
+        decimal right = longitude + delta;
+        decimal top = latitude + delta;
+        decimal bottom = latitude - delta;
+
+        mapEmbedUrl = string.Format(
+            CultureInfo.InvariantCulture,
+            "https://www.openstreetmap.org/export/embed.html?bbox={0},{1},{2},{3}&layer=mapnik&marker={4},{5}",
+            left,
+            bottom,
+            right,
+            top,
+            latitude,
+            longitude);
+
+        mapLinkUrl = string.Format(
+            CultureInfo.InvariantCulture,
+            "https://www.openstreetmap.org/?mlat={0}&mlon={1}#map=15/{0}/{1}",
+            latitude,
+            longitude);
+    }
 }
 <main id="main-content" class="container my-4 my-lg-5 event-detail-shell">
 
@@ -584,6 +620,42 @@
                         </div>
                     }
                 </div>
+
+                @if (hasMapCoordinates)
+                {
+                    <div class="event-detail-card mb-4">
+                        <h2 class="h5 mb-3">Location Map</h2>
+
+                        <div class="event-map-frame-wrap">
+                            <iframe
+                                src="@mapEmbedUrl"
+                                class="event-map-frame"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Map showing the event location for @evt.Title">
+                            </iframe>
+                        </div>
+
+                        @if (!string.IsNullOrWhiteSpace(venueAddressText))
+                        {
+                            <div class="small text-secondary mt-3">@venueAddressText</div>
+                        }
+                        else if (!string.IsNullOrWhiteSpace(locationText))
+                        {
+                            <div class="small text-secondary mt-3">@locationText</div>
+                        }
+
+                        <div class="mt-3">
+                            <a href="@mapLinkUrl"
+                               class="btn btn-outline-secondary btn-sm"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="Open a larger map for @evt.Title in OpenStreetMap">
+                                View Larger Map
+                            </a>
+                        </div>
+                    </div>
+                }
 
                 @if (evt.Organizer != null && !string.IsNullOrWhiteSpace(evt.Organizer.OrganizerName))
                 {
