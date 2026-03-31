@@ -405,7 +405,7 @@
                     <article class="mb-5">
                         <h2 class="h3 mb-3">Event Description</h2>
                         <div class="event-body-copy">
-                            @Html.Raw(evt.FullDescription)
+                            @Html.Raw(TemplateHelper.RenderRichTextHtml(evt.FullDescription))
                         </div>
                     </article>
                 }
