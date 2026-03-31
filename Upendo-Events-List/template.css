@@ -443,3 +443,8 @@
     padding-top: 3rem;
     border-top: 1px solid var(--bs-border-color);
 }
+
+.event-meta-inline-date .event-relative-date {
+    display: inline;
+    font-weight: 400;
+}
