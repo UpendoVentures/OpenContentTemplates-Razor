@@ -8,189 +8,6 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
-
-    public string BuildUrl(EventListRequest request, string categorySlug)
-    {
-        var query = HttpUtility.ParseQueryString(string.Empty);
-
-        bool isUpcoming = true;
-        if (request != null)
-        {
-            isUpcoming = request.IsUpcoming;
-        }
-
-        query["upcoming"] = isUpcoming ? "true" : "false";
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.TagSlug))
-        {
-            query["tag"] = request.TagSlug;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.OrganizerSlug))
-        {
-            query["organizer"] = request.OrganizerSlug;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.Keyword))
-        {
-            query["q"] = request.Keyword;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.SortBy))
-        {
-            query["sort"] = request.SortBy;
-        }
-
-        if (!string.IsNullOrWhiteSpace(categorySlug))
-        {
-            query["category"] = categorySlug;
-        }
-
-        string qs = query.ToString();
-        return string.IsNullOrWhiteSpace(qs) ? "?" : "?" + qs;
-    }
-
-    public string BuildPageUrl(EventListRequest request, int pageNumber)
-    {
-        var query = HttpUtility.ParseQueryString(string.Empty);
-
-        bool isUpcoming = true;
-        if (request != null)
-        {
-            isUpcoming = request.IsUpcoming;
-        }
-
-        query["upcoming"] = isUpcoming ? "true" : "false";
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.CategorySlug))
-        {
-            query["category"] = request.CategorySlug;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.TagSlug))
-        {
-            query["tag"] = request.TagSlug;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.OrganizerSlug))
-        {
-            query["organizer"] = request.OrganizerSlug;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.Keyword))
-        {
-            query["q"] = request.Keyword;
-        }
-
-        if (request != null && !string.IsNullOrWhiteSpace(request.SortBy))
-        {
-            query["sort"] = request.SortBy;
-        }
-
-        if (pageNumber > 1)
-        {
-            query["page"] = pageNumber.ToString();
-        }
-
-        string qs = query.ToString();
-        return string.IsNullOrWhiteSpace(qs) ? "?" : "?" + qs;
-    }
-
-    public string GetInitials(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            return "?";
-        }
-
-        var parts = name.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-        if (parts.Length == 1)
-        {
-            return parts[0].Substring(0, 1).ToUpperInvariant();
-        }
-
-        return (parts[0][0].ToString() + parts[parts.Length - 1][0].ToString()).ToUpperInvariant();
-    }
-
-    public string BuildAbsoluteUrl(string url)
-    {
-        if (string.IsNullOrWhiteSpace(url))
-        {
-            return string.Empty;
-        }
-
-        Uri absoluteUri;
-        if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
-        {
-            return absoluteUri.ToString();
-        }
-
-        var request = HttpContext.Current != null ? HttpContext.Current.Request : null;
-        if (request == null || request.Url == null)
-        {
-            return url;
-        }
-
-        var baseUri = request.Url.GetLeftPart(UriPartial.Authority);
-        return new Uri(new Uri(baseUri), url).ToString();
-    }
-
-    public string GetImageAltText(EventListItemDto item)
-    {
-        if (item == null)
-        {
-            return "Event image";
-        }
-
-        if (!string.IsNullOrWhiteSpace(item.ImageAltText))
-        {
-            return item.ImageAltText;
-        }
-
-        if (!string.IsNullOrWhiteSpace(item.Title))
-        {
-            return item.Title;
-        }
-
-        return "Event image";
-    }
-
-    public string GetLocationText(EventListItemDto item)
-    {
-        if (item == null)
-        {
-            return string.Empty;
-        }
-
-        if (!string.IsNullOrWhiteSpace(item.PublicLocationText))
-        {
-            return item.PublicLocationText;
-        }
-
-        if (!string.IsNullOrWhiteSpace(item.VenueName))
-        {
-            return item.VenueName;
-        }
-
-        if (!string.IsNullOrWhiteSpace(item.City) && !string.IsNullOrWhiteSpace(item.Region))
-        {
-            return item.City + ", " + item.Region;
-        }
-
-        if (!string.IsNullOrWhiteSpace(item.City))
-        {
-            return item.City;
-        }
-
-        return item.Region ?? string.Empty;
-    }
-
-    public string GetIsoDateTime(DateTime value)
-    {
-        return value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
-    }
-
     public string GetSectionHeading(EventListRequest request)
     {
         if (request != null && !request.IsUpcoming)
@@ -214,16 +31,6 @@
         }
 
         return results.TotalRows.ToString() + " events found.";
-    }
-
-    public string GetAbsoluteDisplayDate(DateTime value)
-    {
-        return value.ToString("dddd, MMMM d, yyyy");
-    }
-
-    public string GetShortAccessibleDisplayDate(DateTime value)
-    {
-        return value.ToString("MMM d, yyyy");
     }
 }
 
@@ -345,7 +152,7 @@
         : new List<EventListItemDto>();
 
     bool showEdit = (Model.Context.IsEditMode || TemplateHelper.CurrentUserCanEdit());
-    string listPageUrl = BuildAbsoluteUrl(EventPageUrlHelper.BuildListPageUrl(listPagePath));
+    string listPageUrl = TemplateHelper.BuildAbsoluteUrl(EventPageUrlHelper.BuildListPageUrl(listPagePath));
     string sectionHeading = GetSectionHeading(request);
     string resultsSummary = GetResultsSummary(results);
 
@@ -364,7 +171,7 @@
             <h2 class="event-section-heading h5 mb-3">Browse by Category</h2>
 
             <div class="event-chip-row">
-                <a href="@BuildUrl(request, null)"
+                <a href="@EventRequestHelper.BuildFilterUrl(request, null)"
                 class="category-chip @(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "active" : "")"
                 aria-current="@(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "page" : null)">
                     All
@@ -374,7 +181,7 @@
                 {
                     bool isActive = vm.ActiveCategorySlug == cat.CategorySlug;
 
-                    <a href="@BuildUrl(request, cat.CategorySlug)"
+                    <a href="@EventRequestHelper.BuildFilterUrl(request, cat.CategorySlug)"
                     class="category-chip @(isActive ? "active" : "")"
                     aria-current="@(isActive ? "page" : null)">
                         @cat.CategoryName
@@ -407,16 +214,16 @@
                 {
                     var detailUrl = EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath);
                     string relativeDate = EventFormattingHelper.GetDisplayDate(item);
-                    string absoluteDate = GetAbsoluteDisplayDate(item.StartDateTimeUtc);
-                    string shortAccessibleDate = GetShortAccessibleDisplayDate(item.StartDateTimeUtc);
+                    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(item.StartDateTimeUtc);
+                    string shortAccessibleDate = EventFormattingHelper.GetShortAccessibleDisplayDate(item.StartDateTimeUtc);
                     string displayTime = EventFormattingHelper.GetDisplayTime(item);
 
                     string imageUrl = !string.IsNullOrEmpty(item.ListImageUrl)
                         ? item.ListImageUrl
                         : item.ThumbnailImageUrl;
 
-                    string locationText = GetLocationText(item);
-                    string imageAltText = GetImageAltText(item);
+                    string locationText = EventFormattingHelper.GetLocationText(item);
+                    string imageAltText = EventFormattingHelper.GetImageAltText(item);
 
                     string monthText = item.StartDateTimeUtc.ToString("MMM");
 
@@ -465,7 +272,7 @@
                                             <span class="event-meta-inline event-meta-inline-date">
                                                 <i class="fa-regular fa-calendar" aria-hidden="true"></i>
                                                 <span>
-                                                    <time datetime="@GetIsoDateTime(item.StartDateTimeUtc)">@shortAccessibleDate</time>
+                                                    <time datetime="@EventFormattingHelper.GetIsoDateTime(item.StartDateTimeUtc)">@shortAccessibleDate</time>
                                                     @if (!string.IsNullOrWhiteSpace(relativeDate))
                                                     {
                                                         <span class="event-relative-date text-secondary"> - @relativeDate</span>
@@ -546,7 +353,7 @@
                                 @for (int i = 1; i <= results.TotalPages; i++)
                                 {
                                     <li class="page-item @(i == results.PageNumber ? "active" : "")">
-                                        <a class="page-link" href="@BuildPageUrl(request, i)" aria-current="@(i == results.PageNumber ? "page" : null)" aria-label="Page @i">
+                                        <a class="page-link" href="@EventRequestHelper.BuildPageUrl(request, i)" aria-current="@(i == results.PageNumber ? "page" : null)" aria-label="Page @i">
                                             @i
                                         </a>
                                     </li>
@@ -588,7 +395,7 @@
                         {
                             <div class="organizer-row">
                                 <div class="organizer-avatar">
-                                    @GetInitials(org.OrganizerName)
+                                    @TemplateHelper.GetInitials(org.OrganizerName)
                                 </div>
 
                                 <div>
@@ -618,8 +425,8 @@
             @for (int i = 0; i < items.Count; i++)
             {
                 var item = items[i];
-                var detailUrl = BuildAbsoluteUrl(EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath));
-                var locationText = GetLocationText(item);
+                var detailUrl = TemplateHelper.BuildAbsoluteUrl(EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath));
+                var locationText = EventFormattingHelper.GetLocationText(item);
     <text>
             {
             "@Html.Raw("@")type": "ListItem",
@@ -628,7 +435,7 @@
             "item": {
                 "@Html.Raw("@")type": "Event",
                 "name": "@HttpUtility.JavaScriptStringEncode(item.Title)",
-                "startDate": "@GetIsoDateTime(item.StartDateTimeUtc)"@(!string.IsNullOrWhiteSpace(locationText) ? "," : "")
+                "startDate": "@EventFormattingHelper.GetIsoDateTime(item.StartDateTimeUtc)"@(!string.IsNullOrWhiteSpace(locationText) ? "," : "")
                 @if (!string.IsNullOrWhiteSpace(locationText))
                 {
     <text>

@@ -9,28 +9,6 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
-
-    public string GetInitials(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            return "?";
-        }
-
-        string[] parts = name.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        string result = string.Empty;
-
-        for (int i = 0; i < parts.Length; i++)
-        {
-            if (!string.IsNullOrWhiteSpace(parts[i]))
-            {
-                result += parts[i][0];
-            }
-        }
-
-        return result.ToUpperInvariant();
-    }
-
     public string GetSafeString(object value)
     {
         return value == null ? string.Empty : Convert.ToString(value);
@@ -66,131 +44,6 @@
         }
 
         return defaultValue;
-    }
-
-        public string BuildAbsoluteUrl(string url)
-    {
-        if (string.IsNullOrWhiteSpace(url))
-        {
-            return string.Empty;
-        }
-
-        Uri absoluteUri;
-        if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
-        {
-            return absoluteUri.ToString();
-        }
-
-        var request = HttpContext.Current != null ? HttpContext.Current.Request : null;
-        if (request == null || request.Url == null)
-        {
-            return url;
-        }
-
-        var baseUri = request.Url.GetLeftPart(UriPartial.Authority);
-        return new Uri(new Uri(baseUri), url).ToString();
-    }
-
-    public string GetIsoDateTime(DateTime value)
-    {
-        return value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
-    }
-
-    public string GetIsoDateTimeNullable(DateTime? value)
-    {
-        return value.HasValue ? value.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ") : string.Empty;
-    }
-
-    public string GetEventImageAltText(EventDetailDto evt)
-    {
-        if (evt == null)
-        {
-            return "Event image";
-        }
-
-        if (!string.IsNullOrWhiteSpace(evt.ImageAltText))
-        {
-            return evt.ImageAltText;
-        }
-
-        if (!string.IsNullOrWhiteSpace(evt.Title))
-        {
-            return evt.Title;
-        }
-
-        return "Event image";
-    }
-
-    public string GetVenueAddressText(EventVenueDto venue)
-    {
-        if (venue == null)
-        {
-            return string.Empty;
-        }
-
-        var parts = new List<string>();
-
-        if (!string.IsNullOrWhiteSpace(venue.AddressLine1))
-        {
-            parts.Add(venue.AddressLine1);
-        }
-
-        if (!string.IsNullOrWhiteSpace(venue.AddressLine2))
-        {
-            parts.Add(venue.AddressLine2);
-        }
-
-        if (!string.IsNullOrWhiteSpace(venue.City))
-        {
-            parts.Add(venue.City);
-        }
-
-        if (!string.IsNullOrWhiteSpace(venue.Region))
-        {
-            parts.Add(venue.Region);
-        }
-
-        if (!string.IsNullOrWhiteSpace(venue.PostalCode))
-        {
-            parts.Add(venue.PostalCode);
-        }
-
-        if (!string.IsNullOrWhiteSpace(venue.CountryCode))
-        {
-            parts.Add(venue.CountryCode.ToUpperInvariant());
-        }
-
-        return string.Join(", ", parts);
-    }
-
-    public string GetBestLocationText(EventDetailDto evt)
-    {
-        if (evt == null || evt.Venue == null)
-        {
-            return string.Empty;
-        }
-
-        if (!string.IsNullOrWhiteSpace(evt.Venue.PublicLocationText))
-        {
-            return evt.Venue.PublicLocationText;
-        }
-
-        if (!string.IsNullOrWhiteSpace(evt.Venue.VenueName))
-        {
-            return evt.Venue.VenueName;
-        }
-
-        return evt.Venue.FullDisplayLocation ?? string.Empty;
-    }
-
-    public string GetAbsoluteDisplayDate(DateTime value)
-    {
-        return value.ToString("dddd, MMMM d, yyyy");
-    }
-
-    public string GetShortDisplayDate(DateTime value)
-    {
-        return value.ToString("MMM d, yyyy");
     }
 }
 
@@ -333,8 +186,8 @@
     EventDetailDto evt = vm.Event;
 
     string relativeDate = EventFormattingHelper.GetDisplayDate(evt);
-    string absoluteDate = GetAbsoluteDisplayDate(evt.StartDateTimeUtc);
-    string shortDisplayDate = GetShortDisplayDate(evt.StartDateTimeUtc);
+    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(evt.StartDateTimeUtc);
+    string shortDisplayDate = EventFormattingHelper.GetShortDisplayDate(evt.StartDateTimeUtc);
     string displayTime = EventFormattingHelper.GetDisplayTime(evt);
     string displayPrice = EventFormattingHelper.GetDisplayPrice(evt);
 
@@ -371,13 +224,13 @@
     bool hasFeatures = showFeatures && evt.Features != null && evt.Features.Count > 0;
     bool hasAudiences = showAudiences && evt.Audiences != null && evt.Audiences.Count > 0;
     bool hasRelated = showRelatedEvents && evt.RelatedEvents != null && evt.RelatedEvents.Count > 0;
-    string detailUrl = BuildAbsoluteUrl(EventPageUrlHelper.BuildDetailPageUrl(detailPagePath, evt.Slug));
+    string detailUrl = TemplateHelper.BuildAbsoluteUrl(EventPageUrlHelper.BuildDetailPageUrl(detailPagePath, evt.Slug));
     string canonicalUrl = !string.IsNullOrWhiteSpace(evt.CanonicalUrl)
-        ? BuildAbsoluteUrl(evt.CanonicalUrl)
+        ? TemplateHelper.BuildAbsoluteUrl(evt.CanonicalUrl)
         : detailUrl;
-    string imageAbsoluteUrl = BuildAbsoluteUrl(imageUrl);
-    string imageAltText = GetEventImageAltText(evt);
-    string venueAddressText = evt.Venue != null ? GetVenueAddressText(evt.Venue) : string.Empty;
+    string imageAbsoluteUrl = TemplateHelper.BuildAbsoluteUrl(imageUrl);
+    string imageAltText = EventFormattingHelper.GetImageAltText(evt);
+    string venueAddressText = evt.Venue != null ? EventFormattingHelper.GetVenueAddressText(evt.Venue) : string.Empty;
 }
 <main id="main-content" class="container my-4 my-lg-5 event-detail-shell">
 
@@ -448,7 +301,7 @@
                                 <div>
                                     <div class="event-meta-label">Date</div>
                                     <div>
-                                        <time datetime="@GetIsoDateTime(evt.StartDateTimeUtc)">@absoluteDate</time>
+                                        <time datetime="@EventFormattingHelper.GetIsoDateTime(evt.StartDateTimeUtc)">@absoluteDate</time>
                                     </div>
                                     @if (!string.IsNullOrWhiteSpace(relativeDate))
                                     {
@@ -644,11 +497,11 @@
                                             </h3>
 
                                             @{
-                                                string relAbsoluteDate = GetShortDisplayDate(rel.StartDateTimeUtc);
+                                                string relAbsoluteDate = EventFormattingHelper.GetShortDisplayDate(rel.StartDateTimeUtc);
                                                 string relRelativeDate = EventFormattingHelper.GetDisplayDate(rel);
                                             }
                                             <div class="small text-secondary">
-                                                <time datetime="@GetIsoDateTime(rel.StartDateTimeUtc)">@relAbsoluteDate</time>
+                                                <time datetime="@EventFormattingHelper.GetIsoDateTime(rel.StartDateTimeUtc)">@relAbsoluteDate</time>
                                                 @if (!string.IsNullOrWhiteSpace(relRelativeDate))
                                                 {
                                                     <span> - @relRelativeDate</span>
@@ -676,7 +529,7 @@
                             <li>
                                 <div class="small text-uppercase text-secondary fw-bold">Date</div>
                                 <div>
-                                    <time datetime="@GetIsoDateTime(evt.StartDateTimeUtc)">@absoluteDate</time>
+                                    <time datetime="@EventFormattingHelper.GetIsoDateTime(evt.StartDateTimeUtc)">@absoluteDate</time>
                                 </div>
                                 @if (!string.IsNullOrWhiteSpace(relativeDate))
                                 {
@@ -739,7 +592,7 @@
 
                         <div class="d-flex align-items-center gap-3">
                             <div class="event-organizer-avatar">
-                                @GetInitials(evt.Organizer.OrganizerName)
+                                @TemplateHelper.GetInitials(evt.Organizer.OrganizerName)
                             </div>
 
                             <div>
@@ -769,11 +622,11 @@
         "name": "@HttpUtility.JavaScriptStringEncode(evt.Title)",
         "url": "@HttpUtility.JavaScriptStringEncode(canonicalUrl)",
         "description": "@HttpUtility.JavaScriptStringEncode(!string.IsNullOrWhiteSpace(evt.SeoDescription) ? evt.SeoDescription : (!string.IsNullOrWhiteSpace(evt.ShortSummary) ? evt.ShortSummary : evt.Title))",
-        "startDate": "@GetIsoDateTime(evt.StartDateTimeUtc)"@(!string.IsNullOrWhiteSpace(GetIsoDateTimeNullable(evt.EndDateTimeUtc)) ? "," : "")
-        @if (!string.IsNullOrWhiteSpace(GetIsoDateTimeNullable(evt.EndDateTimeUtc)))
+        "startDate": "@EventFormattingHelper.GetIsoDateTime(evt.StartDateTimeUtc)"@(!string.IsNullOrWhiteSpace(EventFormattingHelper.GetIsoDateTimeNullable(evt.EndDateTimeUtc)) ? "," : "")
+        @if (!string.IsNullOrWhiteSpace(EventFormattingHelper.GetIsoDateTimeNullable(evt.EndDateTimeUtc)))
         {
         <text>
-        "endDate": "@GetIsoDateTimeNullable(evt.EndDateTimeUtc)",
+        "endDate": "@EventFormattingHelper.GetIsoDateTimeNullable(evt.EndDateTimeUtc)",
         </text>
         }
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -786,7 +639,7 @@
         <text>
         "location": {
             "@Html.Raw("@")type": "Place",
-            "name": "@HttpUtility.JavaScriptStringEncode(GetBestLocationText(evt))"@(!string.IsNullOrWhiteSpace(venueAddressText) || evt.Venue.Latitude.HasValue || evt.Venue.Longitude.HasValue ? "," : "")
+            "name": "@HttpUtility.JavaScriptStringEncode(EventFormattingHelper.GetBestLocationText(evt))"@(!string.IsNullOrWhiteSpace(venueAddressText) || evt.Venue.Latitude.HasValue || evt.Venue.Longitude.HasValue ? "," : "")
             @if (!string.IsNullOrWhiteSpace(venueAddressText))
             {
         <text>
