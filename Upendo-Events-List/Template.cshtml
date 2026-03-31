@@ -112,6 +112,119 @@
 
         return (parts[0][0].ToString() + parts[parts.Length - 1][0].ToString()).ToUpperInvariant();
     }
+
+    public string BuildAbsoluteUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return string.Empty;
+        }
+
+        Uri absoluteUri;
+        if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
+        {
+            return absoluteUri.ToString();
+        }
+
+        var request = HttpContext.Current != null ? HttpContext.Current.Request : null;
+        if (request == null || request.Url == null)
+        {
+            return url;
+        }
+
+        var baseUri = request.Url.GetLeftPart(UriPartial.Authority);
+        return new Uri(new Uri(baseUri), url).ToString();
+    }
+
+    public string GetImageAltText(EventListItemDto item)
+    {
+        if (item == null)
+        {
+            return "Event image";
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.ImageAltText))
+        {
+            return item.ImageAltText;
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.Title))
+        {
+            return item.Title;
+        }
+
+        return "Event image";
+    }
+
+    public string GetLocationText(EventListItemDto item)
+    {
+        if (item == null)
+        {
+            return string.Empty;
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.PublicLocationText))
+        {
+            return item.PublicLocationText;
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.VenueName))
+        {
+            return item.VenueName;
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.City) && !string.IsNullOrWhiteSpace(item.Region))
+        {
+            return item.City + ", " + item.Region;
+        }
+
+        if (!string.IsNullOrWhiteSpace(item.City))
+        {
+            return item.City;
+        }
+
+        return item.Region ?? string.Empty;
+    }
+
+    public string GetIsoDateTime(DateTime value)
+    {
+        return value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
+    }
+
+    public string GetSectionHeading(EventListRequest request)
+    {
+        if (request != null && !request.IsUpcoming)
+        {
+            return "Past Events";
+        }
+
+        return "Upcoming Events";
+    }
+
+    public string GetResultsSummary(PagedResult<EventListItemDto> results)
+    {
+        if (results == null || results.TotalRows <= 0)
+        {
+            return "No events found.";
+        }
+
+        if (results.TotalRows == 1)
+        {
+            return "1 event found.";
+        }
+
+        return results.TotalRows.ToString() + " events found.";
+    }
+
+    public string GetAbsoluteDisplayDate(DateTime value)
+    {
+        return value.ToString("dddd, MMMM d, yyyy");
+    }
+
+    public string GetShortAccessibleDisplayDate(DateTime value)
+    {
+        return value.ToString("MMM d, yyyy");
+    }
 }
 
 @{
@@ -232,19 +345,28 @@
         : new List<EventListItemDto>();
 
     bool showEdit = (Model.Context.IsEditMode || TemplateHelper.CurrentUserCanEdit());
+    string listPageUrl = BuildAbsoluteUrl(EventPageUrlHelper.BuildListPageUrl(listPagePath));
+    string sectionHeading = GetSectionHeading(request);
+    string resultsSummary = GetResultsSummary(results);
 
     RegisterStyleSheet("template.css");
 }
 
-<div class="container my-4 my-lg-5 event-shell">
+<main id="main-content" class="container my-4 my-lg-5 event-shell">
+    <header class="mb-4">
+        <h1 class="mb-2">@sectionHeading</h1>
+        <p class="text-secondary mb-0">@resultsSummary</p>
+    </header>
 
     @if (showTopCategories && vm != null && vm.ActiveCategories != null && vm.ActiveCategories.Count > 0)
     {
-        <div class="event-filter-bar mb-4">
-            <div class="event-section-heading">Browse by Category</div>
+        <nav class="event-filter-bar mb-4" aria-label="Browse events by category">
+            <h2 class="event-section-heading h5 mb-3">Browse by Category</h2>
 
             <div class="event-chip-row">
-                <a href="@BuildUrl(request, null)" class="category-chip @(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "active" : "")">
+                <a href="@BuildUrl(request, null)"
+                class="category-chip @(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "active" : "")"
+                aria-current="@(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "page" : null)">
                     All
                 </a>
 
@@ -252,13 +374,16 @@
                 {
                     bool isActive = vm.ActiveCategorySlug == cat.CategorySlug;
 
-                    <a href="@BuildUrl(request, cat.CategorySlug)" class="category-chip @(isActive ? "active" : "")">
+                    <a href="@BuildUrl(request, cat.CategorySlug)"
+                    class="category-chip @(isActive ? "active" : "")"
+                    aria-current="@(isActive ? "page" : null)">
                         @cat.CategoryName
-                        <span class="count-badge">@cat.EventCount</span>
+                        <span class="count-badge" aria-hidden="true">@cat.EventCount</span>
+                        <span class="visually-hidden">, @cat.EventCount event@(cat.EventCount == 1 ? "" : "s")</span>
                     </a>
                 }
             </div>
-        </div>
+        </nav>
     }
 
     <div class="row g-4">
@@ -267,34 +392,31 @@
 
             @if (items == null || items.Count == 0)
             {
-                <div class="event-empty-state">
+                <section class="event-empty-state" aria-live="polite">
                     <div class="event-empty-icon">
                         <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
                     </div>
 
                     <h2 class="h4 mb-2">@(vm != null ? vm.EmptyStateTitle : "No Events Found")</h2>
                     <p class="text-secondary mb-0">@(vm != null ? vm.EmptyStateText : "There are no events matching the current filters.")</p>
-                </div>
+                </section>
             }
             else
             {
                 foreach (var item in items)
                 {
                     var detailUrl = EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath);
-                    string displayDate = EventFormattingHelper.GetDisplayDate(item);
+                    string relativeDate = EventFormattingHelper.GetDisplayDate(item);
+                    string absoluteDate = GetAbsoluteDisplayDate(item.StartDateTimeUtc);
+                    string shortAccessibleDate = GetShortAccessibleDisplayDate(item.StartDateTimeUtc);
                     string displayTime = EventFormattingHelper.GetDisplayTime(item);
 
                     string imageUrl = !string.IsNullOrEmpty(item.ListImageUrl)
                         ? item.ListImageUrl
                         : item.ThumbnailImageUrl;
 
-                    string locationText = !string.IsNullOrEmpty(item.PublicLocationText)
-                        ? item.PublicLocationText
-                        : (!string.IsNullOrEmpty(item.VenueName)
-                            ? item.VenueName
-                            : string.Concat(
-                                item.City,
-                                !string.IsNullOrEmpty(item.Region) ? string.Concat(", ", item.Region) : string.Empty));
+                    string locationText = GetLocationText(item);
+                    string imageAltText = GetImageAltText(item);
 
                     string monthText = item.StartDateTimeUtc.ToString("MMM");
 
@@ -308,7 +430,7 @@
                                     @if (!string.IsNullOrWhiteSpace(imageUrl))
                                     {
                                         <a href="@detailUrl" aria-label="View details for @item.Title">
-                                            <img src="@imageUrl" alt="@item.Title" />
+                                            <img src="@imageUrl" alt="@imageAltText" loading="lazy" decoding="async" />
                                         </a>
                                     }
                                     else
@@ -324,6 +446,7 @@
                                             <span class="event-date-badge-day">@dayText</span>
                                             <span class="event-date-badge-month">@monthText</span>
                                         </div>
+                                        <span class="visually-hidden">Event date: @absoluteDate@(string.IsNullOrWhiteSpace(relativeDate) ? "" : ". " + relativeDate)</span>
                                     }
                                 </div>
                             </div>
@@ -337,11 +460,17 @@
                                             <span class="category-chip">@item.CategoryName</span>
                                         }
 
-                                        @if (!string.IsNullOrWhiteSpace(displayDate))
+                                        @if (!string.IsNullOrWhiteSpace(shortAccessibleDate))
                                         {
-                                            <span class="event-meta-inline">
+                                            <span class="event-meta-inline event-meta-inline-date">
                                                 <i class="fa-regular fa-calendar" aria-hidden="true"></i>
-                                                @displayDate
+                                                <span>
+                                                    <time datetime="@GetIsoDateTime(item.StartDateTimeUtc)">@shortAccessibleDate</time>
+                                                    @if (!string.IsNullOrWhiteSpace(relativeDate))
+                                                    {
+                                                        <span class="event-relative-date text-secondary"> - @relativeDate</span>
+                                                    }
+                                                </span>
                                             </span>
                                         }
 
@@ -349,7 +478,7 @@
                                         {
                                             <span class="event-meta-inline">
                                                 <i class="fa-regular fa-clock" aria-hidden="true"></i>
-                                                @displayTime
+                                                <span>@displayTime</span>
                                             </span>
                                         }
                                     </div>
@@ -372,12 +501,14 @@
 
                                     @if (item.Tags != null && item.Tags.Count > 0)
                                     {
-                                        <div class="event-chip-row mb-0">
+                                        <nav class="event-chip-row mb-0" aria-label="Tags for @item.Title">
                                             @foreach (var tag in item.Tags)
                                             {
-                                                <span class="tag-chip">#@tag.TagName</span>
+                                                <a href="?tag=@HttpUtility.UrlEncode(tag.Slug)" class="tag-chip">
+                                                    #@tag.TagName
+                                                </a>
                                             }
-                                        </div>
+                                        </nav>
                                     }
 
                                     <div class="event-card-footer">
@@ -386,13 +517,14 @@
                                             {
                                                 <span class="event-location">
                                                     <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                                    <span class="visually-hidden">Location: </span>
                                                     @locationText
                                                 </span>
                                             }
                                         </div>
 
                                         <div>
-                                            <a href="@detailUrl" class="btn btn-outline-primary btn-sm">
+                                            <a href="@detailUrl" class="btn btn-outline-primary btn-sm" aria-label="View details for @item.Title">
                                                 View Details
                                             </a>
                                         </div>
@@ -414,7 +546,7 @@
                                 @for (int i = 1; i <= results.TotalPages; i++)
                                 {
                                     <li class="page-item @(i == results.PageNumber ? "active" : "")">
-                                        <a class="page-link" href="@BuildPageUrl(request, i)">
+                                        <a class="page-link" href="@BuildPageUrl(request, i)" aria-current="@(i == results.PageNumber ? "page" : null)" aria-label="Page @i">
                                             @i
                                         </a>
                                     </li>
@@ -448,8 +580,8 @@
 
             @if (showTopOrganizers && vm != null && vm.TopOrganizers != null && vm.TopOrganizers.Count > 0)
             {
-                <div class="event-sidebar-card">
-                    <h3 class="sidebar-heading">Organizers</h3>
+                <section class="event-sidebar-card" aria-labelledby="events-organizers-heading">
+                    <h2 id="events-organizers-heading" class="sidebar-heading h5">Organizers</h2>
 
                     <div class="organizer-list">
                         @foreach (var org in vm.TopOrganizers)
@@ -461,19 +593,61 @@
 
                                 <div>
                                     <div class="fw-semibold">@org.OrganizerName</div>
-                                    <div class="small text-secondary">@org.HostedEventCount events</div>
+                                    <div class="small text-secondary">@org.HostedEventCount event@(org.HostedEventCount == 1 ? "" : "s")</div>
                                 </div>
                             </div>
                         }
                     </div>
-                </div>
+                </section>
             }
 
         </aside>
 
     </div>
 
-</div>
+    @if (items != null && items.Count > 0)
+    {
+        <script type="application/ld+json">
+        {
+        "@Html.Raw("@")context": "https://schema.org",
+        "@Html.Raw("@")type": "ItemList",
+        "name": "@HttpUtility.JavaScriptStringEncode(sectionHeading)",
+        "url": "@HttpUtility.JavaScriptStringEncode(listPageUrl)",
+        "numberOfItems": @items.Count,
+        "itemListElement": [
+            @for (int i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                var detailUrl = BuildAbsoluteUrl(EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath));
+                var locationText = GetLocationText(item);
+    <text>
+            {
+            "@Html.Raw("@")type": "ListItem",
+            "position": @(i + 1),
+            "url": "@HttpUtility.JavaScriptStringEncode(detailUrl)",
+            "item": {
+                "@Html.Raw("@")type": "Event",
+                "name": "@HttpUtility.JavaScriptStringEncode(item.Title)",
+                "startDate": "@GetIsoDateTime(item.StartDateTimeUtc)"@(!string.IsNullOrWhiteSpace(locationText) ? "," : "")
+                @if (!string.IsNullOrWhiteSpace(locationText))
+                {
+    <text>
+                "location": {
+                "@Html.Raw("@")type": "Place",
+                "name": "@HttpUtility.JavaScriptStringEncode(locationText)"
+                }
+    </text>
+                }
+            }
+            }@(i < items.Count - 1 ? "," : "")
+    </text>
+            }
+        ]
+        }
+        </script>
+    }
+
+</main>
 @*
 @ObjectInfo.Print(Model)
 @ObjectInfo.Print(vm)

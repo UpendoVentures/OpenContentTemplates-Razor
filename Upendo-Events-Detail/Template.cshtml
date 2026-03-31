@@ -1,5 +1,6 @@
 @using System
 @using System.Collections.Generic
+@using System.Globalization
 @using System.Web
 @using Upendo.OpenContentHelper.Features.Events
 @using Upendo.OpenContentHelper.Features.Events.Helpers
@@ -65,6 +66,131 @@
         }
 
         return defaultValue;
+    }
+
+        public string BuildAbsoluteUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return string.Empty;
+        }
+
+        Uri absoluteUri;
+        if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
+        {
+            return absoluteUri.ToString();
+        }
+
+        var request = HttpContext.Current != null ? HttpContext.Current.Request : null;
+        if (request == null || request.Url == null)
+        {
+            return url;
+        }
+
+        var baseUri = request.Url.GetLeftPart(UriPartial.Authority);
+        return new Uri(new Uri(baseUri), url).ToString();
+    }
+
+    public string GetIsoDateTime(DateTime value)
+    {
+        return value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
+    }
+
+    public string GetIsoDateTimeNullable(DateTime? value)
+    {
+        return value.HasValue ? value.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ") : string.Empty;
+    }
+
+    public string GetEventImageAltText(EventDetailDto evt)
+    {
+        if (evt == null)
+        {
+            return "Event image";
+        }
+
+        if (!string.IsNullOrWhiteSpace(evt.ImageAltText))
+        {
+            return evt.ImageAltText;
+        }
+
+        if (!string.IsNullOrWhiteSpace(evt.Title))
+        {
+            return evt.Title;
+        }
+
+        return "Event image";
+    }
+
+    public string GetVenueAddressText(EventVenueDto venue)
+    {
+        if (venue == null)
+        {
+            return string.Empty;
+        }
+
+        var parts = new List<string>();
+
+        if (!string.IsNullOrWhiteSpace(venue.AddressLine1))
+        {
+            parts.Add(venue.AddressLine1);
+        }
+
+        if (!string.IsNullOrWhiteSpace(venue.AddressLine2))
+        {
+            parts.Add(venue.AddressLine2);
+        }
+
+        if (!string.IsNullOrWhiteSpace(venue.City))
+        {
+            parts.Add(venue.City);
+        }
+
+        if (!string.IsNullOrWhiteSpace(venue.Region))
+        {
+            parts.Add(venue.Region);
+        }
+
+        if (!string.IsNullOrWhiteSpace(venue.PostalCode))
+        {
+            parts.Add(venue.PostalCode);
+        }
+
+        if (!string.IsNullOrWhiteSpace(venue.CountryCode))
+        {
+            parts.Add(venue.CountryCode.ToUpperInvariant());
+        }
+
+        return string.Join(", ", parts);
+    }
+
+    public string GetBestLocationText(EventDetailDto evt)
+    {
+        if (evt == null || evt.Venue == null)
+        {
+            return string.Empty;
+        }
+
+        if (!string.IsNullOrWhiteSpace(evt.Venue.PublicLocationText))
+        {
+            return evt.Venue.PublicLocationText;
+        }
+
+        if (!string.IsNullOrWhiteSpace(evt.Venue.VenueName))
+        {
+            return evt.Venue.VenueName;
+        }
+
+        return evt.Venue.FullDisplayLocation ?? string.Empty;
+    }
+
+    public string GetAbsoluteDisplayDate(DateTime value)
+    {
+        return value.ToString("dddd, MMMM d, yyyy");
+    }
+
+    public string GetShortDisplayDate(DateTime value)
+    {
+        return value.ToString("MMM d, yyyy");
     }
 }
 
@@ -206,7 +332,9 @@
 @{
     EventDetailDto evt = vm.Event;
 
-    string displayDate = EventFormattingHelper.GetDisplayDate(evt);
+    string relativeDate = EventFormattingHelper.GetDisplayDate(evt);
+    string absoluteDate = GetAbsoluteDisplayDate(evt.StartDateTimeUtc);
+    string shortDisplayDate = GetShortDisplayDate(evt.StartDateTimeUtc);
     string displayTime = EventFormattingHelper.GetDisplayTime(evt);
     string displayPrice = EventFormattingHelper.GetDisplayPrice(evt);
 
@@ -235,7 +363,7 @@
         }
     }
 
-    bool hasMetaBlock = !string.IsNullOrWhiteSpace(displayDate)
+    bool hasMetaBlock = !string.IsNullOrWhiteSpace(absoluteDate)
         || !string.IsNullOrWhiteSpace(displayTime)
         || !string.IsNullOrWhiteSpace(locationText);
 
@@ -243,11 +371,18 @@
     bool hasFeatures = showFeatures && evt.Features != null && evt.Features.Count > 0;
     bool hasAudiences = showAudiences && evt.Audiences != null && evt.Audiences.Count > 0;
     bool hasRelated = showRelatedEvents && evt.RelatedEvents != null && evt.RelatedEvents.Count > 0;
+    string detailUrl = BuildAbsoluteUrl(EventPageUrlHelper.BuildDetailPageUrl(detailPagePath, evt.Slug));
+    string canonicalUrl = !string.IsNullOrWhiteSpace(evt.CanonicalUrl)
+        ? BuildAbsoluteUrl(evt.CanonicalUrl)
+        : detailUrl;
+    string imageAbsoluteUrl = BuildAbsoluteUrl(imageUrl);
+    string imageAltText = GetEventImageAltText(evt);
+    string venueAddressText = evt.Venue != null ? GetVenueAddressText(evt.Venue) : string.Empty;
 }
-<div class="container my-4 my-lg-5 event-detail-shell">
+<main id="main-content" class="container my-4 my-lg-5 event-detail-shell">
 
     <div class="mb-4">
-        <a href="@EventPageUrlHelper.BuildListPageUrl(listPagePath)" class="event-back-link small">
+        <a href="@EventPageUrlHelper.BuildListPageUrl(listPagePath)" class="event-back-link small" aria-label="Back to all events">
             <i class="fa-solid fa-arrow-left me-1" aria-hidden="true"></i>
             Back to Events
         </a>
@@ -275,10 +410,14 @@
 
                     @if (hasTags)
                     {
-                        foreach (var tag in evt.Tags)
-                        {
-                            <span class="tag-chip">#@tag.TagName</span>
-                        }
+                        <nav aria-label="Tags for this event" class="d-flex flex-wrap gap-2">
+                            @foreach (var tag in evt.Tags)
+                            {
+                                <a href="@EventPageUrlHelper.BuildListPageUrl(listPagePath)?tag=@HttpUtility.UrlEncode(tag.Slug)" class="tag-chip">
+                                    #@tag.TagName
+                                </a>
+                            }
+                        </nav>
                     }
                 </div>
 
@@ -300,7 +439,7 @@
                 {
                     <div class="event-meta-grid mb-4">
 
-                        @if (!string.IsNullOrWhiteSpace(displayDate))
+                        @if (!string.IsNullOrWhiteSpace(absoluteDate))
                         {
                             <div class="event-meta-item">
                                 <div class="event-meta-icon">
@@ -308,7 +447,13 @@
                                 </div>
                                 <div>
                                     <div class="event-meta-label">Date</div>
-                                    <div>@displayDate</div>
+                                    <div>
+                                        <time datetime="@GetIsoDateTime(evt.StartDateTimeUtc)">@absoluteDate</time>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(relativeDate))
+                                    {
+                                        <div class="small text-secondary">@relativeDate</div>
+                                    }
                                 </div>
                             </div>
                         }
@@ -321,7 +466,10 @@
                                 </div>
                                 <div>
                                     <div class="event-meta-label">Time</div>
-                                    <div>@displayTime</div>
+                                    <div>
+                                        <span class="visually-hidden">Time: </span>
+                                        @displayTime
+                                    </div>
                                 </div>
                             </div>
                         }
@@ -334,7 +482,10 @@
                                 </div>
                                 <div>
                                     <div class="event-meta-label">Location</div>
-                                    <div>@locationText</div>
+                                    <div>
+                                        <span class="visually-hidden">Location: </span>
+                                        @locationText
+                                    </div>
                                 </div>
                             </div>
                         }
@@ -383,9 +534,7 @@
                 @if (!string.IsNullOrWhiteSpace(imageUrl))
                 {
                     <div class="event-hero-image-wrap">
-                        <img src="@imageUrl"
-                             alt="@evt.Title"
-                             class="event-hero-image" />
+                        <img src="@imageUrl" alt="@imageAltText" class="event-hero-image" loading="eager" decoding="async" />
                     </div>
                 }
             </div>
@@ -466,8 +615,8 @@
 
                 @if (hasRelated)
                 {
-                    <section class="event-section-divider">
-                        <h2 class="h3 mb-4">Related Events</h2>
+                    <section class="event-section-divider" aria-labelledby="related-events-heading">
+                        <h2 id="related-events-heading" class="h3 mb-4">Related Events</h2>
 
                         <div class="row g-4">
                             @foreach (var rel in evt.RelatedEvents)
@@ -478,7 +627,10 @@
                                     <article class="card event-related-card border-0">
                                         @if (!string.IsNullOrWhiteSpace(rel.ListImageUrl))
                                         {
-                                            <img src="@rel.ListImageUrl" alt="@rel.Title" class="card-img-top" />
+                                            <a href="@relUrl" aria-label="View related event @rel.Title">
+                                                <img src="@rel.ListImageUrl" alt="@(string.IsNullOrWhiteSpace(rel.ImageAltText) ? rel.Title : rel.ImageAltText)" 
+                                                    class="card-img-top" loading="lazy" decoding="async" />
+                                            </a>
                                         }
 
                                         <div class="card-body">
@@ -488,11 +640,19 @@
                                             }
 
                                             <h3 class="h5 mb-2">
-                                                <a href="@relUrl" class="text-decoration-none">@rel.Title</a>
+                                                <a href="@relUrl" class="text-decoration-none" aria-label="View related event @rel.Title">@rel.Title</a>
                                             </h3>
 
+                                            @{
+                                                string relAbsoluteDate = GetShortDisplayDate(rel.StartDateTimeUtc);
+                                                string relRelativeDate = EventFormattingHelper.GetDisplayDate(rel);
+                                            }
                                             <div class="small text-secondary">
-                                                @EventFormattingHelper.GetDisplayDate(rel)
+                                                <time datetime="@GetIsoDateTime(rel.StartDateTimeUtc)">@relAbsoluteDate</time>
+                                                @if (!string.IsNullOrWhiteSpace(relRelativeDate))
+                                                {
+                                                    <span> - @relRelativeDate</span>
+                                                }
                                             </div>
                                         </div>
                                     </article>
@@ -511,11 +671,17 @@
 
                     <ul class="event-key-details-list">
 
-                        @if (!string.IsNullOrWhiteSpace(displayDate))
+                        @if (!string.IsNullOrWhiteSpace(absoluteDate))
                         {
                             <li>
                                 <div class="small text-uppercase text-secondary fw-bold">Date</div>
-                                <div>@displayDate</div>
+                                <div>
+                                    <time datetime="@GetIsoDateTime(evt.StartDateTimeUtc)">@absoluteDate</time>
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(relativeDate))
+                                {
+                                    <div class="small text-secondary">@relativeDate</div>
+                                }
                             </li>
                         }
 
@@ -550,17 +716,15 @@
                         <div class="d-grid gap-2 mt-4">
                             @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl))
                             {
-                                <a href="@evt.RegistrationUrl"
-                                   class="btn btn-primary"
-                                   target="_blank"
-                                   rel="noopener noreferrer">
-                                    @(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText)
+                                <a href="@evt.RegistrationUrl" class="btn btn-primary" target="_blank" rel="noopener noreferrer"
+                                    aria-label="@(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register for " + evt.Title : evt.RegistrationButtonText + " for " + evt.Title)">
+                                        @(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText)
                                 </a>
                             }
 
                             @if (!string.IsNullOrWhiteSpace(vm.IcsDownloadUrl))
                             {
-                                <a href="@vm.IcsDownloadUrl" class="btn btn-outline-secondary">
+                                <a href="@vm.IcsDownloadUrl" class="btn btn-outline-secondary" aria-label="Add @evt.Title to your calendar">
                                     Add to Calendar
                                 </a>
                             }
@@ -583,10 +747,8 @@
 
                                 @if (!string.IsNullOrWhiteSpace(evt.Organizer.WebsiteUrl))
                                 {
-                                    <a href="@evt.Organizer.WebsiteUrl"
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       class="small text-decoration-none">
+                                    <a href="@evt.Organizer.WebsiteUrl" target="_blank" rel="noopener noreferrer"
+                                        class="small text-decoration-none" aria-label="Visit the website for @evt.Organizer.OrganizerName">
                                         Visit Website
                                     </a>
                                 }
@@ -600,7 +762,88 @@
         </div>
     </section>
 
-</div>
+    <script type="application/ld+json">
+    {
+        "@Html.Raw("@")context": "https://schema.org",
+        "@Html.Raw("@")type": "Event",
+        "name": "@HttpUtility.JavaScriptStringEncode(evt.Title)",
+        "url": "@HttpUtility.JavaScriptStringEncode(canonicalUrl)",
+        "description": "@HttpUtility.JavaScriptStringEncode(!string.IsNullOrWhiteSpace(evt.SeoDescription) ? evt.SeoDescription : (!string.IsNullOrWhiteSpace(evt.ShortSummary) ? evt.ShortSummary : evt.Title))",
+        "startDate": "@GetIsoDateTime(evt.StartDateTimeUtc)"@(!string.IsNullOrWhiteSpace(GetIsoDateTimeNullable(evt.EndDateTimeUtc)) ? "," : "")
+        @if (!string.IsNullOrWhiteSpace(GetIsoDateTimeNullable(evt.EndDateTimeUtc)))
+        {
+        <text>
+        "endDate": "@GetIsoDateTimeNullable(evt.EndDateTimeUtc)",
+        </text>
+        }
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "@(evt.IsUpcoming ? "https://schema.org/EventScheduled" : "https://schema.org/EventCompleted")",
+        "image": [
+            "@HttpUtility.JavaScriptStringEncode(imageAbsoluteUrl)"
+        ]@((evt.Venue != null || evt.Organizer != null || evt.IsFree || evt.PriceAmount.HasValue) ? "," : "")
+        @if (evt.Venue != null)
+        {
+        <text>
+        "location": {
+            "@Html.Raw("@")type": "Place",
+            "name": "@HttpUtility.JavaScriptStringEncode(GetBestLocationText(evt))"@(!string.IsNullOrWhiteSpace(venueAddressText) || evt.Venue.Latitude.HasValue || evt.Venue.Longitude.HasValue ? "," : "")
+            @if (!string.IsNullOrWhiteSpace(venueAddressText))
+            {
+        <text>
+            "address": {
+            "@Html.Raw("@")type": "PostalAddress",
+            "streetAddress": "@HttpUtility.JavaScriptStringEncode(string.Join(", ", new[] { evt.Venue.AddressLine1, evt.Venue.AddressLine2 }.Where(x => !string.IsNullOrWhiteSpace(x))))",
+            "addressLocality": "@HttpUtility.JavaScriptStringEncode(evt.Venue.City)",
+            "addressRegion": "@HttpUtility.JavaScriptStringEncode(evt.Venue.Region)",
+            "postalCode": "@HttpUtility.JavaScriptStringEncode(evt.Venue.PostalCode)",
+            "addressCountry": "@HttpUtility.JavaScriptStringEncode(evt.Venue.CountryCode)"
+            }@(evt.Venue.Latitude.HasValue || evt.Venue.Longitude.HasValue ? "," : "")
+        </text>
+            }
+            @if (evt.Venue.Latitude.HasValue && evt.Venue.Longitude.HasValue)
+            {
+        <text>
+            "geo": {
+            "@Html.Raw("@")type": "GeoCoordinates",
+            "latitude": @evt.Venue.Latitude.Value.ToString(CultureInfo.InvariantCulture),
+            "longitude": @evt.Venue.Longitude.Value.ToString(CultureInfo.InvariantCulture)
+            }
+        </text>
+            }
+        }@(evt.Organizer != null || evt.IsFree || evt.PriceAmount.HasValue ? "," : "")
+        </text>
+        }
+        @if (evt.Organizer != null && !string.IsNullOrWhiteSpace(evt.Organizer.OrganizerName))
+        {
+        <text>
+        "organizer": {
+            "@Html.Raw("@")type": "Organization",
+            "name": "@HttpUtility.JavaScriptStringEncode(evt.Organizer.OrganizerName)"@(!string.IsNullOrWhiteSpace(evt.Organizer.WebsiteUrl) ? "," : "")
+            @if (!string.IsNullOrWhiteSpace(evt.Organizer.WebsiteUrl))
+            {
+        <text>
+            "url": "@HttpUtility.JavaScriptStringEncode(evt.Organizer.WebsiteUrl)"
+        </text>
+            }
+        }@((evt.IsFree || evt.PriceAmount.HasValue) ? "," : "")
+        </text>
+        }
+        @if (evt.IsFree || evt.PriceAmount.HasValue)
+        {
+        <text>
+        "offers": {
+            "@Html.Raw("@")type": "Offer",
+            "url": "@HttpUtility.JavaScriptStringEncode(!string.IsNullOrWhiteSpace(evt.RegistrationUrl) ? evt.RegistrationUrl : canonicalUrl)",
+            "availability": "https://schema.org/InStock",
+            "priceCurrency": "@HttpUtility.JavaScriptStringEncode(!string.IsNullOrWhiteSpace(evt.PriceCurrencyCode) ? evt.PriceCurrencyCode : "USD")",
+            "price": "@(evt.IsFree ? "0" : (evt.PriceAmount.HasValue ? evt.PriceAmount.Value.ToString(CultureInfo.InvariantCulture) : "0"))"
+        }
+        </text>
+        }
+    }
+    </script>
+
+</main>
 @*
 @ObjectInfo.Print(Model)
 @ObjectInfo.Print(vm)
