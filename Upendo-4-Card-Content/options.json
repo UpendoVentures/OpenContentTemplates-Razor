@@ -1,0 +1,100 @@
+{
+  "fields": {
+    "Card1": {
+      "label": "Card 1 - Left Column",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "Description": {
+          "label": "Description",
+          "type": "textarea"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-user-tie</code>"
+        },
+        "BorderColor": {
+          "label": "Top Border Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        }
+      }
+    },
+    "Card2": {
+      "label": "Card 2 - Center Column - Top",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "Description": {
+          "label": "Description",
+          "type": "textarea"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-people-group</code>"
+        },
+        "BorderColor": {
+          "label": "Top Border Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        }
+      }
+    },
+    "Card3": {
+      "label": "Card 3 - Center Column - Bottom",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "Description": {
+          "label": "Description",
+          "type": "textarea"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-lightbulb</code>"
+        },
+        "BorderColor": {
+          "label": "Top Border Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        }
+      }
+    },
+    "Card4": {
+      "label": "Card 4 - Right Column",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "Description": {
+          "label": "Description",
+          "type": "textarea"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-calculator</code>"
+        },
+        "BorderColor": {
+          "label": "Top Border Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        }
+      }
+    }
+  }
+}

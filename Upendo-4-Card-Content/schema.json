@@ -1,0 +1,227 @@
+{
+  "type": "object",
+  "properties": {
+    "Card1": {
+      "type": "object",
+      "title": "Card 1 - Left Column",
+      "required": [
+        "Title",
+        "Description",
+        "IconClass",
+        "BorderColor",
+        "IconColor"
+      ],
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "Description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-magnifying-glass-chart"
+        },
+        "BorderColor": {
+          "type": "string",
+          "title": "Top Border Color",
+          "enum": [
+            "border-primary",
+            "border-secondary",
+            "border-success",
+            "border-danger",
+            "border-warning",
+            "border-info",
+            "border-dark"
+          ],
+          "default": "border-info"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark"
+          ],
+          "default": "text-info"
+        }
+      }
+    },
+    "Card2": {
+      "type": "object",
+      "title": "Card 2 - Center Column - Top",
+      "required": [
+        "Title",
+        "Description",
+        "IconClass",
+        "BorderColor",
+        "IconColor"
+      ],
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "Description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-people-group"
+        },
+        "BorderColor": {
+          "type": "string",
+          "title": "Top Border Color",
+          "enum": [
+            "border-primary",
+            "border-secondary",
+            "border-success",
+            "border-danger",
+            "border-warning",
+            "border-info",
+            "border-dark"
+          ],
+          "default": "border-danger"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark"
+          ],
+          "default": "text-danger"
+        }
+      }
+    },
+    "Card3": {
+      "type": "object",
+      "title": "Card 3 - Center Column - Bottom",
+      "required": [
+        "Title",
+        "Description",
+        "IconClass",
+        "BorderColor",
+        "IconColor"
+      ],
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "Description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-lightbulb"
+        },
+        "BorderColor": {
+          "type": "string",
+          "title": "Top Border Color",
+          "enum": [
+            "border-primary",
+            "border-secondary",
+            "border-success",
+            "border-danger",
+            "border-warning",
+            "border-info",
+            "border-dark"
+          ],
+          "default": "border-warning"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark"
+          ],
+          "default": "text-warning"
+        }
+      }
+    },
+    "Card4": {
+      "type": "object",
+      "title": "Card 4 - Right Column",
+      "required": [
+        "Title",
+        "Description",
+        "IconClass",
+        "BorderColor",
+        "IconColor"
+      ],
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "Description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-calculator"
+        },
+        "BorderColor": {
+          "type": "string",
+          "title": "Top Border Color",
+          "enum": [
+            "border-primary",
+            "border-secondary",
+            "border-success",
+            "border-danger",
+            "border-warning",
+            "border-info",
+            "border-dark"
+          ],
+          "default": "border-primary"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark"
+          ],
+          "default": "text-primary"
+        }
+      }
+    }
+  },
+  "required": [
+    "Card1",
+    "Card2",
+    "Card3",
+    "Card4"
+  ]
+}
