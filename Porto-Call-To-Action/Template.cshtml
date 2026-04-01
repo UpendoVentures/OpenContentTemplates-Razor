@@ -67,7 +67,7 @@
                             <p>@Model.SubHeading</p>
                         </div>
                         <div class="call-to-action-btn">
-                            <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg btn-primary">@Model.Button</a>
+                            <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg btn-primary track-cta">@Model.Button</a>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ else
                             <p>@Model.SubHeading</p>
                         </div>
                         <div class="call-to-action-btn">
-                            <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg @buttonClass">@Model.Button</a>
+                            <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg track-cta @buttonClass">@Model.Button</a>
                             @if (isFooter)
                             {
                                 <span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft"
@@ -125,7 +125,7 @@ else
                 <p>@Model.SubHeading</p>
             </div>
             <div class="call-to-action-btn"@animationSnippet>
-                <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg @buttonClass">@Model.Button</a>
+                <a href="@Model.ButtonLink" target="@linkTarget" class="btn btn-lg track-cta @buttonClass">@Model.Button</a>
                 @if (isWithArrow)
                 {
                     <span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft"
