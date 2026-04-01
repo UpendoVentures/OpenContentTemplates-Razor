@@ -9,10 +9,14 @@
       "showMessages": false
     },
     "Heading": {
-      "type": "wysihtml"
+      "type": "text"
+    },
+    "HeadingClasses": {
+      "type": "text"
     },
     "SubHeading": {
-      "type": "wysihtml"
+      "type": "textarea",
+      "placeholder": "<!-- be sure the HTML is valid! -->"
     },
     "TextLight": {
       "type": "checkbox"

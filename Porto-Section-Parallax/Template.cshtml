@@ -30,7 +30,7 @@
 }
 @if (Model.StyleType == "HalfSection")
 {
-    <div class="container-fluid">
+    <div class="container-fluid @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         <div class="row">
             <div class="col-md-6 p-none">
                 <section style="background-image: url('@Model.Image');" class="section section-text-light section-background section-center match-height">
@@ -43,12 +43,12 @@
             </div>
             <div class="col-md-6 p-none">
                 <section class="section section-default pl-lg pr-lg match-height">
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-12">
-                            <h5>@Model.Heading</h5>
-                            <p class="mb-none">
-                                @Model.SubHeading
-                            </p>
+                            <h5 class="@Model.HeadingClasses">@Html.Raw(Model.Heading)</h5>
+                            <div class="row">
+                                @Html.Raw(Model.SubHeading)
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -58,14 +58,16 @@
 }
 else if (Model.StyleType == "HalfSectionParallax")
 {
-    <div class="container-fluid">
+    <div class="container-fluid @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         <div class="row">
             <div class="col-md-6 p-none">
                 <section class="section section-primary pl-lg pr-lg match-height">
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-12">
-                            <h5>@Model.Heading</h5>
-                            <p class="mb-none"> @Model.SubHeading </p>
+                            <h5 class="@Model.HeadingClasses">@Html.Raw(Model.Heading)</h5>
+                            <div class="row">
+                                @Html.Raw(Model.SubHeading)
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -115,7 +117,7 @@ else
             break;
     }
 
-    <section class="@sectionClass" @Html.Raw(additionalAttributes)>
+    <section class="@sectionClass  @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom" @Html.Raw(additionalAttributes)>
         @if (Model.StyleDefault == "section section-default section-with-divider")
         {
             <div class="divider divider-solid divider-style-4">
@@ -123,22 +125,21 @@ else
             </div>
         }
         <div class="container">
-            <div class="row">
+            <div class="row mt-4">
                 @if (Model.StyleType == "VideoSection" || Model.StyleType == "ParallaxSection")
                 {
                     <div class="col-md-8 offset-md-2">
-                        <h4 class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.Heading</h4>
-                <p class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.SubHeading</p>
+                        <h4 class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty) @Model.HeadingClasses">@Html.Raw(Model.Heading)</h4>
+                        <div class="row @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Html.Raw(Model.SubHeading)</div>
                     </div>
                 }
                 else if (Model.StyleType == "BackgroundSection" || Model.StyleType == "Default")
                 {
                     <div class="col-md-12">
-                        <h4 class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.Heading</h4>
-                <p class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Model.SubHeading</p>
+                        <h4 class="mb-none @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty) @Model.HeadingClasses">@Html.Raw(Model.Heading)</h4>
+                        <div class="row @(ConvertToBool(Model.TextLight) ? "text-light" : string.Empty)">@Html.Raw(Model.SubHeading)</div>
                     </div>
-                }
-                
+                }                
                 </div>
             </div>
     </section>

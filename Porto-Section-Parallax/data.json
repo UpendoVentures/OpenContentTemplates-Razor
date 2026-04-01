@@ -1,6 +1,7 @@
 {
-  "Heading": "What is Lorem Ipsum?",
-  "SubHeading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eros ipsum, facilisis eget scelerisque non, fermentum at tellus.",
+  "Heading": "<i class=\"fas fa-heart me-2\" aria-hidden=\"true\"></i>What is <strong>Lorem Ipsum</strong>?",
+  "HeadingClasses": "",
+  "SubHeading": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eros ipsum, facilisis eget scelerisque non, fermentum at tellus.</p>",
   "StyleType" : "Default",
   "StyleDefault": "section section-default"
 }
