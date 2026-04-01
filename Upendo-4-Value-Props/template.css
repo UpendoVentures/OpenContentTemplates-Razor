@@ -1,0 +1,137 @@
+.oc-services-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.oc-services-header {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-services-eyebrow {
+    margin-bottom: 0.5rem;
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.oc-services-title {
+    line-height: 1.1;
+    margin-bottom: 0;
+}
+
+.oc-services-intro {
+    max-width: 720px;
+}
+
+.oc-services-intro p:last-child,
+.oc-services-intro ul:last-child,
+.oc-services-intro ol:last-child {
+    margin-bottom: 0;
+}
+
+.oc-services-column {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.oc-service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    opacity: 0;
+    transition:
+        transform 0.8s ease,
+        opacity 0.8s ease;
+    will-change: transform, opacity;
+}
+
+.oc-service-item-left {
+    transform: translateX(-60px);
+}
+
+.oc-service-item-right {
+    transform: translateX(60px);
+}
+
+.oc-service-item.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.oc-service-icon-wrap {
+    flex: 0 0 auto;
+}
+
+.oc-service-icon {
+    width: 5rem;
+    height: 5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.oc-service-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.oc-service-item-title {
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+}
+
+.oc-service-item-body,
+.oc-service-item-body p,
+.oc-service-item-body li {
+    line-height: 1.7;
+}
+
+.oc-service-item-body p:last-child,
+.oc-service-item-body ul:last-child,
+.oc-service-item-body ol:last-child {
+    margin-bottom: 0;
+}
+
+.oc-service-item-body ul,
+.oc-service-item-body ol {
+    padding-left: 1.25rem;
+}
+
+@media (max-width: 991.98px) {
+    .oc-services-column {
+        gap: 2rem;
+    }
+
+    .oc-service-item,
+    .oc-service-item-right {
+        transform: translateY(30px);
+    }
+
+    .oc-service-item-right {
+        flex-direction: row;
+    }
+
+    .oc-service-item-right .oc-service-content {
+        text-align: left !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-service-item {
+        gap: 1rem;
+    }
+
+    .oc-service-icon {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+}
