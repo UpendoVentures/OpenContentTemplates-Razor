@@ -1,0 +1,14 @@
+{
+  "builderVersion": 1,
+  "editWitoutPostback": true,
+  "index": false,
+  "templates": {
+    "template": {
+      "type": "single",
+      "title": "Template",
+      "main": {
+        "template": "template.cshtml"
+      }
+    }
+  }
+}

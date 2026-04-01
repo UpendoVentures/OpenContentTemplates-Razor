@@ -1,0 +1,32 @@
+{
+  "SectionTitle": "Our Process",
+  "SectionIntroHtml": "<p>Use these four content areas to explain how your team works with Clients from first conversation to final delivery.</p>",
+  "Step1": {
+    "NumberText": "1",
+    "Title": "Analysis & Strategy",
+    "BodyHtml": "<p>We analyze your needs and create a clear plan for what comes next.</p>",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  },
+  "Step2": {
+    "NumberText": "2",
+    "Title": "Make an Offer",
+    "BodyHtml": "<p>We outline the recommended solution so expectations and next steps are clear.</p>",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  },
+  "Step3": {
+    "NumberText": "3",
+    "Title": "Development",
+    "BodyHtml": "<p>We build the solution and keep progress moving in the right direction.</p>",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  },
+  "Step4": {
+    "NumberText": "4",
+    "Title": "Finalize",
+    "BodyHtml": "<p>We finalize the work, wrap up key details, and prepare for launch or handoff.</p>",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  }
+}

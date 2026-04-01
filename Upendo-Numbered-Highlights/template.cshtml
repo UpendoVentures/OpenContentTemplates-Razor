@@ -1,0 +1,175 @@
+@using System
+@using System.Globalization
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public string GetProp(dynamic item, string name, string fallback)
+    {
+        try
+        {
+            if (item == null)
+            {
+                return fallback;
+            }
+
+            var value = item[name];
+            return value == null ? fallback : Convert.ToString(value);
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+
+    public IHtmlString GetHtmlProp(dynamic item, string name)
+    {
+        try
+        {
+            if (item == null)
+            {
+                return new HtmlString(String.Empty);
+            }
+
+            var value = item[name];
+            if (value == null)
+            {
+                return new HtmlString(String.Empty);
+            }
+
+            return new HtmlString(Convert.ToString(value));
+        }
+        catch
+        {
+            return new HtmlString(String.Empty);
+        }
+    }
+
+    public bool HasVisibleStep(dynamic item, bool isOptional)
+    {
+        if (item == null)
+        {
+            return false;
+        }
+
+        var title = GetProp(item, "Title", "");
+        var bodyHtml = GetProp(item, "BodyHtml", "");
+        var numberText = GetProp(item, "NumberText", "");
+
+        if (isOptional)
+        {
+            return !String.IsNullOrWhiteSpace(title)
+                || !String.IsNullOrWhiteSpace(bodyHtml)
+                || !String.IsNullOrWhiteSpace(numberText);
+        }
+
+        return true;
+    }
+
+    public string GetSafeIdPart(string value, string fallback)
+    {
+        var input = String.IsNullOrWhiteSpace(value) ? fallback : value;
+        input = input.ToLowerInvariant();
+
+        var buffer = new System.Text.StringBuilder();
+        for (var i = 0; i < input.Length; i++)
+        {
+            var ch = input[i];
+            if (Char.IsLetterOrDigit(ch))
+            {
+                buffer.Append(ch);
+            }
+            else if (ch == ' ' || ch == '-' || ch == '_')
+            {
+                buffer.Append('-');
+            }
+        }
+
+        var result = buffer.ToString().Trim('-');
+        return String.IsNullOrWhiteSpace(result) ? fallback : result;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var moduleGuid = Dnn.Module.ModuleID.ToString(CultureInfo.InvariantCulture);
+    var sectionId = "oc-process-steps-" + moduleGuid;
+
+    var sectionTitle = GetProp(Model, "SectionTitle", "Our Process");
+    var sectionIntroHtml = GetProp(Model, "SectionIntroHtml", "");
+
+    var step1 = Model.Step1;
+    var step2 = Model.Step2;
+    var step3 = Model.Step3;
+    var step4 = Model.Step4;
+
+    var hasStep1 = HasVisibleStep(step1, false);
+    var hasStep2 = HasVisibleStep(step2, false);
+    var hasStep3 = HasVisibleStep(step3, false);
+    var hasStep4 = HasVisibleStep(step4, true);
+}
+
+@if (hasStep1 || hasStep2 || hasStep3 || hasStep4)
+{
+    <section id="@sectionId" class="oc-process-steps my-4 py-5" aria-labelledby="@(sectionId)-title">
+        <div class="container">
+            @if (!String.IsNullOrWhiteSpace(sectionTitle) || !String.IsNullOrWhiteSpace(sectionIntroHtml))
+            {
+                <header class="oc-process-steps__header text-center mb-4 mb-xl-5">
+                    @if (!String.IsNullOrWhiteSpace(sectionTitle))
+                    {
+                        <h2 id="@(sectionId)-title" class="oc-process-steps__section-title mb-3">@sectionTitle</h2>
+                    }
+
+                    @if (!String.IsNullOrWhiteSpace(sectionIntroHtml))
+                    {
+                        <div class="oc-process-steps__intro mx-auto">
+                            @GetHtmlProp(Model, "SectionIntroHtml")
+                        </div>
+                    }
+                </header>
+            }
+
+            <ul class="oc-process-steps__list list-unstyled mb-0" aria-label="Process steps">
+                @if (hasStep1)
+                {
+                    <li class="oc-process-steps__item @GetProp(step1, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step1, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step1, "NumberText", "1")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step1, "Title", "step-1"), "step-1")" class="oc-process-steps__title">@GetProp(step1, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle">@GetHtmlProp(step1, "BodyHtml")</div>
+                    </li>
+                }
+
+                @if (hasStep2)
+                {
+                    <li class="oc-process-steps__item @GetProp(step2, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step2, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step2, "NumberText", "2")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step2, "Title", "step-2"), "step-2")" class="oc-process-steps__title">@GetProp(step2, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle">@GetHtmlProp(step2, "BodyHtml")</div>
+                    </li>
+                }
+
+                @if (hasStep3)
+                {
+                    <li class="oc-process-steps__item @GetProp(step3, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step3, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step3, "NumberText", "3")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step3, "Title", "step-3"), "step-3")" class="oc-process-steps__title">@GetProp(step3, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle">@GetHtmlProp(step3, "BodyHtml")</div>
+                    </li>
+                }
+
+                @if (hasStep4)
+                {
+                    <li class="oc-process-steps__item @GetProp(step4, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step4, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step4, "NumberText", "4")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step4, "Title", "step-4"), "step-4")" class="oc-process-steps__title">@GetProp(step4, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle">@GetHtmlProp(step4, "BodyHtml")</div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+}

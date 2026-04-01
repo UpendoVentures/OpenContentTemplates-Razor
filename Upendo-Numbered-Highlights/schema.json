@@ -1,0 +1,149 @@
+{
+  "type": "object",
+  "properties": {
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title",
+      "default": "Our Process"
+    },
+    "SectionIntroHtml": {
+      "type": "string",
+      "title": "Section Intro HTML"
+    },
+    "Step1": {
+      "type": "object",
+      "title": "Step 1",
+      "required": ["NumberText", "Title", "BodyHtml", "HeaderColor", "HoverBackgroundColor"],
+      "properties": {
+        "NumberText": {
+          "type": "string",
+          "title": "Number",
+          "default": "1"
+        },
+        "Title": {
+          "type": "string",
+          "title": "Heading",
+          "default": "Analysis & Strategy"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML",
+          "default": "<p>We analyze your needs and create a clear plan for what comes next.</p>"
+        },
+        "HeaderColor": {
+          "type": "string",
+          "title": "Heading and Number Color",
+          "enum": ["is-navy", "is-blue", "is-teal", "is-green", "is-gold", "is-red", "is-purple", "is-dark"],
+          "default": "is-navy"
+        },
+        "HoverBackgroundColor": {
+          "type": "string",
+          "title": "Hover Background Color",
+          "enum": ["#f8f9fa", "#f2f4f7", "#eef6ff", "#edf7f2", "#fff8e6", "#fdf0f0", "#f3efff", "#f3f4f6"],
+          "default": "#f2f4f7"
+        }
+      }
+    },
+    "Step2": {
+      "type": "object",
+      "title": "Step 2",
+      "required": ["NumberText", "Title", "BodyHtml", "HeaderColor", "HoverBackgroundColor"],
+      "properties": {
+        "NumberText": {
+          "type": "string",
+          "title": "Number",
+          "default": "2"
+        },
+        "Title": {
+          "type": "string",
+          "title": "Heading",
+          "default": "Make an Offer"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML",
+          "default": "<p>We outline the recommended solution so expectations and next steps are clear.</p>"
+        },
+        "HeaderColor": {
+          "type": "string",
+          "title": "Heading and Number Color",
+          "enum": ["is-navy", "is-blue", "is-teal", "is-green", "is-gold", "is-red", "is-purple", "is-dark"],
+          "default": "is-navy"
+        },
+        "HoverBackgroundColor": {
+          "type": "string",
+          "title": "Hover Background Color",
+          "enum": ["#f8f9fa", "#f2f4f7", "#eef6ff", "#edf7f2", "#fff8e6", "#fdf0f0", "#f3efff", "#f3f4f6"],
+          "default": "#f2f4f7"
+        }
+      }
+    },
+    "Step3": {
+      "type": "object",
+      "title": "Step 3",
+      "required": ["NumberText", "Title", "BodyHtml", "HeaderColor", "HoverBackgroundColor"],
+      "properties": {
+        "NumberText": {
+          "type": "string",
+          "title": "Number",
+          "default": "3"
+        },
+        "Title": {
+          "type": "string",
+          "title": "Heading",
+          "default": "Development"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML",
+          "default": "<p>We build the solution and keep progress moving in the right direction.</p>"
+        },
+        "HeaderColor": {
+          "type": "string",
+          "title": "Heading and Number Color",
+          "enum": ["is-navy", "is-blue", "is-teal", "is-green", "is-gold", "is-red", "is-purple", "is-dark"],
+          "default": "is-navy"
+        },
+        "HoverBackgroundColor": {
+          "type": "string",
+          "title": "Hover Background Color",
+          "enum": ["#f8f9fa", "#f2f4f7", "#eef6ff", "#edf7f2", "#fff8e6", "#fdf0f0", "#f3efff", "#f3f4f6"],
+          "default": "#f2f4f7"
+        }
+      }
+    },
+    "Step4": {
+      "type": "object",
+      "title": "Step 4 - Optional",
+      "properties": {
+        "NumberText": {
+          "type": "string",
+          "title": "Number",
+          "default": "4"
+        },
+        "Title": {
+          "type": "string",
+          "title": "Heading",
+          "default": "Finalize"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML",
+          "default": "<p>We finalize the work, wrap up key details, and prepare for launch or handoff.</p>"
+        },
+        "HeaderColor": {
+          "type": "string",
+          "title": "Heading and Number Color",
+          "enum": ["is-navy", "is-blue", "is-teal", "is-green", "is-gold", "is-red", "is-purple", "is-dark"],
+          "default": "is-navy"
+        },
+        "HoverBackgroundColor": {
+          "type": "string",
+          "title": "Hover Background Color",
+          "enum": ["#f8f9fa", "#f2f4f7", "#eef6ff", "#edf7f2", "#fff8e6", "#fdf0f0", "#f3efff", "#f3f4f6"],
+          "default": "#f2f4f7"
+        }
+      }
+    }
+  }
+}
