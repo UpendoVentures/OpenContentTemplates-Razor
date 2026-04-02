@@ -46,6 +46,11 @@
     var card4 = Model.Card4;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
 @if (card1 != null && card2 != null && card3 != null && card4 != null)
 {
     <section class="fc-section my-4 py-5" aria-label="Feature cards">

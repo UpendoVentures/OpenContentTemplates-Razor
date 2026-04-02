@@ -45,6 +45,11 @@
     var rightBottom = Model.RightBottom;
 }
 
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
 <section id="@sectionId" class="oc-services-section my-4 py-5" aria-labelledby="@(sectionId)-title">
     <div class="container">
         @if (!string.IsNullOrWhiteSpace(sectionEyebrow) || !string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionIntroHtml))
