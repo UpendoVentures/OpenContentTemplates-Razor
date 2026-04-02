@@ -6,6 +6,7 @@
     max-width: 52rem;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0px !important;
 }
 
 .oc-process-steps__section-title {
@@ -16,9 +17,7 @@
     max-width: 44rem;
 }
 
-.oc-process-steps__intro p:last-child,
-.oc-process-steps__intro ul:last-child,
-.oc-process-steps__intro ol:last-child {
+.oc-process-steps__intro p:last-child {
     margin-bottom: 0;
 }
 
@@ -49,14 +48,15 @@
 .oc-process-steps__number {
     display: block;
     margin: 0;
-    color: transparent;
+    color: inherit;
     font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
     font-size: clamp(4rem, 8vw, 5.625rem);
     font-weight: 700;
     line-height: 1;
+    -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px currentColor;
     text-shadow: none !important;
-    transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
 }
 
 .oc-process-steps__title {
@@ -73,27 +73,62 @@
 .oc-process-steps__subtitle {
     display: block;
     margin-top: 1.5rem;
-    line-height: 1.6;
+    line-height: 1.55;
+}
+
+.oc-process-steps__subtitle,
+.oc-process-steps__subtitle p {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+}
+
+.oc-process-steps__subtitle p:last-child {
+    margin-bottom: 0;
 }
 
 .oc-process-steps__subtitle,
 .oc-process-steps__subtitle p,
-.oc-process-steps__subtitle li {
-    font-family: "Josefin Slab", Georgia, serif;
-    font-size: clamp(1.1rem, 1.75vw, 1.35rem);
+.oc-process-steps__subtitle a,
+.oc-process-steps__subtitle a:link,
+.oc-process-steps__subtitle a:visited {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    line-height: 1.55;
 }
 
-.oc-process-steps__subtitle p:last-child,
-.oc-process-steps__subtitle ul:last-child,
-.oc-process-steps__subtitle ol:last-child {
-    margin-bottom: 0;
+.oc-process-steps__subtitle,
+.oc-process-steps__subtitle p {
+    color: var(--bs-secondary-color, #6c757d);
 }
 
-.oc-process-steps__subtitle ul,
-.oc-process-steps__subtitle ol {
-    padding-left: 1.25rem;
-    text-align: left;
-    display: inline-block;
+.oc-process-steps__subtitle a,
+.oc-process-steps__subtitle a:link,
+.oc-process-steps__subtitle a:visited {
+    color: currentColor;
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.oc-process-steps__subtitle a:hover,
+.oc-process-steps__subtitle a:focus {
+    color: currentColor;
+    opacity: 0.85;
+    text-decoration-line: underline;
+}
+
+.oc-process-steps__subtitle a:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.oc-process-steps__subtitle p a,
+.oc-process-steps__subtitle li a,
+.oc-process-steps__subtitle span a,
+.oc-process-steps__subtitle strong a,
+.oc-process-steps__subtitle em a {
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .oc-process-steps__item.is-navy {
@@ -129,8 +164,7 @@
 }
 
 .oc-process-steps__subtitle,
-.oc-process-steps__subtitle p,
-.oc-process-steps__subtitle li {
+.oc-process-steps__subtitle p {
     color: var(--bs-secondary-color, #6c757d);
 }
 

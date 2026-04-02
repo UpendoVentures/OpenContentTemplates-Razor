@@ -1,110 +1,61 @@
 {
   "fields": {
-    "SectionTitle": {
-      "label": "Section Title"
+    "ModuleTitle": {
+      "type": "text"
     },
-    "SectionIntroHtml": {
-      "label": "Section Intro HTML",
-      "type": "ckeditor",
-      "configset": "basic",
-      "helper": "Optional. Use this area for a short intro above the process steps."
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "SectionTitle": {
+      "type": "text", 
+      "label": "Section Title",
+      "helper": "Leave emtpy to hide/remove this from the view."
+    },
+    "SectionIntro": {
+      "type": "text", 
+      "label": "Section Intro",
+      "helper": "Leave emtpy to hide/remove this from the view."
     },
     "Step1": {
       "label": "Content Item 1",
       "fields": {
-        "NumberText": {
-          "label": "Number"
-        },
-        "Title": {
-          "label": "Heading"
-        },
-        "BodyHtml": {
-          "label": "Body HTML",
-          "type": "ckeditor",
-          "configset": "basic"
-        },
-        "HeaderColor": {
-          "label": "Heading and Number Color",
-          "type": "select"
-        },
-        "HoverBackgroundColor": {
-          "label": "Hover Background Color",
-          "type": "select"
-        }
+        "NumberText": { "label": "Number", "helper": "Required. Keep this short, such as 1." },
+        "Title": { "label": "Heading", "helper": "Required. Keep this short so it fits nicely on one or two lines." },
+        "Description": { "label": "Description", "helper": "Required. Use plain text and keep it brief for best visual results." },
+        "HeaderColor": { "label": "Heading and Number Color", "type": "select", "optionLabels": ["Navy", "Blue", "Teal", "Green", "Gold", "Red", "Purple", "Dark"] },
+        "HoverBackgroundColor": { "label": "Hover Background Color", "type": "select", "optionLabels": ["Light Gray", "Soft Gray", "Soft Blue", "Soft Green", "Soft Gold", "Soft Red", "Soft Purple", "Cool Gray"] }
       }
     },
     "Step2": {
       "label": "Content Item 2",
       "fields": {
-        "NumberText": {
-          "label": "Number"
-        },
-        "Title": {
-          "label": "Heading"
-        },
-        "BodyHtml": {
-          "label": "Body HTML",
-          "type": "ckeditor",
-          "configset": "basic"
-        },
-        "HeaderColor": {
-          "label": "Heading and Number Color",
-          "type": "select"
-        },
-        "HoverBackgroundColor": {
-          "label": "Hover Background Color",
-          "type": "select"
-        }
+        "NumberText": { "label": "Number", "helper": "Required. Keep this short, such as 2." },
+        "Title": { "label": "Heading", "helper": "Required. Keep this short so it fits nicely on one or two lines." },
+        "Description": { "label": "Description", "helper": "Required. Use plain text and keep it brief for best visual results." },
+        "HeaderColor": { "label": "Heading and Number Color", "type": "select", "optionLabels": ["Navy", "Blue", "Teal", "Green", "Gold", "Red", "Purple", "Dark"] },
+        "HoverBackgroundColor": { "label": "Hover Background Color", "type": "select", "optionLabels": ["Light Gray", "Soft Gray", "Soft Blue", "Soft Green", "Soft Gold", "Soft Red", "Soft Purple", "Cool Gray"] }
       }
     },
     "Step3": {
       "label": "Content Item 3",
       "fields": {
-        "NumberText": {
-          "label": "Number"
-        },
-        "Title": {
-          "label": "Heading"
-        },
-        "BodyHtml": {
-          "label": "Body HTML",
-          "type": "ckeditor",
-          "configset": "basic"
-        },
-        "HeaderColor": {
-          "label": "Heading and Number Color",
-          "type": "select"
-        },
-        "HoverBackgroundColor": {
-          "label": "Hover Background Color",
-          "type": "select"
-        }
+        "NumberText": { "label": "Number", "helper": "Required. Keep this short, such as 3." },
+        "Title": { "label": "Heading", "helper": "Required. Keep this short so it fits nicely on one or two lines." },
+        "Description": { "label": "Description", "helper": "Required. Use plain text and keep it brief for best visual results." },
+        "HeaderColor": { "label": "Heading and Number Color", "type": "select", "optionLabels": ["Navy", "Blue", "Teal", "Green", "Gold", "Red", "Purple", "Dark"] },
+        "HoverBackgroundColor": { "label": "Hover Background Color", "type": "select", "optionLabels": ["Light Gray", "Soft Gray", "Soft Blue", "Soft Green", "Soft Gold", "Soft Red", "Soft Purple", "Cool Gray"] }
       }
     },
     "Step4": {
       "label": "Content Item 4 - Optional",
       "helper": "Leave all fields empty to show only 3 steps on the front end.",
       "fields": {
-        "NumberText": {
-          "label": "Number"
-        },
-        "Title": {
-          "label": "Heading",
-          "helper": "Optional. If this and the other Step 4 fields are left empty, the fourth step will not render."
-        },
-        "BodyHtml": {
-          "label": "Body HTML",
-          "type": "ckeditor",
-          "configset": "basic"
-        },
-        "HeaderColor": {
-          "label": "Heading and Number Color",
-          "type": "select"
-        },
-        "HoverBackgroundColor": {
-          "label": "Hover Background Color",
-          "type": "select"
-        }
+        "NumberText": { "label": "Number", "helper": "Optional. If used, keep this short, such as 4." },
+        "Title": { "label": "Heading", "helper": "Optional. If all Step 4 fields are blank, the fourth item will not display." },
+        "Description": { "label": "Description", "helper": "Optional. Use plain text and keep it brief for best visual results." },
+        "HeaderColor": { "label": "Heading and Number Color", "type": "select", "optionLabels": ["Navy", "Blue", "Teal", "Green", "Gold", "Red", "Purple", "Dark"] },
+        "HoverBackgroundColor": { "label": "Hover Background Color", "type": "select", "optionLabels": ["Light Gray", "Soft Gray", "Soft Blue", "Soft Green", "Soft Gold", "Soft Red", "Soft Purple", "Cool Gray"] }
       }
     }
   }
