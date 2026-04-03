@@ -1,6 +1,14 @@
 {
   "type": "object",
   "properties": {
+    "Layout": {
+      "title": "Layout",
+      "type": "string",
+      "enum": [
+        "tab",
+        "pill"
+      ]
+    },
     "Color": {
       "title": "Choose the Accordion Color",
       "type": "string",
@@ -26,6 +34,11 @@
       "title": "Include the Borders?",
       "type": "string",
       "enum": ["", " without-borders"]
+    },
+    "FaqMode": {
+      "title": "FAQ Mode",
+      "type": "boolean",
+      "default": true
     }
   }
 }

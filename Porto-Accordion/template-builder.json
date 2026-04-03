@@ -15,6 +15,12 @@
       ],
       "fieldtype": "select",
       "title": "Layout"
+    },
+    {
+      "fieldname": "FaqMode",
+      "title": "FAQ Mode",
+      "fieldtype": "checkbox",
+      "value": true
     }
   ]
 }
