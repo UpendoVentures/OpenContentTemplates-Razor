@@ -98,7 +98,7 @@
     }
 
     HttpRequest httpRequest = HttpContext.Current != null ? HttpContext.Current.Request : null;
-    string slug = EventSlugHelper.GetSlugFromRequest(httpRequest, detailPagePath);
+    string slug = EventSlugHelper.GetSlugFromRequest(httpRequest, detailPagePath, true);
 
     var errorMessage = string.Empty;
     EventDetailViewModel vm = null; 
