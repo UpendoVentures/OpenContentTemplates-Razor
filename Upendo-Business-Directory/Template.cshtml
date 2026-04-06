@@ -3,8 +3,13 @@
 @using System.Collections.Specialized
 @using System.Web
 @using DotNetNuke.Entities.Modules
-@using Upendo.SkinObjects.OpenContentHelper.Entities
 @using Upendo.SkinObjects.OpenContentHelper.Helpers
+@using Upendo.OpenContentHelper.Features.Directory
+@using Upendo.OpenContentHelper.Features.Directory.Common
+@using Upendo.OpenContentHelper.Features.Directory.Helpers
+@using Upendo.OpenContentHelper.Features.Directory.Models
+@using Upendo.OpenContentHelper.Features.Seo.Helpers
+
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @{
@@ -25,35 +30,14 @@
         tabId = Dnn.Tab.TabID;
     }
 
-    // ----------------------------
-    // Route parsing: /list/company/{slug}
-    // ----------------------------
     var request = HttpContext.Current.Request;
     string currentQuery = DirectoryHelper.CurrentQueryStrings();
-
-    // Use RawUrl because DNN/IIS may rewrite Request.Url internally.
-    string rawUrl = string.Empty;
-    if (request != null && request.RawUrl != null)
-    {
-        rawUrl = request.RawUrl;
-    }
-    // Strip querystring (everything after '?')
-    string absolutePath = rawUrl;
-    int qIndex = rawUrl.IndexOf('?');
-    if (qIndex >= 0)
-    {
-        absolutePath = rawUrl.Substring(0, qIndex);
-    }
-    // Normalize: trim trailing slash (except keep "/" as "/")
-    if (!string.IsNullOrEmpty(absolutePath) && absolutePath.Length > 1)
-    {
-        absolutePath = absolutePath.TrimEnd('/');
-    }
 
     // detail support
     CompanyDetail company = null;
     bool isCompanyDetail = false;
     string companySlugFromPath = null;
+
     // directory support
     DirectorySearchRequest req = new DirectorySearchRequest();
     List<CategoryDto> categories = new List<CategoryDto>();
@@ -65,40 +49,32 @@
     int pageSize = 24;
     int from = 0;
     int to = 0;
+    string companyDetailRelativeUrl = string.Empty;
+    string companyDetailAbsoluteUrl = string.Empty;
 
-    if (!string.IsNullOrEmpty(absolutePath))
-    {
-        // Split and look for ".../company/{slug}"
-        var segs = absolutePath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-        // Find the "company" segment anywhere in the path
-        for (int s = 0; s < segs.Length; s++)
-        {
-            if (segs[s].Equals("company", StringComparison.OrdinalIgnoreCase))
-            {
-                if (s + 1 < segs.Length)
-                {
-                    companySlugFromPath = HttpUtility.UrlDecode(segs[s + 1]);
-                    isCompanyDetail = !string.IsNullOrWhiteSpace(companySlugFromPath);
-                }
-                break;
-            }
-        }
-    }
-
-    if (isCompanyDetail)
+    if (DirectoryRequestHelper.TryGetCompanyDetailSlug(request, out companySlugFromPath))
     {
         /*------------------------------------------------------------
-         * COMPANY DETAIL VIEW
-         *------------------------------------------------------------*/
-        // load company by slug, set meta, prep view model
-        company = ChamberMembershipController.GetCompanyBySlug(portalId, companySlugFromPath);        
+        * COMPANY DETAIL VIEW
+        *------------------------------------------------------------*/
+        isCompanyDetail = true;
+        company = ChamberMembershipController.GetCompanyBySlug(portalId, companySlugFromPath);
+
+        if (company != null)
+        {
+            companyDetailRelativeUrl = DirectoryPageUrlHelper.BuildCompanyDetailUrl(
+                DirectoryConstants.DirectoryListPageRoute,
+                company.Slug
+            );
+
+            companyDetailAbsoluteUrl = request.Url.Scheme + "://" + request.Url.Authority + companyDetailRelativeUrl;
+        }
     }
     else
     {
         /*------------------------------------------------------------
-         * SEARCH/DIRECTORY VIEW
-         *------------------------------------------------------------*/
+        * SEARCH/DIRECTORY VIEW
+        *------------------------------------------------------------*/
         // existing listing/search logic
         var sort = (Request.QueryString["sort"] ?? "default").Trim().ToLowerInvariant();
         var rsRaw = (Request.QueryString["rs"] ?? string.Empty).Trim();
@@ -284,25 +260,9 @@
     else
     {
         string logoUrl = ChamberMembershipController.ResolveLogoUrl(portalId, company.LogoFileId, company.LogoUrl);
-
-        // Primary category (first in list)
-        string primaryCategory = string.Empty;
-        if (company.Categories != null && company.Categories.Count > 0 && company.Categories[0] != null)
-        {
-            primaryCategory = company.Categories[0].CategoryName ?? string.Empty;
-        }
-
-        // Prefer PrimaryBusinessEmail, fall back to Email
-        string primaryEmail = !string.IsNullOrWhiteSpace(company.PrimaryBusinessEmail)
-            ? company.PrimaryBusinessEmail
-            : (company.Email ?? string.Empty);
-
-        bool hasSocial =
-            !string.IsNullOrWhiteSpace(company.LinkedInUrl) ||
-            !string.IsNullOrWhiteSpace(company.FacebookUrl) ||
-            !string.IsNullOrWhiteSpace(company.InstagramUrl) ||
-            !string.IsNullOrWhiteSpace(company.TwitterUrl) ||
-            !string.IsNullOrWhiteSpace(company.TikTokUrl);
+        string primaryCategory = ChamberMembershipController.GetPrimaryCategoryName(company);
+        string primaryEmail = ChamberMembershipController.GetPrimaryEmail(company);
+        bool hasSocial = ChamberMembershipController.HasSocialLinks(company);
 
         <div class="mb-3">
             <a href="@backToDirectoryUrl" class="text-decoration-none">
@@ -318,18 +278,18 @@
                         <div class="card-body p-4 p-lg-5">
                             <div class="d-flex flex-column align-items-center text-center">
 
-                                @* Logo above company name *@
                                 @if (!string.IsNullOrWhiteSpace(logoUrl))
                                 {
                                     <div class="bg-white rounded-4 p-3 mb-3" style="max-width: 320px;">
-                                        <img src="/Portals/6/Content/Members/@logoUrl" alt="Logo for @company.CompanyName" class="img-fluid" style="max-height: 320px;" />
+                                        <img src="@logoUrl" alt="Logo for @company.CompanyName" class="img-fluid" style="max-height: 320px;" loading="lazy" decoding="async" />
                                     </div>
                                 }
                                 else
                                 {
+                                    @* TODO: Replace placeholder logo with OpenContent setting/value *@
                                     <div class="bg-white rounded-4 p-3 mb-3" style="max-width: 320px;">
-                                        <img src="/Portals/6/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png"
-                                            alt="Placeholder Logo for @company.CompanyName" class="img-fluid" style="max-height: 320px;" />
+                                        <img src="/Portals/@portalId/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png"
+                                            alt="Placeholder Logo for @company.CompanyName" class="img-fluid" style="max-height: 320px;" loading="lazy" decoding="async" />
                                     </div>
                                 }
 
@@ -582,11 +542,11 @@
             <a href="@backToDirectoryUrl" class="text-decoration-none">
                 <span aria-hidden="true">&larr;</span> Back to Directory
             </a>
-        </div>
+        </div> 
 
         @ChamberMembershipController.BuildCompanyJsonLd(
             company,
-            Request.Url.GetLeftPart(UriPartial.Path),
+            companyDetailAbsoluteUrl,
             logoUrl,
             (company.Categories != null ? company.Categories.Select(c => c.CategoryName) : null)
         )
@@ -684,9 +644,7 @@ else
                     {
                         CompanyDirectoryItem item = items[i];
 
-                        string baseTabUrl = DotNetNuke.Common.Globals.NavigateURL(tabId).TrimEnd('/');
-                        string safeSlug = Uri.EscapeDataString(item.Slug ?? string.Empty);
-                        string companyUrl = baseTabUrl + "/company/" + safeSlug + currentQuery;
+                        string companyUrl = ChamberMembershipController.BuildCompanyDetailUrl(tabId, item.Slug, currentQuery);
 
                         string logoUrl = ChamberMembershipController.ResolveLogoUrl(portalId, item.LogoFileId, item.LogoUrl);
 
@@ -715,15 +673,16 @@ else
                                 <div class="ratio ratio-4x3 bg-white member-card-logo">
                                     @if (!string.IsNullOrWhiteSpace(logoUrl))
                                     {
-                                    <a href="@companyUrl" class="savetime-directory">
-                                        <img src="/Portals/6/Content/Members/@logoUrl" alt="Logo for @item.CompanyName" class="w-100 h-100 object-fit-contain p-3" />
-                                    </a>
+                                        <a href="@companyUrl" class="savetime-directory">
+                                            <img src="@logoUrl" alt="Logo for @item.CompanyName" class="w-100 h-100 object-fit-contain p-3" loading="lazy" decoding="async" />
+                                        </a>
                                     }
                                     else
-                                    {                                  
-                                    <a href="@companyUrl" class="savetime-directory">
-                                        <img src="/Portals/6/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png" alt="Placeholder Logo for @item.CompanyName" class="w-100 h-100 object-fit-contain p-3" />
-                                    </a>
+                                    {
+                                        @* TODO: Replace placeholder logo with OpenContent setting/value *@
+                                        <a href="@companyUrl" class="savetime-directory">
+                                            <img src="/Portals/@portalId/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png" alt="Placeholder Logo for @item.CompanyName" class="w-100 h-100 object-fit-contain p-3" loading="lazy" decoding="async" />
+                                        </a>
                                     }
                                 </div>
 
