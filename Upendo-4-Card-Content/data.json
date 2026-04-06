@@ -1,0 +1,30 @@
+{
+  "Card1": {
+    "Title": "Supervisor",
+    "Description": "Monitors activity to identify project roadblocks.",
+    "IconClass": "fa-solid fa-magnifying-glass-chart",
+    "BorderColor": "border-info",
+    "IconColor": "text-info"
+  },
+  "Card2": {
+    "Title": "Team Builder",
+    "Description": "Scans your talent network to create the optimal team for each project.",
+    "IconClass": "fa-solid fa-people-group",
+    "BorderColor": "border-danger",
+    "IconColor": "text-danger"
+  },
+  "Card3": {
+    "Title": "Karma",
+    "Description": "Regularly evaluates quality and helps keep standards high.",
+    "IconClass": "fa-solid fa-lightbulb",
+    "BorderColor": "border-warning",
+    "IconColor": "text-warning"
+  },
+  "Card4": {
+    "Title": "Calculator",
+    "Description": "Uses data from past projects to provide better delivery estimates.",
+    "IconClass": "fa-solid fa-calculator",
+    "BorderColor": "border-primary",
+    "IconColor": "text-primary"
+  }
+}

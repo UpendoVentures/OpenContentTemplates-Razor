@@ -1,0 +1,195 @@
+@using System
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public string GetProp(dynamic item, string name, string fallback = "")
+    {
+        try
+        {
+            var value = item[name];
+            if (value == null)
+            {
+                return fallback;
+            }
+
+            return Convert.ToString(value);
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+
+    public IHtmlString GetHtmlProp(dynamic item, string name, string fallback = "")
+    {
+        var value = GetProp(item, name, fallback);
+        return new HtmlString(HttpUtility.HtmlDecode(value ?? fallback ?? ""));
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var sectionId = "oc-services-" + Dnn.Module.ModuleID;
+
+    var sectionEyebrow = GetProp(Model, "SectionEyebrow", "");
+    var sectionTitle = GetProp(Model, "SectionTitle", "Our Services");
+    var sectionIntroHtml = GetProp(Model, "SectionIntroHtml", "");
+
+    var leftTop = Model.LeftTop;
+    var leftBottom = Model.LeftBottom;
+    var rightTop = Model.RightTop;
+    var rightBottom = Model.RightBottom;
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<section id="@sectionId" class="oc-services-section my-4 py-5" aria-labelledby="@(sectionId)-title">
+    <div class="container">
+        @if (!string.IsNullOrWhiteSpace(sectionEyebrow) || !string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionIntroHtml))
+        {
+            <header class="oc-services-header text-center mb-5">
+                @if (!string.IsNullOrWhiteSpace(sectionEyebrow))
+                {
+                    <div class="oc-services-eyebrow">@sectionEyebrow</div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(sectionTitle))
+                {
+                    <h2 id="@(sectionId)-title" class="oc-services-title mb-3">@sectionTitle</h2>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(sectionIntroHtml))
+                {
+                    <div class="oc-services-intro mx-auto">
+                        @GetHtmlProp(Model, "SectionIntroHtml")
+                    </div>
+                }
+            </header>
+        }
+
+        <div class="row g-4 align-items-start justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="oc-services-column oc-services-column-left">
+                    @if (leftTop != null)
+                    {
+                        <article class="oc-service-item oc-service-item-left js-oc-service-reveal" aria-labelledby="@(sectionId)-lefttop-title">
+                            <div class="oc-service-icon-wrap">
+                                <span class="oc-service-icon @GetProp(leftTop, "IconColor", "text-white") @GetProp(leftTop, "IconBackgroundColor", "bg-dark")" aria-hidden="true">
+                                    <i class="@GetProp(leftTop, "IconClass", "fa-solid fa-circle-info")"></i>
+                                </span>
+                            </div>
+                            <div class="oc-service-content">
+                                <h3 id="@(sectionId)-lefttop-title" class="oc-service-item-title @GetProp(leftTop, "TitleColor", "text-dark")">
+                                    @GetProp(leftTop, "Title", "")
+                                </h3>
+                                <div class="oc-service-item-body">
+                                    @GetHtmlProp(leftTop, "BodyHtml")
+                                </div>
+                            </div>
+                        </article>
+                    }
+
+                    @if (leftBottom != null)
+                    {
+                        <article class="oc-service-item oc-service-item-left js-oc-service-reveal" aria-labelledby="@(sectionId)-leftbottom-title">
+                            <div class="oc-service-icon-wrap">
+                                <span class="oc-service-icon @GetProp(leftBottom, "IconColor", "text-white") @GetProp(leftBottom, "IconBackgroundColor", "bg-dark")" aria-hidden="true">
+                                    <i class="@GetProp(leftBottom, "IconClass", "fa-solid fa-circle-info")"></i>
+                                </span>
+                            </div>
+                            <div class="oc-service-content">
+                                <h3 id="@(sectionId)-leftbottom-title" class="oc-service-item-title @GetProp(leftBottom, "TitleColor", "text-dark")">
+                                    @GetProp(leftBottom, "Title", "")
+                                </h3>
+                                <div class="oc-service-item-body">
+                                    @GetHtmlProp(leftBottom, "BodyHtml")
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="oc-services-column oc-services-column-right">
+                    @if (rightTop != null)
+                    {
+                        <article class="oc-service-item oc-service-item-right js-oc-service-reveal" aria-labelledby="@(sectionId)-righttop-title">
+                            <div class="oc-service-content text-lg-end">
+                                <h3 id="@(sectionId)-righttop-title" class="oc-service-item-title @GetProp(rightTop, "TitleColor", "text-dark")">
+                                    @GetProp(rightTop, "Title", "")
+                                </h3>
+                                <div class="oc-service-item-body">
+                                    @GetHtmlProp(rightTop, "BodyHtml")
+                                </div>
+                            </div>
+                            <div class="oc-service-icon-wrap">
+                                <span class="oc-service-icon @GetProp(rightTop, "IconColor", "text-white") @GetProp(rightTop, "IconBackgroundColor", "bg-dark")" aria-hidden="true">
+                                    <i class="@GetProp(rightTop, "IconClass", "fa-solid fa-circle-info")"></i>
+                                </span>
+                            </div>
+                        </article>
+                    }
+
+                    @if (rightBottom != null)
+                    {
+                        <article class="oc-service-item oc-service-item-right js-oc-service-reveal" aria-labelledby="@(sectionId)-rightbottom-title">
+                            <div class="oc-service-content text-lg-end">
+                                <h3 id="@(sectionId)-rightbottom-title" class="oc-service-item-title @GetProp(rightBottom, "TitleColor", "text-dark")">
+                                    @GetProp(rightBottom, "Title", "")
+                                </h3>
+                                <div class="oc-service-item-body">
+                                    @GetHtmlProp(rightBottom, "BodyHtml")
+                                </div>
+                            </div>
+                            <div class="oc-service-icon-wrap">
+                                <span class="oc-service-icon @GetProp(rightBottom, "IconColor", "text-white") @GetProp(rightBottom, "IconBackgroundColor", "bg-dark")" aria-hidden="true">
+                                    <i class="@GetProp(rightBottom, "IconClass", "fa-solid fa-circle-info")"></i>
+                                </span>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function () {
+    var root = document.getElementById('@sectionId');
+    if (!root) return;
+
+    var items = root.querySelectorAll('.js-oc-service-reveal');
+    if (!items.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+        for (var i = 0; i < items.length; i++) {
+            items[i].classList.add('is-visible');
+        }
+        return;
+    }
+
+    var observer = new IntersectionObserver(function (entries, obs) {
+        for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
+                entries[i].target.classList.add('is-visible');
+                obs.unobserve(entries[i].target);
+            }
+        }
+    }, {
+        threshold: 0.2
+    });
+
+    for (var j = 0; j < items.length; j++) {
+        observer.observe(items[j]);
+    }
+})();
+</script>

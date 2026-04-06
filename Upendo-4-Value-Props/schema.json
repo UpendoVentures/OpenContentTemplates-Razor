@@ -1,0 +1,305 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+       "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionEyebrow": {
+      "type": "string",
+      "title": "Section Eyebrow"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "SectionIntroHtml": {
+      "type": "string",
+      "title": "Section Intro HTML"
+    },
+    "LeftTop": {
+      "type": "object",
+      "title": "Feature 1 - Left Top",
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-pen-ruler"
+        },
+        "TitleColor": {
+          "type": "string",
+          "title": "Title Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-body"
+          ],
+          "default": "text-dark"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-white"
+          ],
+          "default": "text-white"
+        },
+        "IconBackgroundColor": {
+          "type": "string",
+          "title": "Icon Background Color",
+          "enum": [
+            "bg-primary",
+            "bg-secondary",
+            "bg-success",
+            "bg-danger",
+            "bg-warning",
+            "bg-info",
+            "bg-dark",
+            "bg-light",
+            "bg-white",
+            "bg-body-secondary",
+            "bg-body-tertiary"
+          ],
+          "default": "bg-dark"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML"
+        }
+      },
+      "required": ["Title", "IconClass", "TitleColor", "IconColor", "IconBackgroundColor", "BodyHtml"]
+    },
+    "LeftBottom": {
+      "type": "object",
+      "title": "Feature 2 - Left Bottom",
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-code"
+        },
+        "TitleColor": {
+          "type": "string",
+          "title": "Title Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-body"
+          ],
+          "default": "text-dark"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-white"
+          ],
+          "default": "text-white"
+        },
+        "IconBackgroundColor": {
+          "type": "string",
+          "title": "Icon Background Color",
+          "enum": [
+            "bg-primary",
+            "bg-secondary",
+            "bg-success",
+            "bg-danger",
+            "bg-warning",
+            "bg-info",
+            "bg-dark",
+            "bg-light",
+            "bg-white",
+            "bg-body-secondary",
+            "bg-body-tertiary"
+          ],
+          "default": "bg-dark"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML"
+        }
+      },
+      "required": ["Title", "IconClass", "TitleColor", "IconColor", "IconBackgroundColor", "BodyHtml"]
+    },
+    "RightTop": {
+      "type": "object",
+      "title": "Feature 3 - Right Top",
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-laptop-code"
+        },
+        "TitleColor": {
+          "type": "string",
+          "title": "Title Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-body"
+          ],
+          "default": "text-dark"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-white"
+          ],
+          "default": "text-white"
+        },
+        "IconBackgroundColor": {
+          "type": "string",
+          "title": "Icon Background Color",
+          "enum": [
+            "bg-primary",
+            "bg-secondary",
+            "bg-success",
+            "bg-danger",
+            "bg-warning",
+            "bg-info",
+            "bg-dark",
+            "bg-light",
+            "bg-white",
+            "bg-body-secondary",
+            "bg-body-tertiary"
+          ],
+          "default": "bg-dark"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML"
+        }
+      },
+      "required": ["Title", "IconClass", "TitleColor", "IconColor", "IconBackgroundColor", "BodyHtml"]
+    },
+    "RightBottom": {
+      "type": "object",
+      "title": "Feature 4 - Right Bottom",
+      "properties": {
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "IconClass": {
+          "type": "string",
+          "title": "FontAwesome Icon Class",
+          "default": "fa-solid fa-headset"
+        },
+        "TitleColor": {
+          "type": "string",
+          "title": "Title Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-body"
+          ],
+          "default": "text-dark"
+        },
+        "IconColor": {
+          "type": "string",
+          "title": "Icon Color",
+          "enum": [
+            "text-primary",
+            "text-secondary",
+            "text-success",
+            "text-danger",
+            "text-warning",
+            "text-info",
+            "text-dark",
+            "text-white"
+          ],
+          "default": "text-white"
+        },
+        "IconBackgroundColor": {
+          "type": "string",
+          "title": "Icon Background Color",
+          "enum": [
+            "bg-primary",
+            "bg-secondary",
+            "bg-success",
+            "bg-danger",
+            "bg-warning",
+            "bg-info",
+            "bg-dark",
+            "bg-light",
+            "bg-white",
+            "bg-body-secondary",
+            "bg-body-tertiary"
+          ],
+          "default": "bg-dark"
+        },
+        "BodyHtml": {
+          "type": "string",
+          "title": "Body HTML"
+        }
+      },
+      "required": ["Title", "IconClass", "TitleColor", "IconColor", "IconBackgroundColor", "BodyHtml"]
+    }
+  },
+  "required": [
+    "SectionTitle",
+    "LeftTop",
+    "LeftBottom",
+    "RightTop",
+    "RightBottom"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "SectionEyebrow": {
+      "label": "Section Eyebrow"
+    },
+    "SectionTitle": {
+      "label": "Section Title"
+    },
+    "SectionIntroHtml": {
+      "label": "Section Intro HTML",
+      "type": "ckeditor",
+      "configset": "basic"
+    },
+    "LeftTop": {
+      "label": "Feature 1 - Left Top",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-pen-ruler</code>."
+        },
+        "TitleColor": {
+          "label": "Title Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        },
+        "IconBackgroundColor": {
+          "label": "Icon Background Color",
+          "type": "select"
+        },
+        "BodyHtml": {
+          "label": "Body HTML",
+          "type": "ckeditor",
+      "configset": "basic"
+        }
+      }
+    },
+    "LeftBottom": {
+      "label": "Feature 2 - Left Bottom",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-code</code>."
+        },
+        "TitleColor": {
+          "label": "Title Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        },
+        "IconBackgroundColor": {
+          "label": "Icon Background Color",
+          "type": "select"
+        },
+        "BodyHtml": {
+          "label": "Body HTML",
+          "type": "ckeditor",
+          "configset": "basic"
+        }
+      }
+    },
+    "RightTop": {
+      "label": "Feature 3 - Right Top",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-laptop-code</code>."
+        },
+        "TitleColor": {
+          "label": "Title Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        },
+        "IconBackgroundColor": {
+          "label": "Icon Background Color",
+          "type": "select"
+        },
+        "BodyHtml": {
+          "label": "Body HTML",
+          "type": "ckeditor",
+        "configset": "basic"
+        }
+      }
+    },
+    "RightBottom": {
+      "label": "Feature 4 - Right Bottom",
+      "fields": {
+        "Title": {
+          "label": "Title"
+        },
+        "IconClass": {
+          "label": "FontAwesome Icon Class",
+          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-headset</code>."
+        },
+        "TitleColor": {
+          "label": "Title Color",
+          "type": "select"
+        },
+        "IconColor": {
+          "label": "Icon Color",
+          "type": "select"
+        },
+        "IconBackgroundColor": {
+          "label": "Icon Background Color",
+          "type": "select"
+        },
+        "BodyHtml": {
+          "label": "Body HTML",
+          "type": "ckeditor",
+        "configset": "basic"
+        }
+      }
+    }
+  }
+}

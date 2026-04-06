@@ -1,0 +1,32 @@
+{
+  "SectionTitle": "Our Process",
+  "SectionIntro": "Use these four content areas to explain how your team works with Clients from first conversation to final delivery.",
+  "Step1": {
+    "NumberText": "1",
+    "Title": "Analysis & Strategy",
+    "Description": "We analyze your needs and create a clear plan for what comes next.",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  },
+  "Step2": {
+    "NumberText": "2",
+    "Title": "Make an Offer",
+    "Description": "We outline the recommended solution so expectations and next steps are clear.",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  },
+  "Step3": {
+    "NumberText": "3",
+    "Title": "Development",
+    "Description": "We build the solution and keep progress moving in the right direction.",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  },
+  "Step4": {
+    "NumberText": "4",
+    "Title": "Finalize",
+    "Description": "We finalize the work, wrap up key details, and prepare for launch or handoff.",
+    "HeaderColor": "is-navy",
+    "HoverBackgroundColor": "#f2f4f7"
+  }
+}

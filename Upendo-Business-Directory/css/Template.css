@@ -1,0 +1,21 @@
+/* Ensure logos are never stretched, even if Bootstrap lacks object-fit utilities */
+.bcc-directory img.object-fit-contain {
+    object-fit: contain !important;
+    object-position: center center;
+    display: block;
+  }
+
+  /* Make sure logos never stretch, regardless of Bootstrap version */
+.bcc-directory .ratio img.object-fit-contain {
+    object-fit: contain !important;
+    object-position: center center;
+    display: block;
+  }
+  
+  .bcc-directory .member-card-logo {
+    background: #f8f9fa;              /* matches your bg-light intent */
+    border: 1px solid rgba(0,0,0,.06);
+    border-radius: .5rem;
+    overflow: hidden;
+  }
+  

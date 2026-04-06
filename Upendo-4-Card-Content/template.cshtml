@@ -1,0 +1,99 @@
+@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public string GetProp(dynamic item, string name, string fallback = "")
+    {
+        try
+        {
+            var value = item[name];
+
+            if (value == null)
+            {
+                return fallback;
+            }
+
+            return Convert.ToString(value);
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+
+    public string GetBorderColorClass(dynamic item)
+    {
+        return GetProp(item, "BorderColor", "border-primary");
+    }
+
+    public string GetIconColorClass(dynamic item)
+    {
+        return GetProp(item, "IconColor", "text-primary");
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var card1 = Model.Card1;
+    var card2 = Model.Card2;
+    var card3 = Model.Card3;
+    var card4 = Model.Card4;
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@if (card1 != null && card2 != null && card3 != null && card4 != null)
+{
+    <section class="fc-section my-4 py-5" aria-label="Feature cards">
+        <div class="container">
+            <div class="fc-row">
+                <div class="fc-column">
+                    <article class="fc-card @GetBorderColorClass(card1)" aria-labelledby="fc-card1-title" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+                        <h2 id="fc-card1-title" class="fc-card-title">@GetProp(card1, "Title")</h2>
+                        <p class="fc-card-text">@GetProp(card1, "Description")</p>
+                        <div class="fc-card-icon @GetIconColorClass(card1)" aria-hidden="true">
+                            <i class="@GetProp(card1, "IconClass", "fa-solid fa-circle-info")"></i>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="fc-column">
+                    <article class="fc-card @GetBorderColorClass(card2)" aria-labelledby="fc-card2-title" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
+                        <h2 id="fc-card2-title" class="fc-card-title">@GetProp(card2, "Title")</h2>
+                        <p class="fc-card-text">@GetProp(card2, "Description")</p>
+                        <div class="fc-card-icon @GetIconColorClass(card2)" aria-hidden="true">
+                            <i class="@GetProp(card2, "IconClass", "fa-solid fa-circle-info")"></i>
+                        </div>
+                    </article>
+
+                    <article class="fc-card @GetBorderColorClass(card3)" aria-labelledby="fc-card3-title" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+                        <h2 id="fc-card3-title" class="fc-card-title">@GetProp(card3, "Title")</h2>
+                        <p class="fc-card-text">@GetProp(card3, "Description")</p>
+                        <div class="fc-card-icon @GetIconColorClass(card3)" aria-hidden="true">
+                            <i class="@GetProp(card3, "IconClass", "fa-solid fa-circle-info")"></i>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="fc-column">
+                    <article class="fc-card @GetBorderColorClass(card4)" aria-labelledby="fc-card4-title" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
+                        <h2 id="fc-card4-title" class="fc-card-title">@GetProp(card4, "Title")</h2>
+                        <p class="fc-card-text">@GetProp(card4, "Description")</p>
+                        <div class="fc-card-icon @GetIconColorClass(card4)" aria-hidden="true">
+                            <i class="@GetProp(card4, "IconClass", "fa-solid fa-circle-info")"></i>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+}

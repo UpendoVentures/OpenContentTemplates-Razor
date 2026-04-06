@@ -1,0 +1,100 @@
+.fc-section {
+}
+
+.fc-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.fc-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.fc-card {
+    position: relative;
+    width: 350px;
+    min-height: 250px;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 0.4rem;
+    border-top: 4px solid transparent;
+    box-shadow: 0 15px 30px -12px rgba(131, 166, 210, 0.5);
+}
+
+.fc-card-title {
+    margin: 0 0 1rem 0;
+    color: #4c4e61;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.fc-card-text {
+    margin: 0;
+    color: #6c757d;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 15rem;
+}
+
+.fc-card-icon {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.fc-card.border-primary { border-top-color: var(--bs-primary) !important; }
+.fc-card.border-secondary { border-top-color: var(--bs-secondary) !important; }
+.fc-card.border-success { border-top-color: var(--bs-success) !important; }
+.fc-card.border-danger { border-top-color: var(--bs-danger) !important; }
+.fc-card.border-warning { border-top-color: var(--bs-warning) !important; }
+.fc-card.border-info { border-top-color: var(--bs-info) !important; }
+.fc-card.border-dark { border-top-color: var(--bs-dark) !important; }
+
+@media (max-width: 1199.98px) {
+    .fc-card {
+        width: 320px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .fc-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fc-column {
+        width: 100%;
+        align-items: center;
+    }
+
+    .fc-card {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .fc-card {
+        min-height: 220px;
+        padding: 1.5rem;
+    }
+
+    .fc-card-title {
+        font-size: 1.5rem;
+    }
+
+    .fc-card-icon {
+        right: 1.5rem;
+        bottom: 1.5rem;
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,196 @@
+@using System
+@using System.Globalization
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Collections
+@using DotNetNuke.Common.Utilities
+@using DotNetNuke.Entities.Modules
+@using DotNetNuke.Services.Localization
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public string GetProp(dynamic item, string name, string fallback)
+    {
+        try
+        {
+            if (item == null)
+            {
+                return fallback;
+            }
+
+            var value = item[name];
+            return value == null ? fallback : Convert.ToString(value);
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+
+    public string StripHtml(string input)
+    {
+        if (String.IsNullOrWhiteSpace(input))
+        {
+            return String.Empty;
+        }
+
+        return Regex.Replace(input, "<.*?>", String.Empty).Trim();
+    }
+
+    public IHtmlString GetPlainTextHtml(string value)
+    {
+        if (String.IsNullOrWhiteSpace(value))
+        {
+            return new HtmlString(String.Empty);
+        }
+
+        var encoded = HttpUtility.HtmlEncode(value);
+        encoded = encoded.Replace("\r\n", "<br />").Replace("\n", "<br />").Replace("\r", "<br />");
+        return new HtmlString(encoded);
+    }
+
+    public bool HasVisibleStep(dynamic item, bool isOptional)
+    {
+        if (item == null)
+        {
+            return false;
+        }
+
+        var title = GetProp(item, "Title", "");
+        var description = GetStepDescription(item);
+        var numberText = GetProp(item, "NumberText", "");
+
+        if (isOptional)
+        {
+            return !String.IsNullOrWhiteSpace(title)
+                || !String.IsNullOrWhiteSpace(description)
+                || !String.IsNullOrWhiteSpace(numberText);
+        }
+
+        return true;
+    }
+
+    public string GetStepDescription(dynamic item)
+    {
+        var description = GetProp(item, "Description", "");
+        if (!String.IsNullOrWhiteSpace(description))
+        {
+            return description;
+        }
+
+        return StripHtml(GetProp(item, "BodyHtml", ""));
+    }
+
+    public string GetSafeIdPart(string value, string fallback)
+    {
+        var input = String.IsNullOrWhiteSpace(value) ? fallback : value;
+        input = input.ToLowerInvariant();
+
+        var buffer = new System.Text.StringBuilder();
+        for (var i = 0; i < input.Length; i++)
+        {
+            var ch = input[i];
+            if (Char.IsLetterOrDigit(ch))
+            {
+                buffer.Append(ch);
+            }
+            else if (ch == ' ' || ch == '-' || ch == '_')
+            {
+                buffer.Append('-');
+            }
+        }
+
+        var result = buffer.ToString().Trim('-');
+        return String.IsNullOrWhiteSpace(result) ? fallback : result;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var moduleGuid = Dnn.Module.ModuleID.ToString(CultureInfo.InvariantCulture);
+    var sectionId = "oc-process-steps-" + moduleGuid;
+
+    var sectionTitle = GetProp(Model, "SectionTitle", "Our Process");
+    var sectionIntro = GetProp(Model, "SectionIntro", "");
+    if (String.IsNullOrWhiteSpace(sectionIntro))
+    {
+        sectionIntro = StripHtml(GetProp(Model, "SectionIntroHtml", ""));
+    }
+
+    var step1 = Model.Step1;
+    var step2 = Model.Step2;
+    var step3 = Model.Step3;
+    var step4 = Model.Step4;
+
+    var hasStep1 = HasVisibleStep(step1, false);
+    var hasStep2 = HasVisibleStep(step2, false);
+    var hasStep3 = HasVisibleStep(step3, false);
+    var hasStep4 = HasVisibleStep(step4, true);
+}
+
+@if (hasStep1 || hasStep2 || hasStep3 || hasStep4)
+{
+    <section id="@sectionId" class="oc-process-steps my-4 py-5" aria-labelledby="@(sectionId)-title">
+        <div class="container">
+            @if (!String.IsNullOrWhiteSpace(sectionTitle) || !String.IsNullOrWhiteSpace(sectionIntro))
+            {
+                <div class="oc-process-steps__header text-center mb-0">
+                    @if (!String.IsNullOrWhiteSpace(sectionTitle))
+                    {
+                        <h2 id="@(sectionId)-title" class="oc-process-steps__section-title mb-3">@sectionTitle</h2>
+                    }
+
+                    @if (!String.IsNullOrWhiteSpace(sectionIntro))
+                    {
+                        <div class="oc-process-steps__intro mx-auto">
+                            <p>@GetPlainTextHtml(sectionIntro)</p>
+                        </div>
+                    }
+                </div>
+            }
+
+            <ul class="oc-process-steps__list list-unstyled mb-0" aria-label="Process steps">
+                @if (hasStep1)
+                {
+                    <li class="oc-process-steps__item @GetProp(step1, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step1, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step1, "NumberText", "1")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step1, "Title", "step-1"), "step-1")" class="oc-process-steps__title">@GetProp(step1, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle"><p>@GetPlainTextHtml(GetStepDescription(step1))</p></div>
+                    </li>
+                }
+
+                @if (hasStep2)
+                {
+                    <li class="oc-process-steps__item @GetProp(step2, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step2, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step2, "NumberText", "2")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step2, "Title", "step-2"), "step-2")" class="oc-process-steps__title">@GetProp(step2, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle"><p>@GetPlainTextHtml(GetStepDescription(step2))</p></div>
+                    </li>
+                }
+
+                @if (hasStep3)
+                {
+                    <li class="oc-process-steps__item @GetProp(step3, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step3, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step3, "NumberText", "3")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step3, "Title", "step-3"), "step-3")" class="oc-process-steps__title">@GetProp(step3, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle"><p>@GetPlainTextHtml(GetStepDescription(step3))</p></div>
+                    </li>
+                }
+
+                @if (hasStep4)
+                {
+                    <li class="oc-process-steps__item @GetProp(step4, "HeaderColor", "is-navy")" style="@("--oc-process-hover-bg: " + GetProp(step4, "HoverBackgroundColor", "#f2f4f7") + ";")">
+                        <span class="oc-process-steps__number" aria-hidden="true">@GetProp(step4, "NumberText", "4")</span>
+                        <h3 id="@(sectionId)-@GetSafeIdPart(GetProp(step4, "Title", "step-4"), "step-4")" class="oc-process-steps__title">@GetProp(step4, "Title", "")</h3>
+                        <div class="oc-process-steps__subtitle"><p>@GetPlainTextHtml(GetStepDescription(step4))</p></div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+}

@@ -1,42 +1,111 @@
+@using System
 @using System.Collections.Generic
+@using System.Text.RegularExpressions
+@using Newtonsoft.Json
 @using DotNetNuke.Entities.Modules
+
+@functions {
+    public string StripHtml(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return string.Empty;
+        }
+
+        var withoutTags = Regex.Replace(input, "<.*?>", string.Empty);
+        withoutTags = System.Net.WebUtility.HtmlDecode(withoutTags);
+        return withoutTags.Trim();
+    }
+}
 
 @{
     // Update or create the "hideadminborder" setting with the value "True"
     var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
     if (currentModule != null && currentModule.TabModuleID > 0)
     {
-        // Check if the "hideadminborder" setting is not set or is not "True"
         var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
+            ? currentModule.TabModuleSettings["hideadminborder"]
+            : null;
 
         if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
         {
-            // Update or create the "hideadminborder" setting with the value "True"
             ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
         }
     }
 
     var itemsWithIndex = new List<dynamic>();
-    for (int i = 0; i < Model.Items.Length; i++)
+    if (Model.Items != null)
     {
-        itemsWithIndex.Add(new { value = Model.Items[i], index = i });
+        for (int i = 0; i < Model.Items.Length; i++)
+        {
+            itemsWithIndex.Add(new { value = Model.Items[i], index = i });
+        }
     }
+
+    var faqMode = true;
+    try
+    {
+        if (Model.Settings != null && Model.Settings.FaqMode != null)
+        {
+            faqMode = Convert.ToBoolean(Model.Settings.FaqMode);
+        }
+    }
+    catch
+    {
+        faqMode = true;
+    }
+
+    var faqEntities = new List<object>();
+
+    if (faqMode && Model.Items != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            var question = item.Title != null ? item.Title.ToString().Trim() : string.Empty;
+            var answerHtml = item.Content != null ? item.Content.ToString() : string.Empty;
+            var answerText = StripHtml(answerHtml);
+
+            if (!string.IsNullOrWhiteSpace(question) && !string.IsNullOrWhiteSpace(answerText))
+            {
+                faqEntities.Add(new
+                {
+                    @type = "Question",
+                    name = question,
+                    acceptedAnswer = new
+                    {
+                        @type = "Answer",
+                        text = answerText
+                    }
+                });
+            }
+        }
+    }
+
+    var faqJsonLd = faqEntities.Count > 0
+        ? JsonConvert.SerializeObject(new
+        {
+            @context = "https://schema.org",
+            @type = "FAQPage",
+            mainEntity = faqEntities
+        }, Formatting.None)
+        : string.Empty;
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
 {
     <div id="@Model.ModuleAnchor"></div>
 }
+
 <div class="accordion @(Model.Settings.Background == "default" ? Model.Settings.Color : "") @(Model.Settings.Size) @(Model.Settings.Background) @(Model.Settings.Border)" id="accordion-@Model.Context.ModuleId">
     @foreach (var item in itemsWithIndex)
     {
         <div class="card card-default">
             <div class="card-header">
                 <h4 class="card-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-@Model.Context.ModuleId"
-                        href="#collapse-@Model.Context.ModuleId-@item.index">
+                    <a class="accordion-toggle"
+                       data-toggle="collapse"
+                       data-parent="#accordion-@Model.Context.ModuleId"
+                       href="#collapse-@Model.Context.ModuleId-@item.index">
                         @if (!string.IsNullOrEmpty(item.value.Icon))
                         {
                             <span class="@item.value.Icon"></span>
@@ -53,3 +122,10 @@
         </div>
     }
 </div>
+
+@if (faqMode && !string.IsNullOrWhiteSpace(faqJsonLd))
+{
+    <script type="application/ld+json">
+        @Html.Raw(faqJsonLd)
+    </script>
+}

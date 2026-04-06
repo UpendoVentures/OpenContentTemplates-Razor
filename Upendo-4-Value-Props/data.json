@@ -1,0 +1,37 @@
+{
+  "SectionEyebrow": "See What We Offer",
+  "SectionTitle": "Our Services",
+  "SectionIntroHtml": "<p>We help organizations grow with thoughtful strategy, modern design, and practical technical support tailored to their goals.</p>",
+  "LeftTop": {
+    "Title": "Graphic Design",
+    "IconClass": "fa-solid fa-pen-ruler",
+    "TitleColor": "text-dark",
+    "IconColor": "text-white",
+    "IconBackgroundColor": "bg-dark",
+    "BodyHtml": "<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s.</p>"
+  },
+  "LeftBottom": {
+    "Title": "Web Programming",
+    "IconClass": "fa-solid fa-code",
+    "TitleColor": "text-dark",
+    "IconColor": "text-white",
+    "IconBackgroundColor": "bg-dark",
+    "BodyHtml": "<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s.</p>"
+  },
+  "RightTop": {
+    "Title": "Web Design",
+    "IconClass": "fa-solid fa-laptop-code",
+    "TitleColor": "text-dark",
+    "IconColor": "text-white",
+    "IconBackgroundColor": "bg-dark",
+    "BodyHtml": "<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s.</p>"
+  },
+  "RightBottom": {
+    "Title": "Full Support",
+    "IconClass": "fa-solid fa-headset",
+    "TitleColor": "text-dark",
+    "IconColor": "text-white",
+    "IconBackgroundColor": "bg-dark",
+    "BodyHtml": "<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s.</p>"
+  }
+}
