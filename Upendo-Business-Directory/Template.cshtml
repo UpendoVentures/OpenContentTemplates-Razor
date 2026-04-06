@@ -37,6 +37,8 @@
     CompanyDetail company = null;
     bool isCompanyDetail = false;
     string companySlugFromPath = null;
+    DirectorySearchWithCategoriesResult notFoundSuggestions = new DirectorySearchWithCategoriesResult();
+    List<CompanyDirectoryItem> notFoundItems = new List<CompanyDirectoryItem>();
 
     // directory support
     DirectorySearchRequest req = new DirectorySearchRequest();
@@ -68,6 +70,26 @@
             );
 
             companyDetailAbsoluteUrl = request.Url.Scheme + "://" + request.Url.Authority + companyDetailRelativeUrl;
+        }
+        else
+        {
+            notFoundSuggestions = ChamberMembershipController.GetRandomCompanySuggestions(portalId, 3);
+
+            if (notFoundSuggestions != null &&
+                notFoundSuggestions.Results != null &&
+                notFoundSuggestions.Results.Items != null)
+            {
+                foreach (var suggestion in notFoundSuggestions.Results.Items)
+                {
+                    if (suggestion != null)
+                    {
+                        notFoundItems.Add(suggestion);
+                    }
+                }
+            }
+
+            Response.StatusCode = 404;
+            Response.TrySkipIisCustomErrors = true;
         }
     }
     else
@@ -250,12 +272,168 @@
     var backToDirectoryUrl = DotNetNuke.Common.Globals.NavigateURL(tabId) + currentQuery;
 
     // Render detail view
-    if (company == null)
+        if (company == null)
     {
-        <div class="alert alert-light border rounded-4">
-            Business not found.
-            <a class="ms-2" href="@backToDirectoryUrl">Back to Directory</a>
-        </div>
+        <section class="bcc-company-not-found py-4 py-lg-5">
+            <div class="container px-0">
+
+                <div class="mb-4">
+                    <a href="@backToDirectoryUrl"
+                       class="text-decoration-none d-inline-flex align-items-center"
+                       aria-label="Back to Directory">
+                        <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
+                        <span>Back to Directory</span>
+                    </a>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                            <div class="card-body p-4 p-lg-5 text-center">
+                                <div class="mb-3">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-secondary"
+                                          style="width: 4.5rem; height: 4.5rem;">
+                                        <i class="fa-solid fa-building-circle-xmark fa-2x" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                                <h1 class="h2 fw-bold mb-3">Business Not Found</h1>
+
+                                <p class="lead mb-3">
+                                    We could not find the business you were trying to view.
+                                </p>
+
+                                <p class="text-muted mb-4">
+                                    The listing may have moved, the link may be outdated, or the address may have been entered incorrectly.
+                                    Please return to the directory to find the business you are looking for.
+                                </p>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-center gap-2">
+                                    <a href="@backToDirectoryUrl"
+                                       class="btn btn-primary d-inline-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
+                                        <span>Back to Directory</span>
+                                    </a>
+
+                                    <a href="@DotNetNuke.Common.Globals.NavigateURL(tabId)"
+                                       class="btn btn-outline-secondary d-inline-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-list me-2" aria-hidden="true"></i>
+                                        <span>Browse All Businesses</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (notFoundItems.Count > 0)
+                {
+                    <div class="mt-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <h2 class="h4 mb-0">
+                                <span class="d-inline-flex align-items-center">
+                                    <i class="fa-solid fa-compass me-2" aria-hidden="true"></i>
+                                    <span>Or visit one of these businesses</span>
+                                </span>
+                            </h2>
+                        </div>
+
+                        <div class="row g-3" role="list" aria-label="Suggested businesses">
+                            @for (int i = 0; i < notFoundItems.Count; i++)
+                            {
+                                CompanyDirectoryItem item = notFoundItems[i];
+
+                                string companyUrl = ChamberMembershipController.BuildCompanyDetailUrl(tabId, item.Slug, currentQuery);
+                                string logoUrl = ChamberMembershipController.ResolveLogoUrl(portalId, item.LogoFileId, item.LogoUrl);
+
+                                List<CategoryDto> companyCats = new List<CategoryDto>();
+                                if (notFoundSuggestions != null && notFoundSuggestions.CategoriesByCompanyId != null)
+                                {
+                                    List<CategoryDto> found = null;
+                                    if (notFoundSuggestions.CategoriesByCompanyId.TryGetValue(item.CompanyId, out found))
+                                    {
+                                        if (found != null)
+                                        {
+                                            foreach (var fc in found)
+                                            {
+                                                if (fc != null)
+                                                {
+                                                    companyCats.Add(fc);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                <div class="col-12 col-md-6 col-lg-4" role="listitem">
+                                    <article class="card h-100 border-0 shadow-sm rounded-4">
+
+                                        <div class="ratio ratio-4x3 bg-white member-card-logo">
+                                            @if (!string.IsNullOrWhiteSpace(logoUrl))
+                                            {
+                                                <a href="@companyUrl" class="savetime-directory">
+                                                    <img src="@logoUrl"
+                                                         alt="Logo for @item.CompanyName"
+                                                         class="w-100 h-100 object-fit-contain p-3"
+                                                         loading="lazy"
+                                                         decoding="async" />
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@companyUrl" class="savetime-directory">
+                                                    <img src="/Portals/@portalId/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png"
+                                                         alt="Placeholder Logo for @item.CompanyName"
+                                                         class="w-100 h-100 object-fit-contain p-3"
+                                                         loading="lazy"
+                                                         decoding="async" />
+                                                </a>
+                                            }
+                                        </div>
+
+                                        <div class="card-body bg-light px-3">
+                                            <h3 class="text-h5 mt-3 text-normalcase">
+                                                <a href="@companyUrl" class="text-normalcase link-expanded savetime-directory">
+                                                    @item.CompanyName
+                                                </a>
+                                            </h3>
+
+                                            @if (companyCats.Count > 0)
+                                            {
+                                                var catCount = 0;
+                                                <div class="mb-2">
+                                                    @for (int c = 0; c < companyCats.Count && c < 3; c++)
+                                                    {
+                                                        catCount++;
+                                                        if (catCount == 1)
+                                                        {
+                                                            <span class="badge bg-secondary">@companyCats[c].CategoryName</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge text-bg-light border text-dark">@companyCats[c].CategoryName</span>
+                                                        }
+                                                    }
+                                                </div>
+                                            }
+
+                                            @if (!string.IsNullOrWhiteSpace(item.ShortDescription))
+                                            {
+                                                <p>@item.ShortDescription</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-muted mb-0">View this business listing to learn more.</p>
+                                            }
+                                        </div>
+                                    </article>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
     }
     else
     {
@@ -263,12 +441,16 @@
         string primaryCategory = ChamberMembershipController.GetPrimaryCategoryName(company);
         string primaryEmail = ChamberMembershipController.GetPrimaryEmail(company);
         bool hasSocial = ChamberMembershipController.HasSocialLinks(company);
+        bool hasLocation = ChamberMembershipController.HasCompanyAddress(company);
+        List<string> addressLines = ChamberMembershipController.GetCompanyAddressLines(company);
+        string googleMapsUrl = ChamberMembershipController.BuildCompanyGoogleMapsUrl(company);
 
-        <div class="mb-3">
-            <a href="@backToDirectoryUrl" class="text-decoration-none">
-                <span aria-hidden="true">&larr;</span> Back to Directory
-            </a>
-        </div>
+        <a href="@backToDirectoryUrl"
+            class="text-decoration-none d-inline-flex align-items-center"
+            aria-label="Back to Directory">
+            <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
+            <span>Back to Directory</span>
+        </a>
 
         <section class="bcc-company-detail container px-0">
             <div class="row justify-content-center">
@@ -355,7 +537,12 @@
                 <div class="py-4">
                     <div class="bg-light border rounded-4 p-3">
                         <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
-                            <h3 class="h6 fw-semibold text-dark text-capitalize">Social Channels</h3>
+                            <h3 class="h6 fw-semibold text-dark text-capitalize mb-0">
+                                <span class="d-inline-flex align-items-center">
+                                    <i class="fa-solid fa-share-nodes me-2" aria-hidden="true"></i>
+                                    <span>Social Channels</span>
+                                </span>
+                            </h3>
 
                             <div class="d-flex flex-wrap justify-content-center gap-4">
                                 @if (!string.IsNullOrWhiteSpace(company.LinkedInUrl))
@@ -417,12 +604,22 @@
                       <div class="col-12 col-lg-6">
                           <!-- Contact & Business Info -->
                           <div class="pt-3">
-                            <h3 class="small fw-bold mb-3">Contact &amp; Business Info</h3>
+                            <h3 class="small fw-bold mb-3">
+                                <span class="d-inline-flex align-items-center">
+                                    <i class="fa-solid fa-address-card me-2" aria-hidden="true"></i>
+                                    <span>Contact &amp; Business Info</span>
+                                </span>
+                            </h3>
 
                             @if (!string.IsNullOrWhiteSpace(company.WebsiteUrl))
                             {
                                 <div class="mb-4">
-                                    <div class="fw-semibold text-dark">Website</div>
+                                    <div class="fw-semibold text-dark">
+                                        <span class="d-inline-flex align-items-center">
+                                            <i class="fa-solid fa-globe me-2" aria-hidden="true"></i>
+                                            <span>Website</span>
+                                        </span>
+                                    </div>
                                     <a href="@company.WebsiteUrl" target="_blank" rel="noopener" class="track-referral">@company.WebsiteUrl</a>
                                 </div>
                             }
@@ -430,7 +627,12 @@
                             @if (!string.IsNullOrWhiteSpace(company.Phone) || !string.IsNullOrWhiteSpace(primaryEmail))
                             {
                                 <div class="mb-4">
-                                    <div class="fw-semibold text-dark">Phone &amp; Email</div>
+                                    <div class="fw-semibold text-dark">
+                                        <span class="d-inline-flex align-items-center">
+                                            <i class="fa-solid fa-square-phone me-2" aria-hidden="true"></i>
+                                            <span>Phone &amp; Email</span>
+                                        </span>
+                                    </div>
                                     <div>
                                         @if (!string.IsNullOrWhiteSpace(company.Phone))
                                         {
@@ -448,37 +650,32 @@
                                 </div>
                             }
 
-                            @{
-                                bool hasLocation =
-                                    !string.IsNullOrWhiteSpace(company.Address1) ||
-                                    !string.IsNullOrWhiteSpace(company.Address2) ||
-                                    !string.IsNullOrWhiteSpace(company.City) ||
-                                    !string.IsNullOrWhiteSpace(company.Region) ||
-                                    !string.IsNullOrWhiteSpace(company.PostalCode);
-                            }
                             @if (hasLocation)
                             {
                                 <div class="mb-4">
-                                    <div class="fw-semibold text-dark">Location</div>
+                                    <div class="fw-semibold text-dark">
+                                        <span class="d-inline-flex align-items-center">
+                                            <i class="fa-solid fa-location-dot me-2" aria-hidden="true"></i>
+                                            <span>Location</span>
+                                        </span>
+                                    </div>
 
-                                    @if (!string.IsNullOrWhiteSpace(company.Address1))
+                                    @if (!string.IsNullOrWhiteSpace(googleMapsUrl))
                                     {
-                                        <div>@company.Address1</div>
+                                        <a href="@googleMapsUrl" class="track-address text-decoration-none" 
+                                        target="_blank" rel="noopener noreferrer" aria-label="Open @company.CompanyName location in Google Maps">
+                                            @for (int i = 0; i < addressLines.Count; i++)
+                                            {
+                                                <div>@addressLines[i]</div>
+                                            }
+                                        </a>
                                     }
-                                    @if (!string.IsNullOrWhiteSpace(company.Address2))
+                                    else
                                     {
-                                        <div>@company.Address2</div>
-                                    }
-
-                                    @{
-                                        var parts = new List<string>();
-                                        if (!string.IsNullOrWhiteSpace(company.City)) { parts.Add(company.City); }
-                                        if (!string.IsNullOrWhiteSpace(company.Region)) { parts.Add(company.Region); }
-                                        if (!string.IsNullOrWhiteSpace(company.PostalCode)) { parts.Add(company.PostalCode); }
-                                    }
-                                    @if (parts.Count > 0)
-                                    {
-                                        <div>@string.Join(", ", parts)</div>
+                                        for (int i = 0; i < addressLines.Count; i++)
+                                        {
+                                            <div>@addressLines[i]</div>
+                                        }
                                     }
                                 </div>
                             }
@@ -488,10 +685,20 @@
                       <div class="col-12 col-lg-6">
                           <!-- Business Profile -->
                           <div class="pt-3">
-                            <h3 class="small fw-bold mb-3">Business Profile</h3>
+                            <h3 class="small fw-bold mb-3">
+                                <span class="d-inline-flex align-items-center">
+                                    <i class="fa-solid fa-building me-2" aria-hidden="true"></i>
+                                    <span>Business Profile</span>
+                                </span>
+                            </h3>
 
                             <div class="mb-4">
-                                <div class="fw-semibold text-dark">Membership</div>
+                                <div class="fw-semibold text-dark">
+                                    <span class="d-inline-flex align-items-center">
+                                        <i class="fa-solid fa-id-badge me-2" aria-hidden="true"></i>
+                                        <span>Membership</span>
+                                    </span>
+                                </div>
                                 @if (company.MemberSinceYear.HasValue && company.MemberSinceYear.Value > 0)
                                 {
                                     <div>Proud member since @company.MemberSinceYear.Value.</div>
@@ -503,7 +710,12 @@
                             </div>
 
                             <div class="mb-4">
-                                <div class="fw-semibold text-dark">Category</div>
+                                <div class="fw-semibold text-dark">
+                                    <span class="d-inline-flex align-items-center">
+                                        <i class="fa-solid fa-tags me-2" aria-hidden="true"></i>
+                                        <span>Category</span>
+                                    </span>
+                                </div>
                                 @{
                                     var cats = new List<string>();
                                     if (company.Categories != null)
@@ -538,11 +750,12 @@
           </div>
         </section>
 
-        <div class="mb-3">
-            <a href="@backToDirectoryUrl" class="text-decoration-none">
-                <span aria-hidden="true">&larr;</span> Back to Directory
-            </a>
-        </div> 
+        <a href="@backToDirectoryUrl"
+            class="text-decoration-none d-inline-flex align-items-center"
+            aria-label="Back to Directory">
+            <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
+            <span>Back to Directory</span>
+        </a>
 
         @ChamberMembershipController.BuildCompanyJsonLd(
             company,
@@ -559,7 +772,12 @@ else
         <div class="container">
 
             <header class="mb-0">
-                <h1 id="bcc-directory-title" class="h3 mb-1">Business Directory</h1>
+                <h1 id="bcc-directory-title" class="h3 mb-1">
+                    <span class="d-inline-flex align-items-center">
+                        <i class="fa-solid fa-building-circle-check me-2" aria-hidden="true"></i>
+                        <span>Business Directory</span>
+                    </span>
+                </h1>
                 <p class="text-muted mb-0">Search and explore Burlingame Chamber member businesses.</p>
             </header>
 
@@ -571,7 +789,12 @@ else
 
                 <!-- Keyword -->
                 <div class="flex-grow-1">
-                    <label for="q" class="form-label fw-semibold mb-1">Keyword</label>
+                    <label for="q" class="form-label fw-semibold mb-1">
+                        <span class="d-inline-flex align-items-center">
+                            <i class="fa-solid fa-magnifying-glass me-2" aria-hidden="true"></i>
+                            <span>Keyword</span>
+                        </span>
+                    </label>
                     <input id="q"
                         type="search"
                         class="form-control"
@@ -581,7 +804,12 @@ else
 
                 <!-- Category -->
                 <div style="min-width: 220px;">
-                    <label for="cat" class="form-label fw-semibold mb-1">Category</label>
+                    <label for="cat" class="form-label fw-semibold mb-1">
+                        <span class="d-inline-flex align-items-center">
+                            <i class="fa-solid fa-tags me-2" aria-hidden="true"></i>
+                            <span>Category</span>
+                        </span>
+                    </label>
                     <select id="cat"
                             class="form-select"
                             aria-label="Filter by category">
@@ -598,7 +826,12 @@ else
 
                 <!-- Sort -->
                 <div style="min-width: 180px;">
-                    <label for="sort" class="form-label fw-semibold mb-1">Sort</label>
+                    <label for="sort" class="form-label fw-semibold mb-1">
+                        <span class="d-inline-flex align-items-center">
+                            <i class="fa-solid fa-arrow-down-a-z me-2" aria-hidden="true"></i>
+                            <span>Sort</span>
+                        </span>
+                    </label>
                     <select id="sort" class="form-select" aria-label="Sort results">
                         <option value="default" @(req.Sort == "default" ? "selected" : "")>Default (random)</option>
                         <option value="name" @(req.Sort == "name" ? "selected" : "")>Name (A–Z)</option>
@@ -607,12 +840,18 @@ else
 
                 <!-- Actions -->
                 <div class="d-flex gap-2" style="white-space: nowrap;">
-                    <button type="button" id="bccDirSearchBtn" class="btn btn-primary">
-                        Search
+                    <button type="button" id="bccDirSearchBtn"
+                            class="btn btn-primary d-inline-flex align-items-center"
+                            aria-label="Search directory">
+                        <i class="fa-solid fa-magnifying-glass me-2" aria-hidden="true"></i>
+                        <span>Search</span>
                     </button>
 
-                    <button type="button" id="bccDirClearBtn" class="btn btn-outline-secondary">
-                        Clear
+                    <button type="button" id="bccDirClearBtn" 
+                            class="btn btn-outline-secondary d-inline-flex align-items-center"
+                            aria-label="Clear directory filters">
+                        <i class="fa-solid fa-xmark me-2" aria-hidden="true"></i>
+                        <span>Clear</span>
                     </button>
 
                     <input type="hidden" id="pagesize" value="@pageSize" />
@@ -624,8 +863,9 @@ else
 
             <!-- SUMMARY -->
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="text-muted small">
-                    Showing <strong>@from</strong> to <strong>@to</strong> of <strong>@totalCount</strong>
+                <div class="text-muted small d-inline-flex align-items-center">
+                    <i class="fa-solid fa-list-ul me-2" aria-hidden="true"></i>
+                    <span>Showing <strong>@from</strong> to <strong>@to</strong> of <strong>@totalCount</strong></span>
                 </div>
             </div>
 
