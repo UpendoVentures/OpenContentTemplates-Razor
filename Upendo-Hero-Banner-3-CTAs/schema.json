@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "PageTitle": {
+      "type": "string",
+      "title": "Page Title"
+    },
+    "PageLead": {
+      "type": "string",
+      "title": "Page Lead"
+    },
+    "BackgroundImage": {
+      "type": "string",
+      "title": "Image (background)"
+    },
+    "PrimaryCtaButtonText": {
+      "type": "string",
+      "title": "Primary CTA Button Text"
+    },
+    "PrimaryCtaButtonPage": {
+      "type": "string",
+      "title": "Primary CTA Button Page (URL)"
+    },
+    "PrimaryCtaButtonFontAwesomeCss": {
+      "type": "string",
+      "title": "Primary CTA Button FontAwesome CSS"
+    },
+    "SecondaryCtaButtonText": {
+      "type": "string",
+      "title": "Secondary CTA Button Text"
+    },
+    "SecondaryCtaButtonPage": {
+      "type": "string",
+      "title": "Secondary CTA Button Page (URL)"
+    },
+    "SecondaryCtaButtonFontAwesomeCss": {
+      "type": "string",
+      "title": "Secondary CTA Button FontAwesome CSS"
+    },
+    "TertiaryCtaButtonText": {
+      "type": "string",
+      "title": "Tertiary CTA Button Text"
+    },
+    "TertiaryCtaButtonPage": {
+      "type": "string",
+      "title": "Tertiary CTA Button Page (URL)"
+    },
+    "TertiaryCtaButtonFontAwesomeCss": {
+      "type": "string",
+      "title": "Tertiary CTA Button FontAwesome CSS"
+    }
+  }
+}
