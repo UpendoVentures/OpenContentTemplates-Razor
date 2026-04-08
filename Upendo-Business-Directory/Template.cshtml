@@ -32,6 +32,7 @@
 
     var request = HttpContext.Current.Request;
     string currentQuery = DirectoryHelper.CurrentQueryStrings();
+    bool canEditBusinesses = TemplateHelper.CurrentUserCanEdit();
 
     // detail support
     CompanyDetail company = null;
@@ -274,16 +275,32 @@
     // Render detail view
         if (company == null)
     {
+        string detailEditUrl = canEditBusinesses ? DirectoryPageUrlHelper.GetEditUrl(company.CompanyId) : string.Empty;
+
         <section class="bcc-company-not-found py-4 py-lg-5">
             <div class="container px-0">
 
                 <div class="mb-4">
-                    <a href="@backToDirectoryUrl"
-                       class="text-decoration-none d-inline-flex align-items-center"
-                       aria-label="Back to Directory">
-                        <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
-                        <span>Back to Directory</span>
-                    </a>
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+                        <a href="@backToDirectoryUrl"
+                        class="text-decoration-none d-inline-flex align-items-center"
+                        aria-label="Back to Directory">
+                            <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
+                            <span>Back to <strong>Directory</strong></span>
+                        </a>
+
+                        @if (!string.IsNullOrWhiteSpace(detailEditUrl))
+                        {
+                            <a href="@detailEditUrl"
+                                class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center"
+                                target="_blank"
+                                rel="noopener"
+                                aria-label="Edit @company.CompanyName">
+                                <i class="fa-solid fa-pen-to-square me-2" aria-hidden="true"></i>
+                                <span>Edit</span>
+                            </a>
+                        }
+                    </div>
                 </div>
 
                 <div class="row justify-content-center">
@@ -345,6 +362,7 @@
 
                                 string companyUrl = ChamberMembershipController.BuildCompanyDetailUrl(tabId, item.Slug, currentQuery);
                                 string logoUrl = ChamberMembershipController.ResolveLogoUrl(portalId, item.LogoFileId, item.LogoUrl);
+                                string listEditUrl = canEditBusinesses ? DirectoryPageUrlHelper.GetEditUrl(item.CompanyId) : string.Empty;
 
                                 List<CategoryDto> companyCats = new List<CategoryDto>();
                                 if (notFoundSuggestions != null && notFoundSuggestions.CategoriesByCompanyId != null)
@@ -392,11 +410,25 @@
                                         </div>
 
                                         <div class="card-body bg-light px-3">
-                                            <h3 class="text-h5 mt-3 text-normalcase">
-                                                <a href="@companyUrl" class="text-normalcase link-expanded savetime-directory">
-                                                    @item.CompanyName
-                                                </a>
-                                            </h3>
+                                            <div class="d-flex justify-content-between align-items-start gap-2 mt-3">
+                                                <h3 class="text-h5 mb-0 text-normalcase flex-grow-1">
+                                                    <a href="@companyUrl" class="text-normalcase link-expanded savetime-directory">
+                                                        @item.CompanyName
+                                                    </a>
+                                                </h3>
+
+                                                @if (!string.IsNullOrWhiteSpace(listEditUrl))
+                                                {
+                                                    <a href="@listEditUrl"
+                                                    class="btn btn-outline-secondary btn-sm flex-shrink-0"
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    aria-label="Edit @item.CompanyName">
+                                                        <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                                                        <span class="visually-hidden">Edit</span>
+                                                    </a>
+                                                }
+                                            </div>
 
                                             @if (companyCats.Count > 0)
                                             {
@@ -444,13 +476,23 @@
         bool hasLocation = ChamberMembershipController.HasCompanyAddress(company);
         List<string> addressLines = ChamberMembershipController.GetCompanyAddressLines(company);
         string googleMapsUrl = ChamberMembershipController.BuildCompanyGoogleMapsUrl(company);
+        string listEditUrl = canEditBusinesses ? DirectoryPageUrlHelper.GetEditUrl(company.CompanyId) : string.Empty;
 
         <a href="@backToDirectoryUrl"
-            class="text-decoration-none d-inline-flex align-items-center"
+            class="text-decoration-none d-inline-flex align-items-center me-2"
             aria-label="Back to Directory">
             <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
-            <span>Back to Directory</span>
+            <span>Back to <strong>Directory</strong></span>
         </a>
+
+        if (!string.IsNullOrWhiteSpace(listEditUrl))
+        {
+            <a href="@listEditUrl" class="btn btn-outline-secondary btn-sm flex-shrink-0 me-2"
+                target="_blank" aria-label="Edit @company.CompanyName">
+                <i class="fa-solid fa-pen-to-square me-2" aria-hidden="true"></i>
+                <span>Edit</span>
+            </a>
+        }
 
         <section class="bcc-company-detail container px-0">
             <div class="row justify-content-center">
@@ -795,10 +837,8 @@ else
                             <span>Keyword</span>
                         </span>
                     </label>
-                    <input id="q"
-                        type="search"
-                        class="form-control"
-                        placeholder="Search businesses"
+                    <input id="q" type="search" autocomplete="off" 
+                        class="form-control" placeholder="Search businesses"
                         value="@req.Query" />
                 </div>
 
