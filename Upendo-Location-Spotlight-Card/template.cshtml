@@ -1,0 +1,209 @@
+@using System
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionBgClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var cardBgClass = Model.Settings != null && Model.Settings.CardBackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.CardBackgroundColorClass)
+        : string.Empty;
+
+    var cardBodyColorClass = Model.Settings != null && Model.Settings.CardBodyColorClass != null
+        ? Convert.ToString(Model.Settings.CardBodyColorClass)
+        : string.Empty;
+
+    var moduleTitle = Model.ModuleTitle != null
+        ? Convert.ToString(Model.ModuleTitle)
+        : string.Empty;
+
+    var moduleAnchor = Model.ModuleAnchor != null
+        ? Convert.ToString(Model.ModuleAnchor)
+        : string.Empty;
+
+    var eyebrow = Model.Eyebrow != null
+        ? Convert.ToString(Model.Eyebrow)
+        : string.Empty;
+
+    var heading = Model.Heading != null
+        ? Convert.ToString(Model.Heading)
+        : string.Empty;
+
+    var headingCssClass = Model.HeadingCssClass != null
+        ? Convert.ToString(Model.HeadingCssClass)
+        : string.Empty;
+
+    var descriptionText = Model.DescriptionText != null
+        ? Convert.ToString(Model.DescriptionText)
+        : string.Empty;
+
+    var locationText = Model.LocationText != null
+        ? Convert.ToString(Model.LocationText)
+        : string.Empty;
+
+    var locationTextUrl = Model.LocationTextUrl != null
+        ? Convert.ToString(Model.LocationTextUrl)
+        : string.Empty;
+
+    var locationTextUrlTarget = Model.LocationTextUrlTarget != null
+        ? Convert.ToString(Model.LocationTextUrlTarget)
+        : string.Empty;
+
+    var sideImage = Model.SideImage != null
+        ? Convert.ToString(Model.SideImage)
+        : string.Empty;
+
+    var hasLocationText = !string.IsNullOrWhiteSpace(locationText);
+    var hasLocationUrl = !string.IsNullOrWhiteSpace(locationTextUrl);
+    var hasImage = !string.IsNullOrWhiteSpace(sideImage);
+
+    var outerSectionClass = "oc-featured-location-spotlight";
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
+    if (!string.IsNullOrWhiteSpace(sectionBgClass)) { outerSectionClass += " " + sectionBgClass; }
+
+    var cardClass = "oc-fls-card";
+    if (!string.IsNullOrWhiteSpace(cardBgClass)) { cardClass += " " + cardBgClass; }
+    if (!string.IsNullOrWhiteSpace(cardBodyColorClass)) { cardClass += " " + cardBodyColorClass; }
+
+    var headingClass = "oc-fls-heading";
+    if (!string.IsNullOrWhiteSpace(headingCssClass)) { headingClass += " " + headingCssClass; }
+
+    var imageAlt = !string.IsNullOrWhiteSpace(heading)
+        ? heading
+        : "Featured location image";
+
+    var linkTarget = "_top";
+    if (locationTextUrlTarget == "_blank")
+    {
+        linkTarget = "_blank";
+    }
+
+    var linkRel = string.Empty;
+    if (linkTarget == "_blank")
+    {
+        linkRel = "noopener noreferrer";
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (!string.IsNullOrWhiteSpace(eyebrow) && !string.IsNullOrWhiteSpace(heading) && !string.IsNullOrWhiteSpace(descriptionText) && hasImage)
+{
+    <section class="@outerSectionClass" aria-label="@(!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : heading)">
+        <div class="container-fluid px-0">
+            <div class="container-xxl px-0 px-md-3">
+                <div class="@cardClass">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-12 col-lg-6">
+                            <div class="oc-fls-content fade-in-up fade-in-up-delay-1">
+                                <div class="oc-fls-eyebrow-wrap">
+                                    <span class="oc-fls-eyebrow">@Html.Raw(eyebrow)</span>
+                                </div>
+
+                                <h2 class="@headingClass">@Html.Raw(heading)</h2>
+
+                                <div class="oc-fls-description">
+                                    @Html.Raw(descriptionText)
+                                </div>
+
+                                @if (hasLocationText)
+                                {
+                                    <div class="oc-fls-location">
+                                        <span class="oc-fls-location-icon" aria-hidden="true">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </span>
+
+                                        @if (hasLocationUrl)
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(linkRel))
+                                            {
+                                                <a href="@locationTextUrl" class="oc-fls-location-link" target="@linkTarget" rel="@linkRel">@locationText</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@locationTextUrl" class="oc-fls-location-link" target="@linkTarget">@locationText</a>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>@Html.Raw(locationText)</span>
+                                        }
+                                    </div>
+                                }
+
+                                @if (hasLocationUrl)
+                                {
+                                    <div class="oc-fls-actions">
+                                        @if (!string.IsNullOrWhiteSpace(linkRel))
+                                        {
+                                            <a href="@locationTextUrl" class="btn btn-primary rounded-pill oc-fls-btn" target="@linkTarget" rel="@linkRel">
+                                                Get Directions
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@locationTextUrl" class="btn btn-primary rounded-pill oc-fls-btn" target="@linkTarget">
+                                                Get Directions
+                                            </a>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6">
+                            <div class="oc-fls-media fade-in-up fade-in-up-delay-2" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+                                @if (hasLocationUrl)
+                                {
+                                    if (!string.IsNullOrWhiteSpace(linkRel))
+                                    {
+                                        <a href="@locationTextUrl" class="oc-fls-image-link" aria-label="@heading" target="@linkTarget" rel="@linkRel">
+                                            <img src="@sideImage" alt="@imageAlt" class="img-fluid oc-fls-image" loading="lazy" decoding="async" />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@locationTextUrl" class="oc-fls-image-link" aria-label="@heading" target="@linkTarget">
+                                            <img src="@sideImage" alt="@imageAlt" class="img-fluid oc-fls-image" loading="lazy" decoding="async" />
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="@sideImage" alt="@imageAlt" class="img-fluid oc-fls-image" loading="lazy" decoding="async" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
