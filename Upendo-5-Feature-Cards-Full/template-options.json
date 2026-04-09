@@ -1,33 +1,40 @@
 {
     "fields": {
         "BackgroundColorClass": {
-			"type": "select",
-			"helper": "Choose a built-in Bootstrap background color class for this section.",
-			"optionLabels": [
-				"None / Theme Default",
-				"Primary",
-				"Secondary",
-				"Success",
-				"Danger",
-				"Warning",
-				"Info",
-				"Light",
-				"Dark",
-				"White",
-				"Body",
-				"Transparent",
-				"Primary Subtle",
-				"Secondary Subtle",
-				"Success Subtle",
-				"Danger Subtle",
-				"Warning Subtle",
-				"Info Subtle",
-				"Light Subtle",
-				"Dark Subtle"
-			],
-			"removeDefaultNone": true
-		},
-		"MarginTop": {
+            "type": "select",
+            "helper": "Choose a built-in Bootstrap background color class for this section.",
+            "optionLabels": [
+                "None / Theme Default",
+                "Primary",
+                "Primary (theme)",
+                "Secondary",
+                "Secondary (theme)",
+                "Tertiary (theme)",
+                "Quaternary (theme)",
+                "H5 (theme)",
+                "H6 (theme)",
+                "Success",
+                "Danger",
+                "Warning",
+                "Info",
+                "Light",
+                "Dark",
+                "White",
+                "Body",
+                "Transparent",
+                "Primary Subtle",
+                "Secondary Subtle",
+                "Success Subtle",
+                "Danger Subtle",
+                "Warning Subtle",
+                "Info Subtle",
+                "Light Subtle",
+                "Dark Subtle"
+            ],
+            "sort": true,
+            "removeDefaultNone": true
+        },
+        "MarginTop": {
             "title": "Margin (top)",
             "type": "select",
             "optionLabels": [
