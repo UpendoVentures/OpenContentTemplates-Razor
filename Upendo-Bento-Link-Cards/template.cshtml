@@ -55,7 +55,7 @@
     <div class="@containerClass">
         <div class="oc-flc-grid">
 
-            <div class="oc-flc-row oc-flc-row-1 shadow-sm">
+            <div class="oc-flc-row oc-flc-row-1">
                 @if (card1 != null)
                 {
                     var title = card1.Title != null ? Convert.ToString(card1.Title) : "";
@@ -64,7 +64,7 @@
                     var url = card1.Url != null ? Convert.ToString(card1.Url) : "";
                     var linkText = "Learn more";
 
-                    <div class="oc-flc-card oc-flc-card-1">
+                    <div class="oc-flc-card oc-flc-card-1 shadow-sm">
                         @if (!string.IsNullOrWhiteSpace(url))
                         {
                             <a class="oc-flc-card-link-wrap stretched-link" href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
@@ -157,7 +157,7 @@
                         var url = card3.Url != null ? Convert.ToString(card3.Url) : "";
                         var linkText = "Learn more";
 
-                        <div class="oc-flc-card oc-flc-card-3">
+                        <div class="oc-flc-card oc-flc-card-3 shadow-sm">
                             <div class="oc-flc-content">
                                 @if (!string.IsNullOrWhiteSpace(title))
                                 {
@@ -171,7 +171,7 @@
                                 {
                                     if (!string.IsNullOrWhiteSpace(url))
                                     {
-                                        <a href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
+                                        <a href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> } class="stretched-link">
                                             <img class="oc-flc-inline-image img-fluid" src="@image" alt="@title" loading="lazy" decoding="async" />
                                         </a>
                                     }
