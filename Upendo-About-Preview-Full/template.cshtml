@@ -1,0 +1,162 @@
+@using System
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var backgroundColorClass = Convert.ToString(Model.Settings.BackgroundColorClass);
+
+    var moduleTitle = Convert.ToString(Model.ModuleTitle);
+    var moduleAnchor = Convert.ToString(Model.ModuleAnchor);
+
+    var eyebrow = Convert.ToString(Model.Eyebrow);
+    var heading = Convert.ToString(Model.Heading);
+    var bodyText1 = Convert.ToString(Model.BodyText1);
+    var bodyText2 = Convert.ToString(Model.BodyText2);
+
+    var bullet1 = Convert.ToString(Model.Bullet1);
+    var bullet2 = Convert.ToString(Model.Bullet2);
+    var bullet3 = Convert.ToString(Model.Bullet3);
+    var bullet4 = Convert.ToString(Model.Bullet4);
+
+    var imageUrl = Convert.ToString(Model.Image);
+    var imageAlt = Convert.ToString(Model.ImageAlt);
+
+    var quoteText = Convert.ToString(Model.QuoteText);
+    var quoteDesktopOnly = false;
+    if (Model.ShowQuoteDesktopOnly != null)
+    {
+        quoteDesktopOnly = Convert.ToBoolean(Model.ShowQuoteDesktopOnly);
+    }
+
+    var imageColumnOrderClass = string.Empty;
+    var contentColumnOrderClass = string.Empty;
+
+    if (Convert.ToString(Model.ImagePosition).Equals("right", StringComparison.OrdinalIgnoreCase))
+    {
+        imageColumnOrderClass = "order-1 order-lg-2";
+        contentColumnOrderClass = "order-2 order-lg-1";
+    }
+    else
+    {
+        imageColumnOrderClass = "order-1";
+        contentColumnOrderClass = "order-2";
+    }
+
+    var headingHtml = string.Empty;
+    if (!string.IsNullOrWhiteSpace(heading))
+    {
+        headingHtml = HttpUtility.HtmlEncode(heading)
+            .Replace("\r\n", "<br />")
+            .Replace("\n", "<br />");
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+<span id="@moduleAnchor"></span>
+}
+
+<section class="oc-science-somatics-section @backgroundColorClass @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+
+            <div class="col-12 col-lg-6 @imageColumnOrderClass">
+                <div class="oc-science-somatics-media position-relative">
+                    <div class="oc-science-somatics-image-wrap shadow-lg">
+                        @if (!string.IsNullOrWhiteSpace(imageUrl))
+                        {
+                            <img src="@imageUrl" alt="@imageAlt" class="oc-science-somatics-image" loading="lazy" decoding="async" />
+                        }
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(quoteText))
+                    {
+                        <div class="oc-science-somatics-quote shadow-sm @(quoteDesktopOnly ? "d-none d-lg-block" : "")">
+                            <p class="mb-0 fst-italic">@quoteText</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 @contentColumnOrderClass">
+                <div class="oc-science-somatics-content">
+
+                    @if (!string.IsNullOrWhiteSpace(moduleTitle))
+                    {
+                        <div class="oc-module-title visually-hidden">@moduleTitle</div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(eyebrow))
+                    {
+                        <div class="oc-science-somatics-eyebrow fw-bold text-tertiary">@eyebrow</div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(headingHtml))
+                    {
+                        <h2 class="oc-science-somatics-heading">@Html.Raw(headingHtml)</h2>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(bodyText1) || !string.IsNullOrWhiteSpace(bodyText2))
+                    {
+                        <div class="oc-science-somatics-body">
+                            @if (!string.IsNullOrWhiteSpace(bodyText1))
+                            {
+                                <p>@bodyText1</p>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(bodyText2))
+                            {
+                                <p>@bodyText2</p>
+                            }
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(bullet1)
+                        || !string.IsNullOrWhiteSpace(bullet2)
+                        || !string.IsNullOrWhiteSpace(bullet3)
+                        || !string.IsNullOrWhiteSpace(bullet4))
+                    {
+                        <ul class="oc-science-somatics-list list-unstyled mb-0">
+                            @if (!string.IsNullOrWhiteSpace(bullet1))
+                            {
+                                <li class="oc-science-somatics-list-item">
+                                    <span class="oc-science-somatics-icon text-h6 fw-bold" aria-hidden="true">&#10003;</span>
+                                    <span>@bullet1</span>
+                                </li>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(bullet2))
+                            {
+                                <li class="oc-science-somatics-list-item">
+                                    <span class="oc-science-somatics-icon text-h6 fw-bold" aria-hidden="true">&#10003;</span>
+                                    <span>@bullet2</span>
+                                </li>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(bullet3))
+                            {
+                                <li class="oc-science-somatics-list-item">
+                                    <span class="oc-science-somatics-icon text-h6 fw-bold" aria-hidden="true">&#10003;</span>
+                                    <span>@bullet3</span>
+                                </li>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(bullet4))
+                            {
+                                <li class="oc-science-somatics-list-item">
+                                    <span class="oc-science-somatics-icon text-h6 fw-bold" aria-hidden="true">&#10003;</span>
+                                    <span>@bullet4</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

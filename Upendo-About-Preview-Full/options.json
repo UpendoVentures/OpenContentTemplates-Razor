@@ -1,0 +1,67 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Internal/admin-friendly title for this content block. This is useful when editors are scanning modules on the page."
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "Eyebrow": {
+      "type": "text",
+      "helper": "Short label above the heading. Keep this concise."
+    },
+    "Heading": {
+      "type": "text"
+    },
+    "BodyText1": {
+      "type": "textarea",
+      "helper": "First paragraph of body content."
+    },
+    "BodyText2": {
+      "type": "textarea",
+      "helper": "Second paragraph of body content."
+    },
+    "Bullet1": {
+      "type": "text"
+    },
+    "Bullet2": {
+      "type": "text"
+    },
+    "Bullet3": {
+      "type": "text"
+    },
+    "Bullet4": {
+      "type": "text",
+      "helper": "Optional extra bullet."
+    },
+    "Image": {
+      "type": "image",
+      "helper": "Use a tall portrait-style image when possible. Recommended minimum size: 1200px wide by 1500px high."
+    },
+    "ImageAlt": {
+      "type": "text",
+      "helper": "Describe the image for accessibility and SEO."
+    },
+    "ImagePosition": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+              "left",
+              "right"
+            ],
+      "helper": "Choose whether the image displays on the left or right on desktop.",
+      "removeDefaultNone": true
+    },
+    "QuoteText": {
+      "type": "textarea",
+      "helper": "Optional quote or callout displayed overlapping the image."
+    },
+    "ShowQuoteDesktopOnly": {
+      "type": "checkbox",
+      "helper": "Recommended. Hides the overlapping quote card on smaller screens."
+    }
+  }
+}
