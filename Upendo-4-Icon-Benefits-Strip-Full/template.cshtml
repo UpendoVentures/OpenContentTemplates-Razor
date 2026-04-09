@@ -1,0 +1,124 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionIntro = Model.SectionIntro != null ? Convert.ToString(Model.SectionIntro) : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var textColorClass = Model.Settings != null && Model.Settings.TextColorClass != null
+        ? Convert.ToString(Model.Settings.TextColorClass)
+        : string.Empty;
+
+    var iconColorClass = Model.Settings != null && Model.Settings.IconColorClass != null
+        ? Convert.ToString(Model.Settings.IconColorClass)
+        : string.Empty;
+
+    var bodyTextClass = Model.Settings != null && Model.Settings.BodyTextClass != null
+        ? Convert.ToString(Model.Settings.BodyTextClass)
+        : string.Empty;
+
+    var outerSectionClass = "oc-icon-benefits-strip";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { outerSectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(textColorClass)) { outerSectionClass += " " + textColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
+
+    var items = new List<dynamic>();
+    if (Model.Items != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            items.Add(item);
+        }
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (items.Count > 0)
+{
+    <section class="@outerSectionClass" aria-label="@(!string.IsNullOrWhiteSpace(sectionHeading) ? sectionHeading : moduleTitle)">
+        <div class="container pt-3">
+
+            @if (!string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(sectionIntro))
+            {
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-9 text-center">
+                        @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                        {
+                            <h2 class="oc-ibs-heading text-normalcase @bodyTextClass">@sectionHeading</h2>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(sectionIntro))
+                        {
+                            <p class="oc-ibs-intro @bodyTextClass">@sectionIntro</p>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 g-lg-5 text-center">
+                @{ var counter = 1; }
+                @foreach (var item in items)
+                {
+                    var iconClass = item.IconClass != null ? Convert.ToString(item.IconClass) : string.Empty;
+                    var itemTitle = item.Title != null ? Convert.ToString(item.Title) : string.Empty;
+                    var itemBody = item.Body != null ? Convert.ToString(item.Body) : string.Empty;
+
+                    <div class="col">
+                        <div class="oc-ibs-item h-100" data-appear-animation="fadeIn" data-appear-animation-delay="@(counter * 300)">
+                            @if (!string.IsNullOrWhiteSpace(iconClass))
+                            {
+                                <div class="oc-ibs-icon-wrap">
+                                    <i class="@iconClass oc-ibs-icon @iconColorClass" aria-hidden="true"></i>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(itemTitle))
+                            {
+                                <h3 class="oc-ibs-item-title h4 mb-3 text-normalcase @bodyTextClass">@itemTitle</h3>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(itemBody))
+                            {
+                                <p class="oc-ibs-item-body @bodyTextClass">@itemBody</p>
+                            }
+                        </div>
+                    </div>
+                    counter++;
+                }
+            </div>
+        </div>
+    </section>
+}

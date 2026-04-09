@@ -1,0 +1,10 @@
+{
+  "BackgroundColorClass": "bg-primary",
+  "TextColorClass": "text-white",
+  "IconColorClass": "text-white-50",
+  "BodyTextClass": "text-white-50",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5"
+}
