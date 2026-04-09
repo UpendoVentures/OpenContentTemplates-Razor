@@ -122,7 +122,7 @@
                 <div class="@cardClass">
                     <div class="row g-0 align-items-center">
                         <div class="col-12 col-lg-6">
-                            <div class="oc-fls-content fade-in-up fade-in-up-delay-1">
+                            <div class="oc-fls-content">
                                 <div class="oc-fls-eyebrow-wrap">
                                     <span class="oc-fls-eyebrow">@Html.Raw(eyebrow)</span>
                                 </div>
@@ -144,7 +144,7 @@
                                         {
                                             if (!string.IsNullOrWhiteSpace(linkRel))
                                             {
-                                                <a href="@locationTextUrl" class="oc-fls-location-link" target="@linkTarget" rel="@linkRel">@locationText</a>
+                                                <a href="@locationTextUrl" class="oc-fls-location-link track-referral" target="@linkTarget" rel="@linkRel">@locationText</a>
                                             }
                                             else
                                             {
@@ -163,7 +163,7 @@
                                     <div class="oc-fls-actions">
                                         @if (!string.IsNullOrWhiteSpace(linkRel))
                                         {
-                                            <a href="@locationTextUrl" class="btn btn-primary rounded-pill oc-fls-btn" target="@linkTarget" rel="@linkRel">
+                                            <a href="@locationTextUrl" class="btn btn-primary rounded-pill oc-fls-btn track-referral" target="@linkTarget" rel="@linkRel">
                                                 Get Directions
                                             </a>
                                         }
@@ -184,7 +184,7 @@
                                 {
                                     if (!string.IsNullOrWhiteSpace(linkRel))
                                     {
-                                        <a href="@locationTextUrl" class="oc-fls-image-link" aria-label="@heading" target="@linkTarget" rel="@linkRel">
+                                        <a href="@locationTextUrl" class="oc-fls-image-link track-referral" aria-label="@heading" target="@linkTarget" rel="@linkRel">
                                             <img src="@sideImage" alt="@imageAlt" class="img-fluid oc-fls-image" loading="lazy" decoding="async" />
                                         </a>
                                     }
