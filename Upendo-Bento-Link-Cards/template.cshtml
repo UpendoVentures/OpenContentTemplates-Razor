@@ -1,0 +1,239 @@
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var sectionId = Model.Settings != null && Model.Settings.SectionId != null ? Convert.ToString(Model.Settings.SectionId) : "";
+    var containerClass = Model.Settings != null && Model.Settings.ContainerClass != null ? Convert.ToString(Model.Settings.ContainerClass) : "container";
+    var sectionClass = Model.Settings != null && Model.Settings.SectionClass != null ? Convert.ToString(Model.Settings.SectionClass) : "";
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : "";
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : "";
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : "";
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : "";
+    var openLinksInNewTab = Model.Settings != null && Model.Settings.OpenLinksInNewTab != null ? Convert.ToBoolean(Model.Settings.OpenLinksInNewTab) : false;
+
+    if (string.IsNullOrWhiteSpace(containerClass))
+    {
+        containerClass = "container";
+    }
+
+    var sectionClasses = "oc-four-link-cards";
+    if (!string.IsNullOrWhiteSpace(sectionClass)) { sectionClasses += " " + sectionClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClasses += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClasses += " " + paddingBottom; }
+
+    var cards = new List<dynamic>();
+
+    if (Model.LinkCards != null)
+    {
+        var count = 0;
+        foreach (var item in Model.LinkCards)
+        {
+            if (count >= 4)
+            {
+                break;
+            }
+
+            cards.Add(item);
+            count++;
+        }
+    }
+
+    dynamic card1 = cards.Count > 0 ? cards[0] : null;
+    dynamic card2 = cards.Count > 1 ? cards[1] : null;
+    dynamic card3 = cards.Count > 2 ? cards[2] : null;
+    dynamic card4 = cards.Count > 3 ? cards[3] : null;
+}
+
+@if (cards.Count > 0)
+{
+<section class="@sectionClasses"@if (!string.IsNullOrWhiteSpace(sectionId)) { <text> id="@sectionId"</text> }>
+    <div class="@containerClass">
+        <div class="oc-flc-grid">
+
+            <div class="oc-flc-row oc-flc-row-1 shadow-sm">
+                @if (card1 != null)
+                {
+                    var title = card1.Title != null ? Convert.ToString(card1.Title) : "";
+                    var description = card1.Description != null ? Convert.ToString(card1.Description) : "";
+                    var image = card1.BackgroundImage != null ? Convert.ToString(card1.BackgroundImage) : "";
+                    var url = card1.Url != null ? Convert.ToString(card1.Url) : "";
+                    var linkText = "Learn more";
+
+                    <div class="oc-flc-card oc-flc-card-1">
+                        @if (!string.IsNullOrWhiteSpace(url))
+                        {
+                            <a class="oc-flc-card-link-wrap stretched-link" href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
+                                @if (!string.IsNullOrWhiteSpace(image))
+                                {
+                                    <div class="oc-flc-bg" style="background-image:url('@image');"></div>
+                                }
+                                <div class="oc-flc-overlay"></div>
+                                <div class="oc-flc-content">
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-flc-title text-light text-capitalize">@title</h3>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(description))
+                                    {
+                                        <p class="oc-flc-description text-light">@description</p>
+                                    }
+                                    <span class="oc-flc-cta mt-4">
+                                        @linkText<i class="fas fa-arrow-right mx-2" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrWhiteSpace(image))
+                            {
+                                <div class="oc-flc-bg" style="background-image:url('@image');"></div>
+                            }
+                            <div class="oc-flc-overlay"></div>
+                            <div class="oc-flc-content">
+                                @if (!string.IsNullOrWhiteSpace(title))
+                                {
+                                    <h3 class="oc-flc-title text-light text-capitalize">@title</h3>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(description))
+                                {
+                                    <p class="oc-flc-description text-light">@description</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+
+                @if (card2 != null)
+                {
+                    var title = card2.Title != null ? Convert.ToString(card2.Title) : "";
+                    var description = card2.Description != null ? Convert.ToString(card2.Description) : "";
+                    var icon = card2.FontAwesomeIcon != null ? Convert.ToString(card2.FontAwesomeIcon) : "";
+                    var url = card2.Url != null ? Convert.ToString(card2.Url) : "";
+                    var linkText = "Learn more";
+
+                    <div class="oc-flc-card oc-flc-card-2 shadow-sm">
+                        <div class="oc-flc-content">
+                            @if (!string.IsNullOrWhiteSpace(icon))
+                            {
+                                <div class="oc-flc-icon mt-2" aria-hidden="true">
+                                    <i class="@icon fs-1 text-tertiary"></i>
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(title))
+                            {
+                                <h3 class="oc-flc-title text-capitalize mt-5">@title</h3>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(description))
+                            {
+                                <p class="oc-flc-description">@description</p>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(url))
+                            {
+                                <p class="oc-flc-cta-wrap">
+                                    <a class="oc-flc-cta-link stretched-link" href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
+                                        @linkText<i class="fas fa-arrow-right mx-2" aria-hidden="true"></i>
+                                    </a>
+                                </p>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (card3 != null || card4 != null)
+            {
+                <div class="oc-flc-row oc-flc-row-2">
+                    @if (card3 != null)
+                    {
+                        var title = card3.Title != null ? Convert.ToString(card3.Title) : "";
+                        var description = card3.Description != null ? Convert.ToString(card3.Description) : "";
+                        var image = card3.BackgroundImage != null ? Convert.ToString(card3.BackgroundImage) : "";
+                        var url = card3.Url != null ? Convert.ToString(card3.Url) : "";
+                        var linkText = "Learn more";
+
+                        <div class="oc-flc-card oc-flc-card-3">
+                            <div class="oc-flc-content">
+                                @if (!string.IsNullOrWhiteSpace(title))
+                                {
+                                    <h3 class="oc-flc-title text-capitalize">@title</h3>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(description))
+                                {
+                                    <p class="oc-flc-description">@description</p>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(image))
+                                {
+                                    if (!string.IsNullOrWhiteSpace(url))
+                                    {
+                                        <a href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
+                                            <img class="oc-flc-inline-image img-fluid" src="@image" alt="@title" loading="lazy" decoding="async" />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <img class="oc-flc-inline-image img-fluid" src="@image" alt="@title" loading="lazy" decoding="async" />
+                                    }
+                                }
+                                else if (!string.IsNullOrWhiteSpace(url))
+                                {
+                                    <p class="oc-flc-cta-wrap">
+                                        <a class="oc-flc-cta-link stretched-link" href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
+                                            @linkText
+                                        </a>
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    @if (card4 != null)
+                    {
+                        var title = card4.Title != null ? Convert.ToString(card4.Title) : "";
+                        var description = card4.Description != null ? Convert.ToString(card4.Description) : "";
+                        var image = card4.BackgroundImage != null ? Convert.ToString(card4.BackgroundImage) : "";
+                        var url = card4.Url != null ? Convert.ToString(card4.Url) : "";
+                        var linkText = "Learn more";
+
+                        <div class="oc-flc-card oc-flc-card-4 shadow-sm">
+                            <div class="oc-flc-content oc-flc-content-split">
+                                <div class="oc-flc-text">
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-flc-title text-capitalize text-light">@title</h3>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(description))
+                                    {
+                                        <p class="oc-flc-description text-light">@description</p>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(url))
+                                    {
+                                        <p class="oc-flc-cta-wrap">
+                                            <a class="oc-flc-cta-link text-light stretched-link" href="@url"@if (openLinksInNewTab) { <text> target="_blank" rel="noopener noreferrer"</text> }>
+                                                @linkText<i class="fas fa-arrow-right mx-2" aria-hidden="true"></i>
+                                            </a>
+                                        </p>
+                                    }
+                                </div>
+
+                                @if (!string.IsNullOrWhiteSpace(image))
+                                {
+                                    <div class="oc-flc-circle-image">
+                                        <img src="@image" alt="@title" loading="lazy" decoding="async" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+}

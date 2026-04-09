@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "LinkCards": {
+      "type": "accordion",
+      "helper": "Add up to 4 cards. Cards display in the order shown here. If more than 4 are added, only the first 4 are rendered.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Short heading shown on the card."
+          },
+          "Description": {
+            "type": "text",
+            "helper": "Keep this short for the best layout."
+          },
+          "Url": {
+            "type": "url",
+            "helper": "Choose the destination for this card."
+          },
+          "FontAwesomeIcon": {
+            "type": "text",
+            "placeholder": "fa-solid fa-users",
+            "helper": "FontAwesome Free class. Example: fa-solid fa-tree"
+          },
+          "BackgroundImage": {
+            "type": "image",
+            "helper": "Recommended: landscape image, ideally at least 1600px wide."
+          }
+        }
+      }
+    }
+  }
+}

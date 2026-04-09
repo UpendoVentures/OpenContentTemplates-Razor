@@ -1,0 +1,45 @@
+{
+  "ModuleTitle": "OC: Bento Link Cards",
+  "LinkCards": [
+    {
+      "Title": "Retreat Centers",
+      "Description": "Integrating ecotherapeutic programs into existing wellness sanctuary infrastructures.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/retreat-centers"
+      },
+      "FontAwesomeIcon": "fa-solid fa-tree",
+      "BackgroundImage": "/Portals/0/Images/placeholder-1.jpg"
+    },
+    {
+      "Title": "Teams & Organizations",
+      "Description": "Restoring collective focus and resilience through shared natural immersion.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/teams-organizations"
+      },
+      "FontAwesomeIcon": "fa-solid fa-users",
+      "BackgroundImage": ""
+    },
+    {
+      "Title": "Guided Trails",
+      "Description": "Curated sensory journeys through biological diversity hotspots.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/guided-trails"
+      },
+      "FontAwesomeIcon": "fa-solid fa-person-hiking",
+      "BackgroundImage": "/Portals/0/Images/placeholder-2.jpg"
+    },
+    {
+      "Title": "For Individuals",
+      "Description": "One-on-one sessions focused on nervous system regulation and nature-based integration.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/for-individuals"
+      },
+      "FontAwesomeIcon": "fa-solid fa-seedling",
+      "BackgroundImage": "/Portals/0/Images/placeholder-3.jpg"
+    }
+  ]
+}

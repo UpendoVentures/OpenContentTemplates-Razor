@@ -1,0 +1,7 @@
+{
+    "ContainerClass": "container",
+    "MarginTop": "mt-auto" , 
+    "MarginBottom": "mb-auto",
+    "PaddingTop": "pt-auto",
+    "PaddingBottom": "pb-auto"
+}
