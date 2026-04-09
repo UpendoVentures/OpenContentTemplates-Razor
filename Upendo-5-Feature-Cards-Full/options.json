@@ -1,0 +1,73 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Administrator-facing title for the module."
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+            "showMessages": false
+        },
+        "SectionHeading": {
+            "type": "text",
+            "helper": "Heading shown above the card grid."
+        },
+        "Cards": {
+            "type": "accordion",
+            "helper": "Add at least 5 cards. Only the first 5 cards are rendered in the template. Any additional cards are ignored.",
+            "items": {
+                "fields": {
+                    "CardIcon": {
+                        "type": "text",
+                        "placeholder": "fa-solid fa-tree",
+                        "helper": "Required. FontAwesome Free class, such as fa-solid fa-tree."
+                    },
+                    "CardTitle": {
+                        "type": "text",
+                        "helper": "Required. Short heading shown on the card."
+                    },
+                    "CardDescription": {
+                        "type": "textarea",
+                        "helper": "Required. Keep this concise for the best layout."
+                    },
+                    "Url": {
+                        "type": "url",
+                        "helper": "Optional. If a URL is added, the entire card becomes clickable."
+                    },
+                    "BackgroundColorClass": {
+                        "type": "select",
+                        "helper": "Choose a built-in Bootstrap background color class for this section.",
+                        "optionLabels": [
+                            "None / Theme Default",
+                            "Primary",
+                            "Secondary",
+                            "Success",
+                            "Danger",
+                            "Warning",
+                            "Info",
+                            "Light",
+                            "Dark",
+                            "White",
+                            "Body",
+                            "Transparent",
+                            "Primary Subtle",
+                            "Secondary Subtle",
+                            "Success Subtle",
+                            "Danger Subtle",
+                            "Warning Subtle",
+                            "Info Subtle",
+                            "Light Subtle",
+                            "Dark Subtle"
+                        ],
+                        "removeDefaultNone": true
+                    },
+                    "CardImage": {
+                        "type": "image",
+                        "helper": "Optional. Primarily used by the 5th card. Recommended minimum width: 1200px. Landscape image works best."
+                    }
+                }
+            }
+        }
+    }
+}

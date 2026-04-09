@@ -1,0 +1,312 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionBgClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var outerSectionClass = "oc-five-practice-cards";
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
+    if (!string.IsNullOrWhiteSpace(sectionBgClass)) { outerSectionClass += " " + sectionBgClass; }
+
+    var moduleHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var cards = new List<dynamic>();
+
+    if (Model.Cards != null)
+    {
+        var index = 0;
+        foreach (var item in Model.Cards)
+        {
+            if (index >= 5)
+            {
+                break;
+            }
+
+            cards.Add(item);
+            index++;
+        }
+    }
+
+    Func<dynamic, string> getUrl = card =>
+    {
+        try
+        {
+            if (card == null)
+            {
+                return string.Empty;
+            }
+
+            if (!string.IsNullOrEmpty(card.Url))
+            {
+                return Convert.ToString(card.Url);
+            }
+
+            return string.Empty;
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    };
+
+    Func<dynamic, string> getImage = card =>
+    {
+        try
+        {
+            if (card == null || card.CardImage == null)
+            {
+                return string.Empty;
+            }
+
+            return Convert.ToString(card.CardImage);
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    };
+
+    Func<dynamic, string> getIcon = card =>
+    {
+        try
+        {
+            if (card == null || card.CardIcon == null)
+            {
+                return string.Empty;
+            }
+
+            return Convert.ToString(card.CardIcon);
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    };
+
+    Func<dynamic, string> getTitle = card =>
+    {
+        try
+        {
+            if (card == null || card.CardTitle == null)
+            {
+                return string.Empty;
+            }
+
+            return Convert.ToString(card.CardTitle);
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    };
+
+    Func<dynamic, string> getDescription = card =>
+    {
+        try
+        {
+            if (card == null || card.CardDescription == null)
+            {
+                return string.Empty;
+            }
+
+            return Convert.ToString(card.CardDescription);
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    };
+
+    Func<dynamic, string> getBackgroundColorClass = card =>
+    {
+        try
+        {
+            if (card == null || card.BackgroundColorClass == null)
+            {
+                return string.Empty;
+            }
+
+            return Convert.ToString(card.BackgroundColorClass);
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    };
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (cards.Count > 0)
+{
+    <section class="@outerSectionClass" aria-label="@moduleHeading">
+        <div class="container">
+            @if (!string.IsNullOrWhiteSpace(moduleHeading))
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="oc-fpc-heading text-center">@moduleHeading</h2>
+                    </div>
+                </div>
+            }
+
+            <div class="row g-4">
+                @for (var i = 0; i < cards.Count; i++)
+                {
+                    var card = cards[i];
+                    var cardTitle = getTitle(card);
+                    var cardDescription = getDescription(card);
+                    var cardIcon = getIcon(card);
+                    var cardUrl = getUrl(card);
+                    var cardImage = getImage(card);
+                    var hasLink = !string.IsNullOrWhiteSpace(cardUrl);
+                    var isFeatured = i == 4;
+                    var cardBackgroundColorClass = getBackgroundColorClass(card);
+
+                    var colClass = "col-12 col-md-4";
+                    if (isFeatured)
+                    {
+                        colClass = "col-12 col-md-8";
+                    }
+
+                    var cardClasses = "oc-fpc-card shadow-sm fade-in-up";
+                    if (!string.IsNullOrWhiteSpace(cardBackgroundColorClass))
+                    {
+                        cardClasses = string.Concat(cardClasses, " ", cardBackgroundColorClass);
+                    }
+                    if (hasLink) { cardClasses = string.Concat(cardClasses, " has-link"); }
+                    if (isFeatured) { cardClasses = string.Concat(cardClasses, " oc-fpc-card-featured"); }
+
+                    <div class="@colClass">
+                        @if (hasLink)
+                        {
+                            <a class="@cardClasses" href="@cardUrl" aria-label="@cardTitle">
+                                @if (!isFeatured)
+                                {
+                                    <div class="oc-fpc-card-body">
+                                        @if (!string.IsNullOrWhiteSpace(cardIcon))
+                                        {
+                                            <div class="oc-fpc-icon" aria-hidden="true">
+                                                <i class="@cardIcon text-quaternary fs-2"></i>
+                                            </div>
+                                        }
+
+                                        <h3 class="oc-fpc-title text-normalcase fs-4">@cardTitle</h3>
+
+                                        <div class="oc-fpc-description fs-6">
+                                            @cardDescription
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="oc-fpc-card-body oc-fpc-card-body-featured">
+                                        <div class="oc-fpc-featured-content">
+                                            @if (!string.IsNullOrWhiteSpace(cardIcon))
+                                            {
+                                                <div class="oc-fpc-icon" aria-hidden="true">
+                                                    <i class="@cardIcon text-quaternary fs-2"></i>
+                                                </div>
+                                            }
+
+                                            <h3 class="oc-fpc-title text-normalcase fs-4">@cardTitle</h3>
+
+                                            <div class="oc-fpc-description fs-6">
+                                                @cardDescription
+                                            </div>
+                                        </div>
+
+                                        @if (!string.IsNullOrWhiteSpace(cardImage))
+                                        {
+                                            <div class="oc-fpc-featured-image-wrap">
+                                                <img class="oc-fpc-featured-image img-fluid" src="@cardImage" alt="@cardTitle" loading="lazy" decoding="async" />
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="@cardClasses">
+                                @if (!isFeatured)
+                                {
+                                    <div class="oc-fpc-card-body">
+                                        @if (!string.IsNullOrWhiteSpace(cardIcon))
+                                        {
+                                            <div class="oc-fpc-icon" aria-hidden="true">
+                                                <i class="@cardIcon text-quaternary fs-2"></i>
+                                            </div>
+                                        }
+
+                                        <h3 class="oc-fpc-title text-normalcase fs-4">@cardTitle</h3>
+
+                                        <div class="oc-fpc-description fs-6">
+                                            @cardDescription
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="oc-fpc-card-body oc-fpc-card-body-featured">
+                                        <div class="oc-fpc-featured-content">
+                                            @if (!string.IsNullOrWhiteSpace(cardIcon))
+                                            {
+                                                <div class="oc-fpc-icon" aria-hidden="true">
+                                                    <i class="@cardIcon text-quaternary fs-2"></i>
+                                                </div>
+                                            }
+
+                                            <h3 class="oc-fpc-title text-normalcase fs-4">@cardTitle</h3>
+
+                                            <div class="oc-fpc-description fs-6">
+                                                @cardDescription
+                                            </div>
+                                        </div>
+
+                                        @if (!string.IsNullOrWhiteSpace(cardImage))
+                                        {
+                                            <div class="oc-fpc-featured-image-wrap">
+                                                <img class="oc-fpc-featured-image img-fluid" src="@cardImage" alt="@cardTitle" loading="lazy" decoding="async" />
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,134 @@
+.oc-five-practice-cards {
+    position: relative;
+}
+
+.oc-five-practice-cards .oc-fpc-heading {
+    margin-bottom: 3rem;
+}
+
+.oc-five-practice-cards .oc-fpc-card {
+    display: block;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.oc-five-practice-cards .oc-fpc-card:hover,
+.oc-five-practice-cards .oc-fpc-card:focus,
+.oc-five-practice-cards .oc-fpc-card:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.oc-five-practice-cards .oc-fpc-card-body {
+    padding: 2rem;
+    height: 100%;
+}
+
+.oc-five-practice-cards .oc-fpc-card-body-featured {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc-five-practice-cards .oc-fpc-featured-content {
+    flex: 1 1 auto;
+}
+
+.oc-five-practice-cards .oc-fpc-icon {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.oc-five-practice-cards .oc-fpc-title {
+    margin: 0 0 0.875rem 0;
+    line-height: 1.25;
+}
+
+.oc-five-practice-cards .oc-fpc-description {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.oc-five-practice-cards .oc-fpc-featured-image-wrap {
+    flex: 0 0 auto;
+}
+
+.oc-five-practice-cards .oc-fpc-featured-image {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 0.875rem;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
+}
+
+@media (min-width: 768px) {
+    .oc-five-practice-cards .oc-fpc-card-body-featured {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .oc-five-practice-cards .oc-fpc-featured-image-wrap {
+        width: 12rem;
+        min-width: 12rem;
+    }
+
+    .oc-five-practice-cards .oc-fpc-featured-image {
+        height: 8rem;
+    }
+}
+
+.oc-five-practice-cards .oc-fpc-card.has-link {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.oc-five-practice-cards .oc-fpc-card.has-link:hover,
+.oc-five-practice-cards .oc-fpc-card.has-link:focus {
+    transform: translateY(-0.1875rem);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.oc-five-practice-cards .fade-in-up {
+    opacity: 0;
+    animation: ocFpcFadeInUp 500ms ease forwards;
+}
+
+.oc-five-practice-cards .row > div:nth-child(1) .fade-in-up { animation-delay: 0.04s; }
+.oc-five-practice-cards .row > div:nth-child(2) .fade-in-up { animation-delay: 0.08s; }
+.oc-five-practice-cards .row > div:nth-child(3) .fade-in-up { animation-delay: 0.12s; }
+.oc-five-practice-cards .row > div:nth-child(4) .fade-in-up { animation-delay: 0.16s; }
+.oc-five-practice-cards .row > div:nth-child(5) .fade-in-up { animation-delay: 0.20s; }
+
+@keyframes ocFpcFadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 0.5rem, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-five-practice-cards .fade-in-up {
+        opacity: 1;
+        animation: none;
+    }
+
+    .oc-five-practice-cards .oc-fpc-card.has-link {
+        transition: none;
+    }
+
+    .oc-five-practice-cards .oc-fpc-card.has-link:hover,
+    .oc-five-practice-cards .oc-fpc-card.has-link:focus {
+        transform: none;
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "ModuleTitle": "",
+  "ModuleAnchor": "",
+  "SectionHeading": "Practices for Modern Vitality",
+  "Cards": [
+    {
+      "CardIcon": "fa-solid fa-tree",
+      "CardTitle": "Forest Therapy",
+      "CardDescription": "Guided Shinrin-Yoku sessions to re-establish sensory connection with the earth's natural rhythms.",
+      "Url": "/forest-therapy",
+      "BackgroundColorClass": "bg-light",
+      "CardImage": ""
+    },
+    {
+      "CardIcon": "fa-solid fa-child-reaching",
+      "CardTitle": "Self-Myofascial Release",
+      "CardDescription": "Using natural textures and targeted mobility to release stored tension and somatic trauma.",
+      "Url": "/self-myofascial-release",
+      "BackgroundColorClass": "bg-light",
+      "CardImage": ""
+    },
+    {
+      "CardIcon": "fa-solid fa-pen-to-square",
+      "CardTitle": "Nature Journaling",
+      "CardDescription": "Guided reflective practices that bridge the gap between internal landscapes and external flora.",
+      "Url": "/nature-journaling",
+      "BackgroundColorClass": "bg-light",
+      "CardImage": ""
+    },
+    {
+      "CardIcon": "fa-solid fa-people-group",
+      "CardTitle": "Collective Effervescence",
+      "CardDescription": "Group rituals designed to generate shared meaning and social cohesion in natural settings.",
+      "Url": "/collective-effervescence",
+      "BackgroundColorClass": "bg-light",
+      "CardImage": ""
+    },
+    {
+      "CardIcon": "fa-solid fa-laptop",
+      "CardTitle": "Virtual Forest Bathing",
+      "CardDescription": "High-fidelity immersive audio-visual experiences for those with limited mobility or urban constraints.",
+      "Url": "/virtual-forest-bathing",
+      "BackgroundColorClass": "bg-light",
+      "CardImage": "/Portals/0/Images/virtual-forest-bathing.jpg"
+    }
+  ]
+}

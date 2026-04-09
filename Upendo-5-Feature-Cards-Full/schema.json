@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "SectionHeading": {
+            "type": "string",
+            "title": "Section Heading"
+        },
+        "Cards": {
+            "type": "array",
+            "title": "Cards",
+            "minItems": 5,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "CardIcon": {
+                        "type": "string",
+                        "title": "Card Icon"
+                    },
+                    "CardTitle": {
+                        "type": "string",
+                        "title": "Card Title"
+                    },
+                    "CardDescription": {
+                        "type": "string",
+                        "title": "Card Description"
+                    },
+                    "Url": {
+                        "type": "object",
+                        "title": "URL"
+                    },
+                    "BackgroundColorClass": {
+                        "type": "string",
+                        "title": "Background Color",
+                        "enum": [
+                            "",
+                            "bg-primary",
+                            "bg-secondary",
+                            "bg-success",
+                            "bg-danger",
+                            "bg-warning",
+                            "bg-info",
+                            "bg-light",
+                            "bg-dark",
+                            "bg-white",
+                            "bg-body",
+                            "bg-transparent",
+                            "bg-primary-subtle",
+                            "bg-secondary-subtle",
+                            "bg-success-subtle",
+                            "bg-danger-subtle",
+                            "bg-warning-subtle",
+                            "bg-info-subtle",
+                            "bg-light-subtle",
+                            "bg-dark-subtle"
+                        ]
+                    },
+                    "CardImage": {
+                        "type": "string",
+                        "title": "Card Image"
+                    }
+                },
+                "required": [
+                    "CardIcon",
+                    "CardTitle",
+                    "CardDescription"
+                ]
+            }
+        }
+    }
+}
