@@ -1,24 +1,11 @@
 @using System
 @using DotNetNuke.Entities.Modules
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
 @{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
     RegisterStyleSheet("css/template.css");
-
-    // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        // Check if the "hideadminborder" setting is not set or is not "True"
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            // Update or create the "hideadminborder" setting with the value "True"
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
 
     // Helper-ish variables with older Razor compatibility in mind
     var title = (Model.SectionTitle ?? string.Empty).Trim();
@@ -53,7 +40,7 @@
         titleTag = "h3";
       }
 
-      @Html.Raw("<" + titleTag + " id=\"" + safeId + "\" class=\"uv-link-list__title mb-3 @Model.TitleCssClass\">")
+      @Html.Raw("<" + titleTag + " id=\"" + safeId + "\" class=\"uv-link-list__title mb-3 " + @Model.SectionCssClass + "\">")
 
         @* Optional section icon *@
         if (!string.IsNullOrEmpty(sectionIcon))
