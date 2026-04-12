@@ -1,0 +1,77 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for the module. This helps OpenContent sync with DNN module settings.",
+      "placeholder": "Final CTA"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for #anchor links on the page. Use only letters, numbers, and hyphens.",
+      "placeholder": "begin-your-integration",
+      "showMessages": false
+    },
+    "Heading": {
+      "type": "text",
+      "helper": "Required. Main heading shown in the center of the section.",
+      "placeholder": "Begin Your Integration"
+    },
+    "HeadingCssClass": {
+      "type": "select",
+      "helper": "Optional. Choose a text color or theme heading class for the heading.",
+      "optionLabels": [
+        "None / Theme Default",
+        "Primary",
+        "Primary Emphasis",
+        "Secondary",
+        "Secondary Emphasis",
+        "Success",
+        "Danger",
+        "Warning",
+        "Info",
+        "Dark",
+        "Body",
+        "Body Emphasis",
+        "Body Secondary",
+        "Body Tertiary",
+        "White",
+        "Light",
+        "Black",
+        "Primary (theme)",
+        "Secondary (theme)",
+        "Tertiary (theme)",
+        "Quaternary (theme)",
+        "H1 (theme)",
+        "H2 (theme)",
+        "H3 (theme)",
+        "H4 (theme)",
+        "H5 (theme)",
+        "H6 (theme)"
+      ],
+      "removeDefaultNone": true
+    },
+    "DescriptionText": {
+      "type": "textarea",
+      "helper": "Required. Short supporting text shown under the heading.",
+      "placeholder": "Whether you are an individual seeking peace or a team needing renewal, the forest is waiting."
+    },
+    "PrimaryCtaButtonText": {
+      "type": "text",
+      "helper": "Required. Text shown on the main button.",
+      "placeholder": "Schedule a Consultation"
+    },
+    "PrimaryCtaButtonUrl": {
+      "type": "url",
+      "helper": "Required. Where the main button should go."
+    },
+    "SecondaryCtaButtonText": {
+      "type": "text",
+      "helper": "Optional. If both the text and URL are filled in, the second button will be shown.",
+      "placeholder": "Download Starter Guide"
+    },
+    "SecondaryCtaButtonUrl": {
+      "type": "url",
+      "helper": "Optional. Fill this in along with the second button text to show the second CTA."
+    }
+  }
+}
