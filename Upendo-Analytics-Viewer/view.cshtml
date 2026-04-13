@@ -7,6 +7,7 @@
 
 @{
     TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
 
     RegisterScript("https://cdn.jsdelivr.net/npm/chart.js");
 
@@ -301,136 +302,6 @@
         return count;
     };
 }
-
-<style>
-    .metric-card {
-        transition: all 0.2s ease-in-out;
-        background-color: #f9fafb;
-    }
-
-    .metric-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-    }
-
-    .metric-value {
-        letter-spacing: -0.5px;
-    }
-
-    .metric-card a,
-    table a {
-        text-decoration: none;
-    }
-
-    .metric-card a:hover,
-    table a:hover {
-        text-decoration: underline;
-    }
-
-    #uvTrendChart {
-        min-height: 320px;
-    }
-
-    .uv-dashboard-section-nav {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 1rem;
-        z-index: 100;
-    }
-
-    .uv-dashboard-section-nav-inner {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 0.75rem;
-        overflow-x: auto;
-        padding: 0.75rem 1rem;
-        background: #ffffff;
-        border: 1px solid #e9ecef;
-        border-radius: 1rem;
-        box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
-        scrollbar-width: thin;
-    }
-
-    .uv-dashboard-section-link {
-        display: inline-flex;
-        align-items: center;
-        white-space: nowrap;
-        padding: 0.5rem 0.85rem;
-        border-radius: 999px;
-        text-decoration: none;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #0f5c6e;
-        background-color: #f8f9fa;
-        border: 1px solid transparent;
-        transition: all 0.2s ease;
-    }
-
-    .uv-dashboard-section-link:hover,
-    .uv-dashboard-section-link:focus {
-        color: #0b4452;
-        background-color: #e9f7fa;
-        border-color: #bfe7ef;
-        text-decoration: none;
-    }
-
-    .uv-dashboard-section-link.active {
-        color: #ffffff;
-        background-color: #0f5c6e;
-        border-color: #0f5c6e;
-    }
-
-    .uv-dashboard-section-link i {
-        font-size: 0.875rem;
-    }
-
-    @@media (max-width: 767.98px) {
-        .uv-dashboard-section-nav {
-            top: 0.5rem;
-        }
-
-        .uv-dashboard-section-nav-inner {
-            padding: 0.65rem 0.75rem;
-            border-radius: 0.85rem;
-        }
-
-        .uv-dashboard-section-link {
-            font-size: 0.875rem;
-            padding: 0.45rem 0.75rem;
-        }
-    }
-
-    .uv-back-to-top {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #0f5c6e;
-        text-decoration: none;
-        padding: 0.35rem 0.6rem;
-        border-radius: 999px;
-        background-color: transparent;
-        transition: all 0.15s ease-in-out;
-    }
-
-    .uv-back-to-top:hover,
-    .uv-back-to-top:focus {
-        color: #0b4452;
-        background-color: #e9f7fa;
-        text-decoration: none;
-    }
-
-    .uv-back-to-top i {
-        font-size: 0.75rem;
-    }
-
-    .uv-back-to-top-container {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 0.75rem;
-    }
-</style>
 
 <div id="uv-section-overview" class="uv-analytics-dashboard-test container-fluid my-4">
     <div class="row mt-4 mb-4">
@@ -1250,11 +1121,11 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-sm table-striped table-hover align-middle">
+                                <table class="table table-sm table-striped table-hover align-middle uv-top-pages-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Page Title</th>
-                                            <th scope="col">Page Path</th>
+                                            <th scope="col" class="uv-col-page-title">Page Title</th>
+                                            <th scope="col" class="uv-col-page-path">Page Path</th>
                                             <th scope="col" class="text-end">Entrances</th>
                                             <th scope="col" class="text-end">Views</th>
                                             <th scope="col" class="text-end">Users</th>
@@ -1272,7 +1143,7 @@
                                                     <td>
                                                         @if (!string.IsNullOrEmpty(pageUrl))
                                                         {
-                                                            <a href="@pageUrl" target="_blank" title="View the page in a new tab">
+                                                            <a href="@pageUrl" target="_blank" rel="noopener noreferrer" title="View the page in a new tab">
                                                                 @item.PageTitle
                                                             </a>
                                                         }
@@ -1282,15 +1153,28 @@
                                                         }
                                                     </td>
                                                     <td>
+                                                        @{
+                                                            var fullPagePath = Convert.ToString(item.PagePath ?? string.Empty);
+                                                            var abbreviatedPagePath = !string.IsNullOrWhiteSpace(fullPagePath)
+                                                                ? TemplateHelper.Labels.TruncateLabel(fullPagePath, 70)
+                                                                : string.Empty;
+                                                            var pagePathTitle = !string.IsNullOrWhiteSpace(fullPagePath)
+                                                                ? fullPagePath
+                                                                : "No page path available";
+                                                        }
+
                                                         @if (!string.IsNullOrEmpty(pageUrl))
                                                         {
-                                                            <a href="@pageUrl" target="_blank" class="text-muted small" title="View the page in a new tab">
-                                                                @item.PagePath
+                                                            <a href="@pageUrl" target="_blank" rel="noopener noreferrer"
+                                                                class="uv-page-path-link small" title="@pagePathTitle" aria-label="@("Open page path: " + fullPagePath)">
+                                                                @abbreviatedPagePath
                                                             </a>
                                                         }
                                                         else
                                                         {
-                                                            @item.PagePath
+                                                            <span class="uv-page-path-text text-muted small" title="@pagePathTitle" aria-label="@fullPagePath">
+                                                                @abbreviatedPagePath
+                                                            </span>
                                                         }
                                                     </td>
                                                     <td class="text-end">@TemplateHelper.Formatting.FormatInt(item.Entrances)</td>

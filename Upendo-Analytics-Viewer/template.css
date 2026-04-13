@@ -1,0 +1,163 @@
+    .metric-card {
+        transition: all 0.2s ease-in-out;
+        background-color: #f9fafb;
+    }
+
+    .metric-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    }
+
+    .metric-value {
+        letter-spacing: -0.5px;
+    }
+
+    .metric-card a,
+    table a {
+        text-decoration: none;
+    }
+
+    .metric-card a:hover,
+    table a:hover {
+        text-decoration: underline;
+    }
+
+    #uvTrendChart {
+        min-height: 320px;
+    }
+
+    .uv-dashboard-section-nav {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+    }
+
+    .uv-dashboard-section-nav-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.75rem;
+        overflow-x: auto;
+        padding: 0.75rem 1rem;
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 1rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+        scrollbar-width: thin;
+    }
+
+    .uv-dashboard-section-link {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #0f5c6e;
+        background-color: #f8f9fa;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    .uv-dashboard-section-link:hover,
+    .uv-dashboard-section-link:focus {
+        color: #0b4452;
+        background-color: #e9f7fa;
+        border-color: #bfe7ef;
+        text-decoration: none;
+    }
+
+    .uv-dashboard-section-link.active {
+        color: #ffffff;
+        background-color: #0f5c6e;
+        border-color: #0f5c6e;
+    }
+
+    .uv-dashboard-section-link i {
+        font-size: 0.875rem;
+    }
+
+    @media (max-width: 767.98px) {
+        .uv-dashboard-section-nav {
+            top: 0.5rem;
+        }
+
+        .uv-dashboard-section-nav-inner {
+            padding: 0.65rem 0.75rem;
+            border-radius: 0.85rem;
+        }
+
+        .uv-dashboard-section-link {
+            font-size: 0.875rem;
+            padding: 0.45rem 0.75rem;
+        }
+    }
+
+    .uv-back-to-top {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #0f5c6e;
+        text-decoration: none;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        background-color: transparent;
+        transition: all 0.15s ease-in-out;
+    }
+
+    .uv-back-to-top:hover,
+    .uv-back-to-top:focus {
+        color: #0b4452;
+        background-color: #e9f7fa;
+        text-decoration: none;
+    }
+
+    .uv-back-to-top i {
+        font-size: 0.75rem;
+    }
+
+    .uv-back-to-top-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0.75rem;
+    }
+        .uv-top-pages-table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .uv-top-pages-table th,
+    .uv-top-pages-table td {
+        vertical-align: middle;
+    }
+
+    .uv-top-pages-table .uv-col-page-title {
+        width: 24%;
+    }
+
+    .uv-top-pages-table .uv-col-page-path {
+        width: 32%;
+    }
+
+    .uv-page-path-link,
+    .uv-page-path-text {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+    }
+
+    .uv-page-path-link {
+        color: var(--bs-secondary-color, #6c757d);
+    }
+
+    .uv-page-path-link:hover,
+    .uv-page-path-link:focus {
+        text-decoration: underline;
+    }
