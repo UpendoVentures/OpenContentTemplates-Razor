@@ -1,0 +1,172 @@
+.oc-inner-hero {
+    overflow: hidden;
+}
+
+.oc-inner-hero__row {
+    min-height: 1px;
+}
+
+.oc-inner-hero__content {
+    max-width: 42rem;
+}
+
+.oc-inner-hero__eyebrow-wrap {
+    margin-bottom: 1rem;
+}
+
+.oc-inner-hero__eyebrow {
+    display: inline-block;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.oc-inner-hero__title {
+    margin-bottom: 1.5rem;
+    line-height: 0.95;
+    font-style: italic;
+    font-size: clamp(2.5rem, 6vw, 4.75rem);
+}
+
+.oc-inner-hero__lead p {
+    margin-bottom: 0;
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.oc-inner-hero__actions {
+    margin-top: 2rem;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 3.5rem;
+    padding: 0.95rem 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none !important;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn i {
+    line-height: 1;
+    font-size: 0.95em;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn--primary,
+.oc-inner-hero__actions .oc-inner-hero__btn--primary:link,
+.oc-inner-hero__actions .oc-inner-hero__btn--primary:visited {
+    color: #ffffff !important;
+    background-color: #173124 !important;
+    border-color: #173124 !important;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn--primary:hover,
+.oc-inner-hero__actions .oc-inner-hero__btn--primary:focus,
+.oc-inner-hero__actions .oc-inner-hero__btn--primary:active {
+    color: #ffffff !important;
+    background-color: #12271d !important;
+    border-color: #12271d !important;
+    text-decoration: none !important;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn--secondary,
+.oc-inner-hero__actions .oc-inner-hero__btn--secondary:link,
+.oc-inner-hero__actions .oc-inner-hero__btn--secondary:visited {
+    color: #2f2f2f !important;
+    background-color: #ece9e4 !important;
+    border-color: #ece9e4 !important;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn--secondary:hover,
+.oc-inner-hero__actions .oc-inner-hero__btn--secondary:focus,
+.oc-inner-hero__actions .oc-inner-hero__btn--secondary:active {
+    color: #2f2f2f !important;
+    background-color: #e1ddd7 !important;
+    border-color: #e1ddd7 !important;
+    text-decoration: none !important;
+}
+
+.oc-inner-hero__actions .oc-inner-hero__btn span,
+.oc-inner-hero__actions .oc-inner-hero__btn i {
+    color: inherit !important;
+}
+
+.oc-inner-hero__media-wrap {
+    position: relative;
+    max-width: 29rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-inner-hero__media {
+    overflow: hidden;
+    border-radius: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.04);
+    transform: rotate(2deg);
+    transition: transform 0.7s ease;
+}
+
+.oc-inner-hero__media-wrap:hover .oc-inner-hero__media {
+    transform: rotate(0deg);
+}
+
+.oc-inner-hero__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.oc-inner-hero__quote {
+    position: absolute;
+    left: -1.5rem;
+    bottom: -1.5rem;
+    max-width: 17rem;
+    padding: 1.25rem 1.35rem;
+    border-radius: 1.25rem;
+    background-color: #8a4521;
+    color: #f8e3d2;
+    z-index: 2;
+}
+
+.oc-inner-hero__quote p {
+    margin: 0;
+    color: #f8e3d2 !important;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+@media (max-width: 991.98px) {
+    .oc-inner-hero__media-wrap {
+        max-width: 24rem;
+    }
+
+    .oc-inner-hero__quote {
+        left: 1rem;
+        right: 1rem;
+        bottom: -1rem;
+        max-width: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-inner-hero__actions .oc-inner-hero__btn {
+        width: 100%;
+    }
+
+    .oc-inner-hero__media {
+        border-radius: 2rem;
+    }
+}

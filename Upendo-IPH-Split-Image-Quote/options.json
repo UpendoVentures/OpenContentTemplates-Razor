@@ -1,0 +1,73 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Administrator-facing title for this content block. This helps OpenContent sync with DNN module settings.",
+            "placeholder": "Forest Therapy FAQ Hero"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+            "placeholder": "forest-therapy-faq-hero",
+            "showMessages": false
+        },
+        "HeroTitle": {
+            "type": "text",
+            "helper": "Required. This becomes the main H1 for the section.",
+            "placeholder": "Forest Therapy FAQ"
+        },
+        "HeroLead": {
+            "type": "textarea",
+            "helper": "Required. Keep this to a short paragraph for best layout results.",
+            "placeholder": "Explore the scientific foundations and practical preparations for your journey back to the natural world."
+        },
+        "EyebrowText": {
+            "type": "text",
+            "helper": "Optional. A short label shown above the main heading.",
+            "placeholder": "Forest Therapy"
+        },
+        "Cta1Text": {
+            "type": "text",
+            "helper": "Optional. Button text for the primary call to action.",
+            "placeholder": "Inquire Now"
+        },
+        "Cta1Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+        },
+        "Cta1Url": {
+            "type": "url",
+            "helper": "Optional. Full URL or relative page path for CTA 1.",
+            "placeholder": "/contact"
+        },
+        "Cta2Text": {
+            "type": "text",
+            "helper": "Optional. Button text for the secondary call to action.",
+            "placeholder": "View Programs"
+        },
+        "Cta2Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+        },
+        "Cta2Url": {
+            "type": "url",
+            "helper": "Optional. Full URL or relative page path for CTA 2.",
+            "placeholder": "/offerings"
+        },
+        "HeroImage": {
+            "type": "image",
+            "uploadfolder": "Content/Heros/",
+            "typeahead": {
+                "Folder": "Content/Heros/"
+            },
+            "helper": "Required. Uploads should go to Content/Heros/. Recommended minimum size: 1200 x 1500 px. Use a strong vertical or portrait-friendly image. Keep important visual content centered, since the image may crop differently by screen size."
+        },
+        "HeroImageQuote": {
+            "type": "textarea",
+            "helper": "Required. Short pull-quote shown overlapping the image. Best kept to one or two short lines.",
+            "placeholder": "Nature is the original architect of high-performing systems."
+        }
+    }
+}

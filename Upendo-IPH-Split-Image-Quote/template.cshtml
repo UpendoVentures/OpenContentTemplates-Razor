@@ -1,0 +1,171 @@
+@using System
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var heroTitle = Model.HeroTitle != null ? Convert.ToString(Model.HeroTitle) : string.Empty;
+    var heroLead = Model.HeroLead != null ? Convert.ToString(Model.HeroLead) : string.Empty;
+    var eyebrowText = Model.EyebrowText != null ? Convert.ToString(Model.EyebrowText) : string.Empty;
+
+    var cta1Text = Model.Cta1Text != null ? Convert.ToString(Model.Cta1Text) : string.Empty;
+    var cta1Icon = Model.Cta1Icon != null ? Convert.ToString(Model.Cta1Icon) : string.Empty;
+    var cta1Url = Model.Cta1Url != null ? Convert.ToString(Model.Cta1Url) : string.Empty;
+
+    var cta2Text = Model.Cta2Text != null ? Convert.ToString(Model.Cta2Text) : string.Empty;
+    var cta2Icon = Model.Cta2Icon != null ? Convert.ToString(Model.Cta2Icon) : string.Empty;
+    var cta2Url = Model.Cta2Url != null ? Convert.ToString(Model.Cta2Url) : string.Empty;
+
+    var heroImage = Model.HeroImage != null ? Convert.ToString(Model.HeroImage) : string.Empty;
+    var heroImageQuote = Model.HeroImageQuote != null ? Convert.ToString(Model.HeroImageQuote) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var hasModuleAnchor = !string.IsNullOrWhiteSpace(moduleAnchor);
+    var hasEyebrowText = !string.IsNullOrWhiteSpace(eyebrowText);
+    var hasHeroTitle = !string.IsNullOrWhiteSpace(heroTitle);
+    var hasHeroLead = !string.IsNullOrWhiteSpace(heroLead);
+    var hasHeroImage = !string.IsNullOrWhiteSpace(heroImage);
+    var hasHeroImageQuote = !string.IsNullOrWhiteSpace(heroImageQuote);
+
+    var hasCta1 = !string.IsNullOrWhiteSpace(cta1Text) && !string.IsNullOrWhiteSpace(cta1Url);
+    var hasCta2 = !string.IsNullOrWhiteSpace(cta2Text) && !string.IsNullOrWhiteSpace(cta2Url);
+    var hasAnyCta = hasCta1 || hasCta2;
+
+    var cta1IconHtml = !string.IsNullOrWhiteSpace(cta1Icon)
+        ? "<i class=\"" + HttpUtility.HtmlAttributeEncode(cta1Icon) + "\" aria-hidden=\"true\"></i>"
+        : string.Empty;
+
+    var cta2IconHtml = !string.IsNullOrWhiteSpace(cta2Icon)
+        ? "<i class=\"" + HttpUtility.HtmlAttributeEncode(cta2Icon) + "\" aria-hidden=\"true\"></i>"
+        : string.Empty;
+
+    var sectionClass = "oc-inner-hero position-relative";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+}
+
+@if (hasModuleAnchor)
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClass">
+    <div class="container-xxl">
+        <div class="row align-items-center g-4 g-lg-5 oc-inner-hero__row">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+                <div class="oc-inner-hero__content">
+
+                    @if (hasEyebrowText)
+                    {
+                        <div class="oc-inner-hero__eyebrow-wrap">
+                            <span class="oc-inner-hero__eyebrow">@Html.Raw(HttpUtility.HtmlEncode(eyebrowText))</span>
+                        </div>
+                    }
+
+                    @if (hasHeroTitle)
+                    {
+                        <h1 class="oc-inner-hero__title">@Html.Raw(heroTitle)</h1>
+                    }
+
+                    @if (hasHeroLead)
+                    {
+                        <div class="oc-inner-hero__lead">
+                            <p>@Html.Raw(heroLead)</p>
+                        </div>
+                    }
+
+                    @if (hasAnyCta)
+                    {
+                        <div class="oc-inner-hero__actions d-flex flex-wrap align-items-center gap-3">
+
+                            @if (hasCta1)
+                            {
+                                <a href="@cta1Url" class="btn rounded-pill oc-inner-hero__btn oc-inner-hero__btn--primary track-cta">
+                                    @Html.Raw(cta1IconHtml)
+                                    <span>@Html.Raw(cta1Text)</span>
+                                </a>
+                            }
+
+                            @if (hasCta2)
+                            {
+                                <a href="@cta2Url" class="btn rounded-pill oc-inner-hero__btn oc-inner-hero__btn--secondary track-cta">
+                                    @Html.Raw(cta2IconHtml)
+                                    <span>@Html.Raw(cta2Text)</span>
+                                </a>
+                            }
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="oc-inner-hero__media-wrap">
+
+                    @if (hasHeroImage)
+                    {
+                        <div class="oc-inner-hero__media shadow">
+                            <img src="@heroImage" alt="@HttpUtility.HtmlAttributeEncode(heroTitle)" class="img-fluid oc-inner-hero__image" loading="lazy" decoding="async" />
+                        </div>
+                    }
+
+                    @if (hasHeroImage && hasHeroImageQuote)
+                    {
+                        <div class="oc-inner-hero__quote shadow-sm">
+                            <p class="mb-0">@Html.Raw(heroImageQuote)</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
