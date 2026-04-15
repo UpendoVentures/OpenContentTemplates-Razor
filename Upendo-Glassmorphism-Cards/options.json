@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Internal only. This syncs with the DNN module title and does not display to visitors.",
+      "placeholder": "Curated Pathways Cards"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for #anchor-links on the page. Use letters, numbers, and hyphens only.",
+      "placeholder": "programs"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading for this section.",
+      "placeholder": "Curated Group Pathways"
+    },
+    "SectionIntro": {
+      "type": "text",
+      "helper": "Optional. Short supporting text below the heading. Basic HTML is allowed.",
+      "placeholder": "Programs designed to be modular and responsive to your group's current state."
+    },
+    "Eyebrow": {
+      "type": "text",
+      "helper": "Optional. Short label shown on the right side of the heading row. Basic HTML is allowed.",
+      "placeholder": "Experience Depth"
+    },
+    "Cards": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add as many cards as you want. Only the first 3 cards are rendered on the page.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Card heading. Basic HTML is allowed.",
+            "placeholder": "Guided Forest Bathing"
+          },
+          "Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+          },
+          "Body": {
+            "type": "text",
+            "helper": "Required. Main card copy. Basic HTML is allowed.",
+            "placeholder": "A sequence of 'invitations' designed to slow the heart rate and open the senses..."
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. If added, the entire card becomes clickable."
+          },
+          "Tags": {
+            "type": "array",
+            "helper": "Optional. Add short bullet-style highlights. Basic HTML is allowed.",
+            "items": {
+              "type": "text",
+              "placeholder": "Sensory Awakening"
+            }
+          }
+        }
+      }
+    }
+  }
+}

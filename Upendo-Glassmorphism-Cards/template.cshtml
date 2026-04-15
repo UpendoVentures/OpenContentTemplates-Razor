@@ -1,0 +1,249 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionIntro = Model.SectionIntro != null ? Convert.ToString(Model.SectionIntro) : string.Empty;
+    var eyebrow = Model.Eyebrow != null ? Convert.ToString(Model.Eyebrow) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var cards = new List<dynamic>();
+
+    if (Model.Cards != null)
+    {
+        var count = 0;
+
+        foreach (var item in Model.Cards)
+        {
+            if (count >= 3)
+            {
+                break;
+            }
+
+            cards.Add(item);
+            count++;
+        }
+    }
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(sectionIntro);
+    var hasEyebrow = !string.IsNullOrWhiteSpace(eyebrow);
+    var hasAnchor = !string.IsNullOrWhiteSpace(moduleAnchor);
+
+    var sectionClass = "oc-curated-pathways";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var headingId = "oc-curated-pathways-heading-" + Dnn.Module.ModuleID;
+}
+
+@if (hasAnchor)
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasHeading || hasIntro || hasEyebrow || cards.Count > 0)
+{
+<section class="@sectionClass" aria-labelledby="@headingId">
+    <div class="container-xxl py-5 my-4">
+        @if (hasHeading || hasIntro || hasEyebrow)
+        {
+            <div class="row align-items-end gy-3 gy-lg-0 mb-4 mb-lg-5">
+                <div class="col-12 col-lg-8">
+                    @if (hasHeading)
+                    {
+                        <h2 id="@headingId" class="oc-curated-pathways__heading mb-3">@Html.Raw(sectionHeading)</h2>
+                    }
+
+                    @if (hasIntro)
+                    {
+                        <div class="oc-curated-pathways__intro">@Html.Raw(sectionIntro)</div>
+                    }
+                </div>
+
+                @if (hasEyebrow)
+                {
+                    <div class="col-12 col-lg-4 text-lg-end">
+                        <div class="oc-curated-pathways__eyebrow-wrap">
+                            <span class="oc-curated-pathways__eyebrow">@Html.Raw(eyebrow)</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        @if (cards.Count > 0)
+        {
+            <div class="row g-4">
+                @foreach (var card in cards)
+                {
+                    var title = card.Title != null ? Convert.ToString(card.Title) : string.Empty;
+                    var icon = card.Icon != null ? Convert.ToString(card.Icon) : string.Empty;
+                    var body = card.Body != null ? Convert.ToString(card.Body) : string.Empty;
+
+                    var linkUrl = string.Empty;
+
+                    if (card.Link != null)
+                    {
+                        try
+                        {
+                            if (card.Link.Url != null)
+                            {
+                                linkUrl = Convert.ToString(card.Link.Url);
+                            }
+                            else
+                            {
+                                linkUrl = Convert.ToString(card.Link);
+                            }
+                        }
+                        catch
+                        {
+                            linkUrl = Convert.ToString(card.Link);
+                        }
+                    }
+
+                    var hasLink = !string.IsNullOrWhiteSpace(linkUrl);
+                    var cardClass = "oc-curated-pathways__card oc-curated-pathways__card--standard h-100";
+                    var iconWrapClass = "oc-curated-pathways__icon-wrap oc-curated-pathways__icon-wrap--standard";
+                    var checkIcon = "fa-solid fa-circle-check";
+
+                    <div class="col-12 col-lg-4 d-flex">
+                        @if (hasLink)
+                        {
+                            <a href="@linkUrl" class="@cardClass w-100 text-decoration-none" aria-label="@HttpUtility.HtmlAttributeEncode(title)">
+                                <div class="oc-curated-pathways__card-inner h-100">
+                                    @if (!string.IsNullOrWhiteSpace(icon))
+                                    {
+                                        <div class="@iconWrapClass" aria-hidden="true">
+                                            <i class="@icon oc-curated-pathways__icon"></i>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-curated-pathways__title">@Html.Raw(title)</h3>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(body))
+                                    {
+                                        <div class="oc-curated-pathways__body">@Html.Raw(body)</div>
+                                    }
+
+                                    @if (card.Tags != null)
+                                    {
+                                        <ul class="oc-curated-pathways__tags list-unstyled mb-0" aria-label="Program highlights">
+                                            @foreach (var tag in card.Tags)
+                                            {
+                                                var tagText = tag != null ? Convert.ToString(tag) : string.Empty;
+
+                                                if (!string.IsNullOrWhiteSpace(tagText))
+                                                {
+                                                    <li class="oc-curated-pathways__tag">
+                                                        <i class="@checkIcon oc-curated-pathways__tag-icon" aria-hidden="true"></i>
+                                                        <span class="oc-curated-pathways__tag-text">@Html.Raw(tagText)</span>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="@cardClass w-100" role="article">
+                                <div class="oc-curated-pathways__card-inner h-100">
+                                    @if (!string.IsNullOrWhiteSpace(icon))
+                                    {
+                                        <div class="@iconWrapClass" aria-hidden="true">
+                                            <i class="@icon oc-curated-pathways__icon"></i>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-curated-pathways__title">@Html.Raw(title)</h3>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(body))
+                                    {
+                                        <div class="oc-curated-pathways__body">@Html.Raw(body)</div>
+                                    }
+
+                                    @if (card.Tags != null)
+                                    {
+                                        <ul class="oc-curated-pathways__tags list-unstyled mb-0" aria-label="Program highlights">
+                                            @foreach (var tag in card.Tags)
+                                            {
+                                                var tagText = tag != null ? Convert.ToString(tag) : string.Empty;
+
+                                                if (!string.IsNullOrWhiteSpace(tagText))
+                                                {
+                                                    <li class="oc-curated-pathways__tag">
+                                                        <i class="@checkIcon oc-curated-pathways__tag-icon" aria-hidden="true"></i>
+                                                        <span class="oc-curated-pathways__tag-text">@Html.Raw(tagText)</span>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+}
