@@ -2,7 +2,7 @@
   "fields": {
     "BackgroundColorClass": {
       "type": "select",
-      "helper": "Choose a built-in Bootstrap or theme background color class for the full section.",
+      "helper": "Choose a built-in Bootstrap background color class or a custom theme background color for this section.",
       "optionLabels": [
         "None / Theme Default",
         "Primary",
@@ -29,7 +29,17 @@
         "Warning Subtle",
         "Info Subtle",
         "Light Subtle",
-        "Dark Subtle"
+        "Dark Subtle",
+        "Off White",
+        "Warm White",
+        "Cream",
+        "Soft Beige",
+        "Sand",
+        "Light Sage",
+        "Sage",
+        "Pale Green",
+        "Mist",
+        "Soft Gray"
       ],
       "sort": true,
       "removeDefaultNone": true

@@ -30,7 +30,17 @@
         "bg-warning-subtle",
         "bg-info-subtle",
         "bg-light-subtle",
-        "bg-dark-subtle"
+        "bg-dark-subtle",
+        "bg-off-white",
+        "bg-warm-white",
+        "bg-cream",
+        "bg-soft-beige",
+        "bg-sand",
+        "bg-light-sage",
+        "bg-sage",
+        "bg-pale-green",
+        "bg-mist",
+        "bg-soft-gray"
       ]
     },
     "MarginTop": {
