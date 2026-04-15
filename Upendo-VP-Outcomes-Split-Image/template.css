@@ -1,0 +1,211 @@
+.oc-value-props-split-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.oc-value-props-split-image .oc-vpsi-row {
+    min-height: 1px;
+}
+
+.oc-value-props-split-image .oc-vpsi-content {
+    width: 100%;
+    max-width: none;
+}
+
+.oc-value-props-split-image .oc-vpsi-heading {
+    margin: 0 0 2.5rem 0;
+    line-height: 1.05;
+    font-size: clamp(2rem, 4vw, 3.35rem);
+}
+
+.oc-value-props-split-image .oc-vpsi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.oc-value-props-split-image .oc-vpsi-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-icon-wrap {
+    flex: 0 0 auto;
+    width: 2.25rem;
+    min-width: 2.25rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.125rem;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-icon-placeholder {
+    display: inline-block;
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-top: 0.35rem;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0.35;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-title {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.125rem;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-description {
+    line-height: 1.75;
+    opacity: 0.88;
+}
+
+.oc-value-props-split-image .oc-vpsi-item-description > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-value-props-split-image .oc-vpsi-image-shell {
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-value-props-split-image .oc-vpsi-image-frame {
+    position: relative;
+    padding: 0.35rem;
+    border-radius: 6.5rem 6.5rem 1.75rem 1.75rem;
+    background: rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.08);
+}
+
+.oc-value-props-split-image .oc-vpsi-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 6.15rem 6.15rem 1.5rem 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+}
+
+.oc-value-props-split-image .fade-in-up {
+    opacity: 0;
+    animation: ocVpsiFadeInUp 700ms ease forwards;
+}
+
+.oc-value-props-split-image .oc-vpsi-item:nth-child(1) {
+    animation-delay: 0.08s;
+}
+
+.oc-value-props-split-image .oc-vpsi-item:nth-child(2) {
+    animation-delay: 0.16s;
+}
+
+.oc-value-props-split-image .oc-vpsi-item:nth-child(3) {
+    animation-delay: 0.24s;
+}
+
+.oc-value-props-split-image .oc-vpsi-image-shell.fade-in-up {
+    animation-delay: 0.18s;
+}
+
+@keyframes ocVpsiFadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 0.75rem, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (max-width: 991.98px) {
+    .oc-value-props-split-image .oc-vpsi-heading {
+        margin-bottom: 2rem;
+    }
+
+    .oc-value-props-split-image .oc-vpsi-list {
+        gap: 1.5rem;
+    }
+
+    .oc-value-props-split-image .oc-vpsi-image-shell {
+        max-width: 30rem;
+    }
+
+    .oc-value-props-split-image .oc-vpsi-image-frame,
+    .oc-value-props-split-image .oc-vpsi-image {
+        border-radius: 4.5rem 4.5rem 1.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-value-props-split-image .oc-vpsi-item {
+        gap: 1rem;
+    }
+
+    .oc-value-props-split-image .oc-vpsi-image-frame,
+    .oc-value-props-split-image .oc-vpsi-image {
+        border-radius: 3rem 3rem 1.25rem 1.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-value-props-split-image .fade-in-up {
+        opacity: 1;
+        animation: none;
+    }
+}
+
+/* Custom background colors */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
