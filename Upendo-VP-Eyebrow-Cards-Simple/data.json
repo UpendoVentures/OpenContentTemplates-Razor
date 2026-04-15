@@ -1,0 +1,43 @@
+{
+  "ModuleTitle": "OC: Engagement Format Cards",
+  "ModuleAnchor": "",
+  "SectionHeading": "Engagement Formats",
+  "Cards": [
+    {
+      "Title": "90-Minute Intake",
+      "Eyebrow": "MICRO",
+      "Description": "A somatic reset for high-stress sprints.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "Title": "Immersion",
+      "Eyebrow": "HALF-DAY",
+      "Description": "Four hours of deep work and sensory grounding.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "Title": "Integration",
+      "Eyebrow": "FULL-DAY",
+      "Description": "Strategic planning woven with forest bathing.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "Title": "The Sanctuary",
+      "Eyebrow": "WEEKEND",
+      "Description": "Residential deep-dive for total culture shift.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    }
+  ]
+}

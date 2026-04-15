@@ -1,0 +1,191 @@
+.oc-engagement-format-cards {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.oc-engagement-format-cards .container {
+    max-width: 1320px;
+}
+
+.oc-efc-heading {
+    margin: 0 0 3rem 0;
+    line-height: 1.2;
+}
+
+.oc-efc-grid {
+    align-items: stretch;
+}
+
+.oc-efc-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 12rem;
+    padding: 2rem 1.5rem;
+    border-radius: 1.75rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.06);
+    color: inherit;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.oc-efc-card-inner {
+    display: block;
+    width: 100%;
+}
+
+.oc-efc-card-link {
+    text-decoration: none;
+}
+
+.oc-efc-card-link:hover,
+.oc-efc-card-link:focus,
+.oc-efc-card-link:focus-visible {
+    color: inherit;
+    text-decoration: none;
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.85rem 1.8rem rgba(0, 0, 0, 0.08);
+    background-color: var(--bs-secondary-bg, #f8f6ef);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.oc-efc-card-link:focus,
+.oc-efc-card-link:focus-visible {
+    outline: 0;
+}
+
+.oc-efc-eyebrow {
+    display: block;
+    margin: 0 0 1rem 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.oc-efc-title {
+    display: block;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.oc-efc-description {
+    display: block;
+    margin: 0;
+    font-size: 0.975rem;
+    line-height: 1.5;
+    opacity: 0.78;
+}
+
+.fade-in-up {
+    opacity: 0;
+    animation-name: ocEfcFadeInUp;
+    animation-duration: 0.7s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.oc-efc-delay-1 {
+    animation-delay: 0.08s;
+}
+
+.oc-efc-delay-2 {
+    animation-delay: 0.16s;
+}
+
+.oc-efc-delay-3 {
+    animation-delay: 0.24s;
+}
+
+.oc-efc-delay-4 {
+    animation-delay: 0.32s;
+}
+
+@keyframes ocEfcFadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 1rem, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .oc-efc-heading {
+        margin-bottom: 2rem;
+    }
+
+    .oc-efc-card {
+        min-height: 10.5rem;
+        padding: 1.75rem 1.25rem;
+        border-radius: 1.5rem;
+    }
+
+    .oc-efc-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-efc-card,
+    .oc-efc-card-link,
+    .fade-in-up {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+
+/* Custom background colors */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}

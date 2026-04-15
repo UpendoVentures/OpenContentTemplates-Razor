@@ -1,0 +1,136 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Model.Settings.BackgroundColorClass.ToString()
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Model.Settings.MarginTop.ToString()
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Model.Settings.MarginBottom.ToString()
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Model.Settings.PaddingTop.ToString()
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Model.Settings.PaddingBottom.ToString()
+        : string.Empty;
+
+    var outerSectionClass = "oc-engagement-format-cards";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { outerSectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Model.ModuleAnchor.ToString() : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Model.SectionHeading.ToString() : string.Empty;
+    var headingId = "oc-efc-heading-" + Model.Context.ModuleId;
+
+    var cards = new List<dynamic>();
+
+    if (Model.Cards != null)
+    {
+        var index = 0;
+        foreach (var item in Model.Cards)
+        {
+            if (index >= 4)
+            {
+                break;
+            }
+
+            cards.Add(item);
+            index++;
+        }
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (cards.Count > 0)
+{
+    <section class="@outerSectionClass"@(string.IsNullOrWhiteSpace(sectionHeading) ? " aria-label=\"Engagement format cards\"" : " aria-labelledby=\"" + headingId + "\"")>
+        <div class="container">
+            @if (!string.IsNullOrWhiteSpace(sectionHeading))
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <h2 id="@headingId" class="oc-efc-heading text-center">@Html.Raw(sectionHeading)</h2>
+                    </div>
+                </div>
+            }
+
+            <div class="row g-4 oc-efc-grid">
+                @for (var i = 0; i < cards.Count; i++)
+                {
+                    var card = cards[i];
+                    var eyebrow = card.Eyebrow != null ? card.Eyebrow.ToString() : string.Empty;
+                    var title = card.Title != null ? card.Title.ToString() : string.Empty;
+                    var description = card.Description != null ? card.Description.ToString() : string.Empty;
+                    var linkUrl = card.Link != null ? card.Link.ToString() : string.Empty;
+                    var hasLink = !string.IsNullOrWhiteSpace(linkUrl);
+                    var delayClass = "oc-efc-delay-" + (i + 1).ToString();
+
+                    <div class="col-12 col-md-6 col-xl-3">
+                        @if (hasLink)
+                        {
+                            <a href="@linkUrl" class="oc-efc-card oc-efc-card-link shadow-sm fade-in-up @delayClass" aria-label="@title">
+                                <span class="oc-efc-card-inner">
+                                    @if (!string.IsNullOrWhiteSpace(eyebrow))
+                                    {
+                                        <span class="oc-efc-eyebrow">@Html.Raw(eyebrow)</span>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <span class="oc-efc-title">@Html.Raw(title)</span>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(description))
+                                    {
+                                        <span class="oc-efc-description">@Html.Raw(description)</span>
+                                    }
+                                </span>
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="oc-efc-card shadow-sm fade-in-up @delayClass">
+                                <div class="oc-efc-card-inner">
+                                    @if (!string.IsNullOrWhiteSpace(eyebrow))
+                                    {
+                                        <div class="oc-efc-eyebrow">@Html.Raw(eyebrow)</div>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-efc-title">@Html.Raw(title)</h3>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(description))
+                                    {
+                                        <div class="oc-efc-description">@Html.Raw(description)</div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

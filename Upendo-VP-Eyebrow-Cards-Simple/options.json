@@ -1,0 +1,47 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This is used for OpenContent and DNN management, not for public display.",
+      "placeholder": "OC: Engagement Format Cards"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create a #jump-link on the page. Use only letters, numbers, and hyphens.",
+      "placeholder": "engagement-formats",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional public heading shown above the cards. HTML is allowed.",
+      "placeholder": "Engagement Formats"
+    },
+    "Cards": {
+      "type": "accordion",
+      "helper": "Add as many cards as you want, but only the first 4 are rendered on the page.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Main card title. HTML is allowed.",
+            "placeholder": "90-Minute Intake"
+          },
+          "Eyebrow": {
+            "type": "text",
+            "helper": "Required. Small label above the title. HTML is allowed.",
+            "placeholder": "MICRO"
+          },
+          "Description": {
+            "type": "text",
+            "helper": "Required. Short supporting text below the title. HTML is allowed.",
+            "placeholder": "A somatic reset for high-stress sprints."
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. If a link is added, the entire card becomes clickable."
+          }
+        }
+      }
+    }
+  }
+}
