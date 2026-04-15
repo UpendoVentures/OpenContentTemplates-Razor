@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block."
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Shown above the cards. Example: Who We Support",
+      "placeholder": "Who We Support"
+    },
+    "LinkCards": {
+      "type": "accordion",
+      "helper": "Add up to 4 cards. Cards display in the order shown here. If more than 4 are added, only the first 4 are displayed on the website.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Short heading shown on the card.",
+            "placeholder": "Corporate Leadership"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Required. Keep this short for the best layout.",
+            "placeholder": "Strategic offsites that prioritize neuro-regulation and creative breakthroughs for executive teams."
+          },
+          "Url": {
+            "type": "url",
+            "helper": "Choose where this card should link."
+          },
+          "FontAwesomeIcon": {
+            "type": "text",
+            "placeholder": "fas fa-building",
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+          },
+          "BackgroundImage": {
+            "type": "image",
+            "helper": "Use a landscape image when needed. Card 3 does not display the image in this layout."
+          }
+        }
+      }
+    }
+  }
+}
