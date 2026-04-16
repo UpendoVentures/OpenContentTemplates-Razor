@@ -1,0 +1,115 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This helps OpenContent sync with DNN module settings.",
+      "placeholder": "Venue Spotlight"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Use letters, numbers, and hyphens only.",
+      "placeholder": "venue-spotlight"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Shown above the spotlight card.",
+      "placeholder": "Featured Venue"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Short supporting copy shown above the spotlight card.",
+      "placeholder": "Highlight a special venue, place, or destination with a split layout."
+    },
+    "CardHeading": {
+      "type": "text",
+      "helper": "Optional, but strongly recommended. Main heading shown in the left content area.",
+      "placeholder": "Our Principal Venue: The Hemlock Glade"
+    },
+    "CardDescription": {
+      "type": "textarea",
+      "helper": "Optional. Main descriptive text for the spotlight card.",
+      "placeholder": "Located just 45 minutes from the city, our flagship sanctuary offers 40 acres of private old-growth forest..."
+    },
+    "CardBackgroundColorClass": {
+      "type": "select",
+      "helper": "Required. Choose the card background color class. This uses the same expanded background options as the template settings.",
+      "optionLabels": [
+        "None / Theme Default",
+        "Primary",
+        "Primary (theme)",
+        "Secondary",
+        "Secondary (theme)",
+        "Tertiary (theme)",
+        "Quaternary (theme)",
+        "H5 (theme)",
+        "H6 (theme)",
+        "Success",
+        "Danger",
+        "Warning",
+        "Info",
+        "Light",
+        "Dark",
+        "White",
+        "Body",
+        "Transparent",
+        "Primary Subtle",
+        "Secondary Subtle",
+        "Success Subtle",
+        "Danger Subtle",
+        "Warning Subtle",
+        "Info Subtle",
+        "Light Subtle",
+        "Dark Subtle",
+        "Off White",
+        "Warm White",
+        "Cream",
+        "Soft Beige",
+        "Sand",
+        "Light Sage",
+        "Sage",
+        "Pale Green",
+        "Mist",
+        "Soft Gray",
+        "Forest Green"
+      ],
+      "sort": true,
+      "removeDefaultNone": true
+    },
+    "Link": {
+      "type": "url",
+      "helper": "Optional. Choose where this card should link.",
+      "placeholder": "https://example.com"
+    },
+    "LinkText": {
+      "type": "text",
+      "helper": "Optional. Visible text for the link.",
+      "placeholder": "Explore Site Details"
+    },
+    "LinkTarget": {
+      "type": "select",
+      "helper": "Optional. Defaults to Same Tab if nothing is selected.",
+      "optionLabels": [
+        "Same Tab",
+        "New Tab"
+      ]
+    },
+    "LinkIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+    },
+    "CardImage": {
+      "type": "image",
+      "helper": "Required. Recommended: landscape image at least 1600px wide. This image fills the right side of the card.",
+      "uploadfolder": "Content/Value-Props",
+      "typeahead": {
+        "Folder": "Content/Value-Props"
+      }
+    },
+    "ImageInfoText": {
+      "type": "text",
+      "helper": "Optional. Small badge-style text shown over the image.",
+      "placeholder": "Hudson Valley, NY"
+    }
+  }
+}

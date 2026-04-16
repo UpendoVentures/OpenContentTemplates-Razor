@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "HeroTitle": {
+      "type": "string",
+      "title": "Hero Title"
+    },
+    "HeroLead": {
+      "type": "string",
+      "title": "Hero Lead"
+    },
+    "EyebrowText": {
+      "type": "string",
+      "title": "Eyebrow Text"
+    },
+    "Cta1Text": {
+      "type": "string",
+      "title": "CTA 1 Text"
+    },
+    "Cta1Icon": {
+      "type": "string",
+      "title": "CTA 1 Icon"
+    },
+    "Cta1Url": {
+      "type": "string",
+      "title": "CTA 1 URL"
+    },
+    "Cta2Text": {
+      "type": "string",
+      "title": "CTA 2 Text"
+    },
+    "Cta2Icon": {
+      "type": "string",
+      "title": "CTA 2 Icon"
+    },
+    "Cta2Url": {
+      "type": "string",
+      "title": "CTA 2 URL"
+    },
+    "HeroImage": {
+      "type": "string",
+      "title": "Hero Image"
+    },
+    "HeroImageQuote": {
+      "type": "string",
+      "title": "Hero Image Quote"
+    }
+  },
+  "required": [
+    "HeroTitle",
+    "HeroLead",
+    "HeroImage",
+    "HeroImageQuote"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "ModuleTitle": "Hero Banner",
+  "ModuleAnchor": "hero-banner",
+  "PageTitle": "Return to the Living World",
+  "PageLead": "Experience the profound healing of the forest through a modern lens of somatic experiencing and evidence-based ecopsychology.",
+  "BackgroundImage": "/Portals/0/Images/hero-redwood-forest.jpg",
+
+  "PrimaryCtaButtonText": "Explore Programs",
+  "PrimaryCtaButtonPage": "/programs",
+  "PrimaryCtaButtonFontAwesomeCss": "fa-solid fa-leaf",
+
+  "SecondaryCtaButtonText": "Discover Trails",
+  "SecondaryCtaButtonPage": "/forest-therapy-trails",
+  "SecondaryCtaButtonFontAwesomeCss": "fa-solid fa-map-location-dot",
+
+  "TertiaryCtaButtonText": "Corporate Wellness",
+  "TertiaryCtaButtonPage": "/retreats-teams",
+  "TertiaryCtaButtonFontAwesomeCss": "fa-solid fa-people-group"
+}

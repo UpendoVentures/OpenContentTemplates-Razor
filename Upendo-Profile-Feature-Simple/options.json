@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent to sync with the DNN module title. This does not display to site visitors.",
+      "placeholder": "OC: Profile Bio Split"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Use only letters, numbers, and hyphens if you want to link directly to this section from elsewhere on the page.",
+      "placeholder": "meet-wendy"
+    },
+    "Heading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown beside the image. HTML is allowed.",
+      "placeholder": "Meet Wendy"
+    },
+    "Quote": {
+      "type": "text",
+      "helper": "Optional. Short highlighted quote shown beneath the heading. HTML is allowed.",
+      "placeholder": "<em>\"A short mission-driven quote goes here.\"</em>"
+    },
+    "Description": {
+      "type": "textarea",
+      "helper": "Optional. Main descriptive text shown beneath the quote. HTML is allowed.",
+      "placeholder": "<p>Use this area for a short profile, introduction, or credibility statement.</p>"
+    },
+    "Image": {
+      "type": "image",
+      "helper": "Required. Use a square or near-square portrait image for the best crop. Recommended minimum size: 800px by 800px. Larger is fine.",
+      "uploadfolder": "Content/Team",
+      "typeahead": {
+        "Folder": "Content/Team"
+      }
+    },
+    "ImageLink": {
+      "type": "url",
+      "helper": "Optional. If added, the portrait image becomes clickable."
+    },
+    "SocialProof": {
+      "type": "accordion",
+      "helper": "Optional. Add short proof points or credentials. They display as pill-style badges.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Keep this short for the best layout. HTML is allowed.",
+            "placeholder": "ANFT Certified"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "ModuleTitle": "OC: Curated Pathways Cards",
+  "ModuleAnchor": "programs",
+  "SectionHeading": "Curated Group Pathways",
+  "SectionIntro": "Programs designed to be modular and responsive to your group's current state.",
+  "Eyebrow": "Experience Depth",
+  "Cards": [
+    {
+      "Title": "Guided Forest Bathing",
+      "Icon": "fab fa-envira",
+      "Body": "A sequence of 'invitations' designed to slow the heart rate and open the senses to the forest's biological communication.",
+      "Tags": [
+        "Sensory Awakening",
+        "Tea Ceremony Ritual",
+        "Group Council Sharing"
+      ],
+      "Link": "/forest-therapy"
+    },
+    {
+      "Title": "Somatic Journaling",
+      "Icon": "fas fa-edit",
+      "Body": "Externalizing internal landscapes. We use the wild as a mirror for personal and professional narrative shifts.",
+      "Tags": [
+        "Proprioceptive Prompts",
+        "Nature-Based Metaphor",
+        "Integration Exercises"
+      ],
+      "Link": "/nature-journaling"
+    },
+    {
+      "Title": "Bespoke Retreats",
+      "Icon": "fas fa-tree",
+      "Body": "Fully tailored multi-day journeys combining wilderness solo time, somatic workshops, and team alignment.",
+      "Tags": [
+        "Venue Scouting",
+        "Facilitation Design",
+        "Narrative Strategy"
+      ],
+      "Link": "/retreats-teams"
+    },
+    {
+      "Title": "Virtual Forest Bathing",
+      "Icon": "fas fa-tree",
+      "Body": "Indoor guided experiences that bring restorative nature-based attention practices into weather-safe spaces.",
+      "Tags": [
+        "Immersive Visuals",
+        "Sensory Invitations",
+        "Rainy Day Reset"
+      ],
+      "Link": "/virtual-forest-bathing"
+    }
+  ]
+}

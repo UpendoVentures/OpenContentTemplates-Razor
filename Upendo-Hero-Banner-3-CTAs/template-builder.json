@@ -1,0 +1,92 @@
+{
+  "formfields": [
+    {
+      "fieldname": "HeroHeightClass",
+      "title": "Hero Height Class",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "oc-hero-banner-height-sm",
+          "text": "Small"
+        },
+        {
+          "value": "oc-hero-banner-height-md",
+          "text": "Medium"
+        },
+        {
+          "value": "oc-hero-banner-height-lg",
+          "text": "Large"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "oc-hero-banner-height-md",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "ContentMaxWidthClass",
+      "title": "Content Max Width",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "oc-hero-banner-content-width-sm",
+          "text": "Small"
+        },
+        {
+          "value": "oc-hero-banner-content-width-md",
+          "text": "Medium"
+        },
+        {
+          "value": "oc-hero-banner-content-width-lg",
+          "text": "Large"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "oc-hero-banner-content-width-lg",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TextAlign",
+      "title": "Text Align",
+      "fieldtype": "select",
+      "fieldoptions": [
+        {
+          "value": "start",
+          "text": "Left"
+        },
+        {
+          "value": "center",
+          "text": "Center"
+        },
+        {
+          "value": "end",
+          "text": "Right"
+        }
+      ],
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "start",
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "OverlayOpacity",
+      "title": "Overlay Opacity",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "default": "0.55",
+      "helper": "Use a value between 0 and 1. Example: 0.55",
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

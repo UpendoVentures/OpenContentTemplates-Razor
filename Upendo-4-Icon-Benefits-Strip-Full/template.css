@@ -1,0 +1,42 @@
+.oc-icon-benefits-strip {
+    position: relative;
+    overflow: hidden;
+}
+
+.oc-icon-benefits-strip .oc-ibs-heading {
+    margin-bottom: 1rem;
+}
+
+.oc-icon-benefits-strip .oc-ibs-intro {
+    max-width: 44rem;
+    margin: 0 auto 3rem auto;
+}
+
+.oc-icon-benefits-strip .oc-ibs-item {
+    padding: 1rem 0.5rem;
+}
+
+.oc-icon-benefits-strip .oc-ibs-icon-wrap {
+    margin-bottom: 1.25rem;
+    line-height: 1;
+}
+
+.oc-icon-benefits-strip .oc-ibs-icon {
+    font-size: 2rem;
+}
+
+.oc-icon-benefits-strip .oc-ibs-item-title {
+    margin-bottom: 0.875rem;
+}
+
+.oc-icon-benefits-strip .oc-ibs-item-body {
+    max-width: 18rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 767.98px) {
+    .oc-icon-benefits-strip .oc-ibs-item {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

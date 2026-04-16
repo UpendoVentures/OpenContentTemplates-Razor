@@ -1,0 +1,127 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PageTitle",
+      "title": "Page Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "PageLead",
+      "title": "Page Lead",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "BackgroundImage",
+      "title": "Image (background)",
+      "fieldtype": "image",
+      "imageoptions": {
+        "folder": "Content/Hero-Banners/"
+      },
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Recommended minimum: 1920 x 1080 px. Use a wide landscape image. Keep important content near the center-left, since the image may crop on different screen sizes.",
+      "multilanguage": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PrimaryCtaButtonText",
+      "title": "Primary CTA Button Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "PrimaryCtaButtonPage",
+      "title": "Primary CTA Button Page (URL)",
+      "fieldtype": "url",
+      "advanced": false
+    },
+    {
+      "fieldname": "PrimaryCtaButtonFontAwesomeCss",
+      "title": "Primary CTA Button FontAwesome CSS",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Optional. Example: fa-solid fa-leaf",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SecondaryCtaButtonText",
+      "title": "Secondary CTA Button Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "SecondaryCtaButtonPage",
+      "title": "Secondary CTA Button Page (URL)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "SecondaryCtaButtonFontAwesomeCss",
+      "title": "Secondary CTA Button FontAwesome CSS",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Optional. Example: fa-solid fa-map-location-dot",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "TertiaryCtaButtonText",
+      "title": "Tertiary CTA Button Text",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "TertiaryCtaButtonPage",
+      "title": "Tertiary CTA Button Page (URL)",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "TertiaryCtaButtonFontAwesomeCss",
+      "title": "Tertiary CTA Button FontAwesome CSS",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">FontAwesome</a>.",
+      "placeholder": "fas fa-heart",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

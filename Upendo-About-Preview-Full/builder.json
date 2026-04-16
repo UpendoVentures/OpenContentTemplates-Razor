@@ -1,0 +1,130 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create anchor links on the page. Letters, numbers, and hyphens only.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "SectionId",
+      "title": "Section ID",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Optional HTML id for the section wrapper.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "Eyebrow",
+      "title": "Eyebrow",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "Heading",
+      "title": "Heading",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "BodyIntro",
+      "title": "Body Intro",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
+      "advanced": false
+    },
+    {
+      "fieldname": "BodySecondary",
+      "title": "Body Secondary",
+      "fieldtype": "ckeditor",
+      "ckeditoroptions": {
+        "configset": "basic"
+      },
+      "advanced": false
+    },
+    {
+      "fieldname": "Items",
+      "title": "Checklist Items",
+      "fieldtype": "repeater",
+      "helper": "Add 1 to 6 checklist items. Three is a strong default for this layout.",
+      "formfields": [
+        {
+          "fieldname": "Text",
+          "title": "Item Text",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "IconClass",
+          "title": "Icon Class",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "default": "fa-regular fa-circle-check",
+          "helper": "Use a FontAwesome Free icon class. Example: fa-regular fa-circle-check",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    },
+    {
+      "fieldname": "Image",
+      "title": "Image",
+      "fieldtype": "image",
+      "advanced": false,
+      "helper": "Recommended image ratio is 4:5. Suggested minimum size: 1200 x 1500px. Use a portrait-oriented image for the best visual result."
+    },
+    {
+      "fieldname": "ImageAlt",
+      "title": "Image Alt Text",
+      "fieldtype": "text",
+      "advanced": false,
+      "helper": "Describe the image for accessibility."
+    },
+    {
+      "fieldname": "ImageLink",
+      "title": "Image Link",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Optional. If provided, the image becomes clickable.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "QuoteText",
+      "title": "Quote Text",
+      "fieldtype": "textarea",
+      "advanced": false,
+      "helper": "Optional floating quote shown on large screens."
+    }
+  ],
+  "formtype": "object"
+}

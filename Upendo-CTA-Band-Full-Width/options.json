@@ -1,0 +1,52 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+            "placeholder": "Flexible CTA Band"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+            "placeholder": "begin-the-conversation"
+        },
+        "Heading": {
+            "type": "text",
+            "helper": "Optional. Main heading for this CTA section. HTML is allowed and will render in the view.",
+            "placeholder": "Begin the Conversation"
+        },
+        "Lead": {
+            "type": "textarea",
+            "helper": "Optional. Supporting text under the heading. HTML is allowed and will render in the view.",
+            "placeholder": "<p>Tell visitors why they should take the next step here.</p>"
+        },
+        "CTA1Text": {
+            "type": "text",
+            "helper": "Required. Text for the main CTA button. HTML is allowed and will render in the view.",
+            "placeholder": "Send Inquiry"
+        },
+        "CTA1Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+        },
+        "CTA1Link": {
+            "type": "url",
+            "helper": "Required. Select or enter the URL for the main CTA button."
+        },
+        "CTA2Text": {
+            "type": "text",
+            "helper": "Optional. Text for the secondary CTA button. HTML is allowed and will render in the view.",
+            "placeholder": "Explore Offerings"
+        },
+        "CTA2Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+        },
+        "CTA2Link": {
+            "type": "url",
+            "helper": "Optional. Select or enter the URL for the secondary CTA button."
+        }
+    }
+}

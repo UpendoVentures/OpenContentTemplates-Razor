@@ -1,0 +1,105 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "CardHeading": {
+      "type": "string",
+      "title": "Card Heading"
+    },
+    "CardDescription": {
+      "type": "string",
+      "title": "Card Description"
+    },
+    "CardBackgroundColorClass": {
+      "type": "string",
+      "title": "Card Background",
+      "enum": [
+        "",
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-success",
+        "bg-danger",
+        "bg-warning",
+        "bg-info",
+        "bg-light",
+        "bg-dark",
+        "bg-white",
+        "bg-body",
+        "bg-transparent",
+        "bg-primary-subtle",
+        "bg-secondary-subtle",
+        "bg-success-subtle",
+        "bg-danger-subtle",
+        "bg-warning-subtle",
+        "bg-info-subtle",
+        "bg-light-subtle",
+        "bg-dark-subtle",
+        "bg-off-white",
+        "bg-warm-white",
+        "bg-cream",
+        "bg-soft-beige",
+        "bg-sand",
+        "bg-light-sage",
+        "bg-sage",
+        "bg-pale-green",
+        "bg-mist",
+        "bg-soft-gray",
+        "bg-forest-green"
+      ]
+    },
+    "Link": {
+      "type": "string",
+      "title": "Link"
+    },
+    "LinkText": {
+      "type": "string",
+      "title": "Link Text"
+    },
+    "LinkTarget": {
+      "type": "string",
+      "title": "Link Target",
+      "enum": [
+        "_top",
+        "_blank"
+      ]
+    },
+    "LinkIcon": {
+      "type": "string",
+      "title": "Link Icon"
+    },
+    "CardImage": {
+      "type": "string",
+      "title": "Card Image"
+    },
+    "ImageInfoText": {
+      "type": "string",
+      "title": "Image Info Text"
+    }
+  },
+  "required": [
+    "ModuleTitle",
+    "CardBackgroundColorClass",
+    "CardImage"
+  ]
+}

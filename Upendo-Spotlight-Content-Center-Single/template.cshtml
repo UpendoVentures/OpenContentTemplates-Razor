@@ -1,0 +1,182 @@
+@using System
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var cardHeading = Model.CardHeading != null ? Convert.ToString(Model.CardHeading) : string.Empty;
+    var cardDescription = Model.CardDescription != null ? Convert.ToString(Model.CardDescription) : string.Empty;
+    var cardBackgroundColorClass = Model.CardBackgroundColorClass != null ? Convert.ToString(Model.CardBackgroundColorClass) : string.Empty;
+    var linkUrl = Model.Link != null ? Convert.ToString(Model.Link) : string.Empty;
+    var linkText = Model.LinkText != null ? Convert.ToString(Model.LinkText) : string.Empty;
+    var linkIcon = Model.LinkIcon != null ? Convert.ToString(Model.LinkIcon) : string.Empty;
+    var cardImage = Model.CardImage != null ? Convert.ToString(Model.CardImage) : string.Empty;
+    var imageInfoText = Model.ImageInfoText != null ? Convert.ToString(Model.ImageInfoText) : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : string.Empty;
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : string.Empty;
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : string.Empty;
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : string.Empty;
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null ? Convert.ToString(Model.Settings.BackgroundColorClass) : string.Empty;
+
+    var sectionClass = "oc-split-spotlight";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+
+    var linkTargetSetting = Model.LinkTarget != null ? Convert.ToString(Model.LinkTarget) : string.Empty;
+    var linkTarget = "_top";
+
+    if (linkTargetSetting == "_blank")
+    {
+        linkTarget = "_blank";
+    }
+
+    if (string.IsNullOrWhiteSpace(linkText))
+    {
+        linkText = "Learn More";
+    }
+
+    var linkRel = string.Empty;
+    var linkClass = "oc-ss-link";
+
+    if (linkTarget == "_blank")
+    {
+        linkRel = "noopener noreferrer";
+        linkClass += " track-referral";
+    }
+
+    var cardClass = "oc-ss-card shadow";
+    if (!string.IsNullOrWhiteSpace(cardBackgroundColorClass))
+    {
+        cardClass += " " + cardBackgroundColorClass;
+    }
+
+    var hasIntro = !string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(sectionDescription);
+    var hasCard = !string.IsNullOrWhiteSpace(cardHeading) || !string.IsNullOrWhiteSpace(cardDescription) || !string.IsNullOrWhiteSpace(cardImage);
+    var imageAlt = !string.IsNullOrWhiteSpace(cardHeading) ? cardHeading : "Spotlight image";
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasCard)
+{
+    <section class="@sectionClass" aria-label="@(!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Spotlight")">
+        <div class="container-fluid px-0">
+            <div class="container-xxl">
+                @if (hasIntro)
+                {
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-xl-6">
+                            <div class="oc-ss-intro text-center fadeInUp" data-appear-animation="fadeInUp">
+                                @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                                {
+                                    <h2 class="oc-ss-section-heading text-notransform mb-3">@Html.Raw(sectionHeading)</h2>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                                {
+                                    <div class="oc-ss-section-description">
+                                        @Html.Raw(sectionDescription)
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-xl-8">
+                        <div class="@cardClass fadeInUp" data-appear-animation="fadeInUp">
+                            <div class="row g-0 align-items-stretch">
+                                <div class="col-12 col-lg-6">
+                                    <div class="oc-ss-content">
+                                        @if (!string.IsNullOrWhiteSpace(cardHeading))
+                                        {
+                                            <h3 class="oc-ss-heading text-notransform">@Html.Raw(cardHeading)</h3>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(cardDescription))
+                                        {
+                                            <div class="oc-ss-description">
+                                                @Html.Raw(cardDescription)
+                                            </div>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(linkUrl))
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(linkRel))
+                                            {
+                                                <a href="@linkUrl" class="@linkClass" target="@linkTarget" rel="@linkRel">
+                                                    @Html.Raw(linkText)
+                                                    @if (!string.IsNullOrWhiteSpace(linkIcon))
+                                                    {
+                                                        <i class="@linkIcon ms-2" aria-hidden="true"></i>
+                                                    }
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@linkUrl" class="@linkClass" target="@linkTarget">
+                                                    @Html.Raw(linkText)
+                                                    @if (!string.IsNullOrWhiteSpace(linkIcon))
+                                                    {
+                                                        <i class="@linkIcon ms-2" aria-hidden="true"></i>
+                                                    }
+                                                </a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="oc-ss-media">
+                                        @if (!string.IsNullOrWhiteSpace(linkUrl))
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(linkRel))
+                                            {
+                                                <a href="@linkUrl" class="oc-ss-image-link @((linkTarget == "_blank") ? "track-referral" : "")" target="@linkTarget" rel="@linkRel" aria-label="@cardHeading">
+                                                    <img src="@cardImage" alt="@imageAlt" class="img-fluid oc-ss-image" loading="lazy" decoding="async" />
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@linkUrl" class="oc-ss-image-link" target="@linkTarget" aria-label="@cardHeading">
+                                                    <img src="@cardImage" alt="@imageAlt" class="img-fluid oc-ss-image" loading="lazy" decoding="async" />
+                                                </a>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <img src="@cardImage" alt="@imageAlt" class="img-fluid oc-ss-image" loading="lazy" decoding="async" />
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(imageInfoText))
+                                        {
+                                            <div class="oc-ss-image-info text-light">
+                                                @Html.Raw(imageInfoText)
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

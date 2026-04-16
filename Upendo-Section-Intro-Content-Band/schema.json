@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor"
+        },
+        "SectionHeading": {
+            "type": "string",
+            "title": "Section Heading"
+        },
+        "IntroText": {
+            "type": "string",
+            "title": "Intro Text"
+        }
+    },
+    "required": [
+        "SectionHeading",
+        "IntroText"
+    ]
+}

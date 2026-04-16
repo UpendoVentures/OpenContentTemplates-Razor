@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "Quote": {
+      "type": "string",
+      "title": "Quote"
+    },
+    "Description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image"
+    },
+    "ImageLink": {
+      "type": "object",
+      "title": "Image Link"
+    },
+    "SocialProof": {
+      "type": "array",
+      "title": "Social Proof",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          }
+        },
+        "required": [
+          "Title"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Image"
+  ]
+}

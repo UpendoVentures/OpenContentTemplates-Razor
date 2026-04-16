@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "Eyebrow": {
+      "type": "string",
+      "title": "Eyebrow",
+      "required": true
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading",
+      "required": true
+    },
+    "BodyText1": {
+      "type": "string",
+      "title": "Body Text 1",
+      "required": true
+    },
+    "BodyText2": {
+      "type": "string",
+      "title": "Body Text 2"
+    },
+    "Bullet1": {
+      "type": "string",
+      "title": "Bullet 1",
+      "required": true    
+    },
+    "Bullet2": {
+      "type": "string",
+      "title": "Bullet 2",
+      "required": true    
+    },
+    "Bullet3": {
+      "type": "string",
+      "title": "Bullet 3",
+      "required": true
+    },
+    "Bullet4": {
+      "type": "string",
+      "title": "Bullet 4"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image",
+      "required": true
+    },
+    "ImageAlt": {
+      "type": "string",
+      "title": "Image Alt Text",
+      "required": true
+    },
+    "QuoteText": {
+      "type": "string",
+      "title": "Quote Text"
+    },
+    "ShowQuoteDesktopOnly": {
+      "type": "boolean",
+      "title": "Show Quote on Desktop Only"
+    },
+    "ImagePosition": {
+      "type": "string",
+      "title": "Image Position",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "removeDefaultNone": true
+    }
+  }
+}

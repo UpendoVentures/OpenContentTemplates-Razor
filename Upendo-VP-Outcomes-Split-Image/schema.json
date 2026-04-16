@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image"
+    },
+    "ValuePropositions": {
+      "type": "array",
+      "title": "Value Propositions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "SectionHeading",
+    "Image",
+    "ValuePropositions"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "type": "object",
+  "properties": {
+    "HeroHeightClass": {
+      "type": "string",
+      "title": "Hero Height Class",
+      "enum": [
+        "oc-hero-banner-height-sm",
+        "oc-hero-banner-height-md",
+        "oc-hero-banner-height-lg"
+      ],
+      "default": "oc-hero-banner-height-md"
+    },
+    "ContentMaxWidthClass": {
+      "type": "string",
+      "title": "Content Max Width",
+      "enum": [
+        "oc-hero-banner-content-width-sm",
+        "oc-hero-banner-content-width-md",
+        "oc-hero-banner-content-width-lg"
+      ],
+      "default": "oc-hero-banner-content-width-lg"
+    },
+    "TextAlign": {
+      "type": "string",
+      "title": "Text Align",
+      "enum": [
+        "start",
+        "center",
+        "end"
+      ],
+      "default": "start"
+    },
+    "OverlayOpacity": {
+      "type": "string",
+      "title": "Overlay Opacity",
+      "default": "0.55"
+    },
+    "MarginTop": {
+      "title": "Margin (top)",
+      "type": "string",
+      "enum": [
+        "mt-0",
+        "mt-1",
+        "mt-2",
+        "mt-3",
+        "mt-4",
+        "mt-5",
+        "mt-auto"
+      ]
+    },
+    "MarginBottom": {
+      "title": "Margin (bottom)",
+      "type": "string",
+      "enum": [
+        "mb-0",
+        "mb-1",
+        "mb-2",
+        "mb-3",
+        "mb-4",
+        "mb-5",
+        "mb-auto"
+      ]
+    },
+    "PaddingTop": {
+      "title": "Padding (top)",
+      "type": "string",
+      "enum": [
+        "pt-0",
+        "pt-1",
+        "pt-2",
+        "pt-3",
+        "pt-4",
+        "pt-5",
+        "pt-auto"
+      ]
+    },
+    "PaddingBottom": {
+      "title": "Padding (bottom)",
+      "type": "string",
+      "enum": [
+        "pb-0",
+        "pb-1",
+        "pb-2",
+        "pb-3",
+        "pb-4",
+        "pb-5",
+        "pb-auto"
+      ]
+    }
+  }
+}

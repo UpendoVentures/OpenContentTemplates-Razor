@@ -1,0 +1,212 @@
+.oc-flex-cta {
+    width: 100%;
+    overflow: hidden;
+}
+
+.oc-flex-cta__inner {
+    max-width: 1320px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* LIGHT CONTRAST MODE */
+.oc-flex-cta--light {
+    --oc-flex-cta-text: var(--bs-body-color, #212529);
+    --oc-flex-cta-lead: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+    --oc-flex-cta-btn-primary-bg: var(--bs-primary, #0d6efd);
+    --oc-flex-cta-btn-primary-border: var(--bs-primary, #0d6efd);
+    --oc-flex-cta-btn-primary-text: #ffffff;
+    --oc-flex-cta-btn-secondary-text: var(--oc-flex-cta-text);
+    --oc-flex-cta-btn-secondary-border: currentColor;
+    --oc-flex-cta-btn-secondary-hover-bg: rgba(0, 0, 0, 0.06);
+}
+
+/* DARK CONTRAST MODE */
+.oc-flex-cta--dark {
+    --oc-flex-cta-text: #ffffff;
+    --oc-flex-cta-lead: rgba(255, 255, 255, 0.84);
+    --oc-flex-cta-btn-primary-bg: #f1d8cb;
+    --oc-flex-cta-btn-primary-border: #f1d8cb;
+    --oc-flex-cta-btn-primary-text: #173124;
+    --oc-flex-cta-btn-secondary-text: #ffffff;
+    --oc-flex-cta-btn-secondary-border: rgba(255, 255, 255, 0.88);
+    --oc-flex-cta-btn-secondary-hover-bg: rgba(255, 255, 255, 0.10);
+}
+
+.oc-flex-cta {
+    color: var(--oc-flex-cta-text) !important;
+}
+
+/* Strong scoping against theme rules */
+.oc-flex-cta h1,
+.oc-flex-cta h2,
+.oc-flex-cta h3,
+.oc-flex-cta h4,
+.oc-flex-cta h5,
+.oc-flex-cta h6,
+.oc-flex-cta .oc-flex-cta__heading {
+    color: var(--oc-flex-cta-text) !important;
+}
+
+.oc-flex-cta .oc-flex-cta__lead,
+.oc-flex-cta .oc-flex-cta__lead p,
+.oc-flex-cta .oc-flex-cta__lead li,
+.oc-flex-cta .oc-flex-cta__lead span,
+.oc-flex-cta .oc-flex-cta__lead strong,
+.oc-flex-cta .oc-flex-cta__lead em {
+    color: var(--oc-flex-cta-lead) !important;
+}
+
+.oc-flex-cta__heading {
+    margin-bottom: 0.75rem;
+}
+
+.oc-flex-cta__lead > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-flex-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.oc-flex-cta__actions a,
+.oc-flex-cta__actions a:hover,
+.oc-flex-cta__actions a:focus,
+.oc-flex-cta__actions a:active,
+.oc-flex-cta__actions a:visited {
+    text-decoration: none !important;
+}
+
+.oc-flex-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+    line-height: 1.2;
+    text-decoration: none;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.oc-flex-cta__btn--primary,
+.oc-flex-cta__btn--primary:hover,
+.oc-flex-cta__btn--primary:focus,
+.oc-flex-cta__btn--primary:active,
+.oc-flex-cta__btn--primary:visited {
+    color: var(--oc-flex-cta-btn-primary-text) !important;
+    background-color: var(--oc-flex-cta-btn-primary-bg) !important;
+    border: 1px solid var(--oc-flex-cta-btn-primary-border) !important;
+}
+
+.oc-flex-cta__btn--primary i,
+.oc-flex-cta__btn--primary span {
+    color: var(--oc-flex-cta-btn-primary-text) !important;
+}
+
+.oc-flex-cta__btn--primary:hover,
+.oc-flex-cta__btn--primary:focus {
+    opacity: 0.92;
+}
+
+.oc-flex-cta__btn--secondary,
+.oc-flex-cta__btn--secondary:hover,
+.oc-flex-cta__btn--secondary:focus,
+.oc-flex-cta__btn--secondary:active,
+.oc-flex-cta__btn--secondary:visited {
+    color: var(--oc-flex-cta-btn-secondary-text) !important;
+    background-color: transparent !important;
+    border: 1px solid var(--oc-flex-cta-btn-secondary-border) !important;
+}
+
+.oc-flex-cta__btn--secondary i,
+.oc-flex-cta__btn--secondary span {
+    color: var(--oc-flex-cta-btn-secondary-text) !important;
+}
+
+.oc-flex-cta__btn--secondary:hover,
+.oc-flex-cta__btn--secondary:focus {
+    background-color: var(--oc-flex-cta-btn-secondary-hover-bg) !important;
+}
+
+.oc-flex-cta .btn.oc-flex-cta__btn i,
+.oc-flex-cta .btn.oc-flex-cta__btn .fa,
+.oc-flex-cta .btn.oc-flex-cta__btn .fas,
+.oc-flex-cta .btn.oc-flex-cta__btn .far,
+.oc-flex-cta .btn.oc-flex-cta__btn .fal,
+.oc-flex-cta .btn.oc-flex-cta__btn .fab,
+.oc-flex-cta .btn.oc-flex-cta__btn svg {
+    line-height: 1;
+    flex: 0 0 auto;
+}
+
+/* Custom background utilities */
+.bg-off-white {
+    background-color: #f8f7f3 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f3ed !important;
+}
+
+.bg-cream {
+    background-color: #f4efe6 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9ddd1 !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bf !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dd !important;
+}
+
+.bg-sage {
+    background-color: #b8c6b1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e5eee3 !important;
+}
+
+.bg-mist {
+    background-color: #edf1ef !important;
+}
+
+.bg-soft-gray {
+    background-color: #f1f1ee !important;
+}
+
+.bg-forest-green {
+    background-color: #173f35 !important;
+}
+
+@media (max-width: 991.98px) {
+    .oc-flex-cta__actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-flex-cta__inner {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .oc-flex-cta__btn {
+        width: 100%;
+    }
+}

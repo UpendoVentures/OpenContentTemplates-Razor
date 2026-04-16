@@ -1,0 +1,42 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block."
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional heading shown above the icon grid."
+    },
+    "SectionIntro": {
+      "type": "textarea",
+      "helper": "Optional short intro shown below the heading."
+    },
+    "Items": {
+      "type": "accordion",
+      "helper": "Add as many items as you want. The first <strong>4 items</strong> will be displayed on the website. <em>All others will be ignored.</em>",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Keep this short for the best layout."
+          },
+          "IconClass": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
+          },
+          "Body": {
+            "type": "textarea",
+            "helper": "Required. One to three short sentences works best."
+          }
+        }
+      }
+    }
+  }
+}

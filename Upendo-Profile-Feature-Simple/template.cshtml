@@ -1,0 +1,151 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var heading = Model.Heading != null ? Convert.ToString(Model.Heading) : string.Empty;
+    var quote = Model.Quote != null ? Convert.ToString(Model.Quote) : string.Empty;
+    var description = Model.Description != null ? Convert.ToString(Model.Description) : string.Empty;
+    var imageUrl = Model.Image != null ? Convert.ToString(Model.Image) : string.Empty;
+
+    var imageLinkUrl = string.Empty;
+    if (Model.ImageLink != null)
+    {
+        try
+        {
+            if (Model.ImageLink.FullUrl != null)
+            {
+                imageLinkUrl = Convert.ToString(Model.ImageLink.FullUrl);
+            }
+            else if (Model.ImageLink.Url != null)
+            {
+                imageLinkUrl = Convert.ToString(Model.ImageLink.Url);
+            }
+            else
+            {
+                imageLinkUrl = Convert.ToString(Model.ImageLink);
+            }
+        }
+        catch
+        {
+            imageLinkUrl = Convert.ToString(Model.ImageLink);
+        }
+    }
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var outerSectionClass = "oc-profile-bio-split border-top";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { outerSectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
+
+    var socialProofItems = new List<string>();
+    if (Model.SocialProof != null)
+    {
+        foreach (var item in Model.SocialProof)
+        {
+            var title = item.Title != null ? Convert.ToString(item.Title) : string.Empty;
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                socialProofItems.Add(title);
+            }
+        }
+    }
+
+    var headingId = "oc-profile-bio-heading-" + Model.Context.ModuleId;
+    var imageAlt = !string.IsNullOrWhiteSpace(heading)
+        ? "Portrait image for " + heading
+        : "Profile portrait";
+
+    var hasImage = !string.IsNullOrWhiteSpace(imageUrl);
+    var hasContent = !string.IsNullOrWhiteSpace(heading)
+        || !string.IsNullOrWhiteSpace(quote)
+        || !string.IsNullOrWhiteSpace(description)
+        || socialProofItems.Count > 0;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasImage || hasContent)
+{
+    <section class="@outerSectionClass"@(string.IsNullOrWhiteSpace(heading) ? " aria-label=\"Profile biography section\"" : " aria-labelledby=\"" + headingId + "\"")>
+        <div class="container py-4 py-lg-5">
+            <div class="row justify-content-center align-items-center g-4 g-lg-5">
+                @if (hasImage)
+                {
+                    <div class="col-12 col-md-auto text-center">
+                        @if (!string.IsNullOrWhiteSpace(imageLinkUrl))
+                        {
+                            <a href="@imageLinkUrl" class="oc-profile-bio-image-link" aria-label="@imageAlt">
+                                <img src="@imageUrl" alt="@imageAlt" class="oc-profile-bio-image img-fluid rounded-circle" loading="lazy" decoding="async" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="@imageUrl" alt="@imageAlt" class="oc-profile-bio-image img-fluid rounded-circle" loading="lazy" decoding="async" />
+                        }
+                    </div>
+                }
+
+                <div class="col-12 col-lg-7 col-xl-6">
+                    @if (!string.IsNullOrWhiteSpace(heading))
+                    {
+                        <h3 id="@headingId" class="oc-profile-bio-heading mb-3 text-notransform">@Html.Raw(heading)</h3>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(quote))
+                    {
+                        <div class="oc-profile-bio-quote mb-4">
+                            @Html.Raw(quote)
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(description))
+                    {
+                        <div class="oc-profile-bio-description mb-4">
+                            @Html.Raw(description)
+                        </div>
+                    }
+
+                    @if (socialProofItems.Count > 0)
+                    {
+                        <div class="oc-profile-bio-social-proof d-flex flex-wrap gap-2" aria-label="Social proof items">
+                            @foreach (var item in socialProofItems)
+                            {
+                                <span class="oc-profile-bio-pill">@Html.Raw(item)</span>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}

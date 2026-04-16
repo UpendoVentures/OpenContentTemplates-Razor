@@ -1,0 +1,177 @@
+.oc-centered-cta-band {
+    position: relative;
+}
+
+.oc-centered-cta-band .container-xxl {
+    max-width: 1440px;
+}
+
+.oc-centered-cta-band .oc-ccb-inner {
+    max-width: 960px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.oc-centered-cta-band .oc-ccb-heading {
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+}
+
+.oc-centered-cta-band .oc-ccb-description {
+    max-width: 760px;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+    line-height: 1.65;
+}
+
+.oc-centered-cta-band .oc-ccb-actions {
+    margin-top: 0;
+}
+
+.oc-centered-cta-band .oc-ccb-btn {
+    min-width: 16rem;
+    padding: 0.9375rem 1.75rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (max-width: 575.98px) {
+    .oc-centered-cta-band .oc-ccb-btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* Custom background colors */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.bg-forest-green {
+    background-color: #163c2f !important;
+}
+
+.oc-split-spotlight .bg-primary,
+.oc-split-spotlight .bg-primary-scoped,
+.oc-split-spotlight .bg-secondary,
+.oc-split-spotlight .bg-secondary-scoped,
+.oc-split-spotlight .bg-tertiary,
+.oc-split-spotlight .bg-quaternary,
+.oc-split-spotlight .bg-h5,
+.oc-split-spotlight .bg-h6,
+.oc-split-spotlight .bg-dark,
+.oc-split-spotlight .bg-forest-green {
+    color: #ffffff;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-heading,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-heading,
+.oc-split-spotlight .bg-secondary .oc-ss-heading,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-heading,
+.oc-split-spotlight .bg-tertiary .oc-ss-heading,
+.oc-split-spotlight .bg-quaternary .oc-ss-heading,
+.oc-split-spotlight .bg-h5 .oc-ss-heading,
+.oc-split-spotlight .bg-h6 .oc-ss-heading,
+.oc-split-spotlight .bg-dark .oc-ss-heading,
+.oc-split-spotlight .bg-forest-green .oc-ss-heading {
+    color: #ffffff;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-description,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-description,
+.oc-split-spotlight .bg-secondary .oc-ss-description,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-description,
+.oc-split-spotlight .bg-tertiary .oc-ss-description,
+.oc-split-spotlight .bg-quaternary .oc-ss-description,
+.oc-split-spotlight .bg-h5 .oc-ss-description,
+.oc-split-spotlight .bg-h6 .oc-ss-description,
+.oc-split-spotlight .bg-dark .oc-ss-description,
+.oc-split-spotlight .bg-forest-green .oc-ss-description {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-link,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-link,
+.oc-split-spotlight .bg-secondary .oc-ss-link,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-link,
+.oc-split-spotlight .bg-tertiary .oc-ss-link,
+.oc-split-spotlight .bg-quaternary .oc-ss-link,
+.oc-split-spotlight .bg-h5 .oc-ss-link,
+.oc-split-spotlight .bg-h6 .oc-ss-link,
+.oc-split-spotlight .bg-dark .oc-ss-link,
+.oc-split-spotlight .bg-forest-green .oc-ss-link {
+    color: #f2c7b4;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-link:hover,
+.oc-split-spotlight .bg-primary .oc-ss-link:focus,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-link:hover,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-link:focus,
+.oc-split-spotlight .bg-secondary .oc-ss-link:hover,
+.oc-split-spotlight .bg-secondary .oc-ss-link:focus,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-link:hover,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-link:focus,
+.oc-split-spotlight .bg-tertiary .oc-ss-link:hover,
+.oc-split-spotlight .bg-tertiary .oc-ss-link:focus,
+.oc-split-spotlight .bg-quaternary .oc-ss-link:hover,
+.oc-split-spotlight .bg-quaternary .oc-ss-link:focus,
+.oc-split-spotlight .bg-h5 .oc-ss-link:hover,
+.oc-split-spotlight .bg-h5 .oc-ss-link:focus,
+.oc-split-spotlight .bg-h6 .oc-ss-link:hover,
+.oc-split-spotlight .bg-h6 .oc-ss-link:focus,
+.oc-split-spotlight .bg-dark .oc-ss-link:hover,
+.oc-split-spotlight .bg-dark .oc-ss-link:focus,
+.oc-split-spotlight .bg-forest-green .oc-ss-link:hover,
+.oc-split-spotlight .bg-forest-green .oc-ss-link:focus {
+    color: #ffffff;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-image-info,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-image-info,
+.oc-split-spotlight .bg-secondary .oc-ss-image-info,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-image-info,
+.oc-split-spotlight .bg-tertiary .oc-ss-image-info,
+.oc-split-spotlight .bg-quaternary .oc-ss-image-info,
+.oc-split-spotlight .bg-h5 .oc-ss-image-info,
+.oc-split-spotlight .bg-h6 .oc-ss-image-info,
+.oc-split-spotlight .bg-dark .oc-ss-image-info,
+.oc-split-spotlight .bg-forest-green .oc-ss-image-info {
+    color: #ffffff;
+}

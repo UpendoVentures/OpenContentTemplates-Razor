@@ -7,6 +7,7 @@
 
 @{
     TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
 
     var dashboardTitle = string.Empty;
     var siteId = 0;
@@ -118,32 +119,6 @@
         errorMessage = ex.Message;
     }
 }
-
-<style>
-    .metric-card {
-        transition: all 0.2s ease-in-out;
-        background-color: #f9fafb;
-    }
-
-    .metric-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-    }
-
-    .metric-value {
-        letter-spacing: -0.5px;
-    }
-
-    .metric-card a,
-    table a {
-        text-decoration: none;
-    }
-
-    .metric-card a:hover,
-    table a:hover {
-        text-decoration: underline;
-    }
-</style>
 
 <div id="uv-section-overview" class="uv-analytics-dashboard-test container-fluid my-4">
 

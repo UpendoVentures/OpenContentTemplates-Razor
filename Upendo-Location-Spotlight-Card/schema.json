@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "Eyebrow": {
+      "type": "string",
+      "title": "Eyebrow"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "HeadingCssClass": {
+      "type": "string",
+      "title": "Heading Css Class",
+      "enum": [
+        "",
+        "text-primary",
+        "text-primary-scoped",
+        "text-secondary",
+        "text-secondary-scoped",
+        "text-tertiary",
+        "text-quaternary",
+        "text-h1",
+        "text-h2",
+        "text-h3",
+        "text-h4",
+        "text-h5",
+        "text-h6",
+        "text-body",
+        "text-body-secondary",
+        "text-body-tertiary",
+        "text-dark",
+        "text-black",
+        "text-light",
+        "text-white",
+        "text-success",
+        "text-danger",
+        "text-warning",
+        "text-info"
+      ]
+    },
+    "DescriptionText": {
+      "type": "string",
+      "title": "Description Text"
+    },
+    "LocationText": {
+      "type": "string",
+      "title": "Location Text"
+    },
+    "LocationTextUrl": {
+      "type": "string",
+      "title": "Location Text Url"
+    },
+    "LocationTextUrlTarget": {
+      "type": "string",
+      "title": "Location Text Url Target",
+      "enum": [
+        "_top",
+        "_blank"
+      ],
+      "default": "_top"
+    },
+    "SideImage": {
+      "type": "string",
+      "title": "Side Image"
+    }
+  },
+  "required": [
+    "ModuleTitle",
+    "Eyebrow",
+    "Heading",
+    "DescriptionText",
+    "SideImage"
+  ]
+}

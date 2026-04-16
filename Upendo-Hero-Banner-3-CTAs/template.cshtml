@@ -1,0 +1,147 @@
+@using System
+@using System.Web
+@using DotNetNuke.Entities.Modules
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+            ? currentModule.TabModuleSettings["hideadminborder"]
+            : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+
+    var heroHeightClass = !string.IsNullOrWhiteSpace(Convert.ToString(Model.Settings.HeroHeightClass))
+        ? Convert.ToString(Model.Settings.HeroHeightClass)
+        : "oc-hero-banner-height-md";
+
+    var contentMaxWidthClass = !string.IsNullOrWhiteSpace(Convert.ToString(Model.Settings.ContentMaxWidthClass))
+        ? Convert.ToString(Model.Settings.ContentMaxWidthClass)
+        : "oc-hero-banner-content-width-lg";
+
+    var textAlign = !string.IsNullOrWhiteSpace(Convert.ToString(Model.Settings.TextAlign))
+        ? Convert.ToString(Model.Settings.TextAlign)
+        : "start";
+
+    var overlayOpacity = !string.IsNullOrWhiteSpace(Convert.ToString(Model.Settings.OverlayOpacity))
+        ? Convert.ToString(Model.Settings.OverlayOpacity)
+        : "0.55";
+
+    var pageTitle = Model.PageTitle != null ? Convert.ToString(Model.PageTitle) : string.Empty;
+    var pageLead = Model.PageLead != null ? Convert.ToString(Model.PageLead) : string.Empty;
+
+    var backgroundImage = Model.BackgroundImage != null ? Convert.ToString(Model.BackgroundImage) : string.Empty;
+
+    var primaryText = Model.PrimaryCtaButtonText != null ? Convert.ToString(Model.PrimaryCtaButtonText) : string.Empty;
+    var primaryUrl = Model.PrimaryCtaButtonPage != null ? Convert.ToString(Model.PrimaryCtaButtonPage) : string.Empty;
+    var primaryIcon = Model.PrimaryCtaButtonFontAwesomeCss != null ? Convert.ToString(Model.PrimaryCtaButtonFontAwesomeCss) : string.Empty;
+
+    var secondaryText = Model.SecondaryCtaButtonText != null ? Convert.ToString(Model.SecondaryCtaButtonText) : string.Empty;
+    var secondaryUrl = Model.SecondaryCtaButtonPage != null ? Convert.ToString(Model.SecondaryCtaButtonPage) : string.Empty;
+    var secondaryIcon = Model.SecondaryCtaButtonFontAwesomeCss != null ? Convert.ToString(Model.SecondaryCtaButtonFontAwesomeCss) : string.Empty;
+
+    var tertiaryText = Model.TertiaryCtaButtonText != null ? Convert.ToString(Model.TertiaryCtaButtonText) : string.Empty;
+    var tertiaryUrl = Model.TertiaryCtaButtonPage != null ? Convert.ToString(Model.TertiaryCtaButtonPage) : string.Empty;
+    var tertiaryIcon = Model.TertiaryCtaButtonFontAwesomeCss != null ? Convert.ToString(Model.TertiaryCtaButtonFontAwesomeCss) : string.Empty;
+
+    var hasPrimary = !string.IsNullOrWhiteSpace(primaryText) && !string.IsNullOrWhiteSpace(primaryUrl);
+    var hasSecondary = !string.IsNullOrWhiteSpace(secondaryText) && !string.IsNullOrWhiteSpace(secondaryUrl);
+    var hasTertiary = !string.IsNullOrWhiteSpace(tertiaryText) && !string.IsNullOrWhiteSpace(tertiaryUrl);
+
+    var hasButtons = hasPrimary || hasSecondary || hasTertiary;
+    var hasBackgroundImage = !string.IsNullOrWhiteSpace(backgroundImage);
+
+    var alignmentClass = "text-start";
+    if (textAlign == "center")
+    {
+        alignmentClass = "text-center";
+    }
+    else if (textAlign == "end")
+    {
+        alignmentClass = "text-end";
+    }
+
+    var sectionStyle = string.Empty;
+    if (hasBackgroundImage)
+    {
+        sectionStyle = "background-image:url('" + HttpUtility.HtmlAttributeEncode(backgroundImage) + "');";
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<section class="oc-hero-banner @heroHeightClass @(hasBackgroundImage ? "oc-hero-banner--has-image" : "oc-hero-banner--no-image")  @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom" style="@Html.Raw(sectionStyle)">
+    <div class="oc-hero-banner__overlay" style="opacity:@overlayOpacity;"></div>
+    <div class="container-fluid oc-hero-banner__container">
+        <div class="row justify-content-evenly">
+            <div class="col-8">
+                <div class="oc-hero-banner__inner @alignmentClass @contentMaxWidthClass">
+                    @if (!string.IsNullOrWhiteSpace(pageTitle))
+                    {
+                        <h1 class="oc-hero-banner__title">@pageTitle</h1>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(pageLead))
+                    {
+                        <p class="oc-hero-banner__lead">@pageLead</p>
+                    }
+
+                    @if (hasButtons)
+                    {
+                        <div class="oc-hero-banner__actions @(textAlign == "center" ? "justify-content-center" : (textAlign == "end" ? "justify-content-end" : "justify-content-start"))">
+                            @if (hasPrimary)
+                            {
+                                <a class="btn oc-hero-banner__btn oc-hero-banner__btn--primary" href="@primaryUrl">
+                                    @if (!string.IsNullOrWhiteSpace(primaryIcon))
+                                    {
+                                        <i class="@primaryIcon me-2" aria-hidden="true"></i>
+                                    }
+                                    <span>@primaryText</span>
+                                </a>
+                            }
+
+                            @if (hasSecondary)
+                            {
+                                <a class="btn oc-hero-banner__btn oc-hero-banner__btn--secondary" href="@secondaryUrl">
+                                    @if (!string.IsNullOrWhiteSpace(secondaryIcon))
+                                    {
+                                        <i class="@secondaryIcon me-2" aria-hidden="true"></i>
+                                    }
+                                    <span>@secondaryText</span>
+                                </a>
+                            }
+
+                            @if (hasTertiary)
+                            {
+                                <a class="btn oc-hero-banner__btn oc-hero-banner__btn--tertiary" href="@tertiaryUrl">
+                                    @if (!string.IsNullOrWhiteSpace(tertiaryIcon))
+                                    {
+                                        <i class="@tertiaryIcon me-2" aria-hidden="true"></i>
+                                    }
+                                    <span>@tertiaryText</span>
+                                </a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+</style>

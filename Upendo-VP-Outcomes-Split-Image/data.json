@@ -1,0 +1,28 @@
+{
+  "ModuleTitle": "OC: Value Propositions Split Image",
+  "ModuleAnchor": "",
+  "SectionHeading": "Measurable outcomes for the human ecosystem.",
+  "Image": "/Portals/0/Images/value-props-redwoods.jpg",
+  "ValuePropositions": [
+    {
+      "Title": "Cognitive Restoration",
+      "Description": "Reducing \"Directed Attention Fatigue\" through soft fascination, restoring the group’s capacity for focus and problem-solving.",
+      "Icon": "fas fa-brain"
+    },
+    {
+      "Title": "Nervous System Co-regulation",
+      "Description": "Lowering baseline cortisol levels and supporting steadier interpersonal dynamics through shared, grounded presence.",
+      "Icon": "fas fa-wave-square"
+    },
+    {
+      "Title": "Relational Resonance",
+      "Description": "Moving beyond transactional interaction toward deep listening and psychological safety through shared somatic experience.",
+      "Icon": "fas fa-users"
+    },
+    {
+      "Title": "Extra Example That Will Not Render",
+      "Description": "This is here to demonstrate that editors may add more items, but the template only renders the first three.",
+      "Icon": "fas fa-leaf"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. This helps OpenContent sync with DNN module settings.",
+      "placeholder": "Forest Therapy FAQ Hero"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "forest-therapy-faq-hero",
+      "showMessages": false
+    },
+    "HeroTitle": {
+      "type": "text",
+      "helper": "Required. This becomes the main H1 for the section.",
+      "placeholder": "Forest Therapy FAQ"
+    },
+    "HeroLead": {
+      "type": "textarea",
+      "helper": "Required. Keep this to a short paragraph for best layout results.",
+      "placeholder": "Explore the scientific foundations and practical preparations for your journey back to the natural world."
+    },
+    "HeroImage": {
+      "type": "image",
+      "uploadfolder": "Content/Heros/",
+      "typeahead": {
+        "Folder": "Content/Heros/"
+      },
+      "helper": "Required. Uploads should go to Content/Heros/. Recommended minimum size: 1200 x 1500 px. Use a strong vertical or portrait-friendly image. Keep important visual content centered, since the image may crop differently by screen size."
+    },
+    "HeroImageAlt": {
+      "type": "text",
+      "helper": "Optional but recommended. Describe the image for accessibility. If left blank, the Hero Title will be used.",
+      "placeholder": "Sunlit redwood trail with tall trees and a winding path"
+    }
+  }
+}

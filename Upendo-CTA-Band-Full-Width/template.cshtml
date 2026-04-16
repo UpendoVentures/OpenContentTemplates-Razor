@@ -1,0 +1,157 @@
+@using System
+@using System.Linq
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var heading = Model.Heading != null ? Convert.ToString(Model.Heading) : string.Empty;
+    var lead = Model.Lead != null ? Convert.ToString(Model.Lead) : string.Empty;
+
+    var cta1Text = Model.CTA1Text != null ? Convert.ToString(Model.CTA1Text) : string.Empty;
+    var cta1Icon = Model.CTA1Icon != null ? Convert.ToString(Model.CTA1Icon) : string.Empty;
+    var cta1Link = Model.CTA1Link != null ? Convert.ToString(Model.CTA1Link) : string.Empty;
+
+    var cta2Text = Model.CTA2Text != null ? Convert.ToString(Model.CTA2Text) : string.Empty;
+    var cta2Icon = Model.CTA2Icon != null ? Convert.ToString(Model.CTA2Icon) : string.Empty;
+    var cta2Link = Model.CTA2Link != null ? Convert.ToString(Model.CTA2Link) : string.Empty;
+
+    var hasHeading = !string.IsNullOrWhiteSpace(heading);
+    var hasLead = !string.IsNullOrWhiteSpace(lead);
+
+    var hasCta1 = !string.IsNullOrWhiteSpace(cta1Text) && !string.IsNullOrWhiteSpace(cta1Link);
+    var hasCta2 = !string.IsNullOrWhiteSpace(cta2Text) && !string.IsNullOrWhiteSpace(cta2Link);
+
+    var backgroundColorClass = Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger", 
+        "bg-forest-green"
+    };
+
+    var isDarkBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(backgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkBackground = true;
+                break;
+            }
+        }
+    }
+
+    var contrastClass = isDarkBackground ? "oc-flex-cta--dark" : "oc-flex-cta--light";
+
+    var sectionClasses = "oc-flex-cta position-relative w-100 " + contrastClass;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClasses" aria-label="Call to action">
+    <div class="container-fluid">
+        <div class="oc-flex-cta__inner mx-auto">
+            <div class="row align-items-center gy-4 py-5">
+                <div class="col-12 col-lg-7">
+                    @if (hasHeading)
+                    {
+                        <h2 class="oc-flex-cta__heading mb-3">@Html.Raw(heading)</h2>
+                    }
+
+                    @if (hasLead)
+                    {
+                        <div class="oc-flex-cta__lead">@Html.Raw(lead)</div>
+                    }
+                </div>
+
+                <div class="col-12 col-lg-5">
+                    <div class="oc-flex-cta__actions">
+                        @if (hasCta1)
+                        {
+                            <a class="btn oc-flex-cta__btn oc-flex-cta__btn--primary pt-2 track-cta" href="@cta1Link?utm_source=cta&utm_medium=button&utm_campaign=cta" target="_blank" rel="noopener" aria-label="@cta1Text">
+                                   aria-label="@cta1Text">
+                                @if (!string.IsNullOrWhiteSpace(cta1Icon))
+                                {
+                                    <i class="@cta1Icon me-2" aria-hidden="true"></i>
+                                }
+                                <span>@Html.Raw(cta1Text)</span>
+                            </a>
+                        }
+
+                        @if (hasCta2)
+                        {
+                            <a class="btn oc-flex-cta__btn oc-flex-cta__btn--secondary pt-2 track-cta" href="@cta2Link?utm_source=cta2&utm_medium=button&utm_campaign=cta"
+                                   aria-label="@cta2Text">
+                                @if (!string.IsNullOrWhiteSpace(cta2Icon))
+                                {
+                                    <i class="@cta2Icon me-2" aria-hidden="true"></i>
+                                }
+                                <span>@Html.Raw(cta2Text)</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

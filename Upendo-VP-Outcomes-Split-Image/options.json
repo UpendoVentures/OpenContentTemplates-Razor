@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent to sync with the DNN module title. This does not display to site visitors."
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Use only letters, numbers, and hyphens if you want to link directly to this section from elsewhere on the page.",
+      "placeholder": "outcomes"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Required. This is the main heading shown for the section. Basic HTML is allowed if needed.",
+      "placeholder": "Measurable outcomes for the human ecosystem."
+    },
+    "Image": {
+      "type": "image",
+      "helper": "Required. Use a strong vertical or portrait-leaning image. Recommended minimum size: 1400px wide by 1750px tall for the best crop and clarity.",
+      "uploadfolder": "Content/Value-Props",
+      "typeahead": {
+        "Folder": "Content/Value-Props"
+      }
+    },
+    "ValuePropositions": {
+      "type": "accordion",
+      "helper": "Add as many items as you want, but this template will only display the first 3 in the order shown here.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Short title for this value proposition. Basic HTML is allowed.",
+            "placeholder": "Cognitive Restoration"
+          },
+          "Description": {
+            "type": "text",
+            "helper": "Required. Keep this to a few short sentences for the best layout. Basic HTML is allowed.",
+            "placeholder": "Reducing directed attention fatigue through soft fascination, restoring the group’s capacity for focus and problem-solving."
+          },
+          "Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+          }
+        }
+      }
+    }
+  }
+}

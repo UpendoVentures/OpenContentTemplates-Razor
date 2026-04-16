@@ -1,0 +1,260 @@
+.oc-bento-link-cards-alt .oc-blca-heading-wrap {
+    margin-bottom: 2rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-heading {
+    margin: 0;
+}
+
+.oc-bento-link-cards-alt .oc-blca-heading-accent {
+    width: 62px;
+    height: 4px;
+    margin-top: 0.75rem;
+    border-radius: 999px;
+    background-color: #6b2d14;
+}
+
+.oc-bento-link-cards-alt .oc-blca-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .oc-bento-link-cards-alt .oc-blca-row-1 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .oc-bento-link-cards-alt .oc-blca-row-2 {
+        grid-template-columns: 1fr 3fr;
+    }
+}
+
+.oc-bento-link-cards-alt .oc-blca-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    min-height: 18rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-1,
+.oc-bento-link-cards-alt .oc-blca-card-2 {
+    min-height: 24rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-3,
+.oc-bento-link-cards-alt .oc-blca-card-4 {
+    min-height: 18rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-1 {
+    background-color: #234738;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-2 {
+    background-color: #e8dfd0;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-3 {
+    background-color: #f2f0ec;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-4 {
+    background-color: #5a1f10;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-link:hover,
+.oc-bento-link-cards-alt .oc-blca-card-link:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.oc-bento-link-cards-alt .oc-blca-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.oc-bento-link-cards-alt .oc-blca-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.oc-bento-link-cards-alt .oc-blca-overlay-green {
+    background: rgba(28, 72, 55, 0.56);
+}
+
+.oc-bento-link-cards-alt .oc-blca-overlay-beige {
+    background: rgba(245, 237, 223, 0.82);
+}
+
+.oc-bento-link-cards-alt .oc-blca-overlay-red {
+    background: rgba(88, 27, 12, 0.68);
+}
+
+.oc-bento-link-cards-alt .oc-blca-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-content-bottom {
+    justify-content: flex-end;
+}
+
+.oc-bento-link-cards-alt .oc-blca-content-middle {
+    justify-content: center;
+}
+
+.oc-bento-link-cards-alt .oc-blca-content-top {
+    justify-content: flex-start;
+}
+
+.oc-bento-link-cards-alt .oc-blca-content-between {
+    justify-content: space-between;
+}
+
+.oc-bento-link-cards-alt .oc-blca-text-left {
+    text-align: left;
+}
+
+.oc-bento-link-cards-alt .oc-blca-text-wrap-card-2 {
+    max-width: 85%;
+}
+
+.oc-bento-link-cards-alt .oc-blca-text-wrap-card-4 {
+    max-width: 55%;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem;
+    line-height: 1.15;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-title-light,
+.oc-bento-link-cards-alt .oc-blca-card-text-light {
+    color: #ffffff;
+}
+
+.oc-bento-link-cards-alt .oc-blca-card-title-dark,
+.oc-bento-link-cards-alt .oc-blca-card-text-dark {
+    color: #584f45;
+}
+
+.oc-bento-link-cards-alt .oc-blca-icon {
+    line-height: 1;
+    font-size: 1.55rem;
+    flex: 0 0 auto;
+}
+
+.oc-bento-link-cards-alt .oc-blca-icon-bottom-left {
+    align-self: flex-start;
+    margin-top: 1.5rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-icon-bottom-right {
+    align-self: flex-end;
+    margin-top: 1.5rem;
+}
+
+.oc-bento-link-cards-alt .oc-blca-icon-light {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.oc-bento-link-cards-alt .oc-blca-icon-dark {
+    color: rgba(88, 79, 69, 0.88);
+}
+
+@media (max-width: 767.98px) {
+    .oc-bento-link-cards-alt .oc-blca-card-title {
+        font-size: 1.65rem;
+    }
+
+    .oc-bento-link-cards-alt .oc-blca-text-wrap-card-2,
+    .oc-bento-link-cards-alt .oc-blca-text-wrap-card-4 {
+        max-width: 100%;
+    }
+
+    .oc-bento-link-cards-alt .oc-blca-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .oc-bento-link-cards-alt .oc-blca-icon-bottom-right {
+        align-self: flex-start;
+    }
+}
+
+/* Custom background colors */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}

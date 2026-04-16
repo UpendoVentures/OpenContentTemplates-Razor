@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "HeroTitle": {
+      "type": "string",
+      "title": "Hero Title"
+    },
+    "HeroLead": {
+      "type": "string",
+      "title": "Hero Lead"
+    },
+    "HeroImage": {
+      "type": "string",
+      "title": "Hero Image"
+    },
+    "HeroImageAlt": {
+      "type": "string",
+      "title": "Hero Image Alt Text"
+    }
+  },
+  "required": [
+    "HeroTitle",
+    "HeroLead",
+    "HeroImage"
+  ]
+}

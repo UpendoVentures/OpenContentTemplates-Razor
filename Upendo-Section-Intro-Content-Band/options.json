@@ -1,0 +1,25 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+            "placeholder": "Split Heading + Intro"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+            "placeholder": "nervous-system-reset"
+        },
+        "SectionHeading": {
+            "type": "text",
+            "helper": "Required. Main heading for the left column. HTML is allowed and will render in the view.",
+            "placeholder": "The Nervous System's Return to Center"
+        },
+        "IntroText": {
+            "type": "ckeditor",
+            "configset": "basic",
+            "helper": "Required. Introductory content for the right column. Basic formatting and links are fine. HTML is allowed and will render in the view.",
+            "placeholder": "<p>Add the introductory content here.</p>"
+        }
+    }
+}

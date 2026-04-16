@@ -27,7 +27,8 @@
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-pen-ruler</code>."
+          "placeholder": "fas fa-heart",
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
         },
         "TitleColor": {
           "label": "Title Color",
@@ -56,7 +57,8 @@
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-code</code>."
+          "placeholder": "fas fa-heart",
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
         },
         "TitleColor": {
           "label": "Title Color",
@@ -85,7 +87,8 @@
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-laptop-code</code>."
+          "placeholder": "fas fa-heart",
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
         },
         "TitleColor": {
           "label": "Title Color",
@@ -114,7 +117,8 @@
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a FontAwesome Free class such as <code>fa-solid fa-headset</code>."
+          "placeholder": "fas fa-heart",
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
         },
         "TitleColor": {
           "label": "Title Color",

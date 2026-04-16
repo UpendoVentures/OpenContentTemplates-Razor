@@ -1,0 +1,56 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "PageTitle": {
+      "type": "text"
+    },
+    "PageLead": {
+      "type": "text"
+    },
+    "BackgroundImage": {
+      "type": "image",
+      "uploadfolder": "Content/Hero-Banners/",
+      "typeahead": {
+        "Folder": "Content/Hero-Banners/"
+      },
+      "helper": "Recommended minimum: 1920 x 1080 px. Use a wide landscape image. Keep important content near the center-left, since the image may crop on different screen sizes."
+    },
+    "PrimaryCtaButtonText": {
+      "type": "text"
+    },
+    "PrimaryCtaButtonPage": {
+      "type": "url"
+    },
+    "PrimaryCtaButtonFontAwesomeCss": {
+      "type": "text",
+      "helper": "Optional. Example: fa-solid fa-leaf"
+    },
+    "SecondaryCtaButtonText": {
+      "type": "text"
+    },
+    "SecondaryCtaButtonPage": {
+      "type": "url"
+    },
+    "SecondaryCtaButtonFontAwesomeCss": {
+      "type": "text",
+      "helper": "Optional. Example: fa-solid fa-map-location-dot"
+    },
+    "TertiaryCtaButtonText": {
+      "type": "text"
+    },
+    "TertiaryCtaButtonPage": {
+      "type": "url"
+    },
+    "TertiaryCtaButtonFontAwesomeCss": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">FontAwesome</a>."
+    }
+  }
+}

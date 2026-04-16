@@ -1,0 +1,28 @@
+{
+  "ModuleTitle": "Why Nature Works",
+  "ModuleAnchor": "",
+  "SectionHeading": "",
+  "SectionIntro": "",
+  "Items": [
+    {
+      "IconClass": "fa-solid fa-wind",
+      "Title": "Phytoncides",
+      "Body": "Inhaling wood essential oils boosts NK cell activity and immune function for up to 30 days."
+    },
+    {
+      "IconClass": "fa-solid fa-heart-pulse",
+      "Title": "Vagal Tone",
+      "Body": "Fractal patterns in nature directly signal safety to the parasympathetic nervous system."
+    },
+    {
+      "IconClass": "fa-solid fa-brain",
+      "Title": "Attention Recovery",
+      "Body": "Soft fascination environments replenish cognitive resources depleted by digital fatigue."
+    },
+    {
+      "IconClass": "fa-regular fa-leaf",
+      "Title": "Microbiome",
+      "Body": "Exposure to diverse soil bacteria regulates serotonin production and mood stability."
+    }
+  ]
+}

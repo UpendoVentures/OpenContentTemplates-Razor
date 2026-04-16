@@ -1,0 +1,108 @@
+.oc-science-somatics-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.oc-science-somatics-media {
+    position: relative;
+    margin: 4.2em 0px;
+}
+
+@media (min-width: 992px) {
+    .oc-science-somatics-media {
+        width: 82%;
+    }
+}
+
+.oc-science-somatics-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 4.25;
+    overflow: hidden;
+    border-radius: 3rem;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.oc-science-somatics-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.oc-science-somatics-quote {
+    position: absolute;
+    right: -1.5rem;
+    bottom: -1.5rem;
+    max-width: 20rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+}
+
+.oc-science-somatics-content {
+    max-width: 42rem;
+}
+
+.oc-science-somatics-eyebrow {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.oc-science-somatics-heading {
+    margin-bottom: 2rem;
+    line-height: 1.05;
+}
+
+.oc-science-somatics-body {
+    margin-bottom: 2rem;
+}
+
+.oc-science-somatics-body p {
+    margin-bottom: 1.5rem;
+}
+
+.oc-science-somatics-list {
+    padding-top: 0.25rem;
+}
+
+.oc-science-somatics-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.oc-science-somatics-list-item:last-child {
+    margin-bottom: 0;
+}
+
+.oc-science-somatics-icon {
+    flex: 0 0 auto;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.1rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+@media (max-width: 991.98px) {
+    .oc-science-somatics-image-wrap {
+        border-radius: 2rem;
+    }
+
+    .oc-science-somatics-quote {
+        position: static;
+        max-width: none;
+        margin-top: 1rem;
+    }
+}

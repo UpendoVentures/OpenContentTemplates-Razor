@@ -1,0 +1,10 @@
+{    
+    "HeroHeightClass": "oc-hero-banner-height-md",
+    "ContentMaxWidthClass": "oc-hero-banner-content-width-lg",
+    "TextAlign": "start",
+    "OverlayOpacity": "0.55",
+    "MarginTop": "mt-0" , 
+    "MarginBottom": "mb-5",
+    "PaddingTop": "pt-auto",
+    "PaddingBottom": "pb-auto"
+}

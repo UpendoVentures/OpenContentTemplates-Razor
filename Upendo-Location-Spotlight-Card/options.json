@@ -1,0 +1,85 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. This also helps OpenContent sync with DNN module settings.",
+      "placeholder": "Featured Location Spotlight"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "featured-location",
+      "showMessages": false
+    },
+    "Eyebrow": {
+      "type": "text",
+      "helper": "Required. A short label above the main heading.",
+      "placeholder": "Base of Operations"
+    },
+    "Heading": {
+      "type": "text",
+      "helper": "Required. Main heading shown in the left content area.",
+      "placeholder": "Chaminade Forest Therapy Trail"
+    },
+    "HeadingCssClass": {
+      "type": "select",
+      "helper": "Choose the heading color class. Keep this to text color classes only.",
+      "optionLabels": [
+        "Theme Default",
+        "Primary",
+        "Primary (theme)",
+        "Secondary",
+        "Secondary (theme)",
+        "Tertiary (theme)",
+        "Quaternary (theme)",
+        "H1 (theme)",
+        "H2 (theme)",
+        "H3 (theme)",
+        "H4 (theme)",
+        "H5 (theme)",
+        "H6 (theme)",
+        "Body",
+        "Body Secondary",
+        "Body Tertiary",
+        "Dark",
+        "Black",
+        "Light",
+        "White",
+        "Success",
+        "Danger",
+        "Warning",
+        "Info"
+      ],
+      "removeDefaultNone": true
+    },
+    "DescriptionText": {
+      "type": "textarea",
+      "helper": "Required. A short paragraph or two works best.",
+      "placeholder": "A sanctuary of biodiversity nestled in the coastal redwood range..."
+    },
+    "LocationText": {
+      "type": "text",
+      "helper": "Optional. Example: city, venue name, or service area.",
+      "placeholder": "Santa Cruz, California"
+    },
+    "LocationTextUrl": {
+      "type": "url",
+      "helper": "Optional. When provided, the location text, button, and image will all link to this URL.",
+      "placeholder": "https://www.google.com/maps"
+    },
+    "LocationTextUrlTarget": {
+      "type": "select",
+      "helper": "Optional. Choose whether the link opens in the current window or a new tab. New-tab links automatically use noopener and noreferrer.",
+      "optionLabels": [
+        "Open in Current Window / Top",
+        "Open in New Tab / Window"
+      ],
+      "removeDefaultNone": true
+    },
+    "SideImage": {
+      "type": "image",
+      "helper": "Required. Recommended minimum size: 1200px wide by 900px tall. A landscape image usually works best.",
+      "placeholder": ""
+    }
+  }
+}

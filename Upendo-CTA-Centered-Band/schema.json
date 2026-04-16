@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "HeadingCssClass": {
+      "type": "string",
+      "title": "Heading Css Class",
+      "enum": [
+        "",
+        "text-primary",
+        "text-primary-emphasis",
+        "text-secondary",
+        "text-secondary-emphasis",
+        "text-success",
+        "text-danger",
+        "text-warning",
+        "text-info",
+        "text-dark",
+        "text-body",
+        "text-body-emphasis",
+        "text-body-secondary",
+        "text-body-tertiary",
+        "text-white",
+        "text-light",
+        "text-black",
+        "text-primary-scoped",
+        "text-secondary-scoped",
+        "text-tertiary",
+        "text-quaternary",
+        "text-h1",
+        "text-h2",
+        "text-h3",
+        "text-h4",
+        "text-h5",
+        "text-h6"
+      ]
+    },
+    "DescriptionText": {
+      "type": "string",
+      "title": "Description Text"
+    },
+    "PrimaryCtaButtonText": {
+      "type": "string",
+      "title": "Primary CTA Button Text"
+    },
+    "PrimaryCtaButtonUrl": {
+      "type": "object",
+      "title": "Primary CTA Button URL"
+    },
+    "SecondaryCtaButtonText": {
+      "type": "string",
+      "title": "Secondary CTA Button Text"
+    },
+    "SecondaryCtaButtonUrl": {
+      "type": "object",
+      "title": "Secondary CTA Button URL"
+    }
+  },
+  "required": [
+    "Heading",
+    "DescriptionText",
+    "PrimaryCtaButtonText",
+    "PrimaryCtaButtonUrl"
+  ]
+}

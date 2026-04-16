@@ -1,0 +1,47 @@
+{
+  "ModuleTitle": "OC: Who We Support Cards",
+  "ModuleAnchor": "who-we-support",
+  "SectionHeading": "Who We Support",
+  "LinkCards": [
+    {
+      "Title": "Corporate Leadership",
+      "Description": "Strategic offsites that prioritize neuro-regulation and creative breakthroughs for executive teams.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/corporate-leadership"
+      },
+      "FontAwesomeIcon": "fas fa-building",
+      "BackgroundImage": "/Portals/0/Images/placeholder-1.jpg"
+    },
+    {
+      "Title": "Healthcare Professionals",
+      "Description": "Addressing compassion fatigue through trauma-informed nature immersion and somatic release.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/healthcare-professionals"
+      },
+      "FontAwesomeIcon": "fas fa-id-badge",
+      "BackgroundImage": "/Portals/0/Images/placeholder-2.jpg"
+    },
+    {
+      "Title": "Nonprofits",
+      "Description": "Sustaining mission-driven energy.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/nonprofits"
+      },
+      "FontAwesomeIcon": "fas fa-hand-holding-heart",
+      "BackgroundImage": "/Portals/0/Images/placeholder-3.jpg"
+    },
+    {
+      "Title": "Community Collectives",
+      "Description": "Private groups, artist residencies, and family lineages seeking ritual and connection.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/community-collectives"
+      },
+      "FontAwesomeIcon": "fas fa-users",
+      "BackgroundImage": "/Portals/0/Images/placeholder-4.jpg"
+    }
+  ]
+}

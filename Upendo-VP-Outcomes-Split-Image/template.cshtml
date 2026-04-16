@@ -1,0 +1,168 @@
+@using System
+@using System.Collections.Generic
+@using System.Text.RegularExpressions
+@using System.Web
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var imageUrl = Model.Image != null ? Convert.ToString(Model.Image) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClass = "oc-value-props-split-image";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var headingId = "oc-vpsi-heading-" + Model.Context.ModuleId;
+    var imageAlt = !string.IsNullOrWhiteSpace(sectionHeading)
+        ? Regex.Replace(sectionHeading, "<.*?>", string.Empty)
+        : "Section image";
+
+    var valuePropositions = new List<dynamic>();
+
+    if (Model.ValuePropositions != null)
+    {
+        foreach (var item in Model.ValuePropositions)
+        {
+            if (valuePropositions.Count >= 3)
+            {
+                break;
+            }
+
+            valuePropositions.Add(item);
+        }
+    }
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasImage = !string.IsNullOrWhiteSpace(imageUrl);
+    var hasItems = valuePropositions.Count > 0;
+    var hasRenderableContent = hasHeading || hasImage || hasItems;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasRenderableContent)
+{
+    <section class="@sectionClass" aria-labelledby="@headingId">
+        <div class="container-fluid px-4 px-lg-5">
+            <div class="row align-items-center g-5 g-xl-6 oc-vpsi-row justify-content-center">
+
+                <div class="col-12 col-md-8 col-lg-4 align-self-center">
+                    <div class="oc-vpsi-content">
+
+                        @if (hasHeading)
+                        {
+                            <h2 id="@headingId" class="oc-vpsi-heading">@Html.Raw(sectionHeading)</h2>
+                        }
+
+                        @if (hasItems)
+                        {
+                            <div class="oc-vpsi-list" role="list">
+                                @{
+                                    var itemIndex = 0;
+                                }
+                                @foreach (var item in valuePropositions)
+                                {
+                                    itemIndex++;
+
+                                    var itemTitle = item.Title != null ? Convert.ToString(item.Title) : string.Empty;
+                                    var itemDescription = item.Description != null ? Convert.ToString(item.Description) : string.Empty;
+                                    var itemIcon = item.Icon != null ? Convert.ToString(item.Icon) : string.Empty;
+                                    var hasItemIcon = !string.IsNullOrWhiteSpace(itemIcon);
+
+                                    <div class="oc-vpsi-item fade-in-up" role="listitem">
+                                        <div class="oc-vpsi-item-icon-wrap" aria-hidden="true">
+                                            @if (hasItemIcon)
+                                            {
+                                                <i class="@itemIcon oc-vpsi-item-icon"></i>
+                                            }
+                                            else
+                                            {
+                                                <span class="oc-vpsi-item-icon-placeholder"></span>
+                                            }
+                                        </div>
+                                        <div class="oc-vpsi-item-content">
+                                            @if (!string.IsNullOrWhiteSpace(itemTitle))
+                                            {
+                                                <h3 class="oc-vpsi-item-title text-notransform">@Html.Raw(itemTitle)</h3>
+                                            }
+
+                                            @if (!string.IsNullOrWhiteSpace(itemDescription))
+                                            {
+                                                <div class="oc-vpsi-item-description">@Html.Raw(itemDescription)</div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    @if (hasImage)
+                    {
+                        <div class="oc-vpsi-image-shell fade-in-up">
+                            <div class="oc-vpsi-image-frame">
+                                <img src="@imageUrl" alt="@HttpUtility.HtmlAttributeEncode(imageAlt)" data-appear-animation="fadeInUp" 
+                                    class="img-fluid oc-vpsi-image" loading="lazy" decoding="async" />
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </section>
+}

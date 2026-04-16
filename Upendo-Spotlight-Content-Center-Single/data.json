@@ -1,0 +1,15 @@
+{
+  "ModuleTitle": "Venue Spotlight",
+  "ModuleAnchor": "",
+  "SectionHeading": "",
+  "SectionDescription": "",
+  "CardHeading": "Our Principal Venue: The Hemlock Glade",
+  "CardDescription": "Located just 45 minutes from the city, our flagship sanctuary offers 40 acres of private old-growth forest, a natural amphitheater, and a solar-powered workshop pavilion designed to blur the line between indoor focus and outdoor wildness.",
+  "CardBackgroundColorClass": "bg-primary",
+  "Link": "#",
+  "LinkText": "Explore Site Details",
+  "LinkTarget": "_top",
+  "LinkIcon": "fas fa-map-marked-alt",
+  "CardImage": "/Portals/0/Images/placeholder-venue.jpg",
+  "ImageInfoText": "Hudson Valley, NY"
+}
