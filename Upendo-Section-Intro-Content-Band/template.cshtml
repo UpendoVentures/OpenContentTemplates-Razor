@@ -1,0 +1,104 @@
+@using System
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+
+    var hasSectionHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntroText = !string.IsNullOrWhiteSpace(introText);
+
+    var backgroundColorClass = Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var headingId = "oc-split-heading-intro-" + Model.Context.ModuleId;
+    if (!string.IsNullOrWhiteSpace(moduleAnchor))
+    {
+        headingId = moduleAnchor + "-heading";
+    }
+
+    var sectionClasses = "oc-split-heading-intro position-relative w-100";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClasses"@(hasSectionHeading ? " aria-labelledby=\"" + headingId + "\"" : " aria-label=\"Content section\"")>
+    <div class="container-fluid py-5">
+        <div class="oc-split-heading-intro__inner mx-auto">
+            <div class="row g-4 g-lg-5 align-items-start">
+                <div class="col-12 col-lg-5">
+                    @if (!string.IsNullOrWhiteSpace(moduleTitle))
+                    {
+                        <div class="visually-hidden">@moduleTitle</div>
+                    }
+
+                    @if (hasSectionHeading)
+                    {
+                        <h2 id="@headingId" class="oc-split-heading-intro__heading mb-0">@Html.Raw(sectionHeading)</h2>
+                    }
+                </div>
+
+                <div class="col-12 col-lg-7">
+                    @if (hasIntroText)
+                    {
+                        <div class="oc-split-heading-intro__content">
+                            @Html.Raw(introText)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
