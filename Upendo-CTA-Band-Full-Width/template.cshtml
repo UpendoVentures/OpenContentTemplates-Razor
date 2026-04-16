@@ -128,7 +128,7 @@
                     <div class="oc-flex-cta__actions">
                         @if (hasCta1)
                         {
-                            <a class="btn oc-flex-cta__btn oc-flex-cta__btn--primary pt-2" href="@cta1Link"
+                            <a class="btn oc-flex-cta__btn oc-flex-cta__btn--primary pt-2" href="@cta1Link?utm_source=cta&utm_medium=button&utm_campaign=cta" target="_blank" rel="noopener" aria-label="@cta1Text">
                                    aria-label="@cta1Text">
                                 @if (!string.IsNullOrWhiteSpace(cta1Icon))
                                 {
@@ -140,7 +140,7 @@
 
                         @if (hasCta2)
                         {
-                            <a class="btn oc-flex-cta__btn oc-flex-cta__btn--secondary pt-2" href="@cta2Link"
+                            <a class="btn oc-flex-cta__btn oc-flex-cta__btn--secondary pt-2" href="@cta2Link?utm_source=cta2&utm_medium=button&utm_campaign=cta"
                                    aria-label="@cta2Text">
                                 @if (!string.IsNullOrWhiteSpace(cta2Icon))
                                 {

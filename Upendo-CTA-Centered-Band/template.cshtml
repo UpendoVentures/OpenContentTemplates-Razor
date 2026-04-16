@@ -77,13 +77,13 @@
                     </div>
 
                     <div class="oc-ccb-actions d-flex flex-column flex-sm-row justify-content-center align-items-stretch align-items-sm-center gap-3">
-                        <a href="@primaryCtaButtonUrl" class="btn btn-primary rounded-pill oc-ccb-btn oc-ccb-btn-primary track-cta">
+                        <a href="@primaryCtaButtonUrl?utm_source=cta&utm_medium=button&utm_campaign=cta" class="btn btn-primary rounded-pill oc-ccb-btn oc-ccb-btn-primary track-cta">
                             @Html.Raw(primaryCtaButtonText)
                         </a>
 
                         @if (hasSecondaryCta)
                         {
-                            <a href="@secondaryCtaButtonUrl" class="btn btn-secondary rounded-pill oc-ccb-btn oc-ccb-btn-secondary track-cta">
+                            <a href="@secondaryCtaButtonUrl?utm_source=cta2&utm_medium=button&utm_campaign=cta" class="btn btn-secondary rounded-pill oc-ccb-btn oc-ccb-btn-secondary track-cta">
                                 @Html.Raw(secondaryCtaButtonText)
                             </a>
                         }
