@@ -64,12 +64,12 @@
 @if (cards.Count > 0)
 {
     <section class="@outerSectionClass"@(string.IsNullOrWhiteSpace(sectionHeading) ? " aria-label=\"Engagement format cards\"" : " aria-labelledby=\"" + headingId + "\"")>
-        <div class="containe py-5">
+        <div class="container py-5">
             @if (!string.IsNullOrWhiteSpace(sectionHeading))
             {
                 <div class="row">
                     <div class="col-12">
-                        <h2 id="@headingId" class="oc-efc-heading text-center">@Html.Raw(sectionHeading)</h2>
+                        <h2 id="@headingId" class="oc-efc-heading text-center text-notransform">@Html.Raw(sectionHeading)</h2>
                     </div>
                 </div>
             }
