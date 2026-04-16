@@ -1,0 +1,29 @@
+{
+  "ModuleTitle": "Value Props - Two Column",
+  "ModuleAnchor": "",
+  "SectionHeading": "Practices for Modern Vitality",
+  "IntroText": "Science-backed practices that support clarity, connection, and restoration.",
+  "ListIcon": "fas fa-leaf",
+  "ValueProps": [
+    {
+      "Title": "Forest Therapy",
+      "Description": "Guided nature immersion that helps restore attention and calm the nervous system."
+    },
+    {
+      "Title": "Self-Myofascial Release",
+      "Description": "Simple body-based practices that help release stress patterns linked to screen-heavy life."
+    },
+    {
+      "Title": "Nature Journaling",
+      "Description": "Reflective observation practices that support creativity, presence, and curiosity."
+    },
+    {
+      "Title": "Collective Effervescence",
+      "Description": "Shared movement, music, and outdoor connection that renews group energy."
+    },
+    {
+      "Title": "Virtual Forest Bathing",
+      "Description": "An indoor option that brings calming, nature-based sensory cues into the room."
+    }
+  ]
+}

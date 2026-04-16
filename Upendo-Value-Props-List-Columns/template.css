@@ -1,0 +1,228 @@
+.oc-value-props-two-column {
+    width: 100%;
+    overflow: hidden;
+    --oc-vptc-heading-color: inherit;
+    --oc-vptc-body-color: inherit;
+    --oc-vptc-icon-color: currentColor;
+    --oc-vptc-link-color: inherit;
+}
+
+.oc-value-props-two-column .oc-vptc-header {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-value-props-two-column .oc-vptc-heading {
+    margin: 0 0 1rem 0;
+    line-height: 1.15;
+    color: var(--oc-vptc-heading-color);
+}
+
+.oc-value-props-two-column .oc-vptc-intro {
+    max-width: 46rem;
+    color: var(--oc-vptc-body-color);
+}
+
+.oc-value-props-two-column .oc-vptc-intro > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-value-props-two-column .oc-vptc-intro a,
+.oc-value-props-two-column .oc-vptc-description a,
+.oc-value-props-two-column .oc-vptc-title a {
+    color: var(--oc-vptc-link-color);
+}
+
+.oc-value-props-two-column .oc-vptc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc-value-props-two-column .oc-vptc-item {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+    animation-name: ocValuePropsFadeInUp;
+    animation-duration: 0.9s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    will-change: opacity, transform;
+}
+
+.oc-value-props-two-column .oc-vptc-item-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.oc-value-props-two-column .oc-vptc-icon-wrap {
+    flex: 0 0 auto;
+    width: 2.25rem;
+    min-width: 2.25rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.35rem;
+    line-height: 1;
+    color: var(--oc-vptc-icon-color);
+}
+
+.oc-value-props-two-column .oc-vptc-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: inherit;
+}
+
+.oc-value-props-two-column .oc-vptc-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.oc-value-props-two-column .oc-vptc-title {
+    line-height: 1.35;
+    color: var(--oc-vptc-heading-color);
+}
+
+.oc-value-props-two-column .oc-vptc-description {
+    color: var(--oc-vptc-body-color);
+}
+
+.oc-value-props-two-column .oc-vptc-description > *:last-child,
+.oc-value-props-two-column .oc-vptc-description:last-child {
+    margin-bottom: 0;
+}
+
+@keyframes ocValuePropsFadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 1rem, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .oc-value-props-two-column .oc-vptc-list {
+        gap: 1.25rem;
+    }
+
+    .oc-value-props-two-column .oc-vptc-item-inner {
+        gap: 0.875rem;
+    }
+
+    .oc-value-props-two-column .oc-vptc-icon-wrap {
+        width: 2rem;
+        min-width: 2rem;
+        padding-top: 0.3rem;
+    }
+
+    .oc-value-props-two-column .oc-vptc-icon {
+        font-size: 1.35rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-value-props-two-column .oc-vptc-item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        will-change: auto;
+    }
+}
+
+/* Dark background contrast handling */
+.oc-value-props-two-column.bg-primary,
+.oc-value-props-two-column.bg-primary-scoped,
+.oc-value-props-two-column.bg-secondary,
+.oc-value-props-two-column.bg-secondary-scoped,
+.oc-value-props-two-column.bg-tertiary,
+.oc-value-props-two-column.bg-quaternary,
+.oc-value-props-two-column.bg-h5,
+.oc-value-props-two-column.bg-h6,
+.oc-value-props-two-column.bg-success,
+.oc-value-props-two-column.bg-danger,
+.oc-value-props-two-column.bg-dark,
+.oc-value-props-two-column.bg-forest-green {
+    --oc-vptc-heading-color: #ffffff;
+    --oc-vptc-body-color: rgba(255, 255, 255, 0.88);
+    --oc-vptc-icon-color: #ffffff;
+    --oc-vptc-link-color: #ffffff;
+}
+
+/* Light background defaults */
+.oc-value-props-two-column.bg-light,
+.oc-value-props-two-column.bg-white,
+.oc-value-props-two-column.bg-body,
+.oc-value-props-two-column.bg-transparent,
+.oc-value-props-two-column.bg-primary-subtle,
+.oc-value-props-two-column.bg-secondary-subtle,
+.oc-value-props-two-column.bg-success-subtle,
+.oc-value-props-two-column.bg-danger-subtle,
+.oc-value-props-two-column.bg-warning-subtle,
+.oc-value-props-two-column.bg-info-subtle,
+.oc-value-props-two-column.bg-light-subtle,
+.oc-value-props-two-column.bg-dark-subtle,
+.oc-value-props-two-column.bg-off-white,
+.oc-value-props-two-column.bg-warm-white,
+.oc-value-props-two-column.bg-cream,
+.oc-value-props-two-column.bg-soft-beige,
+.oc-value-props-two-column.bg-sand,
+.oc-value-props-two-column.bg-light-sage,
+.oc-value-props-two-column.bg-sage,
+.oc-value-props-two-column.bg-pale-green,
+.oc-value-props-two-column.bg-mist,
+.oc-value-props-two-column.bg-soft-gray {
+    --oc-vptc-heading-color: inherit;
+    --oc-vptc-body-color: inherit;
+    --oc-vptc-icon-color: currentColor;
+    --oc-vptc-link-color: inherit;
+}
+
+/* Custom background colors */
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.bg-forest-green {
+    background-color: #143d2d !important;
+}

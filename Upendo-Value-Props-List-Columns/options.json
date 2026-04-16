@@ -1,0 +1,48 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent to sync with the DNN module title. This does not display to site visitors.",
+      "placeholder": "Value Props - Two Column"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Use only letters, numbers, and hyphens if you want to link directly to this section from elsewhere on the page.",
+      "placeholder": "value-props",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the two-column list. HTML is allowed.",
+      "placeholder": "Practices for Modern Vitality"
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "placeholder": "Science-backed practices that help people slow down, reconnect, and restore."
+    },
+    "ListIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+    },
+    "ValueProps": {
+      "type": "accordion",
+      "helper": "Required. Add the list items in the order you want them displayed. If there is an odd number of items, the extra item will appear in the first column.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Short title for this list item. HTML is allowed.",
+            "placeholder": "Forest Therapy"
+          },
+          "Description": {
+            "type": "text",
+            "helper": "Optional. Short supporting description. HTML is allowed.",
+            "placeholder": "Guided nature-based sessions that support attention recovery, stress relief, and reconnection."
+          }
+        }
+      }
+    }
+  }
+}

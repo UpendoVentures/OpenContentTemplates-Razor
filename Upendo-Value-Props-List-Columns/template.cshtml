@@ -1,0 +1,197 @@
+@using System
+@using System.Collections
+@using System.Web.Helpers
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var listIcon = Model.ListIcon != null ? Convert.ToString(Model.ListIcon) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClass = "oc-value-props-two-column position-relative w-100";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var items = new ArrayList();
+
+    if (Model.ValueProps != null)
+    {
+        foreach (var item in Model.ValueProps)
+        {
+            items.Add(item);
+        }
+    }
+
+    var totalItems = items.Count;
+    var firstColumnCount = (int)Math.Ceiling(totalItems / 2.0);
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+    var hasAnchor = !string.IsNullOrWhiteSpace(moduleAnchor);
+    var hasItems = totalItems > 0;
+
+    var sectionId = "oc-value-props-two-column-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+}
+
+@if (hasAnchor)
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasItems)
+{
+    <section class="@sectionClass" aria-labelledby="@(hasHeading ? headingId : string.Empty)">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12">
+
+                    @if (hasHeading || hasIntro)
+                    {
+                        <div class="oc-vptc-header text-center mb-5">
+                            @if (hasHeading)
+                            {
+                                <h2 id="@headingId" class="oc-vptc-heading text-notransform mb-3">@Html.Raw(sectionHeading)</h2>
+                            }
+
+                            @if (hasIntro)
+                            {
+                                <div class="oc-vptc-intro mx-auto">
+                                    @Html.Raw(introText)
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-12 col-md-6">
+                            <ul class="oc-vptc-list list-unstyled mb-0" role="list">
+                                @{
+                                    var delayIndexLeft = 1;
+                                }
+                                @for (var i = 0; i < firstColumnCount; i++)
+                                {
+                                    var item = items[i];
+                                    var itemJson = Json.Encode(item);
+                                    dynamic itemData = Json.Decode(itemJson);
+
+                                    var title = itemData != null && itemData.Title != null ? Convert.ToString(itemData.Title) : string.Empty;
+                                    var description = itemData != null && itemData.Description != null ? Convert.ToString(itemData.Description) : string.Empty;
+
+                                    delayIndexLeft++;
+                                    var animationDelay = Convert.ToString(delayIndexLeft * 200);
+
+                                    <li class="oc-vptc-item fadeInUp" data-appear-animation="fadeInUp" data-appear-animation-delay=="@animationDelay">
+                                        <div class="oc-vptc-item-inner">
+                                            <div class="oc-vptc-icon-wrap" aria-hidden="true">
+                                                <i class="@listIcon oc-vptc-icon"></i>
+                                            </div>
+                                            <div class="oc-vptc-content">
+                                                <h5 class="oc-vptc-title text-notransform mt-2 mb-2">@Html.Raw(title)</h5>
+
+                                                @if (!string.IsNullOrWhiteSpace(description))
+                                                {
+                                                    <div class="oc-vptc-description text-small">
+                                                        @Html.Raw(description)
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <ul class="oc-vptc-list list-unstyled mb-0" role="list">
+                                @{
+                                    var delayIndexRight = firstColumnCount;
+                                }
+                                @for (var i = firstColumnCount; i < totalItems; i++)
+                                {
+                                    var item = items[i];
+                                    var itemJson = Json.Encode(item);
+                                    dynamic itemData = Json.Decode(itemJson);
+
+                                    var title = itemData != null && itemData.Title != null ? Convert.ToString(itemData.Title) : string.Empty;
+                                    var description = itemData != null && itemData.Description != null ? Convert.ToString(itemData.Description) : string.Empty;
+
+                                    delayIndexRight++;
+                                    var animationDelay = Convert.ToString(delayIndexRight * 200);
+
+                                    <li class="oc-vptc-item fadeInUp" data-appear-animation="fadeInUp" style="animation-delay:@animationDelay;">
+                                        <div class="oc-vptc-item-inner">
+                                            <div class="oc-vptc-icon-wrap" aria-hidden="true">
+                                                <i class="@listIcon oc-vptc-icon"></i>
+                                            </div>
+                                            <div class="oc-vptc-content">
+                                                <h5 class="oc-vptc-title text-notransform mt-2 mb-2">@Html.Raw(title)</h5>
+
+                                                @if (!string.IsNullOrWhiteSpace(description))
+                                                {
+                                                    <div class="oc-vptc-description text-small">
+                                                        @Html.Raw(description)
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
