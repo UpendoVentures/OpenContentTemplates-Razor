@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor"
+        },
+        "Heading": {
+            "type": "string",
+            "title": "Heading"
+        },
+        "Lead": {
+            "type": "string",
+            "title": "Lead"
+        },
+        "CTA1Text": {
+            "type": "string",
+            "title": "CTA1 Text"
+        },
+        "CTA1Icon": {
+            "type": "string",
+            "title": "CTA1 Icon"
+        },
+        "CTA1Link": {
+            "type": "string",
+            "title": "CTA1 Link"
+        },
+        "CTA2Text": {
+            "type": "string",
+            "title": "CTA2 Text"
+        },
+        "CTA2Icon": {
+            "type": "string",
+            "title": "CTA2 Icon"
+        },
+        "CTA2Link": {
+            "type": "string",
+            "title": "CTA2 Link"
+        }
+    },
+    "required": [
+        "CTA1Text",
+        "CTA1Link"
+    ]
+}

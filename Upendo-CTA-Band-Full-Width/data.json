@@ -1,0 +1,12 @@
+{
+    "ModuleTitle": "Flexible CTA Band",
+    "ModuleAnchor": "",
+    "Heading": "Begin the Conversation",
+    "Lead": "<p>Share a few details and take the next step toward a more grounded, thoughtful experience.</p>",
+    "CTA1Text": "Send Inquiry",
+    "CTA1Icon": "fas fa-paper-plane",
+    "CTA1Link": "/contact",
+    "CTA2Text": "Explore Offerings",
+    "CTA2Icon": "fas fa-leaf",
+    "CTA2Link": "/offerings"
+}
