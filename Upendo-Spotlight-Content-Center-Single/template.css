@@ -1,0 +1,263 @@
+.oc-split-spotlight {
+    width: 100%;
+    position: relative;
+}
+
+.oc-split-spotlight .container-xxl {
+    max-width: 1440px;
+}
+
+.oc-split-spotlight .oc-ss-intro {
+    margin-bottom: 2rem;
+}
+
+.oc-split-spotlight .oc-ss-section-description > *:last-child,
+.oc-split-spotlight .oc-ss-description > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-split-spotlight .oc-ss-card {
+    border-radius: 3rem;
+    overflow: hidden;
+    box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.18) !important;
+}
+
+.oc-split-spotlight .oc-ss-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 1.75rem;
+}
+
+.oc-split-spotlight .oc-ss-heading {
+    margin-bottom: 1rem;
+    line-height: 1.15;
+}
+
+.oc-split-spotlight .oc-ss-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.oc-split-spotlight .oc-ss-link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.oc-split-spotlight .oc-ss-link:hover,
+.oc-split-spotlight .oc-ss-link:focus {
+    text-decoration: underline;
+}
+
+.oc-split-spotlight .oc-ss-media {
+    position: relative;
+    min-height: 22rem;
+    height: 100%;
+}
+
+.oc-split-spotlight .oc-ss-image-link {
+    display: block;
+    height: 100%;
+}
+
+.oc-split-spotlight .oc-ss-image {
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    object-fit: cover;
+    display: block;
+}
+
+.oc-split-spotlight .oc-ss-image-info {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+    padding: 0.625rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+.oc-split-spotlight .fadeInUp {
+    animation: ocFadeInUp 0.7s ease both;
+}
+
+@keyframes ocFadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 1rem, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (min-width: 768px) {
+    .oc-split-spotlight .oc-ss-content {
+        padding: 3.5rem 2.25rem;
+    }
+
+    .oc-split-spotlight .oc-ss-intro {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .oc-split-spotlight .oc-ss-content {
+        padding: 4.5rem 3.25rem;
+    }
+
+    .oc-split-spotlight .oc-ss-media,
+    .oc-split-spotlight .oc-ss-image {
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .oc-split-spotlight .oc-ss-card {
+        border-radius: 2.25rem;
+    }
+}
+
+/* Custom background colors used in other Upendo templates */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.bg-forest-green {
+    background-color: #163c2f !important;
+}
+
+.oc-split-spotlight .bg-primary,
+.oc-split-spotlight .bg-primary-scoped,
+.oc-split-spotlight .bg-secondary,
+.oc-split-spotlight .bg-secondary-scoped,
+.oc-split-spotlight .bg-tertiary,
+.oc-split-spotlight .bg-quaternary,
+.oc-split-spotlight .bg-h5,
+.oc-split-spotlight .bg-h6,
+.oc-split-spotlight .bg-dark,
+.oc-split-spotlight .bg-forest-green {
+    color: #ffffff;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-heading,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-heading,
+.oc-split-spotlight .bg-secondary .oc-ss-heading,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-heading,
+.oc-split-spotlight .bg-tertiary .oc-ss-heading,
+.oc-split-spotlight .bg-quaternary .oc-ss-heading,
+.oc-split-spotlight .bg-h5 .oc-ss-heading,
+.oc-split-spotlight .bg-h6 .oc-ss-heading,
+.oc-split-spotlight .bg-dark .oc-ss-heading,
+.oc-split-spotlight .bg-forest-green .oc-ss-heading {
+    color: #ffffff;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-description,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-description,
+.oc-split-spotlight .bg-secondary .oc-ss-description,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-description,
+.oc-split-spotlight .bg-tertiary .oc-ss-description,
+.oc-split-spotlight .bg-quaternary .oc-ss-description,
+.oc-split-spotlight .bg-h5 .oc-ss-description,
+.oc-split-spotlight .bg-h6 .oc-ss-description,
+.oc-split-spotlight .bg-dark .oc-ss-description,
+.oc-split-spotlight .bg-forest-green .oc-ss-description {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-link,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-link,
+.oc-split-spotlight .bg-secondary .oc-ss-link,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-link,
+.oc-split-spotlight .bg-tertiary .oc-ss-link,
+.oc-split-spotlight .bg-quaternary .oc-ss-link,
+.oc-split-spotlight .bg-h5 .oc-ss-link,
+.oc-split-spotlight .bg-h6 .oc-ss-link,
+.oc-split-spotlight .bg-dark .oc-ss-link,
+.oc-split-spotlight .bg-forest-green .oc-ss-link {
+    color: #f2c7b4;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-link:hover,
+.oc-split-spotlight .bg-primary .oc-ss-link:focus,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-link:hover,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-link:focus,
+.oc-split-spotlight .bg-secondary .oc-ss-link:hover,
+.oc-split-spotlight .bg-secondary .oc-ss-link:focus,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-link:hover,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-link:focus,
+.oc-split-spotlight .bg-tertiary .oc-ss-link:hover,
+.oc-split-spotlight .bg-tertiary .oc-ss-link:focus,
+.oc-split-spotlight .bg-quaternary .oc-ss-link:hover,
+.oc-split-spotlight .bg-quaternary .oc-ss-link:focus,
+.oc-split-spotlight .bg-h5 .oc-ss-link:hover,
+.oc-split-spotlight .bg-h5 .oc-ss-link:focus,
+.oc-split-spotlight .bg-h6 .oc-ss-link:hover,
+.oc-split-spotlight .bg-h6 .oc-ss-link:focus,
+.oc-split-spotlight .bg-dark .oc-ss-link:hover,
+.oc-split-spotlight .bg-dark .oc-ss-link:focus,
+.oc-split-spotlight .bg-forest-green .oc-ss-link:hover,
+.oc-split-spotlight .bg-forest-green .oc-ss-link:focus {
+    color: #ffffff;
+}
+
+.oc-split-spotlight .bg-primary .oc-ss-image-info,
+.oc-split-spotlight .bg-primary-scoped .oc-ss-image-info,
+.oc-split-spotlight .bg-secondary .oc-ss-image-info,
+.oc-split-spotlight .bg-secondary-scoped .oc-ss-image-info,
+.oc-split-spotlight .bg-tertiary .oc-ss-image-info,
+.oc-split-spotlight .bg-quaternary .oc-ss-image-info,
+.oc-split-spotlight .bg-h5 .oc-ss-image-info,
+.oc-split-spotlight .bg-h6 .oc-ss-image-info,
+.oc-split-spotlight .bg-dark .oc-ss-image-info,
+.oc-split-spotlight .bg-forest-green .oc-ss-image-info {
+    color: #ffffff;
+}
