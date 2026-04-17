@@ -39,11 +39,18 @@
 }
 
 .oc-inner-hero-breadcrumb__link,
-.oc-inner-hero-breadcrumb__current {
+.oc-inner-hero-breadcrumb__current,
+.oc-inner-hero-breadcrumb__link:hover,
+.oc-inner-hero-breadcrumb__link:focus,
+.oc-inner-hero-breadcrumb__link:active {
     font-size: 0.78rem;
     line-height: 1.2;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+.oc-inner-hero-breadcrumb__link,
+.oc-inner-hero-breadcrumb__current {
     text-decoration: none;
 }
 
@@ -52,7 +59,8 @@
 }
 
 .oc-inner-hero-breadcrumb__link:hover,
-.oc-inner-hero-breadcrumb__link:focus {
+.oc-inner-hero-breadcrumb__link:focus,
+.oc-inner-hero-breadcrumb__link:active {
     opacity: 1;
     text-decoration: underline;
 }
