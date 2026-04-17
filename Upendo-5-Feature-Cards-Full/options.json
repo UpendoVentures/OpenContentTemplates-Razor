@@ -18,14 +18,14 @@
             "helper": "Add at least 5 cards. Only the first 5 cards are rendered in the template. Any additional cards are ignored.",
             "items": {
                 "fields": {
-                    "CardIcon": {
-                        "type": "text",
-                        "placeholder": "fa-solid fa-tree",
-                        "helper": "Required. FontAwesome Free class, such as fa-solid fa-tree."
-                    },
                     "CardTitle": {
                         "type": "text",
                         "helper": "Required. Short heading shown on the card."
+                    },
+                    "CardIcon": {
+                        "type": "text",
+                        "placeholder": "fas fa-heart",
+                        "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
                     },
                     "CardDescription": {
                         "type": "textarea",
