@@ -1,0 +1,46 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Internal/admin-facing title for this content block. This is not shown to website visitors."
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+            "showMessages": false
+        },
+        "SectionHeading": {
+            "type": "text",
+            "placeholder": "Common Inquiries",
+            "helper": "Optional section heading shown above the FAQ list."
+        },
+        "IntroText": {
+            "type": "textarea",
+            "placeholder": "Use this optional intro to briefly explain the questions below.",
+            "helper": "Optional short introduction shown below the heading."
+        },
+        "FAQs": {
+            "type": "accordion",
+            "helper": "Required. Add one item per frequently asked question.",
+            "items": {
+                "fields": {
+                    "Question": {
+                        "type": "text",
+                        "placeholder": "What do I bring for a forest session?",
+                        "helper": "Required. Keep the question clear and easy to scan."
+                    },
+                    "Answer": {
+                        "type": "ckeditor",
+                        "configset": "basic",
+                        "helper": "Required. This answer is rendered exactly as entered."
+                    }
+                }
+            }
+        },
+        "FooterMessage": {
+            "type": "text",
+            "placeholder": "Still have questions? We would be happy to help.",
+            "helper": "Optional small message shown centered below the FAQ items."
+        }
+    }
+}

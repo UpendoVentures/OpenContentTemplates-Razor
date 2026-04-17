@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "SectionHeading": {
+            "type": "string",
+            "title": "Section Heading"
+        },
+        "IntroText": {
+            "type": "string",
+            "title": "Intro Text"
+        },
+        "FAQs": {
+            "type": "array",
+            "title": "FAQs",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Question": {
+                        "type": "string",
+                        "title": "Question"
+                    },
+                    "Answer": {
+                        "type": "string",
+                        "title": "Answer"
+                    }
+                }
+            }
+        },
+        "FooterMessage": {
+            "type": "string",
+            "title": "Footer Message"
+        }
+    }
+}
