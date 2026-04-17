@@ -1,0 +1,32 @@
+{
+  "ModuleTitle": "Logo Strip",
+  "ModuleAnchor": "",
+  "SectionHeading": "Trusted By Organizations and Partners",
+  "IntroText": "Add a short optional intro here if you want to explain who these logos represent.",
+  "Logos": [
+    {
+      "Title": "Sample Logo 1",
+      "Logo": "/Portals/0/Content/About/sample-logo-1.png",
+      "Link": "https://example.com",
+      "LinkTarget": "_blank"
+    },
+    {
+      "Title": "Sample Logo 2",
+      "Logo": "/Portals/0/Content/About/sample-logo-2.png",
+      "Link": "",
+      "LinkTarget": ""
+    },
+    {
+      "Title": "Sample Logo 3",
+      "Logo": "/Portals/0/Content/About/sample-logo-3.png",
+      "Link": "https://example.com",
+      "LinkTarget": ""
+    },
+    {
+      "Title": "Sample Logo 4",
+      "Logo": "/Portals/0/Content/About/sample-logo-4.png",
+      "Link": "",
+      "LinkTarget": ""
+    }
+  ]
+}
