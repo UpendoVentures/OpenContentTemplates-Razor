@@ -26,8 +26,8 @@
           },
           "FontAwesomeIcon": {
             "type": "text",
-            "placeholder": "fa-solid fa-users",
-            "helper": "FontAwesome Free class. Example: fa-solid fa-tree"
+            "placeholder": "fas fa-heart",
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">FontAwesome</a>. (Examples: <code>fa-solid fa-leaf</code>, <code>fa-solid fa-map-location-dot</code>, <code>fa-solid fa-building</code>)"
           },
           "BackgroundImage": {
             "type": "image",
