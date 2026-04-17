@@ -1,0 +1,101 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Sidebar Callout Card"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+      "placeholder": "sidebar-callout-card"
+    },
+    "Title": {
+      "type": "text",
+      "helper": "Optional. Main title for the card. HTML is allowed and will render in the view.",
+      "placeholder": "Key Takeaways"
+    },
+    "TitleIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Supporting text shown above the value props. HTML is allowed and will render in the view.",
+      "placeholder": "<p>A short introduction can help frame the checklist or callout.</p>"
+    },
+    "CardBackgroundColorClass": {
+      "type": "select",
+      "helper": "Optional. Choose the card background color. Defaults to Body if nothing is selected. Contrasting text colors are handled automatically.",
+      "optionLabels": [
+        "None / Default to Body",
+        "Primary",
+        "Primary (theme)",
+        "Secondary",
+        "Secondary (theme)",
+        "Tertiary (theme)",
+        "Quaternary (theme)",
+        "H5 (theme)",
+        "H6 (theme)",
+        "Success",
+        "Danger",
+        "Warning",
+        "Info",
+        "Light",
+        "Dark",
+        "White",
+        "Body",
+        "Transparent",
+        "Primary Subtle",
+        "Secondary Subtle",
+        "Success Subtle",
+        "Danger Subtle",
+        "Warning Subtle",
+        "Info Subtle",
+        "Light Subtle",
+        "Dark Subtle",
+        "Off White",
+        "Warm White",
+        "Cream",
+        "Soft Beige",
+        "Sand",
+        "Light Sage",
+        "Sage",
+        "Pale Green",
+        "Mist",
+        "Soft Gray",
+        "Forest Green"
+      ],
+      "sort": true,
+      "removeDefaultNone": true
+    },
+    "CardBackgroundIcon": {
+      "type": "text",
+      "placeholder": "fas fa-heart",
+      "helper": "Optional. Decorative background icon shown in the lower-right of the card. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+    },
+    "ValueProps": {
+      "helper": "Add one or more value props for the card.",
+      "items": {
+        "fields": {
+          "Text": {
+            "type": "text",
+            "helper": "Required. Main text for this value prop. HTML is allowed and will render in the view.",
+            "placeholder": "No prior experience or physical fitness level required."
+          },
+          "Icon": {
+            "type": "text",
+            "placeholder": "fas fa-heart",
+            "helper": "Required. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+          }
+        }
+      }
+    },
+    "OutroText": {
+      "type": "textarea",
+      "helper": "Optional. Supporting text shown below the value props. HTML is allowed and will render in the view.",
+      "placeholder": "<p>A short conclusion can help wrap up the checklist or callout.</p>"
+    }
+  }
+}
