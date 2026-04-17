@@ -1,0 +1,97 @@
+.oc-centered-intro-band {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* LIGHT CONTRAST MODE */
+.oc-centered-intro-band--light {
+    --oc-cib-heading: var(--bs-heading-color, var(--bs-body-color, #212529));
+    --oc-cib-body: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+}
+
+/* DARK CONTRAST MODE */
+.oc-centered-intro-band--dark {
+    --oc-cib-heading: #ffffff;
+    --oc-cib-body: rgba(255, 255, 255, 0.88);
+}
+
+.oc-centered-intro-band {
+    color: var(--oc-cib-body) !important;
+}
+
+.oc-centered-intro-band .oc-centered-intro-band__title,
+.oc-centered-intro-band h1,
+.oc-centered-intro-band h2,
+.oc-centered-intro-band h3,
+.oc-centered-intro-band h4,
+.oc-centered-intro-band h5,
+.oc-centered-intro-band h6 {
+    color: var(--oc-cib-heading) !important;
+}
+
+.oc-centered-intro-band .oc-centered-intro-band__description,
+.oc-centered-intro-band .oc-centered-intro-band__description p,
+.oc-centered-intro-band .oc-centered-intro-band__description li,
+.oc-centered-intro-band .oc-centered-intro-band__description span,
+.oc-centered-intro-band .oc-centered-intro-band__description strong,
+.oc-centered-intro-band .oc-centered-intro-band__description em {
+    color: var(--oc-cib-body) !important;
+}
+
+.oc-centered-intro-band__title {
+    line-height: 1.2;
+}
+
+.oc-centered-intro-band__description {
+    line-height: 1.8;
+}
+
+.oc-centered-intro-band__description > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom background utilities */
+.bg-off-white {
+    background-color: #f8f7f3 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f3ed !important;
+}
+
+.bg-cream {
+    background-color: #f4efe6 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9ddd1 !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bf !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dd !important;
+}
+
+.bg-sage {
+    background-color: #b8c6b1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e5eee3 !important;
+}
+
+.bg-mist {
+    background-color: #edf1ef !important;
+}
+
+.bg-soft-gray {
+    background-color: #f1f1ee !important;
+}
+
+.bg-forest-green {
+    background-color: #173f35 !important;
+}
