@@ -20,6 +20,25 @@
     border-radius: 3rem;
     overflow: hidden;
     box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.18) !important;
+    color: var(--oc-ss-text) !important;
+}
+
+/* LIGHT CONTRAST MODE */
+.oc-split-spotlight .oc-ss-card--light {
+    --oc-ss-text: var(--bs-body-color, #212529);
+    --oc-ss-heading: var(--bs-body-color, #212529);
+    --oc-ss-body: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+    --oc-ss-link: var(--bs-primary, #0d6efd);
+    --oc-ss-link-hover: var(--bs-primary, #0a58ca);
+}
+
+/* DARK CONTRAST MODE */
+.oc-split-spotlight .oc-ss-card--dark {
+    --oc-ss-text: #ffffff;
+    --oc-ss-heading: #ffffff;
+    --oc-ss-body: rgba(255, 255, 255, 0.84);
+    --oc-ss-link: #f2c7b4;
+    --oc-ss-link-hover: #ffffff;
 }
 
 .oc-split-spotlight .oc-ss-content {
@@ -33,11 +52,29 @@
 .oc-split-spotlight .oc-ss-heading {
     margin-bottom: 1rem;
     line-height: 1.15;
+    color: var(--oc-ss-heading) !important;
 }
 
 .oc-split-spotlight .oc-ss-description {
     margin-bottom: 1.5rem;
     line-height: 1.7;
+}
+
+/* Strong scoping against theme rules */
+.oc-split-spotlight .oc-ss-description,
+.oc-split-spotlight .oc-ss-description p,
+.oc-split-spotlight .oc-ss-description li,
+.oc-split-spotlight .oc-ss-description span,
+.oc-split-spotlight .oc-ss-description strong,
+.oc-split-spotlight .oc-ss-description em,
+.oc-split-spotlight .oc-ss-description div {
+    color: var(--oc-ss-body) !important;
+}
+
+.oc-split-spotlight .oc-ss-link,
+.oc-split-spotlight .oc-ss-link i,
+.oc-split-spotlight .oc-ss-link span {
+    color: var(--oc-ss-link) !important;
 }
 
 .oc-split-spotlight .oc-ss-link {
@@ -48,7 +85,12 @@
 }
 
 .oc-split-spotlight .oc-ss-link:hover,
-.oc-split-spotlight .oc-ss-link:focus {
+.oc-split-spotlight .oc-ss-link:focus,
+.oc-split-spotlight .oc-ss-link:hover i,
+.oc-split-spotlight .oc-ss-link:focus i,
+.oc-split-spotlight .oc-ss-link:hover span,
+.oc-split-spotlight .oc-ss-link:focus span {
+    color: var(--oc-ss-link-hover) !important;
     text-decoration: underline;
 }
 
@@ -172,92 +214,4 @@
 
 .bg-forest-green {
     background-color: #163c2f !important;
-}
-
-.oc-split-spotlight .bg-primary,
-.oc-split-spotlight .bg-primary-scoped,
-.oc-split-spotlight .bg-secondary,
-.oc-split-spotlight .bg-secondary-scoped,
-.oc-split-spotlight .bg-tertiary,
-.oc-split-spotlight .bg-quaternary,
-.oc-split-spotlight .bg-h5,
-.oc-split-spotlight .bg-h6,
-.oc-split-spotlight .bg-dark,
-.oc-split-spotlight .bg-forest-green {
-    color: #ffffff;
-}
-
-.oc-split-spotlight .bg-primary .oc-ss-heading,
-.oc-split-spotlight .bg-primary-scoped .oc-ss-heading,
-.oc-split-spotlight .bg-secondary .oc-ss-heading,
-.oc-split-spotlight .bg-secondary-scoped .oc-ss-heading,
-.oc-split-spotlight .bg-tertiary .oc-ss-heading,
-.oc-split-spotlight .bg-quaternary .oc-ss-heading,
-.oc-split-spotlight .bg-h5 .oc-ss-heading,
-.oc-split-spotlight .bg-h6 .oc-ss-heading,
-.oc-split-spotlight .bg-dark .oc-ss-heading,
-.oc-split-spotlight .bg-forest-green .oc-ss-heading {
-    color: #ffffff;
-}
-
-.oc-split-spotlight .bg-primary .oc-ss-description,
-.oc-split-spotlight .bg-primary-scoped .oc-ss-description,
-.oc-split-spotlight .bg-secondary .oc-ss-description,
-.oc-split-spotlight .bg-secondary-scoped .oc-ss-description,
-.oc-split-spotlight .bg-tertiary .oc-ss-description,
-.oc-split-spotlight .bg-quaternary .oc-ss-description,
-.oc-split-spotlight .bg-h5 .oc-ss-description,
-.oc-split-spotlight .bg-h6 .oc-ss-description,
-.oc-split-spotlight .bg-dark .oc-ss-description,
-.oc-split-spotlight .bg-forest-green .oc-ss-description {
-    color: rgba(255, 255, 255, 0.82);
-}
-
-.oc-split-spotlight .bg-primary .oc-ss-link,
-.oc-split-spotlight .bg-primary-scoped .oc-ss-link,
-.oc-split-spotlight .bg-secondary .oc-ss-link,
-.oc-split-spotlight .bg-secondary-scoped .oc-ss-link,
-.oc-split-spotlight .bg-tertiary .oc-ss-link,
-.oc-split-spotlight .bg-quaternary .oc-ss-link,
-.oc-split-spotlight .bg-h5 .oc-ss-link,
-.oc-split-spotlight .bg-h6 .oc-ss-link,
-.oc-split-spotlight .bg-dark .oc-ss-link,
-.oc-split-spotlight .bg-forest-green .oc-ss-link {
-    color: #f2c7b4;
-}
-
-.oc-split-spotlight .bg-primary .oc-ss-link:hover,
-.oc-split-spotlight .bg-primary .oc-ss-link:focus,
-.oc-split-spotlight .bg-primary-scoped .oc-ss-link:hover,
-.oc-split-spotlight .bg-primary-scoped .oc-ss-link:focus,
-.oc-split-spotlight .bg-secondary .oc-ss-link:hover,
-.oc-split-spotlight .bg-secondary .oc-ss-link:focus,
-.oc-split-spotlight .bg-secondary-scoped .oc-ss-link:hover,
-.oc-split-spotlight .bg-secondary-scoped .oc-ss-link:focus,
-.oc-split-spotlight .bg-tertiary .oc-ss-link:hover,
-.oc-split-spotlight .bg-tertiary .oc-ss-link:focus,
-.oc-split-spotlight .bg-quaternary .oc-ss-link:hover,
-.oc-split-spotlight .bg-quaternary .oc-ss-link:focus,
-.oc-split-spotlight .bg-h5 .oc-ss-link:hover,
-.oc-split-spotlight .bg-h5 .oc-ss-link:focus,
-.oc-split-spotlight .bg-h6 .oc-ss-link:hover,
-.oc-split-spotlight .bg-h6 .oc-ss-link:focus,
-.oc-split-spotlight .bg-dark .oc-ss-link:hover,
-.oc-split-spotlight .bg-dark .oc-ss-link:focus,
-.oc-split-spotlight .bg-forest-green .oc-ss-link:hover,
-.oc-split-spotlight .bg-forest-green .oc-ss-link:focus {
-    color: #ffffff;
-}
-
-.oc-split-spotlight .bg-primary .oc-ss-image-info,
-.oc-split-spotlight .bg-primary-scoped .oc-ss-image-info,
-.oc-split-spotlight .bg-secondary .oc-ss-image-info,
-.oc-split-spotlight .bg-secondary-scoped .oc-ss-image-info,
-.oc-split-spotlight .bg-tertiary .oc-ss-image-info,
-.oc-split-spotlight .bg-quaternary .oc-ss-image-info,
-.oc-split-spotlight .bg-h5 .oc-ss-image-info,
-.oc-split-spotlight .bg-h6 .oc-ss-image-info,
-.oc-split-spotlight .bg-dark .oc-ss-image-info,
-.oc-split-spotlight .bg-forest-green .oc-ss-image-info {
-    color: #ffffff;
 }
