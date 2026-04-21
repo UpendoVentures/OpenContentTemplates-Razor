@@ -54,7 +54,7 @@
     <div class="container">
         @if (!string.IsNullOrWhiteSpace(sectionEyebrow) || !string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionIntroHtml))
         {
-            <header class="oc-services-header text-center mb-5">
+            <div class="oc-services-header text-center mb-5">
                 @if (!string.IsNullOrWhiteSpace(sectionEyebrow))
                 {
                     <div class="oc-services-eyebrow">@sectionEyebrow</div>
@@ -71,7 +71,7 @@
                         @GetHtmlProp(Model, "SectionIntroHtml")
                     </div>
                 }
-            </header>
+            </div>
         }
 
         <div class="row g-4 align-items-start justify-content-center">
@@ -86,7 +86,7 @@
                                 </span>
                             </div>
                             <div class="oc-service-content">
-                                <h3 id="@(sectionId)-lefttop-title" class="oc-service-item-title @GetProp(leftTop, "TitleColor", "text-dark")">
+                                <h3 id="@(sectionId)-lefttop-title" class="oc-service-item-title @GetProp(leftTop, "TitleColor", "text-dark") text-notransform">
                                     @GetProp(leftTop, "Title", "")
                                 </h3>
                                 <div class="oc-service-item-body">
@@ -105,7 +105,7 @@
                                 </span>
                             </div>
                             <div class="oc-service-content">
-                                <h3 id="@(sectionId)-leftbottom-title" class="oc-service-item-title @GetProp(leftBottom, "TitleColor", "text-dark")">
+                                <h3 id="@(sectionId)-leftbottom-title" class="oc-service-item-title @GetProp(leftBottom, "TitleColor", "text-dark") text-notransform">
                                     @GetProp(leftBottom, "Title", "")
                                 </h3>
                                 <div class="oc-service-item-body">
@@ -123,7 +123,7 @@
                     {
                         <article class="oc-service-item oc-service-item-right js-oc-service-reveal" aria-labelledby="@(sectionId)-righttop-title">
                             <div class="oc-service-content text-lg-end">
-                                <h3 id="@(sectionId)-righttop-title" class="oc-service-item-title @GetProp(rightTop, "TitleColor", "text-dark")">
+                                <h3 id="@(sectionId)-righttop-title" class="oc-service-item-title @GetProp(rightTop, "TitleColor", "text-dark") text-notransform">
                                     @GetProp(rightTop, "Title", "")
                                 </h3>
                                 <div class="oc-service-item-body">
@@ -142,7 +142,7 @@
                     {
                         <article class="oc-service-item oc-service-item-right js-oc-service-reveal" aria-labelledby="@(sectionId)-rightbottom-title">
                             <div class="oc-service-content text-lg-end">
-                                <h3 id="@(sectionId)-rightbottom-title" class="oc-service-item-title @GetProp(rightBottom, "TitleColor", "text-dark")">
+                                <h3 id="@(sectionId)-rightbottom-title" class="oc-service-item-title @GetProp(rightBottom, "TitleColor", "text-dark") text-notransform">
                                     @GetProp(rightBottom, "Title", "")
                                 </h3>
                                 <div class="oc-service-item-body">
