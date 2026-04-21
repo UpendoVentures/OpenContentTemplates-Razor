@@ -7,28 +7,29 @@
     TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
     RegisterStyleSheet("template.css");
 
-    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : "";
-    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : "";
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
 
     var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
         ? Convert.ToString(Model.Settings.BackgroundColorClass)
-        : "";
+        : string.Empty;
 
     var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
         ? Convert.ToString(Model.Settings.MarginTop)
-        : "";
+        : string.Empty;
 
     var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
         ? Convert.ToString(Model.Settings.MarginBottom)
-        : "";
+        : string.Empty;
 
     var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
         ? Convert.ToString(Model.Settings.PaddingTop)
-        : "";
+        : string.Empty;
 
     var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
         ? Convert.ToString(Model.Settings.PaddingBottom)
-        : "";
+        : string.Empty;
 
     var sectionClasses = "oc-bento-link-cards-alt";
     if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClasses += " " + backgroundColorClass; }
@@ -67,8 +68,15 @@
             @if (!string.IsNullOrWhiteSpace(sectionHeading))
             {
                 <div class="oc-blca-heading-wrap">
-                    <h3 class="oc-blca-heading">@sectionHeading</h3>
+                    <h3 class="oc-blca-heading text-notransform">@sectionHeading</h3>
                     <div class="oc-blca-heading-accent" aria-hidden="true"></div>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(sectionDescription))
+            {
+                <div class="oc-blca-description">
+                    <p class="py-3">@sectionDescription</p>
                 </div>
             }
 
@@ -76,11 +84,11 @@
                 <div class="oc-blca-row oc-blca-row-1">
                     @if (card1 != null)
                     {
-                        var title = card1.Title != null ? Convert.ToString(card1.Title) : "";
-                        var description = card1.Description != null ? Convert.ToString(card1.Description) : "";
-                        var image = card1.BackgroundImage != null ? Convert.ToString(card1.BackgroundImage) : "";
-                        var icon = card1.FontAwesomeIcon != null ? Convert.ToString(card1.FontAwesomeIcon) : "";
-                        var url = card1.Url != null ? Convert.ToString(card1.Url) : "";
+                        var title = card1.Title != null ? Convert.ToString(card1.Title) : string.Empty;
+                        var description = card1.Description != null ? Convert.ToString(card1.Description) : string.Empty;
+                        var image = card1.BackgroundImage != null ? Convert.ToString(card1.BackgroundImage) : string.Empty;
+                        var icon = card1.FontAwesomeIcon != null ? Convert.ToString(card1.FontAwesomeIcon) : string.Empty;
+                        var url = card1.Url != null ? Convert.ToString(card1.Url) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-1">
                             @if (!string.IsNullOrWhiteSpace(url))
@@ -93,7 +101,7 @@
                                     <div class="oc-blca-overlay oc-blca-overlay-green"></div>
                                     <div class="oc-blca-content oc-blca-content-bottom oc-blca-text-left">
                                         <div class="oc-blca-text-wrap">
-                                            <h3 class="oc-blca-card-title oc-blca-card-title-light">@title</h3>
+                                            <h3 class="oc-blca-card-title oc-blca-card-title-light text-notransform">@title</h3>
                                             <p class="oc-blca-card-text oc-blca-card-text-light">@description</p>
                                         </div>
                                         @if (!string.IsNullOrWhiteSpace(icon))
@@ -114,7 +122,7 @@
                                 <div class="oc-blca-overlay oc-blca-overlay-green"></div>
                                 <div class="oc-blca-content oc-blca-content-bottom oc-blca-text-left">
                                     <div class="oc-blca-text-wrap">
-                                        <h3 class="oc-blca-card-title oc-blca-card-title-light">@title</h3>
+                                        <h3 class="oc-blca-card-title oc-blca-card-title-light text-notransform">@title</h3>
                                         <p class="oc-blca-card-text oc-blca-card-text-light">@description</p>
                                     </div>
                                     @if (!string.IsNullOrWhiteSpace(icon))
@@ -130,11 +138,11 @@
 
                     @if (card2 != null)
                     {
-                        var title = card2.Title != null ? Convert.ToString(card2.Title) : "";
-                        var description = card2.Description != null ? Convert.ToString(card2.Description) : "";
-                        var image = card2.BackgroundImage != null ? Convert.ToString(card2.BackgroundImage) : "";
-                        var icon = card2.FontAwesomeIcon != null ? Convert.ToString(card2.FontAwesomeIcon) : "";
-                        var url = card2.Url != null ? Convert.ToString(card2.Url) : "";
+                        var title = card2.Title != null ? Convert.ToString(card2.Title) : string.Empty;
+                        var description = card2.Description != null ? Convert.ToString(card2.Description) : string.Empty;
+                        var image = card2.BackgroundImage != null ? Convert.ToString(card2.BackgroundImage) : string.Empty;
+                        var icon = card2.FontAwesomeIcon != null ? Convert.ToString(card2.FontAwesomeIcon) : string.Empty;
+                        var url = card2.Url != null ? Convert.ToString(card2.Url) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-2">
                             @if (!string.IsNullOrWhiteSpace(url))
@@ -147,7 +155,7 @@
                                     <div class="oc-blca-overlay oc-blca-overlay-beige"></div>
                                     <div class="oc-blca-content oc-blca-content-middle oc-blca-text-left">
                                         <div class="oc-blca-text-wrap oc-blca-text-wrap-card-2">
-                                            <h3 class="oc-blca-card-title oc-blca-card-title-dark">@title</h3>
+                                            <h3 class="oc-blca-card-title oc-blca-card-title-dark text-notransform">@title</h3>
                                             <p class="oc-blca-card-text oc-blca-card-text-dark">@description</p>
                                         </div>
                                         @if (!string.IsNullOrWhiteSpace(icon))
@@ -168,7 +176,7 @@
                                 <div class="oc-blca-overlay oc-blca-overlay-beige"></div>
                                 <div class="oc-blca-content oc-blca-content-middle oc-blca-text-left">
                                     <div class="oc-blca-text-wrap oc-blca-text-wrap-card-2">
-                                        <h3 class="oc-blca-card-title oc-blca-card-title-dark">@title</h3>
+                                        <h3 class="oc-blca-card-title oc-blca-card-title-dark text-notransform">@title</h3>
                                         <p class="oc-blca-card-text oc-blca-card-text-dark">@description</p>
                                     </div>
                                     @if (!string.IsNullOrWhiteSpace(icon))
@@ -186,10 +194,10 @@
                 <div class="oc-blca-row oc-blca-row-2">
                     @if (card3 != null)
                     {
-                        var title = card3.Title != null ? Convert.ToString(card3.Title) : "";
-                        var description = card3.Description != null ? Convert.ToString(card3.Description) : "";
-                        var icon = card3.FontAwesomeIcon != null ? Convert.ToString(card3.FontAwesomeIcon) : "";
-                        var url = card3.Url != null ? Convert.ToString(card3.Url) : "";
+                        var title = card3.Title != null ? Convert.ToString(card3.Title) : string.Empty;
+                        var description = card3.Description != null ? Convert.ToString(card3.Description) : string.Empty;
+                        var icon = card3.FontAwesomeIcon != null ? Convert.ToString(card3.FontAwesomeIcon) : string.Empty;
+                        var url = card3.Url != null ? Convert.ToString(card3.Url) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-3">
                             @if (!string.IsNullOrWhiteSpace(url))
@@ -197,7 +205,7 @@
                                 <a class="oc-blca-card-link" href="@url">
                                     <div class="oc-blca-content oc-blca-content-between oc-blca-text-left">
                                         <div class="oc-blca-text-wrap">
-                                            <h3 class="oc-blca-card-title oc-blca-card-title-dark">@title</h3>
+                                            <h3 class="oc-blca-card-title oc-blca-card-title-dark text-notransform">@title</h3>
                                         </div>
                                         <div class="oc-blca-card-footer">
                                             <div class="oc-blca-text-wrap">
@@ -217,7 +225,7 @@
                             {
                                 <div class="oc-blca-content oc-blca-content-between oc-blca-text-left">
                                     <div class="oc-blca-text-wrap">
-                                        <h3 class="oc-blca-card-title oc-blca-card-title-dark">@title</h3>
+                                        <h3 class="oc-blca-card-title oc-blca-card-title-dark text-notransform">@title</h3>
                                     </div>
                                     <div class="oc-blca-card-footer">
                                         <div class="oc-blca-text-wrap">
@@ -237,11 +245,11 @@
 
                     @if (card4 != null)
                     {
-                        var title = card4.Title != null ? Convert.ToString(card4.Title) : "";
-                        var description = card4.Description != null ? Convert.ToString(card4.Description) : "";
-                        var image = card4.BackgroundImage != null ? Convert.ToString(card4.BackgroundImage) : "";
-                        var icon = card4.FontAwesomeIcon != null ? Convert.ToString(card4.FontAwesomeIcon) : "";
-                        var url = card4.Url != null ? Convert.ToString(card4.Url) : "";
+                        var title = card4.Title != null ? Convert.ToString(card4.Title) : string.Empty;
+                        var description = card4.Description != null ? Convert.ToString(card4.Description) : string.Empty;
+                        var image = card4.BackgroundImage != null ? Convert.ToString(card4.BackgroundImage) : string.Empty;
+                        var icon = card4.FontAwesomeIcon != null ? Convert.ToString(card4.FontAwesomeIcon) : string.Empty;
+                        var url = card4.Url != null ? Convert.ToString(card4.Url) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-4">
                             @if (!string.IsNullOrWhiteSpace(url))

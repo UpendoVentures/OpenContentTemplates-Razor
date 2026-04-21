@@ -14,6 +14,10 @@
       "helper": "Shown above the cards. Example: Who We Support",
       "placeholder": "Who We Support"
     },
+    "SectionDescription": {
+      "type": "text",
+      "helper": "Shown above the cards. Paragraph text works best here, but keep it short."
+    },
     "LinkCards": {
       "type": "accordion",
       "helper": "Add up to 4 cards. Cards display in the order shown here. If more than 4 are added, only the first 4 are displayed on the website.",
