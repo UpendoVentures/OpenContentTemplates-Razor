@@ -1,5 +1,5 @@
 {
-	"fields": {		
+	"fields": {
 		"Display": {
 			"title": "Display Format",
 			"type": "select",
@@ -7,8 +7,9 @@
 				"centered",
 				"horizontal"
 			],
-			"removeDefaultNone": true
-		},	
+			"removeDefaultNone": true,
+			"helper": "Choose the presentation style for the section intro."
+		},
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",
@@ -21,8 +22,9 @@
 				"mt-5",
 				"mt-auto"
 			],
-			"removeDefaultNone": true
-		},		
+			"removeDefaultNone": true,
+			"helper": "Optional. Controls spacing above this section."
+		},
 		"MarginBottom": {
 			"title": "Margin (bottom)",
 			"type": "select",
@@ -35,7 +37,8 @@
 				"mb-5",
 				"mb-auto"
 			],
-			"removeDefaultNone": true
+			"removeDefaultNone": true,
+			"helper": "Optional. Controls spacing below this section."
 		},
 		"PaddingTop": {
 			"title": "Padding (top)",
@@ -49,7 +52,8 @@
 				"pt-5",
 				"pt-auto"
 			],
-			"removeDefaultNone": true
+			"removeDefaultNone": true,
+			"helper": "Optional. Controls inner spacing above the content."
 		},
 		"PaddingBottom": {
 			"title": "Padding (bottom)",
@@ -63,8 +67,8 @@
 				"pb-5",
 				"pb-auto"
 			],
-			"removeDefaultNone": true
-		}	
-
+			"removeDefaultNone": true,
+			"helper": "Optional. Controls inner spacing below the content."
+		}
 	}
 }

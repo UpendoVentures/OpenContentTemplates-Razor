@@ -9,81 +9,33 @@
       "type": "string",
       "title": "Module Anchor"
     },
-    "Image": {
+    "SectionTitle": {
       "type": "string",
-      "title": "Hero Image",
-      "required": true,
-      "default": "https://placehold.co/2400x1200"
+      "title": "Section Title"
     },
-    "ImageAlt": {
+    "SectionTitleCssClass": {
       "type": "string",
-      "title": "Image Alt"
+      "title": "Section Title CSS Class"
     },
-    "PageTitle": {
+    "SectionTitleIcon": {
       "type": "string",
-      "title": "Page Title",
-      "required": true
+      "title": "Section Title Icon"
     },
-    "TitleCssClass": {
+    "SectionIntroText": {
       "type": "string",
-      "title": "Title CSS Class"
+      "title": "Section Intro Text"
     },
-    "TitleIcon": {
+    "SectionTextCssClass": {
       "type": "string",
-      "title": "Title Icon"
+      "title": "Section Text CSS Class"
     },
-    "Subtitle": {
+    "SectionIcon": {
       "type": "string",
-      "title": "Subtitle",
-      "required": true
-    },
-    "SubtitleCssClass": {
-      "type": "string",
-      "title": "Subtitle CSS Class"
-    },
-    "SubtitleIcon": {
-      "type": "string",
-      "title": "Subtitle Icon"
-    },
-    "PaText": {
-      "type": "string",
-      "title": "Primary Action Text"
-    },
-    "PaUrl": {
-      "type": "string",
-      "title": "Primary Action URL"
-    },
-    "PaCssClass": {
-      "type": "string",
-      "title": "Primary Action CSS Class"
-    },
-    "PaLabel": {
-      "type": "string",
-      "title": "Primary Action Accessibility Label"
-    },
-    "PaIcon": {
-      "type": "string",
-      "title": "Primary Action Icon"
-    },
-    "SaText": {
-      "type": "string",
-      "title": "Secondary Action Text"
-    },
-    "SaUrl": {
-      "type": "string",
-      "title": "Secondary Action URL"
-    },
-    "SaCssClass": {
-      "type": "string",
-      "title": "Secondary Action CSS Class"
-    },
-    "SaLabel": {
-      "type": "string",
-      "title": "Secondary Action Accessibility Label"
-    },
-    "SaIcon": {
-      "type": "string",
-      "title": "Secondary Action Icon"
+      "title": "Section Icon"
     }
-  }
+  },
+  "required": [
+    "SectionTitle",
+    "SectionIntroText"
+  ]
 }
