@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "NavigationCards": {
+      "type": "array",
+      "title": "Navigation Cards",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Eyebrow": {
+            "type": "string",
+            "title": "Eyebrow"
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Link"
+          }
+        },
+        "required": [
+          "Title",
+          "Image",
+          "Link"
+        ]
+      }
+    }
+  },
+  "required": [
+    "NavigationCards"
+  ]
+}

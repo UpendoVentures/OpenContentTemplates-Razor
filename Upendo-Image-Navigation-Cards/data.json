@@ -1,0 +1,26 @@
+{
+  "ModuleTitle": "OC: Keep Exploring Cards",
+  "ModuleAnchor": "keep-exploring",
+  "SectionTitle": "Keep Exploring",
+  "SectionDescription": "Guide visitors to the next helpful page with image-based navigation cards.",
+  "NavigationCards": [
+    {
+      "Title": "Our Methodology",
+      "Eyebrow": "Our Foundation",
+      "Image": "/Portals/0/Content/keep-exploring-methodology.jpg",
+      "Link": "/our-methodology"
+    },
+    {
+      "Title": "Book a Session",
+      "Eyebrow": "Begin Your Journey",
+      "Image": "/Portals/0/Content/keep-exploring-book-session.jpg",
+      "Link": "/contact/book-a-call"
+    },
+    {
+      "Title": "Forest Therapy FAQ",
+      "Eyebrow": "Learn More",
+      "Image": "/Portals/0/Content/keep-exploring-faq.jpg",
+      "Link": "/resources/forest-therapy-faq"
+    }
+  ]
+}
