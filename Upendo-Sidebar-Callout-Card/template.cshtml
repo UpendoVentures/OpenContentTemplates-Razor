@@ -2,6 +2,7 @@
 @using System.Linq
 @using Newtonsoft.Json.Linq
 @using Upendo.SkinObjects.OpenContentHelper.Helpers
+@using Upendo.OpenContentHelper.Features.Seo.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @{
@@ -119,7 +120,7 @@
     var hasItems = valueProps != null && valueProps.Any();
 
     var ariaLabel = !string.IsNullOrWhiteSpace(title)
-        ? title
+        ? SeoContentHelper.StripHtml(title) 
         : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Sidebar callout card");
 }
 
