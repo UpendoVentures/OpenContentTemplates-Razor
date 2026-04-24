@@ -6,6 +6,7 @@
 @{
     TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
     RegisterStyleSheet("template.css");
+    RegisterScript("template.js");
 
     var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
     var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
@@ -90,20 +91,19 @@
         }
     }
 
+    var sectionId = !string.IsNullOrWhiteSpace(moduleAnchor)
+        ? moduleAnchor
+        : "oc-amazon-product-grid-" + Dnn.Module.ModuleID;
+
     var headingId = "oc-amazon-product-grid-heading-" + Dnn.Module.ModuleID;
     var sectionLabel = !string.IsNullOrWhiteSpace(sectionHeading)
         ? sectionHeading
         : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Recommended products");
 }
 
-@if (!string.IsNullOrWhiteSpace(moduleAnchor))
-{
-    <div id="@moduleAnchor"></div>
-}
-
 @if (products.Count > 0)
 {
-<section class="@sectionClass" aria-labelledby="@headingId">
+<section id="@sectionId" class="@sectionClass" aria-labelledby="@headingId">
     <div class="container-xxl">
         @if (!string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(sectionIntro))
         {
@@ -160,7 +160,7 @@
 
                 @if (categories.Count > 1)
                 {
-                    <a href="#@moduleAnchor" class="oc-store-back-link small text-decoration-none">
+                    <a href="#@sectionId" class="oc-store-back-link small text-decoration-none">
                         Back to top
                     </a>
                 }
@@ -209,20 +209,40 @@
                                 {
                                     <div class="oc-store-card-media">
                                         <a href="@buyLink" target="_blank" rel="noopener noreferrer" class="oc-store-card-image-link" aria-label="View @productName on Amazon">
-                                            <img src="@productImages[0]" class="card-img-top oc-store-card-primary-image"
-                                                alt="@productName" loading="lazy" decoding="async" />
+                                            <span class="oc-store-image-frame">
+                                                <img src="@productImages[0]" class="card-img-top oc-store-card-primary-image"
+                                                    alt="@productName" loading="lazy" decoding="async" />
+                                            </span>
                                         </a>
 
                                         @if (productImages.Count > 1)
                                         {
-                                            <div class="oc-store-thumbnail-strip" aria-label="Additional images for @productName">
-                                                @for (var imageIndex = 1; imageIndex < productImages.Count; imageIndex++)
+                                            <div class="oc-store-thumbnail-strip" role="listbox" aria-label="Product images for @productName">
+                                                @for (var imageIndex = 0; imageIndex < productImages.Count; imageIndex++)
                                                 {
-                                                    <img src="@productImages[imageIndex]"
-                                                         class="oc-store-thumbnail"
-                                                         alt="@productName image @(imageIndex + 1)"
-                                                         loading="lazy"
-                                                         decoding="async" />
+                                                    var imageAltText = imageIndex == 0
+                                                        ? productName + " main image"
+                                                        : productName + " image " + (imageIndex + 1);
+
+                                                    var thumbnailClass = imageIndex == 0
+                                                        ? "oc-store-thumbnail-button is-active"
+                                                        : "oc-store-thumbnail-button";
+
+                                                    var ariaSelected = imageIndex == 0 ? "true" : "false";
+
+                                                    <button type="button"
+                                                            class="@thumbnailClass"
+                                                            data-image-src="@productImages[imageIndex]"
+                                                            data-image-alt="@imageAltText"
+                                                            role="option"
+                                                            aria-selected="@ariaSelected"
+                                                            aria-label="Show @imageAltText">
+                                                        <img src="@productImages[imageIndex]"
+                                                             class="oc-store-thumbnail"
+                                                             alt=""
+                                                             loading="lazy"
+                                                             decoding="async" />
+                                                    </button>
                                                 }
                                             </div>
                                         }
@@ -230,22 +250,24 @@
                                 }
 
                                 <div class="card-body d-flex flex-column">
-                                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
-                                        <h4 class="card-title h5 mb-0">@productName</h4>
-                                        <span class="badge text-bg-light border oc-store-category-badge">@currentCategory</span>
-                                    </div>
-
-                                    <p class="card-text oc-store-description">@productDescription</p>
-
-                                    @if (productTags.Count > 0)
-                                    {
-                                        <div class="oc-store-tags mt-auto mb-3" aria-label="Product tags">
-                                            @foreach (var tag in productTags)
-                                            {
-                                                <span class="badge rounded-pill text-bg-secondary-subtle border">@tag</span>
-                                            }
+                                    <div class="oc-store-card-content">
+                                        <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                                            <h4 class="card-title h5 mb-0">@productName</h4>
+                                            <span class="badge rounded-pill oc-store-category-badge">@currentCategory</span>
                                         </div>
-                                    }
+
+                                        <p class="card-text oc-store-description">@productDescription</p>
+
+                                        @if (productTags.Count > 0)
+                                        {
+                                            <div class="oc-store-tags" aria-label="Product tags">
+                                                @foreach (var tag in productTags)
+                                                {
+                                                    <span class="oc-store-tag">@tag</span>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
 
                                     <div class="mt-auto">
                                         <a href="@buyLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-100 oc-store-buy-button track-affiliate" aria-label="Buy @productName on Amazon">
