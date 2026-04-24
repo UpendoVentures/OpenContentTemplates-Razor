@@ -1,0 +1,86 @@
+.oc-amazon-product-grid {
+  width: 100%;
+}
+
+.oc-store-heading {
+  margin: 0;
+}
+
+.oc-store-intro {
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.oc-store-category-anchor {
+  position: relative;
+  top: -1rem;
+}
+
+.oc-store-category-title {
+  font-size: 1.35rem;
+}
+
+.oc-store-back-link {
+  white-space: nowrap;
+}
+
+.oc-store-card {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.oc-store-card-media {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.oc-store-card-primary-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.oc-store-thumbnail-strip {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 0.75rem 0 0.75rem;
+  overflow-x: auto;
+}
+
+.oc-store-thumbnail {
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.oc-store-description {
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.oc-store-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.oc-store-category-badge {
+  white-space: nowrap;
+}
+
+.oc-store-buy-button {
+  font-weight: 600;
+}
+
+@media (max-width: 575.98px) {
+  .oc-store-thumbnail {
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 3.5rem;
+  }
+}

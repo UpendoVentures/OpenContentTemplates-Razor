@@ -1,0 +1,46 @@
+{
+    "ModuleTitle": "Recommended Products",
+    "ModuleAnchor": "recommended-products",
+    "SectionHeading": "Recommended Products",
+    "SectionIntro": "These curated products support the practices, videos, and resources shared on this page.",
+    "Products": [
+        {
+            "ProductName": "Sample Product One",
+            "ProductImages": [
+                "/Portals/0/Content/Store/Products/sample-product-1.jpg",
+                "/Portals/0/Content/Store/Products/sample-product-1-alt.jpg"
+            ],
+            "BuyLink": "https://www.amazon.com/",
+            "ProductDescription": "Use this area for a short, practical description that explains why this product is being recommended.",
+            "Category": "Featured Tools",
+            "Tags": [
+                "Popular",
+                "Beginner Friendly"
+            ]
+        },
+        {
+            "ProductName": "Sample Product Two",
+            "ProductImages": [
+                "/Portals/0/Content/Store/Products/sample-product-2.jpg"
+            ],
+            "BuyLink": "https://www.amazon.com/",
+            "ProductDescription": "This is another sample product showing how multiple items can be grouped under the same category.",
+            "Category": "Featured Tools",
+            "Tags": [
+                "Daily Use"
+            ]
+        },
+        {
+            "ProductName": "Sample Product Three",
+            "ProductImages": [
+                "/Portals/0/Content/Store/Products/sample-product-3.jpg"
+            ],
+            "BuyLink": "https://www.amazon.com/",
+            "ProductDescription": "Products placed in a different category will automatically render in their own grouped section.",
+            "Category": "Books & Guides",
+            "Tags": [
+                "Reference"
+            ]
+        }
+    ]
+}

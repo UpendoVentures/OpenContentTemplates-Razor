@@ -1,0 +1,264 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionIntro = Model.SectionIntro != null ? Convert.ToString(Model.SectionIntro) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClass = "oc-amazon-product-grid";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var products = new List<dynamic>();
+    var categories = new List<string>();
+
+    if (Model.Products != null)
+    {
+        foreach (var item in Model.Products)
+        {
+            products.Add(item);
+
+            var categoryValue = item.Category != null ? Convert.ToString(item.Category) : string.Empty;
+            var categoryExists = false;
+
+            if (!string.IsNullOrWhiteSpace(categoryValue))
+            {
+                foreach (var existingCategory in categories)
+                {
+                    if (string.Equals(existingCategory, categoryValue, StringComparison.OrdinalIgnoreCase))
+                    {
+                        categoryExists = true;
+                        break;
+                    }
+                }
+
+                if (!categoryExists)
+                {
+                    categories.Add(categoryValue);
+                }
+            }
+        }
+    }
+
+    var headingId = "oc-amazon-product-grid-heading-" + Dnn.Module.ModuleID;
+    var sectionLabel = !string.IsNullOrWhiteSpace(sectionHeading)
+        ? sectionHeading
+        : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Recommended products");
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (products.Count > 0)
+{
+<section class="@sectionClass" aria-labelledby="@headingId">
+    <div class="container-xxl">
+        @if (!string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(sectionIntro))
+        {
+            <div class="row justify-content-center mb-4 mb-lg-5">
+                <div class="col-12 col-lg-9 text-center">
+                    @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                    {
+                        <h2 id="@headingId" class="oc-store-heading mb-3">@sectionHeading</h2>
+                    }
+                    else
+                    {
+                        <h2 id="@headingId" class="visually-hidden">@sectionLabel</h2>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(sectionIntro))
+                    {
+                        <p class="oc-store-intro mb-0">@sectionIntro</p>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <h2 id="@headingId" class="visually-hidden">@sectionLabel</h2>
+        }
+
+        @if (categories.Count > 1)
+        {
+            <nav class="oc-store-category-nav mb-4" aria-label="Product categories">
+                <ul class="nav flex-wrap justify-content-center gap-2">
+                    @for (var categoryIndex = 0; categoryIndex < categories.Count; categoryIndex++)
+                    {
+                        var categoryId = "oc-store-category-" + Dnn.Module.ModuleID + "-" + (categoryIndex + 1);
+
+                        <li class="nav-item">
+                            <a class="btn btn-outline-secondary btn-sm rounded-pill" href="#@categoryId" aria-label="Jump to @categories[categoryIndex] products">
+                                @categories[categoryIndex]
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+
+        @for (var categoryIndex = 0; categoryIndex < categories.Count; categoryIndex++)
+        {
+            var currentCategory = categories[categoryIndex];
+            var categoryId = "oc-store-category-" + Dnn.Module.ModuleID + "-" + (categoryIndex + 1);
+
+            <div id="@categoryId" class="oc-store-category-anchor"></div>
+
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                <h3 class="oc-store-category-title mb-0">@currentCategory</h3>
+
+                @if (categories.Count > 1)
+                {
+                    <a href="#@moduleAnchor" class="oc-store-back-link small text-decoration-none">
+                        Back to top
+                    </a>
+                }
+            </div>
+
+            <div class="row g-4 mb-5">
+                @foreach (var product in products)
+                {
+                    var productCategory = product.Category != null ? Convert.ToString(product.Category) : string.Empty;
+
+                    if (string.Equals(productCategory, currentCategory, StringComparison.OrdinalIgnoreCase))
+                    {
+                        var productName = product.ProductName != null ? Convert.ToString(product.ProductName) : string.Empty;
+                        var productDescription = product.ProductDescription != null ? Convert.ToString(product.ProductDescription) : string.Empty;
+                        var buyLink = product.BuyLink != null ? Convert.ToString(product.BuyLink) : string.Empty;
+
+                        var productImages = new List<string>();
+                        if (product.ProductImages != null)
+                        {
+                            foreach (var image in product.ProductImages)
+                            {
+                                var imageValue = image != null ? Convert.ToString(image) : string.Empty;
+                                if (!string.IsNullOrWhiteSpace(imageValue))
+                                {
+                                    productImages.Add(imageValue);
+                                }
+                            }
+                        }
+
+                        var productTags = new List<string>();
+                        if (product.Tags != null)
+                        {
+                            foreach (var tag in product.Tags)
+                            {
+                                var tagValue = tag != null ? Convert.ToString(tag) : string.Empty;
+                                if (!string.IsNullOrWhiteSpace(tagValue))
+                                {
+                                    productTags.Add(tagValue);
+                                }
+                            }
+                        }
+
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <article class="card h-100 shadow-sm border-0 oc-store-card" aria-label="@productName">
+                                @if (productImages.Count > 0)
+                                {
+                                    <div class="oc-store-card-media">
+                                        <a href="@buyLink" target="_blank" rel="noopener noreferrer" class="oc-store-card-image-link" aria-label="View @productName on Amazon">
+                                            <img src="@productImages[0]" class="card-img-top oc-store-card-primary-image"
+                                                alt="@productName" loading="lazy" decoding="async" />
+                                        </a>
+
+                                        @if (productImages.Count > 1)
+                                        {
+                                            <div class="oc-store-thumbnail-strip" aria-label="Additional images for @productName">
+                                                @for (var imageIndex = 1; imageIndex < productImages.Count; imageIndex++)
+                                                {
+                                                    <img src="@productImages[imageIndex]"
+                                                         class="oc-store-thumbnail"
+                                                         alt="@productName image @(imageIndex + 1)"
+                                                         loading="lazy"
+                                                         decoding="async" />
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                                        <h4 class="card-title h5 mb-0">@productName</h4>
+                                        <span class="badge text-bg-light border oc-store-category-badge">@currentCategory</span>
+                                    </div>
+
+                                    <p class="card-text oc-store-description">@productDescription</p>
+
+                                    @if (productTags.Count > 0)
+                                    {
+                                        <div class="oc-store-tags mt-auto mb-3" aria-label="Product tags">
+                                            @foreach (var tag in productTags)
+                                            {
+                                                <span class="badge rounded-pill text-bg-secondary-subtle border">@tag</span>
+                                            }
+                                        </div>
+                                    }
+
+                                    <div class="mt-auto">
+                                        <a href="@buyLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-100 oc-store-buy-button track-affiliate" aria-label="Buy @productName on Amazon">
+                                            <i class="fab fa-amazon me-2" aria-hidden="true"></i>Buy on Amazon
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                }
+            </div>
+        }
+    </div>
+</section>
+}
