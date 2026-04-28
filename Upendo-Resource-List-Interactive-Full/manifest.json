@@ -1,0 +1,23 @@
+{
+  "builderVersion": 1,
+  "editWitoutPostback": true,
+  "templates": {
+    "template": {
+      "type": "single",
+      "title": "Resource List",
+      "main": {
+        "template": "template.cshtml"
+      }
+    }
+  },
+  "additionalData": {
+    "Categories": {
+      "title": "Manage Resource Categories",
+      "scope": "portal"
+    },
+    "ResourceTypes": {
+      "title": "Manage Resource Types",
+      "scope": "portal"
+    }
+  }
+}

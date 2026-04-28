@@ -1,0 +1,112 @@
+{
+  "ModuleTitle": "Upendo-Resource-List-Interactive-Full - Resource List",
+  "ModuleAnchor": "resources-library",
+  "SectionHeading": "Helpful Resources",
+  "SectionDescription": "<p>Explore videos, organizations, talks, and practices that support mindfulness, compassion, nervous-system regulation, movement, and nature-based wellbeing.</p>",
+  "Resources": [
+    {
+      "Title": "Stanford CCARE Videos",
+      "Description": "<p>Video resources from Stanford's Center for Compassion and Altruism Research and Education, including talks and conversations about compassion, altruism, and applied practice.</p>",
+      "Url": "https://ccare.stanford.edu/video/",
+      "Category": "Compassion & Mindfulness",
+      "ResourceType": "Resource Library",
+      "IconClass": "fas fa-video"
+    },
+    {
+      "Title": "Why Breathwork Matters | Andrew Weil, M.D.",
+      "Description": "<p>A short video introducing the value of breathwork and breathing practices as part of wellbeing.</p>",
+      "Url": "https://youtu.be/SclZwqr5xpE",
+      "Category": "Stress & Nervous System",
+      "ResourceType": "Video",
+      "IconClass": "fas fa-wind"
+    },
+    {
+      "Title": "Brainwave Entrainment Benefits Chart",
+      "Description": "<p>A visual resource from EOC Institute that introduces alpha, theta, and delta brainwave patterns in relation to meditation and relaxation.</p>",
+      "Url": "https://eocinstitute.org/meditation/brainwave_charts_brainwave_patterns/#/",
+      "Category": "Meditation Science",
+      "ResourceType": "Article",
+      "IconClass": "fas fa-brain"
+    },
+    {
+      "Title": "Insight Meditation Center",
+      "Description": "<p>A meditation center and resource hub for insight meditation teachings, talks, and practice support.</p>",
+      "Url": "https://www.insightmeditationcenter.org/",
+      "Category": "Compassion & Mindfulness",
+      "ResourceType": "Organization",
+      "IconClass": "fas fa-spa"
+    },
+    {
+      "Title": "Spirit Rock Meditation Center",
+      "Description": "<p>A meditation center offering teachings, retreats, and practice resources rooted in mindfulness and insight meditation.</p>",
+      "Url": "https://www.spiritrock.org/",
+      "Category": "Compassion & Mindfulness",
+      "ResourceType": "Organization",
+      "IconClass": "fas fa-mountain"
+    },
+    {
+      "Title": "Wednesday Meditations with Dr. Rick Hanson",
+      "Description": "<p>Ongoing meditation resources from Rick Hanson, PhD, focused on practical reflection, resilience, and inner steadiness.</p>",
+      "Url": "https://rickhanson.com/wednesday-meditations-with-dr-rick-hanson/",
+      "Category": "Compassion & Mindfulness",
+      "ResourceType": "Website",
+      "IconClass": "fas fa-heart"
+    },
+    {
+      "Title": "How to Make Stress Your Friend",
+      "Description": "<p>Kelly McGonigal's TED Talk on rethinking stress and understanding the role of connection in stress response.</p>",
+      "Url": "https://www.ted.com/talks/kelly_mcgonigal_how_to_make_stress_your_friend?language=en",
+      "Category": "Stress & Nervous System",
+      "ResourceType": "Talk",
+      "IconClass": "fas fa-comments"
+    },
+    {
+      "Title": "Andrew Huberman on Sleep, Stress, Diet & Nutrition",
+      "Description": "<p>A Stanford Medicine Instagram Live recording with Andrew Huberman on sleep, stress, diet, and nutrition.</p>",
+      "Url": "https://youtu.be/PO5IUW0k0oY?si=CJL46VNIIkz36hle",
+      "Category": "Stress & Nervous System",
+      "ResourceType": "Video",
+      "IconClass": "fas fa-bed"
+    },
+    {
+      "Title": "Joyous Body Audiobook",
+      "Description": "<p>An audiobook resource connected to body awareness, movement, and embodied wellbeing.</p>",
+      "Url": "https://tinyurl.com/4y4srw48",
+      "Category": "Movement & Embodiment",
+      "ResourceType": "Book / Audiobook",
+      "IconClass": "fas fa-headphones"
+    },
+    {
+      "Title": "Hope Molecules with Kelly McGonigal",
+      "Description": "<p>A video clip about movement, hope, and the body-based benefits often discussed in Kelly McGonigal's work.</p>",
+      "Url": "https://www.facebook.com/richrollfans/videos/hope-molecules-with-kelly-mcgonigal/767699447046960/",
+      "Category": "Movement & Embodiment",
+      "ResourceType": "Video",
+      "IconClass": "fas fa-running"
+    },
+    {
+      "Title": "Association of Nature and Forest Therapy",
+      "Description": "<p>The Association of Nature and Forest Therapy website, with resources about forest therapy, guide training, trail certification, and the global forest therapy community.</p>",
+      "Url": "https://anft.earth/",
+      "Category": "Forest Therapy & Nature Practice",
+      "ResourceType": "Organization",
+      "IconClass": "fas fa-tree"
+    },
+    {
+      "Title": "Polar Bear Shaking Trauma",
+      "Description": "<p>A short video often shared in somatic education contexts to show how animals discharge stress through movement after threat.</p>",
+      "Url": "https://youtu.be/xDlR-wl7iFI",
+      "Category": "Stress & Nervous System",
+      "ResourceType": "Video",
+      "IconClass": "fas fa-paw"
+    },
+    {
+      "Title": "Nature Journaling Video",
+      "Description": "<p>A video resource with tools and tips for beginning a nature journaling practice.</p>",
+      "Url": "https://www.youtube.com/watch?v=u8IIfb891jw&t=19s",
+      "Category": "Forest Therapy & Nature Practice",
+      "ResourceType": "Video",
+      "IconClass": "fas fa-book-open"
+    }
+  ]
+}
