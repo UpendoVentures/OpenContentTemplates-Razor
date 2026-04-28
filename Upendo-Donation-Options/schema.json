@@ -1,0 +1,89 @@
+{
+    "type": "object",
+    "properties": {
+      "ModuleTitle": {
+        "type": "string",
+        "title": "Module Title"
+      },
+      "ModuleAnchor": {
+        "type": "string",
+        "title": "Module Anchor",
+        "pattern": "^[a-zA-Z0-9\\-]+$"
+      },
+      "SectionTitle": {
+        "type": "string",
+        "title": "Section Title"
+      },
+      "SectionDescription": {
+        "type": "string",
+        "title": "Section Description"
+      },
+      "PaymentOptions": {
+        "type": "array",
+        "title": "Payment Options",
+        "items": {
+          "type": "object",
+          "properties": {
+            "MethodName": {
+              "type": "string",
+              "title": "Payment Method Name"
+            },
+            "IconClass": {
+              "type": "string",
+              "title": "FontAwesome Icon Class"
+            },
+            "Subtitle": {
+              "type": "string",
+              "title": "Subtitle"
+            },
+            "QrImage": {
+              "type": "string",
+              "title": "QR Image"
+            },
+            "QrAltText": {
+              "type": "string",
+              "title": "QR Alt Text"
+            },
+            "DetailRows": {
+              "type": "array",
+              "title": "Detail Rows",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Label": {
+                    "type": "string",
+                    "title": "Label"
+                  },
+                  "Value": {
+                    "type": "string",
+                    "title": "Value"
+                  },
+                  "HighlightValue": {
+                    "type": "boolean",
+                    "title": "Highlight Value"
+                  }
+                }
+              }
+            },
+            "Instructions": {
+              "type": "string",
+              "title": "Instructions"
+            },
+            "ButtonText": {
+              "type": "string",
+              "title": "Button Text"
+            },
+            "ButtonUrl": {
+              "type": "string",
+              "title": "Button URL",
+              "format": "uri"
+            }
+          }
+        }
+      },
+      "OptionalNote": {
+        "type": "string",
+        "title": "Optional Note"
+      }
+    }
+  }

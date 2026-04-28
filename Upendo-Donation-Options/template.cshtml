@@ -1,0 +1,205 @@
+@using System
+@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+    var optionalNote = Model.OptionalNote != null ? Convert.ToString(Model.OptionalNote) : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var outerSectionClass = "oc-donation-payment-options";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { outerSectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
+
+    var headingId = "oc-donation-payment-options-heading-" + Model.Context.ModuleId;
+    var sectionAriaLabel = !string.IsNullOrWhiteSpace(moduleTitle)
+        ? moduleTitle
+        : "Donation payment options";
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@outerSectionClass" @(string.IsNullOrWhiteSpace(sectionTitle) ? Html.Raw("aria-label=\"" + sectionAriaLabel + "\"") : Html.Raw("aria-labelledby=\"" + headingId + "\""))>
+    <div class="container-fluid px-0">
+        <div class="container-xxl px-3 px-md-4">
+            @if (!string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionDescription))
+            {
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-9 text-center">
+                        @if (!string.IsNullOrWhiteSpace(sectionTitle))
+                        {
+                            <h2 id="@headingId" class="oc-dpo-heading text-notransform">
+                                @Html.Raw(sectionTitle)
+                            </h2>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                        {
+                            <div class="oc-dpo-description">
+                                @Html.Raw(sectionDescription)
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (Model.PaymentOptions != null)
+            {
+                <div class="row g-4 justify-content-center">
+                    @foreach (var option in Model.PaymentOptions)
+                    {
+                        var methodName = option.MethodName != null ? Convert.ToString(option.MethodName) : string.Empty;
+                        var iconClass = option.IconClass != null ? Convert.ToString(option.IconClass) : string.Empty;
+                        var subtitle = option.Subtitle != null ? Convert.ToString(option.Subtitle) : string.Empty;
+                        var qrAltText = option.QrAltText != null ? Convert.ToString(option.QrAltText) : string.Empty;
+                        var instructions = option.Instructions != null ? Convert.ToString(option.Instructions) : string.Empty;
+                        var buttonText = option.ButtonText != null ? Convert.ToString(option.ButtonText) : string.Empty;
+                        var buttonUrl = option.ButtonUrl != null ? Convert.ToString(option.ButtonUrl) : string.Empty;
+
+                        var qrImageUrl = option.QrImage != null ? Convert.ToString(option.QrImage) : string.Empty;
+
+                        var cardHeadingId = "oc-dpo-card-title-" + Model.Context.ModuleId + "-" + Guid.NewGuid().ToString("N");
+
+                        <div class="col-12 col-lg-6">
+                            <article class="oc-dpo-card h-100" aria-labelledby="@cardHeadingId">
+                                <div class="oc-dpo-card-header">
+                                    @if (!string.IsNullOrWhiteSpace(iconClass))
+                                    {
+                                        <div class="oc-dpo-icon-wrap" aria-hidden="true">
+                                            <i class="@iconClass"></i>
+                                        </div>
+                                    }
+
+                                    <div>
+                                        @if (!string.IsNullOrWhiteSpace(methodName))
+                                        {
+                                            <h3 id="@cardHeadingId" class="oc-dpo-card-title">
+                                                @Html.Raw(methodName)
+                                            </h3>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(subtitle))
+                                        {
+                                            <div class="oc-dpo-card-subtitle">
+                                                @Html.Raw(subtitle)
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                @if (!string.IsNullOrWhiteSpace(qrImageUrl))
+                                {
+                                    <div class="oc-dpo-qr-wrap">
+                                        <img src="@qrImageUrl"
+                                             alt="@qrAltText"
+                                             class="oc-dpo-qr"
+                                             loading="lazy"
+                                             decoding="async" />
+                                    </div>
+                                }
+
+                                @if (option.DetailRows != null || !string.IsNullOrWhiteSpace(instructions))
+                                {
+                                    <div class="oc-dpo-details">
+                                        @if (option.DetailRows != null)
+                                        {
+                                            foreach (var row in option.DetailRows)
+                                            {
+                                                var label = row.Label != null ? Convert.ToString(row.Label) : string.Empty;
+                                                var value = row.Value != null ? Convert.ToString(row.Value) : string.Empty;
+                                                var highlightValue = row.HighlightValue != null ? Convert.ToBoolean(row.HighlightValue) : false;
+
+                                                if (!string.IsNullOrWhiteSpace(label) || !string.IsNullOrWhiteSpace(value))
+                                                {
+                                                    <p>
+                                                        @if (!string.IsNullOrWhiteSpace(label))
+                                                        {
+                                                            <strong>@Html.Raw(label):</strong>
+                                                        }
+
+                                                        @if (!string.IsNullOrWhiteSpace(value))
+                                                        {
+                                                            if (highlightValue)
+                                                            {
+                                                                <span class="oc-dpo-highlight">@Html.Raw(value)</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>@Html.Raw(value)</span>
+                                                            }
+                                                        }
+                                                    </p>
+                                                }
+                                            }
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(instructions))
+                                        {
+                                            <div class="oc-dpo-instructions">
+                                                @Html.Raw(instructions)
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(buttonText) && !string.IsNullOrWhiteSpace(buttonUrl))
+                                {
+                                    <div class="oc-dpo-action">
+                                        <a class="btn btn-primary" href="@buttonUrl">
+                                            @Html.Raw(buttonText)
+                                        </a>
+                                    </div>
+                                }
+                            </article>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(optionalNote))
+            {
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="oc-dpo-note" role="note">
+                            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                            <div>
+                                @Html.Raw(optionalNote)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

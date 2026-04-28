@@ -1,0 +1,197 @@
+.oc-donation-payment-options {
+    position: relative;
+    overflow: hidden;
+}
+
+.oc-donation-payment-options .container-xxl {
+    max-width: 1440px;
+}
+
+.oc-donation-payment-options .oc-dpo-heading {
+    margin: 0 0 1rem 0;
+    line-height: 1.15;
+}
+
+.oc-donation-payment-options .oc-dpo-description {
+    max-width: 760px;
+    margin: 0 auto 2.5rem auto;
+    font-size: 1.125rem;
+    line-height: 1.65;
+}
+
+.oc-donation-payment-options .oc-dpo-card {
+    background: #fff;
+    border: 1px solid rgba(75, 96, 67, 0.18);
+    border-radius: 1.5rem;
+    box-shadow: 0 1rem 2.5rem rgba(40, 52, 38, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.oc-donation-payment-options .oc-dpo-card:hover,
+.oc-donation-payment-options .oc-dpo-card:focus-within {
+    border-color: rgba(75, 96, 67, 0.34);
+    box-shadow: 0 1.25rem 3rem rgba(40, 52, 38, 0.12);
+    transform: translateY(-3px);
+}
+
+.oc-donation-payment-options .oc-dpo-card-header {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+}
+
+.oc-donation-payment-options .oc-dpo-icon-wrap {
+    align-items: center;
+    background: #e9eee8;
+    border-radius: 999px;
+    color: #4b6043;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 1.4rem;
+    height: 3.25rem;
+    justify-content: center;
+    width: 3.25rem;
+}
+
+.oc-donation-payment-options .oc-dpo-card-title {
+    margin: 0 0 0.25rem 0;
+    line-height: 1.2;
+}
+
+.oc-donation-payment-options .oc-dpo-card-subtitle {
+    color: rgba(33, 37, 41, 0.68);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.oc-donation-payment-options .oc-dpo-qr-wrap {
+    background: #f7f5f0;
+    border-radius: 1.25rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.oc-donation-payment-options .oc-dpo-qr {
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    border-radius: 0.75rem;
+    height: auto;
+    max-width: min(100%, 320px);
+    object-fit: contain;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.oc-donation-payment-options .oc-dpo-details {
+    color: rgba(33, 37, 41, 0.86);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.oc-donation-payment-options .oc-dpo-details p {
+    margin: 0 0 0.75rem 0;
+}
+
+.oc-donation-payment-options .oc-dpo-details p:last-child {
+    margin-bottom: 0;
+}
+
+.oc-donation-payment-options .oc-dpo-highlight {
+    background: rgba(167, 185, 160, 0.18);
+    border-radius: 0.5rem;
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-left: 0.25rem;
+    padding: 0.15rem 0.45rem;
+}
+
+.oc-donation-payment-options .oc-dpo-instructions {
+    color: rgba(33, 37, 41, 0.7);
+}
+
+.oc-donation-payment-options .oc-dpo-action {
+    margin-top: auto;
+}
+
+.oc-donation-payment-options .oc-dpo-note {
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.72);
+    border-left: 4px solid #a7b9a0;
+    border-radius: 1rem;
+    color: rgba(33, 37, 41, 0.78);
+    display: flex;
+    gap: 0.85rem;
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+}
+
+.oc-donation-payment-options .oc-dpo-note i {
+    color: #4b6043;
+    margin-top: 0.25rem;
+}
+
+/* Custom background colors */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+@media (max-width: 575.98px) {
+    .oc-donation-payment-options .oc-dpo-card {
+        border-radius: 1.15rem;
+    }
+
+    .oc-donation-payment-options .oc-dpo-card-header {
+        align-items: flex-start;
+    }
+
+    .oc-donation-payment-options .oc-dpo-qr {
+        max-width: 100%;
+    }
+
+    .oc-donation-payment-options .oc-dpo-note {
+        flex-direction: row;
+    }
+}
