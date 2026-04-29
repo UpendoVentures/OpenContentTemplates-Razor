@@ -1,6 +1,10 @@
 {
   "type": "object",
   "properties": {
+    "DetailMode": {
+      "type": "boolean",
+      "title": "Detail Mode"
+    },
     "BackgroundColorClass": {
       "type": "string",
       "title": "Background Color",
