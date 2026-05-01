@@ -3,6 +3,35 @@
 @using Upendo.SkinObjects.OpenContentHelper.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
+@functions {
+    public bool ShouldOpenLinkInNewTab(dynamic linkTarget)
+    {
+        if (linkTarget == null)
+        {
+            return false;
+        }
+
+        var value = Convert.ToString(linkTarget);
+
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        return value.Equals("NewTab", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("New Tab", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("_blank", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("blank", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public string GetLinkAttributes(dynamic linkTarget)
+    {
+        return ShouldOpenLinkInNewTab(linkTarget)
+            ? " target=\"_blank\" rel=\"noopener noreferrer\""
+            : string.Empty;
+    }
+}
+
 @{
     TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
     RegisterStyleSheet("template.css");
@@ -89,11 +118,12 @@
                         var image = card1.BackgroundImage != null ? Convert.ToString(card1.BackgroundImage) : string.Empty;
                         var icon = card1.FontAwesomeIcon != null ? Convert.ToString(card1.FontAwesomeIcon) : string.Empty;
                         var url = card1.Url != null ? Convert.ToString(card1.Url) : string.Empty;
+                        var linkAttributes = card1.LinkTarget != null ? GetLinkAttributes(card1.LinkTarget) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-1">
                             @if (!string.IsNullOrWhiteSpace(url))
                             {
-                                <a class="oc-blca-card-link" href="@url">
+                                <a class="oc-blca-card-link" href="@url"@Html.Raw(linkAttributes)>
                                     @if (!string.IsNullOrWhiteSpace(image))
                                     {
                                         <div class="oc-blca-bg" style="background-image:url('@image');"></div>
@@ -143,11 +173,12 @@
                         var image = card2.BackgroundImage != null ? Convert.ToString(card2.BackgroundImage) : string.Empty;
                         var icon = card2.FontAwesomeIcon != null ? Convert.ToString(card2.FontAwesomeIcon) : string.Empty;
                         var url = card2.Url != null ? Convert.ToString(card2.Url) : string.Empty;
+                        var linkAttributes = card2.LinkTarget != null ? GetLinkAttributes(card2.LinkTarget) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-2">
                             @if (!string.IsNullOrWhiteSpace(url))
                             {
-                                <a class="oc-blca-card-link" href="@url">
+                                <a class="oc-blca-card-link" href="@url"@Html.Raw(linkAttributes)>
                                     @if (!string.IsNullOrWhiteSpace(image))
                                     {
                                         <div class="oc-blca-bg" style="background-image:url('@image');"></div>
@@ -198,11 +229,12 @@
                         var description = card3.Description != null ? Convert.ToString(card3.Description) : string.Empty;
                         var icon = card3.FontAwesomeIcon != null ? Convert.ToString(card3.FontAwesomeIcon) : string.Empty;
                         var url = card3.Url != null ? Convert.ToString(card3.Url) : string.Empty;
+                        var linkAttributes = card3.LinkTarget != null ? GetLinkAttributes(card3.LinkTarget) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-3">
                             @if (!string.IsNullOrWhiteSpace(url))
                             {
-                                <a class="oc-blca-card-link" href="@url">
+                                <a class="oc-blca-card-link" href="@url"@Html.Raw(linkAttributes)>
                                     <div class="oc-blca-content oc-blca-content-between oc-blca-text-left">
                                         <div class="oc-blca-text-wrap">
                                             <h3 class="oc-blca-card-title oc-blca-card-title-dark text-notransform">@title</h3>
@@ -250,11 +282,12 @@
                         var image = card4.BackgroundImage != null ? Convert.ToString(card4.BackgroundImage) : string.Empty;
                         var icon = card4.FontAwesomeIcon != null ? Convert.ToString(card4.FontAwesomeIcon) : string.Empty;
                         var url = card4.Url != null ? Convert.ToString(card4.Url) : string.Empty;
+                        var linkAttributes = card4.LinkTarget != null ? GetLinkAttributes(card4.LinkTarget) : string.Empty;
 
                         <div class="oc-blca-card oc-blca-card-4">
                             @if (!string.IsNullOrWhiteSpace(url))
                             {
-                                <a class="oc-blca-card-link" href="@url">
+                                <a class="oc-blca-card-link" href="@url"@Html.Raw(linkAttributes)>
                                     @if (!string.IsNullOrWhiteSpace(image))
                                     {
                                         <div class="oc-blca-bg" style="background-image:url('@image');"></div>

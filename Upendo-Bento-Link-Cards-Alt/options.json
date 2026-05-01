@@ -37,10 +37,19 @@
             "type": "url",
             "helper": "Choose where this card should link."
           },
+          "LinkTarget": {
+            "type": "select",
+            "helper": "Choose whether this card link opens in the current browser tab or a new browser tab.",
+            "optionLabels": [
+              "Current Tab",
+              "New Tab"
+            ],
+            "removeDefaultNone": true
+          },
           "FontAwesomeIcon": {
             "type": "text",
             "placeholder": "fas fa-building",
-            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
           },
           "BackgroundImage": {
             "type": "image",
