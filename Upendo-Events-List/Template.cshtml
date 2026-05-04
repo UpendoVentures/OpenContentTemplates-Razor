@@ -1,5 +1,8 @@
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
 @using System
 @using System.Collections.Generic
+@using System.Linq
 @using System.Web
 @using Upendo.OpenContentHelper.Features.Events
 @using Upendo.OpenContentHelper.Features.Events.Helpers
@@ -43,6 +46,28 @@
     {
         portalId = Dnn.Portal.PortalId;
     }
+    else
+    {
+        portalId = PortalSettings.Current.PortalId;
+    }
+    var currentUser = UserController.Instance.GetCurrentUserInfo();
+    var publisherSetting = PortalController.GetPortalSetting("UV-Event-Publisher-Roles", portalId, "");
+    var publisherRoles = (publisherSetting ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToList();
+
+    var canManageAllEvents =
+        currentUser != null &&
+        (
+            currentUser.IsSuperUser ||
+            currentUser.Roles.Contains("Administrators") ||
+            currentUser.Roles.Contains("Site Admin") ||
+            currentUser.Roles.Contains("Upendo Client")
+        );
+
+    var canPublishOwnEvents =
+        currentUser != null &&
+        publisherRoles.Any(roleName => currentUser.Roles.Contains(roleName));
+
+    var canAddEvent = canManageAllEvents || canPublishOwnEvents;
 
     string listPagePath = EventConstants.EventListPageRoute;
     string detailPagePath = EventConstants.EventDetailPageRoute;
@@ -160,10 +185,19 @@
 }
 
 <main id="main-content" class="container my-4 my-lg-5 event-shell">
-    <header class="mb-4">
+    <div class="row mb-4">
         <h1 class="mb-2">@sectionHeading</h1>
         <p class="text-secondary mb-0">@resultsSummary</p>
-    </header>
+    </div>
+    @if (canAddEvent)
+    {
+        <div class="d-flex justify-content-end mb-3">
+            <a href="/manage/events/new" class="btn btn-primary">
+                <i class="fas fa-plus me-1" aria-hidden="true"></i>
+                Add Event
+            </a>
+        </div>
+    }
 
     @if (showTopCategories && vm != null && vm.ActiveCategories != null && vm.ActiveCategories.Count > 0)
     {

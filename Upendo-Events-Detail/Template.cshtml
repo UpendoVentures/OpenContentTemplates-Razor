@@ -1,6 +1,9 @@
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
 @using System
 @using System.Collections.Generic
 @using System.Globalization
+@using System.Linq
 @using System.Web
 @using Upendo.OpenContentHelper.Features.Events
 @using Upendo.OpenContentHelper.Features.Events.Helpers
@@ -55,6 +58,37 @@
     if (Dnn != null && Dnn.Portal != null)
     {
         portalId = Dnn.Portal.PortalId;
+    }
+    else
+    {
+        portalId = PortalSettings.Current.PortalId;
+    }
+    var currentUser = UserController.Instance.GetCurrentUserInfo();
+    var publisherSetting = PortalController.GetPortalSetting("UV-Event-Publisher-Roles", portalId, "");
+    var publisherRoles = (publisherSetting ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToList();
+
+    var canManageAllEvents =
+        currentUser != null &&
+        (
+            currentUser.IsSuperUser ||
+            currentUser.Roles.Contains("Administrators") ||
+            currentUser.Roles.Contains("Site Admin") ||
+            currentUser.Roles.Contains("Upendo Client")
+        );
+
+    var canPublishOwnEvents =
+        currentUser != null &&
+        publisherRoles.Any(roleName => currentUser.Roles.Contains(roleName));
+
+    var detailEventId = 0;
+
+    try
+    {
+        detailEventId = Convert.ToInt32(Model.Event.EventId);
+    }
+    catch
+    {
+        detailEventId = 0;
     }
 
     string listPagePath = EventConstants.EventListPageRoute;
@@ -312,11 +346,14 @@
 
                 <h1 class="display-5 fw-bold mb-3">@evt.Title</h1>
 
-                @if (showEdit){
-                    <a href="@EventUrlHelper.GetEditUrl(evt.EventId)" class="btn btn-outline-secondary btn-sm mb-3">
-                        <i class="fa-solid fa-pen-to-square me-1" aria-hidden="true"></i>
-                        Edit Event
-                    </a>
+                @if ((canManageAllEvents || canPublishOwnEvents) && detailEventId > 0)
+                {
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="/manage/events/edit/@detailEventId" class="btn btn-outline-primary">
+                            <i class="fas fa-edit me-1" aria-hidden="true"></i>
+                            Edit Event
+                        </a>
+                    </div>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(evt.ShortSummary))
