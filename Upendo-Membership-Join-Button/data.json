@@ -1,0 +1,7 @@
+{
+  "PlanSlug": "standard",
+  "ButtonText": "Join Now",
+  "ButtonClass": "btn btn-primary",
+  "SuccessUrl": "/membership/thank-you",
+  "CancelUrl": "/membership"
+}

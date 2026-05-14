@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "PlanSlug": {
+      "type": "string",
+      "title": "Plan Slug"
+    },
+    "ButtonText": {
+      "type": "string",
+      "title": "Button Text"
+    },
+    "ButtonClass": {
+      "type": "string",
+      "title": "Button CSS Class"
+    },
+    "SuccessUrl": {
+      "type": "string",
+      "title": "Success URL"
+    },
+    "CancelUrl": {
+      "type": "string",
+      "title": "Cancel URL"
+    }
+  }
+}
