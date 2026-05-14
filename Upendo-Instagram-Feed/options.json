@@ -1,0 +1,45 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "VideoList": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "textarea"
+          },
+          "AltText": {
+            "type": "text"
+          },
+          "VideoId": {
+            "type": "text",
+            "helper": "It's the value in the URL that looks funky, like https://www.youtube.com/watch?v=<code>KXC4fqcYMXA</code>"
+          },
+          "UploadDate": {
+            "type": "date",
+            "picker": {
+              "format": "YYYY-MM-DD"
+            }
+          },
+          "Duration": {
+            "type": "text",
+            "placeholder": "01:23"
+          },
+          "IsShort": {
+            "type": "checkbox",
+            "helper": "If it's a short, then it's basically a vertical TikTok or Instagram reel."
+          }
+        }
+      }
+    }
+  }
+}

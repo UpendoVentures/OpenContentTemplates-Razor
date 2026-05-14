@@ -1,0 +1,236 @@
+@using DotNetNuke.Entities.Modules 
+
+@{
+    RegisterScript("https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js");
+    RegisterStyleSheet("https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css");
+
+    // Update or create the "hideadminborder" setting with the value "True"
+    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
+    if (currentModule != null && currentModule.TabModuleID > 0)
+    {
+        // Check if the "hideadminborder" setting is not set or is not "True"
+        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
+        ? currentModule.TabModuleSettings["hideadminborder"]
+        : null;
+
+        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+        {
+            // Update or create the "hideadminborder" setting with the value "True"
+            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+<div class="container">
+    <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
+
+        @if(Model.VideoList != null)
+        {
+        <div id="shortsCarousel" class="carousel slide overflow-hidden mb-5" data-bs-ride="carousel">
+            @{
+                var videoList = ((IEnumerable<dynamic>)Model.VideoList).ToList();
+                var firstShort = videoList.FirstOrDefault(v => ConvertToBool(v.IsShort));
+            }
+            <div class="mb-2">
+                <h2 class="h5 mb-3 text-center">
+                    <i class="fas fa-bolt me-2 text-primary" aria-hidden="true"></i> Watch Our Shorts
+                </h2>
+                <div class="d-flex justify-content-center">
+                  <div class="w-100" style="max-width: 420px;">
+                      <div class="glider-contain">
+                          <div class="glider d-flex" id="glider-shorts">
+                              @foreach (var video in videoList.Where(v => ConvertToBool(v.IsShort)))
+                              {
+                                  <div class="card shadow-sm me-3 flex-shrink-0" style="min-width: 140px; max-width: 180px;" role="group" aria-label="@video.Title">
+                                      <button class="btn p-0 border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#modal-@video.VideoId" aria-label="Play @video.Title">
+                                          <img src="@("https://img.youtube.com/vi/" + video.VideoId + "/hqdefault.jpg")" alt="@video.AltText" class="img-fluid rounded" />
+                                      </button>
+                                  </div>
+                              }
+                          </div>
+                          <button type="button" class="btn btn-light btn-sm border me-2 glider-prev glider-prev-shorts" aria-label="Scroll left">
+                              <i class="fas fa-chevron-left"></i>
+                          </button>
+                          <button type="button" class="btn btn-light btn-sm border glider-next glider-next-shorts" aria-label="Scroll right">
+                              <i class="fas fa-chevron-right"></i>
+                          </button>
+
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mainVideosCarousel" class="mb-5">
+            <h2 class="h5 mb-3 text-center">
+                <i class="fas fa-video me-2 text-primary" aria-hidden="true"></i> Watch Our Videos
+            </h2>
+            <div class="d-flex justify-content-center">
+                <div class="w-100" style="max-width: 720px;">
+                  <div class="glider-contain">
+                      <div class="glider d-flex" id="glider-main">
+                          @foreach (var video in videoList.Where(v => !ConvertToBool(v.IsShort)))
+                          {
+                              <div class="card shadow-sm me-3 flex-shrink-0" style="min-width: 260px; max-width: 300px;" role="group" aria-label="@video.Title">
+                                  <div class="card-body">
+                                      <button class="btn p-0 border-0 bg-transparent w-100 text-start" data-bs-toggle="modal" data-bs-target="#modal-@video.VideoId" aria-label="Play @video.Title">
+                                        <img src="@("https://img.youtube.com/vi/" + video.VideoId + "/hqdefault.jpg")" class="card-img-top" alt="@video.AltText" />
+                                        <h5 class="card-title visually-hidden" id="label-@video.VideoId">@video.Title</h5>
+                                      </button>
+                                  </div>
+                              </div>
+                          }
+                      </div>
+                      <button type="button" class="btn btn-light btn-sm border me-2 glider-prev glider-prev-main" aria-label="Scroll left">
+                          <i class="fas fa-chevron-left"></i>
+                      </button>
+                      <button type="button" class="btn btn-light btn-sm border glider-next glider-next-main" aria-label="Scroll right">
+                          <i class="fas fa-chevron-right"></i>
+                      </button>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+            <p class="lead">No videos found.</p>
+        }
+
+    </div>
+</div>
+@if(Model.VideoList != null)
+{
+    foreach (var video in Model.VideoList) {
+        <div class="modal fade" id="modal-@video.VideoId" tabindex="-1" aria-labelledby="label-@video.VideoId" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                src="@("https://www.youtube.com/embed/" + video.VideoId + "?autoplay=1")"
+                                title="@video.Title"
+                                loading="lazy"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                                class="border-0 rounded"
+                                aria-label="Watch @video.Title on YouTube"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="application/ld+json">
+            {
+                "@@context": "https://schema.org",
+                "@@type": "VideoObject",
+                "name": "@video.Title",
+                "description": "@video.Description",
+                "thumbnailUrl": "@("https://img.youtube.com/vi/" + video.VideoId + "/hqdefault.jpg")",
+                "uploadDate": "@(Convert.ToDateTime(video.UploadDate).ToString("yyyy-MM-dd"))",
+                "duration": "@ToIso8601Duration(video.Duration)",
+                "contentUrl": "@("https://www.youtube.com/watch?v=" + video.VideoId)",
+                "embedUrl": "@("https://www.youtube.com/embed/" + video.VideoId)",
+                "publisher": {
+                    "@@type": "Organization",
+                    "name": "Upendo Ventures",
+                    "logo": {
+                    "@@type": "ImageObject",
+                    "url": "https://upendoventures.com/Portals/0/Logos/Upendo-Ventures-vertical-160x160.png"
+                    }
+                }
+            }
+        </script>
+    }
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () 
+      {
+
+        setTimeout(() => {
+          new Glider(document.querySelector('#glider-shorts'), 
+          {
+            slidesToShow: 2.5,
+            slidesToScroll: 1,
+            draggable: true,
+            dots: false,
+            arrows: { prev: '.glider-prev-shorts', next: '.glider-next-shorts' },
+            responsive: [
+              { breakpoint: 768, settings: { slidesToShow: 3.5 } },
+              { breakpoint: 1024, settings: { slidesToShow: 4.5 } }
+            ]
+          });
+        }, 100);
+
+        setTimeout(() => {
+          new Glider(document.querySelector('#glider-main'), 
+          {
+            slidesToShow: 1.5,
+            slidesToScroll: 1,
+            draggable: true,
+            arrows: { prev: '.glider-prev-main', next: '.glider-next-main' },
+            responsive: [
+              { breakpoint: 768, settings: { slidesToShow: 2.5 } },
+              { breakpoint: 1024, settings: { slidesToShow: 3.5 } },
+              { breakpoint: 1400, settings: { slidesToShow: 4.5 } }
+            ]
+          });
+        }, 100);
+
+          // Stop YouTube playback when modals close
+          const modals = document.querySelectorAll('.modal');
+
+          modals.forEach(modal => {
+              modal.addEventListener('hidden.bs.modal', function () {
+                  const iframe = modal.querySelector('iframe');
+                  if (iframe) {
+                      const src = iframe.src;
+                      iframe.src = '';
+                      iframe.src = src; // reloads it to initial state
+                  }
+              });
+          });
+
+      });
+    </script>
+}
+
+@functions {
+    public string ToIso8601Duration(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return null;
+
+        int minutes = 0;
+        int seconds = 0;
+
+        if (input.Contains(":"))
+        {
+            var parts = input.Split(':');
+            int.TryParse(parts[0], out minutes);
+            int.TryParse(parts[1], out seconds);
+        }
+        else
+        {
+            int.TryParse(input, out seconds);
+        }
+
+        if (minutes > 0 && seconds > 0)
+            return string.Format("PT{0}M{1}S", minutes, seconds);
+        else if (minutes > 0)
+            return string.Format("PT{0}M", minutes);
+        else
+            return string.Format("PT{0}S", seconds);
+    }
+
+    public bool ConvertToBool(dynamic value)
+    {
+      return value != null && value.ToString().ToLower() == "true";
+    }
+}
