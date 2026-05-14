@@ -80,17 +80,6 @@
         currentUser != null &&
         publisherRoles.Any(roleName => currentUser.Roles.Contains(roleName));
 
-    var detailEventId = 0;
-
-    try
-    {
-        detailEventId = Convert.ToInt32(Model.Event.EventId);
-    }
-    catch
-    {
-        detailEventId = 0;
-    }
-
     string listPagePath = EventConstants.EventListPageRoute;
     string detailPagePath = EventConstants.EventDetailPageRoute;
     int relatedEventCount = 3;
@@ -219,9 +208,29 @@
 @{
     EventDetailDto evt = vm.Event;
 
+    int detailEventId = 0;
+    if (evt != null)
+    {
+        try
+        {
+            detailEventId = Convert.ToInt32(evt.EventId);
+        }
+        catch
+        {
+            detailEventId = 0;
+        }
+    }
+
+    bool canShowEditButton = detailEventId > 0
+        && (
+            showEdit
+            || canManageAllEvents
+            || canPublishOwnEvents
+        );
+
     string relativeDate = EventFormattingHelper.GetDisplayDate(evt);
-    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(evt.StartDateTimeUtc);
-    string shortDisplayDate = EventFormattingHelper.GetShortDisplayDate(evt.StartDateTimeUtc);
+    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(evt);
+    string shortDisplayDate = EventFormattingHelper.GetShortDisplayDate(evt);
     string displayTime = EventFormattingHelper.GetDisplayTime(evt);
     string displayPrice = EventFormattingHelper.GetDisplayPrice(evt);
 
@@ -346,10 +355,10 @@
 
                 <h1 class="display-5 fw-bold mb-3">@evt.Title</h1>
 
-                @if ((canManageAllEvents || canPublishOwnEvents) && detailEventId > 0)
+                @if (canShowEditButton)
                 {
                     <div class="d-flex justify-content-end mb-3">
-                        <a href="/manage/events/edit/@detailEventId" class="btn btn-outline-primary">
+                        <a href="@EventUrlHelper.GetEditUrl(detailEventId)" class="btn btn-outline-primary">
                             <i class="fas fa-edit me-1" aria-hidden="true"></i>
                             Edit Event
                         </a>
@@ -570,7 +579,7 @@
                                             </h3>
 
                                             @{
-                                                string relAbsoluteDate = EventFormattingHelper.GetShortDisplayDate(rel.StartDateTimeUtc);
+                                                string relAbsoluteDate = EventFormattingHelper.GetShortDisplayDate(rel);
                                                 string relRelativeDate = EventFormattingHelper.GetDisplayDate(rel);
                                             }
                                             <div class="small text-secondary">

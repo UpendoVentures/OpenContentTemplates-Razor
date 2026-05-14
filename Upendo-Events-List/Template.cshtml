@@ -1,6 +1,7 @@
 @using DotNetNuke.Entities.Portals
 @using DotNetNuke.Entities.Users
 @using System
+@using System.Globalization
 @using System.Collections.Generic
 @using System.Linq
 @using System.Web
@@ -247,9 +248,11 @@
                 foreach (var item in items)
                 {
                     var detailUrl = EventUrlHelper.GetDetailUrl(item, vm.DetailPagePath);
+                    DateTime localStartDateTime = EventFormattingHelper.GetEventLocalDateTime(item);
+
                     string relativeDate = EventFormattingHelper.GetDisplayDate(item);
-                    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(item.StartDateTimeUtc);
-                    string shortAccessibleDate = EventFormattingHelper.GetShortAccessibleDisplayDate(item.StartDateTimeUtc);
+                    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(item);
+                    string shortAccessibleDate = EventFormattingHelper.GetShortAccessibleDisplayDate(item);
                     string displayTime = EventFormattingHelper.GetDisplayTime(item);
 
                     string imageUrl = !string.IsNullOrEmpty(item.ListImageUrl)
@@ -259,9 +262,9 @@
                     string locationText = EventFormattingHelper.GetLocationText(item);
                     string imageAltText = EventFormattingHelper.GetImageAltText(item);
 
-                    string monthText = item.StartDateTimeUtc.ToString("MMM");
+                    string monthText = localStartDateTime.ToString("MMM", CultureInfo.InvariantCulture);
 
-                    string dayText = item.StartDateTimeUtc.ToString("dd");
+                    string dayText = localStartDateTime.ToString("dd", CultureInfo.InvariantCulture);
 
                     <article class="event-card mb-4">
                         <div class="row g-0 h-100">
