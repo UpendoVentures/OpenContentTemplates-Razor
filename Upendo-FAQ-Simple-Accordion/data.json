@@ -1,0 +1,25 @@
+{
+    "ModuleTitle": "Forest Therapy FAQ",
+    "ModuleAnchor": "",
+    "SectionHeading": "Common Inquiries",
+    "IntroText": "",
+    "FAQs": [
+        {
+            "Question": "What do I bring for a forest session?",
+            "Answer": "<p>Comfort is essential for sensory immersion. We recommend layered clothing suitable for the weather, sturdy closed-toe walking shoes, and a water bottle. We provide sitting mats and all ceremonial tea supplies.</p>"
+        },
+        {
+            "Question": "Is it like hiking?",
+            "Answer": "<p>While we move through the forest, the focus is not on physical exertion or distance. Unlike hiking, which often has a destination, forest therapy is about \"being\" rather than \"doing.\" We may only cover half a mile over two hours.</p>"
+        },
+        {
+            "Question": "Can I bring my phone?",
+            "Answer": "<p>To achieve deep somatic presence, we ask that all mobile devices be turned off or placed on silent and stored in your bag for the duration of the practice.</p>"
+        },
+        {
+            "Question": "Do we go out in the rain?",
+            "Answer": "<p>Yes. Rain offers a unique sensory experience, including the sound of droplets and the intensified scent of the earth. We only cancel in the event of dangerous lightning or high winds.</p>"
+        }
+    ],
+    "FooterMessage": "Still have questions? Reach out and we will be happy to help."
+}

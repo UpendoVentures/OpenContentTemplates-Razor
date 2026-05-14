@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "VideoList": {
+      "type": "array",
+      "title": "Video List",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description",
+            "required": true
+          },
+          "AltText": {
+            "type": "string",
+            "title": "Alternate Text",
+            "required": true
+          },
+          "VideoId": {
+            "type": "string",
+            "title": "Video ID",
+            "required": true
+          },
+          "UploadDate": {
+            "title": "Upload Date",
+            "required": true
+          },
+          "Duration": {
+            "type": "string",
+            "title": "Duration"
+          },
+          "IsShort": {
+            "type": "boolean",
+            "title": "Is a Short?"
+          }
+        }
+      }
+    }
+  }
+}

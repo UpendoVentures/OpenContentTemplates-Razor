@@ -1,23 +1,97 @@
+@using System
+@using System.Linq
+@using System.Globalization
 @using DotNetNuke.Entities.Users
 @using DotNetNuke.Entities.Controllers
 @using DotNetNuke.Common
 @using DotNetNuke.Entities.Modules
-@{
-    // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        // Check if the "hideadminborder" setting is not set or is not "True"
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
+@functions {
+    public static DateTime GetUpdateDate(dynamic item)
+    {
+        if (item == null)
         {
-            // Update or create the "hideadminborder" setting with the value "True"
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
+            return DateTime.MinValue;
         }
+
+        object rawValue = null;
+
+        try
+        {
+            rawValue = item.UpdateDate;
+        }
+        catch
+        {
+            return DateTime.MinValue;
+        }
+
+        if (rawValue == null)
+        {
+            return DateTime.MinValue;
+        }
+
+        if (rawValue is DateTime)
+        {
+            return (DateTime)rawValue;
+        }
+
+        string value = Convert.ToString(rawValue, CultureInfo.InvariantCulture);
+
+        if (String.IsNullOrWhiteSpace(value))
+        {
+            return DateTime.MinValue;
+        }
+
+        DateTime parsedDate;
+
+        string[] supportedFormats = new string[]
+        {
+            "yyyy-MM-ddTHH:mm:ss",
+            "yyyy-MM-ddTHH:mm:ss.fff",
+            "yyyy-MM-dd HH:mm:ss",
+            "MM/dd/yyyy h:mm tt",
+            "M/d/yyyy h:mm tt",
+            "MM/dd/yyyy hh:mm tt",
+            "M/d/yyyy hh:mm tt",
+            "MM/dd/yyyy",
+            "M/d/yyyy"
+        };
+
+        if (DateTime.TryParseExact(
+            value,
+            supportedFormats,
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.AssumeLocal,
+            out parsedDate))
+        {
+            return parsedDate;
+        }
+
+        if (DateTime.TryParse(
+            value,
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.AssumeLocal,
+            out parsedDate))
+        {
+            return parsedDate;
+        }
+
+        if (DateTime.TryParse(
+            value,
+            CultureInfo.CurrentCulture,
+            DateTimeStyles.AssumeLocal,
+            out parsedDate))
+        {
+            return parsedDate;
+        }
+
+        return DateTime.MinValue;
     }
+}
+
+@{
+  TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
 
     var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
     var supportEmail = (string.IsNullOrEmpty(supportEmailRaw) ? string.Empty : supportEmailRaw);
@@ -30,15 +104,23 @@
 
     RegisterStyleSheet("Template.css");
 
-    var needsList = (Model.UpendoNeeds as IEnumerable<dynamic>)
-        .OrderByDescending(n => n.UpdateDate)
-        .Take(10)
-        .ToList();
+    var rawNeedsList = Model.UpendoNeeds as IEnumerable<dynamic>;
+    var needsList = rawNeedsList == null
+        ? Enumerable.Empty<dynamic>().ToList()
+        : rawNeedsList
+            .OrderByDescending(n => GetUpdateDate(n))
+            .ThenBy(n => Convert.ToString(n.Title))
+            .Take(10)
+            .ToList();
 
-    var updatesList = (Model.SystemUpdates as IEnumerable<dynamic>)
-        .OrderByDescending(n => n.UpdateDate)
-        .Take(10)
-        .ToList();
+    var rawUpdatesList = Model.SystemUpdates as IEnumerable<dynamic>;
+    var updatesList = rawUpdatesList == null
+        ? Enumerable.Empty<dynamic>().ToList()
+        : rawUpdatesList
+            .OrderByDescending(n => GetUpdateDate(n))
+            .ThenBy(n => Convert.ToString(n.Title))
+            .Take(10)
+            .ToList();
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
@@ -65,8 +147,7 @@
             foreach (var item in needsList)
             {
               var uid = "need-" + Guid.NewGuid().ToString("N");
-              DateTime updateDate = DateTime.MinValue;
-              DateTime.TryParse(item.UpdateDate as string, out updateDate);
+              DateTime updateDate = GetUpdateDate(item);
               <div class="accordion-item border-0">
                 <h3 class="accordion-header" id="@uid-Heading">
                   <button class="accordion-button collapsed d-flex align-items-start py-3 px-4 track-client"
@@ -88,7 +169,7 @@
                       {
                         <p class="text-muted mb-1 small">@item.Summary</p>
                       }
-                      @if (updateDate != null)
+                      @if (updateDate > DateTime.MinValue)
                       {
                         <div class="timestamp">Requested: @updateDate.ToString("MMM dd, yyyy • h:mm tt")</div>
                       }
@@ -100,7 +181,7 @@
                     @Html.Raw(item.Details)                    
                     <hr class="short" />
                     <div class="d-flex justify-content-between align-items-center">
-                      @if (updateDate != null)
+                      @if (updateDate > DateTime.MinValue)
                       {
                         <div class="timestamp">Requested: @updateDate.ToString("MMM dd, yyyy • h:mm tt")</div>
                       }
@@ -140,8 +221,7 @@
             foreach (var item in updatesList)
             {
               var uid = "update-" + Guid.NewGuid().ToString("N");
-              DateTime updateDate = DateTime.MinValue;
-              DateTime.TryParse(item.UpdateDate as string, out updateDate);
+              DateTime updateDate = GetUpdateDate(item);
               <div class="accordion-item border-0">
                 <h3 class="accordion-header" id="@uid-Heading">
                   <button class="accordion-button collapsed d-flex align-items-start py-3 px-4"
@@ -163,7 +243,7 @@
                       {
                         <p class="text-muted mb-1 small">@item.Summary</p>
                       }
-                      @if (updateDate != null)
+                      @if (updateDate > DateTime.MinValue)
                       {
                         <div class="timestamp">Updated: @updateDate.ToString("MMM dd, yyyy • HH:mm tt")</div>
                       }
@@ -175,7 +255,7 @@
                     @Html.Raw(item.Details)
                     <hr class="short" />
                     <div class="d-flex justify-content-between align-items-center">
-                      @if (updateDate != null)
+                      @if (updateDate > DateTime.MinValue)
                       {
                         <div class="timestamp">Updated: @updateDate.ToString("MMM dd, yyyy HH:mm tt")</div>
                       }

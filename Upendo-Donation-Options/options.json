@@ -1,0 +1,99 @@
+{
+    "fields": {
+      "ModuleTitle": {
+        "type": "text",
+        "helper": "Administrator-facing title for the module. This helps OpenContent sync with DNN module settings.",
+        "placeholder": "Donation Payment Options"
+      },
+      "ModuleAnchor": {
+        "type": "text",
+        "helper": "Optional. Used for #anchor links on the page. Use only letters, numbers, and hyphens.",
+        "placeholder": "donation-options",
+        "showMessages": false
+      },
+      "SectionTitle": {
+        "type": "text",
+        "helper": "Optional. Main heading shown above the payment options.",
+        "placeholder": "Choose a Donation Method"
+      },
+      "SectionDescription": {
+        "type": "textarea",
+        "helper": "Optional. Short supporting text shown below the heading.",
+        "placeholder": "Thank you for supporting this work. Choose the method that works best for you."
+      },
+      "PaymentOptions": {
+        "type": "array",
+        "helper": "Add one card for each payment method you want to display.",
+        "items": {
+          "fields": {
+            "MethodName": {
+              "type": "text",
+              "helper": "The payment method name shown as the card heading.",
+              "placeholder": "Venmo"
+            },
+            "IconClass": {
+              "type": "text",
+              "helper": "Optional FontAwesome Free icon class.",
+              "placeholder": "fa-brands fa-venmo"
+            },
+            "Subtitle": {
+              "type": "text",
+              "helper": "Short line shown below the payment method name.",
+              "placeholder": "Best for fast mobile donations"
+            },
+            "QrImage": {
+              "type": "image",
+              "helper": "Upload or choose the QR code image for this payment method."
+            },
+            "QrAltText": {
+              "type": "text",
+              "helper": "Describe the QR code for screen readers.",
+              "placeholder": "QR code for this payment method"
+            },
+            "DetailRows": {
+              "type": "array",
+              "helper": "Add visible payment details such as name, phone, handle, account label, or other instructions.",
+              "items": {
+                "fields": {
+                  "Label": {
+                    "type": "text",
+                    "helper": "Short label shown before the value.",
+                    "placeholder": "Payment Handle"
+                  },
+                  "Value": {
+                    "type": "text",
+                    "helper": "The detail value shown to visitors.",
+                    "placeholder": "@example-handle"
+                  },
+                  "HighlightValue": {
+                    "type": "checkbox",
+                    "helper": "Check this to visually emphasize this value."
+                  }
+                }
+              }
+            },
+            "Instructions": {
+              "type": "textarea",
+              "helper": "Optional short instructions shown at the bottom of the card.",
+              "placeholder": "Open the app, scan the QR code, or search using the details shown here."
+            },
+            "ButtonText": {
+              "type": "text",
+              "helper": "Optional button text. Leave blank if this payment method does not have a link.",
+              "placeholder": "Open Payment Link"
+            },
+            "ButtonUrl": {
+              "type": "url",
+              "helper": "Optional button URL. Leave blank if this payment method does not have a link.",
+              "placeholder": "https://example.com/payment-link"
+            }
+          }
+        }
+      },
+      "OptionalNote": {
+        "type": "textarea",
+        "helper": "Optional note shown below all payment cards.",
+        "placeholder": "Add a short note about donations, sponsorships, or tax-deductibility here."
+      }
+    }
+  }

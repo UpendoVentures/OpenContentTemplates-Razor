@@ -21,13 +21,13 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "CardIcon": {
-                        "type": "string",
-                        "title": "Card Icon"
-                    },
                     "CardTitle": {
                         "type": "string",
                         "title": "Card Title"
+                    },
+                    "CardIcon": {
+                        "type": "string",
+                        "title": "Card Icon"
                     },
                     "CardDescription": {
                         "type": "string",

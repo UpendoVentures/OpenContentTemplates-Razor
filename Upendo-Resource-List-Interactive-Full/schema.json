@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "Resources": {
+      "type": "array",
+      "title": "Resources",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "Category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "ResourceType": {
+            "type": "string",
+            "title": "Resource Type"
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "FontAwesome Icon Class"
+          }
+        },
+        "required": [
+          "Title",
+          "Url"
+        ]
+      }
+    }
+  }
+}

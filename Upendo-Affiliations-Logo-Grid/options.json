@@ -1,0 +1,58 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent to sync with DNN module settings. This does not display to site visitors.",
+      "placeholder": "Logo Strip"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Use only letters, numbers, and hyphens if you want to link directly to this section from elsewhere on the page.",
+      "placeholder": "logo-strip"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the logo grid.",
+      "placeholder": "Trusted By Organizations and Partners"
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short supporting text shown under the heading.",
+      "placeholder": "Use this area to briefly explain who these logos represent."
+    },
+    "Logos": {
+      "type": "accordion",
+      "helper": "Required. Add one logo per item. This template displays up to 4 per row on desktop, 3 on tablet, and 2 on mobile.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Used for the image alt text, aria-label, and title attributes.",
+            "placeholder": "Association of Nature and Forest Therapy"
+          },
+          "Logo": {
+            "type": "image",
+            "helper": "Required. Upload a clean logo image with generous whitespace when possible for the best display.",
+            "uploadfolder": "Content/About",
+            "typeahead": {
+              "Folder": "Content/Value-Props"
+            }
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. Use a local or external URL if this logo should be clickable.",
+            "placeholder": "https://example.com"
+          },
+          "LinkTarget": {
+            "type": "select",
+            "helper": "Optional. Choose whether the logo link opens in the current tab or a new tab.",
+            "optionLabels": [
+              "Current Tab",
+              "New Tab"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

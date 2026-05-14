@@ -14,6 +14,10 @@
       "type": "string",
       "title": "Section Heading"
     },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
     "LinkCards": {
       "type": "array",
       "title": "Link Cards",
@@ -29,8 +33,17 @@
             "title": "Description"
           },
           "Url": {
-            "type": "object",
+            "type": "string",
             "title": "URL"
+          },
+          "LinkTarget": {
+            "type": "string",
+            "title": "Link Target",
+            "default": "CurrentTab",
+            "enum": [
+              "CurrentTab",
+              "NewTab"
+            ]
           },
           "FontAwesomeIcon": {
             "type": "string",

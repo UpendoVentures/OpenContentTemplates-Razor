@@ -1,0 +1,73 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
+            "placeholder": "Recommended Products"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used for #anchor-links on the page. Use letters, numbers, and hyphens only.",
+            "placeholder": "recommended-products",
+            "showMessages": false
+        },
+        "SectionHeading": {
+            "type": "text",
+            "helper": "Optional. Main heading shown above the product list.",
+            "placeholder": "Recommended Products"
+        },
+        "SectionIntro": {
+            "type": "textarea",
+            "helper": "Optional. Short supporting copy shown below the heading.",
+            "placeholder": "These are the tools and resources used alongside this content."
+        },
+        "Products": {
+            "type": "accordion",
+            "titleField": "ProductName",
+            "helper": "Add one or more products. Products are grouped automatically by Category in the view.",
+            "items": {
+                "fields": {
+                    "ProductName": {
+                        "type": "text",
+                        "helper": "Required. Public-facing product name.",
+                        "placeholder": "Acupressure Mat Set"
+                    },
+                    "ProductImages": {
+                        "type": "array",
+                        "helper": "Required. Add one or more product images. Files should live in /Portals/#/Content/Store/Products/.",
+                        "items": {
+                            "type": "image",
+                            "uploadfolder": "Content/Store/Products/",
+                            "typeahead": {
+                                "Folder": "Content/Store/Products/"
+                            },
+                            "helper": "Recommended: clean product images at 1200px wide or larger."
+                        }
+                    },
+                    "BuyLink": {
+                        "type": "url",
+                        "helper": "Required. Paste the Amazon product URL. Add your affiliate parameters directly to the link if needed."
+                    },
+                    "ProductDescription": {
+                        "type": "textarea",
+                        "helper": "Required. Keep this short and useful. Aim for 1 to 3 short paragraphs or a concise summary.",
+                        "placeholder": "A supportive tool for guided self-release work and follow-along practice."
+                    },
+                    "Category": {
+                        "type": "text",
+                        "helper": "Required. Portal-specific category used to group products on the page.",
+                        "placeholder": "Self-Release Tools"
+                    },
+                    "Tags": {
+                        "type": "array",
+                        "helper": "Optional. Add short tags to help visitors scan the product quickly.",
+                        "items": {
+                            "type": "text",
+                            "placeholder": "Beginner Friendly"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

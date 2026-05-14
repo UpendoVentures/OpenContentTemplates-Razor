@@ -1,0 +1,70 @@
+.oc-logo-strip {
+    overflow: hidden;
+}
+
+.oc-logo-strip__intro {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-logo-strip__lead {
+    margin-bottom: 0;
+}
+
+.oc-logo-strip__item {
+    height: 100%;
+}
+
+.oc-logo-strip__link,
+.oc-logo-strip__static {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.oc-logo-strip__link:hover,
+.oc-logo-strip__link:focus,
+.oc-logo-strip__link:focus-visible,
+.oc-logo-strip__static:hover,
+.oc-logo-strip__item:focus-within .oc-logo-strip__link {
+    text-decoration: none;
+}
+
+.oc-logo-strip__image {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    max-height: 100px;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) saturate(0%);
+    opacity: 0.85;
+    transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.oc-logo-strip__item:hover .oc-logo-strip__image,
+.oc-logo-strip__item:focus-within .oc-logo-strip__image {
+    filter: grayscale(0%) saturate(100%);
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 767.98px) {
+    .oc-logo-strip__link,
+    .oc-logo-strip__static {
+        min-height: 120px;
+        padding: 1.25rem;
+    }
+
+    .oc-logo-strip__image {
+        max-width: 180px;
+        max-height: 80px;
+    }
+}

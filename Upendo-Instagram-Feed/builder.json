@@ -1,0 +1,120 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "VideoList",
+      "title": "Video List",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Description",
+          "title": "Description",
+          "fieldtype": "textarea",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "AltText",
+          "title": "Alternate Text",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "VideoId",
+          "title": "Video ID",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "helper": "It's the value in the URL that looks funky, like https://www.youtube.com/watch?v=<code>KXC4fqcYMXA</code>",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "UploadDate",
+          "title": "Upload Date",
+          "fieldtype": "date",
+          "dateoptions": {
+            "format": "YYYY-MM-DD"
+          },
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Duration",
+          "title": "Duration",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "placeholder": "01:23",
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "IsShort",
+          "title": "Is a Short?",
+          "fieldtype": "checkbox",
+          "advanced": true,
+          "required": false,
+          "hidden": false,
+          "helper": "If it's a short, then it's basically a vertical TikTok or Instagram reel.",
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        }
+      ],
+      "advanced": false
+    }
+  ],
+  "formtype": "object"
+}

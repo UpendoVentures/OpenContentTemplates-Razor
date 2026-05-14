@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    }
+  }
+}

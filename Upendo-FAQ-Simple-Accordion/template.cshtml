@@ -1,0 +1,257 @@
+@using System
+@using System.Collections.Generic
+@using Newtonsoft.Json
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var footerMessage = Model.FooterMessage != null ? Convert.ToString(Model.FooterMessage) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : "bg-body";
+
+    var itemBackgroundColorClass = Model.Settings != null && Model.Settings.ItemBackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.ItemBackgroundColorClass)
+        : "bg-white";
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger",
+        "bg-forest-green"
+    };
+
+    var isDarkSectionBackground = false;
+    var isDarkItemBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(backgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkSectionBackground = true;
+                break;
+            }
+        }
+    }
+
+    if (!string.IsNullOrWhiteSpace(itemBackgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(itemBackgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkItemBackground = true;
+                break;
+            }
+        }
+    }
+
+    var sectionClasses = "oc-faq-section w-100";
+    sectionClasses += " " + (isDarkSectionBackground ? "oc-faq-section--dark" : "oc-faq-section--light");
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+
+    var itemClasses = "accordion-item oc-faq-item border-0";
+    itemClasses += " " + (isDarkItemBackground ? "oc-faq-item--dark" : "oc-faq-item--light");
+
+    if (!string.IsNullOrWhiteSpace(itemBackgroundColorClass))
+    {
+        itemClasses += " " + itemBackgroundColorClass;
+    }
+
+    var faqs = new List<dynamic>();
+    if (Model.FAQs != null)
+    {
+        foreach (var faq in Model.FAQs)
+        {
+            faqs.Add(faq);
+        }
+    }
+
+    var accordionId = "oc-faq-accordion-" + Model.Context.ModuleId;
+
+    var faqEntities = new List<object>();
+
+    foreach (var faq in faqs)
+    {
+        var question = faq.Question != null ? Convert.ToString(faq.Question) : string.Empty;
+        var answer = faq.Answer != null ? Convert.ToString(faq.Answer) : string.Empty;
+
+        if (!string.IsNullOrWhiteSpace(question) && !string.IsNullOrWhiteSpace(answer))
+        {
+            faqEntities.Add(new
+            {
+                @type = "Question",
+                name = question,
+                acceptedAnswer = new
+                {
+                    @type = "Answer",
+                    text = answer
+                }
+            });
+        }
+    }
+
+    var faqJsonLd = faqEntities.Count > 0
+        ? JsonConvert.SerializeObject(new
+        {
+            @context = "https://schema.org",
+            @type = "FAQPage",
+            mainEntity = faqEntities
+        }, Formatting.None)
+        : string.Empty;
+
+    var hasIntro = !string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(introText);
+    var hasFooterMessage = !string.IsNullOrWhiteSpace(footerMessage);
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClasses" aria-label="@(!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Frequently asked questions")">
+    <div class="container-fluid px-0">
+        <div class="container-xxl">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-10">
+                    @if (hasIntro)
+                    {
+                        <div class="oc-faq-intro mb-4 mb-lg-5">
+                            @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                            {
+                                <h2 class="oc-faq-section-heading mb-3">@Html.Raw(sectionHeading)</h2>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(introText))
+                            {
+                                <div class="oc-faq-intro-text">@Html.Raw(introText)</div>
+                            }
+                        </div>
+                    }
+
+                    @if (faqs.Count > 0)
+                    {
+                        <div class="accordion oc-faq-accordion" id="@accordionId">
+                            @{
+                                var index = 0;
+                            }
+                            @foreach (var faq in faqs)
+                            {
+                                var question = faq.Question != null ? Convert.ToString(faq.Question) : string.Empty;
+                                var answer = faq.Answer != null ? Convert.ToString(faq.Answer) : string.Empty;
+
+                                if (!string.IsNullOrWhiteSpace(question) && !string.IsNullOrWhiteSpace(answer))
+                                {
+                                    var headingId = "oc-faq-heading-" + Model.Context.ModuleId + "-" + index;
+                                    var collapseId = "oc-faq-collapse-" + Model.Context.ModuleId + "-" + index;
+
+                                    <div class="@itemClasses">
+                                        <h3 class="accordion-header oc-faq-header" id="@headingId">
+                                            <button class="accordion-button collapsed oc-faq-button shadow-none"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#@collapseId"
+                                                    aria-expanded="false"
+                                                    aria-controls="@collapseId">
+                                                <span class="oc-faq-question fw-bold">@Html.Raw(question)</span>
+                                                <span class="oc-faq-icon ms-3" aria-hidden="true">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </span>
+                                            </button>
+                                        </h3>
+
+                                        <div id="@collapseId"
+                                             class="accordion-collapse collapse"
+                                             aria-labelledby="@headingId"
+                                             data-bs-parent="#@accordionId">
+                                            <div class="accordion-body oc-faq-answer pb-5">
+                                                @Html.Raw(answer)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    index++;
+                                }
+                            }
+                        </div>
+                    }
+
+                    @if (hasFooterMessage)
+                    {
+                        <div class="oc-faq-footer-message text-center mt-4 mt-lg-5">
+                            @Html.Raw(footerMessage)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (!string.IsNullOrWhiteSpace(faqJsonLd))
+{
+    <script type="application/ld+json">
+        @Html.Raw(faqJsonLd)
+    </script>
+}

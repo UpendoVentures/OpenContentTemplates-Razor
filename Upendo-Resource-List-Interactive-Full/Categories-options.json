@@ -1,0 +1,15 @@
+{
+  "items": {
+    "fields": {
+      "Id": {
+        "type": "guid",
+        "hidden": true
+      },
+      "Title": {
+        "type": "text",
+        "helper": "Enter the category name exactly as it should appear on the public page.",
+        "placeholder": "Compassion & Mindfulness"
+      }
+    }
+  }
+}

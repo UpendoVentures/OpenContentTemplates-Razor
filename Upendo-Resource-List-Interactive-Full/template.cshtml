@@ -1,0 +1,359 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+        Func<dynamic, string> GetLookupText = delegate(dynamic value)
+    {
+        if (value == null)
+        {
+            return string.Empty;
+        }
+
+        var titleValue = string.Empty;
+        var idValue = string.Empty;
+        var textValue = string.Empty;
+        var valueValue = string.Empty;
+
+        try
+        {
+            if (value.Title != null)
+            {
+                titleValue = Convert.ToString(value.Title);
+            }
+        }
+        catch
+        {
+            // Plain string values will land here.
+        }
+
+        try
+        {
+            if (value.Id != null)
+            {
+                idValue = Convert.ToString(value.Id);
+            }
+        }
+        catch
+        {
+            // Ignore missing Id.
+        }
+
+        try
+        {
+            if (value.text != null)
+            {
+                textValue = Convert.ToString(value.text);
+            }
+        }
+        catch
+        {
+            // Ignore missing text.
+        }
+
+        try
+        {
+            if (value.value != null)
+            {
+                valueValue = Convert.ToString(value.value);
+            }
+        }
+        catch
+        {
+            // Ignore missing value.
+        }
+
+        if (!string.IsNullOrWhiteSpace(titleValue)
+            && !string.Equals(titleValue, "unknow", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(titleValue, "unknown", StringComparison.OrdinalIgnoreCase))
+        {
+            return titleValue;
+        }
+
+        if (!string.IsNullOrWhiteSpace(textValue)
+            && !string.Equals(textValue, "unknow", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(textValue, "unknown", StringComparison.OrdinalIgnoreCase))
+        {
+            return textValue;
+        }
+
+        if (!string.IsNullOrWhiteSpace(idValue)
+            && !string.Equals(idValue, "unknow", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(idValue, "unknown", StringComparison.OrdinalIgnoreCase))
+        {
+            return idValue;
+        }
+
+        if (!string.IsNullOrWhiteSpace(valueValue)
+            && !string.Equals(valueValue, "unknow", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(valueValue, "unknown", StringComparison.OrdinalIgnoreCase))
+        {
+            return valueValue;
+        }
+
+        var fallbackValue = Convert.ToString(value);
+
+        if (string.Equals(fallbackValue, "System.Web.Helpers.DynamicJsonObject", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        if (string.Equals(fallbackValue, "unknow", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(fallbackValue, "unknown", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        return fallbackValue;
+    };
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClass = "oc-resource-list-full";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var resources = new List<dynamic>();
+    var categories = new List<string>();
+
+    if (Model.Resources != null)
+    {
+        foreach (var item in Model.Resources)
+        {
+            resources.Add(item);
+
+            var categoryValue = GetLookupText(item.Category);
+
+            if (string.IsNullOrWhiteSpace(categoryValue))
+            {
+                categoryValue = "General Resources";
+            }
+
+            var categoryExists = false;
+
+            foreach (var existingCategory in categories)
+            {
+                if (string.Equals(existingCategory, categoryValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    categoryExists = true;
+                    break;
+                }
+            }
+
+            if (!categoryExists)
+            {
+                categories.Add(categoryValue);
+            }
+        }
+    }
+
+    var sectionId = !string.IsNullOrWhiteSpace(moduleAnchor)
+        ? moduleAnchor
+        : "oc-resource-list-full-" + Model.Context.ModuleId;
+
+    var headingId = "oc-resource-list-full-heading-" + Model.Context.ModuleId;
+
+    var sectionLabel = !string.IsNullOrWhiteSpace(sectionHeading)
+        ? sectionHeading
+        : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Resource list");
+}
+
+@if (resources.Count > 0)
+{
+    <section id="@sectionId" class="@sectionClass" aria-labelledby="@headingId">
+        <div class="container-xxl">
+            @if (!string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(sectionDescription))
+            {
+                <div class="row justify-content-center mb-4 mb-lg-5">
+                    <div class="col-12 col-lg-9 text-center">
+                        @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                        {
+                            <h2 id="@headingId" class="oc-resource-list-full__heading text-notransform mb-3">
+                                @Html.Raw(sectionHeading)
+                            </h2>
+                        }
+                        else
+                        {
+                            <h2 id="@headingId" class="visually-hidden">@sectionLabel</h2>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                        {
+                            <div class="oc-resource-list-full__description mx-auto">
+                                @Html.Raw(sectionDescription)
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2 id="@headingId" class="visually-hidden">@sectionLabel</h2>
+            }
+
+            @if (categories.Count > 1)
+            {
+                <nav class="oc-resource-list-full__nav mb-4" aria-label="Resource categories">
+                    <ul class="nav flex-wrap justify-content-center gap-2 mb-0">
+                        @for (var categoryNavIndex = 0; categoryNavIndex < categories.Count; categoryNavIndex++)
+                        {
+                            var navCategoryId = "oc-resource-category-" + Model.Context.ModuleId + "-" + (categoryNavIndex + 1);
+
+                            <li class="nav-item">
+                                <a class="btn btn-sm rounded-pill oc-resource-list-full__nav-link" href="#@navCategoryId">
+                                    @categories[categoryNavIndex]
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+
+            @for (var categoryIndex = 0; categoryIndex < categories.Count; categoryIndex++)
+            {
+                var currentCategory = categories[categoryIndex];
+                var categoryId = "oc-resource-category-" + Model.Context.ModuleId + "-" + (categoryIndex + 1);
+
+                <div id="@categoryId" class="oc-resource-list-full__category-anchor"></div>
+
+                <div class="oc-resource-list-full__category-heading-wrap d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 mt-5">
+                    <h3 class="oc-resource-list-full__category-heading text-notransform mb-3">
+                        @currentCategory
+                    </h3>
+
+                    @if (categories.Count > 1)
+                    {
+                        <a class="oc-resource-list-full__back-link small text-decoration-none" href="#@sectionId">
+                            Back to top
+                        </a>
+                    }
+                </div>
+
+                <div class="row g-3 g-lg-4 mb-5 oc-resource-list-full__resource-row">
+                    @foreach (var resource in resources)
+                    {
+                        var resourceCategory = GetLookupText(resource.Category);
+
+                        if (string.IsNullOrWhiteSpace(resourceCategory))
+                        {
+                            resourceCategory = "General Resources";
+                        }
+
+                        if (string.Equals(resourceCategory, currentCategory, StringComparison.OrdinalIgnoreCase))
+                        {
+                            var resourceTitle = resource.Title != null ? Convert.ToString(resource.Title) : string.Empty;
+                            var resourceDescription = resource.Description != null ? Convert.ToString(resource.Description) : string.Empty;
+                            var resourceUrl = resource.Url != null ? Convert.ToString(resource.Url) : string.Empty;
+                            var resourceType = GetLookupText(resource.ResourceType);
+                            var iconClass = resource.IconClass != null ? Convert.ToString(resource.IconClass) : string.Empty;
+
+                            if (string.IsNullOrWhiteSpace(iconClass))
+                            {
+                                iconClass = "fas fa-leaf";
+                            }
+
+                            <div class="col-12 col-lg-6">
+                                <article class="oc-resource-list-full__card">
+                                    <details class="oc-resource-list-full__details">
+                                        <summary class="oc-resource-list-full__summary">
+                                            <span class="oc-resource-list-full__summary-icon" aria-hidden="true">
+                                                <i class="@iconClass"></i>
+                                            </span>
+
+                                            <span class="oc-resource-list-full__summary-text">
+                                                @if (!string.IsNullOrWhiteSpace(resourceType))
+                                                {
+                                                    <span class="oc-resource-list-full__type">
+                                                        @Html.Raw(resourceType)
+                                                    </span>
+                                                }
+
+                                                @if (!string.IsNullOrWhiteSpace(resourceTitle))
+                                                {
+                                                    <span class="oc-resource-list-full__title">
+                                                        @Html.Raw(resourceTitle)
+                                                    </span>
+                                                }
+                                            </span>
+
+                                            <span class="oc-resource-list-full__summary-cue" aria-hidden="true">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </span>
+                                        </summary>
+
+                                        <div class="oc-resource-list-full__body">
+                                            @if (!string.IsNullOrWhiteSpace(resourceDescription))
+                                            {
+                                                <div class="oc-resource-list-full__resource-description">
+                                                    @Html.Raw(resourceDescription)
+                                                </div>
+                                            }
+
+                                            @if (!string.IsNullOrWhiteSpace(resourceUrl))
+                                            {
+                                                <a class="btn btn-sm oc-resource-list-full__button mt-3" href="@resourceUrl" aria-label="View resource: @resourceTitle">
+                                                    View Resource
+                                                    <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+                                                </a>
+                                            }
+                                        </div>
+                                    </details>
+                                </article>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </section>
+}

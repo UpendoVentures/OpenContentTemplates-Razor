@@ -1,15 +1,10 @@
 {
-    "ModuleTitle": "Link List",
-    "SectionTitle": "Link List",
-    "SectionTitleTag": "h3",
-    "SectionAriaLabel": "List of resourceful links related to this page.",
-    "LinkList": [
-      {
-        "LinkText": "Upendo Ventures",
-        "LinkUrl": "https://upendoventures.com",
-        "LinkRel": "nofollow",
-        "OpenInNewTab": false,
-        "ItemProp": "url"
-      }
-    ]
-  }
+  "ModuleTitle": "Section Intro",
+  "ModuleAnchor": "",
+  "SectionTitle": "A Clear Section Intro",
+  "SectionTitleCssClass": "",
+  "SectionTitleIcon": "",
+  "SectionIntroText": "<p>Use this template for a short introduction that gives visitors context before the rest of the section begins.</p>",
+  "SectionTextCssClass": "",
+  "SectionIcon": "fas fa-leaf"
+}

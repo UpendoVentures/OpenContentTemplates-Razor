@@ -1,0 +1,126 @@
+@using System
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var hasSectionTitle = !string.IsNullOrWhiteSpace(sectionTitle);
+    var hasSectionDescription = !string.IsNullOrWhiteSpace(sectionDescription);
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-success",
+        "bg-danger",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-forest-green"
+    };
+
+    var isDarkBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(backgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkBackground = true;
+                break;
+            }
+        }
+    }
+
+    var contrastClass = isDarkBackground
+        ? "oc-centered-intro-band--dark"
+        : "oc-centered-intro-band--light";
+
+    var sectionClasses = "oc-centered-intro-band w-100 " + contrastClass;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasSectionTitle || hasSectionDescription)
+{
+    <section class="@sectionClasses" aria-label="Section introduction">
+        <div class="container py-4 py-md-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+
+                    @if (hasSectionTitle)
+                    {
+                        <h2 class="oc-centered-intro-band__title text-notransform mb-4">@Html.Raw(sectionTitle)</h2>
+                    }
+
+                    @if (hasSectionDescription)
+                    {
+                        <div class="oc-centered-intro-band__description mb-0">@Html.Raw(sectionDescription)</div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+}

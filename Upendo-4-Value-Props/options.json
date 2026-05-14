@@ -28,7 +28,7 @@
         "IconClass": {
           "label": "FontAwesome Icon Class",
           "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
         },
         "TitleColor": {
           "label": "Title Color",
@@ -58,7 +58,7 @@
         "IconClass": {
           "label": "FontAwesome Icon Class",
           "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
         },
         "TitleColor": {
           "label": "Title Color",
@@ -88,7 +88,7 @@
         "IconClass": {
           "label": "FontAwesome Icon Class",
           "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
         },
         "TitleColor": {
           "label": "Title Color",
@@ -118,7 +118,7 @@
         "IconClass": {
           "label": "FontAwesome Icon Class",
           "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
+          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
         },
         "TitleColor": {
           "label": "Title Color",

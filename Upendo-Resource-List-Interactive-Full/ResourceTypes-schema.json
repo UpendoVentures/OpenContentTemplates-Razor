@@ -1,0 +1,19 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "Id": {
+        "type": "string",
+        "title": "Id"
+      },
+      "Title": {
+        "type": "string",
+        "title": "Resource Type Name"
+      }
+    },
+    "required": [
+      "Title"
+    ]
+  }
+}

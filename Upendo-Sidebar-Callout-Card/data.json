@@ -1,0 +1,23 @@
+{
+  "ModuleTitle": "Sidebar Callout Card",
+  "ModuleAnchor": "",
+  "Title": "Key Takeaways",
+  "TitleIcon": "fas fa-check-circle",
+  "IntroText": "",
+  "ValueProps": [
+    {
+      "Text": "No prior experience or physical fitness level required.",
+      "Icon": "far fa-check-circle"
+    },
+    {
+      "Text": "Sessions range from 2 to 3 hours of slow immersion.",
+      "Icon": "far fa-check-circle"
+    },
+    {
+      "Text": "Proven reduction in blood pressure and cortisol levels.",
+      "Icon": "far fa-check-circle"
+    }
+  ],
+  "CardBackgroundColorClass": "bg-warm-white",
+  "CardBackgroundIcon": ""
+}

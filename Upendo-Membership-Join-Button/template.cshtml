@@ -1,0 +1,77 @@
+@using DotNetNuke.Entities.Portals
+@{
+    var portalSettings = PortalSettings.Current;
+    var portalId = portalSettings != null ? portalSettings.PortalId : 0;
+
+    var planSlug = Model.PlanSlug != null ? Convert.ToString(Model.PlanSlug) : "";
+    var buttonText = Model.ButtonText != null ? Convert.ToString(Model.ButtonText) : "Join Now";
+    var successUrl = Model.SuccessUrl != null ? Convert.ToString(Model.SuccessUrl) : "/membership/thank-you";
+    var cancelUrl = Model.CancelUrl != null ? Convert.ToString(Model.CancelUrl) : "/membership";
+    var buttonClass = Model.ButtonClass != null ? Convert.ToString(Model.ButtonClass) : "btn btn-primary";
+    var uniqueId = "uv-membership-join-" + Guid.NewGuid().ToString("N");
+}
+
+<div id="@uniqueId" class="uv-membership-join">
+    <button type="button"
+            class="@buttonClass"
+            data-uv-membership-join="true"
+            data-portal-id="@portalId"
+            data-plan-slug="@planSlug"
+            data-success-url="@successUrl"
+            data-cancel-url="@cancelUrl">
+        @buttonText
+    </button>
+    <div class="uv-membership-join-message small mt-2" aria-live="polite"></div>
+</div>
+
+<script>
+(function () {
+    var root = document.getElementById("@uniqueId");
+    if (!root) return;
+
+    var button = root.querySelector("[data-uv-membership-join]");
+    var message = root.querySelector(".uv-membership-join-message");
+
+    if (!button) return;
+
+    button.addEventListener("click", function () {
+        button.disabled = true;
+        message.innerHTML = "Opening secure checkout...";
+
+        fetch("/DesktopModules/UpendoMembershipManager/API/Membership/StartCheckout", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+                "ModuleId": window.dnn && window.dnn.getVar ? window.dnn.getVar("mid") : "",
+                "TabId": window.dnn && window.dnn.getVar ? window.dnn.getVar("tid") : "",
+                "RequestVerificationToken": window.dnn && window.dnn.getVar ? window.dnn.getVar("__RequestVerificationToken") : ""
+            },
+            body: JSON.stringify({
+                portalId: parseInt(button.getAttribute("data-portal-id"), 10),
+                planSlug: button.getAttribute("data-plan-slug"),
+                successUrl: button.getAttribute("data-success-url"),
+                cancelUrl: button.getAttribute("data-cancel-url")
+            })
+        })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error("Checkout could not be started.");
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            if (data && data.CheckoutUrl) {
+                window.location.href = data.CheckoutUrl;
+                return;
+            }
+
+            throw new Error("Checkout URL was not returned.");
+        })
+        .catch(function (error) {
+            button.disabled = false;
+            message.innerHTML = error.message || "Checkout could not be started.";
+        });
+    });
+})();
+</script>

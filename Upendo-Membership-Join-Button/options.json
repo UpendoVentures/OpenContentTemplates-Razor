@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "PlanSlug": {
+      "type": "text",
+      "label": "Plan Slug"
+    },
+    "ButtonText": {
+      "type": "text",
+      "label": "Button Text"
+    },
+    "ButtonClass": {
+      "type": "text",
+      "label": "Button CSS Class"
+    },
+    "SuccessUrl": {
+      "type": "text",
+      "label": "Success URL"
+    },
+    "CancelUrl": {
+      "type": "text",
+      "label": "Cancel URL"
+    }
+  }
+}

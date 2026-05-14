@@ -1,5 +1,6 @@
 @using System
-@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@using System.Linq
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @{
@@ -56,7 +57,40 @@
         linkClass += " track-referral";
     }
 
-    var cardClass = "oc-ss-card shadow";
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger",
+        "bg-forest-green"
+    };
+
+    var isDarkCardBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(cardBackgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(cardBackgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkCardBackground = true;
+                break;
+            }
+        }
+    }
+
+    var contrastClass = isDarkCardBackground ? "oc-ss-card--dark" : "oc-ss-card--light";
+
+    var cardClass = "oc-ss-card shadow " + contrastClass;
     if (!string.IsNullOrWhiteSpace(cardBackgroundColorClass))
     {
         cardClass += " " + cardBackgroundColorClass;

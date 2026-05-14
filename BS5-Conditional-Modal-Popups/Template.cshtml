@@ -145,7 +145,7 @@
             {
             <!-- Condition: @modal.Condition | Value: @modal.ConditionValue -->
             }
-            if(modal.Condition == "DomainIs" && modal.ConditionValue.ToLower() == referrerDomain.ToLower())
+            if(modal.Condition == "DomainIs" && HostMatches(referrerDomain, modal.ConditionValue))
             {
                 if (debuggingEnabled)
                 {
@@ -324,18 +324,20 @@ else
         list.appendChild(item);
       });
     }else{
-      container.classList.remove('d-none');
-        const item = document.createElement('li');
-        item.textContent = `(none found)`;
-        list.appendChild(item);
+        if(container){
+            container.classList.remove('d-none');
+            const item = document.createElement('li');
+            item.textContent = `(none found)`;
+            list.appendChild(item);
+        }
     }
 
     const referrer = document.referrer;
     const display = document.getElementById('referrer-value');
 
-    if (!referrer) {
+    if (!referrer && display) {
       display.textContent = 'Direct visit or manually entered URL';
-    } else {
+    } else if (display) {
       try {
         const domain = new URL(referrer).hostname;
         display.textContent = domain;
@@ -346,6 +348,31 @@ else
   });
 </script>
 @functions {
+    string NormalizeHost(string host)
+    {
+        if (string.IsNullOrWhiteSpace(host)) return "";
+        host = host.Trim().ToLowerInvariant();
+        if (host.StartsWith("www.")) host = host.Substring(4);
+        return host;
+    }
+
+    bool HostMatches(string actualHost, string expectedHost)
+    {
+        actualHost = NormalizeHost(actualHost);
+        expectedHost = NormalizeHost(expectedHost);
+
+        if (string.IsNullOrWhiteSpace(actualHost) || string.IsNullOrWhiteSpace(expectedHost))
+            return false;
+
+        // exact
+        if (actualHost == expectedHost) return true;
+
+        // subdomain match (e.g., images.google.com matches google.com)
+        if (actualHost.EndsWith("." + expectedHost)) return true;
+
+        return false;
+    }
+
     public HtmlString RenderModalPopup(string modalId, dynamic modal)
     {
         var builder = new System.Text.StringBuilder();

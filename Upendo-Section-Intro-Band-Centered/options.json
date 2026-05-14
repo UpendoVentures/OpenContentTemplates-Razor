@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Centered Intro Band"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+      "placeholder": "group-intro"
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. Main section heading. HTML is allowed and will render in the view.",
+      "placeholder": "A Clear, Centered Heading"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Supporting text shown below the heading. HTML is allowed and will render in the view.",
+      "placeholder": "<p>Use this area for a short, centered introduction to the section.</p>"
+    }
+  }
+}

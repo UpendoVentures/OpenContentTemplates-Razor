@@ -1,0 +1,162 @@
+@using System
+@using System.Collections
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClass = "oc-logo-strip position-relative w-100";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+
+    IEnumerable logos = null;
+    if (Model.Logos != null)
+    {
+        logos = Model.Logos as IEnumerable;
+    }
+
+    var sectionAriaLabel = hasHeading ? sectionHeading : "Logo listing";
+    var itemIndex = 0;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClass" aria-label="@sectionAriaLabel">
+    <div class="container-fluid">
+        <div class="container-xxl">
+
+            @if (hasHeading || hasIntro)
+            {
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10 col-xl-8">
+                        <div class="oc-logo-strip__intro text-center mb-4 mb-lg-5 appear-animation" data-appear-animation="fadeInUp">
+                            @if (hasHeading)
+                            {
+                                <h4 class="heading-primary text-capitalize mb-3">@sectionHeading</h4>
+                            }
+
+                            @if (hasIntro)
+                            {
+                                <div class="oc-logo-strip__lead">
+                                    @introText
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (logos != null)
+            {
+                <div class="row justify-content-center g-4">
+                    @foreach (var logoItem in logos)
+                    {
+                        dynamic logo = logoItem;
+
+                        var title = logo != null && logo.Title != null ? Convert.ToString(logo.Title) : string.Empty;
+                        var image = logo != null && logo.Logo != null ? Convert.ToString(logo.Logo) : string.Empty;
+                        var link = logo != null && logo.Link != null ? Convert.ToString(logo.Link) : string.Empty;
+                        var linkTarget = logo != null && logo.LinkTarget != null ? Convert.ToString(logo.LinkTarget) : string.Empty;
+
+                        var hasTitle = !string.IsNullOrWhiteSpace(title);
+                        var hasImage = !string.IsNullOrWhiteSpace(image);
+                        var hasLink = !string.IsNullOrWhiteSpace(link);
+                        var openInNewTab = string.Equals(linkTarget, "_blank", StringComparison.OrdinalIgnoreCase);
+
+                        var ariaLabel = hasTitle ? title : "Logo";
+                        var itemDelay = itemIndex * 150;
+
+                        if (hasImage)
+                        {
+                            <div class="col-6 col-md-4 col-xl-3">
+                                <div class="oc-logo-strip__item appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="@itemDelay">
+                                    @if (hasLink)
+                                    {
+                                        if (openInNewTab)
+                                        {
+                                            <a href="@link" class="oc-logo-strip__link track-referral" target="_blank" rel="noopener referrer" aria-label="@ariaLabel" title="@ariaLabel" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top">
+                                                <img src="@image" alt="@ariaLabel" class="img-fluid oc-logo-strip__image" loading="lazy" decoding="async" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@link" class="oc-logo-strip__link" aria-label="@ariaLabel" title="@ariaLabel" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top">
+                                                <img src="@image" alt="@ariaLabel" class="img-fluid oc-logo-strip__image" loading="lazy" decoding="async" />
+                                            </a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="oc-logo-strip__static" aria-label="@ariaLabel" title="@ariaLabel">
+                                            <img src="@image" alt="@ariaLabel" title="@ariaLabel" 
+                                                data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top" 
+                                                class="img-fluid oc-logo-strip__image" loading="lazy" decoding="async" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                        itemIndex = itemIndex + 1;
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

@@ -85,7 +85,12 @@
     align-items: center;
 }
 
-.oc-hero-banner__btn {
+.oc-hero-banner__btn,
+.oc-hero-banner__btn:link,
+.oc-hero-banner__btn:visited,
+.oc-hero-banner__btn:hover,
+.oc-hero-banner__btn:focus,
+.oc-hero-banner__btn:active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -98,47 +103,70 @@
     transition: all 0.2s ease-in-out;
 }
 
-.oc-hero-banner__btn--primary {
+.oc-hero-banner__btn i {
+    line-height: 1;
+}
+
+.oc-hero-banner__btn span {
+    display: inline-block;
+}
+
+.oc-hero-banner__btn:focus,
+.oc-hero-banner__btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.oc-hero-banner__btn--primary,
+.oc-hero-banner__btn--primary:link,
+.oc-hero-banner__btn--primary:visited {
     background-color: #ffffff;
     border: 1px solid #ffffff;
-    color: #163322;
+    color: #163322 !important;
 }
 
 .oc-hero-banner__btn--primary:hover,
-.oc-hero-banner__btn--primary:focus {
+.oc-hero-banner__btn--primary:focus,
+.oc-hero-banner__btn--primary:active {
     background-color: #f3f4f2;
     border-color: #f3f4f2;
-    color: #102619;
+    color: #102619 !important;
 }
 
-.oc-hero-banner__btn--secondary {
+.oc-hero-banner__btn--secondary,
+.oc-hero-banner__btn--secondary:link,
+.oc-hero-banner__btn--secondary:visited {
     background-color: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.42);
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .oc-hero-banner__btn--secondary:hover,
-.oc-hero-banner__btn--secondary:focus {
+.oc-hero-banner__btn--secondary:focus,
+.oc-hero-banner__btn--secondary:active {
     background-color: rgba(255, 255, 255, 0.16);
     border-color: rgba(255, 255, 255, 0.7);
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
-.oc-hero-banner__btn--tertiary {
-    background-color: transparent;
-    border: 1px solid transparent;
-    color: rgba(255, 255, 255, 0.95);
-    text-decoration: underline !important;
-    text-underline-offset: 0.25rem;
+.oc-hero-banner__btn--tertiary,
+.oc-hero-banner__btn--tertiary:link,
+.oc-hero-banner__btn--tertiary:visited {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-decoration: none !important;
 }
 
 .oc-hero-banner__btn--tertiary:hover,
-.oc-hero-banner__btn--tertiary:focus {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
+.oc-hero-banner__btn--tertiary:focus,
+.oc-hero-banner__btn--tertiary:active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.38);
+    color: #ffffff !important;
 }
 
-@@media (max-width: 991.98px) {
+@media (max-width: 991.98px) {
     .oc-hero-banner {
         min-height: 28rem;
         padding-top: 4rem;
@@ -146,18 +174,23 @@
     }
 }
 
-@@media (max-width: 767.98px) {
+@media (max-width: 767.98px) {
     .oc-hero-banner__actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .oc-hero-banner__btn {
+    .oc-hero-banner__btn,
+    .oc-hero-banner__btn:link,
+    .oc-hero-banner__btn:visited,
+    .oc-hero-banner__btn:hover,
+    .oc-hero-banner__btn:focus,
+    .oc-hero-banner__btn:active {
         width: 100%;
     }
 }
 
-@@media (max-width: 575.98px) {
+@media (max-width: 575.98px) {
     .oc-hero-banner__container {
         padding-left: 1rem;
         padding-right: 1rem;

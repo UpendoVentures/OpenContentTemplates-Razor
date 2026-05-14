@@ -1,0 +1,243 @@
+.oc-sidebar-card-wrap {
+    width: 100%;
+    position: relative;
+}
+
+.oc-sidebar-card__outer {
+    max-width: 1320px;
+}
+
+.oc-sidebar-card {
+    border-radius: 2rem !important;
+    min-height: 1px;
+    color: var(--oc-sidebar-card-text) !important;
+}
+
+.oc-sidebar-card__inner {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+}
+
+.oc-sidebar-card--light {
+    --oc-sidebar-card-text: var(--bs-body-color, #212529);
+    --oc-sidebar-card-heading: var(--bs-body-color, #212529);
+    --oc-sidebar-card-body: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+    --oc-sidebar-card-icon: currentColor;
+    --oc-sidebar-card-bg-icon: rgba(33, 37, 41, 0.10);
+}
+
+.oc-sidebar-card--dark {
+    --oc-sidebar-card-text: #ffffff;
+    --oc-sidebar-card-heading: #ffffff;
+    --oc-sidebar-card-body: rgba(255, 255, 255, 0.88);
+    --oc-sidebar-card-icon: currentColor;
+    --oc-sidebar-card-bg-icon: rgba(255, 255, 255, 0.14);
+}
+
+/* Strong scoping against theme rules */
+.oc-sidebar-card,
+.oc-sidebar-card h1,
+.oc-sidebar-card h2,
+.oc-sidebar-card h3,
+.oc-sidebar-card h4,
+.oc-sidebar-card h5,
+.oc-sidebar-card h6,
+.oc-sidebar-card p,
+.oc-sidebar-card li,
+.oc-sidebar-card span,
+.oc-sidebar-card div,
+.oc-sidebar-card strong,
+.oc-sidebar-card em {
+    color: inherit;
+}
+
+.oc-sidebar-card__title-wrap {
+    margin-bottom: 1rem;
+}
+
+.oc-sidebar-card__title {
+    color: var(--oc-sidebar-card-heading) !important;
+    line-height: 1.2;
+}
+
+.oc-sidebar-card__title-icon,
+.oc-sidebar-card__item-icon {
+    color: inherit !important;
+    flex: 0 0 auto;
+    line-height: 1;
+}
+
+.oc-sidebar-card__title-icon {
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+}
+
+.oc-sidebar-card__item-icon {
+    font-size: 0.95rem;
+    margin-top: 0.28rem;
+    width: 1rem;
+    text-align: center;
+}
+
+.oc-sidebar-card__intro {
+    margin-bottom: 1.25rem;
+}
+
+.oc-sidebar-card__intro,
+.oc-sidebar-card__intro p,
+.oc-sidebar-card__intro li,
+.oc-sidebar-card__outro,
+.oc-sidebar-card__outro p,
+.oc-sidebar-card__outro li,
+.oc-sidebar-card__item-text,
+.oc-sidebar-card__item-text p,
+.oc-sidebar-card__item-text li {
+    color: var(--oc-sidebar-card-body) !important;
+    line-height: 1.7;
+}
+
+.oc-sidebar-card__intro > *:last-child,
+.oc-sidebar-card__item-text > *:last-child,
+.oc-sidebar-card__outro > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-sidebar-card__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.oc-sidebar-card__list-item {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    column-gap: 0.875rem;
+    align-items: start;
+}
+
+.oc-sidebar-card__item-icon {
+    width: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1;
+    text-align: center;
+    position: relative;
+    top: 0.12rem;
+    margin: 0;
+    padding: 0;
+}
+
+.oc-sidebar-card__item-icon i {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: top;
+}
+
+.oc-sidebar-card__item-text {
+    display: block;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.oc-sidebar-card__item-icon {
+    flex: 0 0 1.25rem;
+    width: 1.25rem;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-top: 0;
+}
+
+.oc-sidebar-card__item-icon i {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: top;
+}
+
+.oc-sidebar-card__item-text {
+    flex: 1 1 auto;
+}
+
+.oc-sidebar-card__bg-icon {
+    position: absolute;
+    right: -1rem;
+    bottom: -1rem;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 1;
+    transition: transform 0.7s ease;
+}
+
+.oc-sidebar-card__bg-icon i {
+    font-size: clamp(5rem, 18vw, 8rem);
+    color: var(--oc-sidebar-card-bg-icon) !important;
+}
+
+.oc-sidebar-card:hover .oc-sidebar-card__bg-icon,
+.oc-sidebar-card:focus-within .oc-sidebar-card__bg-icon {
+    transform: scale(1.08);
+}
+
+@media (min-width: 768px) {
+    .oc-sidebar-card__inner {
+        padding: 2.25rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-sidebar-card {
+        border-radius: 1.5rem !important;
+    }
+
+    .oc-sidebar-card__inner {
+        padding: 1.5rem;
+    }
+}
+
+/* Custom background colors used in other Upendo templates */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.bg-forest-green {
+    background-color: #173124 !important;
+}

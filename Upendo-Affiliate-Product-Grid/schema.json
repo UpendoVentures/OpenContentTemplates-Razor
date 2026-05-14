@@ -1,0 +1,71 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "SectionHeading": {
+            "type": "string",
+            "title": "Section Heading"
+        },
+        "SectionIntro": {
+            "type": "string",
+            "title": "Section Intro"
+        },
+        "Products": {
+            "type": "array",
+            "title": "Products",
+            "required": true,
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "ProductName": {
+                        "type": "string",
+                        "title": "Product Name",
+                        "required": true
+                    },
+                    "ProductImages": {
+                        "type": "array",
+                        "title": "Product Images",
+                        "required": true,
+                        "minItems": 1,
+                        "items": {
+                            "type": "string",
+                            "title": "Product Image"
+                        }
+                    },
+                    "BuyLink": {
+                        "type": "string",
+                        "title": "Buy Link",
+                        "required": true
+                    },
+                    "ProductDescription": {
+                        "type": "string",
+                        "title": "Product Description",
+                        "required": true
+                    },
+                    "Category": {
+                        "type": "string",
+                        "title": "Category",
+                        "required": true
+                    },
+                    "Tags": {
+                        "type": "array",
+                        "title": "Tags",
+                        "items": {
+                            "type": "string",
+                            "title": "Tag"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

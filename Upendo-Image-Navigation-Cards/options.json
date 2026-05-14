@@ -1,0 +1,55 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "OC: Keep Exploring Cards"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+      "placeholder": "keep-exploring",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. Renders as the section h3. HTML is allowed and will render in the view.",
+      "placeholder": "Keep Exploring"
+    },
+    "SectionDescription": {
+      "type": "text",
+      "helper": "Optional short text shown below the section title. HTML is allowed and will render in the view.",
+      "placeholder": "Guide visitors to the next helpful page with image-based navigation cards."
+    },
+    "NavigationCards": {
+      "type": "accordion",
+      "helper": "Required. Add as many cards as you want. Only the first 2 cards are rendered on the website.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Main title shown on the card. HTML is allowed and will render in the view.",
+            "placeholder": "Our Methodology"
+          },
+          "Eyebrow": {
+            "type": "text",
+            "helper": "Optional small label shown above the title. HTML is allowed and will render in the view.",
+            "placeholder": "Our Foundation"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "Content",
+            "typeahead": {
+              "Folder": "Content"
+            },
+            "helper": "Required. Use a wide landscape image. Recommended minimum: 1600 x 1000 px."
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Required. Choose where this navigation card should go."
+          }
+        }
+      }
+    }
+  }
+}

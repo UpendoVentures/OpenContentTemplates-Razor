@@ -1,0 +1,201 @@
+@using System
+@using System.Linq
+@using Newtonsoft.Json.Linq
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Seo.Helpers
+
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var title = Model.Title != null ? Convert.ToString(Model.Title) : string.Empty;
+    var titleIcon = Model.TitleIcon != null ? Convert.ToString(Model.TitleIcon) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var outroText = Model.OutroText != null ? Convert.ToString(Model.OutroText) : string.Empty;
+    var cardBackgroundColorClass = Model.CardBackgroundColorClass != null ? Convert.ToString(Model.CardBackgroundColorClass) : "bg-body";
+    var cardBackgroundIcon = Model.CardBackgroundIcon != null ? Convert.ToString(Model.CardBackgroundIcon) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger",
+        "bg-forest-green"
+    };
+
+    var isDarkCardBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(cardBackgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(cardBackgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkCardBackground = true;
+                break;
+            }
+        }
+    }
+
+    var cardContrastClass = isDarkCardBackground ? "oc-sidebar-card--dark" : "oc-sidebar-card--light";
+
+    var sectionClass = "oc-sidebar-card-wrap w-100";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+
+    var cardClass = "oc-sidebar-card rounded-5 shadow-sm position-relative overflow-hidden " + cardContrastClass;
+    if (!string.IsNullOrWhiteSpace(cardBackgroundColorClass))
+    {
+        cardClass += " " + cardBackgroundColorClass;
+    }
+    else
+    {
+        cardClass += " bg-body";
+    }
+
+    var hasTitle = !string.IsNullOrWhiteSpace(title);
+    var hasTitleIcon = !string.IsNullOrWhiteSpace(titleIcon);
+    var hasIntroText = !string.IsNullOrWhiteSpace(introText);
+    var hasOutroText = !string.IsNullOrWhiteSpace(outroText);
+
+    var hasBackgroundIcon = !string.IsNullOrWhiteSpace(cardBackgroundIcon);
+
+    JArray valueProps = null;
+
+    if (Model.ValueProps != null)
+    {
+        if (Model.ValueProps is JArray)
+        {
+            valueProps = (JArray)Model.ValueProps;
+        }
+        else
+        {
+            try
+            {
+                valueProps = JArray.FromObject(Model.ValueProps);
+            }
+            catch
+            {
+                valueProps = null;
+            }
+        }
+    }
+
+    var hasItems = valueProps != null && valueProps.Any();
+
+    var ariaLabel = !string.IsNullOrWhiteSpace(title)
+        ? SeoContentHelper.StripHtml(title) 
+        : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Sidebar callout card");
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasTitle || hasIntroText || hasItems || hasOutroText)
+{
+    <section class="@sectionClass" aria-label="@ariaLabel">
+        <div class="container-fluid">
+            <div class="oc-sidebar-card__outer mx-auto">
+                <div class="@cardClass">
+                    @if (hasBackgroundIcon)
+                    {
+                        <div class="oc-sidebar-card__bg-icon" aria-hidden="true">
+                            <i class="@cardBackgroundIcon"></i>
+                        </div>
+                    }
+
+                    <div class="oc-sidebar-card__inner">
+                        @if (hasTitle)
+                        {
+                            <div class="oc-sidebar-card__title-wrap d-flex align-items-start gap-3">
+                                @if (hasTitleIcon)
+                                {
+                                    <span class="oc-sidebar-card__title-icon" aria-hidden="true">
+                                        <i class="@titleIcon"></i>
+                                    </span>
+                                }
+
+                                <h5 class="oc-sidebar-card__title mb-0 text-uppercase">@Html.Raw(title)</h5>
+                            </div>
+                        }
+
+                        @if (hasIntroText)
+                        {
+                            <div class="oc-sidebar-card__intro">@Html.Raw(introText)</div>
+                        }
+
+                        @if (hasItems)
+                        {
+                            <ul class="oc-sidebar-card__list list-unstyled mb-0">
+                                @foreach (JToken item in valueProps)
+                                {
+                                    var itemText = item["Text"] != null ? Convert.ToString(item["Text"]) : string.Empty;
+                                    var itemIcon = item["Icon"] != null ? Convert.ToString(item["Icon"]) : string.Empty;
+                                    var hasItemText = !string.IsNullOrWhiteSpace(itemText);
+                                    var hasItemIcon = !string.IsNullOrWhiteSpace(itemIcon);
+
+                                    if (hasItemText)
+                                    {
+                                        <li class="oc-sidebar-card__list-item">
+                                            @if (hasItemIcon)
+                                            {
+                                                <span class="oc-sidebar-card__item-icon" aria-hidden="true">
+                                                    <i class="@itemIcon"></i>
+                                                </span>
+                                            }
+                                            <span class="oc-sidebar-card__item-text">@Html.Raw(itemText)</span>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        }
+
+                        @if (hasOutroText)
+                        {
+                            <div class="oc-sidebar-card__outro">@Html.Raw(outroText)</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

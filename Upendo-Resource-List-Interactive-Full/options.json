@@ -1,0 +1,78 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this OpenContent module. This helps sync the content block with DNN module settings and is not displayed to visitors.",
+      "placeholder": "Interactive Resource List"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create a page anchor, such as resources-library. Use letters, numbers, and hyphens only.",
+      "placeholder": "resources-library",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the resource list.",
+      "placeholder": "Helpful Resources"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Short introduction shown above the resource list. HTML is allowed.",
+      "placeholder": "Explore videos, organizations, talks, and practices that support mindfulness, stress recovery, and nature-based wellbeing."
+    },
+    "Resources": {
+      "type": "accordion",
+      "helper": "Add each resource here. Resources are grouped by Category on the public page.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. The public title of this resource.",
+            "placeholder": "Stanford CCARE Videos"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Optional. A short plain-language description of why this resource is useful.",
+            "placeholder": "A collection of videos exploring compassion, altruism, research, and education."
+          },
+          "Url": {
+            "type": "url",
+            "helper": "Required. Paste the full website or video URL here."
+          },
+          "Category": {
+            "type": "select2",
+            "helper": "Choose the group this resource belongs to. Manage this list from the DNN module actions menu using Manage Resource Categories.",
+            "dataService": {
+              "action": "LookupData",
+              "data": {
+                "dataKey": "Categories",
+                "valueField": "Title",
+                "textField": "Title"
+              }
+            },
+            "removeDefaultNone": true
+          },
+          "ResourceType": {
+            "type": "select2",
+            "helper": "Choose the kind of resource. Manage this list from the DNN module actions menu using Manage Resource Types.",
+            "dataService": {
+              "action": "LookupData",
+              "data": {
+                "dataKey": "ResourceTypes",
+                "valueField": "Title",
+                "textField": "Title"
+              }
+            },
+            "removeDefaultNone": true
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional FontAwesome Free icon class. Examples: fas fa-play-circle, fas fa-leaf, fas fa-brain, fas fa-heart, fas fa-book-open.",
+            "placeholder": "fas fa-leaf"
+          }
+        }
+      }
+    }
+  }
+}

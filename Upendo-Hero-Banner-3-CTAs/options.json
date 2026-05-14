@@ -50,7 +50,7 @@
     "TertiaryCtaButtonFontAwesomeCss": {
       "type": "text",
       "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">FontAwesome</a>."
+      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">FontAwesome</a>. (Examples: <code>fa-solid fa-leaf</code>, <code>fa-solid fa-map-location-dot</code>, <code>fa-solid fa-building</code>)"
     }
   }
 }

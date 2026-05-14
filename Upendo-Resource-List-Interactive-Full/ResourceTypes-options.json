@@ -1,0 +1,15 @@
+{
+  "items": {
+    "fields": {
+      "Id": {
+        "type": "guid",
+        "hidden": true
+      },
+      "Title": {
+        "type": "text",
+        "helper": "Enter the resource type exactly as it should appear above each resource title.",
+        "placeholder": "Video"
+      }
+    }
+  }
+}

@@ -1,0 +1,183 @@
+.oc-keep-exploring {
+    overflow: hidden;
+}
+
+.oc-keep-exploring--light {
+    --oc-keep-title: var(--bs-body-color, #212529);
+    --oc-keep-description: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+}
+
+.oc-keep-exploring--dark {
+    --oc-keep-title: #ffffff;
+    --oc-keep-description: rgba(255, 255, 255, 0.84);
+}
+
+.oc-keep-exploring__intro {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-keep-exploring__title {
+    color: var(--oc-keep-title) !important;
+}
+
+.oc-keep-exploring__description,
+.oc-keep-exploring__description p,
+.oc-keep-exploring__description li,
+.oc-keep-exploring__description span,
+.oc-keep-exploring__description strong,
+.oc-keep-exploring__description em {
+    color: var(--oc-keep-description) !important;
+}
+
+.oc-keep-exploring__description > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-keep-exploring__card {
+    position: relative;
+    display: block;
+    min-height: 23rem;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 2rem;
+    text-decoration: none !important;
+    color: inherit;
+    background-color: #1f2d24;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.10) !important;
+}
+
+.oc-keep-exploring__card:hover,
+.oc-keep-exploring__card:focus,
+.oc-keep-exploring__card:active,
+.oc-keep-exploring__card:visited {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.oc-keep-exploring__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.oc-keep-exploring__card:hover .oc-keep-exploring__image,
+.oc-keep-exploring__card:focus .oc-keep-exploring__image,
+.oc-keep-exploring__card:focus-visible .oc-keep-exploring__image {
+    transform: scale(1.05);
+}
+
+.oc-keep-exploring__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.28) 45%, rgba(0, 0, 0, 0.10) 100%);
+    z-index: 1;
+}
+
+.oc-keep-exploring__content {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 2;
+    display: block;
+}
+
+.oc-keep-exploring__eyebrow {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.oc-keep-exploring__card-title {
+    display: block;
+    color: #ffffff;
+    font-size: clamp(1.75rem, 2vw, 2.25rem);
+    line-height: 1.15;
+    text-decoration: none;
+    text-underline-offset: 0.4rem;
+    text-decoration-thickness: 1px;
+}
+
+.oc-keep-exploring__card:hover .oc-keep-exploring__card-title,
+.oc-keep-exploring__card:focus .oc-keep-exploring__card-title,
+.oc-keep-exploring__card:focus-visible .oc-keep-exploring__card-title {
+    text-decoration: underline;
+}
+
+.oc-keep-exploring__card:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.92);
+    outline-offset: 3px;
+}
+
+@media (max-width: 767.98px) {
+    .oc-keep-exploring__card {
+        min-height: 19rem;
+    }
+
+    .oc-keep-exploring__content {
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+
+    .oc-keep-exploring__card-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* Extra background helpers used across the Upendo template set */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.bg-forest-green {
+    background-color: #173124 !important;
+}

@@ -1,10 +1,126 @@
 @using System
 @using System.Web
-@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public bool GetDetailModeSetting(dynamic settings, bool defaultValue)
+    {
+        try
+        {
+            if (settings == null)
+            {
+                return defaultValue;
+            }
+
+            var value = settings.DetailMode;
+            if (value == null)
+            {
+                return defaultValue;
+            }
+
+            if (value is bool)
+            {
+                return (bool)value;
+            }
+
+            bool parsedValue;
+            if (bool.TryParse(Convert.ToString(value), out parsedValue))
+            {
+                return parsedValue;
+            }
+        }
+        catch
+        {
+            return defaultValue;
+        }
+
+        return defaultValue;
+    }
+
+    public string NormalizePathForDetailMode(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return string.Empty;
+        }
+
+        path = HttpUtility.UrlDecode(path);
+
+        if (path.IndexOf("?", StringComparison.Ordinal) >= 0)
+        {
+            path = path.Substring(0, path.IndexOf("?", StringComparison.Ordinal));
+        }
+
+        if (path.IndexOf("#", StringComparison.Ordinal) >= 0)
+        {
+            path = path.Substring(0, path.IndexOf("#", StringComparison.Ordinal));
+        }
+
+        Uri parsedUri;
+        if (Uri.TryCreate(path, UriKind.Absolute, out parsedUri))
+        {
+            path = parsedUri.PathAndQuery;
+
+            if (path.IndexOf("?", StringComparison.Ordinal) >= 0)
+            {
+                path = path.Substring(0, path.IndexOf("?", StringComparison.Ordinal));
+            }
+        }
+
+        path = path.Replace("\\", "/").Trim();
+
+        while (path.Contains("//"))
+        {
+            path = path.Replace("//", "/");
+        }
+
+        return path.Trim('/').ToLowerInvariant();
+    }
+
+    public bool CurrentRequestHasAdditionalPathSegments(int tabId)
+    {
+        try
+        {
+            var context = HttpContext.Current;
+            if (context == null || context.Request == null || tabId <= 0)
+            {
+                return false;
+            }
+
+            var currentPath = NormalizePathForDetailMode(context.Request.RawUrl);
+            var tabPath = NormalizePathForDetailMode(DotNetNuke.Common.Globals.NavigateURL(tabId));
+
+            if (string.IsNullOrWhiteSpace(currentPath) || string.IsNullOrWhiteSpace(tabPath))
+            {
+                return false;
+            }
+
+            if (currentPath.Equals(tabPath, StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return currentPath.StartsWith(tabPath + "/", StringComparison.OrdinalIgnoreCase);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+}
 
 @{
     TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+
+    var detailMode = GetDetailModeSetting(Model.Settings, true);
+    var hideForDetailMode = detailMode && CurrentRequestHasAdditionalPathSegments(Dnn.Module.TabID);
+
+    if (hideForDetailMode)
+    {
+        return;
+    }
+
     RegisterStyleSheet("template.css");
 
     var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;

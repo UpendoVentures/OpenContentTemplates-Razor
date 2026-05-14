@@ -1,0 +1,26 @@
+{
+    "ModuleTitle": "Donation Payment Options",
+    "ModuleAnchor": "donation-options",
+    "SectionTitle": "Choose a Donation Method",
+    "SectionDescription": "Thank you for supporting this work. Choose the method that works best for you.",
+    "PaymentOptions": [
+      {
+        "MethodName": "Payment Method",
+        "IconClass": "fa-solid fa-qrcode",
+        "Subtitle": "Short description for this payment option",
+        "QrImage": {},
+        "QrAltText": "QR code for this payment method",
+        "DetailRows": [
+          {
+            "Label": "Payment Info",
+            "Value": "Add payment details here",
+            "HighlightValue": true
+          }
+        ],
+        "Instructions": "Open the payment app, scan the QR code, or search using the details shown here.",
+        "ButtonText": "",
+        "ButtonUrl": ""
+      }
+    ],
+    "OptionalNote": ""
+  }

@@ -1,5 +1,9 @@
 {
     "fields": {
+        "DetailMode": {
+            "type": "checkbox",
+            "helper": "When checked, the module view will be hidden on child page view. This is useful for list pages, like blogs, articles, etc."
+        },
         "BackgroundColorClass": {
             "type": "select",
             "helper": "Choose a built-in Bootstrap background color class or one of the custom background utility classes included with this template.",

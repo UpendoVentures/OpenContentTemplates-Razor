@@ -1,0 +1,215 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger",
+        "bg-forest-green"
+    };
+
+    var isDarkSectionBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(backgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkSectionBackground = true;
+                break;
+            }
+        }
+    }
+
+    var sectionClasses = "oc-keep-exploring w-100";
+    sectionClasses += " " + (isDarkSectionBackground ? "oc-keep-exploring--dark" : "oc-keep-exploring--light");
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+
+    var cards = new List<dynamic>();
+
+    if (Model.NavigationCards != null)
+    {
+        var count = 0;
+        foreach (var item in Model.NavigationCards)
+        {
+            if (count >= 2)
+            {
+                break;
+            }
+
+            cards.Add(item);
+            count++;
+        }
+    }
+
+    var hasIntro = !string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionDescription);
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (cards.Count > 0)
+{
+    <section class="@sectionClasses" aria-label="@(!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Navigation cards")">
+        <div class="container-fluid px-0">
+            <div class="container-xxl">
+                @if (hasIntro)
+                {
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-xl-8">
+                            <div class="oc-keep-exploring__intro text-center mb-4 mb-lg-5">
+                                @if (!string.IsNullOrWhiteSpace(sectionTitle))
+                                {
+                                    <h3 class="oc-keep-exploring__title text-notransform mb-3">@Html.Raw(sectionTitle)</h3>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                                {
+                                    <div class="oc-keep-exploring__description">@Html.Raw(sectionDescription)</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row g-4 justify-content-center">
+                    @foreach (var item in cards)
+                    {
+                        var title = item.Title != null ? Convert.ToString(item.Title) : string.Empty;
+                        var eyebrow = item.Eyebrow != null ? Convert.ToString(item.Eyebrow) : string.Empty;
+                        var image = item.Image != null ? Convert.ToString(item.Image) : string.Empty;
+                        var link = item.Link != null ? Convert.ToString(item.Link) : string.Empty;
+
+                        var ariaLabel = !string.IsNullOrWhiteSpace(eyebrow)
+                            ? title + " - " + eyebrow
+                            : title;
+
+                        <div class="col-12 col-md-6">
+                            @if (!string.IsNullOrWhiteSpace(link))
+                            {
+                                <a class="oc-keep-exploring__card shadow-sm"
+                                   href="@link"
+                                   aria-label="@ariaLabel">
+                                    @if (!string.IsNullOrWhiteSpace(image))
+                                    {
+                                        <img class="oc-keep-exploring__image"
+                                             src="@image"
+                                             alt=""
+                                             loading="lazy"
+                                             decoding="async" />
+                                    }
+                                    <span class="oc-keep-exploring__overlay" aria-hidden="true"></span>
+                                    <span class="oc-keep-exploring__content">
+                                        @if (!string.IsNullOrWhiteSpace(eyebrow))
+                                        {
+                                            <span class="oc-keep-exploring__eyebrow">@Html.Raw(eyebrow)</span>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(title))
+                                        {
+                                            <span class="oc-keep-exploring__card-title">@Html.Raw(title)</span>
+                                        }
+                                    </span>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="oc-keep-exploring__card shadow-sm" role="group" aria-label="@ariaLabel">
+                                    @if (!string.IsNullOrWhiteSpace(image))
+                                    {
+                                        <img class="oc-keep-exploring__image"
+                                             src="@image"
+                                             alt=""
+                                             loading="lazy"
+                                             decoding="async" />
+                                    }
+                                    <span class="oc-keep-exploring__overlay" aria-hidden="true"></span>
+                                    <span class="oc-keep-exploring__content">
+                                        @if (!string.IsNullOrWhiteSpace(eyebrow))
+                                        {
+                                            <span class="oc-keep-exploring__eyebrow">@Html.Raw(eyebrow)</span>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(title))
+                                        {
+                                            <span class="oc-keep-exploring__card-title">@Html.Raw(title)</span>
+                                        }
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}

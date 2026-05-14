@@ -1,25 +1,12 @@
 @using System
 @using System.Web
 @using DotNetNuke.Entities.Modules
-@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
 @{
     TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
     RegisterStyleSheet("template.css");
-
-    // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-            ? currentModule.TabModuleSettings["hideadminborder"]
-            : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
 
     var heroHeightClass = !string.IsNullOrWhiteSpace(Convert.ToString(Model.Settings.HeroHeightClass))
         ? Convert.ToString(Model.Settings.HeroHeightClass)
@@ -141,7 +128,3 @@
         </div>
     </div>
 </section>
-
-<style>
-
-</style>

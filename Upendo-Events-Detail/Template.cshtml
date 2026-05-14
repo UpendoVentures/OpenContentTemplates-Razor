@@ -1,11 +1,14 @@
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
 @using System
 @using System.Collections.Generic
 @using System.Globalization
+@using System.Linq
 @using System.Web
-@using Upendo.OpenContentHelper.Features.Events
-@using Upendo.OpenContentHelper.Features.Events.Helpers
-@using Upendo.OpenContentHelper.Features.Events.Models
-@using Upendo.SkinObjects.OpenContentHelper.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Events
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Events.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Events.Models
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
@@ -56,6 +59,26 @@
     {
         portalId = Dnn.Portal.PortalId;
     }
+    else
+    {
+        portalId = PortalSettings.Current.PortalId;
+    }
+    var currentUser = UserController.Instance.GetCurrentUserInfo();
+    var publisherSetting = PortalController.GetPortalSetting("UV-Event-Publisher-Roles", portalId, "");
+    var publisherRoles = (publisherSetting ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToList();
+
+    var canManageAllEvents =
+        currentUser != null &&
+        (
+            currentUser.IsSuperUser ||
+            currentUser.Roles.Contains("Administrators") ||
+            currentUser.Roles.Contains("Site Admin") ||
+            currentUser.Roles.Contains("Upendo Client")
+        );
+
+    var canPublishOwnEvents =
+        currentUser != null &&
+        publisherRoles.Any(roleName => currentUser.Roles.Contains(roleName));
 
     string listPagePath = EventConstants.EventListPageRoute;
     string detailPagePath = EventConstants.EventDetailPageRoute;
@@ -185,9 +208,29 @@
 @{
     EventDetailDto evt = vm.Event;
 
+    int detailEventId = 0;
+    if (evt != null)
+    {
+        try
+        {
+            detailEventId = Convert.ToInt32(evt.EventId);
+        }
+        catch
+        {
+            detailEventId = 0;
+        }
+    }
+
+    bool canShowEditButton = detailEventId > 0
+        && (
+            showEdit
+            || canManageAllEvents
+            || canPublishOwnEvents
+        );
+
     string relativeDate = EventFormattingHelper.GetDisplayDate(evt);
-    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(evt.StartDateTimeUtc);
-    string shortDisplayDate = EventFormattingHelper.GetShortDisplayDate(evt.StartDateTimeUtc);
+    string absoluteDate = EventFormattingHelper.GetAbsoluteDisplayDate(evt);
+    string shortDisplayDate = EventFormattingHelper.GetShortDisplayDate(evt);
     string displayTime = EventFormattingHelper.GetDisplayTime(evt);
     string displayPrice = EventFormattingHelper.GetDisplayPrice(evt);
 
@@ -312,11 +355,14 @@
 
                 <h1 class="display-5 fw-bold mb-3">@evt.Title</h1>
 
-                @if (showEdit){
-                    <a href="@EventUrlHelper.GetEditUrl(evt.EventId)" class="btn btn-outline-secondary btn-sm mb-3">
-                        <i class="fa-solid fa-pen-to-square me-1" aria-hidden="true"></i>
-                        Edit Event
-                    </a>
+                @if (canShowEditButton)
+                {
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="@EventUrlHelper.GetEditUrl(detailEventId)" class="btn btn-outline-primary">
+                            <i class="fas fa-edit me-1" aria-hidden="true"></i>
+                            Edit Event
+                        </a>
+                    </div>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(evt.ShortSummary))
@@ -533,7 +579,7 @@
                                             </h3>
 
                                             @{
-                                                string relAbsoluteDate = EventFormattingHelper.GetShortDisplayDate(rel.StartDateTimeUtc);
+                                                string relAbsoluteDate = EventFormattingHelper.GetShortDisplayDate(rel);
                                                 string relRelativeDate = EventFormattingHelper.GetDisplayDate(rel);
                                             }
                                             <div class="small text-secondary">
