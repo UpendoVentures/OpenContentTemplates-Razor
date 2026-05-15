@@ -1,4 +1,4 @@
-![UpendoDnn-OpenContentTemplates-Razor-banner-800x419](https://github.com/user-attachments/assets/46e462ff-12d6-4b37-8e6d-d03dfc56a08b)  
+<img width="1200" height="628" alt="Upendo DNN - OpenContent Templates Razor GitHub Banner-1200x628" src="https://github.com/user-attachments/assets/9ae422db-327b-48d3-b6b9-94e3150dddbf" />
 
 > These are templates that we commonly use for various projects. This repository replaces [the previous one which used Handlebars](https://github.com/UpendoVentures/OpenContentTemplates), instead of Razor.
 
