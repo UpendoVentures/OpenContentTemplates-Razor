@@ -1,0 +1,44 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Administrator-facing title for this OpenContent module. This helps sync the content block with DNN module settings and is not displayed to visitors.",
+            "placeholder": "Companies by Business Category"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create a page anchor, such as business-category-list. Use letters, numbers, and hyphens only.",
+            "placeholder": "business-category-list",
+            "showMessages": false
+        },
+        "SectionTitle": {
+            "type": "text",
+            "helper": "Optional. Main heading shown above the businesses.",
+            "placeholder": "Explore Local Businesses"
+        },
+        "SectionDescription": {
+            "type": "ckeditor",
+            "configset": "basic",
+            "helper": "Optional. Short introduction shown above the businesses. HTML is allowed.",
+            "placeholder": "Find Burlingame businesses by category."
+        },
+        "SectionFooter": {
+            "type": "ckeditor",
+            "configset": "basic",
+            "helper": "Optional. Content shown below the businesses. HTML is allowed.",
+            "placeholder": "<p>Looking for something else? Search the full business directory.</p>"
+        },
+        "SectionBusinessCategories": {
+            "type": "select2",
+            "multiple": true,
+            "helper": "Choose one or more categories from the current website's Business Directory.",
+            "dataService": {
+                "module": "OpenContentHelper",
+                "controller": "BusinessDirectoryLookup",
+                "action": "LookupCategories",
+                "data": {}
+            },
+            "removeDefaultNone": true
+        }
+    }
+}

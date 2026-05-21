@@ -1,0 +1,404 @@
+@using System
+@using System.Collections.Generic
+@using DotNetNuke.Entities.Portals
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Directory
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Models
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    Func<dynamic, string> GetLookupKey = delegate(dynamic value)
+    {
+        if (value == null)
+        {
+            return string.Empty;
+        }
+
+        var raw = string.Empty;
+
+        try
+        {
+            if (value.CategoryName != null)
+            {
+                raw = Convert.ToString(value.CategoryName);
+            }
+        }
+        catch
+        {
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            try
+            {
+                if (value.text != null)
+                {
+                    raw = Convert.ToString(value.text);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            try
+            {
+                if (value.Text != null)
+                {
+                    raw = Convert.ToString(value.Text);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            try
+            {
+                if (value.value != null)
+                {
+                    raw = Convert.ToString(value.value);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            try
+            {
+                if (value.CategoryId != null)
+                {
+                    raw = Convert.ToString(value.CategoryId);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            try
+            {
+                if (value.id != null)
+                {
+                    raw = Convert.ToString(value.id);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            try
+            {
+                if (value.Id != null)
+                {
+                    raw = Convert.ToString(value.Id);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            raw = Convert.ToString(value);
+        }
+
+        if (string.Equals(raw, "System.Web.Helpers.DynamicJsonObject", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(raw, "unknown", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(raw, "unknow", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(raw, "[object Object]", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        return raw == null ? string.Empty : raw.Trim();
+    };
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+    var sectionFooter = Model.SectionFooter != null ? Convert.ToString(Model.SectionFooter) : string.Empty;
+
+    var portalSettings = PortalSettings.Current;
+    var portalId = portalSettings != null ? portalSettings.PortalId : 0;
+
+    var selectedCategoryIds = new List<int>();
+    var activeCategories = portalId > 0
+        ? ChamberMembershipController.GetActiveCategories(portalId)
+        : null;
+
+    if (Model.SectionBusinessCategories != null && activeCategories != null)
+    {
+        foreach (var selectedCategory in Model.SectionBusinessCategories)
+        {
+            var selectedKey = GetLookupKey(selectedCategory);
+
+            if (string.IsNullOrWhiteSpace(selectedKey))
+            {
+                continue;
+            }
+
+            foreach (var category in activeCategories)
+            {
+                if (category == null)
+                {
+                    continue;
+                }
+
+                var categoryIdText = category.CategoryId.ToString();
+                var categoryName = category.CategoryName == null ? string.Empty : category.CategoryName.Trim();
+                var categorySlug = category.Slug == null ? string.Empty : category.Slug.Trim();
+
+                var isMatch =
+                    string.Equals(selectedKey, categoryIdText, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(selectedKey, categoryName, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(selectedKey, categorySlug, StringComparison.OrdinalIgnoreCase);
+
+                if (isMatch && category.CategoryId > 0 && !selectedCategoryIds.Contains(category.CategoryId))
+                {
+                    selectedCategoryIds.Add(category.CategoryId);
+                    break;
+                }
+            }
+        }
+    }
+
+    var pageSize = 24;
+    if (Model.Settings.PageSize != null)
+    {
+        int parsedPageSize;
+        if (int.TryParse(Convert.ToString(Model.Settings.PageSize), out parsedPageSize))
+        {
+            pageSize = parsedPageSize;
+        }
+    }
+
+    if (pageSize < 1)
+    {
+        pageSize = 24;
+    }
+
+    if (pageSize > 100)
+    {
+        pageSize = 100;
+    }
+
+    var companies = new List<CompanyDirectoryItem>();
+
+    if (portalId > 0 && selectedCategoryIds.Count > 0)
+    {
+        var results = ChamberMembershipController.SearchCompaniesByCategoryIds(portalId, selectedCategoryIds, pageSize);
+
+        if (results != null && results.Items != null)
+        {
+            foreach (var item in results.Items)
+            {
+                if (item != null)
+                {
+                    companies.Add(item);
+                }
+            }
+        }
+    }
+
+    var backgroundColorClass = Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClasses = "oc-business-category-company-grid position-relative w-100";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+
+    var headingId = "oc-business-category-company-grid-heading-" + Model.Context.ModuleId;
+    var sectionLabel = !string.IsNullOrWhiteSpace(sectionTitle)
+        ? sectionTitle
+        : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Businesses by category");
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClasses" aria-labelledby="@headingId">
+    <div class="container-fluid">
+        <div class="oc-business-category-company-grid__inner mx-auto">
+
+            @if (!string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionDescription))
+            {
+                <div class="row justify-content-center mb-4 mb-lg-5">
+                    <div class="col-12 col-lg-9 text-center">
+                        @if (!string.IsNullOrWhiteSpace(sectionTitle))
+                        {
+                            <h2 id="@headingId" class="oc-business-category-company-grid__heading text-notransform mb-3">
+                                @Html.Raw(sectionTitle)
+                            </h2>
+                        }
+                        else
+                        {
+                            <h2 id="@headingId" class="visually-hidden">@sectionLabel</h2>
+                        }
+
+                        @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                        {
+                            <div class="oc-business-category-company-grid__description mx-auto">
+                                @Html.Raw(sectionDescription)
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2 id="@headingId" class="visually-hidden">@sectionLabel</h2>
+            }
+
+            @if (selectedCategoryIds.Count == 0)
+            {
+                <div class="oc-business-category-company-grid__empty text-center mx-auto" aria-live="polite">
+                    <div class="oc-business-category-company-grid__empty-icon mb-3" aria-hidden="true">
+                        <i class="fa-solid fa-building-circle-question"></i>
+                    </div>
+                    <p class="lead mb-2">No business categories have been selected yet.</p>
+                    <p class="mb-0">Choose one or more categories in the module settings to display matching businesses here.</p>
+                </div>
+            }
+            else if (companies.Count == 0)
+            {
+                <div class="oc-business-category-company-grid__empty text-center mx-auto" aria-live="polite">
+                    <div class="oc-business-category-company-grid__empty-icon mb-3" aria-hidden="true">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                    </div>
+                    <p class="lead mb-2">We could not find businesses in the selected category right now.</p>
+                    <p class="mb-4">Please try another category or search the full business directory.</p>
+                    <a href="/list" class="btn btn-primary">
+                        <i class="fa-solid fa-list me-2" aria-hidden="true"></i>
+                        <span>Search the Business Directory</span>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="row g-4" role="list" aria-label="@sectionLabel">
+                    @foreach (var company in companies)
+                    {
+                        var logoUrl = ChamberMembershipController.ResolveLogoUrl(portalId, company.LogoFileId, company.LogoUrl);
+                        var companyUrl = "/list/company/" + company.Slug;
+
+                        <div class="col-12 col-md-6 col-lg-4" role="listitem">
+                            <article class="oc-business-category-company-grid__card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                                <div class="oc-business-category-company-grid__logo-wrap bg-white">
+                                    <a href="@companyUrl" aria-label="View details for @company.CompanyName">
+                                        @if (!string.IsNullOrWhiteSpace(logoUrl))
+                                        {
+                                            <img src="@logoUrl"
+                                                 alt="Logo for @company.CompanyName"
+                                                 class="oc-business-category-company-grid__logo"
+                                                 loading="lazy"
+                                                 decoding="async" />
+                                        }
+                                        else
+                                        {
+                                            <span class="oc-business-category-company-grid__logo-placeholder" aria-hidden="true">
+                                                <i class="fa-solid fa-building"></i>
+                                            </span>
+                                        }
+                                    </a>
+                                </div>
+
+                                <div class="card-body p-4">
+                                    <h3 class="h5 mb-2">
+                                        <a href="@companyUrl" class="stretched-link text-decoration-none">
+                                            @company.CompanyName
+                                        </a>
+                                    </h3>
+
+                                    @if (!string.IsNullOrWhiteSpace(company.ShortDescription))
+                                    {
+                                        <p class="mb-3 text-secondary">
+                                            @company.ShortDescription
+                                        </p>
+                                    }
+
+                                    @if (!string.IsNullOrWhiteSpace(company.City) || !string.IsNullOrWhiteSpace(company.Region))
+                                    {
+                                        <p class="small text-secondary mb-0">
+                                            <i class="fa-solid fa-location-dot me-1" aria-hidden="true"></i>
+                                            <span>
+                                                @company.City@if (!string.IsNullOrWhiteSpace(company.City) && !string.IsNullOrWhiteSpace(company.Region)){<text>, </text>}@company.Region
+                                            </span>
+                                        </p>
+                                    }
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(sectionFooter))
+            {
+                <div class="oc-business-category-company-grid__footer mt-4 mt-lg-5 text-center">
+                    @Html.Raw(sectionFooter)
+                </div>
+            }
+        </div>
+    </div>
+</section>
