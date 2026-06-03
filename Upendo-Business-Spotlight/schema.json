@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "SectionTitle": {
+            "type": "string",
+            "title": "Section Title"
+        },
+        "SectionDescription": {
+            "type": "string",
+            "title": "Section Description"
+        },
+        "SpotlightTitle": {
+            "type": "string",
+            "title": "Spotlight Title"
+        },
+        "SpotlightDescription": {
+            "type": "string",
+            "title": "Spotlight Description"
+        },
+        "SpotlightImage": {
+            "type": "string",
+            "title": "Spotlight Image"
+        },
+        "SpotlightImageAltText": {
+            "type": "string",
+            "title": "Spotlight Image Alt Text"
+        },
+        "MemberLandingPage": {
+            "type": "string",
+            "title": "Member Landing Page"
+        },
+        "CTAURL": {
+            "type": "string",
+            "title": "CTA URL"
+        },
+        "CTAText": {
+            "type": "string",
+            "title": "CTA Text"
+        }
+    },
+    "required": [
+        "SpotlightTitle",
+        "SpotlightDescription",
+        "SpotlightImage",
+        "MemberLandingPage"
+    ]
+}

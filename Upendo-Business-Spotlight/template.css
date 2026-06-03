@@ -1,0 +1,106 @@
+.oc-member-spotlight {
+    overflow: hidden;
+}
+
+.oc-member-spotlight__content {
+    max-width: 44rem;
+}
+
+.oc-member-spotlight__section-description>*:last-child,
+.oc-member-spotlight__description>*:last-child {
+    margin-bottom: 0;
+}
+
+.oc-member-spotlight__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.oc-member-spotlight__title a {
+    color: inherit;
+}
+
+.oc-member-spotlight__title a:hover,
+.oc-member-spotlight__title a:focus {
+    text-decoration: underline !important;
+}
+
+.oc-member-spotlight__actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+}
+
+.oc-member-spotlight a:focus-visible,
+.oc-member-spotlight .btn:focus-visible {
+    outline: 3px solid rgba(180, 70, 0, 0.35);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .oc-member-spotlight a.shadow-sm {
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .oc-member-spotlight a.shadow-sm:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14) !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-member-spotlight__actions {
+        align-items: stretch !important;
+    }
+
+    .oc-member-spotlight__actions .btn {
+        width: 100%;
+    }
+}
+
+/* Custom background utilities copied from the established Upendo full-width CTA pattern. */
+.bg-off-white {
+    background-color: #f8f7f3 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f3ed !important;
+}
+
+.bg-cream {
+    background-color: #f4efe6 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9ddd1 !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bf !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dd !important;
+}
+
+.bg-sage {
+    background-color: #b8c6b1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e5eee3 !important;
+}
+
+.bg-mist {
+    background-color: #edf1ef !important;
+}
+
+.bg-soft-gray {
+    background-color: #f1f1ee !important;
+}
+
+.bg-forest-green {
+    background-color: #173f35 !important;
+}

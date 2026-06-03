@@ -1,0 +1,62 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Administrator-facing title for this OpenContent module. This helps sync the content block with DNN module settings and is not displayed to visitors.",
+            "placeholder": "Local Business Spotlight"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create a page anchor, such as local-business-spotlight. Use letters, numbers, and hyphens only.",
+            "placeholder": "local-business-spotlight",
+            "showMessages": false
+        },
+        "SectionTitle": {
+            "type": "text",
+            "helper": "Optional. Main heading shown above the spotlight.",
+            "placeholder": "Local Business Spotlight"
+        },
+        "SectionDescription": {
+            "type": "textarea",
+            "helper": "Optional. Short supporting text shown under the section title. HTML is allowed and will render in the view.",
+            "placeholder": "Celebrating &amp; Promoting Our Members"
+        },
+        "SpotlightTitle": {
+            "type": "text",
+            "helper": "Required. The headline for the featured business. HTML is allowed and will render in the view.",
+            "placeholder": "<strong>Business Name</strong>: A Short Benefit-Focused Phrase"
+        },
+        "SpotlightDescription": {
+            "type": "textarea",
+            "helper": "Required. One short paragraph describing the featured business and why visitors should learn more. HTML is allowed and will render in the view.",
+            "placeholder": "Write a warm, helpful paragraph that introduces the business, mentions what they do, and explains why they are valuable to the local community."
+        },
+        "SpotlightImage": {
+            "type": "image",
+            "folder": "Content/Members/Spotlights/",
+            "helper": "Required. Use a high-quality image for the featured business. Recommended minimum size: 1800px wide by 1200px high."
+        },
+        "SpotlightImageAltText": {
+            "type": "text",
+            "helper": "Optional, but strongly recommended. Describe the image clearly for accessibility and SEO.",
+            "placeholder": "Two team members smile inside a local business showroom."
+        },
+        "MemberLandingPage": {
+            "type": "url",
+            "autocomplete": true,
+            "helper": "Required. Select or enter the featured member's landing page. Local and external URLs are both allowed.",
+            "placeholder": "/list/company/example-business"
+        },
+        "CTAURL": {
+            "type": "url",
+            "autocomplete": true,
+            "helper": "Optional. Select or enter the secondary CTA URL. For example, this could link to the membership page.",
+            "placeholder": "/join"
+        },
+        "CTAText": {
+            "type": "text",
+            "helper": "Optional. Text for the secondary CTA button. This only displays when CTA URL is also filled in. HTML is allowed and will render in the view.",
+            "placeholder": "Learn About Membership"
+        }
+    }
+}
