@@ -1,0 +1,314 @@
+@using System
+@using System.Linq
+@using System.Collections.Generic
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var firstTileTitle = Model.FirstTileTitle != null ? Convert.ToString(Model.FirstTileTitle) : string.Empty;
+    var firstTileDescription = Model.FirstTileDescription != null ? Convert.ToString(Model.FirstTileDescription) :
+string.Empty;
+    var firstTileBackgroundColor = Model.FirstTileBackgroundColor != null ? Convert.ToString(Model.FirstTileBackgroundColor)
+: string.Empty;
+
+    var ctaText = Model.CTAText != null ? Convert.ToString(Model.CTAText) : string.Empty;
+    var ctaUrl = Model.CTAURL != null ? Convert.ToString(Model.CTAURL) : string.Empty;
+
+    if (string.IsNullOrWhiteSpace(ctaText))
+    {
+        ctaText = "More Photos";
+    }
+
+    var hasSectionTitle = !string.IsNullOrWhiteSpace(sectionTitle);
+    var hasSectionDescription = !string.IsNullOrWhiteSpace(sectionDescription);
+    var hasSectionHeader = hasSectionTitle || hasSectionDescription;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionId = "oc-seen-around-title-" + Model.Context.ModuleId;
+
+    if (!string.IsNullOrWhiteSpace(moduleAnchor))
+    {
+        sectionId = moduleAnchor + "-title";
+    }
+
+    var sectionClasses = "oc-seen-around w-100";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClasses += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClasses += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClasses += " " + paddingBottom; }
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger",
+        "bg-forest-green"
+    };
+
+    var firstTileIsDark = false;
+
+    if (!string.IsNullOrWhiteSpace(firstTileBackgroundColor))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(firstTileBackgroundColor, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                firstTileIsDark = true;
+                break;
+            }
+        }
+    }
+
+    var firstTileClasses = "oc-seen-around__intro-square bc-square rounded-4 shadow-sm overflow-hidden";
+
+    if (!string.IsNullOrWhiteSpace(firstTileBackgroundColor))
+    {
+        firstTileClasses += " " + firstTileBackgroundColor;
+    }
+    else
+    {
+        firstTileClasses += " bg-h5";
+        firstTileIsDark = true;
+    }
+
+    firstTileClasses += firstTileIsDark
+        ? " oc-seen-around__intro-square--dark"
+        : " oc-seen-around__intro-square--light";
+
+    var allGalleryItems = new List<Dictionary<string, string>>();
+
+    if (Model.Images != null)
+    {
+        foreach (var imageItem in Model.Images)
+        {
+            var imageTitle = imageItem.ImageTitle != null ? Convert.ToString(imageItem.ImageTitle) : string.Empty;
+            var imageDescription = imageItem.ImageDescription != null ? Convert.ToString(imageItem.ImageDescription) : string.Empty;
+            var imagePath = imageItem.ImagePath != null ? Convert.ToString(imageItem.ImagePath) : string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(imageTitle) && !string.IsNullOrWhiteSpace(imagePath))
+            {
+                var galleryItem = new Dictionary<string, string>();
+                galleryItem["Title"] = imageTitle;
+                galleryItem["Description"] = imageDescription;
+                galleryItem["Path"] = imagePath;
+
+                allGalleryItems.Add(galleryItem);
+            }
+        }
+    }
+
+    var random = new Random(Guid.NewGuid().GetHashCode());
+
+    var selectedGalleryItems = allGalleryItems.Count > 3
+        ? allGalleryItems.OrderBy(x => random.Next()).Take(3).ToList()
+        : allGalleryItems.Take(3).ToList();
+
+    var hasGalleryImages = selectedGalleryItems.Count > 0;
+    var hasCta = !string.IsNullOrWhiteSpace(ctaText) && !string.IsNullOrWhiteSpace(ctaUrl);
+
+    var ariaLabel = !string.IsNullOrWhiteSpace(sectionTitle)
+        ? sectionTitle
+        : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Photo gallery preview");
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (!string.IsNullOrWhiteSpace(firstTileTitle) && hasCta && hasGalleryImages)
+{
+    <section class="@sectionClasses" aria-labelledby="@sectionId">
+        <div class="container-fluid">
+            <div class="oc-seen-around__inner mx-auto">
+                @if (hasSectionHeader)
+                {
+                    <header class="text-center mb-4">
+                        @if (hasSectionTitle)
+                        {
+                            <h2 id="@sectionId" class="oc-seen-around__section-title mb-2">
+                                @Html.Raw(sectionTitle)
+                            </h2>
+                        }
+                        else
+                        {
+                            <h2 id="@sectionId" class="visually-hidden">@ariaLabel</h2>
+                        }
+
+                        @if (hasSectionDescription)
+                        {
+                            <div class="oc-seen-around__section-description text-muted mb-0">
+                                @Html.Raw(sectionDescription)
+                            </div>
+                        }
+                    </header>
+                }
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <div class="@firstTileClasses">
+                                    <div
+                                        class="oc-seen-around__intro-content h-100 d-flex flex-column justify-content-center text-center p-4">
+                                        @if (hasSectionTitle)
+                                        {
+                                            <h3 class="oc-seen-around__intro-title h5 fw-bold mb-2">
+                                                @Html.Raw(firstTileTitle)
+                                            </h3>
+                                        }
+                                        else
+                                        {
+                                            <h2 id="@sectionId" class="oc-seen-around__intro-title h5 fw-bold mb-2">
+                                                @Html.Raw(firstTileTitle)
+                                            </h2>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(firstTileDescription))
+                                        {
+                                            <div class="oc-seen-around__intro-description mb-3">
+                                                @Html.Raw(firstTileDescription)
+                                            </div>
+                                        }
+
+                                        <a href="@ctaUrl"
+                                            class="oc-seen-around__intro-cta rounded-pill align-self-center track-cta"
+                                            aria-label="@ctaText"
+                                            title="@ctaText">
+                                                @Html.Raw(ctaText)
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @{
+                                var index = 0;
+                            }
+
+                            @foreach (var imageItem in selectedGalleryItems)
+                            {
+                                var imageTitle = imageItem["Title"];
+                                var imageDescription = imageItem["Description"];
+                                var imagePath = imageItem["Path"];
+                                var modalId = "oc-seen-around-modal-" + Model.Context.ModuleId + "-" + index;
+                                var animation = index == 1 ? "fadeInLeft" : "fadeInRight";
+                                var openLabel = "Open " + imageTitle;
+                                var modalTitleId = modalId + "-title";
+
+                                <div class="col-12 col-md-6" data-appear-animation="@animation">
+                                    <a href="#@modalId" class="oc-seen-around__image-link d-block text-decoration-none"
+                                       aria-label="@openLabel" title="@openLabel" role="button" data-bs-toggle="modal"
+                                       data-bs-target="#@modalId">
+                                        <div class="bc-square rounded-4 overflow-hidden shadow-sm">
+                                            <img src="@imagePath" class="bc-square__img" alt="@imageTitle" loading="lazy"
+                                                 decoding="async" />
+                                        </div>
+                                    </a>
+                                </div>
+
+                                index++;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @{
+            var modalIndex = 0;
+        }
+
+        @foreach (var imageItem in selectedGalleryItems)
+        {
+            var imageTitle = imageItem["Title"];
+            var imageDescription = imageItem["Description"];
+            var imagePath = imageItem["Path"];
+            var modalId = "oc-seen-around-modal-" + Model.Context.ModuleId + "-" + modalIndex;
+            var modalTitleId = modalId + "-title";
+
+            <div class="modal fade oc-seen-around__modal" id="@modalId" tabindex="-1" aria-labelledby="@modalTitleId"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content border-0 rounded-4 overflow-hidden">
+                        <div class="modal-header align-items-start">
+                            <div class="oc-seen-around__modal-heading pe-3">
+                                <h2 class="modal-title h5 mb-1" id="@modalTitleId">
+                                    @Html.Raw(imageTitle)
+                                </h2>
+
+                                @if (!string.IsNullOrWhiteSpace(imageDescription))
+                                {
+                                    <div class="oc-seen-around__modal-description">
+                                        @Html.Raw(imageDescription)
+                                    </div>
+                                }
+                            </div>
+
+                            <button type="button"
+                                    class="btn-close flex-shrink-0"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body p-0">
+                            <div class="oc-seen-around__modal-image-wrap position-relative">
+                                <img src="@imagePath"
+                                    class="oc-seen-around__modal-image img-fluid w-100"
+                                    alt="@imageTitle"
+                                    loading="lazy"
+                                    decoding="async" />
+
+                                <a href="@ctaUrl"
+                                class="oc-seen-around__more-overlay rounded-pill shadow-sm track-cta"
+                                aria-label="@ctaText"
+                                title="@ctaText">
+                                    @Html.Raw(ctaText)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            modalIndex++;
+        }
+    </section>
+}

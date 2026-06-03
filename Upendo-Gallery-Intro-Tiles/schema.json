@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "SectionTitle": {
+            "type": "string",
+            "title": "Section Title"
+        },
+        "SectionDescription": {
+            "type": "string",
+            "title": "Section Description"
+        },
+        "FirstTileTitle": {
+            "type": "string",
+            "title": "First Tile Title"
+        },
+        "FirstTileDescription": {
+            "type": "string",
+            "title": "First Tile Description"
+        },
+        "FirstTileBackgroundColor": {
+            "type": "string",
+            "title": "First Tile Background Color",
+            "enum": [
+                "",
+                "bg-primary",
+                "bg-primary-scoped",
+                "bg-secondary",
+                "bg-secondary-scoped",
+                "bg-tertiary",
+                "bg-quaternary",
+                "bg-h5",
+                "bg-h6",
+                "bg-success",
+                "bg-danger",
+                "bg-warning",
+                "bg-info",
+                "bg-light",
+                "bg-dark",
+                "bg-white",
+                "bg-body",
+                "bg-transparent",
+                "bg-primary-subtle",
+                "bg-secondary-subtle",
+                "bg-success-subtle",
+                "bg-danger-subtle",
+                "bg-warning-subtle",
+                "bg-info-subtle",
+                "bg-light-subtle",
+                "bg-dark-subtle",
+                "bg-off-white",
+                "bg-warm-white",
+                "bg-cream",
+                "bg-soft-beige",
+                "bg-sand",
+                "bg-light-sage",
+                "bg-sage",
+                "bg-pale-green",
+                "bg-mist",
+                "bg-soft-gray",
+                "bg-forest-green"
+            ]
+        },
+        "CTAText": {
+            "type": "string",
+            "title": "CTA Text",
+            "default": "More Photos"
+        },
+        "CTAURL": {
+            "type": "string",
+            "title": "CTA URL"
+        },
+        "Images": {
+            "type": "array",
+            "title": "Images",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "ImageTitle": {
+                        "type": "string",
+                        "title": "Image Title"
+                    },
+                    "ImageDescription": {
+                        "type": "string",
+                        "title": "Image Description"
+                    },
+                    "ImagePath": {
+                        "type": "string",
+                        "title": "Image Path"
+                    }
+                },
+                "required": [
+                    "ImageTitle",
+                    "ImagePath"
+                ]
+            }
+        }
+    },
+    "required": [
+        "FirstTileTitle",
+        "CTAText",
+        "CTAURL",
+        "Images"
+    ]
+}
