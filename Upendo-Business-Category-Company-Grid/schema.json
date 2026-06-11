@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor"
+        },
+        "SectionTitle": {
+            "type": "string",
+            "title": "Section Title"
+        },
+        "SectionDescription": {
+            "type": "string",
+            "title": "Section Description"
+        },
+        "SectionFooter": {
+            "type": "string",
+            "title": "Section Footer"
+        },
+        "SectionBusinessCategories": {
+            "type": "array",
+            "title": "Section Business Category(ies)",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

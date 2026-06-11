@@ -1,0 +1,152 @@
+@using System
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var spotlightTitle = Model.SpotlightTitle != null ? Convert.ToString(Model.SpotlightTitle) : string.Empty;
+    var spotlightDescription = Model.SpotlightDescription != null ? Convert.ToString(Model.SpotlightDescription) :
+string.Empty;
+    var spotlightImage = Model.SpotlightImage != null ? Convert.ToString(Model.SpotlightImage) : string.Empty;
+    var spotlightImageAltText = Model.SpotlightImageAltText != null ? Convert.ToString(Model.SpotlightImageAltText) :
+string.Empty;
+
+    var memberLandingPage = Model.MemberLandingPage != null ? Convert.ToString(Model.MemberLandingPage) : string.Empty;
+    var ctaUrl = Model.CTAURL != null ? Convert.ToString(Model.CTAURL) : string.Empty;
+    var ctaText = Model.CTAText != null ? Convert.ToString(Model.CTAText) : string.Empty;
+
+    var hasSectionHeader = !string.IsNullOrWhiteSpace(sectionTitle) || !string.IsNullOrWhiteSpace(sectionDescription);
+    var hasSpotlightTitle = !string.IsNullOrWhiteSpace(spotlightTitle);
+    var hasSpotlightDescription = !string.IsNullOrWhiteSpace(spotlightDescription);
+    var hasSpotlightImage = !string.IsNullOrWhiteSpace(spotlightImage);
+    var hasMemberLandingPage = !string.IsNullOrWhiteSpace(memberLandingPage);
+    var hasSecondaryCta = !string.IsNullOrWhiteSpace(ctaUrl) && !string.IsNullOrWhiteSpace(ctaText);
+
+    if (string.IsNullOrWhiteSpace(spotlightImageAltText))
+    {
+        spotlightImageAltText = !string.IsNullOrWhiteSpace(spotlightTitle)
+            ? "Image for " + spotlightTitle
+            : "Featured business spotlight image";
+    }
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionId = "oc-member-spotlight-title-" + Model.Context.ModuleId;
+
+    var sectionClasses = "oc-member-spotlight w-100";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClasses += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClasses += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClasses += " " + paddingBottom; }
+
+    var ariaLabel = !string.IsNullOrWhiteSpace(sectionTitle)
+        ? sectionTitle
+        : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Featured business spotlight");
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasSpotlightTitle && hasSpotlightDescription && hasSpotlightImage && hasMemberLandingPage)
+{
+    <section class="@sectionClasses" aria-labelledby="@sectionId">
+        <div class="container">
+            @if (hasSectionHeader)
+            {
+                <header class="text-center mb-4">
+                    @if (!string.IsNullOrWhiteSpace(sectionTitle))
+                    {
+                        <h2 id="@sectionId" class="oc-member-spotlight__section-title mb-2">@Html.Raw(sectionTitle)</h2>
+                    }
+                    else
+                    {
+                        <h2 id="@sectionId" class="visually-hidden">@ariaLabel</h2>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                    {
+                        <div class="oc-member-spotlight__section-description text-muted mb-0">
+                            @Html.Raw(sectionDescription)
+                        </div>
+                    }
+                </header>
+            }
+            else
+            {
+                <h2 id="@sectionId" class="visually-hidden">@ariaLabel</h2>
+            }
+
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-lg-6">
+                    <a href="@memberLandingPage"
+                       class="oc-member-spotlight__image-link d-block rounded-4 overflow-hidden shadow-sm text-decoration-none"
+                       aria-label="View the featured business" title="View the featured business">
+                        <img src="@spotlightImage" class="oc-member-spotlight__image img-fluid rounded-3 shadow-sm"
+                             alt="@spotlightImageAltText" loading="lazy" decoding="async"
+                             data-appear-animation="fadeInLeft" />
+                    </a>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="oc-member-spotlight__content mx-auto">
+                        <h3 class="oc-member-spotlight__title h5 fw-bold mb-2">
+                            <a href="@memberLandingPage" class="text-decoration-none"
+                               aria-label="View details for the featured business">
+                                @Html.Raw(spotlightTitle)
+                            </a>
+                        </h3>
+
+                        <div class="oc-member-spotlight__description text-muted mb-4">
+                            @Html.Raw(spotlightDescription)
+                        </div>
+
+                        <div
+                            class="oc-member-spotlight__actions d-flex justify-content-between align-items-center gap-2 flex-wrap">
+                            @if (hasSecondaryCta)
+                            {
+                                <a href="@ctaUrl" class="btn btn-outline-secondary rounded-pill track-cta" aria-label="@ctaText"
+                                   title="@ctaText">
+                                    @Html.Raw(ctaText)
+                                </a>
+                            }
+
+                            <a href="@memberLandingPage" class="btn btn-dark rounded-pill track-referral"
+                               aria-label="View the member page" title="View the member page">
+                                View Member Page
+                                <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

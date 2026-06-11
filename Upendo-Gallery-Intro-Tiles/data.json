@@ -1,0 +1,33 @@
+{
+    "ModuleTitle": "Seen Around Gallery Preview",
+    "ModuleAnchor": "seen-around-gallery",
+    "SectionTitle": "",
+    "SectionDescription": "",
+    "FirstTileTitle": "Seen Around Burlingame",
+    "FirstTileDescription": "Business, Events, &amp; Community.",
+    "FirstTileBackgroundColor": "bg-h5",
+    "CTAText": "More Photos",
+    "CTAURL": "/gallery",
+    "Images": [
+        {
+            "ImageTitle": "Burlingame Chamber photo 1",
+            "ImageDescription": "Add a short caption for this photo.",
+            "ImagePath": "https://placehold.co/1800x1200"
+        },
+        {
+            "ImageTitle": "Burlingame Chamber photo 2",
+            "ImageDescription": "Add a short caption for this photo.",
+            "ImagePath": "https://placehold.co/1800x1200"
+        },
+        {
+            "ImageTitle": "Burlingame Chamber photo 3",
+            "ImageDescription": "Add a short caption for this photo.",
+            "ImagePath": "https://placehold.co/1800x1200"
+        },
+        {
+            "ImageTitle": "Burlingame Chamber photo 4",
+            "ImageDescription": "Add a short caption for this photo.",
+            "ImagePath": "https://placehold.co/1800x1200"
+        }
+    ]
+}
