@@ -1,0 +1,1560 @@
+@using System
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleId = Model.Context.ModuleId;
+    var tabId = Model.Context.TabId;
+    var portalId = Model.Context.PortalId;
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var heading = Model.Heading != null ? Convert.ToString(Model.Heading) : "My Membership";
+    var lead = Model.Lead != null ? Convert.ToString(Model.Lead) : string.Empty;
+    var loadingMessage = Model.LoadingMessage != null ? Convert.ToString(Model.LoadingMessage) : "Loading your membership details...";
+    var emptyHeading = Model.EmptyHeading != null ? Convert.ToString(Model.EmptyHeading) : "No membership billing account found.";
+    var emptyText = Model.EmptyText != null ? Convert.ToString(Model.EmptyText) : "<p>Membership billing details will appear here once your account is linked.</p>";
+    var errorHeading = Model.ErrorHeading != null ? Convert.ToString(Model.ErrorHeading) : "We couldn't load your billing details.";
+    var errorText = Model.ErrorText != null ? Convert.ToString(Model.ErrorText) : "<p>Please refresh the page or contact support if the problem persists.</p>";
+
+    var contactMemberSupportAddress = Model.Settings.ContactMemberSupportAddress != null
+        ? Convert.ToString(Model.Settings.ContactMemberSupportAddress)
+        : string.Empty;
+
+    var viewAllBenefitsUrl = Model.Settings.ViewAllBenefitsUrl != null
+        ? Convert.ToString(Model.Settings.ViewAllBenefitsUrl)
+        : string.Empty;
+
+    var backgroundColorClass = Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClasses = "upendo-membership-dashboard w-100";
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+
+    var rootId = "upendoMembershipDashboard" + moduleId.ToString();
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section id="@rootId"
+         class="@sectionClasses"
+         data-module-id="@moduleId"
+         data-tab-id="@tabId"
+         data-portal-id="@portalId"
+         data-support-address="@contactMemberSupportAddress"
+         data-benefits-url="@viewAllBenefitsUrl"
+         aria-labelledby="@rootId-heading">
+
+    <div class="container-fluid">
+        <div class="upendo-membership-dashboard__inner mx-auto">
+
+            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3 mb-4">
+                <div>
+                    <h2 id="@rootId-heading" class="upendo-membership-dashboard__heading mb-1">
+                        @Html.Raw(heading)
+                    </h2>
+
+                    @if (!string.IsNullOrWhiteSpace(lead))
+                    {
+                        <div class="upendo-membership-dashboard__lead">
+                            @Html.Raw(lead)
+                        </div>
+                    }
+
+                    <div class="upendo-membership-dashboard__trust-line d-flex flex-wrap gap-3 mt-3" data-membership-trust-line hidden>
+                        <span>
+                            <i class="fas fa-shield-alt me-1" aria-hidden="true"></i>
+                            Payment details are managed securely through Stripe.
+                        </span>
+                        <span data-last-updated-wrap hidden>
+                            <i class="fas fa-sync-alt me-1" aria-hidden="true"></i>
+                            <em>Last updated <span data-last-updated></span></em>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="upendo-membership-dashboard__header-actions flex-wrap gap-2" data-header-actions hidden>
+                    <button type="button"
+                            class="btn btn-outline-dark upendo-membership-dashboard__portal-button"
+                            data-portal-action="manage"
+                            aria-label="Manage billing securely through Stripe">
+                        <i class="fas fa-receipt me-2" aria-hidden="true"></i>
+                        Manage Billing
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-primary upendo-membership-dashboard__portal-button"
+                            data-portal-action="renew"
+                            aria-label="Renew membership securely through Stripe">
+                        Renew Now
+                    </button>
+                </div>
+            </div>
+
+            <div class="upendo-membership-dashboard__loading" data-loading-state role="status" aria-live="polite">
+                <div class="row g-4">
+                    <div class="col-12 col-lg-8">
+                        <div class="upendo-membership-dashboard__card upendo-membership-dashboard__skeleton-card">
+                            <span class="upendo-membership-dashboard__skeleton w-25"></span>
+                            <span class="upendo-membership-dashboard__skeleton w-75"></span>
+                            <span class="upendo-membership-dashboard__skeleton w-50"></span>
+                            <div class="row g-3 mt-3">
+                                <div class="col-12 col-md-6">
+                                    <span class="upendo-membership-dashboard__skeleton upendo-membership-dashboard__skeleton-block"></span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <span class="upendo-membership-dashboard__skeleton upendo-membership-dashboard__skeleton-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="upendo-membership-dashboard__card upendo-membership-dashboard__skeleton-card">
+                            <span class="upendo-membership-dashboard__skeleton w-50"></span>
+                            <span class="upendo-membership-dashboard__skeleton w-75"></span>
+                            <span class="upendo-membership-dashboard__skeleton upendo-membership-dashboard__skeleton-block"></span>
+                        </div>
+                    </div>
+                </div>
+                <span class="visually-hidden">@Html.Raw(loadingMessage)</span>
+            </div>
+
+            <div class="upendo-membership-dashboard__error alert alert-warning d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3"
+                data-error-state
+                hidden
+                role="alert"
+                aria-live="polite">
+                <div class="d-flex gap-3">
+                    <span class="upendo-membership-dashboard__alert-icon" aria-hidden="true">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+
+                    <div>
+                        <strong class="d-block" data-error-heading>
+                            @Html.Raw(errorHeading)
+                        </strong>
+
+                        <div data-error-text>
+                            @Html.Raw(errorText)
+                        </div>
+
+                        <div class="upendo-membership-dashboard__error-technical small mt-2"
+                            data-error-technical
+                            hidden></div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <a class="btn btn-outline-dark"
+                    href="@contactMemberSupportAddress"
+                    data-error-support-link
+                    hidden>
+                        <i class="fas fa-headset me-2" aria-hidden="true"></i>
+                        Contact Support
+                    </a>
+
+                    <button type="button"
+                            class="btn btn-outline-danger"
+                            data-retry-button>
+                        Try Again
+                    </button>
+                </div>
+            </div>
+
+            <div class="upendo-membership-dashboard__empty text-center" data-empty-state hidden>
+                <div class="upendo-membership-dashboard__card py-5">
+                    <span class="upendo-membership-dashboard__empty-icon mb-3" aria-hidden="true">
+                        <i class="fas fa-history"></i>
+                    </span>
+                    <h3 class="h4">@Html.Raw(emptyHeading)</h3>
+                    <div class="upendo-membership-dashboard__empty-text mx-auto">
+                        @Html.Raw(emptyText)
+                    </div>
+                    <div class="mt-4">
+                        <a class="btn btn-primary" href="@viewAllBenefitsUrl">
+                            View Membership Benefits
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div data-loaded-state hidden>
+                <div class="upendo-membership-dashboard__status-alert mb-4" data-status-alert hidden>
+                    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+                        <div class="d-flex gap-3">
+                            <span class="upendo-membership-dashboard__status-alert-icon" aria-hidden="true">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                            <div>
+                                <h3 class="h5 mb-1" data-status-alert-heading></h3>
+                                <div data-status-alert-text></div>
+                            </div>
+                        </div>
+                        <a class="btn btn-link fw-semibold text-decoration-none" href="@contactMemberSupportAddress" data-support-link>
+                            <i class="far fa-envelope me-1" aria-hidden="true"></i>
+                            Contact Support
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row g-4 align-items-stretch">
+                    <div class="col-12 col-xl-8">
+                        <article class="upendo-membership-dashboard__hero-card h-100" data-membership-hero-card>
+                            <div class="upendo-membership-dashboard__hero-body">
+                                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                                    <span class="badge upendo-membership-dashboard__status-badge" data-status-badge></span>
+                                    <span class="upendo-membership-dashboard__small" data-member-since-wrap hidden>
+                                        Member since <strong data-member-since></strong>
+                                    </span>
+                                </div>
+
+                                <h3 class="upendo-membership-dashboard__plan-name mb-4" data-plan-name></h3>
+
+                                <div class="row g-4">
+                                    <div class="col-12 col-md-4">
+                                        <span class="upendo-membership-dashboard__label">Next Renewal</span>
+                                        <strong class="upendo-membership-dashboard__value" data-next-renewal></strong>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <span class="upendo-membership-dashboard__label">Billing Interval</span>
+                                        <strong class="upendo-membership-dashboard__value" data-billing-interval></strong>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <span class="upendo-membership-dashboard__label">Membership Fee</span>
+                                        <strong class="upendo-membership-dashboard__value" data-membership-fee></strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="upendo-membership-dashboard__hero-footer" data-hero-footer>
+                                <i class="fas fa-info-circle me-2" aria-hidden="true"></i>
+                                <span data-hero-footer-text></span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-xl-4">
+                        <aside class="upendo-membership-dashboard__card h-100" aria-label="Billing health">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h3 class="h4 mb-0">Billing Health</h3>
+                                <span class="upendo-membership-dashboard__stripe-pill">
+                                    <i class="fas fa-lock me-1" aria-hidden="true"></i>
+                                    Stripe
+                                </span>
+                            </div>
+
+                            <dl class="upendo-membership-dashboard__billing-list">
+                                <div>
+                                    <dt>Account Status</dt>
+                                    <dd data-account-status></dd>
+                                </div>
+                                <div>
+                                    <dt>Latest Invoice</dt>
+                                    <dd data-latest-invoice-status></dd>
+                                </div>
+                                <div>
+                                    <dt>Payment Method</dt>
+                                    <dd data-payment-method></dd>
+                                </div>
+                                <div>
+                                    <dt>Next Auto-bill</dt>
+                                    <dd data-next-auto-bill></dd>
+                                </div>
+                            </dl>
+
+                            <button type="button"
+                                    class="btn btn-primary w-100 mt-3 upendo-membership-dashboard__portal-button"
+                                    data-portal-action="manage"
+                                    aria-label="Update payment method securely through Stripe">
+                                Update Payment Method
+                                <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+                            </button>
+
+                            <p class="upendo-membership-dashboard__stripe-note mb-0 mt-2 text-center">
+                                Opens secure Stripe portal
+                            </p>
+                        </aside>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-1">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <button type="button" class="upendo-membership-dashboard__action-card w-100" data-portal-action="manage">
+                            <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                            <strong>Manage Billing</strong>
+                            <span>Open secure Stripe billing portal</span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <button type="button" class="upendo-membership-dashboard__action-card w-100" data-portal-action="payment_method_update">
+                            <i class="far fa-credit-card" aria-hidden="true"></i>
+                            <strong>Update Card</strong>
+                            <span>Change card for renewals</span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <button type="button"
+                            class="upendo-membership-dashboard__action-card w-100"
+                            data-portal-action="subscription_update"
+                            aria-label="Review membership plan options securely through Stripe">
+                        <i class="fas fa-level-up-alt" aria-hidden="true"></i>
+                        <strong>Change Plan</strong>
+                        <span>Opens available Stripe options</span>
+                    </button>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <button type="button" class="upendo-membership-dashboard__action-card upendo-membership-dashboard__action-card-danger w-100" data-cancel-membership-button>
+                            <i class="far fa-times-circle" aria-hidden="true"></i>
+                            <strong>Cancel Membership</strong>
+                            <span>Manage cancellation via Stripe</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-1">
+                    <div class="col-12 col-xl-8">
+                        <section class="upendo-membership-dashboard__card p-0 overflow-hidden" aria-labelledby="@rootId-invoices-heading">
+                            <div class="d-flex align-items-center justify-content-between gap-3 p-4 border-bottom">
+                                <h3 id="@rootId-invoices-heading" class="h4 mb-0">Recent Invoices</h3>
+                                <a href="#" class="fw-semibold text-decoration-none" data-download-all-link hidden>
+                                    Download All
+                                </a>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table upendo-membership-dashboard__invoice-table mb-0">
+                                    <caption class="visually-hidden">Recent membership invoices</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Invoice #</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-invoice-body></tbody>
+                                </table>
+                            </div>
+
+                            <div class="upendo-membership-dashboard__invoice-empty text-center py-5" data-invoice-empty hidden>
+                                <span class="upendo-membership-dashboard__empty-icon mb-3" aria-hidden="true">
+                                    <i class="fas fa-history"></i>
+                                </span>
+                                <h4 class="h5">No invoices found yet.</h4>
+                                <p class="mb-0">Invoices will appear here after membership billing begins.</p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-12 col-xl-4">
+                        <aside class="upendo-membership-dashboard__help-card mb-4">
+                            <h3 class="h4">Need help?</h3>
+                            <p>Have questions about your membership benefits or billing? Our support team is here to assist you.</p>
+
+                            <a class="btn upendo-membership-dashboard__support-button w-100 mb-3"
+                                href="@contactMemberSupportAddress" data-support-link>
+                                <i class="fas fa-headset me-2" aria-hidden="true"></i>
+                                Contact Member Support
+                            </a>
+
+                            <a class="btn btn-outline-light w-100" href="@viewAllBenefitsUrl" data-benefits-link>
+                                <i class="far fa-list-alt me-2" aria-hidden="true"></i>
+                                View All Benefits
+                            </a>
+                        </aside>
+
+                        <aside class="upendo-membership-dashboard__security-card">
+                            <div class="d-flex gap-3">
+                                <span class="upendo-membership-dashboard__security-icon" aria-hidden="true">
+                                    <i class="fas fa-shield-alt"></i>
+                                </span>
+                                <div>
+                                    <strong class="d-block text-uppercase">Security First</strong>
+                                    <p class="mb-0">Financial details are managed using Stripe's secure billing tools.</p>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="upendo-membership-dashboard__modal-backdrop" data-confirm-backdrop hidden></div>
+    <div class="upendo-membership-dashboard__modal" data-confirm-modal hidden role="dialog" aria-modal="true" aria-labelledby="@rootId-confirm-title">
+        <div class="upendo-membership-dashboard__modal-card">
+            <div class="d-flex gap-3">
+                <span class="upendo-membership-dashboard__modal-icon" aria-hidden="true">
+                    <i class="far fa-times-circle"></i>
+                </span>
+                <div>
+                    <h3 id="@rootId-confirm-title" class="h4">Continue to Stripe?</h3>
+                    <p>
+                        Cancellation and billing changes are managed securely in Stripe. You will leave this page to continue.
+                    </p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4">
+                <button type="button" class="btn btn-outline-secondary" data-confirm-cancel>
+                    Stay Here
+                </button>
+                <button type="button" class="btn btn-danger" data-confirm-continue>
+                    Continue to Stripe
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function () {
+    'use strict';
+
+    var root = document.getElementById('@rootId');
+    if (!root) {
+        return;
+    }
+    var membershipHeroEffectInterval = null;
+
+    var moduleId = root.getAttribute('data-module-id') || '';
+    var tabId = root.getAttribute('data-tab-id') || '';
+    var portalId = root.getAttribute('data-portal-id') || '';
+    var supportAddress = root.getAttribute('data-support-address') || '';
+    var benefitsUrl = root.getAttribute('data-benefits-url') || '';
+
+    var loadingState = root.querySelector('[data-loading-state]');
+    var loadedState = root.querySelector('[data-loaded-state]');
+    var emptyState = root.querySelector('[data-empty-state]');
+    var errorState = root.querySelector('[data-error-state]');
+    var trustLine = root.querySelector('[data-membership-trust-line]');
+    var headerActions = root.querySelector('[data-header-actions]');
+    var invoiceBody = root.querySelector('[data-invoice-body]');
+    var invoiceEmpty = root.querySelector('[data-invoice-empty]');
+    var confirmBackdrop = root.querySelector('[data-confirm-backdrop]');
+    var confirmModal = root.querySelector('[data-confirm-modal]');
+    var pendingConfirmAction = 'manage';
+
+    var defaultErrorHeading = '@HttpUtility.JavaScriptStringEncode(Convert.ToString(errorHeading))';
+    var defaultErrorText = '@HttpUtility.JavaScriptStringEncode(Convert.ToString(errorText))';
+
+    function logTemplateError(error, context) {
+        try {
+            if (window.console && window.console.warn) {
+                window.console.warn('Membership dashboard template error' + (context ? ' [' + context + ']' : '') + ':', error);
+            }
+        } catch (ignore) {
+            // Never allow logging failures to escape the template.
+        }
+    }
+
+    function runSafely(context, callback, fallbackValue) {
+        try {
+            return callback();
+        } catch (error) {
+            logTemplateError(error, context);
+            return fallbackValue;
+        }
+    }
+
+    function showContainedTemplateFailure(error, context) {
+        logTemplateError(error, context);
+
+        showError({
+            heading: 'Membership billing is temporarily unavailable.',
+            message: 'The membership billing area could not finish loading, but the rest of the page should continue working.',
+            technicalMessage: context ? 'Template area: ' + context : '',
+            hideRetry: false
+        });
+    }
+
+    function safeQuery(selector) {
+        return runSafely('query: ' + selector, function () {
+            return root.querySelector(selector);
+        }, null);
+    }
+
+    function safeQueryAll(selector) {
+        return runSafely('queryAll: ' + selector, function () {
+            return Array.prototype.slice.call(root.querySelectorAll(selector));
+        }, []);
+    }
+
+    function safeClosest(element, selector) {
+        return runSafely('closest: ' + selector, function () {
+            if (!element || element.nodeType !== 1) {
+                return null;
+            }
+
+            if (element.closest) {
+                return element.closest(selector);
+            }
+
+            var current = element;
+
+            while (current && current !== root && current.nodeType === 1) {
+                if (current.matches && current.matches(selector)) {
+                    return current;
+                }
+
+                current = current.parentElement;
+            }
+
+            if (current === root && root.matches && root.matches(selector)) {
+                return root;
+            }
+
+            return null;
+        }, null);
+    }
+
+    function safeTrim(value) {
+        return value == null ? '' : String(value).replace(/^\s+|\s+$/g, '');
+    }
+
+    function toDisplayName(value) {
+        var text = safeTrim(value);
+
+        if (!text) {
+            return '';
+        }
+
+        /*
+            Stripe product names sometimes arrive in all caps.
+            Only normalize values that are clearly all caps, so intentionally mixed-case
+            names are preserved.
+        */
+        var lettersOnly = text.replace(/[^A-Za-z]+/g, '');
+        var hasLetters = lettersOnly.length > 0;
+        var isAllCaps = hasLetters && text === text.toUpperCase();
+
+        if (!isAllCaps) {
+            return text;
+        }
+
+        var keepUpper = {
+            'SFO': true,
+            'SF': true,
+            'CA': true,
+            'US': true,
+            'USA': true,
+            'LLC': true,
+            ' LLP': true,
+            'INC': true,
+            'DBA': true,
+            'CEO': true,
+            'CFO': true,
+            'COO': true,
+            'HR': true,
+            'IT': true
+        };
+
+        return text.toLowerCase().replace(/\b([a-z][a-z0-9'&/-]*)\b/g, function (word) {
+            var upperWord = word.toUpperCase();
+
+            if (keepUpper[upperWord]) {
+                return upperWord;
+            }
+
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        });
+    }
+
+    function hasValue(value) {
+        return safeTrim(value).length > 0;
+    }
+
+    function getValue(source, camelName, pascalName, fallbackValue) {
+        if (!source) {
+            return fallbackValue;
+        }
+
+        if (source[camelName] !== undefined && source[camelName] !== null) {
+            return source[camelName];
+        }
+
+        if (source[pascalName] !== undefined && source[pascalName] !== null) {
+            return source[pascalName];
+        }
+
+        return fallbackValue;
+    }
+
+    function getBooleanValue(source, camelName, pascalName) {
+        var value = getValue(source, camelName, pascalName, false);
+
+        if (value === true || value === false) {
+            return value;
+        }
+
+        if (typeof value === 'string') {
+            return value.toLowerCase() === 'true';
+        }
+
+        return !!value;
+    }
+
+    function getArrayValue(source, camelName, pascalName) {
+        var value = getValue(source, camelName, pascalName, []);
+
+        return Object.prototype.toString.call(value) === '[object Array]'
+            ? value
+            : [];
+    }
+
+    function setHidden(element, hidden) {
+        if (!element) {
+            return;
+        }
+
+        hidden = !!hidden;
+
+        element.hidden = hidden;
+        element.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+
+        if (hidden) {
+            element.style.setProperty('display', 'none', 'important');
+        } else {
+            element.style.removeProperty('display');
+        }
+    }
+
+    function setText(selector, value) {
+        var element = root.querySelector(selector);
+        if (element) {
+            element.textContent = hasValue(value) ? value : 'N/A';
+        }
+    }
+
+    function setOptionalText(selector, value) {
+        var element = root.querySelector(selector);
+        if (element) {
+            element.textContent = hasValue(value) ? value : '';
+        }
+    }
+
+    function normalizeSupportHref(value) {
+        var address = safeTrim(value);
+
+        if (!address) {
+            return '';
+        }
+
+        if (/^mailto:/i.test(address) || /^https?:\/\//i.test(address) || /^\//.test(address) || /^#/.test(address)) {
+            return address;
+        }
+
+        if (/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(address)) {
+            return 'mailto:' + address;
+        }
+
+        return address;
+    }
+
+    function configureStaticLinks() {
+        runSafely('configureStaticLinks', function () {
+            var normalizedSupportHref = normalizeSupportHref(supportAddress);
+            var supportLinks = safeQueryAll('[data-support-link], [data-error-support-link]');
+            var benefitsLinks = safeQueryAll('[data-benefits-link]');
+            var i;
+            var link;
+
+            for (i = 0; i < supportLinks.length; i++) {
+                link = supportLinks[i];
+
+                if (!link) {
+                    continue;
+                }
+
+                if (hasValue(normalizedSupportHref)) {
+                    link.href = normalizedSupportHref;
+                    link.hidden = false;
+                } else {
+                    link.hidden = true;
+                }
+            }
+
+            for (i = 0; i < benefitsLinks.length; i++) {
+                link = benefitsLinks[i];
+
+                if (!link) {
+                    continue;
+                }
+
+                if (hasValue(benefitsUrl)) {
+                    link.href = benefitsUrl;
+                    link.hidden = false;
+                } else {
+                    link.hidden = true;
+                }
+            }
+        });
+    }
+
+    function showState(stateName) {
+        setHidden(loadingState, stateName !== 'loading');
+        setHidden(loadedState, stateName !== 'loaded');
+        setHidden(emptyState, stateName !== 'empty');
+        setHidden(errorState, stateName !== 'error');
+
+        setHidden(headerActions, stateName !== 'loaded');
+        setHidden(trustLine, stateName !== 'loaded');
+    }
+
+    function showError(options) {
+        options = options || {};
+
+        var heading = root.querySelector('[data-error-heading]');
+        var text = root.querySelector('[data-error-text]');
+        var technical = root.querySelector('[data-error-technical]');
+        var retryButton = root.querySelector('[data-retry-button]');
+        var supportLink = root.querySelector('[data-error-support-link]');
+
+        if (heading) {
+            heading.textContent = options.heading || defaultErrorHeading || 'Membership details are temporarily unavailable.';
+        }
+
+        if (text) {
+            text.textContent = options.message || 'Please try again later or contact support if the problem persists.';
+        }
+
+        if (technical) {
+            if (options.technicalMessage) {
+                technical.textContent = options.technicalMessage;
+                technical.hidden = false;
+            } else {
+                technical.textContent = '';
+                technical.hidden = true;
+            }
+        }
+
+        if (retryButton) {
+            retryButton.hidden = options.hideRetry === true;
+        }
+
+        if (supportLink) {
+            supportLink.hidden = !hasValue(normalizeSupportHref(supportAddress));
+        }
+
+        showState('error');
+    }
+
+    function showServiceUnavailableError(statusCode) {
+        var message = 'Membership billing tools are temporarily unavailable. Your website account is still accessible, but billing details cannot be loaded right now.';
+
+        if (statusCode === 404) {
+            message = 'Membership billing tools are not available on this site yet. Your website account is still accessible, but billing details cannot be loaded until the supporting service is installed.';
+        } else if (statusCode === 401 || statusCode === 403) {
+            message = 'Please sign in with the member account that is connected to your membership billing record.';
+        } else if (statusCode >= 500) {
+            message = 'Membership billing tools are temporarily unavailable. Please try again later or contact support if the issue continues.';
+        }
+
+        showError({
+            heading: 'Membership billing is temporarily unavailable.',
+            message: message,
+            technicalMessage: statusCode ? 'Status code: ' + statusCode : '',
+            hideRetry: statusCode === 404
+        });
+    }
+
+    function showActionWarning(message) {
+        var alert = root.querySelector('[data-status-alert]');
+        var heading = root.querySelector('[data-status-alert-heading]');
+        var text = root.querySelector('[data-status-alert-text]');
+
+        if (!alert || !heading || !text) {
+            showError({
+                heading: 'Billing action unavailable.',
+                message: message || 'We could not open the secure billing portal. Please try again later.'
+            });
+            return;
+        }
+
+        alert.className = 'upendo-membership-dashboard__status-alert upendo-membership-dashboard__status-alert-danger mb-4';
+        heading.textContent = 'Billing action unavailable';
+        text.textContent = message || 'We could not open the secure billing portal. Please try again later or contact support.';
+        alert.hidden = false;
+
+        alert.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
+    }
+
+    function getServicesFramework() {
+        try {
+            if (window.jQuery && window.jQuery.ServicesFramework) {
+                return window.jQuery.ServicesFramework(moduleId);
+            }
+
+            if (window.$ && window.$.ServicesFramework) {
+                return window.$.ServicesFramework(moduleId);
+            }
+        } catch (ex) {
+            return null;
+        }
+
+        return null;
+    }
+
+    function getBaseUrl() {
+        var sf = getServicesFramework();
+
+        try {
+            if (sf && sf.getServiceRoot) {
+                return sf.getServiceRoot('OpenContentHelper') + 'MembershipDashboard/';
+            }
+        } catch (ex) {
+            // Fall through to the platform route below.
+        }
+
+        return '/DesktopModules/OpenContentHelper/API/MembershipDashboard/';
+    }
+
+    function getHeaders() {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
+        var sf = getServicesFramework();
+
+        if (sf) {
+            try {
+                if (sf.getAntiForgeryValue) {
+                    headers.RequestVerificationToken = sf.getAntiForgeryValue();
+                }
+
+                headers.ModuleId = moduleId;
+                headers.TabId = tabId;
+            } catch (ex) {
+                // Missing framework metadata should not prevent a graceful failure.
+            }
+        }
+
+        return headers;
+    }
+
+    function fetchJson(url, options) {
+        if (!window.fetch || !window.Promise) {
+            return {
+                then: function () {
+                    return this;
+                },
+                catch: function (callback) {
+                    callback({
+                        status: 0,
+                        message: 'This browser does not support the required request features.'
+                    });
+                }
+            };
+        }
+
+        options = options || {};
+        options.credentials = options.credentials || 'same-origin';
+        options.headers = options.headers || getHeaders();
+
+        return window.fetch(url, options).then(function (response) {
+            var contentType = response.headers ? response.headers.get('content-type') : '';
+
+            if (!response.ok) {
+                var error = new Error('Request failed.');
+                error.status = response.status;
+                error.statusText = response.statusText || '';
+                throw error;
+            }
+
+            if (!contentType || contentType.indexOf('application/json') === -1) {
+                return response.text().then(function (bodyText) {
+                    if (!bodyText) {
+                        return {};
+                    }
+
+                    try {
+                        return JSON.parse(bodyText);
+                    } catch (ex) {
+                        var parseError = new Error('The service returned an invalid response.');
+                        parseError.status = response.status;
+                        throw parseError;
+                    }
+                });
+            }
+
+            return response.json();
+        });
+    }
+
+    function setBadge(element, status) {
+        if (!element) {
+            return;
+        }
+
+        var normalized = safeTrim(status).toLowerCase();
+
+        element.className = 'badge upendo-membership-dashboard__status-badge';
+
+        if (normalized === 'active' || normalized === 'current' || normalized === 'paid') {
+            element.className += ' upendo-membership-dashboard__status-badge-success';
+        } else if (normalized === 'past_due' || normalized === 'past due' || normalized === 'payment needed' || normalized === 'unpaid') {
+            element.className += ' upendo-membership-dashboard__status-badge-warning';
+        } else if (normalized === 'canceled' || normalized === 'cancelled' || normalized === 'incomplete_expired') {
+            element.className += ' upendo-membership-dashboard__status-badge-danger';
+        } else {
+            element.className += ' upendo-membership-dashboard__status-badge-info';
+        }
+    }
+
+        function getMembershipHeroEffectClass(data) {
+        var localMembershipStatus = getValue(data, 'localMembershipStatus', 'LocalMembershipStatus', '');
+        var stripeStatus = getValue(data, 'stripeStatus', 'StripeStatus', '');
+        var accountStatusDisplay = getValue(data, 'accountStatusDisplay', 'AccountStatusDisplay', '');
+        var latestInvoiceStatusDisplay = getValue(data, 'latestInvoiceStatusDisplay', 'LatestInvoiceStatusDisplay', '');
+        var requiresPaymentAction = getBooleanValue(data, 'requiresPaymentAction', 'RequiresPaymentAction');
+        var cancelAtPeriodEnd = getBooleanValue(data, 'cancelAtPeriodEnd', 'CancelAtPeriodEnd');
+
+        var statusText = safeTrim(
+            localMembershipStatus + ' ' +
+            stripeStatus + ' ' +
+            accountStatusDisplay + ' ' +
+            latestInvoiceStatusDisplay
+        ).toLowerCase();
+
+        /*
+            Priority matters:
+            1. Danger states should win.
+            2. Grace / warning states come next.
+            3. Active/current states get the shine only when no warning flags exist.
+        */
+
+        if (
+            requiresPaymentAction ||
+            /canceled|cancelled|expired|overdue|unpaid|incomplete_expired|incomplete/.test(statusText)
+        ) {
+            return 'upendo-membership-dashboard__hero-card--effect-danger';
+        }
+
+        if (
+            cancelAtPeriodEnd ||
+            /grace|pastdue|past_due|past due|payment needed|payment_required|payment required/.test(statusText)
+        ) {
+            return 'upendo-membership-dashboard__hero-card--effect-warning';
+        }
+
+        if (/active|current|paid|trialing/.test(statusText)) {
+            return 'upendo-membership-dashboard__hero-card--effect-shine';
+        }
+
+        return '';
+    }
+
+    function clearMembershipHeroEffectInterval() {
+        if (membershipHeroEffectInterval) {
+            window.clearInterval(membershipHeroEffectInterval);
+            membershipHeroEffectInterval = null;
+        }
+    }
+
+    function clearMembershipHeroEffectClasses(heroCard) {
+        if (!heroCard) {
+            return;
+        }
+
+        heroCard.className = heroCard.className
+            .replace(/\s?upendo-membership-dashboard__hero-card--effect-shine/g, '')
+            .replace(/\s?upendo-membership-dashboard__hero-card--effect-warning/g, '')
+            .replace(/\s?upendo-membership-dashboard__hero-card--effect-danger/g, '')
+            .replace(/\s?upendo-membership-dashboard__hero-card--effect-complete/g, '');
+    }
+
+    function playMembershipHeroEffect(effectClass) {
+        var heroCard = root.querySelector('[data-membership-hero-card]');
+
+        if (!heroCard || !effectClass) {
+            return;
+        }
+
+        clearMembershipHeroEffectClasses(heroCard);
+
+        /*
+            Force the browser to recognize the class change even if the dashboard
+            is re-rendered quickly after the AJAX response.
+        */
+        void heroCard.offsetWidth;
+
+        heroCard.className += ' ' + effectClass;
+
+        window.setTimeout(function () {
+            if (!heroCard) {
+                return;
+            }
+
+            heroCard.className = heroCard.className
+                .replace(/\s?upendo-membership-dashboard__hero-card--effect-shine/g, '')
+                .replace(/\s?upendo-membership-dashboard__hero-card--effect-warning/g, '')
+                .replace(/\s?upendo-membership-dashboard__hero-card--effect-danger/g, '');
+
+            heroCard.className += ' upendo-membership-dashboard__hero-card--effect-complete';
+        }, 2200);
+    }
+
+    function runMembershipHeroEffect(data) {
+        if (!data) {
+            clearMembershipHeroEffectInterval();
+            return;
+        }
+
+        var effectClass = getMembershipHeroEffectClass(data);
+
+        clearMembershipHeroEffectInterval();
+
+        if (!effectClass) {
+            return;
+        }
+
+        /*
+            Always play the first effect immediately after the dashboard loads.
+        */
+        playMembershipHeroEffect(effectClass);
+
+        /*
+            Only the positive/active shine repeats.
+            Warning and danger pulses remain one-time signals so they do not feel alarming or annoying.
+        */
+        if (effectClass === 'upendo-membership-dashboard__hero-card--effect-shine') {
+            membershipHeroEffectInterval = window.setInterval(function () {
+                playMembershipHeroEffect(effectClass);
+            }, 30000);
+        }
+    }
+
+    function configureStatusAlert(data) {
+        var alert = root.querySelector('[data-status-alert]');
+        var heading = root.querySelector('[data-status-alert-heading]');
+        var text = root.querySelector('[data-status-alert-text]');
+
+        if (!alert || !heading || !text) {
+            return;
+        }
+
+        var localMembershipStatus = getValue(data, 'localMembershipStatus', 'LocalMembershipStatus', '');
+        var stripeStatus = getValue(data, 'stripeStatus', 'StripeStatus', '');
+        var requiresPaymentAction = getBooleanValue(data, 'requiresPaymentAction', 'RequiresPaymentAction');
+        var cancelAtPeriodEnd = getBooleanValue(data, 'cancelAtPeriodEnd', 'CancelAtPeriodEnd');
+        var nextRenewalDisplay = getValue(data, 'nextRenewalDisplay', 'NextRenewalDisplay', '');
+
+        alert.className = 'upendo-membership-dashboard__status-alert mb-4';
+
+        if (requiresPaymentAction) {
+            alert.className += ' upendo-membership-dashboard__status-alert--danger';
+            heading.textContent = 'Payment attention required';
+            text.textContent = 'Your membership is active, but Stripe reports that payment action is required.';
+            setHidden(alert, false);
+            return;
+        }
+
+        if (cancelAtPeriodEnd) {
+            alert.className += ' upendo-membership-dashboard__status-alert--warning';
+            heading.textContent = 'Membership cancellation scheduled';
+            text.textContent = nextRenewalDisplay
+                ? 'Your membership will remain active until ' + nextRenewalDisplay + '.'
+                : 'Your membership will remain active until the current billing period ends.';
+            setHidden(alert, false);
+            return;
+        }
+
+        if (/pastdue|past_due|grace/i.test(localMembershipStatus + ' ' + stripeStatus)) {
+            alert.className += ' upendo-membership-dashboard__status-alert--warning';
+            heading.textContent = 'Payment grace period';
+            text.textContent = 'Your membership is in a payment grace period. Please update your billing details to avoid interruption.';
+            setHidden(alert, false);
+            return;
+        }
+
+        if (/canceled|expired|unpaid/i.test(localMembershipStatus + ' ' + stripeStatus)) {
+            alert.className += ' upendo-membership-dashboard__status-alert--danger';
+            heading.textContent = 'Membership inactive';
+            text.textContent = 'Your membership is not currently active. Please renew or contact support for help.';
+            setHidden(alert, false);
+            return;
+        }
+
+        setHidden(alert, true);
+    }
+
+    function renderInvoices(invoices) {
+        invoices = Object.prototype.toString.call(invoices) === '[object Array]'
+            ? invoices
+            : [];
+
+        if (!invoiceBody || !invoiceEmpty) {
+            return;
+        }
+
+        invoiceBody.innerHTML = '';
+
+        if (!invoices.length) {
+            setHidden(invoiceEmpty, false);
+            return;
+        }
+
+        setHidden(invoiceEmpty, true);
+
+        invoices.forEach(function (invoice) {
+            var invoiceId = getValue(invoice, 'invoiceId', 'InvoiceId', '');
+            var invoiceNumber = getValue(invoice, 'invoiceNumber', 'InvoiceNumber', '');
+            var description = getValue(invoice, 'description', 'Description', '');
+            var amountDisplay = getValue(invoice, 'amountDisplay', 'AmountDisplay', '');
+            var status = getValue(invoice, 'status', 'Status', '');
+            var statusDisplay = getValue(invoice, 'statusDisplay', 'StatusDisplay', '');
+            var createdDisplay = getValue(invoice, 'invoiceDateDisplay', 'InvoiceDateDisplay', '');
+            var hostedInvoiceUrl = getValue(invoice, 'hostedInvoiceUrl', 'HostedInvoiceUrl', '');
+            var invoicePdfUrl = getValue(invoice, 'invoicePdfUrl', 'InvoicePdfUrl', '');
+
+            var row = document.createElement('tr');
+
+            var dateCell = document.createElement('td');
+            dateCell.textContent = createdDisplay || 'N/A';
+            row.appendChild(dateCell);
+
+            var numberCell = document.createElement('td');
+            numberCell.textContent = invoiceNumber || invoiceId || 'N/A';
+            row.appendChild(numberCell);
+
+            var descriptionCell = document.createElement('td');
+            descriptionCell.textContent = description || 'Membership invoice';
+            row.appendChild(descriptionCell);
+
+            var amountCell = document.createElement('td');
+            amountCell.textContent = amountDisplay || 'N/A';
+            row.appendChild(amountCell);
+
+            var statusCell = document.createElement('td');
+            var badge = document.createElement('span');
+            badge.textContent = statusDisplay || status || 'N/A';
+            badge.className = 'badge upendo-membership-dashboard__status-badge';
+            setBadge(badge, status);
+            statusCell.appendChild(badge);
+            row.appendChild(statusCell);
+
+            var actionsCell = document.createElement('td');
+            actionsCell.className = 'upendo-membership-dashboard__invoice-actions';
+
+            if (hostedInvoiceUrl) {
+                var viewLink = document.createElement('a');
+                viewLink.href = hostedInvoiceUrl;
+                viewLink.className = 'upendo-membership-dashboard__icon-link';
+                viewLink.setAttribute('aria-label', 'View invoice ' + (invoiceNumber || invoiceId || ''));
+                viewLink.title = 'View invoice';
+                viewLink.target = '_blank';
+                viewLink.rel = 'noopener noreferrer';
+                viewLink.innerHTML = '<i class="far fa-eye" aria-hidden="true"></i>';
+                actionsCell.appendChild(viewLink);
+            }
+
+            if (invoicePdfUrl) {
+                var pdfLink = document.createElement('a');
+                pdfLink.href = invoicePdfUrl;
+                pdfLink.className = 'upendo-membership-dashboard__icon-link';
+                pdfLink.setAttribute('aria-label', 'Download invoice PDF ' + (invoiceNumber || invoiceId || ''));
+                pdfLink.title = 'Download PDF';
+                pdfLink.target = '_blank';
+                pdfLink.rel = 'noopener noreferrer';
+                pdfLink.innerHTML = '<i class="far fa-file-pdf" aria-hidden="true"></i>';
+                actionsCell.appendChild(pdfLink);
+            }
+
+            row.appendChild(actionsCell);
+            invoiceBody.appendChild(row);
+        });
+    }
+
+    function renderDashboard(data) {
+        try {
+            if (window.console && window.console.info) {
+                window.console.info('Membership dashboard response parsed:', data);
+            }
+
+            var hasMembershipAccount = getBooleanValue(data, 'hasMembershipAccount', 'HasMembershipAccount');
+
+            if (!data || !hasMembershipAccount) {
+                showState('empty');
+                return;
+            }
+
+            var lastUpdatedDisplay = getValue(data, 'lastUpdatedDisplay', 'LastUpdatedDisplay', '');
+            var localMembershipStatus = getValue(data, 'localMembershipStatus', 'LocalMembershipStatus', '');
+            var localMembershipStatusDisplay = getValue(data, 'localMembershipStatusDisplay', 'LocalMembershipStatusDisplay', '');
+            var stripeStatus = getValue(data, 'stripeStatus', 'StripeStatus', '');
+            var stripeStatusDisplay = getValue(data, 'stripeStatusDisplay', 'StripeStatusDisplay', '');
+            var memberSinceDisplay = getValue(data, 'memberSinceDisplay', 'MemberSinceDisplay', '');
+            var planName = getValue(data, 'planName', 'PlanName', '');
+            var nextRenewalDisplay = getValue(data, 'nextRenewalDisplay', 'NextRenewalDisplay', '');
+            var billingIntervalDisplay = getValue(data, 'billingIntervalDisplay', 'BillingIntervalDisplay', '');
+            var membershipFeeDisplay = getValue(data, 'membershipFeeDisplay', 'MembershipFeeDisplay', '');
+            var accountStatusDisplay = getValue(data, 'accountStatusDisplay', 'AccountStatusDisplay', '');
+            var latestInvoiceStatusDisplay = getValue(data, 'latestInvoiceStatusDisplay', 'LatestInvoiceStatusDisplay', '');
+            var paymentMethodDisplay = getValue(data, 'paymentMethodDisplay', 'PaymentMethodDisplay', '');
+            var nextAutoBillDisplay = getValue(data, 'nextAutoBillDisplay', 'NextAutoBillDisplay', '');
+            var requiresPaymentAction = getBooleanValue(data, 'requiresPaymentAction', 'RequiresPaymentAction');
+            var cancelAtPeriodEnd = getBooleanValue(data, 'cancelAtPeriodEnd', 'CancelAtPeriodEnd');
+            var invoices = getArrayValue(data, 'invoices', 'Invoices');
+
+            setText('[data-last-updated]', lastUpdatedDisplay);
+
+            var lastUpdatedWrap = root.querySelector('[data-last-updated-wrap]');
+            setHidden(lastUpdatedWrap, !lastUpdatedDisplay);
+
+            var statusBadge = root.querySelector('[data-status-badge]');
+            if (statusBadge) {
+                statusBadge.textContent = localMembershipStatusDisplay || stripeStatusDisplay || 'Unknown';
+                setBadge(statusBadge, localMembershipStatus || stripeStatus);
+            }
+
+            var memberSinceWrap = root.querySelector('[data-member-since-wrap]');
+            setText('[data-member-since]', memberSinceDisplay);
+            setHidden(memberSinceWrap, !memberSinceDisplay);
+
+            setText('[data-plan-name]', toDisplayName(planName));
+            setText('[data-next-renewal]', nextRenewalDisplay);
+            setText('[data-billing-interval]', billingIntervalDisplay);
+            setText('[data-membership-fee]', membershipFeeDisplay);
+            setText('[data-account-status]', accountStatusDisplay);
+            setText('[data-latest-invoice-status]', latestInvoiceStatusDisplay);
+            setText('[data-payment-method]', paymentMethodDisplay);
+            setText('[data-next-auto-bill]', nextAutoBillDisplay);
+
+            var footerText = 'Your membership status and billing information are current.';
+
+            if (requiresPaymentAction) {
+                footerText = 'Your membership requires payment attention.';
+            } else if (cancelAtPeriodEnd) {
+                footerText = 'Your membership is active until the current period ends.';
+            }
+
+            setOptionalText('[data-hero-footer-text]', footerText);
+
+            configureStatusAlert({
+                localMembershipStatus: localMembershipStatus,
+                LocalMembershipStatus: localMembershipStatus,
+                stripeStatus: stripeStatus,
+                StripeStatus: stripeStatus,
+                requiresPaymentAction: requiresPaymentAction,
+                RequiresPaymentAction: requiresPaymentAction,
+                cancelAtPeriodEnd: cancelAtPeriodEnd,
+                CancelAtPeriodEnd: cancelAtPeriodEnd,
+                nextRenewalDisplay: nextRenewalDisplay,
+                NextRenewalDisplay: nextRenewalDisplay
+            });
+
+            renderInvoices(invoices);
+
+            showState('loaded');
+            runMembershipHeroEffect(data);
+
+            if (window.console && window.console.info) {
+                window.console.info('Membership dashboard rendered successfully.');
+            }
+        } catch (ex) {
+            logTemplateError(ex, 'renderDashboard');
+
+            showError({
+                heading: 'Membership details could not be displayed.',
+                message: 'The membership data was loaded, but the dashboard could not finish rendering.',
+                technicalMessage: ex && ex.message ? ex.message : 'Unknown render error'
+            });
+        }
+    }
+
+    function loadDashboard() {
+        runSafely('loadDashboard:start', function () {
+            showState('loading');
+
+            fetchJson(getBaseUrl() + 'GetMyDashboard?portalId=' + encodeURIComponent(portalId), {
+                method: 'GET'
+            })
+            .then(function (data) {
+                runSafely('loadDashboard:renderDashboard', function () {
+                    renderDashboard(data);
+                });
+            })
+            .catch(function (error) {
+                runSafely('loadDashboard:catch', function () {
+                    var status = error && error.status ? error.status : 0;
+
+                    if (status === 401 || status === 403 || status === 404 || status >= 500 || status === 0) {
+                        showServiceUnavailableError(status);
+                        return;
+                    }
+
+                    showError({
+                        heading: 'Membership details are temporarily unavailable.',
+                        message: 'We could not load your membership billing details. Please try again later or contact support if the issue continues.',
+                        technicalMessage: status ? 'Status code: ' + status : ''
+                    });
+                });
+            });
+        });
+    }
+
+    function getPortalUrl(data) {
+        return getValue(data, 'portalUrl', 'PortalUrl', '');
+    }
+
+    function setPortalButtonsBusy(isBusy) {
+        safeQueryAll('[data-portal-action], [data-cancel-membership-button]').forEach(function (button) {
+            if (!button) {
+                return;
+            }
+
+            button.disabled = !!isBusy;
+            button.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+        });
+    }
+
+    function normalizePortalAction(actionName) {
+        var normalized = safeTrim(actionName).toLowerCase();
+
+        /*
+            The service currently supports:
+            - payment_method_update
+            - subscription_update
+            - subscription_cancel
+
+            Empty, manage, renew, or unknown values should open the default Stripe
+            customer portal session.
+        */
+        if (normalized === 'payment_method_update' ||
+            normalized === 'subscription_update' ||
+            normalized === 'subscription_cancel') {
+            return normalized;
+        }
+
+        return 'manage';
+    }
+
+    function openStripePortal(actionName) {
+        runSafely('openStripePortal:start', function () {
+            setPortalButtonsBusy(true);
+
+            fetchJson(getBaseUrl() + 'CreateBillingPortalSession', {
+                method: 'POST',
+                body: JSON.stringify({
+                    portalId: parseInt(portalId, 10),
+                    returnUrl: window.location.href,
+                    flowType: normalizePortalAction(actionName)
+                })
+            })
+            .then(function (data) {
+                runSafely('openStripePortal:success', function () {
+                    var portalUrl = getPortalUrl(data);
+
+                    if (portalUrl) {
+                        window.location.href = portalUrl;
+                        return;
+                    }
+
+                    setPortalButtonsBusy(false);
+                    showActionWarning('The secure billing portal did not return a destination URL. Please try again later.');
+                });
+            })
+            .catch(function (error) {
+                runSafely('openStripePortal:catch', function () {
+                    setPortalButtonsBusy(false);
+
+                    var status = error && error.status ? error.status : 0;
+                    var message = 'We could not open the secure billing portal. Please try again later or contact support.';
+
+                    if (status === 400) {
+                        if (normalizePortalAction(actionName) === 'subscription_update') {
+                            message = 'Stripe plan changes are not fully enabled yet. Opening the secure billing portal when available, or contact member support to change your plan.';
+                        } else if (normalizePortalAction(actionName) === 'subscription_cancel') {
+                            message = 'Stripe cancellation options are not fully enabled yet. Please contact member support if you need to cancel your membership.';
+                        } else {
+                            message = 'Stripe could not create a billing portal session for this membership account. Please contact support if this continues.';
+                        }
+                    } else if (status === 404) {
+                        message = 'The secure billing portal service is not available on this site yet.';
+                    } else if (status === 401 || status === 403) {
+                        message = 'Please sign in with the member account that is connected to your membership billing record.';
+                    } else if (status >= 500) {
+                        message = 'The secure billing portal is temporarily unavailable.';
+                    }
+
+                    showActionWarning(message);
+                });
+            });
+        });
+    }
+
+    function showConfirm(actionName) {
+        pendingConfirmAction = actionName || 'manage';
+        setHidden(confirmBackdrop, false);
+        setHidden(confirmModal, false);
+
+        var continueButton = root.querySelector('[data-confirm-continue]');
+        if (continueButton) {
+            continueButton.focus();
+        }
+    }
+
+    function hideConfirm() {
+        setHidden(confirmBackdrop, true);
+        setHidden(confirmModal, true);
+    }
+
+    if (root.addEventListener) {
+        root.addEventListener('click', function (event) {
+            runSafely('root:click', function () {
+                event = event || window.event;
+
+                var target = event.target || event.srcElement;
+                var portalButton = safeClosest(target, '[data-portal-action]');
+
+                if (portalButton) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    }
+
+                    openStripePortal(portalButton.getAttribute('data-portal-action'));
+                    return;
+                }
+
+                var cancelButton = safeClosest(target, '[data-cancel-membership-button]');
+
+                if (cancelButton) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    }
+
+                    showConfirm('subscription_cancel');
+                    return;
+                }
+
+                if (safeClosest(target, '[data-confirm-cancel]')) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    }
+
+                    hideConfirm();
+                    return;
+                }
+
+                if (safeClosest(target, '[data-confirm-continue]')) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    }
+
+                    hideConfirm();
+                    openStripePortal(pendingConfirmAction);
+                    return;
+                }
+
+                if (safeClosest(target, '[data-retry-button]')) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    }
+
+                    loadDashboard();
+                }
+            });
+        });
+    }
+
+    if (document.addEventListener) {
+        document.addEventListener('keydown', function (event) {
+            runSafely('document:keydown', function () {
+                event = event || window.event;
+
+                var key = event.key || event.keyCode;
+
+                if ((key === 'Escape' || key === 'Esc' || key === 27) && confirmModal && !confirmModal.hidden) {
+                    hideConfirm();
+                }
+            });
+        });
+    }
+
+    function startDashboard() {
+        runSafely('startDashboard', function () {
+            configureStaticLinks();
+
+            /*
+                Do not skip admin/edit mode.
+                Do not hide symptoms.
+                Do not special-case the page mode.
+
+                This simply waits until the page has finished its initial load cycle before
+                this template starts its own API request. The request still runs in every mode.
+            */
+            var beginLoad = function () {
+                runSafely('startDashboard:loadDashboard', function () {
+                    loadDashboard();
+                });
+            };
+
+            if (document.readyState === 'complete') {
+                window.setTimeout(beginLoad, 1);
+            } else if (window.addEventListener) {
+                window.addEventListener('load', function () {
+                    window.setTimeout(beginLoad, 1);
+                });
+            } else {
+                window.setTimeout(beginLoad, 250);
+            }
+        });
+    }
+
+    startDashboard();
+})();
+</script>

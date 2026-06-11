@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "Lead": {
+      "type": "string",
+      "title": "Lead"
+    },
+    "LoadingMessage": {
+      "type": "string",
+      "title": "Loading Message"
+    },
+    "EmptyHeading": {
+      "type": "string",
+      "title": "Empty Heading"
+    },
+    "EmptyText": {
+      "type": "string",
+      "title": "Empty Text"
+    },
+    "ErrorHeading": {
+      "type": "string",
+      "title": "Error Heading"
+    },
+    "ErrorText": {
+      "type": "string",
+      "title": "Error Text"
+    }
+  }
+}

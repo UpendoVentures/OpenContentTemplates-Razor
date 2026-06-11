@@ -1,0 +1,11 @@
+{
+    "ModuleTitle": "Membership Self-Service Dashboard",
+    "ModuleAnchor": "my-membership",
+    "Heading": "My Membership",
+    "Lead": "<p>Review your membership status, billing details, and recent invoices.</p>",
+    "LoadingMessage": "Loading your membership details...",
+    "EmptyHeading": "No membership billing account found.",
+    "EmptyText": "<p>Membership billing details will appear here once your account is linked.</p>",
+    "ErrorHeading": "We couldn't load your billing details.",
+    "ErrorText": "<p>Please refresh the page or contact support if the problem persists.</p>"
+}

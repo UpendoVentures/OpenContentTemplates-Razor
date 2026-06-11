@@ -1,0 +1,9 @@
+{
+    "ContactMemberSupportAddress": "membership@example.org",
+    "ViewAllBenefitsUrl": "/membership/benefits",
+    "BackgroundColorClass": "",
+    "MarginTop": "mt-0",
+    "MarginBottom": "mb-0",
+    "PaddingTop": "pt-4",
+    "PaddingBottom": "pb-4"
+}
