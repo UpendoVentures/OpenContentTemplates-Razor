@@ -361,6 +361,20 @@
     border-color: rgba(13, 110, 253, 0.55);
 }
 
+.upendo-membership-dashboard__action-card-disabled,
+.upendo-membership-dashboard__action-card-disabled:hover,
+.upendo-membership-dashboard__action-card-disabled:focus {
+    cursor: not-allowed;
+    opacity: 0.62;
+    transform: none;
+    box-shadow: 0 0.25rem 0.75rem rgba(15, 23, 42, 0.05);
+    border-color: var(--umd-border);
+}
+
+.upendo-membership-dashboard__action-card-disabled i {
+    color: var(--umd-muted);
+}
+
 .upendo-membership-dashboard__action-card i {
     color: var(--umd-primary);
     font-size: 1.25rem;
@@ -457,8 +471,38 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.35);
 }
 
+.upendo-membership-dashboard__cancel-link-button {
+    color: #ffffff !important;
+    background: rgba(180, 35, 24, 0.12) !important;
+    border: 1px solid rgba(248, 113, 113, 0.55) !important;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.upendo-membership-dashboard__cancel-link-button i {
+    color: #fecaca;
+}
+
+.upendo-membership-dashboard__cancel-link-button:hover,
+.upendo-membership-dashboard__cancel-link-button:focus {
+    color: #ffffff !important;
+    background: rgba(180, 35, 24, 0.22) !important;
+    border-color: rgba(248, 113, 113, 0.82) !important;
+}
+
+.upendo-membership-dashboard__cancel-link-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(248, 113, 113, 0.28);
+}
+
+.upendo-membership-dashboard__cancel-helper {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.78rem;
+    text-align: center;
+}
+
 .upendo-membership-dashboard__portal-button[disabled],
 .upendo-membership-dashboard__action-card[disabled],
+.upendo-membership-dashboard__cancel-link-button[disabled],
 .upendo-membership-dashboard [data-cancel-membership-button][disabled] {
     cursor: wait;
     opacity: 0.72;

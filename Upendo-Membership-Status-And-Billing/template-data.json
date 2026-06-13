@@ -1,6 +1,7 @@
 {
     "ContactMemberSupportAddress": "membership@example.org",
     "ViewAllBenefitsUrl": "/membership/benefits",
+    "BusinessDirectoryManageUrl": "/manage/business-directory",
     "BackgroundColorClass": "",
     "MarginTop": "mt-0",
     "MarginBottom": "mb-0",

@@ -9,6 +9,10 @@
       "type": "string",
       "title": "View All Benefits URL"
     },
+    "BusinessDirectoryManageUrl": {
+      "type": "string",
+      "title": "Business Directory Manage URL"
+    },
     "BackgroundColorClass": {
       "type": "string",
       "title": "Background Color Class",

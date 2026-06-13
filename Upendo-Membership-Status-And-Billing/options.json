@@ -36,6 +36,10 @@
         "ErrorText": {
             "type": "string",
             "title": "Error Text"
+        },
+        "BusinessDirectoryManageUrl": {
+            "type": "string",
+            "title": "Business Directory Manage URL"
         }
     }
 }

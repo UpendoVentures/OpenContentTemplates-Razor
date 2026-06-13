@@ -10,6 +10,10 @@
       "helper": "Required. Enter a local page URL or external URL where members can review their benefits. Examples: /membership/benefits or https://example.org/member-benefits.",
       "placeholder": "/membership/benefits"
     },
+    "BusinessDirectoryManageUrl": {
+      "type": "string",
+      "title": "Business Directory Manage URL"
+    },
     "BackgroundColorClass": {
       "type": "select",
       "helper": "Choose a built-in Bootstrap background color class or one of the custom background utility classes included with this template.",

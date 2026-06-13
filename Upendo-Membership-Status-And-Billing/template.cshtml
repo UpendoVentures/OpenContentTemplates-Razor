@@ -29,6 +29,10 @@
         ? Convert.ToString(Model.Settings.ViewAllBenefitsUrl)
         : string.Empty;
 
+    var businessDirectoryManageUrl = Model.Settings.BusinessDirectoryManageUrl != null
+        ? Convert.ToString(Model.Settings.BusinessDirectoryManageUrl)
+        : "/manage/business-directory";
+
     var backgroundColorClass = Model.Settings.BackgroundColorClass != null
         ? Convert.ToString(Model.Settings.BackgroundColorClass)
         : string.Empty;
@@ -85,13 +89,14 @@
 }
 
 <section id="@rootId"
-         class="@sectionClasses"
-         data-module-id="@moduleId"
-         data-tab-id="@tabId"
-         data-portal-id="@portalId"
-         data-support-address="@contactMemberSupportAddress"
-         data-benefits-url="@viewAllBenefitsUrl"
-         aria-labelledby="@rootId-heading">
+    class="@sectionClasses"
+    data-module-id="@moduleId"
+    data-tab-id="@tabId"
+    data-portal-id="@portalId"
+    data-support-address="@contactMemberSupportAddress"
+    data-benefits-url="@viewAllBenefitsUrl"
+    data-business-directory-manage-url="@businessDirectoryManageUrl"
+    aria-labelledby="@rootId-heading">
 
     <div class="container-fluid">
         <div class="upendo-membership-dashboard__inner mx-auto">
@@ -327,6 +332,19 @@
 
                 <div class="row g-3 mt-1">
                     <div class="col-12 col-md-6 col-xl-3">
+                        <button type="button"
+                                class="upendo-membership-dashboard__action-card w-100 upendo-membership-dashboard__action-card-disabled"
+                                data-manage-business-button
+                                aria-disabled="true"
+                                title="Manage Business is available when your paid membership is linked to a business directory profile.">
+                            <i class="fas fa-building" aria-hidden="true"></i>
+                            <strong>Manage Business</strong>
+                            <span data-manage-business-text>
+                                Paid member profile benefit
+                            </span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-3">
                         <button type="button" class="upendo-membership-dashboard__action-card w-100" data-portal-action="manage">
                             <i class="far fa-calendar-alt" aria-hidden="true"></i>
                             <strong>Manage Billing</strong>
@@ -342,19 +360,12 @@
                     </div>
                     <div class="col-12 col-md-6 col-xl-3">
                         <button type="button"
-                            class="upendo-membership-dashboard__action-card w-100"
-                            data-portal-action="subscription_update"
-                            aria-label="Review membership plan options securely through Stripe">
-                        <i class="fas fa-level-up-alt" aria-hidden="true"></i>
-                        <strong>Change Plan</strong>
-                        <span>Opens available Stripe options</span>
-                    </button>
-                    </div>
-                    <div class="col-12 col-md-6 col-xl-3">
-                        <button type="button" class="upendo-membership-dashboard__action-card upendo-membership-dashboard__action-card-danger w-100" data-cancel-membership-button>
-                            <i class="far fa-times-circle" aria-hidden="true"></i>
-                            <strong>Cancel Membership</strong>
-                            <span>Manage cancellation via Stripe</span>
+                                class="upendo-membership-dashboard__action-card w-100"
+                                data-portal-action="subscription_update"
+                                aria-label="Review membership plan options securely through Stripe">
+                            <i class="fas fa-level-up-alt" aria-hidden="true"></i>
+                            <strong>Change Plan</strong>
+                            <span>Opens available Stripe options</span>
                         </button>
                     </div>
                 </div>
@@ -407,10 +418,22 @@
                                 Contact Member Support
                             </a>
 
-                            <a class="btn btn-outline-light w-100" href="@viewAllBenefitsUrl" data-benefits-link>
+                            <a class="btn btn-outline-light w-100 mb-3" href="@viewAllBenefitsUrl" data-benefits-link>
                                 <i class="far fa-list-alt me-2" aria-hidden="true"></i>
                                 View All Benefits
                             </a>
+
+                            <button type="button"
+                                    class="btn upendo-membership-dashboard__cancel-link-button w-100"
+                                    data-cancel-membership-button
+                                    aria-label="Cancel membership using secure Stripe billing tools">
+                                <i class="far fa-times-circle me-2" aria-hidden="true"></i>
+                                Cancel Membership
+                            </button>
+
+                            <p class="upendo-membership-dashboard__cancel-helper mb-0 mt-2">
+                                Opens secure cancellation options.
+                            </p>
                         </aside>
 
                         <aside class="upendo-membership-dashboard__security-card">
@@ -472,6 +495,7 @@
     var portalId = root.getAttribute('data-portal-id') || '';
     var supportAddress = root.getAttribute('data-support-address') || '';
     var benefitsUrl = root.getAttribute('data-benefits-url') || '';
+    var businessDirectoryManageUrl = root.getAttribute('data-business-directory-manage-url') || '/manage/business-directory';
 
     var loadingState = root.querySelector('[data-loading-state]');
     var loadedState = root.querySelector('[data-loaded-state]');
@@ -699,6 +723,28 @@
         }
 
         return address;
+    }
+
+    function buildBusinessDirectoryEditUrl(companyId) {
+        var baseUrl = safeTrim(businessDirectoryManageUrl);
+
+        if (!baseUrl) {
+            baseUrl = '/manage/business-directory';
+        }
+
+        if (!companyId) {
+            return baseUrl;
+        }
+
+        if (baseUrl.indexOf('{companyId}') >= 0) {
+            return baseUrl.replace(/\{companyId\}/g, encodeURIComponent(companyId));
+        }
+
+        if (baseUrl.indexOf('#') >= 0) {
+            return baseUrl;
+        }
+
+        return baseUrl.replace(/\/$/, '') + '#/edit/' + encodeURIComponent(companyId);
     }
 
     function configureStaticLinks() {
@@ -1219,6 +1265,55 @@
         });
     }
 
+    function configureManageBusinessButton(data) {
+        var button = root.querySelector('[data-manage-business-button]');
+        var text = root.querySelector('[data-manage-business-text]');
+
+        if (!button) {
+            return;
+        }
+
+        var hasLinkedBusiness = getBooleanValue(data, 'hasLinkedBusinessDirectoryProfile', 'HasLinkedBusinessDirectoryProfile');
+        var canManageBusiness = getBooleanValue(data, 'canManageBusinessDirectoryProfile', 'CanManageBusinessDirectoryProfile');
+        var companyId = getValue(data, 'linkedBusinessCompanyId', 'LinkedBusinessCompanyId', null);
+        var companyName = getValue(data, 'linkedBusinessCompanyName', 'LinkedBusinessCompanyName', '');
+        var disabledReason = getValue(data, 'manageBusinessDirectoryDisabledReason', 'ManageBusinessDirectoryDisabledReason', '');
+
+        var enabledTitle = companyName
+            ? 'Manage the business profile for ' + companyName + '.'
+            : 'Manage your business profile.';
+
+        var fallbackDisabledReason = hasLinkedBusiness
+            ? 'Business profile editing is a paid member benefit. Renew your membership to manage your business profile.'
+            : 'Manage Business is available when your membership account is linked to a business directory profile.';
+
+        if (canManageBusiness && companyId) {
+            button.classList.remove('upendo-membership-dashboard__action-card-disabled');
+            button.setAttribute('aria-disabled', 'false');
+            button.setAttribute('title', enabledTitle);
+            button.setAttribute('aria-label', enabledTitle);
+            button.setAttribute('data-manage-business-url', buildBusinessDirectoryEditUrl(companyId));
+
+            if (text) {
+                text.textContent = 'Update your public business profile';
+            }
+
+            return;
+        }
+
+        button.classList.add('upendo-membership-dashboard__action-card-disabled');
+        button.setAttribute('aria-disabled', 'true');
+        button.setAttribute('title', disabledReason || fallbackDisabledReason);
+        button.setAttribute('aria-label', disabledReason || fallbackDisabledReason);
+        button.removeAttribute('data-manage-business-url');
+
+        if (text) {
+            text.textContent = hasLinkedBusiness
+                ? 'Paid member benefit paused'
+                : 'Link required for this benefit';
+        }
+    }
+
     function renderDashboard(data) {
         try {
             if (window.console && window.console.info) {
@@ -1298,6 +1393,7 @@
             });
 
             renderInvoices(invoices);
+            configureManageBusinessButton(data);
 
             showState('loaded');
             runMembershipHeroEffect(data);
@@ -1459,6 +1555,31 @@
                 event = event || window.event;
 
                 var target = event.target || event.srcElement;
+                var manageBusinessButton = safeClosest(target, '[data-manage-business-button]');
+
+                if (manageBusinessButton) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    }
+
+                    if (manageBusinessButton.getAttribute('aria-disabled') === 'true') {
+                        showActionWarning(
+                            manageBusinessButton.getAttribute('title') ||
+                            'Business profile editing is a paid member benefit.'
+                        );
+                        return;
+                    }
+
+                    var manageBusinessUrl = manageBusinessButton.getAttribute('data-manage-business-url');
+
+                    if (manageBusinessUrl) {
+                        window.location.href = manageBusinessUrl;
+                        return;
+                    }
+
+                    showActionWarning('The business profile destination is not configured yet.');
+                    return;
+                }
                 var portalButton = safeClosest(target, '[data-portal-action]');
 
                 if (portalButton) {
