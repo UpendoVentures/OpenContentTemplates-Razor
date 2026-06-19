@@ -39,6 +39,19 @@
       "dependencies": []
     },
     {
+      "fieldname": "AdditionalCss",
+      "title": "Additional CSS",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Optional. Add one or more CSS class names to apply extra styling to this button. Do not include a period before the class name.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
       "fieldname": "Link",
       "title": "Link",
       "fieldtype": "url",
