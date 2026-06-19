@@ -1,0 +1,159 @@
+{
+    "fields": {
+        "BackgroundColorClass": {
+            "type": "select",
+            "helper": "Choose the fallback background color shown before the video loads or if the video cannot load.",
+            "optionLabels": [
+                "None / Theme Default",
+                "Primary",
+                "Primary (theme)",
+                "Secondary",
+                "Secondary (theme)",
+                "Tertiary (theme)",
+                "Quaternary (theme)",
+                "H5 (theme)",
+                "H6 (theme)",
+                "Success",
+                "Danger",
+                "Warning",
+                "Info",
+                "Light",
+                "Dark",
+                "White",
+                "Body",
+                "Transparent",
+                "Primary Subtle",
+                "Secondary Subtle",
+                "Success Subtle",
+                "Danger Subtle",
+                "Warning Subtle",
+                "Info Subtle",
+                "Light Subtle",
+                "Dark Subtle",
+                "Off White",
+                "Warm White",
+                "Cream",
+                "Soft Beige",
+                "Sand",
+                "Light Sage",
+                "Sage",
+                "Pale Green",
+                "Mist",
+                "Soft Gray",
+                "Forest Green"
+            ],
+            "sort": true,
+            "removeDefaultNone": true
+        },
+        "VideoDisplayMode": {
+            "type": "select",
+            "helper": "Choose how the video fits inside the full-screen area. Crop to Fill looks most like a modern hero banner. Fit Whole Video shows the whole video and may create empty space on some screens. Stretch to Fill avoids empty space but can distort the video.",
+            "optionLabels": [
+                "Crop to Fill",
+                "Fit Whole Video",
+                "Stretch to Fill"
+            ],
+            "sort": false,
+            "removeDefaultNone": true
+        },
+        "VideoPosition": {
+            "type": "select",
+            "helper": "Choose which part of the video should stay in view when Crop to Fill is used. Center is usually best, but Top can work better for videos where the important action is higher in the frame.",
+            "optionLabels": [
+                "Center",
+                "Top",
+                "Bottom",
+                "Left",
+                "Right"
+            ],
+            "sort": false,
+            "removeDefaultNone": true
+        },
+        "MobileTabletHeight": {
+            "type": "select",
+            "helper": "Choose the video hero height on phones and tablets. Landscape Video (16:9) is best for 1280 x 720 mobile/tablet source videos and helps the whole video fit in view. Full Screen keeps the original desktop-style height. Tall Video (9:16) is best for vertical source videos.",
+            "optionLabels": [
+                "Landscape Video (16:9)",
+                "Full Screen",
+                "Tall Video (9:16)",
+                "Square (1:1)",
+                "Three-Quarter Screen",
+                "Half Screen"
+            ],
+            "sort": false,
+            "removeDefaultNone": true
+        },
+        "VideoScale": {
+            "type": "select",
+            "helper": "Optional. Slightly zoom the video out while keeping the selected video position. Use 100% for normal display. Lower values can reveal more of the video frame, but may show background space if the video no longer fully covers the area.",
+            "optionLabels": [
+                "Normal (100%)",
+                "Slightly Zoomed Out (95%)",
+                "More Zoomed Out (90%)",
+                "Maximum Zoomed Out (85%)"
+            ],
+            "sort": false,
+            "removeDefaultNone": true
+        },
+        "MarginTop": {
+            "title": "Margin (top)",
+            "type": "select",
+            "helper": "Optional. Controls spacing above this section.",
+            "optionLabels": [
+                "mt-0",
+                "mt-1",
+                "mt-2",
+                "mt-3",
+                "mt-4",
+                "mt-5",
+                "mt-auto"
+            ],
+            "removeDefaultNone": true
+        },
+        "MarginBottom": {
+            "title": "Margin (bottom)",
+            "type": "select",
+            "helper": "Optional. Controls spacing below this section.",
+            "optionLabels": [
+                "mb-0",
+                "mb-1",
+                "mb-2",
+                "mb-3",
+                "mb-4",
+                "mb-5",
+                "mb-auto"
+            ],
+            "removeDefaultNone": true
+        },
+        "PaddingTop": {
+            "title": "Padding (top)",
+            "type": "select",
+            "helper": "Optional. Controls inner spacing above the video area.",
+            "optionLabels": [
+                "pt-0",
+                "pt-1",
+                "pt-2",
+                "pt-3",
+                "pt-4",
+                "pt-5",
+                "pt-auto"
+            ],
+            "removeDefaultNone": true
+        },
+        "PaddingBottom": {
+            "title": "Padding (bottom)",
+            "type": "select",
+            "helper": "Optional. Controls inner spacing below the video area.",
+            "optionLabels": [
+                "pb-0",
+                "pb-1",
+                "pb-2",
+                "pb-3",
+                "pb-4",
+                "pb-5",
+                "pb-auto"
+            ],
+            "removeDefaultNone": true
+        }
+    }
+}

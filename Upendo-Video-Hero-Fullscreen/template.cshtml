@@ -1,0 +1,275 @@
+@using System
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor).Trim() : string.Empty;
+    var desktopVideoUrl = Model.VideoUrl != null ? Convert.ToString(Model.VideoUrl).Trim() : string.Empty;
+    var mobileTabletVideoUrl = Model.MobileTabletVideoUrl != null ? Convert.ToString(Model.MobileTabletVideoUrl).Trim() : string.Empty;
+    var videoSourceType = Model.VideoSourceType != null ? Convert.ToString(Model.VideoSourceType).Trim() : "auto";
+
+    var backgroundColorClass = Model.Settings.BackgroundColorClass != null ? Convert.ToString(Model.Settings.BackgroundColorClass) : string.Empty;
+    var marginTop = Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : string.Empty;
+    var marginBottom = Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : string.Empty;
+    var paddingTop = Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : string.Empty;
+    var paddingBottom = Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : string.Empty;
+    var videoDisplayMode = Model.Settings.VideoDisplayMode != null ? Convert.ToString(Model.Settings.VideoDisplayMode).Trim().ToLowerInvariant() : "cover";
+    var videoPosition = Model.Settings.VideoPosition != null ? Convert.ToString(Model.Settings.VideoPosition).Trim().ToLowerInvariant() : "center";
+    var mobileTabletHeight = Model.Settings.MobileTabletHeight != null ? Convert.ToString(Model.Settings.MobileTabletHeight).Trim().ToLowerInvariant() : "landscape";
+    var videoScale = Model.Settings.VideoScale != null ? Convert.ToString(Model.Settings.VideoScale).Trim() : "100";
+
+    if (videoDisplayMode != "cover" && videoDisplayMode != "contain" && videoDisplayMode != "fill")
+    {
+        videoDisplayMode = "cover";
+    }
+
+    if (videoPosition != "center" && videoPosition != "top" && videoPosition != "bottom" && videoPosition != "left" && videoPosition != "right")
+    {
+        videoPosition = "center";
+    }
+
+    if (mobileTabletHeight != "full" && mobileTabletHeight != "landscape" && mobileTabletHeight != "portrait" && mobileTabletHeight != "square" && mobileTabletHeight != "three-quarter" && mobileTabletHeight != "half")
+    {
+        mobileTabletHeight = "landscape";
+    }
+
+    if (videoScale != "100" && videoScale != "95" && videoScale != "90" && videoScale != "85")
+    {
+        videoScale = "100";
+    }
+
+    var desktopIsValidVideoUrl = false;
+    var desktopIsYouTubeVideo = false;
+    var desktopYoutubeVideoId = string.Empty;
+    var desktopYoutubeEmbedUrl = string.Empty;
+    Uri desktopParsedUri = null;
+
+    if (!string.IsNullOrWhiteSpace(desktopVideoUrl) && !desktopVideoUrl.Contains("<") && !desktopVideoUrl.Contains(">"))
+    {
+        if (desktopVideoUrl.StartsWith("/", StringComparison.Ordinal) && !desktopVideoUrl.StartsWith("//", StringComparison.Ordinal))
+        {
+            desktopIsValidVideoUrl = true;
+        }
+        else if (Uri.TryCreate(desktopVideoUrl, UriKind.Absolute, out desktopParsedUri)
+            && desktopParsedUri != null
+            && (string.Equals(desktopParsedUri.Scheme, "http", StringComparison.OrdinalIgnoreCase) || string.Equals(desktopParsedUri.Scheme, "https", StringComparison.OrdinalIgnoreCase)))
+        {
+            desktopIsValidVideoUrl = true;
+
+            var host = desktopParsedUri.Host != null ? desktopParsedUri.Host.ToLowerInvariant() : string.Empty;
+            var path = desktopParsedUri.AbsolutePath != null ? desktopParsedUri.AbsolutePath.Trim('/') : string.Empty;
+
+            if (host == "youtu.be")
+            {
+                var pathParts = path.Split('/');
+                if (pathParts.Length > 0)
+                {
+                    desktopYoutubeVideoId = pathParts[0];
+                }
+            }
+            else if (host == "youtube.com" || host == "www.youtube.com" || host == "m.youtube.com" || host == "music.youtube.com")
+            {
+                var queryValues = HttpUtility.ParseQueryString(desktopParsedUri.Query);
+                desktopYoutubeVideoId = queryValues["v"];
+
+                if (string.IsNullOrWhiteSpace(desktopYoutubeVideoId))
+                {
+                    var pathParts = path.Split('/');
+                    if (pathParts.Length >= 2 && (string.Equals(pathParts[0], "embed", StringComparison.OrdinalIgnoreCase) || string.Equals(pathParts[0], "shorts", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        desktopYoutubeVideoId = pathParts[1];
+                    }
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(desktopYoutubeVideoId))
+            {
+                var cleanedVideoId = string.Empty;
+                for (var i = 0; i < desktopYoutubeVideoId.Length; i++)
+                {
+                    var c = desktopYoutubeVideoId[i];
+                    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_' || c == '-')
+                    {
+                        cleanedVideoId += c;
+                    }
+                }
+
+                desktopYoutubeVideoId = cleanedVideoId;
+                desktopIsYouTubeVideo = !string.IsNullOrWhiteSpace(desktopYoutubeVideoId);
+            }
+        }
+    }
+
+    if (string.Equals(videoSourceType, "video", StringComparison.OrdinalIgnoreCase))
+    {
+        desktopIsYouTubeVideo = false;
+    }
+    else if (string.Equals(videoSourceType, "youtube", StringComparison.OrdinalIgnoreCase))
+    {
+        desktopIsValidVideoUrl = desktopIsValidVideoUrl && desktopIsYouTubeVideo;
+    }
+
+    if (desktopIsYouTubeVideo)
+    {
+        desktopYoutubeEmbedUrl = "https://www.youtube-nocookie.com/embed/" + desktopYoutubeVideoId + "?autoplay=1&mute=1&controls=0&loop=1&playlist=" + desktopYoutubeVideoId + "&playsinline=1&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3";
+    }
+
+    var mobileTabletIsValidVideoUrl = false;
+    var mobileTabletIsYouTubeVideo = false;
+    var mobileTabletYoutubeVideoId = string.Empty;
+    var mobileTabletYoutubeEmbedUrl = string.Empty;
+    Uri mobileTabletParsedUri = null;
+
+    if (!string.IsNullOrWhiteSpace(mobileTabletVideoUrl) && !mobileTabletVideoUrl.Contains("<") && !mobileTabletVideoUrl.Contains(">"))
+    {
+        if (mobileTabletVideoUrl.StartsWith("/", StringComparison.Ordinal) && !mobileTabletVideoUrl.StartsWith("//", StringComparison.Ordinal))
+        {
+            mobileTabletIsValidVideoUrl = true;
+        }
+        else if (Uri.TryCreate(mobileTabletVideoUrl, UriKind.Absolute, out mobileTabletParsedUri)
+            && mobileTabletParsedUri != null
+            && (string.Equals(mobileTabletParsedUri.Scheme, "http", StringComparison.OrdinalIgnoreCase) || string.Equals(mobileTabletParsedUri.Scheme, "https", StringComparison.OrdinalIgnoreCase)))
+        {
+            mobileTabletIsValidVideoUrl = true;
+
+            var host = mobileTabletParsedUri.Host != null ? mobileTabletParsedUri.Host.ToLowerInvariant() : string.Empty;
+            var path = mobileTabletParsedUri.AbsolutePath != null ? mobileTabletParsedUri.AbsolutePath.Trim('/') : string.Empty;
+
+            if (host == "youtu.be")
+            {
+                var pathParts = path.Split('/');
+                if (pathParts.Length > 0)
+                {
+                    mobileTabletYoutubeVideoId = pathParts[0];
+                }
+            }
+            else if (host == "youtube.com" || host == "www.youtube.com" || host == "m.youtube.com" || host == "music.youtube.com")
+            {
+                var queryValues = HttpUtility.ParseQueryString(mobileTabletParsedUri.Query);
+                mobileTabletYoutubeVideoId = queryValues["v"];
+
+                if (string.IsNullOrWhiteSpace(mobileTabletYoutubeVideoId))
+                {
+                    var pathParts = path.Split('/');
+                    if (pathParts.Length >= 2 && (string.Equals(pathParts[0], "embed", StringComparison.OrdinalIgnoreCase) || string.Equals(pathParts[0], "shorts", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        mobileTabletYoutubeVideoId = pathParts[1];
+                    }
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(mobileTabletYoutubeVideoId))
+            {
+                var cleanedVideoId = string.Empty;
+                for (var i = 0; i < mobileTabletYoutubeVideoId.Length; i++)
+                {
+                    var c = mobileTabletYoutubeVideoId[i];
+                    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_' || c == '-')
+                    {
+                        cleanedVideoId += c;
+                    }
+                }
+
+                mobileTabletYoutubeVideoId = cleanedVideoId;
+                mobileTabletIsYouTubeVideo = !string.IsNullOrWhiteSpace(mobileTabletYoutubeVideoId);
+            }
+        }
+    }
+
+    if (string.Equals(videoSourceType, "video", StringComparison.OrdinalIgnoreCase))
+    {
+        mobileTabletIsYouTubeVideo = false;
+    }
+    else if (string.Equals(videoSourceType, "youtube", StringComparison.OrdinalIgnoreCase))
+    {
+        mobileTabletIsValidVideoUrl = mobileTabletIsValidVideoUrl && mobileTabletIsYouTubeVideo;
+    }
+
+    if (mobileTabletIsYouTubeVideo)
+    {
+        mobileTabletYoutubeEmbedUrl = "https://www.youtube-nocookie.com/embed/" + mobileTabletYoutubeVideoId + "?autoplay=1&mute=1&controls=0&loop=1&playlist=" + mobileTabletYoutubeVideoId + "&playsinline=1&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3";
+    }
+
+    var hasMobileTabletVideo = mobileTabletIsValidVideoUrl;
+    var videoDisplayClass = "uv-video-hero--fit-" + videoDisplayMode;
+    var videoPositionClass = "uv-video-hero--position-" + videoPosition;
+    var mobileTabletHeightClass = "uv-video-hero--mobile-height-" + mobileTabletHeight;
+    var videoScaleClass = "uv-video-hero--scale-" + videoScale;
+    var mobileTabletVideoClass = hasMobileTabletVideo ? " uv-video-hero--has-mobile-tablet" : string.Empty;
+    var sectionClasses = "uv-video-hero position-relative w-100 " + videoDisplayClass + " " + videoPositionClass + " " + mobileTabletHeightClass + " " + videoScaleClass + mobileTabletVideoClass + " " + backgroundColorClass + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (desktopIsValidVideoUrl)
+{
+    <section class="@sectionClasses" aria-label="Video hero banner">
+        <div class="uv-video-hero__media uv-video-hero__media--desktop" aria-hidden="true">
+            @if (desktopIsYouTubeVideo)
+            {
+                <iframe class="uv-video-hero__youtube-frame"
+                        src="@desktopYoutubeEmbedUrl"
+                        title="Background video"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        tabindex="-1"></iframe>
+            }
+            else
+            {
+                <video class="uv-video-hero__video"
+                       autoplay
+                       muted
+                       loop
+                       playsinline
+                       preload="metadata"
+                       aria-hidden="true"
+                       tabindex="-1">
+                    <source src="@desktopVideoUrl" />
+                </video>
+            }
+        </div>
+
+        @if (hasMobileTabletVideo)
+        {
+            <div class="uv-video-hero__media uv-video-hero__media--mobile-tablet" aria-hidden="true">
+                @if (mobileTabletIsYouTubeVideo)
+                {
+                    <iframe class="uv-video-hero__youtube-frame"
+                            src="@mobileTabletYoutubeEmbedUrl"
+                            title="Background video"
+                            frameborder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            tabindex="-1"></iframe>
+                }
+                else
+                {
+                    <video class="uv-video-hero__video"
+                           autoplay
+                           muted
+                           loop
+                           playsinline
+                           preload="metadata"
+                           aria-hidden="true"
+                           tabindex="-1">
+                        <source src="@mobileTabletVideoUrl" />
+                    </video>
+                }
+            </div>
+        }
+    </section>
+}
+else
+{
+    <div class="alert alert-warning my-3" role="status">
+        Please configure a valid local desktop video path, external desktop video file URL, or desktop YouTube URL.
+    </div>
+}

@@ -1,0 +1,35 @@
+{
+    "fields": {
+        "ModuleTitle": {
+            "type": "text",
+            "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+            "placeholder": "Full Screen Video Hero"
+        },
+        "ModuleAnchor": {
+            "type": "text",
+            "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+            "placeholder": "video-hero"
+        },
+        "VideoSourceType": {
+            "type": "select",
+            "helper": "Choose Auto Detect unless you need to force the template to treat the URL as a regular video file or as YouTube.",
+            "optionLabels": [
+                "Auto Detect",
+                "Local or External Video File",
+                "YouTube"
+            ],
+            "sort": false,
+            "removeDefaultNone": true
+        },
+        "VideoUrl": {
+            "type": "text",
+            "helper": "Required. This is the desktop source video. For best results, use an HD video sized around 1920 \u00d7 1080. Local paths, external video file URLs, and YouTube URLs are supported. Examples: /Portals/0/Videos/homepage-hero-desktop.mp4, https://cdn.example.com/video-desktop.mp4, https://www.youtube.com/watch?v=abc123",
+            "placeholder": "/Portals/0/Videos/homepage-hero-desktop.mp4"
+        },
+        "MobileTabletVideoUrl": {
+            "type": "text",
+            "helper": "Optional. Use this for a mobile and tablet-friendly source video. For best results, use an HD video sized around 1280 \u00d7 720. If this is left empty, the desktop video will be used on all screen sizes.",
+            "placeholder": "/Portals/0/Videos/homepage-hero-mobile-tablet.mp4"
+        }
+    }
+}

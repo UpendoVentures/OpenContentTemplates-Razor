@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor"
+        },
+        "VideoSourceType": {
+            "type": "string",
+            "title": "Video Source Type",
+            "enum": [
+                "auto",
+                "video",
+                "youtube"
+            ]
+        },
+        "VideoUrl": {
+            "type": "string",
+            "title": "Desktop Video URL"
+        },
+        "MobileTabletVideoUrl": {
+            "type": "string",
+            "title": "Mobile/Tablet Video URL"
+        }
+    },
+    "required": [
+        "VideoUrl"
+    ]
+}
