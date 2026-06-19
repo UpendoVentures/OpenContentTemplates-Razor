@@ -15,6 +15,10 @@
       "type": "text",
       "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
     },
+    "AdditionalCss": {
+      "type": "text",
+      "helper": "Optional. Add one or more CSS class names to apply extra styling to this button. Do not include a period before the class name."
+    },
     "Link": {
       "type": "url",
       "helper": "Can be a local page (autosuggest) or any other text"

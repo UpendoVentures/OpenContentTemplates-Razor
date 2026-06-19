@@ -18,6 +18,10 @@
       "type": "string",
       "title": "Icon (optional)"
     },
+    "AdditionalCss": {
+      "type": "string",
+      "title": "Additional CSS"
+    },
     "Link": {
       "type": "string",
       "title": "Link"
