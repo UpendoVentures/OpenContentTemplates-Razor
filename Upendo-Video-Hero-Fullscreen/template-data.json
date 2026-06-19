@@ -1,0 +1,11 @@
+{
+    "BackgroundColorClass": "bg-dark",
+    "MarginTop": "mt-0",
+    "MarginBottom": "mb-0",
+    "PaddingTop": "pt-0",
+    "PaddingBottom": "pb-0",
+    "VideoDisplayMode": "cover",
+    "VideoPosition": "center",
+    "MobileTabletHeight": "landscape",
+    "VideoScale": "100"
+}
