@@ -12,6 +12,8 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
+    public const string EventTagQueryStringKey = "eventTag";
+
     public string GetSafeString(object value)
     {
         return value == null ? string.Empty : Convert.ToString(value);
@@ -47,6 +49,41 @@
         }
 
         return defaultValue;
+    }
+
+    public string GetFeatureIconClass(string iconClass)
+    {
+        if (string.IsNullOrWhiteSpace(iconClass))
+        {
+            return string.Empty;
+        }
+
+        string normalized = iconClass.Trim();
+        foreach (char c in normalized)
+        {
+            if (!char.IsLetterOrDigit(c) && c != '-' && c != '_' && c != ' ')
+            {
+                return string.Empty;
+            }
+        }
+
+        if (normalized.IndexOf("fa-", StringComparison.OrdinalIgnoreCase) < 0)
+        {
+            return string.Empty;
+        }
+
+        bool hasStyleClass = normalized.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            .Any(x => string.Equals(x, "fa", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fas", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "far", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fal", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fab", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fa-solid", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fa-regular", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fa-light", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(x, "fa-brands", StringComparison.OrdinalIgnoreCase));
+
+        return hasStyleClass ? normalized : "fas " + normalized;
     }
 }
 
@@ -274,6 +311,11 @@
     string imageAbsoluteUrl = TemplateHelper.BuildAbsoluteUrl(imageUrl);
     string imageAltText = EventFormattingHelper.GetImageAltText(evt);
     string venueAddressText = evt.Venue != null ? EventFormattingHelper.GetVenueAddressText(evt.Venue) : string.Empty;
+    bool hasRegistrationCta = !string.IsNullOrWhiteSpace(evt.RegistrationUrl);
+    bool hasSecondaryCta = !string.IsNullOrWhiteSpace(evt.SecondaryCtaUrl);
+    string registrationButtonText = string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText;
+    string secondaryCtaText = string.IsNullOrWhiteSpace(evt.SecondaryCtaText) ? "Learn More" : evt.SecondaryCtaText;
+    bool hasAnyCta = hasRegistrationCta || hasSecondaryCta || !string.IsNullOrWhiteSpace(vm.IcsDownloadUrl);
 
     bool hasMapCoordinates = evt != null
         && evt.Venue != null
@@ -345,7 +387,7 @@
                         <nav aria-label="Tags for this event" class="d-flex flex-wrap gap-2">
                             @foreach (var tag in evt.Tags)
                             {
-                                <a href="@EventPageUrlHelper.BuildListPageUrl(listPagePath)?tag=@HttpUtility.UrlEncode(tag.Slug)" class="tag-chip">
+                                <a href="@EventPageUrlHelper.BuildListPageUrl(listPagePath)?@EventTagQueryStringKey=@HttpUtility.UrlEncode(tag.Slug)" class="tag-chip">
                                     #@tag.TagName
                                 </a>
                             }
@@ -441,16 +483,26 @@
                     </div>
                 }
 
-                @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl) || !string.IsNullOrWhiteSpace(vm.IcsDownloadUrl))
+                @if (hasAnyCta)
                 {
                     <div class="event-cta-row">
-                        @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl))
+                        @if (hasRegistrationCta)
                         {
                             <a href="@evt.RegistrationUrl"
                                class="btn btn-primary"
                                target="_blank"
                                rel="noopener noreferrer">
-                                @(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText)
+                                @registrationButtonText
+                            </a>
+                        }
+
+                        @if (hasSecondaryCta)
+                        {
+                            <a href="@evt.SecondaryCtaUrl"
+                               class="btn btn-outline-secondary"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                @secondaryCtaText
                             </a>
                         }
 
@@ -503,6 +555,17 @@
                                 <div class="col-12 col-md-6">
                                     <div class="card event-feature-card border-0">
                                         <div class="card-body">
+                                            @{
+                                                string featureIconClass = GetFeatureIconClass(feature.IconClass);
+                                            }
+
+                                            @if (!string.IsNullOrWhiteSpace(featureIconClass))
+                                            {
+                                                <div class="event-feature-icon" aria-hidden="true">
+                                                    <i class="@featureIconClass"></i>
+                                                </div>
+                                            }
+
                                             @if (!string.IsNullOrWhiteSpace(feature.Title))
                                             {
                                                 <h3 class="h6 mb-2">@feature.Title</h3>
@@ -646,14 +709,22 @@
 
                     </ul>
 
-                    @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl) || !string.IsNullOrWhiteSpace(vm.IcsDownloadUrl))
+                    @if (hasAnyCta)
                     {
                         <div class="d-grid gap-2 mt-4">
-                            @if (!string.IsNullOrWhiteSpace(evt.RegistrationUrl))
+                            @if (hasRegistrationCta)
                             {
                                 <a href="@evt.RegistrationUrl" class="btn btn-primary" target="_blank" rel="noopener noreferrer"
-                                    aria-label="@(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register for " + evt.Title : evt.RegistrationButtonText + " for " + evt.Title)">
-                                        @(string.IsNullOrWhiteSpace(evt.RegistrationButtonText) ? "Register" : evt.RegistrationButtonText)
+                                    aria-label="@registrationButtonText for @evt.Title">
+                                        @registrationButtonText
+                                </a>
+                            }
+
+                            @if (hasSecondaryCta)
+                            {
+                                <a href="@evt.SecondaryCtaUrl" class="btn btn-outline-secondary" target="_blank" rel="noopener noreferrer"
+                                    aria-label="@secondaryCtaText for @evt.Title">
+                                        @secondaryCtaText
                                 </a>
                             }
 
