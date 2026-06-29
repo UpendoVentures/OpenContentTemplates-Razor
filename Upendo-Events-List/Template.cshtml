@@ -12,6 +12,9 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
+    public const string EventTagQueryStringKey = "eventTag";
+    public const string LegacyTagQueryStringKey = "tag";
+
     public string GetSectionHeading(EventListRequest request)
     {
         if (request != null && !request.IsUpcoming)
@@ -35,6 +38,83 @@
         }
 
         return results.TotalRows.ToString() + " events found.";
+    }
+
+    public string BuildEventsFilterUrl(EventListRequest request, string categorySlug)
+    {
+        var query = HttpUtility.ParseQueryString(string.Empty);
+
+        bool isUpcoming = request == null || request.IsUpcoming;
+        query["upcoming"] = isUpcoming ? "true" : "false";
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.TagSlug))
+        {
+            query[EventTagQueryStringKey] = request.TagSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.OrganizerSlug))
+        {
+            query["organizer"] = request.OrganizerSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.Keyword))
+        {
+            query["q"] = request.Keyword;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.SortBy))
+        {
+            query["sort"] = request.SortBy;
+        }
+
+        if (!string.IsNullOrWhiteSpace(categorySlug))
+        {
+            query["category"] = categorySlug;
+        }
+
+        string qs = query.ToString();
+        return string.IsNullOrWhiteSpace(qs) ? "?" : "?" + qs;
+    }
+
+    public string BuildEventsPageUrl(EventListRequest request, int pageNumber)
+    {
+        var query = HttpUtility.ParseQueryString(string.Empty);
+
+        bool isUpcoming = request == null || request.IsUpcoming;
+        query["upcoming"] = isUpcoming ? "true" : "false";
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.CategorySlug))
+        {
+            query["category"] = request.CategorySlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.TagSlug))
+        {
+            query[EventTagQueryStringKey] = request.TagSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.OrganizerSlug))
+        {
+            query["organizer"] = request.OrganizerSlug;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.Keyword))
+        {
+            query["q"] = request.Keyword;
+        }
+
+        if (request != null && !string.IsNullOrWhiteSpace(request.SortBy))
+        {
+            query["sort"] = request.SortBy;
+        }
+
+        if (pageNumber > 1)
+        {
+            query["page"] = pageNumber.ToString(CultureInfo.InvariantCulture);
+        }
+
+        string qs = query.ToString();
+        return string.IsNullOrWhiteSpace(qs) ? "?" : "?" + qs;
     }
 }
 
@@ -151,7 +231,11 @@
     }
 
     string categorySlug = httpRequest != null ? httpRequest.QueryString["category"] : null;
-    string tagSlug = httpRequest != null ? httpRequest.QueryString["tag"] : null;
+    string tagSlug = httpRequest != null ? httpRequest.QueryString[EventTagQueryStringKey] : null;
+    if (string.IsNullOrWhiteSpace(tagSlug) && httpRequest != null)
+    {
+        tagSlug = httpRequest.QueryString[LegacyTagQueryStringKey];
+    }
     string organizerSlug = httpRequest != null ? httpRequest.QueryString["organizer"] : null;
     string keyword = httpRequest != null ? httpRequest.QueryString["q"] : null;
     string sortBy = httpRequest != null ? httpRequest.QueryString["sort"] : null;
@@ -210,7 +294,7 @@
             <h2 class="event-section-heading h5 mb-3">Browse by Category</h2>
 
             <div class="event-chip-row">
-                <a href="@EventRequestHelper.BuildFilterUrl(request, null)"
+                <a href="@BuildEventsFilterUrl(request, null)"
                 class="category-chip @(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "active" : "")"
                 aria-current="@(string.IsNullOrEmpty(vm.ActiveCategorySlug) ? "page" : null)">
                     All
@@ -220,7 +304,7 @@
                 {
                     bool isActive = vm.ActiveCategorySlug == cat.CategorySlug;
 
-                    <a href="@EventRequestHelper.BuildFilterUrl(request, cat.CategorySlug)"
+                    <a href="@BuildEventsFilterUrl(request, cat.CategorySlug)"
                     class="category-chip @(isActive ? "active" : "")"
                     aria-current="@(isActive ? "page" : null)">
                         @cat.CategoryName
@@ -352,7 +436,7 @@
                                         <nav class="event-chip-row mb-0" aria-label="Tags for @item.Title">
                                             @foreach (var tag in item.Tags)
                                             {
-                                                <a href="?tag=@HttpUtility.UrlEncode(tag.Slug)" class="tag-chip">
+                                                <a href="?@EventTagQueryStringKey=@HttpUtility.UrlEncode(tag.Slug)" class="tag-chip">
                                                     #@tag.TagName
                                                 </a>
                                             }
@@ -394,7 +478,7 @@
                                 @for (int i = 1; i <= results.TotalPages; i++)
                                 {
                                     <li class="page-item @(i == results.PageNumber ? "active" : "")">
-                                        <a class="page-link" href="@EventRequestHelper.BuildPageUrl(request, i)" aria-current="@(i == results.PageNumber ? "page" : null)" aria-label="Page @i">
+                                        <a class="page-link" href="@BuildEventsPageUrl(request, i)" aria-current="@(i == results.PageNumber ? "page" : null)" aria-label="Page @i">
                                             @i
                                         </a>
                                     </li>
@@ -418,7 +502,7 @@
                     <div class="event-chip-row">
                         @foreach (var tag in vm.TrendingTags)
                         {
-                            <a href="?tag=@tag.Slug" class="topic-chip">
+                            <a href="?@EventTagQueryStringKey=@HttpUtility.UrlEncode(tag.Slug)" class="topic-chip">
                                 #@tag.TagName
                             </a>
                         }

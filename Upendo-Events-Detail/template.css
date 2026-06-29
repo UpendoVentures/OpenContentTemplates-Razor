@@ -402,6 +402,24 @@
     padding: 1rem;
 }
 
+.event-feature-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.85rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    box-shadow: inset 0 0 0 1px rgba(var(--bs-primary-rgb), 0.2);
+}
+
+.event-feature-icon i {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
 .event-related-card img {
     width: 100%;
     height: 200px;
