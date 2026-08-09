@@ -1,0 +1,280 @@
+.oc--link-cards-alt .oc-plca-heading-wrap {
+    margin-bottom: 2rem;
+}
+
+.oc--link-cards-alt .oc-plca-heading {
+    margin: 0;
+}
+
+.oc--link-cards-alt .oc-plca-heading-accent {
+    width: 62px;
+    height: 4px;
+    margin-top: 0.75rem;
+    border-radius: 999px;
+    background-color: #6b2d14;
+}
+
+.oc--link-cards-alt .oc-plca-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc--link-cards-alt .oc-plca-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .oc--link-cards-alt .oc-plca-row-1 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .oc--link-cards-alt .oc-plca-row-2 {
+        grid-template-columns: 1fr 3fr;
+    }
+}
+
+.oc--link-cards-alt .oc-plca-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    min-height: 18rem;
+}
+
+.oc--link-cards-alt .oc-plca-card-1,
+.oc--link-cards-alt .oc-plca-card-2 {
+    min-height: 24rem;
+}
+
+.oc--link-cards-alt .oc-plca-card-3,
+.oc--link-cards-alt .oc-plca-card-4 {
+    min-height: 18rem;
+}
+
+.oc--link-cards-alt .oc-plca-card-1 {
+    background-color: #234738;
+}
+
+.oc--link-cards-alt .oc-plca-card-2 {
+    background-color: #e8dfd0;
+}
+
+.oc--link-cards-alt .oc-plca-card-3 {
+    background-color: #f2f0ec;
+}
+
+.oc--link-cards-alt .oc-plca-card-4 {
+    background-color: #5a1f10;
+}
+
+.oc--link-cards-alt .oc-plca-card-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.oc--link-cards-alt .oc-plca-card-link:hover,
+.oc--link-cards-alt .oc-plca-card-link:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.oc--link-cards-alt .oc-plca-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.oc--link-cards-alt .oc-plca-card-has-image .oc-plca-bg {
+    opacity: 0.9;
+    filter: brightness(0.58);
+}
+
+.oc--link-cards-alt .oc-plca-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.oc--link-cards-alt .oc-plca-overlay-green {
+    background: rgba(28, 72, 55, 0.56);
+}
+
+.oc--link-cards-alt .oc-plca-overlay-beige {
+    background: rgba(245, 237, 223, 0.82);
+}
+
+.oc--link-cards-alt .oc-plca-overlay-red {
+    background: rgba(88, 27, 12, 0.68);
+}
+
+.oc--link-cards-alt .oc-plca-card-has-image .oc-plca-overlay {
+    background: transparent;
+}
+
+.oc--link-cards-alt .oc-plca-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem;
+}
+
+.oc--link-cards-alt .oc-plca-content-bottom {
+    justify-content: flex-end;
+}
+
+.oc--link-cards-alt .oc-plca-content-middle {
+    justify-content: center;
+}
+
+.oc--link-cards-alt .oc-plca-content-top {
+    justify-content: flex-start;
+}
+
+.oc--link-cards-alt .oc-plca-content-between {
+    justify-content: space-between;
+}
+
+.oc--link-cards-alt .oc-plca-text-left {
+    text-align: left;
+}
+
+.oc--link-cards-alt .oc-plca-text-wrap-card-2 {
+    max-width: 85%;
+}
+
+.oc--link-cards-alt .oc-plca-text-wrap-card-4 {
+    max-width: 55%;
+}
+
+.oc--link-cards-alt .oc-plca-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.oc--link-cards-alt .oc-plca-card-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem;
+    line-height: 1.15;
+}
+
+.oc--link-cards-alt .oc-plca-card-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.oc--link-cards-alt .oc-plca-card-title-light,
+.oc--link-cards-alt .oc-plca-card-text-light {
+    color: #ffffff;
+}
+
+.oc--link-cards-alt .oc-plca-card-title-dark,
+.oc--link-cards-alt .oc-plca-card-text-dark {
+    color: #584f45;
+}
+
+.oc--link-cards-alt .oc-plca-icon {
+    line-height: 1;
+    font-size: 1.55rem;
+    flex: 0 0 auto;
+}
+
+.oc--link-cards-alt .oc-plca-icon-bottom-left {
+    align-self: flex-start;
+    margin-top: 1.5rem;
+}
+
+.oc--link-cards-alt .oc-plca-icon-bottom-right {
+    align-self: flex-end;
+    margin-top: 1.5rem;
+}
+
+.oc--link-cards-alt .oc-plca-card-4 .oc-plca-icon-bottom-right {
+    margin-top: auto;
+}
+
+.oc--link-cards-alt .oc-plca-icon-light {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.oc--link-cards-alt .oc-plca-icon-dark {
+    color: rgba(88, 79, 69, 0.88);
+}
+
+.oc--link-cards-alt .oc-plca-card-has-image .oc-plca-card-title,
+.oc--link-cards-alt .oc-plca-card-has-image .oc-plca-card-text,
+.oc--link-cards-alt .oc-plca-card-has-image .oc-plca-icon {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.72);
+}
+
+@media (max-width: 767.98px) {
+    .oc--link-cards-alt .oc-plca-card-title {
+        font-size: 1.65rem;
+    }
+
+    .oc--link-cards-alt .oc-plca-text-wrap-card-2,
+    .oc--link-cards-alt .oc-plca-text-wrap-card-4 {
+        max-width: 100%;
+    }
+
+    .oc--link-cards-alt .oc-plca-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .oc--link-cards-alt .oc-plca-icon-bottom-right {
+        align-self: flex-start;
+    }
+}
+
+/* Custom background colors */
+
+.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
