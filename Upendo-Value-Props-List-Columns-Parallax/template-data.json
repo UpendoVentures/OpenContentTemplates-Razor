@@ -1,0 +1,8 @@
+{
+  "BackgroundColorClass": "bg-body",
+  "MarginTop": "mt-5",
+  "MarginBottom": "mb-5",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5",
+  "BackgroundOverlayOpacity": "0.45"
+}
