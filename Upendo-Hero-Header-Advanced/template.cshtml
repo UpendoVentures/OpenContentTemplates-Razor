@@ -1,0 +1,535 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string GetString(dynamic value, string fallback = "")
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        var text = Convert.ToString(value);
+        return string.IsNullOrWhiteSpace(text) ? fallback : text;
+    }
+
+    private static bool GetBool(dynamic value, bool fallback = false)
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        bool parsed;
+        return bool.TryParse(Convert.ToString(value), out parsed) ? parsed : fallback;
+    }
+
+    private static string GetAllowedString(dynamic value, string fallback, params string[] allowedValues)
+    {
+        var text = GetString(value, fallback);
+
+        foreach (var allowedValue in allowedValues)
+        {
+            if (text.Equals(allowedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedValue;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+
+    private static string GetCssImageUrl(string imageUrl)
+    {
+        if (string.IsNullOrWhiteSpace(imageUrl))
+        {
+            return string.Empty;
+        }
+
+        return "url('" + HttpUtility.HtmlAttributeEncode(imageUrl.Replace("'", "%27")) + "')";
+    }
+
+    private static string GetCssHexColor(dynamic value, string fallback = "#ffffff")
+    {
+        var text = GetString(value, fallback).Trim();
+        if (text.Length != 7 || text[0] != '#')
+        {
+            return fallback;
+        }
+
+        for (var i = 1; i < text.Length; i++)
+        {
+            var c = text[i];
+            if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')))
+            {
+                return fallback;
+            }
+        }
+
+        return text;
+    }
+
+    private static IHtmlString RenderHeading(string tagName, string cssClass, string text, string id = "")
+    {
+        var idAttribute = string.IsNullOrWhiteSpace(id)
+            ? string.Empty
+            : " id=\"" + HttpUtility.HtmlAttributeEncode(id) + "\"";
+
+        return new HtmlString(
+            "<" + tagName + idAttribute + " class=\"" + HttpUtility.HtmlAttributeEncode(cssClass) + "\">" +
+            HttpUtility.HtmlEncode(text) +
+            "</" + tagName + ">");
+    }
+
+    private class BackgroundVideoInfo
+    {
+        public bool IsValid { get; set; }
+        public bool IsYouTube { get; set; }
+        public string Url { get; set; }
+        public string YouTubeEmbedUrl { get; set; }
+    }
+
+    private static string GetYouTubeVideoId(Uri uri)
+    {
+        var host = uri.Host != null ? uri.Host.ToLowerInvariant() : string.Empty;
+        var path = uri.AbsolutePath != null ? uri.AbsolutePath.Trim('/') : string.Empty;
+        var videoId = string.Empty;
+
+        if (host == "youtu.be")
+        {
+            var pathParts = path.Split('/');
+            if (pathParts.Length > 0)
+            {
+                videoId = pathParts[0];
+            }
+        }
+        else if (host == "youtube.com" || host == "www.youtube.com" || host == "m.youtube.com" || host == "music.youtube.com")
+        {
+            var queryValues = HttpUtility.ParseQueryString(uri.Query);
+            videoId = queryValues["v"];
+
+            if (string.IsNullOrWhiteSpace(videoId))
+            {
+                var pathParts = path.Split('/');
+                if (pathParts.Length >= 2 && (string.Equals(pathParts[0], "embed", StringComparison.OrdinalIgnoreCase) || string.Equals(pathParts[0], "shorts", StringComparison.OrdinalIgnoreCase)))
+                {
+                    videoId = pathParts[1];
+                }
+            }
+        }
+
+        var cleanedVideoId = string.Empty;
+        for (var i = 0; i < videoId.Length; i++)
+        {
+            var c = videoId[i];
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_' || c == '-')
+            {
+                cleanedVideoId += c;
+            }
+        }
+
+        return cleanedVideoId;
+    }
+
+    private static BackgroundVideoInfo GetBackgroundVideoInfo(string videoUrl, string sourceType, bool loopVideo)
+    {
+        var videoInfo = new BackgroundVideoInfo
+        {
+            IsValid = false,
+            IsYouTube = false,
+            Url = string.IsNullOrWhiteSpace(videoUrl) ? string.Empty : videoUrl.Trim(),
+            YouTubeEmbedUrl = string.Empty
+        };
+
+        if (string.IsNullOrWhiteSpace(videoInfo.Url) || videoInfo.Url.Contains("<") || videoInfo.Url.Contains(">"))
+        {
+            return videoInfo;
+        }
+
+        Uri parsedUri = null;
+        var isRelativeLocalUrl = videoInfo.Url.StartsWith("/", StringComparison.Ordinal) && !videoInfo.Url.StartsWith("//", StringComparison.Ordinal);
+        var isAbsoluteHttpUrl = Uri.TryCreate(videoInfo.Url, UriKind.Absolute, out parsedUri)
+            && parsedUri != null
+            && (string.Equals(parsedUri.Scheme, "http", StringComparison.OrdinalIgnoreCase) || string.Equals(parsedUri.Scheme, "https", StringComparison.OrdinalIgnoreCase));
+
+        videoInfo.IsValid = isRelativeLocalUrl || isAbsoluteHttpUrl;
+        if (!videoInfo.IsValid)
+        {
+            return videoInfo;
+        }
+
+        if (isAbsoluteHttpUrl)
+        {
+            var youtubeVideoId = GetYouTubeVideoId(parsedUri);
+            videoInfo.IsYouTube = !string.IsNullOrWhiteSpace(youtubeVideoId);
+
+            if (videoInfo.IsYouTube)
+            {
+                var loopParameters = loopVideo ? "&loop=1&playlist=" + youtubeVideoId : "&loop=0";
+                videoInfo.YouTubeEmbedUrl = "https://www.youtube-nocookie.com/embed/" + youtubeVideoId + "?autoplay=1&mute=1&controls=0" + loopParameters + "&playsinline=1&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3";
+            }
+        }
+
+        if (string.Equals(sourceType, "video", StringComparison.OrdinalIgnoreCase))
+        {
+            videoInfo.IsYouTube = false;
+            videoInfo.YouTubeEmbedUrl = string.Empty;
+        }
+        else if (string.Equals(sourceType, "youtube", StringComparison.OrdinalIgnoreCase))
+        {
+            videoInfo.IsValid = videoInfo.IsYouTube;
+        }
+
+        return videoInfo;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var titleText = Model.TitleText != null ? Convert.ToString(Model.TitleText) : string.Empty;
+    var heroHeading = Model.HeroHeading != null ? Convert.ToString(Model.HeroHeading) : string.Empty;
+    var heroSubHeading = Model.HeroSubHeading != null ? Convert.ToString(Model.HeroSubHeading) : string.Empty;
+    var heroBody = Model.HeroBody != null ? Convert.ToString(Model.HeroBody) : string.Empty;
+    var backgroundMediaType = Model.BackgroundMediaType != null
+        ? GetAllowedString(Model.BackgroundMediaType, "color", "color", "image", "video")
+        : Model.Settings != null && Model.Settings.BackgroundMediaType != null
+            ? GetAllowedString(Model.Settings.BackgroundMediaType, "color", "color", "image", "video")
+            : "color";
+    var backgroundColor = Model.BackgroundColor != null
+        ? GetCssHexColor(Model.BackgroundColor, "#ffffff")
+        : Model.Settings != null && Model.Settings.BackgroundColor != null
+            ? GetCssHexColor(Model.Settings.BackgroundColor, "#ffffff")
+            : "#ffffff";
+    var backgroundColorTextColor = Model.BackgroundColorTextColor != null
+        ? GetCssHexColor(Model.BackgroundColorTextColor, "#000000")
+        : "#000000";
+    var heroBackgroundImage = GetImageUrl(Model.HeroBackgroundImage);
+    var videoSourceType = GetAllowedString(Model.VideoSourceType, "auto", "auto", "video", "youtube");
+    var desktopVideoUrl = Model.VideoUrl != null ? Convert.ToString(Model.VideoUrl).Trim() : string.Empty;
+    var mobileTabletVideoUrl = Model.MobileTabletVideoUrl != null ? Convert.ToString(Model.MobileTabletVideoUrl).Trim() : string.Empty;
+    var sectionAriaLabel = Model.SectionAriaLabel != null ? Convert.ToString(Model.SectionAriaLabel) : string.Empty;
+
+    var titleHeadingLevel = GetAllowedString(Model.TitleHeadingLevel, "h1", "h1", "h2", "h3", "h4", "h5", "h6");
+    var heroHeadingLevel = GetAllowedString(Model.HeroHeadingLevel, "h2", "h1", "h2", "h3", "h4", "h5", "h6", "p");
+    var heroSubHeadingLevel = GetAllowedString(Model.HeroSubHeadingLevel, "h3", "h1", "h2", "h3", "h4", "h5", "h6", "p");
+    var showTitleSection = Model.TitleVisible == null ? true : GetBool(Model.TitleVisible, true);
+    var titleSectionBackgroundColor = GetCssHexColor(Model.TitleSectionBackgroundColor, "#f5f5f5");
+    var titleSectionTextColor = GetCssHexColor(Model.TitleSectionTextColor, "#000000");
+
+    var contentAlignment = Model.Settings != null && Model.Settings.ContentAlignment != null
+        ? GetAllowedString(Model.Settings.ContentAlignment, "left", "left", "center", "right")
+        : "left";
+
+    var titleAlignment = Model.Settings != null && Model.Settings.TitleAlignment != null
+        ? GetAllowedString(Model.Settings.TitleAlignment, "left", "left", "center", "right")
+        : "left";
+
+    var contentColumnWidth = Model.Settings != null && Model.Settings.ContentColumnWidth != null
+        ? GetAllowedString(Model.Settings.ContentColumnWidth, "col-md-8", "col-md-6", "col-md-7", "col-md-8", "col-md-9", "col-md-10", "col-md-12")
+        : "col-md-8";
+
+    var contentColumnOffset = Model.Settings != null && Model.Settings.ContentColumnOffset != null
+        ? GetAllowedString(Model.Settings.ContentColumnOffset, "col-md-offset-2", "", "col-md-offset-0", "col-md-offset-1", "col-md-offset-2", "col-md-offset-3")
+        : "col-md-offset-2";
+
+    if (contentColumnOffset == "col-md-offset-0")
+    {
+        contentColumnOffset = string.Empty;
+    }
+
+    var heroTopSpacing = Model.Settings != null && Model.Settings.HeroTopSpacing != null
+        ? GetAllowedString(Model.Settings.HeroTopSpacing, "7em", "0", "3em", "5em", "7em", "9em", "11em")
+        : "7em";
+
+    var heroMinHeight = Model.Settings != null && Model.Settings.HeroMinHeight != null
+        ? GetAllowedString(Model.Settings.HeroMinHeight, "auto", "auto", "360px", "480px", "525px", "560px", "640px")
+        : "auto";
+
+    var backgroundPosition = Model.BackgroundPosition != null
+        ? GetAllowedString(Model.BackgroundPosition, "center center", "left top", "left center", "left bottom", "center top", "center center", "center bottom", "right top", "right center", "right bottom")
+        : Model.Settings != null && Model.Settings.BackgroundPosition != null
+            ? GetAllowedString(Model.Settings.BackgroundPosition, "center center", "left top", "left center", "left bottom", "center top", "center center", "center bottom", "right top", "right center", "right bottom")
+            : "center center";
+
+    var backgroundSize = Model.BackgroundSize != null
+        ? GetAllowedString(Model.BackgroundSize, "cover", "cover", "contain", "auto")
+        : Model.Settings != null && Model.Settings.BackgroundSize != null
+            ? GetAllowedString(Model.Settings.BackgroundSize, "cover", "cover", "contain", "auto")
+            : "cover";
+
+    var backgroundRepeat = Model.BackgroundRepeat != null
+        ? GetAllowedString(Model.BackgroundRepeat, "no-repeat", "no-repeat", "repeat", "repeat-x", "repeat-y")
+        : Model.Settings != null && Model.Settings.BackgroundRepeat != null
+            ? GetAllowedString(Model.Settings.BackgroundRepeat, "no-repeat", "no-repeat", "repeat", "repeat-x", "repeat-y")
+            : "no-repeat";
+
+    var videoDisplayMode = Model.VideoDisplayMode != null
+        ? GetAllowedString(Model.VideoDisplayMode, "cover", "cover", "contain", "fill")
+        : Model.Settings != null && Model.Settings.VideoDisplayMode != null
+            ? GetAllowedString(Model.Settings.VideoDisplayMode, "cover", "cover", "contain", "fill")
+            : "cover";
+
+    var videoPosition = Model.VideoPosition != null
+        ? GetAllowedString(Model.VideoPosition, "center", "center", "top", "bottom", "left", "right")
+        : Model.Settings != null && Model.Settings.VideoPosition != null
+            ? GetAllowedString(Model.Settings.VideoPosition, "center", "center", "top", "bottom", "left", "right")
+            : "center";
+
+    var videoPlaybackMode = Model.VideoPlaybackMode != null
+        ? GetAllowedString(Model.VideoPlaybackMode, "loop", "loop", "stop")
+        : Model.Settings != null && Model.Settings.VideoPlaybackMode != null
+            ? GetAllowedString(Model.Settings.VideoPlaybackMode, "loop", "loop", "stop")
+            : "loop";
+    var loopVideo = videoPlaybackMode == "loop";
+    var videoLoopAttribute = loopVideo ? "loop" : string.Empty;
+
+    var overlayEnabled = Model.Settings == null || Model.Settings.OverlayEnabled == null
+        ? false
+        : GetBool(Model.Settings.OverlayEnabled, false);
+
+    var overlayColor = Model.Settings != null && Model.Settings.OverlayColor != null
+        ? GetAllowedString(Model.Settings.OverlayColor, "#000000", "#000000", "#1f2933", "#ffffff")
+        : "#000000";
+
+    var overlayOpacity = Model.Settings != null && Model.Settings.OverlayOpacity != null
+        ? GetAllowedString(Model.Settings.OverlayOpacity, "0.3", "0", "0.15", "0.3", "0.45", "0.6", "0.75")
+        : "0.3";
+
+    var textColorMode = Model.Settings != null && Model.Settings.TextColorMode != null
+        ? GetAllowedString(Model.Settings.TextColorMode, "light", "light", "dark", "theme")
+        : "light";
+
+    var enableParallax = Model.EnableParallax != null
+        ? GetBool(Model.EnableParallax, false)
+        : Model.Settings != null && Model.Settings.EnableParallax != null
+            ? GetBool(Model.Settings.EnableParallax, false)
+            : false;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : string.Empty;
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : string.Empty;
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : string.Empty;
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : string.Empty;
+
+    var hasAnchor = !string.IsNullOrWhiteSpace(moduleAnchor);
+    var hasTitle = !string.IsNullOrWhiteSpace(titleText);
+    var hasHeroHeading = !string.IsNullOrWhiteSpace(heroHeading);
+    var hasHeroSubHeading = !string.IsNullOrWhiteSpace(heroSubHeading);
+    var hasHeroBody = !string.IsNullOrWhiteSpace(heroBody);
+    var hasColorBackground = backgroundMediaType == "color";
+    var hasHeroBackgroundImage = backgroundMediaType == "image" && !string.IsNullOrWhiteSpace(heroBackgroundImage);
+    var desktopVideoInfo = GetBackgroundVideoInfo(desktopVideoUrl, videoSourceType, loopVideo);
+    var mobileTabletVideoInfo = GetBackgroundVideoInfo(mobileTabletVideoUrl, videoSourceType, loopVideo);
+    var hasVideoBackground = backgroundMediaType == "video" && desktopVideoInfo.IsValid;
+    var hasMobileTabletVideo = hasVideoBackground && mobileTabletVideoInfo.IsValid;
+
+    var wrapperClass = "oc-hero-header-advanced what-header";
+    if (!string.IsNullOrWhiteSpace(marginTop)) { wrapperClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { wrapperClass += " " + marginBottom; }
+
+    var titleSectionClass = "oc-hha-title-section section section-default section-default-scale-8 header-section";
+    var titleSectionStyle = "--oc-hha-title-section-bg:" + titleSectionBackgroundColor + ";--oc-hha-title-section-text-color:" + titleSectionTextColor + ";";
+
+    var effectiveTextColorMode = hasColorBackground ? "dark" : textColorMode;
+    var heroSectionClass = "oc-hha-hero section section-center mb-none";
+    heroSectionClass += enableParallax && hasHeroBackgroundImage ? " parallax section-parallax" : " section-background";
+    heroSectionClass += effectiveTextColorMode == "light" ? " section-text-light oc-hha-hero--text-light" : string.Empty;
+    heroSectionClass += effectiveTextColorMode == "dark" ? " oc-hha-hero--text-dark" : string.Empty;
+    heroSectionClass += overlayEnabled ? " oc-hha-hero--has-overlay" : string.Empty;
+    heroSectionClass += hasColorBackground ? " oc-hha-hero--has-color" : string.Empty;
+    heroSectionClass += hasHeroBackgroundImage ? " oc-hha-hero--has-image" : " oc-hha-hero--no-image";
+    heroSectionClass += hasVideoBackground ? " oc-hha-hero--has-video oc-hha-hero--fit-" + videoDisplayMode + " oc-hha-hero--position-" + videoPosition : string.Empty;
+    heroSectionClass += hasMobileTabletVideo ? " oc-hha-hero--has-mobile-tablet-video" : string.Empty;
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { heroSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { heroSectionClass += " " + paddingBottom; }
+
+    var alignmentClass = "oc-hha-align-left text-left";
+    if (contentAlignment == "center")
+    {
+        alignmentClass = "oc-hha-align-center text-center";
+    }
+    else if (contentAlignment == "right")
+    {
+        alignmentClass = "oc-hha-align-right text-right";
+    }
+
+    var titleAlignmentClass = "oc-hha-title-align-left text-left";
+    if (titleAlignment == "center")
+    {
+        titleAlignmentClass = "oc-hha-title-align-center text-center";
+    }
+    else if (titleAlignment == "right")
+    {
+        titleAlignmentClass = "oc-hha-title-align-right text-right";
+    }
+
+    var contentColumnClass = (contentColumnWidth + " " + contentColumnOffset).Trim();
+
+    var heroStyleParts = new List<string>();
+    if (hasHeroBackgroundImage)
+    {
+        heroStyleParts.Add("background-image:" + GetCssImageUrl(heroBackgroundImage));
+    }
+    if (hasColorBackground)
+    {
+        heroStyleParts.Add("background-color:" + backgroundColor);
+        heroStyleParts.Add("--oc-hha-color-text-color:" + backgroundColorTextColor);
+    }
+    heroStyleParts.Add("--oc-hha-bg-position:" + backgroundPosition);
+    heroStyleParts.Add("--oc-hha-bg-size:" + backgroundSize);
+    heroStyleParts.Add("--oc-hha-bg-repeat:" + backgroundRepeat);
+    heroStyleParts.Add("--oc-hha-hero-padding-top:" + heroTopSpacing);
+    heroStyleParts.Add("--oc-hha-hero-min-height:" + heroMinHeight);
+    heroStyleParts.Add("--oc-hha-overlay-color:" + overlayColor);
+    heroStyleParts.Add("--oc-hha-overlay-opacity:" + overlayOpacity);
+    var heroStyle = string.Join(";", heroStyleParts) + ";";
+
+    var heroId = "oc-hero-header-advanced-" + Model.Context.ModuleId;
+    var heroHeadingId = heroId + "-heading";
+    var heroAttributes = string.Empty;
+    if (!string.IsNullOrWhiteSpace(sectionAriaLabel))
+    {
+        heroAttributes += " aria-label=\"" + HttpUtility.HtmlAttributeEncode(sectionAriaLabel) + "\"";
+    }
+    else if (hasHeroHeading)
+    {
+        heroAttributes += " aria-labelledby=\"" + HttpUtility.HtmlAttributeEncode(heroHeadingId) + "\"";
+    }
+}
+
+@if (hasAnchor)
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<div class="@wrapperClass">
+    @if (showTitleSection && hasTitle)
+    {
+        <section class="@titleSectionClass" style="@titleSectionStyle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 @titleAlignmentClass">
+                        @RenderHeading(titleHeadingLevel, "oc-hha-title mb-none", titleText)
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+    <section class="@heroSectionClass"@Html.Raw(heroAttributes) style="@Html.Raw(heroStyle)">
+        @if (hasVideoBackground)
+        {
+            <div class="oc-hha-reduced-motion-fallback" aria-hidden="true"></div>
+            <div class="oc-hha-video-media oc-hha-video-media--desktop" aria-hidden="true">
+                @if (desktopVideoInfo.IsYouTube)
+                {
+                    <iframe class="oc-hha-video-frame"
+                            src="@desktopVideoInfo.YouTubeEmbedUrl"
+                            title="Background video"
+                            frameborder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            tabindex="-1"></iframe>
+                }
+                else
+                {
+                    <video class="oc-hha-video"
+                           autoplay
+                           muted
+                           @Html.Raw(videoLoopAttribute)
+                           playsinline
+                           preload="metadata"
+                           aria-hidden="true"
+                           tabindex="-1">
+                        <source src="@desktopVideoInfo.Url" />
+                    </video>
+                }
+            </div>
+
+            if (hasMobileTabletVideo)
+            {
+                <div class="oc-hha-video-media oc-hha-video-media--mobile-tablet" aria-hidden="true">
+                    @if (mobileTabletVideoInfo.IsYouTube)
+                    {
+                        <iframe class="oc-hha-video-frame"
+                                src="@mobileTabletVideoInfo.YouTubeEmbedUrl"
+                                title="Background video"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media; picture-in-picture"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                tabindex="-1"></iframe>
+                    }
+                    else
+                    {
+                        <video class="oc-hha-video"
+                               autoplay
+                               muted
+                               @Html.Raw(videoLoopAttribute)
+                               playsinline
+                               preload="metadata"
+                               aria-hidden="true"
+                               tabindex="-1">
+                            <source src="@mobileTabletVideoInfo.Url" />
+                        </video>
+                    }
+                </div>
+            }
+        }
+
+        @if (overlayEnabled)
+        {
+            <div class="oc-hha-overlay" aria-hidden="true"></div>
+        }
+
+        <div class="container oc-hha-container">
+            <div class="row">
+                <div class="@contentColumnClass">
+                    <div class="oc-hha-content @alignmentClass">
+                        @if (hasHeroHeading)
+                        {
+                            @RenderHeading(heroHeadingLevel, "oc-hha-heading", heroHeading, heroHeadingId)
+                        }
+
+                        @if (hasHeroSubHeading)
+                        {
+                            @RenderHeading(heroSubHeadingLevel, "oc-hha-subheading", heroSubHeading)
+                        }
+
+                        @if (hasHeroBody)
+                        {
+                            <div class="oc-hha-body mb-none">
+                                @Html.Raw(heroBody)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

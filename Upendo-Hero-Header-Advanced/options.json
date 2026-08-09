@@ -1,0 +1,246 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
+      "placeholder": "Hero Header Advanced"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "clients-hero-header",
+      "showMessages": false
+    },
+    "TitleVisible": {
+      "type": "checkbox",
+      "helper": "Turn off when the page already has an equivalent visible title."
+    },
+    "TitleText": {
+      "type": "text",
+      "helper": "Shown in the compact title/header section above the hero.",
+      "placeholder": "Our Clients",
+      "dependencies": {
+        "TitleVisible": [
+          true
+        ]
+      }
+    },
+    "TitleHeadingLevel": {
+      "type": "select",
+      "helper": "Choose the semantic heading level for the top title.",
+      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "TitleVisible": [
+          true
+        ]
+      }
+    },
+    "TitleSectionBackgroundColor": {
+      "type": "text",
+      "helper": "Shown behind the compact title section. Enter a six-digit hex color such as #f5f5f5.",
+      "placeholder": "#f5f5f5",
+      "showMessages": false,
+      "dependencies": {
+        "TitleVisible": [
+          true
+        ]
+      }
+    },
+    "TitleSectionTextColor": {
+      "type": "text",
+      "helper": "Used for the compact title section title text. Enter a six-digit hex text color such as #000000.",
+      "placeholder": "#000000",
+      "showMessages": false,
+      "dependencies": {
+        "TitleVisible": [
+          true
+        ]
+      }
+    },
+    "HeroHeading": {
+      "type": "text",
+      "helper": "Main heading shown over the hero background.",
+      "placeholder": "Your hero headline goes here"
+    },
+    "HeroHeadingLevel": {
+      "type": "select",
+      "helper": "Choose the semantic heading level for the hero heading.",
+      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6", "Paragraph"],
+      "removeDefaultNone": true
+    },
+    "HeroSubHeading": {
+      "type": "text",
+      "helper": "Optional supporting line shown between the hero heading and body copy.",
+      "placeholder": "Mission-Ready Computers and Displays"
+    },
+    "HeroSubHeadingLevel": {
+      "type": "select",
+      "helper": "Choose the semantic heading level for the hero sub-heading.",
+      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6", "Paragraph"],
+      "removeDefaultNone": true
+    },
+    "HeroBody": {
+      "type": "textarea",
+      "helper": "Body copy shown under the hero heading. HTML is allowed.",
+      "placeholder": "Use this area to introduce the page, explain the main value, and guide visitors toward the next step."
+    },
+    "BackgroundMediaType": {
+      "type": "select",
+      "helper": "Controls which media fields are shown in this content form and which background media renders.",
+      "optionLabels": ["Background Color", "Image", "Video"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "BackgroundColor": {
+      "type": "text",
+      "helper": "Used when Background Media Type is Background Color. Enter a six-digit hex color such as #ffffff.",
+      "placeholder": "#ffffff",
+      "showMessages": false,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "color"
+        ]
+      }
+    },
+    "BackgroundColorTextColor": {
+      "type": "text",
+      "helper": "Used when Background Media Type is Background Color. Enter a six-digit hex text color such as #000000.",
+      "placeholder": "#000000",
+      "showMessages": false,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "color"
+        ]
+      }
+    },
+    "HeroBackgroundImage": {
+      "type": "image",
+      "uploadfolder": "Content/Heros/",
+      "typeahead": {
+        "Folder": "Content/Heros/"
+      },
+      "helper": "Used when Background Media Type is Image. Wide landscape image used behind the hero. Recommended minimum: 1920 x 1000 px.",
+      "dependencies": {
+        "BackgroundMediaType": [
+          "image"
+        ]
+      }
+    },
+    "BackgroundPosition": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Image. CSS background-position for the hero image.",
+      "optionLabels": ["Left Top", "Left Center", "Left Bottom", "Center Top", "Center Center", "Center Bottom", "Right Top", "Right Center", "Right Bottom"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "image"
+        ]
+      }
+    },
+    "BackgroundSize": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Image. CSS background-size for the hero image.",
+      "optionLabels": ["Cover", "Contain", "Auto"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "image"
+        ]
+      }
+    },
+    "BackgroundRepeat": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Image. CSS background-repeat for the hero image.",
+      "optionLabels": ["No Repeat", "Repeat", "Repeat X", "Repeat Y"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "image"
+        ]
+      }
+    },
+    "EnableParallax": {
+      "type": "checkbox",
+      "helper": "Used when Background Media Type is Image. When enabled, uses CSS-only fixed background parallax on desktop. The effect is disabled on mobile and for reduced-motion users.",
+      "dependencies": {
+        "BackgroundMediaType": [
+          "image"
+        ]
+      }
+    },
+    "VideoSourceType": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Video. Choose Auto Detect unless you need to force the URL to be treated as a regular video file or as YouTube.",
+      "optionLabels": ["Auto Detect", "Local or External Video File", "YouTube"],
+      "sort": false,
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "video"
+        ]
+      }
+    },
+    "VideoUrl": {
+      "type": "text",
+      "helper": "Used when Background Media Type is Video. Desktop source video. Local paths, external video file URLs, and YouTube URLs are supported.",
+      "placeholder": "/Portals/0/Videos/hero-desktop.mp4",
+      "dependencies": {
+        "BackgroundMediaType": [
+          "video"
+        ]
+      }
+    },
+    "MobileTabletVideoUrl": {
+      "type": "text",
+      "helper": "Optional. Used when Background Media Type is Video. Mobile and tablet-friendly source video. If empty, the desktop video is used on all screen sizes.",
+      "placeholder": "/Portals/0/Videos/hero-mobile-tablet.mp4",
+      "dependencies": {
+        "BackgroundMediaType": [
+          "video"
+        ]
+      }
+    },
+    "VideoDisplayMode": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Video. Crop to Fill works best for hero backgrounds; Fit Whole Video may create empty space; Stretch to Fill can distort the video.",
+      "optionLabels": ["Crop to Fill", "Fit Whole Video", "Stretch to Fill"],
+      "sort": false,
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "video"
+        ]
+      }
+    },
+    "VideoPosition": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Video. Controls which part of the video remains visible when cropped.",
+      "optionLabels": ["Center", "Top", "Bottom", "Left", "Right"],
+      "sort": false,
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "video"
+        ]
+      }
+    },
+    "VideoPlaybackMode": {
+      "type": "select",
+      "helper": "Used when Background Media Type is Video. Controls whether the background video loops or stops when it reaches the end.",
+      "optionLabels": ["Loop Infinitely", "Stop at End"],
+      "sort": false,
+      "removeDefaultNone": true,
+      "dependencies": {
+        "BackgroundMediaType": [
+          "video"
+        ]
+      }
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Optional. Adds an accessible label to the hero section. If blank, the hero heading labels the section.",
+      "placeholder": "Hero section"
+    }
+  }
+}

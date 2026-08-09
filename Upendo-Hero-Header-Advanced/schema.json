@@ -1,0 +1,159 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "TitleVisible": {
+      "type": "boolean",
+      "title": "Show Title Section"
+    },
+    "TitleText": {
+      "type": "string",
+      "title": "Title Text",
+      "dependencies": ["TitleVisible"]
+    },
+    "TitleHeadingLevel": {
+      "type": "string",
+      "title": "Title Heading Level",
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
+      "dependencies": ["TitleVisible"]
+    },
+    "TitleSectionBackgroundColor": {
+      "type": "string",
+      "title": "Title Section Background Color",
+      "default": "#f5f5f5",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "dependencies": ["TitleVisible"]
+    },
+    "TitleSectionTextColor": {
+      "type": "string",
+      "title": "Title Section Text Color",
+      "default": "#000000",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "dependencies": ["TitleVisible"]
+    },
+    "HeroHeading": {
+      "type": "string",
+      "title": "Hero Heading"
+    },
+    "HeroHeadingLevel": {
+      "type": "string",
+      "title": "Hero Heading Level",
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6", "p"]
+    },
+    "HeroSubHeading": {
+      "type": "string",
+      "title": "Hero Sub-Heading"
+    },
+    "HeroSubHeadingLevel": {
+      "type": "string",
+      "title": "Hero Sub-Heading Level",
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6", "p"]
+    },
+    "HeroBody": {
+      "type": "string",
+      "title": "Hero Body"
+    },
+    "BackgroundMediaType": {
+      "type": "string",
+      "title": "Background Media Type",
+      "enum": ["color", "image", "video"],
+      "default": "color"
+    },
+    "BackgroundColor": {
+      "type": "string",
+      "title": "Background Color",
+      "default": "#ffffff",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "BackgroundColorTextColor": {
+      "type": "string",
+      "title": "Background Color Text Color",
+      "default": "#000000",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "HeroBackgroundImage": {
+      "type": "string",
+      "title": "Hero Background Image",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "BackgroundPosition": {
+      "type": "string",
+      "title": "Background Position",
+      "enum": ["left top", "left center", "left bottom", "center top", "center center", "center bottom", "right top", "right center", "right bottom"],
+      "default": "center center",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "BackgroundSize": {
+      "type": "string",
+      "title": "Background Size",
+      "enum": ["cover", "contain", "auto"],
+      "default": "cover",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "BackgroundRepeat": {
+      "type": "string",
+      "title": "Background Repeat",
+      "enum": ["no-repeat", "repeat", "repeat-x", "repeat-y"],
+      "default": "no-repeat",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "EnableParallax": {
+      "type": "boolean",
+      "title": "Enable Parallax Attributes",
+      "default": false,
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "VideoSourceType": {
+      "type": "string",
+      "title": "Video Source Type",
+      "enum": ["auto", "video", "youtube"],
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "VideoUrl": {
+      "type": "string",
+      "title": "Desktop Video URL",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "MobileTabletVideoUrl": {
+      "type": "string",
+      "title": "Mobile/Tablet Video URL",
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "VideoDisplayMode": {
+      "type": "string",
+      "title": "Video Display Mode",
+      "enum": ["cover", "contain", "fill"],
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "VideoPosition": {
+      "type": "string",
+      "title": "Video Position",
+      "enum": ["center", "top", "bottom", "left", "right"],
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "VideoPlaybackMode": {
+      "type": "string",
+      "title": "Video Playback Mode",
+      "enum": ["loop", "stop"],
+      "dependencies": ["BackgroundMediaType"]
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section Aria Label"
+    }
+  },
+  "required": [
+    "HeroHeading",
+    "HeroBody"
+  ]
+}
