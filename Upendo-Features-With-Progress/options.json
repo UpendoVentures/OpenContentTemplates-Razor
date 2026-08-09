@@ -1,0 +1,72 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
+      "placeholder": "Features With Progress"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for #anchor-links on the page. Use letters, numbers, and hyphens only.",
+      "placeholder": "features-with-progress",
+      "showMessages": false
+    },
+    "SectionEyebrow": {
+      "type": "text",
+      "helper": "Optional. Small label shown above the section heading. HTML is allowed.",
+      "placeholder": "Evaluation context"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the cards. HTML is allowed.",
+      "placeholder": "Industry contexts to review."
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "placeholder": "Use these cards to review industry-specific assumptions before final publication."
+    },
+    "Cards": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add feature items in display order. Image is optional; a soft placeholder is shown when no image is selected.",
+      "items": {
+        "fields": {
+          "Eyebrow": {
+            "type": "text",
+            "helper": "Optional. Small label shown above the card title. HTML is allowed.",
+            "placeholder": ""
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Required. Card title. HTML is allowed.",
+            "placeholder": "Defense and aerospace"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Required. Supporting body copy. HTML is allowed.",
+            "placeholder": "Placeholder for mission and program environments where final language must be reviewed for compliance, procurement, and claim sensitivity."
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional. Font Awesome class shown in the feature bubble. Leave empty to use the fallback icon.",
+            "placeholder": "fa-solid fa-shield-halved"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "Content/OpenContent/IndustryContexts/",
+            "typeahead": {
+              "Folder": "Content/OpenContent/IndustryContexts/"
+            },
+            "helper": "Optional. Landscape image shown in the active visual panel. Leave empty to render the built-in placeholder."
+          },
+          "ImageAltText": {
+            "type": "text",
+            "helper": "Optional. Describe the card image when the image communicates meaning. Leave empty for decorative imagery.",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  }
+}

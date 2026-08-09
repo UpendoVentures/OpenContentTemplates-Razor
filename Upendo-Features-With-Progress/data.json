@@ -1,0 +1,41 @@
+{
+  "ModuleTitle": "Features With Progress",
+  "ModuleAnchor": "",
+  "SectionEyebrow": "Industry context",
+  "SectionHeading": "Industry contexts to review.",
+  "IntroText": "",
+  "Cards": [
+    {
+      "Eyebrow": "",
+      "Title": "Defense and aerospace",
+      "Description": "Placeholder for mission and program environments where final language must be reviewed for compliance, procurement, and claim sensitivity.",
+      "IconClass": "fa-solid fa-shield-halved",
+      "Image": "https://images.unsplash.com/photo-1664697272129-2aea242b1bee?auto=format&fit=crop&w=1200&q=80",
+      "ImageAltText": ""
+    },
+    {
+      "Eyebrow": "",
+      "Title": "Government and public sector",
+      "Description": "Placeholder for evaluation contexts that may require documentation, lifecycle, purchasing, or deployment review before publication.",
+      "IconClass": "fa-solid fa-landmark",
+      "Image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80",
+      "ImageAltText": ""
+    },
+    {
+      "Eyebrow": "",
+      "Title": "Shipboard, field, and mobile operations",
+      "Description": "Placeholder for deployment environments where ruggedization, power, space, and transport considerations should be validated by configuration.",
+      "IconClass": "fa-solid fa-ship",
+      "Image": "https://images.unsplash.com/photo-1719553946838-1190abdeee92?q=80&w=1532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "ImageAltText": ""
+    },
+    {
+      "Eyebrow": "",
+      "Title": "Industrial and engineering workflows",
+      "Description": "Placeholder for technical workflows such as visualization, analysis, simulation, testing, or edge-compute review once claims are approved.",
+      "IconClass": "fa-solid fa-gears",
+      "Image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+      "ImageAltText": ""
+    }
+  ]
+}

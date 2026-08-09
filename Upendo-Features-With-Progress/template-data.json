@@ -1,0 +1,13 @@
+{
+  "BackgroundColorClass": "",
+  "ContainerClass": "container-xxl",
+  "CardImageVisibility": "image-visible",
+  "VisualMinHeight": "26.625rem",
+  "AutoplayEnabled": true,
+  "AutoplayDuration": 4200,
+  "AccentColor": "#01233F",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5"
+}
