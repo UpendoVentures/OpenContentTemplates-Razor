@@ -1,0 +1,356 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static object GetDynamicValue(dynamic source, string propertyName)
+    {
+        if (source == null || string.IsNullOrWhiteSpace(propertyName))
+        {
+            return null;
+        }
+
+        try
+        {
+            var dictionary = source as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey(propertyName))
+            {
+                return dictionary[propertyName];
+            }
+        }
+        catch { }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch { }
+
+        try
+        {
+            var property = ((object)source).GetType().GetProperty(propertyName);
+            return property != null ? property.GetValue(source, null) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string GetDynamicString(dynamic source, string propertyName)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        return value != null ? Convert.ToString(value) : string.Empty;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            var dictionary = image as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey("Url") && dictionary["Url"] != null)
+            {
+                return Convert.ToString(dictionary["Url"]);
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var imageCount = GetDynamicString(Model, "ImageCount");
+    if (string.IsNullOrWhiteSpace(imageCount))
+    {
+        imageCount = "two";
+    }
+
+    var useTwoImages = !string.Equals(imageCount, "one", StringComparison.OrdinalIgnoreCase);
+
+    var primaryImageUrl = GetImageUrl(GetDynamicValue(Model, "PrimaryImage"));
+    var primaryImageAltText = GetDynamicString(Model, "PrimaryImageAltText");
+    var secondaryImageUrl = useTwoImages ? GetImageUrl(GetDynamicValue(Model, "SecondaryImage")) : string.Empty;
+    var secondaryImageAltText = useTwoImages ? GetDynamicString(Model, "SecondaryImageAltText") : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var containerClass = Model.Settings != null && Model.Settings.ContainerClass != null
+        ? Convert.ToString(Model.Settings.ContainerClass)
+        : "container-xxl";
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    if (string.IsNullOrWhiteSpace(containerClass))
+    {
+        containerClass = "container-xxl";
+    }
+
+    var sectionClass = "upendo-features-gradient";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+
+    var features = new List<dynamic>();
+    if (Model.Features != null)
+    {
+        foreach (var feature in Model.Features)
+        {
+            features.Add(feature);
+        }
+    }
+
+    var useCompactFeatures = features.Count > 4;
+    if (useCompactFeatures) { sectionClass += " upendo-features-gradient--compact-features"; }
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+    var hasPrimaryImage = !string.IsNullOrWhiteSpace(primaryImageUrl);
+    var hasSecondaryImage = useTwoImages && !string.IsNullOrWhiteSpace(secondaryImageUrl);
+    var hasImages = hasPrimaryImage || hasSecondaryImage;
+    var hasFeatures = features.Count > 0;
+    var hasRenderableContent = hasHeading || hasIntro || hasImages || hasFeatures;
+
+    var generatedModuleAnchor = "upendo-features-gradient-" + Model.Context.ModuleId;
+    var headingId = generatedModuleAnchor + "-heading";
+    var ariaLabel = !string.IsNullOrWhiteSpace(moduleTitle)
+        ? moduleTitle
+        : (!string.IsNullOrWhiteSpace(sectionHeading) ? sectionHeading : "Features section");
+    var sectionAccessibilityAttribute = hasHeading
+        ? "aria-labelledby=\"" + HttpUtility.HtmlAttributeEncode(headingId) + "\""
+        : "aria-label=\"" + HttpUtility.HtmlAttributeEncode(ariaLabel) + "\"";
+
+    if (hasPrimaryImage && string.IsNullOrWhiteSpace(primaryImageAltText))
+    {
+        primaryImageAltText = hasHeading ? sectionHeading : "Feature image";
+    }
+
+    if (hasSecondaryImage && string.IsNullOrWhiteSpace(secondaryImageAltText))
+    {
+        secondaryImageAltText = "Supporting feature image";
+    }
+}
+
+@if (hasRenderableContent)
+{
+    <section class="@sectionClass" id="@(!string.IsNullOrWhiteSpace(moduleAnchor) ? moduleAnchor : generatedModuleAnchor)" @Html.Raw(sectionAccessibilityAttribute)>
+        <div class="@containerClass">
+            @if (hasHeading || hasIntro)
+            {
+                <div class="upendo-features-gradient__intro">
+                    @if (hasHeading)
+                    {
+                        <h2 id="@headingId" class="upendo-features-gradient__heading text-notransform">@Html.Raw(sectionHeading)</h2>
+                    }
+
+                    @if (hasIntro)
+                    {
+                        <div class="upendo-features-gradient__intro-text">
+                            @Html.Raw(introText)
+                        </div>
+                    }
+                </div>
+            }
+
+            <div class="upendo-features-gradient__layout@(useTwoImages ? string.Empty : " upendo-features-gradient__layout--one-image")">
+                @if (hasImages)
+                {
+                    <div class="upendo-features-gradient__media@(useTwoImages ? string.Empty : " upendo-features-gradient__media--one-image")">
+                        <div class="upendo-features-gradient__glow" aria-hidden="true"></div>
+
+                        @if (hasPrimaryImage)
+                        {
+                            <div class="upendo-features-gradient__image-card upendo-features-gradient__image-card--primary">
+                                <img src="@primaryImageUrl" alt="@primaryImageAltText" loading="lazy" decoding="async" />
+                            </div>
+                        }
+
+                        @if (hasSecondaryImage)
+                        {
+                            <div class="upendo-features-gradient__image-card upendo-features-gradient__image-card--secondary">
+                                <img src="@secondaryImageUrl" alt="@secondaryImageAltText" loading="lazy" decoding="async" />
+                            </div>
+                        }
+                    </div>
+                }
+
+                @if (hasFeatures)
+                {
+                    <div class="upendo-features-gradient__features" role="list">
+                        @foreach (var feature in features)
+                        {
+                            var iconClass = feature.IconClass != null ? Convert.ToString(feature.IconClass) : string.Empty;
+                            var title = feature.Title != null ? Convert.ToString(feature.Title) : string.Empty;
+                            var description = feature.Description != null ? Convert.ToString(feature.Description) : string.Empty;
+                            var iconTheme = feature.IconTheme != null ? Convert.ToString(feature.IconTheme) : "icon-theme-violet";
+
+                            if (string.IsNullOrWhiteSpace(iconTheme))
+                            {
+                                iconTheme = "icon-theme-violet";
+                            }
+
+                            var iconWrapperClass = "upendo-features-gradient__icon " + iconTheme;
+
+                            if (string.IsNullOrWhiteSpace(iconClass))
+                            {
+                                iconClass = "fas fa-check";
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(title) || !string.IsNullOrWhiteSpace(description))
+                            {
+                                <article class="upendo-features-gradient__feature" role="listitem">
+                                    <div class="@iconWrapperClass" aria-hidden="true">
+                                        <i class="@iconClass"></i>
+                                    </div>
+
+                                    <div class="upendo-features-gradient__feature-content">
+                                        @if (!string.IsNullOrWhiteSpace(title))
+                                        {
+                                            <h3 class="upendo-features-gradient__feature-title text-notransform">@Html.Raw(title)</h3>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(description))
+                                        {
+                                            <div class="upendo-features-gradient__feature-description">@Html.Raw(description)</div>
+                                        }
+                                    </div>
+                                </article>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function (window, document) {
+            var namespace = window.UpendoFeaturesGradientReveal = window.UpendoFeaturesGradientReveal || {};
+
+            namespace.init = namespace.init || function () {
+                var sections = document.querySelectorAll('.upendo-features-gradient:not([data-upendo-features-gradient-reveal])');
+                if (!sections.length) {
+                    return;
+                }
+
+                var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                Array.prototype.forEach.call(sections, function (section) {
+                    var revealItems = section.querySelectorAll([
+                        '.upendo-features-gradient__heading',
+                        '.upendo-features-gradient__intro-text',
+                        '.upendo-features-gradient__media',
+                        '.upendo-features-gradient__image-card',
+                        '.upendo-features-gradient__feature'
+                    ].join(','));
+
+                    section.setAttribute('data-upendo-features-gradient-reveal', 'true');
+
+                    if (!revealItems.length || reduceMotion || !('IntersectionObserver' in window)) {
+                        Array.prototype.forEach.call(revealItems, function (item) {
+                            item.classList.add('is-revealed');
+                        });
+                        return;
+                    }
+
+                    section.classList.add('upendo-features-gradient--reveal-ready');
+
+                    var featureDelay = 460;
+                    var featureStagger = 120;
+                    var featureIndex = 0;
+
+                    Array.prototype.forEach.call(revealItems, function (item) {
+                        var delay = 0;
+
+                        if (item.classList.contains('upendo-features-gradient__intro-text')) {
+                            delay = 100;
+                        } else if (item.classList.contains('upendo-features-gradient__media')) {
+                            delay = 190;
+                        } else if (item.classList.contains('upendo-features-gradient__image-card--primary')) {
+                            delay = 240;
+                        } else if (item.classList.contains('upendo-features-gradient__image-card--secondary')) {
+                            delay = 300;
+                        } else if (item.classList.contains('upendo-features-gradient__image-card')) {
+                            delay = 270;
+                        } else if (item.classList.contains('upendo-features-gradient__feature')) {
+                            delay = Math.min(featureDelay + (featureIndex * featureStagger), 940);
+                            featureIndex += 1;
+                        }
+
+                        item.style.transitionDelay = delay + 'ms';
+                    });
+
+                    var observer = new IntersectionObserver(function (entries) {
+                        Array.prototype.forEach.call(entries, function (entry) {
+                            if (!entry.isIntersecting) {
+                                return;
+                            }
+
+                            Array.prototype.forEach.call(revealItems, function (item) {
+                                item.classList.add('is-revealed');
+                            });
+
+                            observer.unobserve(section);
+                        });
+                    }, {
+                        rootMargin: '0px 0px -8% 0px',
+                        threshold: 0.12
+                    });
+
+                    observer.observe(section);
+                });
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', namespace.init);
+            } else {
+                namespace.init();
+            }
+        })(window, document);
+    </script>
+}
