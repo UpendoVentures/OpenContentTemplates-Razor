@@ -1,0 +1,84 @@
+{
+  "fields": {
+    "BackgroundColor": {
+      "type": "select",
+      "helper": "Background color for the full-width marquee band.",
+      "optionLabels": ["Black", "Navy Blue", "White", "Transparent"],
+      "removeDefaultNone": true
+    },
+    "TextColor": {
+      "type": "select",
+      "helper": "Color used for text and icon font items. Logo images keep their original colors.",
+      "optionLabels": ["Near White", "White", "Light Gray", "Near Black", "Navy Blue"],
+      "removeDefaultNone": true
+    },
+    "TextSize": {
+      "type": "select",
+      "helper": "Controls the visible item text and icon size.",
+      "optionLabels": ["Small", "Medium", "Large"],
+      "removeDefaultNone": true
+    },
+    "LogoHeight": {
+      "type": "select",
+      "helper": "Maximum displayed height for logo images.",
+      "optionLabels": ["24px", "32px", "40px", "56px"],
+      "removeDefaultNone": true
+    },
+    "ItemGap": {
+      "type": "select",
+      "helper": "Horizontal spacing between marquee items.",
+      "optionLabels": ["2rem", "3rem", "4rem", "5rem"],
+      "removeDefaultNone": true
+    },
+    "SectionPaddingY": {
+      "type": "select",
+      "helper": "Top and bottom padding inside the marquee band.",
+      "optionLabels": ["0.75rem", "1rem", "1.5rem", "2rem"],
+      "removeDefaultNone": true
+    },
+    "MarqueeSpeed": {
+      "type": "select",
+      "helper": "Animation duration for one marquee cycle. Higher values move more slowly.",
+      "optionLabels": ["20s Fast", "30s", "45s Default", "60s", "90s Slow"],
+      "removeDefaultNone": true
+    },
+    "Direction": {
+      "type": "select",
+      "helper": "Direction the marquee moves.",
+      "optionLabels": ["Left", "Right"],
+      "removeDefaultNone": true
+    },
+    "PauseOnHover": {
+      "type": "checkbox",
+      "helper": "Pause the animation when visitors hover over the marquee or focus a link."
+    },
+    "FadeEdges": {
+      "type": "checkbox",
+      "helper": "Softly fade the left and right edges of the marquee."
+    },
+    "MarginTop": {
+      "title": "Margin (top)",
+      "type": "select",
+      "optionLabels": ["mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto"],
+      "removeDefaultNone": true
+    },
+    "MarginBottom": {
+      "title": "Margin (bottom)",
+      "type": "select",
+      "optionLabels": ["mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto"],
+      "removeDefaultNone": true
+    },
+    "PaddingTop": {
+      "title": "Padding (top)",
+      "type": "select",
+      "optionLabels": ["pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto"],
+      "removeDefaultNone": true
+    },
+    "PaddingBottom": {
+      "title": "Padding (bottom)",
+      "type": "select",
+      "optionLabels": ["pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto"],
+      "removeDefaultNone": true
+    }
+  }
+}

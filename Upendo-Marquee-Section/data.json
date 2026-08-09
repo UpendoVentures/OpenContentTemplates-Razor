@@ -1,0 +1,72 @@
+{
+  "ModuleTitle": "Marquee Section",
+  "ModuleAnchor": "",
+  "Items": [
+    {
+      "ItemLabel": "Strategy",
+      "ItemType": "text-icon",
+      "Text": "Strategy",
+      "IconClass": "fas fa-compass",
+      "LogoImage": "",
+      "WithLink": false,
+      "LinkUrl": "",
+      "LinkTarget": "_self",
+      "AriaLabel": ""
+    },
+    {
+      "ItemLabel": "Automation",
+      "ItemType": "text-icon",
+      "Text": "Automation",
+      "IconClass": "fas fa-cogs",
+      "LogoImage": "",
+      "WithLink": false,
+      "LinkUrl": "",
+      "LinkTarget": "_self",
+      "AriaLabel": ""
+    },
+    {
+      "ItemLabel": "Integrations",
+      "ItemType": "text-icon",
+      "Text": "Integrations",
+      "IconClass": "fas fa-project-diagram",
+      "LogoImage": "",
+      "WithLink": false,
+      "LinkUrl": "",
+      "LinkTarget": "_self",
+      "AriaLabel": ""
+    },
+    {
+      "ItemLabel": "Experience Design",
+      "ItemType": "text-icon",
+      "Text": "Experience Design",
+      "IconClass": "fas fa-palette",
+      "LogoImage": "",
+      "WithLink": false,
+      "LinkUrl": "",
+      "LinkTarget": "_self",
+      "AriaLabel": ""
+    },
+    {
+      "ItemLabel": "AI Enablement",
+      "ItemType": "text-icon",
+      "Text": "AI Enablement",
+      "IconClass": "fas fa-brain",
+      "LogoImage": "",
+      "WithLink": false,
+      "LinkUrl": "",
+      "LinkTarget": "_self",
+      "AriaLabel": ""
+    },
+    {
+      "ItemLabel": "Commerce",
+      "ItemType": "text-icon",
+      "Text": "Commerce",
+      "IconClass": "fas fa-shopping-cart",
+      "LogoImage": "",
+      "WithLink": false,
+      "LinkUrl": "",
+      "LinkTarget": "_self",
+      "AriaLabel": ""
+    }
+  ]
+}

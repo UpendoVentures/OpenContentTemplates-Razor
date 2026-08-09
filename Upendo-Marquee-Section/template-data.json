@@ -1,0 +1,16 @@
+{
+  "BackgroundColor": "#050505",
+  "TextColor": "#f8fafc",
+  "TextSize": "medium",
+  "LogoHeight": "32px",
+  "ItemGap": "3rem",
+  "SectionPaddingY": "1rem",
+  "MarqueeSpeed": "45s",
+  "Direction": "left",
+  "PauseOnHover": true,
+  "FadeEdges": true,
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-auto",
+  "PaddingBottom": "pb-auto"
+}

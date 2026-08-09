@@ -1,0 +1,97 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. Used as an accessible label for the marquee section.",
+      "placeholder": "Marquee Section"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "marquee-section",
+      "showMessages": false
+    },
+    "Items": {
+      "type": "accordion",
+      "titleField": "ItemLabel",
+      "helper": "Add as many marquee items as needed. Items display in the order shown here.",
+      "items": {
+        "fields": {
+          "ItemLabel": {
+            "type": "text",
+            "helper": "Editor-only label shown in the Marquee Items accordion header.",
+            "placeholder": "Item"
+          },
+          "ItemType": {
+            "type": "select",
+            "helper": "Choose whether this marquee item renders as text with an optional icon or as a standalone logo image.",
+            "optionLabels": ["Text + Icon", "Logo Image"],
+            "removeDefaultNone": true
+          },
+          "Text": {
+            "type": "text",
+            "helper": "Visible text for the item.",
+            "placeholder": "Solution Accelerator",
+            "dependencies": {
+              "ItemType": [
+                "text-icon"
+              ]
+            }
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional icon class if the active theme supports icon fonts. Example: <code>fas fa-bolt</code>.",
+            "placeholder": "fas fa-bolt",
+            "dependencies": {
+              "ItemType": [
+                "text-icon"
+              ]
+            }
+          },
+          "LogoImage": {
+            "type": "image",
+            "uploadfolder": "Content/Logos/",
+            "typeahead": {
+              "Folder": "Content/Logos/"
+            },
+            "helper": "Logo image for this item. Use SVG or transparent PNG when possible.",
+            "dependencies": {
+              "ItemType": [
+                "logo-image"
+              ]
+            }
+          },
+          "WithLink": {
+            "type": "checkbox",
+            "helper": "Enable this when the item should link to another page or external URL."
+          },
+          "LinkUrl": {
+            "type": "url",
+            "helper": "Destination URL for this item.",
+            "dependencies": {
+              "WithLink": [
+                true
+              ]
+            }
+          },
+          "LinkTarget": {
+            "type": "select",
+            "helper": "Choose whether the optional link opens in the current browser tab or a new browser tab.",
+            "optionLabels": ["Current Tab", "New Tab"],
+            "removeDefaultNone": true,
+            "dependencies": {
+              "WithLink": [
+                true
+              ]
+            }
+          },
+          "AriaLabel": {
+            "type": "text",
+            "helper": "Optional accessible label. Useful when an item is only a logo or when link text needs extra context.",
+            "placeholder": "Learn more about Solution Accelerator"
+          }
+        }
+      }
+    }
+  }
+}

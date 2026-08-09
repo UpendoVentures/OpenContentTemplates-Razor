@@ -1,0 +1,160 @@
+.oc-marquee-section {
+    --oc-ms-bg: #050505;
+    --oc-ms-color: #f8fafc;
+    --oc-ms-logo-height: 32px;
+    --oc-ms-gap: 3rem;
+    --oc-ms-padding-y: 1rem;
+    --oc-ms-duration: 45s;
+    --oc-ms-loop-shift: -12.5%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: var(--oc-ms-padding-y);
+    padding-bottom: var(--oc-ms-padding-y);
+    color: var(--oc-ms-color);
+    background: var(--oc-ms-bg);
+}
+
+.oc-marquee-section .oc-ms-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.oc-marquee-section.oc-ms-fade-edges .oc-ms-viewport {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.oc-marquee-section .oc-ms-track {
+    display: flex;
+    width: max-content;
+    animation: oc-ms-marquee-left var(--oc-ms-duration) linear infinite;
+    will-change: transform;
+}
+
+.oc-marquee-section.oc-ms-direction-right .oc-ms-track {
+    animation-name: oc-ms-marquee-right;
+}
+
+.oc-marquee-section.oc-ms-pause-on-hover:hover .oc-ms-track,
+.oc-marquee-section.oc-ms-pause-on-hover:focus-within .oc-ms-track {
+    animation-play-state: paused;
+}
+
+.oc-marquee-section .oc-ms-group {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    min-width: max-content;
+    gap: var(--oc-ms-gap);
+    padding-right: var(--oc-ms-gap);
+}
+
+.oc-marquee-section .oc-ms-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65em;
+    flex: 0 0 auto;
+    color: var(--oc-ms-color);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 0.92;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.oc-marquee-section .oc-ms-icon,
+.oc-marquee-section .oc-ms-logo,
+.oc-marquee-section .oc-ms-text {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.oc-marquee-section .oc-ms-item-link:hover,
+.oc-marquee-section .oc-ms-item-link:focus {
+    color: var(--oc-ms-color);
+    text-decoration: none;
+    opacity: 1;
+}
+
+.oc-marquee-section .oc-ms-item-link:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 0.35rem;
+}
+
+.oc-marquee-section .oc-ms-icon {
+    display: inline-block;
+    color: currentColor;
+    font-size: 1.15em;
+    line-height: 1;
+}
+
+.oc-marquee-section .oc-ms-logo {
+    display: block;
+    width: auto;
+    max-width: 180px;
+    height: var(--oc-ms-logo-height);
+    object-fit: contain;
+}
+
+.oc-marquee-section.oc-ms-text-small .oc-ms-item {
+    font-size: 0.95rem;
+}
+
+.oc-marquee-section.oc-ms-text-medium .oc-ms-item {
+    font-size: 1.15rem;
+}
+
+.oc-marquee-section.oc-ms-text-large .oc-ms-item {
+    font-size: 1.45rem;
+}
+
+@keyframes oc-ms-marquee-left {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(var(--oc-ms-loop-shift), 0, 0);
+    }
+}
+
+@keyframes oc-ms-marquee-right {
+    from {
+        transform: translate3d(var(--oc-ms-loop-shift), 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (max-width: 767px) {
+    .oc-marquee-section {
+        --oc-ms-gap: min(var(--oc-ms-gap), 2rem);
+    }
+
+    .oc-marquee-section.oc-ms-text-large .oc-ms-item {
+        font-size: 1.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-marquee-section .oc-ms-viewport {
+        overflow-x: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .oc-marquee-section .oc-ms-track {
+        animation: none;
+        width: auto;
+    }
+
+    .oc-marquee-section .oc-ms-group[aria-hidden="true"] {
+        display: none;
+    }
+}

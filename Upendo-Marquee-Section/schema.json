@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "Items": {
+      "type": "array",
+      "title": "Marquee Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ItemLabel": {
+            "type": "string",
+            "title": "Item Label",
+            "default": "Item"
+          },
+          "ItemType": {
+            "type": "string",
+            "title": "Item Type",
+            "default": "text-icon",
+            "enum": ["text-icon", "logo-image"]
+          },
+          "Text": {
+            "type": "string",
+            "title": "Text",
+            "dependencies": ["ItemType"]
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class",
+            "dependencies": ["ItemType"]
+          },
+          "LogoImage": {
+            "type": "string",
+            "title": "Logo Image",
+            "dependencies": ["ItemType"]
+          },
+          "WithLink": {
+            "type": "boolean",
+            "title": "With Link",
+            "default": false
+          },
+          "LinkUrl": {
+            "type": "string",
+            "title": "Link URL",
+            "dependencies": ["WithLink"]
+          },
+          "LinkTarget": {
+            "type": "string",
+            "title": "Link Target",
+            "default": "_self",
+            "enum": ["_self", "_blank"],
+            "dependencies": ["WithLink"]
+          },
+          "AriaLabel": {
+            "type": "string",
+            "title": "Aria Label"
+          }
+        }
+      }
+    }
+  },
+  "required": ["Items"]
+}

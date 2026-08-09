@@ -1,0 +1,293 @@
+@using System
+@using System.Collections.Generic
+@using System.Text
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string GetString(dynamic value, string fallback = "")
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        var text = Convert.ToString(value);
+        return string.IsNullOrWhiteSpace(text) ? fallback : text;
+    }
+
+    private static object GetValue(dynamic source, string propertyName)
+    {
+        if (source == null)
+        {
+            return null;
+        }
+
+        var dictionary = source as IDictionary<string, object>;
+        if (dictionary != null && dictionary.ContainsKey(propertyName))
+        {
+            return dictionary[propertyName];
+        }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            var property = ((object)source).GetType().GetProperty(propertyName);
+            return property == null ? null : property.GetValue(source, null);
+        }
+        catch
+        {
+        }
+
+        return null;
+    }
+
+    private static bool GetBool(dynamic value, bool fallback = false)
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        bool parsed;
+        return bool.TryParse(Convert.ToString(value), out parsed) ? parsed : fallback;
+    }
+
+    private static string GetAllowedString(dynamic value, string fallback, params string[] allowedValues)
+    {
+        var text = GetString(value, fallback);
+
+        foreach (var allowedValue in allowedValues)
+        {
+            if (text.Equals(allowedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedValue;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+
+    private static string GetLinkAttributes(string linkTarget)
+    {
+        return linkTarget.Equals("_blank", StringComparison.OrdinalIgnoreCase)
+            ? " target=\"_blank\" rel=\"noopener noreferrer\""
+            : string.Empty;
+    }
+
+    private static IHtmlString RenderMarqueeItem(dynamic item, bool renderAsClone = false)
+    {
+        var text = GetString(GetValue(item, "Text"));
+        var iconClass = GetString(GetValue(item, "IconClass"));
+        var logoImageValue = GetValue(item, "LogoImage");
+        var logoImage = logoImageValue != null ? GetImageUrl(logoImageValue) : string.Empty;
+        var linkUrl = GetString(GetValue(item, "LinkUrl"));
+        var linkTarget = GetAllowedString(GetValue(item, "LinkTarget"), "_self", "_self", "_blank");
+        var ariaLabel = GetString(GetValue(item, "AriaLabel"));
+        var hasText = !string.IsNullOrWhiteSpace(text);
+        var hasIcon = !string.IsNullOrWhiteSpace(iconClass);
+        var hasLogo = !string.IsNullOrWhiteSpace(logoImage);
+        var itemType = GetString(GetValue(item, "ItemType"));
+        var withLink = GetValue(item, "WithLink");
+        var withLinkValue = GetString(withLink);
+        var hasExplicitItemType = !string.IsNullOrWhiteSpace(itemType);
+        var isLogoImageItem = itemType.Equals("logo-image", StringComparison.OrdinalIgnoreCase)
+            || (!hasExplicitItemType && hasLogo && !hasText && !hasIcon);
+        var isTextIconItem = !isLogoImageItem;
+        var hasLink = !string.IsNullOrWhiteSpace(linkUrl)
+            && (string.IsNullOrWhiteSpace(withLinkValue) || GetBool(withLink, false));
+
+        if ((isLogoImageItem && !hasLogo) || (isTextIconItem && !hasText && !hasIcon))
+        {
+            return new HtmlString(string.Empty);
+        }
+
+        var content = new StringBuilder();
+        if (isLogoImageItem)
+        {
+            var imageAlt = hasText ? string.Empty : ariaLabel;
+            content.Append("<img class=\"oc-ms-logo\" src=\"")
+                .Append(HttpUtility.HtmlAttributeEncode(logoImage))
+                .Append("\" alt=\"")
+                .Append(HttpUtility.HtmlAttributeEncode(imageAlt))
+                .Append("\" loading=\"lazy\" />");
+        }
+        else if (hasIcon)
+        {
+            content.Append("<i class=\"oc-ms-icon ")
+                .Append(HttpUtility.HtmlAttributeEncode(iconClass))
+                .Append("\" aria-hidden=\"true\"></i>");
+        }
+
+        if (isTextIconItem && hasText)
+        {
+            content.Append("<span class=\"oc-ms-text\">")
+                .Append(HttpUtility.HtmlEncode(text))
+                .Append("</span>");
+        }
+
+        var labelAttribute = string.IsNullOrWhiteSpace(ariaLabel)
+            ? string.Empty
+            : " aria-label=\"" + HttpUtility.HtmlAttributeEncode(ariaLabel) + "\"";
+
+        if (hasLink)
+        {
+            var cloneAttributes = renderAsClone ? " tabindex=\"-1\"" : string.Empty;
+
+            return new HtmlString(
+                "<a class=\"oc-ms-item oc-ms-item-link\" href=\"" + HttpUtility.HtmlAttributeEncode(linkUrl) + "\"" + GetLinkAttributes(linkTarget) + cloneAttributes + labelAttribute + ">" +
+                content +
+                "</a>");
+        }
+
+        return new HtmlString("<span class=\"oc-ms-item\"" + labelAttribute + ">" + content + "</span>");
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var backgroundColor = Model.Settings != null && Model.Settings.BackgroundColor != null
+        ? GetAllowedString(Model.Settings.BackgroundColor, "#050505", "#050505", "#01233F", "#ffffff", "transparent")
+        : "#050505";
+
+    var textColor = Model.Settings != null && Model.Settings.TextColor != null
+        ? GetAllowedString(Model.Settings.TextColor, "#f8fafc", "#f8fafc", "#ffffff", "#d1d5db", "#111827", "#01233F")
+        : "#f8fafc";
+
+    var textSize = Model.Settings != null && Model.Settings.TextSize != null
+        ? GetAllowedString(Model.Settings.TextSize, "medium", "small", "medium", "large")
+        : "medium";
+
+    var logoHeight = Model.Settings != null && Model.Settings.LogoHeight != null
+        ? GetAllowedString(Model.Settings.LogoHeight, "32px", "24px", "32px", "40px", "56px")
+        : "32px";
+
+    var itemGap = Model.Settings != null && Model.Settings.ItemGap != null
+        ? GetAllowedString(Model.Settings.ItemGap, "3rem", "2rem", "3rem", "4rem", "5rem")
+        : "3rem";
+
+    var sectionPaddingY = Model.Settings != null && Model.Settings.SectionPaddingY != null
+        ? GetAllowedString(Model.Settings.SectionPaddingY, "1rem", "0.75rem", "1rem", "1.5rem", "2rem")
+        : "1rem";
+
+    var marqueeSpeed = Model.Settings != null && Model.Settings.MarqueeSpeed != null
+        ? GetAllowedString(Model.Settings.MarqueeSpeed, "45s", "20s", "30s", "45s", "60s", "90s")
+        : "45s";
+
+    var direction = Model.Settings != null && Model.Settings.Direction != null
+        ? GetAllowedString(Model.Settings.Direction, "left", "left", "right")
+        : "left";
+
+    var pauseOnHover = Model.Settings == null || Model.Settings.PauseOnHover == null
+        ? true
+        : GetBool(Model.Settings.PauseOnHover, true);
+
+    var fadeEdges = Model.Settings == null || Model.Settings.FadeEdges == null
+        ? true
+        : GetBool(Model.Settings.FadeEdges, true);
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : string.Empty;
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : string.Empty;
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : string.Empty;
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : string.Empty;
+    var marqueeGroupCount = 8;
+
+    var items = new List<dynamic>();
+    if (Model.Items != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            items.Add(item);
+        }
+    }
+
+    var sectionClasses = "oc-marquee-section oc-ms-text-" + textSize;
+    sectionClasses += direction == "right" ? " oc-ms-direction-right" : " oc-ms-direction-left";
+    sectionClasses += pauseOnHover ? " oc-ms-pause-on-hover" : string.Empty;
+    sectionClasses += fadeEdges ? " oc-ms-fade-edges" : string.Empty;
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClasses += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClasses += " " + paddingBottom; }
+
+    var sectionStyle = "--oc-ms-bg:" + backgroundColor + ";" +
+        "--oc-ms-color:" + textColor + ";" +
+        "--oc-ms-logo-height:" + logoHeight + ";" +
+        "--oc-ms-gap:" + itemGap + ";" +
+        "--oc-ms-padding-y:" + sectionPaddingY + ";" +
+        "--oc-ms-duration:" + marqueeSpeed + ";" +
+        "--oc-ms-loop-shift:-12.5%;";
+
+    var hasAnchor = !string.IsNullOrWhiteSpace(moduleAnchor);
+    var sectionId = "oc-marquee-section-" + Model.Context.ModuleId;
+    var sectionAttributes = string.Empty;
+    if (!string.IsNullOrWhiteSpace(moduleTitle))
+    {
+        sectionAttributes = " aria-label=\"" + HttpUtility.HtmlAttributeEncode(moduleTitle) + "\"";
+    }
+}
+
+@if (hasAnchor)
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (items.Count > 0)
+{
+    <section id="@sectionId" class="@sectionClasses"@Html.Raw(sectionAttributes) style="@Html.Raw(sectionStyle)">
+        <div class="oc-ms-viewport">
+            <div class="oc-ms-track">
+                <div class="oc-ms-group">
+                    @foreach (var item in items)
+                    {
+                        @RenderMarqueeItem(item)
+                    }
+                </div>
+
+                @for (var cloneGroupIndex = 1; cloneGroupIndex < marqueeGroupCount; cloneGroupIndex++)
+                {
+                    <div class="oc-ms-group" aria-hidden="true">
+                        @foreach (var item in items)
+                        {
+                            @RenderMarqueeItem(item, true)
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
