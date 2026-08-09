@@ -1,0 +1,103 @@
+{
+  "ModuleTitle": "Related Evaluation Paths Orbit",
+  "ModuleAnchor": "related-evaluation-paths",
+  "SectionEyebrow": "",
+  "SectionHeading": "Related evaluation paths",
+  "IntroText": "",
+  "CentralLogoType": "image",
+  "CentralIconClass": "fas fa-route",
+  "CentralLogoImage": "https://www.clipartmax.com/png/middle/357-3574797_clip-art-ai-artificial-computer-deep-learning-intelligence-artificial-intelligence-logo-png.png",
+  "CentralLogoAltText": "Brand logo",
+  "Cards": [
+    {
+      "Eyebrow": "Mission Data Workflows",
+      "Title": "C4ISR",
+      "Description": "Coordinate command, control, communications, computers, intelligence, surveillance, and reconnaissance workflows across operational environments.",
+      "Link": "",
+      "OpenInNewWindow": false
+    },
+    {
+      "Eyebrow": "Mapping and Visualization",
+      "Title": "Geospatial Intelligence",
+      "Description": "Turn location data, imagery, and mission context into map-driven insight for planning, monitoring, and decision support.",
+      "Link": "",
+      "OpenInNewWindow": false
+    },
+    {
+      "Eyebrow": "Network and Cybersecurity Workflows",
+      "Title": "Network Capture and Analysis",
+      "Description": "Capture, inspect, and analyze network traffic to understand operational behavior, detect threats, and validate secure communications.",
+      "Link": "",
+      "OpenInNewWindow": false
+    },
+    {
+      "Eyebrow": "Field-Ready Computing",
+      "Title": "Deployable Compute",
+      "Description": "Bring resilient compute, storage, and analytics capabilities closer to the edge for field teams and disconnected environments.",
+      "Link": "",
+      "OpenInNewWindow": false
+    }
+  ],
+  "OrbitItems": [
+    {
+      "Label": "Mission data workflows",
+      "IconClass": "fas fa-satellite-dish",
+      "IconColor": "orbit-color-blue",
+      "OrbitNumber": "1"
+    },
+    {
+      "Label": "Mapping and visualization",
+      "IconClass": "fas fa-map-location-dot",
+      "IconColor": "orbit-color-green",
+      "OrbitNumber": "1"
+    },
+    {
+      "Label": "Network and cybersecurity workflows",
+      "IconClass": "fas fa-shield-halved",
+      "IconColor": "orbit-color-orange",
+      "OrbitNumber": "2"
+    },
+    {
+      "Label": "Field-ready computing",
+      "IconClass": "fas fa-server",
+      "IconColor": "orbit-color-purple",
+      "OrbitNumber": "2"
+    },
+    {
+      "Label": "Communications",
+      "IconClass": "fas fa-tower-broadcast",
+      "IconColor": "orbit-color-cyan",
+      "OrbitNumber": "2"
+    },
+    {
+      "Label": "Video feeds",
+      "IconClass": "fas fa-video",
+      "IconColor": "orbit-color-rose",
+      "OrbitNumber": "3"
+    },
+    {
+      "Label": "Sensor information",
+      "IconClass": "fas fa-wave-square",
+      "IconColor": "orbit-color-slate",
+      "OrbitNumber": "3"
+    },
+    {
+      "Label": "Dashboards",
+      "IconClass": "fas fa-chart-line",
+      "IconColor": "orbit-color-blue",
+      "OrbitNumber": "3"
+    },
+    {
+      "Label": "AI analytics",
+      "IconClass": "fas fa-brain",
+      "IconColor": "orbit-color-purple",
+      "OrbitNumber": "3"
+    },
+    {
+      "Label": "Cyber monitoring",
+      "IconClass": "fas fa-network-wired",
+      "IconColor": "orbit-color-dark",
+      "OrbitNumber": "3"
+    }
+  ]
+}

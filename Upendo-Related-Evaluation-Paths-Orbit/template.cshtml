@@ -1,0 +1,430 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static dynamic GetDynamicValue(dynamic source, string propertyName)
+    {
+        if (source == null || string.IsNullOrWhiteSpace(propertyName))
+        {
+            return null;
+        }
+
+        try
+        {
+            var dictionary = source as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey(propertyName))
+            {
+                return dictionary[propertyName];
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            var property = source.GetType().GetProperty(propertyName);
+            return property != null ? property.GetValue(source, null) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string GetDynamicString(dynamic source, string propertyName)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        return value != null ? Convert.ToString(value) : string.Empty;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            var dictionary = image as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey("Url") && dictionary["Url"] != null)
+            {
+                return Convert.ToString(dictionary["Url"]);
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return image is string ? Convert.ToString(image) : string.Empty;
+    }
+
+    private static bool GetBoolean(dynamic value)
+    {
+        if (value == null)
+        {
+            return false;
+        }
+
+        try
+        {
+            return Convert.ToBoolean(value);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static string GetLinkUrl(dynamic link)
+    {
+        if (link == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (link.Url != null)
+            {
+                return Convert.ToString(link.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(link);
+    }
+
+    private static int GetOrbitNumber(dynamic value)
+    {
+        if (value == null)
+        {
+            return 1;
+        }
+
+        try
+        {
+            var orbitNumber = Convert.ToInt32(value);
+            if (orbitNumber < 1 || orbitNumber > 3)
+            {
+                return 1;
+            }
+
+            return orbitNumber;
+        }
+        catch
+        {
+            return 1;
+        }
+    }
+
+    private static string GetOrbitOpacity(dynamic value)
+    {
+        string opacity = value != null ? Convert.ToString(value) : string.Empty;
+        switch (opacity)
+        {
+            case "1":
+            case "0.85":
+            case "0.7":
+            case "0.55":
+            case "0.4":
+            case "0.25":
+            case "0.1":
+                return opacity;
+            default:
+                return "1";
+        }
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionEyebrow = GetDynamicString(Model, "SectionEyebrow");
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var centralLogoType = GetDynamicString(Model, "CentralLogoType");
+    var centralIconClass = GetDynamicString(Model, "CentralIconClass");
+    var centralLogoImageUrl = GetImageUrl(GetDynamicValue(Model, "CentralLogoImage"));
+    var centralLogoAltText = GetDynamicString(Model, "CentralLogoAltText");
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var containerClass = Model.Settings != null && Model.Settings.ContainerClass != null
+        ? Convert.ToString(Model.Settings.ContainerClass)
+        : "container-xxl";
+
+    var animationSpeed = Model.Settings != null && Model.Settings.AnimationSpeed != null
+        ? Convert.ToString(Model.Settings.AnimationSpeed)
+        : "orbit-speed-normal";
+
+    var orbitVisibility = Model.Settings != null && Model.Settings.OrbitVisibility != null
+        ? Convert.ToString(Model.Settings.OrbitVisibility)
+        : "orbit-visible";
+
+    var orbitOpacity = GetOrbitOpacity(GetDynamicValue(Model.Settings, "OrbitOpacity"));
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    if (string.IsNullOrWhiteSpace(containerClass))
+    {
+        containerClass = "container-xxl";
+    }
+
+    if (!string.Equals(centralLogoType, "image", StringComparison.OrdinalIgnoreCase))
+    {
+        centralLogoType = "icon";
+    }
+
+    if (string.IsNullOrWhiteSpace(centralIconClass))
+    {
+        centralIconClass = "fas fa-route";
+    }
+
+    if (string.IsNullOrWhiteSpace(animationSpeed))
+    {
+        animationSpeed = "orbit-speed-normal";
+    }
+
+    if (string.IsNullOrWhiteSpace(orbitVisibility))
+    {
+        orbitVisibility = "orbit-visible";
+    }
+
+    var cards = new List<dynamic>();
+    if (Model.Cards != null)
+    {
+        foreach (var card in Model.Cards)
+        {
+            var eyebrow = GetDynamicString(card, "Eyebrow");
+            var title = GetDynamicString(card, "Title");
+            var description = GetDynamicString(card, "Description");
+
+            if (string.IsNullOrWhiteSpace(eyebrow) && string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(description))
+            {
+                continue;
+            }
+
+            cards.Add(card);
+            if (cards.Count >= 4)
+            {
+                break;
+            }
+        }
+    }
+
+    var orbitItems = new List<dynamic>();
+    if (Model.OrbitItems != null)
+    {
+        foreach (var item in Model.OrbitItems)
+        {
+            orbitItems.Add(item);
+        }
+    }
+
+    var sectionClass = "upendo-related-evaluation-orbit " + animationSpeed + " " + orbitVisibility;
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+
+    var generatedModuleAnchor = "upendo-related-evaluation-orbit-" + Model.Context.ModuleId;
+    var sectionId = !string.IsNullOrWhiteSpace(moduleAnchor) ? moduleAnchor : generatedModuleAnchor;
+    var headingId = generatedModuleAnchor + "-heading";
+    var ariaLabel = !string.IsNullOrWhiteSpace(moduleTitle)
+        ? moduleTitle
+        : (!string.IsNullOrWhiteSpace(sectionHeading) ? sectionHeading : "Related evaluation paths");
+    var useCentralLogoImage = string.Equals(centralLogoType, "image", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrWhiteSpace(centralLogoImageUrl);
+    var centralLogoImageAlt = !string.IsNullOrWhiteSpace(centralLogoAltText) ? centralLogoAltText : ariaLabel;
+
+    var hasText = !string.IsNullOrWhiteSpace(sectionEyebrow) || !string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(introText);
+    var hasRenderableContent = hasText || cards.Count > 0 || orbitItems.Count > 0;
+    var sectionStyle = "--related-orbit-opacity:" + orbitOpacity + ";";
+    var cardsClass = "upendo-related-evaluation-orbit__cards upendo-related-evaluation-orbit__cards--count-" + cards.Count;
+}
+
+@if (hasRenderableContent)
+{
+    <section class="@sectionClass" id="@sectionId" aria-label="@ariaLabel" style="@sectionStyle">
+        <div class="@containerClass upendo-related-evaluation-orbit__container">
+            @if (hasText)
+            {
+                <header class="upendo-related-evaluation-orbit__header">
+                    @if (!string.IsNullOrWhiteSpace(sectionEyebrow))
+                    {
+                        <div class="upendo-related-evaluation-orbit__section-eyebrow">@Html.Raw(sectionEyebrow)</div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                    {
+                        <h2 id="@headingId" class="upendo-related-evaluation-orbit__heading text-notransform">@Html.Raw(sectionHeading)</h2>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(introText))
+                    {
+                        <div class="upendo-related-evaluation-orbit__intro">@Html.Raw(introText)</div>
+                    }
+                </header>
+            }
+
+            <div class="upendo-related-evaluation-orbit__layout">
+                @if (cards.Count > 0)
+                {
+                    <div class="@cardsClass">
+                        @foreach (var card in cards)
+                        {
+                            var eyebrow = GetDynamicString(card, "Eyebrow");
+                            var title = GetDynamicString(card, "Title");
+                            var description = GetDynamicString(card, "Description");
+                            var link = GetLinkUrl(GetDynamicValue(card, "Link"));
+                            var openInNewWindow = GetBoolean(GetDynamicValue(card, "OpenInNewWindow"));
+                            var hasLink = !string.IsNullOrWhiteSpace(link);
+
+                            if (hasLink)
+                            {
+                                if (openInNewWindow)
+                                {
+                                    <a class="upendo-related-evaluation-orbit__card" href="@link" target="_blank" rel="noopener noreferrer">
+                                        @RenderCardContent(eyebrow, title, description)
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="upendo-related-evaluation-orbit__card" href="@link">
+                                        @RenderCardContent(eyebrow, title, description)
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <article class="upendo-related-evaluation-orbit__card">
+                                    @RenderCardContent(eyebrow, title, description)
+                                </article>
+                            }
+                        }
+                    </div>
+                }
+
+                @if (orbitItems.Count > 0)
+                {
+                    <div class="upendo-related-evaluation-orbit__visual" aria-hidden="@(useCentralLogoImage ? "false" : "true")">
+                        <div class="upendo-related-evaluation-orbit__orbit-stage">
+                            @for (var orbitNumber = 1; orbitNumber <= 3; orbitNumber++)
+                            {
+                                var orbitClass = "upendo-related-evaluation-orbit__orbit upendo-related-evaluation-orbit__orbit--" + orbitNumber;
+                                var positionIndex = 0;
+
+                                <div class="@orbitClass" aria-hidden="true">
+                                    @foreach (var item in orbitItems)
+                                    {
+                                        var itemOrbitNumber = GetOrbitNumber(GetDynamicValue(item, "OrbitNumber"));
+                                        if (itemOrbitNumber != orbitNumber)
+                                        {
+                                            continue;
+                                        }
+
+                                        var label = GetDynamicString(item, "Label");
+                                        var iconClass = GetDynamicString(item, "IconClass");
+                                        var iconColor = GetDynamicString(item, "IconColor");
+                                        if (string.IsNullOrWhiteSpace(iconClass))
+                                        {
+                                            iconClass = "fas fa-circle";
+                                        }
+
+                                        if (string.IsNullOrWhiteSpace(iconColor))
+                                        {
+                                            iconColor = "orbit-color-slate";
+                                        }
+
+                                        var itemPositionClass = "upendo-related-evaluation-orbit__item--pos-" + (positionIndex % 8);
+                                        var itemClass = "upendo-related-evaluation-orbit__item " + itemPositionClass + " " + iconColor;
+                                        positionIndex++;
+
+                                        <span class="@itemClass" title="@label">
+                                            <i class="@iconClass"></i>
+                                        </span>
+                                    }
+                                </div>
+                            }
+
+                            <div class="upendo-related-evaluation-orbit__center">
+                                @if (useCentralLogoImage)
+                                {
+                                    <img class="upendo-related-evaluation-orbit__center-image" src="@centralLogoImageUrl" alt="@centralLogoImageAlt" loading="lazy" decoding="async" />
+                                }
+                                else
+                                {
+                                    <i class="@centralIconClass" aria-hidden="true"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@helper RenderCardContent(string eyebrow, string title, string description)
+{
+    <span class="upendo-related-evaluation-orbit__card-inner">
+        @if (!string.IsNullOrWhiteSpace(eyebrow))
+        {
+            <span class="upendo-related-evaluation-orbit__eyebrow">@Html.Raw(eyebrow)</span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(title))
+        {
+            <span class="upendo-related-evaluation-orbit__title">@Html.Raw(title)</span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(description))
+        {
+            <span class="upendo-related-evaluation-orbit__description">@Html.Raw(description)</span>
+        }
+    </span>
+}
