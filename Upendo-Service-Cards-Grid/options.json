@@ -1,0 +1,111 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
+      "placeholder": "Service Cards Grid"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for #anchor-links on the page. Use letters, numbers, and hyphens only.",
+      "placeholder": "service-cards-grid",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the card grid. HTML is allowed.",
+      "placeholder": "Explore solution paths by operational need."
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "placeholder": "Find deployable computing, capture, analysis, and mission-support solutions built for field, edge, and operational environments."
+    },
+    "Cards": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add service cards in display order. Icon mode preserves the existing icon layout. Image mode shows a top card image.",
+      "items": {
+        "fields": {
+          "VisualType": {
+            "type": "select",
+            "helper": "Choose whether this card uses the existing icon treatment or a full-width top image.",
+            "optionLabels": ["Icon", "Image"],
+            "removeDefaultNone": true
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional. FontAwesome icon class. Used only when Icon Image is empty.",
+            "placeholder": "fas fa-shield-alt",
+            "dependencies": {
+              "VisualType": [
+                "icon"
+              ]
+            }
+          },
+          "IconImage": {
+            "type": "image",
+            "uploadfolder": "Content/OpenContent/ServiceCards/",
+            "typeahead": {
+              "Folder": "Content/OpenContent/ServiceCards/"
+            },
+            "helper": "Optional. Small icon image shown above the card title. Takes priority over Icon Class.",
+            "dependencies": {
+              "VisualType": [
+                "icon"
+              ]
+            }
+          },
+          "CardImage": {
+            "type": "image",
+            "uploadfolder": "Content/OpenContent/ServiceCards/",
+            "typeahead": {
+              "Folder": "Content/OpenContent/ServiceCards/"
+            },
+            "helper": "Top image for this card. Recommended: landscape image with a clear focal point.",
+            "dependencies": {
+              "VisualType": [
+                "image"
+              ]
+            }
+          },
+          "CardImagePosition": {
+            "type": "select",
+            "helper": "Controls which part of the source image remains visible when the card crop uses object-fit: cover.",
+            "optionLabels": [
+              "Top Left",
+              "Top Center",
+              "Top Right",
+              "Center Left",
+              "Center Center",
+              "Center Right",
+              "Bottom Left",
+              "Bottom Center",
+              "Bottom Right"
+            ],
+            "removeDefaultNone": true,
+            "dependencies": {
+              "VisualType": [
+                "image"
+              ]
+            }
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Required. Card title. HTML is allowed.",
+            "placeholder": "Testing and Quality Assurance"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Required. Short supporting description. HTML is allowed.",
+            "placeholder": "We validate every delivery to reduce risk and ensure stable, reliable experiences."
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. If a link is added, the entire card becomes clickable."
+          }
+        }
+      }
+    }
+  }
+}
