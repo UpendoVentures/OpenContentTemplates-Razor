@@ -1,0 +1,17 @@
+{
+  "BackgroundColorClass": "",
+  "ContainerClass": "container-xxl",
+  "CardsPerRow": "3",
+  "CardBackgroundColor": "#f5f6f8",
+  "CardMinHeight": "17rem",
+  "CardBorderRadius": "1.5rem",
+  "CardShadow": "0 1rem 2.5rem rgba(15, 23, 42, 0.08)",
+  "IconColorClass": "text-primary",
+  "HeadingAnimation": "fade-up",
+  "IntroAnimation": "fade-in",
+  "CardsAnimation": "fade-up",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5"
+}

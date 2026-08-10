@@ -1,0 +1,74 @@
+{
+  "ModuleTitle": "Service Cards Grid",
+  "ModuleAnchor": "",
+  "SectionHeading": "Explore solution paths by operational need.",
+  "IntroText": "Find deployable computing, capture, analysis, and mission-support solutions built for field, edge, and operational environments.",
+  "Cards": [
+    {
+      "VisualType": "icon",
+      "IconClass": "fas fa-check",
+      "IconImage": "",
+      "Title": "Testing and Quality Assurance",
+      "Description": "We validate every delivery to reduce risk and ensure stable, reliable experiences that are ready to grow.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "VisualType": "icon",
+      "IconClass": "fas fa-check",
+      "IconImage": "",
+      "Title": "Front-End Development",
+      "Description": "We build modern, fast, and accessible interfaces that connect strategy, design, and technology.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "VisualType": "icon",
+      "IconClass": "fas fa-check",
+      "IconImage": "",
+      "Title": "UX/UI",
+      "Description": "We design clear and memorable experiences centered on people, business goals, and conversion.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "VisualType": "icon",
+      "IconClass": "fas fa-check",
+      "IconImage": "",
+      "Title": "Mobile App Development",
+      "Description": "We create scalable mobile applications that support users where they interact with your brand most.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "VisualType": "icon",
+      "IconClass": "fas fa-check",
+      "IconImage": "",
+      "Title": "Machine Learning",
+      "Description": "We apply intelligent models to automate processes, detect patterns, and turn data into decisions.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    },
+    {
+      "VisualType": "icon",
+      "IconClass": "fas fa-check",
+      "IconImage": "",
+      "Title": "Data Engineering",
+      "Description": "We organize, integrate, and optimize your data so it becomes a solid foundation for growth.",
+      "Link": {
+        "Title": "Learn more",
+        "Url": ""
+      }
+    }
+  ]
+}

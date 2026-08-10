@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "Cards": {
+      "type": "array",
+      "title": "Cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "VisualType": {
+            "type": "string",
+            "title": "Visual Type",
+            "default": "icon",
+            "enum": ["icon", "image"]
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class",
+            "default": "fas fa-check",
+            "dependencies": ["VisualType"]
+          },
+          "IconImage": {
+            "type": "string",
+            "title": "Icon Image",
+            "dependencies": ["VisualType"]
+          },
+          "CardImage": {
+            "type": "string",
+            "title": "Card Image",
+            "dependencies": ["VisualType"]
+          },
+          "CardImagePosition": {
+            "type": "string",
+            "title": "Card Image Position",
+            "default": "center center",
+            "enum": [
+              "top left",
+              "top center",
+              "top right",
+              "center left",
+              "center center",
+              "center right",
+              "bottom left",
+              "bottom center",
+              "bottom right"
+            ],
+            "dependencies": ["VisualType"]
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Link": {
+            "type": "object",
+            "title": "Link"
+          }
+        },
+        "required": [
+          "Title",
+          "Description"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Cards"
+  ]
+}

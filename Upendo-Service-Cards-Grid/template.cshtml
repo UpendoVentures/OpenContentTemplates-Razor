@@ -1,0 +1,530 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static object GetDynamicValue(dynamic source, string propertyName)
+    {
+        if (source == null || string.IsNullOrWhiteSpace(propertyName))
+        {
+            return null;
+        }
+
+        try
+        {
+            var dictionary = source as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey(propertyName))
+            {
+                return dictionary[propertyName];
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            var property = ((object)source).GetType().GetProperty(propertyName);
+            return property != null ? property.GetValue(source, null) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string GetDynamicString(dynamic source, string propertyName)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        return value != null ? Convert.ToString(value) : string.Empty;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            var dictionary = image as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey("Url") && dictionary["Url"] != null)
+            {
+                return Convert.ToString(dictionary["Url"]);
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return image is string ? Convert.ToString(image) : string.Empty;
+    }
+
+    private static int NormalizeCardsPerRow(dynamic settings)
+    {
+        int cardsPerRow;
+        var value = GetDynamicString(settings, "CardsPerRow");
+
+        return int.TryParse(value, out cardsPerRow) && cardsPerRow >= 1 && cardsPerRow <= 4
+            ? cardsPerRow
+            : 3;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var containerClass = Model.Settings != null && Model.Settings.ContainerClass != null
+        ? Convert.ToString(Model.Settings.ContainerClass)
+        : "container-xxl";
+
+    var cardsPerRow = NormalizeCardsPerRow(Model.Settings);
+
+    var cardBackgroundColor = Model.Settings != null && Model.Settings.CardBackgroundColor != null
+        ? Convert.ToString(Model.Settings.CardBackgroundColor)
+        : "#f5f6f8";
+
+    var cardMinHeight = Model.Settings != null && Model.Settings.CardMinHeight != null
+        ? Convert.ToString(Model.Settings.CardMinHeight)
+        : "17rem";
+
+    var cardBorderRadius = Model.Settings != null && Model.Settings.CardBorderRadius != null
+        ? Convert.ToString(Model.Settings.CardBorderRadius)
+        : "1.5rem";
+
+    var cardShadow = Model.Settings != null && Model.Settings.CardShadow != null
+        ? Convert.ToString(Model.Settings.CardShadow)
+        : "0 1rem 2.5rem rgba(15, 23, 42, 0.08)";
+
+    var iconColorClass = Model.Settings != null && Model.Settings.IconColorClass != null
+        ? Convert.ToString(Model.Settings.IconColorClass)
+        : "text-primary";
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var allowedAnimations = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "none",
+        "fade-up",
+        "fade-in",
+        "slide-left",
+        "slide-right",
+        "zoom-in"
+    };
+
+    var allowedImagePositions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "top left",
+        "top center",
+        "top right",
+        "center left",
+        "center center",
+        "center right",
+        "bottom left",
+        "bottom center",
+        "bottom right"
+    };
+
+    Func<string, string, string> normalizeAnimation = (value, fallback) =>
+    {
+        var animation = !string.IsNullOrWhiteSpace(value) ? value : fallback;
+        return allowedAnimations.Contains(animation) ? animation.ToLowerInvariant() : fallback;
+    };
+
+    Func<string, string> normalizeImagePosition = value =>
+    {
+        var imagePosition = !string.IsNullOrWhiteSpace(value) ? value.Trim().ToLowerInvariant() : "center center";
+        return allowedImagePositions.Contains(imagePosition) ? imagePosition : "center center";
+    };
+
+    var headingAnimationSetting = string.Empty;
+    var introAnimationSetting = string.Empty;
+    var cardsAnimationSetting = string.Empty;
+
+    try
+    {
+        headingAnimationSetting = Model.Settings != null && Model.Settings.HeadingAnimation != null
+            ? Convert.ToString(Model.Settings.HeadingAnimation)
+            : string.Empty;
+    }
+    catch { }
+
+    try
+    {
+        introAnimationSetting = Model.Settings != null && Model.Settings.IntroAnimation != null
+            ? Convert.ToString(Model.Settings.IntroAnimation)
+            : string.Empty;
+    }
+    catch { }
+
+    try
+    {
+        cardsAnimationSetting = Model.Settings != null && Model.Settings.CardsAnimation != null
+            ? Convert.ToString(Model.Settings.CardsAnimation)
+            : string.Empty;
+    }
+    catch { }
+
+    var headingAnimation = normalizeAnimation(headingAnimationSetting, "fade-up");
+    var introAnimation = normalizeAnimation(introAnimationSetting, "fade-in");
+    var cardsAnimation = normalizeAnimation(cardsAnimationSetting, "fade-up");
+
+    if (string.IsNullOrWhiteSpace(containerClass))
+    {
+        containerClass = "container-xxl";
+    }
+
+    var sectionClass = "oc-service-cards-section";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+
+    var cards = new List<dynamic>();
+    if (Model.Cards != null)
+    {
+        foreach (var card in Model.Cards)
+        {
+            cards.Add(card);
+        }
+    }
+
+    var ariaLabel = !string.IsNullOrWhiteSpace(moduleTitle)
+        ? moduleTitle
+        : (!string.IsNullOrWhiteSpace(sectionHeading) ? sectionHeading : "Service cards");
+
+    var sectionId = "oc-service-cards-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+    var gridClass = "oc-service-cards-grid oc-service-cards-grid-" + cardsPerRow;
+
+    var cardStyle = "background-color:" + cardBackgroundColor + ";min-height:" + cardMinHeight + ";border-radius:" + cardBorderRadius + ";box-shadow:" + cardShadow + ";";
+
+    var headingRevealAttributes = headingAnimation != "none"
+        ? "data-oc-service-cards-reveal=\"" + headingAnimation + "\""
+        : string.Empty;
+
+    var introRevealAttributes = introAnimation != "none"
+        ? "data-oc-service-cards-reveal=\"" + introAnimation + "\""
+        : string.Empty;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasHeading || hasIntro || cards.Count > 0)
+{
+    <section id="@sectionId" class="@sectionClass" aria-label="@ariaLabel">
+        <div class="@containerClass">
+            @if (hasHeading || hasIntro)
+            {
+                <div class="oc-service-cards-header text-center mb-5">
+                    @if (hasHeading)
+                    {
+                        <h2 id="@headingId" class="oc-service-cards-heading text-notransform mb-3" @Html.Raw(headingRevealAttributes)>@Html.Raw(sectionHeading)</h2>
+                    }
+
+                    @if (hasIntro)
+                    {
+                        <div class="oc-service-cards-intro mx-auto" @Html.Raw(introRevealAttributes)>
+                            @Html.Raw(introText)
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (cards.Count > 0)
+            {
+                <div class="@gridClass" role="list">
+                    @foreach (var card in cards)
+                    {
+                        var cardIndex = cards.IndexOf(card);
+                        var visualType = GetDynamicString(card, "VisualType");
+                        var isImageCard = visualType.Equals("image", StringComparison.OrdinalIgnoreCase);
+                        var iconClass = GetDynamicString(card, "IconClass");
+                        var iconImage = GetImageUrl(GetDynamicValue(card, "IconImage"));
+                        var cardImage = GetImageUrl(GetDynamicValue(card, "CardImage"));
+                        var cardImagePosition = normalizeImagePosition(GetDynamicString(card, "CardImagePosition"));
+                        var cardImageStyle = "object-position:" + cardImagePosition + ";";
+                        var title = GetDynamicString(card, "Title");
+                        var description = GetDynamicString(card, "Description");
+                        var linkUrl = string.Empty;
+                        var hasCardImage = isImageCard && !string.IsNullOrWhiteSpace(cardImage);
+                        var cardClass = "oc-service-cards-card" + (isImageCard ? " oc-service-cards-card-image-mode" : string.Empty);
+                        var cardRevealAttributes = cardsAnimation != "none"
+                            ? "data-oc-service-cards-reveal=\"" + cardsAnimation + "\""
+                            : string.Empty;
+                        var cardItemStyle = cardsAnimation != "none"
+                            ? cardStyle + "--oc-service-cards-reveal-delay:" + (cardIndex * 140) + "ms;"
+                            : cardStyle;
+
+                        var link = GetDynamicValue(card, "Link");
+                        if (link != null)
+                        {
+                            var linkUrlValue = GetDynamicValue(link, "Url");
+                            linkUrl = linkUrlValue != null ? Convert.ToString(linkUrlValue) : Convert.ToString(link);
+                        }
+
+                        var hasLink = !string.IsNullOrWhiteSpace(linkUrl);
+
+                        if (hasLink)
+                        {
+                            <a href="@linkUrl" class="@cardClass oc-service-cards-card-link" @Html.Raw(cardRevealAttributes) style="@cardItemStyle" role="listitem" aria-label="@title">
+                                @if (hasCardImage)
+                                {
+                                    <div class="oc-service-cards-card-image-wrap">
+                                        <img class="oc-service-cards-card-image" src="@cardImage" alt="" loading="lazy" decoding="async" style="@cardImageStyle" />
+                                    </div>
+                                }
+                                else if (!isImageCard && !string.IsNullOrWhiteSpace(iconImage))
+                                {
+                                    <div class="oc-service-cards-icon-wrap">
+                                        <img class="oc-service-cards-icon-image" src="@iconImage" alt="" loading="lazy" decoding="async" />
+                                    </div>
+                                }
+                                else if (!isImageCard && !string.IsNullOrWhiteSpace(iconClass))
+                                {
+                                    <div class="oc-service-cards-icon-wrap @iconColorClass" aria-hidden="true">
+                                        <i class="@iconClass oc-service-cards-icon"></i>
+                                    </div>
+                                }
+
+                                <div class="oc-service-cards-card-content">
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-service-cards-card-title">@Html.Raw(title)</h3>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(description))
+                                    {
+                                        <div class="oc-service-cards-card-description">@Html.Raw(description)</div>
+                                    }
+                                </div>
+                            </a>
+                        }
+                        else
+                        {
+                            <article class="@cardClass" @Html.Raw(cardRevealAttributes) style="@cardItemStyle" role="listitem">
+                                @if (hasCardImage)
+                                {
+                                    <div class="oc-service-cards-card-image-wrap">
+                                        <img class="oc-service-cards-card-image" src="@cardImage" alt="" loading="lazy" decoding="async" style="@cardImageStyle" />
+                                    </div>
+                                }
+                                else if (!isImageCard && !string.IsNullOrWhiteSpace(iconImage))
+                                {
+                                    <div class="oc-service-cards-icon-wrap">
+                                        <img class="oc-service-cards-icon-image" src="@iconImage" alt="" loading="lazy" decoding="async" />
+                                    </div>
+                                }
+                                else if (!isImageCard && !string.IsNullOrWhiteSpace(iconClass))
+                                {
+                                    <div class="oc-service-cards-icon-wrap @iconColorClass" aria-hidden="true">
+                                        <i class="@iconClass oc-service-cards-icon"></i>
+                                    </div>
+                                }
+
+                                <div class="oc-service-cards-card-content">
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="oc-service-cards-card-title">@Html.Raw(title)</h3>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(description))
+                                    {
+                                        <div class="oc-service-cards-card-description">@Html.Raw(description)</div>
+                                    }
+                                </div>
+                            </article>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            var section = document.getElementById('@sectionId');
+
+            if (!section) {
+                return;
+            }
+
+            var items = section.querySelectorAll('[data-oc-service-cards-reveal]');
+            var header = section.querySelector('.oc-service-cards-header');
+            var headerItems = header ? header.querySelectorAll('[data-oc-service-cards-reveal]') : [];
+            var grid = section.querySelector('.oc-service-cards-grid');
+            var cardItems = grid ? grid.querySelectorAll('[data-oc-service-cards-reveal]') : [];
+
+            if (!items.length) {
+                return;
+            }
+
+            section.classList.add('oc-service-cards-reveal-enabled');
+
+            var revealItem = function (item) {
+                item.classList.add('oc-service-cards-revealed');
+            };
+
+            var revealItems = function (itemsToReveal) {
+                for (var i = 0; i < itemsToReveal.length; i++) {
+                    revealItem(itemsToReveal[i]);
+                }
+            };
+
+            var prepareCardImages = function () {
+                var images = grid ? grid.querySelectorAll('.oc-service-cards-card-image[loading="lazy"]') : [];
+
+                for (var i = 0; i < images.length; i++) {
+                    if (images[i].complete) {
+                        continue;
+                    }
+
+                    images[i].loading = 'eager';
+                }
+            };
+
+            var revealCards = function () {
+                if (!cardItems.length) {
+                    return;
+                }
+
+                prepareCardImages();
+                revealItems(cardItems);
+            };
+
+            var revealAll = function () {
+                revealItems(headerItems);
+                revealCards();
+            };
+
+            var isMobileViewport = window.matchMedia && window.matchMedia('(max-width: 991.98px)').matches;
+
+            var isElementReady = function (element, revealEarly) {
+                if (!element) {
+                    return false;
+                }
+
+                var rect = element.getBoundingClientRect();
+                var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                var visibleTop = Math.max(rect.top, 0);
+                var visibleBottom = Math.min(rect.bottom, viewportHeight);
+                var visibleHeight = visibleBottom - visibleTop;
+
+                if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+                    return revealEarly && isMobileViewport && rect.top <= viewportHeight * 0.82 && rect.bottom > 0;
+                }
+
+                if (revealEarly && isMobileViewport && rect.top <= viewportHeight * 0.82) {
+                    return true;
+                }
+
+                return visibleHeight >= Math.min(rect.height * 0.15, 160)
+                    || (rect.top <= viewportHeight * 0.9 && rect.bottom >= viewportHeight * 0.1);
+            };
+
+            if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                revealAll();
+                return;
+            }
+
+            var createRevealObserver = function (element, reveal, revealEarly) {
+                if (!element) {
+                    return null;
+                }
+
+                var observerOptions = revealEarly && isMobileViewport
+                    ? { root: null, rootMargin: '0px 0px 35% 0px', threshold: 0.01 }
+                    : { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.15 };
+
+                var observer = new IntersectionObserver(function (entries) {
+                    for (var i = 0; i < entries.length; i++) {
+                        if (entries[i].isIntersecting || isElementReady(element, revealEarly)) {
+                            reveal();
+                            observer.disconnect();
+                            return;
+                        }
+                    }
+                }, observerOptions);
+
+                observer.observe(element);
+
+                if (isElementReady(element, revealEarly)) {
+                    reveal();
+                    observer.disconnect();
+                    return null;
+                }
+
+                return observer;
+            };
+
+            var headerObserver = createRevealObserver(headerItems.length ? header : null, function () {
+                revealItems(headerItems);
+            }, false);
+
+            var gridObserver = createRevealObserver(cardItems.length ? grid : null, revealCards, true);
+
+            window.requestAnimationFrame(function () {
+                if (headerObserver && isElementReady(header, false)) {
+                    revealItems(headerItems);
+                    headerObserver.disconnect();
+                }
+
+                if (gridObserver && isElementReady(grid, true)) {
+                    revealCards();
+                    gridObserver.disconnect();
+                }
+            });
+        })();
+    </script>
+}
