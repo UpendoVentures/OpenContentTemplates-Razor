@@ -1,0 +1,376 @@
+.upendo-features-gradient {
+    width: 100%;
+    overflow: hidden;
+    --upendo-features-heading-color: #121826;
+    --upendo-features-body-color: #526070;
+    --upendo-features-card-bg: #ffffff;
+}
+
+.upendo-features-gradient__intro {
+    max-width: 58rem;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+}
+
+.upendo-features-gradient__heading {
+    margin: 0 0 1rem 0;
+    color: var(--upendo-features-heading-color);
+    line-height: 1.15;
+}
+
+.upendo-features-gradient__intro-text {
+    max-width: 46rem;
+    margin: 0 auto;
+    color: var(--upendo-features-body-color);
+    line-height: 1.7;
+}
+
+.upendo-features-gradient__intro-text > *:last-child,
+.upendo-features-gradient__feature-description > *:last-child {
+    margin-bottom: 0;
+}
+
+.upendo-features-gradient__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.9fr);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 6rem);
+}
+
+.upendo-features-gradient__layout--one-image {
+    align-items: flex-start;
+}
+
+.upendo-features-gradient__media {
+    position: relative;
+    min-height: 34rem;
+    align-self: center;
+}
+
+.upendo-features-gradient__glow {
+    position: absolute;
+    inset: 8% 6% 4% 2%;
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 34% 44%, rgba(213, 196, 255, 0.86), rgba(213, 196, 255, 0) 52%),
+        radial-gradient(circle at 64% 58%, rgba(236, 210, 255, 0.72), rgba(236, 210, 255, 0) 58%),
+        radial-gradient(circle at 50% 50%, rgba(249, 245, 255, 0.95), rgba(249, 245, 255, 0) 68%);
+    filter: blur(1px);
+    transform: rotate(-7deg);
+}
+
+.upendo-features-gradient__image-card {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 2rem;
+    background: #eef1f5;
+    box-shadow: 0 2rem 4.5rem rgba(69, 61, 102, 0.18);
+}
+
+.upendo-features-gradient__image-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upendo-features-gradient__image-card--primary {
+    top: 0;
+    left: 8%;
+    z-index: 2;
+    width: min(68%, 25rem);
+    height: 27rem;
+}
+
+.upendo-features-gradient__media--one-image .upendo-features-gradient__image-card--primary {
+    left: 50%;
+    width: min(78%, 28rem);
+    transform: translateX(-50%);
+}
+
+.upendo-features-gradient__layout--one-image .upendo-features-gradient__media,
+.upendo-features-gradient__layout--one-image .upendo-features-gradient__features {
+    align-self: flex-start;
+}
+
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__media--one-image .upendo-features-gradient__image-card--primary {
+    transform: translateX(-50%) translateY(1.25rem) scale(0.98);
+}
+
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__media--one-image .upendo-features-gradient__image-card--primary.is-revealed {
+    transform: translateX(-50%) translateY(0);
+}
+
+.upendo-features-gradient__image-card--secondary {
+    right: 2%;
+    bottom: 0;
+    z-index: 3;
+    width: min(58%, 21rem);
+    height: 23rem;
+}
+
+.upendo-features-gradient__features {
+    display: grid;
+    gap: 2rem;
+}
+
+.upendo-features-gradient__feature {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__heading,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__intro-text,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__media,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__image-card,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__feature {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition:
+        opacity 520ms ease,
+        transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__media,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__image-card {
+    transform: translateY(1.25rem) scale(0.98);
+}
+
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__heading.is-revealed,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__intro-text.is-revealed,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__media.is-revealed,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__image-card.is-revealed,
+.upendo-features-gradient--reveal-ready .upendo-features-gradient__feature.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
+}
+
+.upendo-features-gradient__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 999px;
+    color: #4f46e5;
+    background: #ede9fe;
+    flex: 0 0 auto;
+}
+
+.upendo-features-gradient__icon i {
+    font-size: 1.65rem;
+    line-height: 1;
+}
+
+.upendo-features-gradient__icon.icon-theme-violet {
+    color: #6d5bd0;
+    background: #eee9ff;
+}
+
+.upendo-features-gradient__icon.icon-theme-green {
+    color: #128366;
+    background: #dff8ee;
+}
+
+.upendo-features-gradient__icon.icon-theme-orange {
+    color: #be6b21;
+    background: #fff0dc;
+}
+
+.upendo-features-gradient__icon.icon-theme-blue {
+    color: #2563eb;
+    background: #dbeafe;
+}
+
+.upendo-features-gradient__icon.icon-theme-teal {
+    color: #0f766e;
+    background: #ccfbf1;
+}
+
+.upendo-features-gradient__icon.icon-theme-rose {
+    color: #be123c;
+    background: #ffe4e6;
+}
+
+.upendo-features-gradient__icon.icon-theme-amber {
+    color: #b45309;
+    background: #fef3c7;
+}
+
+.upendo-features-gradient__icon.icon-theme-indigo {
+    color: #4338ca;
+    background: #e0e7ff;
+}
+
+.upendo-features-gradient__icon.icon-theme-slate {
+    color: #475569;
+    background: #e2e8f0;
+}
+
+.upendo-features-gradient__feature-title {
+    margin: 0 0 0.45rem 0;
+    color: var(--upendo-features-heading-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.upendo-features-gradient__feature-description {
+    color: var(--upendo-features-body-color);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__features {
+    gap: 1.4rem;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__feature {
+    gap: 1rem;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__icon {
+    width: 3.25rem;
+    height: 3.25rem;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__icon i {
+    font-size: 1.4rem;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__feature-title {
+    margin-bottom: 0.3rem;
+    font-size: 1.125rem;
+    line-height: 1.25;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__feature-description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__layout--one-image .upendo-features-gradient__feature {
+    gap: 0.9rem;
+}
+
+.upendo-features-gradient--compact-features .upendo-features-gradient__layout--one-image .upendo-features-gradient__icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.upendo-features-gradient.bg-primary,
+.upendo-features-gradient.bg-primary-scoped,
+.upendo-features-gradient.bg-secondary,
+.upendo-features-gradient.bg-secondary-scoped,
+.upendo-features-gradient.bg-tertiary,
+.upendo-features-gradient.bg-quaternary,
+.upendo-features-gradient.bg-h5,
+.upendo-features-gradient.bg-h6,
+.upendo-features-gradient.bg-success,
+.upendo-features-gradient.bg-danger,
+.upendo-features-gradient.bg-dark,
+.upendo-features-gradient.bg-forest-green {
+    --upendo-features-heading-color: #ffffff;
+    --upendo-features-body-color: rgba(255, 255, 255, 0.84);
+}
+
+.upendo-features-gradient.bg-off-white { background-color: #faf9f6 !important; }
+.upendo-features-gradient.bg-warm-white { background-color: #f7f5f0 !important; }
+.upendo-features-gradient.bg-cream { background-color: #f3eee4 !important; }
+.upendo-features-gradient.bg-soft-beige { background-color: #e9dfcf !important; }
+.upendo-features-gradient.bg-sand { background-color: #ddd0bc !important; }
+.upendo-features-gradient.bg-light-sage { background-color: #dfe8dc !important; }
+.upendo-features-gradient.bg-sage { background-color: #c7d3c1 !important; }
+.upendo-features-gradient.bg-pale-green { background-color: #e9eee8 !important; }
+.upendo-features-gradient.bg-mist { background-color: #eef2ee !important; }
+.upendo-features-gradient.bg-soft-gray { background-color: #f4f4f1 !important; }
+.upendo-features-gradient.bg-forest-green { background-color: #143d2d !important; }
+
+@media (min-width: 992px) {
+    .upendo-features-gradient--compact-features .upendo-features-gradient__layout--one-image .upendo-features-gradient__features {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 27rem;
+        gap: 1.35rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .upendo-features-gradient__layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .upendo-features-gradient__media {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .upendo-features-gradient__intro {
+        margin-bottom: 2rem;
+    }
+
+    .upendo-features-gradient__image-card {
+        border-width: 0.5rem;
+        border-radius: 1.5rem;
+    }
+
+    .upendo-features-gradient__image-card--primary {
+        left: 0;
+        width: 72%;
+        height: 19rem;
+    }
+
+    .upendo-features-gradient__media--one-image .upendo-features-gradient__image-card--primary {
+        left: 50%;
+        width: 86%;
+    }
+
+    .upendo-features-gradient__image-card--secondary {
+        right: 0;
+        width: 62%;
+        height: 16rem;
+    }
+
+    .upendo-features-gradient__features {
+        gap: 1.5rem;
+    }
+
+    .upendo-features-gradient__feature {
+        gap: 1rem;
+    }
+
+    .upendo-features-gradient__icon {
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .upendo-features-gradient--compact-features .upendo-features-gradient__features {
+        gap: 1.25rem;
+    }
+
+    .upendo-features-gradient--compact-features .upendo-features-gradient__feature-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .upendo-features-gradient--reveal-ready .upendo-features-gradient__heading,
+    .upendo-features-gradient--reveal-ready .upendo-features-gradient__intro-text,
+    .upendo-features-gradient--reveal-ready .upendo-features-gradient__media,
+    .upendo-features-gradient--reveal-ready .upendo-features-gradient__image-card,
+    .upendo-features-gradient--reveal-ready .upendo-features-gradient__feature {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
+}

@@ -1,0 +1,100 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "ImageCount": {
+      "type": "string",
+      "title": "Image Count",
+      "enum": [
+        "one",
+        "two"
+      ]
+    },
+    "PrimaryImage": {
+      "type": "string",
+      "title": "Primary Image"
+    },
+    "PrimaryImageAltText": {
+      "type": "string",
+      "title": "Primary Image Alt Text"
+    },
+    "SecondaryImage": {
+      "type": "string",
+      "title": "Secondary Image",
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "SecondaryImageAltText": {
+      "type": "string",
+      "title": "Secondary Image Alt Text",
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "Features": {
+      "type": "array",
+      "title": "Features",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "properties": {
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "IconTheme": {
+            "type": "string",
+            "title": "Icon Theme",
+            "enum": [
+              "icon-theme-violet",
+              "icon-theme-green",
+              "icon-theme-orange",
+              "icon-theme-blue",
+              "icon-theme-teal",
+              "icon-theme-rose",
+              "icon-theme-amber",
+              "icon-theme-indigo",
+              "icon-theme-slate"
+            ]
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "required": [
+          "IconClass",
+          "IconTheme",
+          "Title",
+          "Description"
+        ]
+      }
+    }
+  },
+  "required": [
+    "ImageCount",
+    "PrimaryImage",
+    "Features"
+  ]
+}

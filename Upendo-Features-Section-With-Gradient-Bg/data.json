@@ -1,0 +1,37 @@
+{
+  "ModuleTitle": "Features Section With Gradient Background",
+  "ModuleAnchor": "features-gradient",
+  "SectionHeading": "Transform insights into measurable action",
+  "IntroText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "ImageCount": "two",
+  "PrimaryImage": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
+  "PrimaryImageAltText": "Team member reviewing analytics on a laptop",
+  "SecondaryImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+  "SecondaryImageAltText": "Collaborative planning session with reports and charts",
+  "Features": [
+    {
+      "IconClass": "fas fa-chart-line",
+      "Title": "Real-Time Analytics",
+      "Description": "Track performance as it happens with clear dashboards and actionable signals.",
+      "IconTheme": "icon-theme-violet"
+    },
+    {
+      "IconClass": "fas fa-fingerprint",
+      "Title": "Bank-Grade Security",
+      "Description": "Protect sensitive data with secure workflows designed for trusted operations.",
+      "IconTheme": "icon-theme-green"
+    },
+    {
+      "IconClass": "fas fa-file-export",
+      "Title": "Customizable Reports",
+      "Description": "Build focused reports that match your team's goals, metrics, and decisions.",
+      "IconTheme": "icon-theme-orange"
+    },
+    {
+      "IconClass": "fas fa-gears",
+      "Title": "Workflow Automation",
+      "Description": "Automate recurring tasks so teams can stay focused on high-value work.",
+      "IconTheme": "icon-theme-blue"
+    }
+  ]
+}

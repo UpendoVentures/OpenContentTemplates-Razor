@@ -1,0 +1,105 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
+      "placeholder": "Features Section With Gradient Background"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "features-gradient",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the feature section. HTML is allowed.",
+      "placeholder": "Everything you need to move faster."
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "placeholder": "Bring analytics, security, and reporting together in one focused experience."
+    },
+    "ImageCount": {
+      "type": "select",
+      "helper": "Choose whether this section renders only the primary image or the current two-image overlapping composition. Secondary image fields are used only when Two Images is selected.",
+      "optionLabels": ["One Image", "Two Images"],
+      "removeDefaultNone": true
+    },
+    "PrimaryImage": {
+      "type": "image",
+      "helper": "Primary image used in both one-image and two-image modes. Recommended minimum size: 1200px wide by 1400px tall.",
+      "uploadfolder": "Content/OpenContent/FeaturesGradient/",
+      "typeahead": {
+        "Folder": "Content/OpenContent/FeaturesGradient/"
+      }
+    },
+    "PrimaryImageAltText": {
+      "type": "text",
+      "helper": "Describe the primary image for accessibility and SEO."
+    },
+    "SecondaryImage": {
+      "type": "image",
+      "helper": "Used only when Image Count is Two Images. Secondary image shown as the smaller overlapping photo. Recommended minimum size: 1000px wide by 1200px tall.",
+      "uploadfolder": "Content/OpenContent/FeaturesGradient/",
+      "typeahead": {
+        "Folder": "Content/OpenContent/FeaturesGradient/"
+      },
+      "dependencies": {
+        "ImageCount": [
+          "two"
+        ]
+      }
+    },
+    "SecondaryImageAltText": {
+      "type": "text",
+      "helper": "Used only when Image Count is Two Images. Describe the secondary image for accessibility and SEO.",
+      "dependencies": {
+        "ImageCount": [
+          "two"
+        ]
+      }
+    },
+    "Features": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add four or more feature rows in display order. When more than four rows are added, the template automatically uses compact spacing.",
+      "items": {
+        "fields": {
+          "IconClass": {
+            "type": "text",
+            "helper": "Font Awesome class for the icon.",
+            "placeholder": "fas fa-check"
+          },
+          "IconTheme": {
+            "type": "select",
+            "helper": "Choose one visual theme. This controls both the icon color and circular background.",
+            "optionLabels": [
+              "Violet",
+              "Green",
+              "Orange",
+              "Blue",
+              "Teal",
+              "Rose",
+              "Amber",
+              "Indigo",
+              "Slate"
+            ],
+            "removeDefaultNone": true
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Required. Feature title. HTML is allowed.",
+            "placeholder": "Real-Time Analytics"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Required. Short supporting description. HTML is allowed.",
+            "placeholder": "Track performance as it happens with clear dashboards and actionable signals."
+          }
+        }
+      }
+    }
+  }
+}
