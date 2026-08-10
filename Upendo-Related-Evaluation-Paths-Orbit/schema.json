@@ -1,0 +1,136 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionEyebrow": {
+      "type": "string",
+      "title": "Section Eyebrow"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "CentralLogoType": {
+      "type": "string",
+      "title": "Central Logo Type",
+      "enum": [
+        "icon",
+        "image"
+      ]
+    },
+    "CentralIconClass": {
+      "type": "string",
+      "title": "Central Icon Class",
+      "dependencies": [
+        "CentralLogoType"
+      ]
+    },
+    "CentralLogoImage": {
+      "type": "string",
+      "title": "Central Logo Image",
+      "dependencies": [
+        "CentralLogoType"
+      ]
+    },
+    "CentralLogoAltText": {
+      "type": "string",
+      "title": "Central Logo Alt Text",
+      "dependencies": [
+        "CentralLogoType"
+      ]
+    },
+    "Cards": {
+      "type": "array",
+      "title": "Cards",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Eyebrow": {
+            "type": "string",
+            "title": "Eyebrow"
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Link"
+          },
+          "OpenInNewWindow": {
+            "type": "boolean",
+            "title": "Open In New Window"
+          }
+        },
+        "required": [
+          "Title"
+        ]
+      }
+    },
+    "OrbitItems": {
+      "type": "array",
+      "title": "Orbit Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "IconColor": {
+            "type": "string",
+            "title": "Icon Color",
+            "enum": [
+              "orbit-color-blue",
+              "orbit-color-cyan",
+              "orbit-color-green",
+              "orbit-color-orange",
+              "orbit-color-purple",
+              "orbit-color-rose",
+              "orbit-color-slate",
+              "orbit-color-dark"
+            ]
+          },
+          "OrbitNumber": {
+            "type": "string",
+            "title": "Orbit Number",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          }
+        },
+        "required": [
+          "Label",
+          "OrbitNumber"
+        ]
+      }
+    }
+  },
+  "required": [
+    "SectionHeading",
+    "Cards"
+  ]
+}

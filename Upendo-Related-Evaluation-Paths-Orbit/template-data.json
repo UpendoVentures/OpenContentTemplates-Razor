@@ -1,0 +1,11 @@
+{
+  "BackgroundColorClass": "",
+  "ContainerClass": "container-xxl",
+  "AnimationSpeed": "orbit-speed-normal",
+  "OrbitVisibility": "orbit-visible",
+  "OrbitOpacity": "1",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5"
+}
