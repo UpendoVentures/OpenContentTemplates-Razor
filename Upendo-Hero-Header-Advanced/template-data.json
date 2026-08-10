@@ -1,0 +1,16 @@
+{
+  "TitleAlignment": "left",
+  "ContentAlignment": "left",
+  "ContentColumnWidth": "col-md-8",
+  "ContentColumnOffset": "col-md-offset-2",
+  "HeroTopSpacing": "7em",
+  "HeroMinHeight": "auto",
+  "OverlayEnabled": false,
+  "OverlayColor": "#000000",
+  "OverlayOpacity": "0.3",
+  "TextColorMode": "dark",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-auto",
+  "PaddingBottom": "pb-auto"
+}
