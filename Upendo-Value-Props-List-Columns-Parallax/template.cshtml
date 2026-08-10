@@ -1,0 +1,251 @@
+@using System
+@using System.Collections
+@using System.Web
+@using System.Web.Helpers
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var listIcon = Model.ListIcon != null ? Convert.ToString(Model.ListIcon) : string.Empty;
+    var backgroundImageUrl = GetImageUrl(Model.BackgroundImage);
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var backgroundOverlayOpacity = Model.Settings != null && Model.Settings.BackgroundOverlayOpacity != null
+        ? Convert.ToString(Model.Settings.BackgroundOverlayOpacity)
+        : "0.45";
+
+    var hasBackgroundImage = !string.IsNullOrWhiteSpace(backgroundImageUrl);
+    var backgroundImageStyle = string.Empty;
+
+    if (hasBackgroundImage)
+    {
+        backgroundImageStyle = "background-image:url('" + HttpUtility.HtmlAttributeEncode(backgroundImageUrl.Replace("'", "%27")) + "');";
+    }
+
+    var sectionClass = "oc-value-props-parallax position-relative w-100";
+
+    if (hasBackgroundImage)
+    {
+        sectionClass += " oc-value-props-parallax--has-image";
+    }
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClass += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var items = new ArrayList();
+
+    if (Model.ValueProps != null)
+    {
+        foreach (var item in Model.ValueProps)
+        {
+            items.Add(item);
+        }
+    }
+
+    var totalItems = items.Count;
+    var firstColumnCount = (int)Math.Ceiling(totalItems / 2.0);
+
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+    var hasAnchor = !string.IsNullOrWhiteSpace(moduleAnchor);
+    var hasItems = totalItems > 0;
+
+    var sectionId = "oc-value-props-parallax-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+    var sectionAccessibilityAttribute = hasHeading ? "aria-labelledby=\"" + HttpUtility.HtmlAttributeEncode(headingId) + "\"" : string.Empty;
+
+    if (string.IsNullOrWhiteSpace(listIcon))
+    {
+        listIcon = "fas fa-check";
+    }
+}
+
+@if (hasAnchor)
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasItems)
+{
+    <section class="@sectionClass" @Html.Raw(sectionAccessibilityAttribute)>
+        @if (hasBackgroundImage)
+        {
+            <div class="oc-vpp-background" style="@Html.Raw(backgroundImageStyle)" aria-hidden="true"></div>
+            <div class="oc-vpp-overlay" style="opacity:@backgroundOverlayOpacity;" aria-hidden="true"></div>
+        }
+
+        <div class="container-xxl oc-vpp-container">
+            <div class="row">
+                <div class="col-12">
+
+                    @if (hasHeading || hasIntro)
+                    {
+                        <div class="oc-vpp-header text-center mb-5">
+                            @if (hasHeading)
+                            {
+                                <h2 id="@headingId" class="oc-vpp-heading text-notransform mb-3">@Html.Raw(sectionHeading)</h2>
+                            }
+
+                            @if (hasIntro)
+                            {
+                                <div class="oc-vpp-intro mx-auto">
+                                    @Html.Raw(introText)
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-12 col-md-6">
+                            <ul class="oc-vpp-list list-unstyled mb-0" role="list">
+                                @{
+                                    var delayIndexLeft = 1;
+                                }
+                                @for (var i = 0; i < firstColumnCount; i++)
+                                {
+                                    var item = items[i];
+                                    var itemJson = Json.Encode(item);
+                                    dynamic itemData = Json.Decode(itemJson);
+
+                                    var title = itemData != null && itemData.Title != null ? Convert.ToString(itemData.Title) : string.Empty;
+                                    var description = itemData != null && itemData.Description != null ? Convert.ToString(itemData.Description) : string.Empty;
+
+                                    delayIndexLeft++;
+                                    var animationDelay = Convert.ToString(delayIndexLeft * 200);
+
+                                    <li class="oc-vpp-item fadeInUp" data-appear-animation="fadeInUp" data-appear-animation-delay="@animationDelay">
+                                        <div class="oc-vpp-item-inner">
+                                            <div class="oc-vpp-icon-wrap" aria-hidden="true">
+                                                <i class="@listIcon oc-vpp-icon"></i>
+                                            </div>
+                                            <div class="oc-vpp-content">
+                                                <h5 class="oc-vpp-title text-notransform mt-2 mb-2">@Html.Raw(title)</h5>
+
+                                                @if (!string.IsNullOrWhiteSpace(description))
+                                                {
+                                                    <div class="oc-vpp-description text-small">
+                                                        @Html.Raw(description)
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <ul class="oc-vpp-list list-unstyled mb-0" role="list">
+                                @{
+                                    var delayIndexRight = firstColumnCount;
+                                }
+                                @for (var i = firstColumnCount; i < totalItems; i++)
+                                {
+                                    var item = items[i];
+                                    var itemJson = Json.Encode(item);
+                                    dynamic itemData = Json.Decode(itemJson);
+
+                                    var title = itemData != null && itemData.Title != null ? Convert.ToString(itemData.Title) : string.Empty;
+                                    var description = itemData != null && itemData.Description != null ? Convert.ToString(itemData.Description) : string.Empty;
+
+                                    delayIndexRight++;
+                                    var animationDelay = Convert.ToString(delayIndexRight * 200);
+
+                                    <li class="oc-vpp-item fadeInUp" data-appear-animation="fadeInUp" data-appear-animation-delay="@animationDelay">
+                                        <div class="oc-vpp-item-inner">
+                                            <div class="oc-vpp-icon-wrap" aria-hidden="true">
+                                                <i class="@listIcon oc-vpp-icon"></i>
+                                            </div>
+                                            <div class="oc-vpp-content">
+                                                <h5 class="oc-vpp-title text-notransform mt-2 mb-2">@Html.Raw(title)</h5>
+
+                                                @if (!string.IsNullOrWhiteSpace(description))
+                                                {
+                                                    <div class="oc-vpp-description text-small">
+                                                        @Html.Raw(description)
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}

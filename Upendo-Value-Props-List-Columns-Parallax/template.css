@@ -1,0 +1,276 @@
+.oc-value-props-parallax {
+    width: 100%;
+    overflow: hidden;
+    --oc-vpp-heading-color: inherit;
+    --oc-vpp-body-color: inherit;
+    --oc-vpp-icon-color: currentColor;
+    --oc-vpp-link-color: inherit;
+}
+
+.oc-value-props-parallax .oc-vpp-background,
+.oc-value-props-parallax .oc-vpp-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.oc-value-props-parallax .oc-vpp-background {
+    z-index: 0;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.oc-value-props-parallax .oc-vpp-overlay {
+    z-index: 1;
+    background-color: #000000;
+}
+
+.oc-value-props-parallax .oc-vpp-container {
+    position: relative;
+    z-index: 2;
+}
+
+.oc-value-props-parallax .oc-vpp-header {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oc-value-props-parallax .oc-vpp-heading {
+    margin: 0 0 1rem 0;
+    line-height: 1.15;
+    color: var(--oc-vpp-heading-color);
+}
+
+.oc-value-props-parallax .oc-vpp-intro {
+    max-width: 46rem;
+    color: var(--oc-vpp-body-color);
+}
+
+.oc-value-props-parallax .oc-vpp-intro > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-value-props-parallax .oc-vpp-intro a,
+.oc-value-props-parallax .oc-vpp-description a,
+.oc-value-props-parallax .oc-vpp-title a {
+    color: var(--oc-vpp-link-color);
+}
+
+.oc-value-props-parallax .oc-vpp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc-value-props-parallax .oc-vpp-item {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+    animation-name: ocValuePropsParallaxFadeInUp;
+    animation-duration: 0.9s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    will-change: opacity, transform;
+}
+
+.oc-value-props-parallax .oc-vpp-item-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.oc-value-props-parallax .oc-vpp-icon-wrap {
+    flex: 0 0 auto;
+    width: 2.25rem;
+    min-width: 2.25rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.35rem;
+    line-height: 1;
+    color: var(--oc-vpp-icon-color);
+}
+
+.oc-value-props-parallax .oc-vpp-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: inherit;
+}
+
+.oc-value-props-parallax .oc-vpp-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.oc-value-props-parallax .oc-vpp-title {
+    line-height: 1.35;
+    color: var(--oc-vpp-heading-color);
+}
+
+.oc-value-props-parallax .oc-vpp-description {
+    color: var(--oc-vpp-body-color);
+}
+
+.oc-value-props-parallax .oc-vpp-description > *:last-child,
+.oc-value-props-parallax .oc-vpp-description:last-child {
+    margin-bottom: 0;
+}
+
+@keyframes ocValuePropsParallaxFadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 1rem, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .oc-value-props-parallax .oc-vpp-background {
+        background-attachment: scroll;
+    }
+
+    .oc-value-props-parallax .oc-vpp-list {
+        gap: 1.25rem;
+    }
+
+    .oc-value-props-parallax .oc-vpp-item-inner {
+        gap: 0.875rem;
+    }
+
+    .oc-value-props-parallax .oc-vpp-icon-wrap {
+        width: 2rem;
+        min-width: 2rem;
+        padding-top: 0.3rem;
+    }
+
+    .oc-value-props-parallax .oc-vpp-icon {
+        font-size: 1.35rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-value-props-parallax .oc-vpp-background {
+        background-attachment: scroll;
+    }
+
+    .oc-value-props-parallax .oc-vpp-item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        will-change: auto;
+    }
+}
+
+/* Dark background contrast handling */
+.oc-value-props-parallax.bg-primary,
+.oc-value-props-parallax.bg-primary-scoped,
+.oc-value-props-parallax.bg-secondary,
+.oc-value-props-parallax.bg-secondary-scoped,
+.oc-value-props-parallax.bg-tertiary,
+.oc-value-props-parallax.bg-quaternary,
+.oc-value-props-parallax.bg-h5,
+.oc-value-props-parallax.bg-h6,
+.oc-value-props-parallax.bg-success,
+.oc-value-props-parallax.bg-danger,
+.oc-value-props-parallax.bg-dark,
+.oc-value-props-parallax.bg-forest-green {
+    --oc-vpp-heading-color: #ffffff;
+    --oc-vpp-body-color: rgba(255, 255, 255, 0.88);
+    --oc-vpp-icon-color: #ffffff;
+    --oc-vpp-link-color: #ffffff;
+}
+
+/* Light background defaults */
+.oc-value-props-parallax.bg-light,
+.oc-value-props-parallax.bg-white,
+.oc-value-props-parallax.bg-body,
+.oc-value-props-parallax.bg-transparent,
+.oc-value-props-parallax.bg-primary-subtle,
+.oc-value-props-parallax.bg-secondary-subtle,
+.oc-value-props-parallax.bg-success-subtle,
+.oc-value-props-parallax.bg-danger-subtle,
+.oc-value-props-parallax.bg-warning-subtle,
+.oc-value-props-parallax.bg-info-subtle,
+.oc-value-props-parallax.bg-light-subtle,
+.oc-value-props-parallax.bg-dark-subtle,
+.oc-value-props-parallax.bg-off-white,
+.oc-value-props-parallax.bg-warm-white,
+.oc-value-props-parallax.bg-cream,
+.oc-value-props-parallax.bg-soft-beige,
+.oc-value-props-parallax.bg-sand,
+.oc-value-props-parallax.bg-light-sage,
+.oc-value-props-parallax.bg-sage,
+.oc-value-props-parallax.bg-pale-green,
+.oc-value-props-parallax.bg-mist,
+.oc-value-props-parallax.bg-soft-gray {
+    --oc-vpp-heading-color: inherit;
+    --oc-vpp-body-color: inherit;
+    --oc-vpp-icon-color: currentColor;
+    --oc-vpp-link-color: inherit;
+}
+
+.oc-value-props-parallax.oc-value-props-parallax--has-image {
+    --oc-vpp-heading-color: #ffffff;
+    --oc-vpp-body-color: rgba(255, 255, 255, 0.88);
+    --oc-vpp-icon-color: #ffffff;
+    --oc-vpp-link-color: #ffffff;
+}
+
+.oc-value-props-parallax.oc-value-props-parallax--has-image .oc-vpp-container {
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 1),
+        0 6px 12px rgba(0, 0, 0, 0.95),
+        0 12px 24px rgba(0, 0, 0, 0.90),
+        0 25px 50px rgba(0, 0, 0, 0.80);
+}
+
+/* Custom background colors */
+.oc-value-props-parallax.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.oc-value-props-parallax.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.oc-value-props-parallax.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.oc-value-props-parallax.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.oc-value-props-parallax.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.oc-value-props-parallax.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.oc-value-props-parallax.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.oc-value-props-parallax.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.oc-value-props-parallax.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.oc-value-props-parallax.bg-soft-gray {
+    background-color: #ebeef3 !important;
+}
+
+.oc-value-props-parallax.bg-forest-green {
+    background-color: #143d2d !important;
+}
