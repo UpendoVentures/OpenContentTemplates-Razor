@@ -1,0 +1,48 @@
+{
+  "ModuleTitle": "Upendo Link Cards Alt",
+  "ModuleAnchor": "",
+  "SectionHeading": "Who We Support",
+  "SectionDescription": "",
+  "LinkCards": [
+    {
+      "Title": "Corporate Leadership",
+      "Description": "Strategic offsites that prioritize neuro-regulation and creative breakthroughs for executive teams.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/corporate-leadership"
+      },
+      "FontAwesomeIcon": "fas fa-building",
+      "BackgroundImage": ""
+    },
+    {
+      "Title": "Healthcare Professionals",
+      "Description": "Addressing compassion fatigue through trauma-informed nature immersion and somatic release.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/healthcare-professionals"
+      },
+      "FontAwesomeIcon": "fas fa-id-badge",
+      "BackgroundImage": ""
+    },
+    {
+      "Title": "Nonprofits",
+      "Description": "Sustaining mission-driven energy.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/nonprofits"
+      },
+      "FontAwesomeIcon": "fas fa-hand-holding-heart",
+      "BackgroundImage": ""
+    },
+    {
+      "Title": "Community Collectives",
+      "Description": "Private groups, artist residencies, and family lineages seeking ritual and connection.",
+      "Url": {
+        "Title": "Learn more",
+        "Url": "/community-collectives"
+      },
+      "FontAwesomeIcon": "fas fa-users",
+      "BackgroundImage": ""
+    }
+  ]
+}

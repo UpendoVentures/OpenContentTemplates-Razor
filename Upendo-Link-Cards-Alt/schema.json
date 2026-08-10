@@ -1,0 +1,74 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "LinkCards": {
+      "type": "array",
+      "title": "Link Cards",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Url": {
+            "type": "object",
+            "title": "URL",
+            "properties": {
+              "Title": {
+                "type": "string",
+                "title": "Link Title"
+              },
+              "Url": {
+                "type": "string",
+                "title": "URL"
+              }
+            }
+          },
+          "LinkTarget": {
+            "type": "string",
+            "title": "Link Target",
+            "default": "CurrentTab",
+            "enum": [
+              "CurrentTab",
+              "NewTab"
+            ]
+          },
+          "FontAwesomeIcon": {
+            "type": "string",
+            "title": "FontAwesome Icon"
+          },
+          "BackgroundImage": {
+            "type": "string",
+            "title": "Background Image"
+          }
+        },
+        "required": [
+          "Title",
+          "Description"
+        ]
+      }
+    }
+  }
+}
