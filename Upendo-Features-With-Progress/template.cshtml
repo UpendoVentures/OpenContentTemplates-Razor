@@ -1,0 +1,367 @@
+@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static dynamic GetDynamicValue(dynamic source, string propertyName)
+    {
+        if (source == null || string.IsNullOrWhiteSpace(propertyName))
+        {
+            return null;
+        }
+
+        try
+        {
+            var dictionary = source as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey(propertyName))
+            {
+                return dictionary[propertyName];
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            var property = source.GetType().GetProperty(propertyName);
+            return property != null ? property.GetValue(source, null) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string GetDynamicString(dynamic source, string propertyName)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        return value != null ? Convert.ToString(value) : string.Empty;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+
+    private static bool GetDynamicBool(dynamic source, string propertyName, bool fallback)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        try
+        {
+            return Convert.ToBoolean(value);
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+
+    private static int GetDynamicInt(dynamic source, string propertyName, int fallback)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        int parsedValue;
+        return int.TryParse(Convert.ToString(value), out parsedValue) ? parsedValue : fallback;
+    }
+
+    private static string GetSafeHexColor(dynamic source, string propertyName, string fallback)
+    {
+        var value = GetDynamicString(source, propertyName).Trim();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return fallback;
+        }
+
+        if (value.Length == 4 || value.Length == 7)
+        {
+            if (value[0] == '#')
+            {
+                for (var i = 1; i < value.Length; i++)
+                {
+                    if (!Uri.IsHexDigit(value[i]))
+                    {
+                        return fallback;
+                    }
+                }
+
+                return value;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetHexColorRgb(string color)
+    {
+        if (string.IsNullOrWhiteSpace(color) || color[0] != '#')
+        {
+            return "1, 35, 63";
+        }
+
+        var hex = color.Substring(1);
+        if (hex.Length == 3)
+        {
+            hex = string.Concat(hex[0], hex[0], hex[1], hex[1], hex[2], hex[2]);
+        }
+
+        if (hex.Length != 6)
+        {
+            return "1, 35, 63";
+        }
+
+        int red;
+        int green;
+        int blue;
+        if (!int.TryParse(hex.Substring(0, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out red)
+            || !int.TryParse(hex.Substring(2, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out green)
+            || !int.TryParse(hex.Substring(4, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out blue))
+        {
+            return "1, 35, 63";
+        }
+
+        return red + ", " + green + ", " + blue;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+    RegisterScript("template.js");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionEyebrow = Model.SectionEyebrow != null ? Convert.ToString(Model.SectionEyebrow) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var containerClass = Model.Settings != null && Model.Settings.ContainerClass != null
+        ? Convert.ToString(Model.Settings.ContainerClass)
+        : "container-xxl";
+
+    var imageVisibility = Model.Settings != null && Model.Settings.CardImageVisibility != null
+        ? Convert.ToString(Model.Settings.CardImageVisibility)
+        : "image-visible";
+
+    var visualMinHeight = Model.Settings != null && Model.Settings.VisualMinHeight != null
+        ? Convert.ToString(Model.Settings.VisualMinHeight)
+        : "26.625rem";
+
+    var accentColor = GetSafeHexColor(Model.Settings, "AccentColor", "#01233F");
+    var accentColorRgb = GetHexColorRgb(accentColor);
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var autoplayEnabled = GetDynamicBool(Model.Settings, "AutoplayEnabled", true);
+    var autoplayDuration = GetDynamicInt(Model.Settings, "AutoplayDuration", 4200);
+
+    if (string.IsNullOrWhiteSpace(containerClass)) { containerClass = "container-xxl"; }
+    if (string.IsNullOrWhiteSpace(imageVisibility)) { imageVisibility = "image-visible"; }
+    if (string.IsNullOrWhiteSpace(visualMinHeight)) { visualMinHeight = "26.625rem"; }
+    if (autoplayDuration < 1000) { autoplayDuration = 1000; }
+
+    var cards = new List<dynamic>();
+    if (Model.Cards != null)
+    {
+        foreach (var card in Model.Cards)
+        {
+            cards.Add(card);
+        }
+    }
+
+    var generatedModuleAnchor = "upendo-features-with-progress-" + Model.Context.ModuleId;
+    var rootId = !string.IsNullOrWhiteSpace(moduleAnchor) ? moduleAnchor : generatedModuleAnchor;
+    var headingId = generatedModuleAnchor + "-heading";
+    var ariaLabel = !string.IsNullOrWhiteSpace(moduleTitle)
+        ? moduleTitle
+        : (!string.IsNullOrWhiteSpace(sectionHeading) ? sectionHeading : "Features with progress");
+
+    var rootClass = "upendo-features-with-progress " + imageVisibility;
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        rootClass += " " + backgroundColorClass;
+    }
+    else
+    {
+        rootClass += " upendo-features-with-progress--default-background";
+    }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { rootClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { rootClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { rootClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { rootClass += " " + paddingBottom; }
+
+    var hasIntro = !string.IsNullOrWhiteSpace(sectionEyebrow) || !string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(introText);
+    var hasRenderableContent = hasIntro || cards.Count > 0;
+    var rootStyle = "--features-progress-visual-min-height:" + visualMinHeight + ";--features-progress-accent:" + accentColor + ";--features-progress-accent-rgb:" + accentColorRgb + ";";
+    var autoplayAttribute = autoplayEnabled ? "true" : "false";
+}
+
+@if (hasRenderableContent)
+{
+    <section class="@rootClass" id="@rootId" aria-label="@ariaLabel" style="@rootStyle" data-module-id="@Model.Context.ModuleId" data-autoplay="@autoplayAttribute" data-duration="@autoplayDuration">
+        <div class="@containerClass upendo-features-with-progress__container">
+            @if (hasIntro)
+            {
+                <header class="upendo-features-with-progress__header">
+                    @if (!string.IsNullOrWhiteSpace(sectionEyebrow))
+                    {
+                        <div class="upendo-features-with-progress__section-eyebrow">@Html.Raw(sectionEyebrow)</div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                    {
+                        <h2 id="@headingId" class="upendo-features-with-progress__heading text-notransform">@Html.Raw(sectionHeading)</h2>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(introText))
+                    {
+                        <div class="upendo-features-with-progress__intro">@Html.Raw(introText)</div>
+                    }
+                </header>
+            }
+
+            @if (cards.Count > 0)
+            {
+                <div class="upendo-features-with-progress__layout">
+                    <div class="upendo-features-with-progress__feature-rail" role="tablist" aria-label="Industry context options">
+                        @for (var i = 0; i < cards.Count; i++)
+                        {
+                            var card = cards[i];
+                            var title = GetDynamicString(card, "Title");
+                            var description = GetDynamicString(card, "Description");
+                            var eyebrow = GetDynamicString(card, "Eyebrow");
+                            var iconClass = GetDynamicString(card, "IconClass");
+                            var featureId = generatedModuleAnchor + "-feature-" + i;
+                            var panelId = generatedModuleAnchor + "-visual-" + i;
+                            var activeClass = i == 0 ? " is-active" : string.Empty;
+                            var featureClass = "upendo-features-with-progress__feature" + activeClass;
+                            var ariaSelected = i == 0 ? "true" : "false";
+
+                            if (string.IsNullOrWhiteSpace(iconClass))
+                            {
+                                iconClass = "fa-solid fa-layer-group";
+                            }
+
+                            <div class="@featureClass" id="@featureId" role="tab" tabindex="0" aria-selected="@ariaSelected" aria-controls="@panelId" data-feature-index="@i">
+                                <span class="upendo-features-with-progress__icon" aria-hidden="true">
+                                    <i class="@iconClass"></i>
+                                </span>
+                                <span class="upendo-features-with-progress__feature-copy">
+                                    @if (!string.IsNullOrWhiteSpace(eyebrow))
+                                    {
+                                        <span class="upendo-features-with-progress__eyebrow">@Html.Raw(eyebrow)</span>
+                                    }
+                                    <span class="upendo-features-with-progress__title">@Html.Raw(title)</span>
+                                    <span class="upendo-features-with-progress__description">@Html.Raw(description)</span>
+                                    <span class="upendo-features-with-progress__progress" aria-hidden="true">
+                                        <span class="upendo-features-with-progress__progress-bar"></span>
+                                    </span>
+                                </span>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="upendo-features-with-progress__visual-stage">
+                        @for (var i = 0; i < cards.Count; i++)
+                        {
+                            var card = cards[i];
+                            var title = GetDynamicString(card, "Title");
+                            var imageUrl = GetImageUrl(GetDynamicValue(card, "Image"));
+                            var imageAltText = GetDynamicString(card, "ImageAltText");
+                            var panelId = generatedModuleAnchor + "-visual-" + i;
+                            var featureId = generatedModuleAnchor + "-feature-" + i;
+                            var activeClass = i == 0 ? " is-active" : string.Empty;
+                            var visualClass = "upendo-features-with-progress__visual" + activeClass;
+                            var loadingMode = i == 0 ? "eager" : "lazy";
+
+                            var placeholderLabel = !string.IsNullOrWhiteSpace(title) ? title : "Industry visual";
+
+                            <div class="@visualClass" id="@panelId" role="tabpanel" aria-labelledby="@featureId" data-visual-index="@i">
+                                @if (!string.IsNullOrWhiteSpace(imageUrl))
+                                {
+                                    <img src="@imageUrl" alt="@imageAltText" loading="@loadingMode" decoding="async" />
+                                }
+                                else
+                                {
+                                    <div class="upendo-features-with-progress__placeholder-panel" aria-label="@placeholderLabel" data-placeholder-index="@i">
+                                        <span class="upendo-features-with-progress__placeholder-grid" aria-hidden="true"></span>
+                                        <span class="upendo-features-with-progress__placeholder-orbit" aria-hidden="true"></span>
+                                        <span class="upendo-features-with-progress__placeholder-label">@placeholderLabel</span>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <script>
+    (function () {
+        var root = document.getElementById('@rootId');
+        if (!root) return;
+
+        if (window.UpendoFeaturesWithProgressInit) {
+            window.UpendoFeaturesWithProgressInit(root);
+            return;
+        }
+
+        window.UpendoFeaturesWithProgressInit = window.UpendoFeaturesWithProgressInit || { queue: [] };
+        window.UpendoFeaturesWithProgressInit.queue.push(root);
+    })();
+    </script>
+}

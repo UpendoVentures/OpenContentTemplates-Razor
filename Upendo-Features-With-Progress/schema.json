@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionEyebrow": {
+      "type": "string",
+      "title": "Section Eyebrow"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "Cards": {
+      "type": "array",
+      "title": "Cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Eyebrow": {
+            "type": "string",
+            "title": "Eyebrow"
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "ImageAltText": {
+            "type": "string",
+            "title": "Image Alt Text"
+          }
+        },
+        "required": [
+          "Title",
+          "Description"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Cards"
+  ]
+}
