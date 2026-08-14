@@ -1,0 +1,194 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
+      "placeholder": "Resource Hub Hero"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "resource-hub",
+      "showMessages": false
+    },
+    "Eyebrow": {
+      "type": "text",
+      "helper": "Text content. Small uppercase label shown above the heading.",
+      "placeholder": "Knowledge Repository"
+    },
+    "HeadingElement": {
+      "type": "select",
+      "helper": "Text content. Choose the semantic heading level that fits the page outline.",
+      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6"],
+      "removeDefaultNone": true
+    },
+    "Heading": {
+      "type": "text",
+      "helper": "Text content. Main heading for the hero.",
+      "placeholder": "Engineered Intelligence."
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Text content. Supporting copy shown under the heading. HTML is allowed.",
+      "placeholder": "Access curated resources, technical briefs, and practical guidance for the work ahead."
+    },
+    "Image": {
+      "type": "image",
+      "helper": "Hero image shown inside the visual card. Recommended minimum: 1200 x 1200 px.",
+      "uploadfolder": "Content/OpenContent/ResourceHubHero/",
+      "typeahead": {
+        "Folder": "Content/OpenContent/ResourceHubHero/"
+      }
+    },
+    "ShowImageSettings": {
+      "type": "checkbox",
+      "helper": "Show optional image accessibility and focal-position fields in the editor. This does not affect frontend rendering."
+    },
+    "ImageAlt": {
+      "type": "text",
+      "helper": "Describe the image for people using assistive technology. Leave empty only if the image is decorative.",
+      "placeholder": "Technical resource preview on a workstation",
+      "dependencies": {
+        "ShowImageSettings": [true]
+      }
+    },
+    "ImageFocalPosition": {
+      "type": "select",
+      "helper": "Controls which part of the image remains visible when cropped.",
+      "optionLabels": ["Left Top", "Left Center", "Left Bottom", "Center Top", "Center Center", "Center Bottom", "Right Top", "Right Center", "Right Bottom"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "ShowImageSettings": [true]
+      }
+    },
+    "ShowStatusCard": {
+      "type": "checkbox",
+      "helper": "Show optional status badge fields in the editor. This does not affect frontend rendering."
+    },
+    "StatusLabel": {
+      "type": "text",
+      "helper": "Small uppercase label in the overlapping status badge.",
+      "placeholder": "System Status",
+      "dependencies": {
+        "ShowStatusCard": [true]
+      }
+    },
+    "StatusText": {
+      "type": "text",
+      "helper": "Primary message in the overlapping status badge.",
+      "placeholder": "Verified and Current",
+      "dependencies": {
+        "ShowStatusCard": [true]
+      }
+    },
+    "StatusDescription": {
+      "type": "textarea",
+      "helper": "Supporting line shown below the primary status message.",
+      "placeholder": "Direct engineering access for tier-one partners.",
+      "dependencies": {
+        "ShowStatusCard": [true]
+      }
+    },
+    "StatusAriaLabel": {
+      "type": "text",
+      "helper": "Optional accessible label for the badge if the visible label and text need extra context.",
+      "placeholder": "Resource status: verified and current",
+      "dependencies": {
+        "ShowStatusCard": [true]
+      }
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Admin/accessibility field. Used only when no heading is provided, so the section still has an accessible label.",
+      "placeholder": "Resource hub hero"
+    },
+    "CtaMode": {
+      "type": "select",
+      "helper": "Choose whether this hero renders no CTA buttons, one CTA button, or two CTA buttons.",
+      "optionLabels": ["None", "With One CTA", "With Two CTAs"],
+      "removeDefaultNone": true
+    },
+    "PrimaryCtaText": {
+      "type": "text",
+      "helper": "Primary link text. Used only when With CTAs is With One CTA or With Two CTAs. The link renders only when both text and URL are provided.",
+      "placeholder": "Latest Technical Brief",
+      "dependencies": {
+        "CtaMode": ["one", "two"]
+      }
+    },
+    "PrimaryCtaUrl": {
+      "type": "text",
+      "helper": "Primary link URL. Used only when With CTAs is With One CTA or With Two CTAs.",
+      "placeholder": "/resources/latest",
+      "dependencies": {
+        "CtaMode": ["one", "two"]
+      }
+    },
+    "PrimaryCtaTarget": {
+      "type": "select",
+      "helper": "Open the primary link in the same tab or a new tab. New tabs automatically receive noopener and noreferrer. Used only when With CTAs is With One CTA or With Two CTAs.",
+      "optionLabels": ["Same Tab", "New Tab"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "CtaMode": ["one", "two"]
+      }
+    },
+    "PrimaryCtaAriaLabel": {
+      "type": "text",
+      "helper": "Optional accessible label for the primary link when visible text needs extra context. Used only when With CTAs is With One CTA or With Two CTAs.",
+      "placeholder": "Read the latest technical brief",
+      "dependencies": {
+        "CtaMode": ["one", "two"]
+      }
+    },
+    "PrimaryCtaIcon": {
+      "type": "text",
+      "helper": "Optional Font Awesome class list shown after the primary CTA text. Use empty or none to hide the icon. Only letters, numbers, hyphen, underscore, and spaces are rendered. Used only when With CTAs is With One CTA or With Two CTAs.",
+      "placeholder": "fas fa-home",
+      "dependencies": {
+        "CtaMode": ["one", "two"]
+      }
+    },
+    "SecondaryCtaText": {
+      "type": "text",
+      "helper": "Secondary link text. Used only when With CTAs is With Two CTAs. The link renders only when both text and URL are provided.",
+      "placeholder": "View All Categories",
+      "dependencies": {
+        "CtaMode": ["two"]
+      }
+    },
+    "SecondaryCtaUrl": {
+      "type": "text",
+      "helper": "Secondary link URL. Used only when With CTAs is With Two CTAs.",
+      "placeholder": "/resources",
+      "dependencies": {
+        "CtaMode": ["two"]
+      }
+    },
+    "SecondaryCtaTarget": {
+      "type": "select",
+      "helper": "Open the secondary link in the same tab or a new tab. New tabs automatically receive noopener and noreferrer. Used only when With CTAs is With Two CTAs.",
+      "optionLabels": ["Same Tab", "New Tab"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "CtaMode": ["two"]
+      }
+    },
+    "SecondaryCtaAriaLabel": {
+      "type": "text",
+      "helper": "Optional accessible label for the secondary link when visible text needs extra context. Used only when With CTAs is With Two CTAs.",
+      "placeholder": "View all resource categories",
+      "dependencies": {
+        "CtaMode": ["two"]
+      }
+    },
+    "SecondaryCtaIcon": {
+      "type": "text",
+      "helper": "Optional Font Awesome class list shown after the secondary CTA text. Use empty or none to hide the icon. Only letters, numbers, hyphen, underscore, and spaces are rendered. Used only when With CTAs is With Two CTAs.",
+      "placeholder": "fas fa-arrow-right",
+      "dependencies": {
+        "CtaMode": ["two"]
+      }
+    }
+  }
+}

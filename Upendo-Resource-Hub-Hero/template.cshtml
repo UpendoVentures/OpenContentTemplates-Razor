@@ -1,0 +1,367 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string GetString(dynamic value, string fallback = "")
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        var text = Convert.ToString(value);
+        return string.IsNullOrWhiteSpace(text) ? fallback : text;
+    }
+
+    private static bool GetBool(dynamic value, bool fallback = false)
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        bool parsed;
+        return bool.TryParse(Convert.ToString(value), out parsed) ? parsed : fallback;
+    }
+
+    private static string GetAllowedString(dynamic value, string fallback, params string[] allowedValues)
+    {
+        var text = GetString(value, fallback);
+
+        foreach (var allowedValue in allowedValues)
+        {
+            if (text.Equals(allowedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedValue;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+
+    private static string BuildLinkAttributes(string target)
+    {
+        if (string.Equals(target, "_blank", StringComparison.OrdinalIgnoreCase))
+        {
+            return " target=\"_blank\" rel=\"noopener noreferrer\"";
+        }
+
+        if (string.Equals(target, "_self", StringComparison.OrdinalIgnoreCase))
+        {
+            return " target=\"_self\"";
+        }
+
+        return string.Empty;
+    }
+
+    private static string GetSafeUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return string.Empty;
+        }
+
+        var trimmedUrl = url.Trim();
+
+        if (trimmedUrl.StartsWith("#", StringComparison.Ordinal) || trimmedUrl.StartsWith("/", StringComparison.Ordinal))
+        {
+            return trimmedUrl;
+        }
+
+        Uri parsedUrl;
+        if (Uri.TryCreate(trimmedUrl, UriKind.Absolute, out parsedUrl) &&
+            (parsedUrl.Scheme == Uri.UriSchemeHttp || parsedUrl.Scheme == Uri.UriSchemeHttps || parsedUrl.Scheme == Uri.UriSchemeMailto || parsedUrl.Scheme == "tel"))
+        {
+            return trimmedUrl;
+        }
+
+        return string.Empty;
+    }
+
+    private static string GetSafeCssClassTokens(dynamic value)
+    {
+        var text = GetString(value).Trim();
+
+        if (string.IsNullOrWhiteSpace(text) || string.Equals(text, "none", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        var sanitizedChars = new List<char>();
+        var lastWasSpace = false;
+
+        foreach (var character in text)
+        {
+            var isAllowedTokenCharacter = char.IsLetterOrDigit(character) || character == '-' || character == '_';
+            var isSpace = char.IsWhiteSpace(character);
+
+            if (isAllowedTokenCharacter)
+            {
+                sanitizedChars.Add(character);
+                lastWasSpace = false;
+            }
+            else if (isSpace && !lastWasSpace)
+            {
+                sanitizedChars.Add(' ');
+                lastWasSpace = true;
+            }
+        }
+
+        return new string(sanitizedChars.ToArray()).Trim();
+    }
+
+    private static IHtmlString RenderHeading(string tagName, string id, string cssClass, string text)
+    {
+        return new HtmlString(
+            "<" + tagName + " id=\"" + HttpUtility.HtmlAttributeEncode(id) + "\" class=\"" + HttpUtility.HtmlAttributeEncode(cssClass) + "\">" +
+            HttpUtility.HtmlEncode(text) +
+            "</" + tagName + ">");
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = GetString(Model.ModuleTitle);
+    var moduleAnchor = GetString(Model.ModuleAnchor);
+    var eyebrow = GetString(Model.Eyebrow);
+    var heading = GetString(Model.Heading);
+    var headingElement = GetAllowedString(Model.HeadingElement, "h2", "h1", "h2", "h3", "h4", "h5", "h6");
+    var introText = GetString(Model.IntroText);
+    var sectionAriaLabel = GetString(Model.SectionAriaLabel, moduleTitle);
+
+    var ctaMode = GetAllowedString(Model.CtaMode, "none", "none", "one", "two");
+    var primaryCtaText = GetString(Model.PrimaryCtaText);
+    var primaryCtaUrl = GetSafeUrl(GetString(Model.PrimaryCtaUrl));
+    var primaryCtaTarget = GetAllowedString(Model.PrimaryCtaTarget, "_self", "_self", "_blank");
+    var primaryCtaAriaLabel = GetString(Model.PrimaryCtaAriaLabel, primaryCtaText);
+    var primaryCtaIcon = GetSafeCssClassTokens(Model.PrimaryCtaIcon);
+
+    var secondaryCtaText = GetString(Model.SecondaryCtaText);
+    var secondaryCtaUrl = GetSafeUrl(GetString(Model.SecondaryCtaUrl));
+    var secondaryCtaTarget = GetAllowedString(Model.SecondaryCtaTarget, "_self", "_self", "_blank");
+    var secondaryCtaAriaLabel = GetString(Model.SecondaryCtaAriaLabel, secondaryCtaText);
+    var secondaryCtaIcon = GetSafeCssClassTokens(Model.SecondaryCtaIcon);
+
+    var imageUrl = GetImageUrl(Model.Image);
+    var imageAlt = GetString(Model.ImageAlt);
+    var imageFocalPosition = GetAllowedString(Model.ImageFocalPosition, "center center", "left top", "left center", "left bottom", "center top", "center center", "center bottom", "right top", "right center", "right bottom");
+    var statusLabel = GetString(Model.StatusLabel);
+    var statusText = GetString(Model.StatusText);
+    var statusDescription = GetString(Model.StatusDescription);
+    var statusAriaLabel = GetString(Model.StatusAriaLabel);
+
+    var legacyBackgroundStyle = Model.Settings != null ? GetAllowedString(Model.Settings.BackgroundStyle, "pale", "pale", "white", "mist", "dark") : "pale";
+    var legacyBackgroundClass = "bg-light";
+
+    if (string.Equals(legacyBackgroundStyle, "white", StringComparison.OrdinalIgnoreCase))
+    {
+        legacyBackgroundClass = "bg-white";
+    }
+    else if (string.Equals(legacyBackgroundStyle, "mist", StringComparison.OrdinalIgnoreCase))
+    {
+        legacyBackgroundClass = "bg-mist";
+    }
+    else if (string.Equals(legacyBackgroundStyle, "dark", StringComparison.OrdinalIgnoreCase))
+    {
+        legacyBackgroundClass = "bg-dark";
+    }
+
+    var backgroundColorClass = Model.Settings != null ? GetAllowedString(Model.Settings.BackgroundColorClass, legacyBackgroundClass, "", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white", "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green") : legacyBackgroundClass;
+    var containerWidth = Model.Settings != null ? GetAllowedString(Model.Settings.ContainerWidth, "container-xxl", "container", "container-lg", "container-xl", "container-xxl", "container-fluid") : "container-xxl";
+    var imagePosition = Model.Settings != null ? GetAllowedString(Model.Settings.ImagePosition, "right", "right", "left", "hidden-desktop") : "right";
+    var marginTop = Model.Settings != null ? GetAllowedString(Model.Settings.MarginTop, "mt-0", "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto") : "mt-0";
+    var marginBottom = Model.Settings != null ? GetAllowedString(Model.Settings.MarginBottom, "mb-0", "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto") : "mb-0";
+    var paddingTop = Model.Settings != null ? GetAllowedString(Model.Settings.PaddingTop, "", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto") : string.Empty;
+    var paddingBottom = Model.Settings != null ? GetAllowedString(Model.Settings.PaddingBottom, "", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto") : string.Empty;
+    var verticalSpacing = Model.Settings != null ? GetAllowedString(Model.Settings.VerticalSpacing, "large", "compact", "medium", "large", "spacious") : "large";
+    var hasUtilityPadding = !string.IsNullOrWhiteSpace(paddingTop) || !string.IsNullOrWhiteSpace(paddingBottom);
+    var motifEnabled = Model.Settings != null ? GetBool(Model.Settings.MotifEnabled, true) : true;
+    var motifStyle = Model.Settings != null ? GetAllowedString(Model.Settings.MotifStyle, "dots", "dots", "grid", "none") : "dots";
+    var imageCardStyle = Model.Settings != null ? GetAllowedString(Model.Settings.ImageCardStyle, "soft", "soft", "outlined", "elevated") : "soft";
+    var imageTreatment = Model.Settings != null ? GetAllowedString(Model.Settings.ImageTreatment, "grayscale", "grayscale", "color") : "grayscale";
+    var badgeStyle = Model.Settings != null ? GetAllowedString(Model.Settings.BadgeStyle, "primary", "primary", "light", "dark") : "primary";
+
+    var hasHeading = !string.IsNullOrWhiteSpace(heading);
+    var hasEyebrow = !string.IsNullOrWhiteSpace(eyebrow);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+    var hasPrimaryCta = (string.Equals(ctaMode, "one", StringComparison.OrdinalIgnoreCase) || string.Equals(ctaMode, "two", StringComparison.OrdinalIgnoreCase)) && !string.IsNullOrWhiteSpace(primaryCtaText) && !string.IsNullOrWhiteSpace(primaryCtaUrl);
+    var hasSecondaryCta = string.Equals(ctaMode, "two", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrWhiteSpace(secondaryCtaText) && !string.IsNullOrWhiteSpace(secondaryCtaUrl);
+    var hasImage = !string.IsNullOrWhiteSpace(imageUrl) && !string.Equals(imagePosition, "hidden-desktop", StringComparison.OrdinalIgnoreCase);
+    var hasStatusBadge = !string.IsNullOrWhiteSpace(statusLabel) || !string.IsNullOrWhiteSpace(statusText) || !string.IsNullOrWhiteSpace(statusDescription);
+    var hasRenderableContent = hasEyebrow || hasHeading || hasIntro || hasPrimaryCta || hasSecondaryCta || hasImage;
+
+    var headingId = "oc-rhh-heading-" + Model.Context.ModuleId;
+    var sectionClass = "oc-resource-hub-hero " + backgroundColorClass + " oc-rhh-bg-" + legacyBackgroundStyle + " oc-rhh-image-" + imagePosition + " oc-rhh-motif-" + (motifEnabled ? motifStyle : "none") + " oc-rhh-card-" + imageCardStyle + " oc-rhh-image-treatment-" + imageTreatment + " oc-rhh-badge-" + badgeStyle;
+
+    if (!hasUtilityPadding)
+    {
+        sectionClass += " oc-rhh-spacing-" + verticalSpacing;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClass += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClass += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClass += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClass += " " + paddingBottom;
+    }
+
+    var imageColumnClass = string.Equals(imagePosition, "left", StringComparison.OrdinalIgnoreCase) ? "oc-rhh-visual oc-rhh-visual-left" : "oc-rhh-visual";
+    var contentColumnClass = string.Equals(imagePosition, "left", StringComparison.OrdinalIgnoreCase) ? "oc-rhh-content oc-rhh-content-right" : "oc-rhh-content";
+    var ariaAttribute = hasHeading
+        ? "aria-labelledby=\"" + HttpUtility.HtmlAttributeEncode(headingId) + "\""
+        : (!string.IsNullOrWhiteSpace(sectionAriaLabel) ? "aria-label=\"" + HttpUtility.HtmlAttributeEncode(sectionAriaLabel) + "\"" : string.Empty);
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasRenderableContent)
+{
+    <section class="@sectionClass" @Html.Raw(ariaAttribute)>
+        @if (motifEnabled && !string.Equals(motifStyle, "none", StringComparison.OrdinalIgnoreCase))
+        {
+            <div class="oc-rhh-motif" aria-hidden="true"></div>
+        }
+
+        <div class="@containerWidth oc-rhh-container">
+            <div class="oc-rhh-layout">
+                @if (hasImage && string.Equals(imagePosition, "left", StringComparison.OrdinalIgnoreCase))
+                {
+                    <div class="@imageColumnClass">
+                        <div class="oc-rhh-image-card">
+                            <img class="oc-rhh-image" src="@imageUrl" alt="@imageAlt" loading="lazy" decoding="async" style="object-position: @imageFocalPosition;" />
+                            @if (hasStatusBadge)
+                            {
+                                <div class="oc-rhh-status-badge"@if (!string.IsNullOrWhiteSpace(statusAriaLabel)) { <text> aria-label="@statusAriaLabel"</text> }>
+                                    @if (!string.IsNullOrWhiteSpace(statusLabel))
+                                    {
+                                        <div class="oc-rhh-status-label">@statusLabel</div>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(statusText))
+                                    {
+                                        <div class="oc-rhh-status-text">@statusText</div>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(statusDescription))
+                                    {
+                                        <div class="oc-rhh-status-description">@statusDescription</div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="@contentColumnClass">
+                    @if (hasEyebrow)
+                    {
+                        <p class="oc-rhh-eyebrow">@eyebrow</p>
+                    }
+
+                    @if (hasHeading)
+                    {
+                        @RenderHeading(headingElement, headingId, "oc-rhh-heading text-notransform", heading)
+                    }
+
+                    @if (hasIntro)
+                    {
+                        <div class="oc-rhh-intro">@Html.Raw(introText)</div>
+                    }
+
+                    @if (hasPrimaryCta || hasSecondaryCta)
+                    {
+                        <div class="oc-rhh-actions">
+                            @if (hasPrimaryCta)
+                            {
+                                <a class="btn rounded-pill oc-rhh-button oc-rhh-button-primary" href="@primaryCtaUrl"@Html.Raw(BuildLinkAttributes(primaryCtaTarget))@if (!string.IsNullOrWhiteSpace(primaryCtaAriaLabel)) { <text> aria-label="@primaryCtaAriaLabel"</text> }>
+                                    <span>@primaryCtaText</span>
+                                    @if (!string.IsNullOrWhiteSpace(primaryCtaIcon))
+                                    {
+                                        <span class="oc-rhh-button-icon @primaryCtaIcon" aria-hidden="true"></span>
+                                    }
+                                </a>
+                            }
+
+                            @if (hasSecondaryCta)
+                            {
+                                <a class="btn rounded-pill oc-rhh-button oc-rhh-button-secondary" href="@secondaryCtaUrl"@Html.Raw(BuildLinkAttributes(secondaryCtaTarget))@if (!string.IsNullOrWhiteSpace(secondaryCtaAriaLabel)) { <text> aria-label="@secondaryCtaAriaLabel"</text> }>
+                                    <span>@secondaryCtaText</span>
+                                    @if (!string.IsNullOrWhiteSpace(secondaryCtaIcon))
+                                    {
+                                        <span class="oc-rhh-button-icon @secondaryCtaIcon" aria-hidden="true"></span>
+                                    }
+                                </a>
+                            }
+                        </div>
+                    }
+                </div>
+
+                @if (hasImage && !string.Equals(imagePosition, "left", StringComparison.OrdinalIgnoreCase))
+                {
+                    <div class="@imageColumnClass">
+                        <div class="oc-rhh-image-card">
+                            <img class="oc-rhh-image" src="@imageUrl" alt="@imageAlt" loading="lazy" decoding="async" style="object-position: @imageFocalPosition;" />
+                            @if (hasStatusBadge)
+                            {
+                                <div class="oc-rhh-status-badge"@if (!string.IsNullOrWhiteSpace(statusAriaLabel)) { <text> aria-label="@statusAriaLabel"</text> }>
+                                    @if (!string.IsNullOrWhiteSpace(statusLabel))
+                                    {
+                                        <div class="oc-rhh-status-label">@statusLabel</div>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(statusText))
+                                    {
+                                        <div class="oc-rhh-status-text">@statusText</div>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(statusDescription))
+                                    {
+                                        <div class="oc-rhh-status-description">@statusDescription</div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
