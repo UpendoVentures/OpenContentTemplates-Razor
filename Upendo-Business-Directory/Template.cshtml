@@ -3,6 +3,7 @@
 @using System.Collections.Specialized
 @using System.Web
 @using DotNetNuke.Entities.Modules
+@using DotNetNuke.Entities.Users
 @using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Common
@@ -33,6 +34,10 @@
     var request = HttpContext.Current.Request;
     string currentQuery = DirectoryHelper.CurrentQueryStrings();
     bool canEditBusinesses = TemplateHelper.CurrentUserCanEdit();
+    var currentUser = Dnn != null && Dnn.User != null
+        ? Dnn.User
+        : UserController.Instance.GetCurrentUserInfo();
+    bool isAuthenticatedWebsiteMember = currentUser != null && currentUser.UserID > 0 && !currentUser.IsDeleted;
 
     // detail support
     CompanyDetail company = null;
@@ -61,7 +66,10 @@
         * COMPANY DETAIL VIEW
         *------------------------------------------------------------*/
         isCompanyDetail = true;
-        company = ChamberMembershipController.GetCompanyBySlug(portalId, companySlugFromPath);
+        company = ChamberMembershipController.GetCompanyBySlug(
+            portalId,
+            companySlugFromPath,
+            isAuthenticatedWebsiteMember);
 
         if (company != null)
         {
@@ -74,7 +82,11 @@
         }
         else
         {
-            notFoundSuggestions = ChamberMembershipController.GetRandomCompanySuggestions(portalId, 3);
+            notFoundSuggestions = ChamberMembershipController.GetRandomCompanySuggestions(
+                portalId,
+                3,
+                null,
+                isAuthenticatedWebsiteMember);
 
             if (notFoundSuggestions != null &&
                 notFoundSuggestions.Results != null &&
@@ -170,7 +182,10 @@
         // ----------------------------
         // Search
         // ----------------------------
-        search = DirectorySearchWithCategoriesResult.SearchCompaniesWithCategoryNames(portalId, req);
+        search = DirectorySearchWithCategoriesResult.SearchCompaniesWithCategoryNames(
+            portalId,
+            req,
+            isAuthenticatedWebsiteMember);
 
         items = new List<CompanyDirectoryItem>();
         totalCount = 0;
@@ -225,7 +240,10 @@
         {
             req.Page = page;
 
-            search = DirectorySearchWithCategoriesResult.SearchCompaniesWithCategoryNames(portalId, req);
+            search = DirectorySearchWithCategoriesResult.SearchCompaniesWithCategoryNames(
+                portalId,
+                req,
+                isAuthenticatedWebsiteMember);
 
             items.Clear();
             totalCount = 0;
