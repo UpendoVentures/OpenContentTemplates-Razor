@@ -1,0 +1,52 @@
+{
+  "ModuleTitle": "Technical Documentation",
+  "ModuleAnchor": "technical-documentation",
+  "SectionHeading": "Technical Documentation",
+  "SectionHeadingElement": "h2",
+  "IntroText": "Access the latest specifications, implementation guides, and product resources.",
+  "SectionAriaLabel": "Technical documentation resources",
+  "Documents": [
+    {
+      "Title": "API Reference Guide",
+      "Description": "Complete endpoint reference with authentication, payload examples, and response formats for developers.",
+      "FileMeta": "PDF | 4.2 MB",
+      "FileTypeLabel": "PDF",
+      "IconClass": "fas fa-download",
+      "FooterLabel": "v2.4 (Latest)",
+      "CtaText": "Download Spec",
+      "FileSource": "url",
+      "Url": "#",
+      "UploadFile": "",
+      "LinkTarget": "_self",
+      "CtaAriaLabel": "Download the API reference guide"
+    },
+    {
+      "Title": "Integration Manual",
+      "Description": "Step-by-step integration details for connecting systems, configuring environments, and validating deployments.",
+      "FileMeta": "PDF | 0 MB",
+      "FileTypeLabel": "PDF",
+      "IconClass": "fas fa-file-alt",
+      "FooterLabel": "Updated May 2026",
+      "CtaText": "View Manual",
+      "FileSource": "upload",
+      "Url": "",
+      "UploadFile": "/Downloads/TechnicalDocumentation/integration-manual.pdf",
+      "LinkTarget": "_self",
+      "CtaAriaLabel": "View the integration manual"
+    },
+    {
+      "Title": "Security Overview",
+      "Description": "Architecture notes, compliance considerations, and recommended controls for secure implementation planning.",
+      "FileMeta": "PDF | 3.1 MB",
+      "FileTypeLabel": "PDF",
+      "IconClass": "fas fa-shield-alt",
+      "FooterLabel": "Security Brief",
+      "CtaText": "Download Brief",
+      "FileSource": "url",
+      "Url": "#",
+      "UploadFile": "",
+      "LinkTarget": "_self",
+      "CtaAriaLabel": "Download the security overview brief"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. Used as a fallback accessibility label when the section has no visible heading.",
+      "placeholder": "Technical Documentation"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for #anchor-links on the page. Use letters, numbers, and hyphens only.",
+      "placeholder": "technical-documentation",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the documentation cards. HTML is allowed.",
+      "placeholder": "Technical Documentation"
+    },
+    "SectionHeadingElement": {
+      "type": "select",
+      "helper": "Choose the heading level that fits the page outline.",
+      "optionLabels": ["Heading 2", "Heading 3", "Heading 4"],
+      "removeDefaultNone": true
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "placeholder": "Access product specifications, integration guides, and implementation resources."
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Optional. Used only when no visible section heading is provided.",
+      "placeholder": "Technical documentation resources"
+    },
+    "Documents": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add documentation cards in display order. CTAs render only when CTA Text and the selected source resolve to a safe URL.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Card title.",
+            "placeholder": "API Reference Guide"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Optional. Short supporting description for this document.",
+            "placeholder": "Complete endpoint reference with authentication, payload examples, and response formats."
+          },
+          "FileSource": {
+            "type": "select",
+            "helper": "Choose whether this document links to a typed URL or a selected/uploaded file.",
+            "optionLabels": ["URL", "Upload File"],
+            "removeDefaultNone": true
+          },
+          "Url": {
+            "type": "url",
+            "helper": "Allowed URL formats: anchors, slash-relative URLs, http, https, mailto, and tel.",
+            "dependencies": {
+              "FileSource": [
+                "url"
+              ]
+            }
+          },
+          "UploadFile": {
+            "type": "file",
+            "uploadfolder": "/Downloads/TechnicalDocumentation",
+            "typeahead": {
+              "Folder": "/Downloads/TechnicalDocumentation"
+            },
+            "helper": "Select or upload the real document file. Type and size are computed when OpenContent file metadata or a safe local file lookup is available.",
+            "dependencies": {
+              "FileSource": [
+                "upload"
+              ]
+            }
+          },
+          "FileTypeLabel": {
+            "type": "text",
+            "helper": "URL mode only. Optional fallback when the URL has no file extension.",
+            "placeholder": "PDF",
+            "dependencies": {
+              "FileSource": [
+                "url"
+              ]
+            }
+          },
+          "FileMeta": {
+            "type": "text",
+            "helper": "URL mode only. Optional manual type and size fallback when the template cannot compute them from the URL.",
+            "placeholder": "PDF | 4.2 MB",
+            "dependencies": {
+              "FileSource": [
+                "url"
+              ]
+            }
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional. Font Awesome icon class. Only letters, numbers, hyphens, underscores, and spaces are rendered.",
+            "placeholder": "fas fa-download"
+          },
+          "FooterLabel": {
+            "type": "text",
+            "helper": "Optional. Small footer label shown before the CTA.",
+            "placeholder": "v2.4 (Latest)"
+          },
+          "CtaText": {
+            "type": "text",
+            "helper": "CTA link text. The CTA renders only when this and the selected source resolves to a safe URL.",
+            "placeholder": "Download Spec"
+          },
+          "LinkTarget": {
+            "type": "select",
+            "helper": "Choose whether the CTA opens in the current tab or a new tab.",
+            "optionLabels": ["Current Tab", "New Tab"],
+            "removeDefaultNone": true
+          },
+          "CtaAriaLabel": {
+            "type": "text",
+            "helper": "Optional. More descriptive label for screen readers, especially when CTA text repeats across cards.",
+            "placeholder": "Download the API reference guide"
+          }
+        }
+      }
+    }
+  }
+}
