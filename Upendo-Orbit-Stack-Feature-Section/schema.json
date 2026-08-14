@@ -1,0 +1,129 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "EyebrowText": {
+      "type": "string",
+      "title": "Eyebrow Text"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "PrimaryButtonText": {
+      "type": "string",
+      "title": "Primary Button Text"
+    },
+    "PrimaryButtonLink": {
+      "type": "string",
+      "title": "Primary Button Link"
+    },
+    "PrimaryButtonOpenInNewWindow": {
+      "type": "boolean",
+      "title": "Primary Button Open In New Window"
+    },
+    "SecondaryButtonText": {
+      "type": "string",
+      "title": "Secondary Button Text"
+    },
+    "SecondaryButtonLink": {
+      "type": "string",
+      "title": "Secondary Button Link"
+    },
+    "SecondaryButtonOpenInNewWindow": {
+      "type": "boolean",
+      "title": "Secondary Button Open In New Window"
+    },
+    "CenterIconClass": {
+      "type": "string",
+      "title": "Center Icon Class"
+    },
+    "CenterImage": {
+      "type": "string",
+      "title": "Center Image"
+    },
+    "CenterIconColor": {
+      "type": "string",
+      "title": "Center Icon Color",
+      "enum": [
+        "orbit-color-blue",
+        "orbit-color-cyan",
+        "orbit-color-green",
+        "orbit-color-orange",
+        "orbit-color-purple",
+        "orbit-color-rose",
+        "orbit-color-slate",
+        "orbit-color-dark"
+      ]
+    },
+    "OrbitItems": {
+      "type": "array",
+      "title": "Orbit Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "IconColor": {
+            "type": "string",
+            "title": "Icon Color",
+            "enum": [
+              "orbit-color-blue",
+              "orbit-color-cyan",
+              "orbit-color-green",
+              "orbit-color-orange",
+              "orbit-color-purple",
+              "orbit-color-rose",
+              "orbit-color-slate",
+              "orbit-color-dark"
+            ]
+          },
+          "OrbitNumber": {
+            "type": "string",
+            "title": "Orbit Number",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Angle": {
+            "type": "string",
+            "title": "Angle"
+          }
+        },
+        "required": [
+          "Label",
+          "OrbitNumber"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Heading",
+    "IntroText",
+    "OrbitItems"
+  ]
+}

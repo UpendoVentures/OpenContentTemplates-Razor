@@ -1,0 +1,143 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
+      "placeholder": "Orbit Stack Feature Section"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "orbit-stack-feature",
+      "showMessages": false
+    },
+    "EyebrowText": {
+      "type": "text",
+      "helper": "Optional. Small label shown above the heading. HTML is allowed.",
+      "placeholder": "Connected Stack"
+    },
+    "Heading": {
+      "type": "text",
+      "helper": "Required. Main heading shown in the feature card. HTML is allowed.",
+      "placeholder": "Connect the tools behind your workflow."
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Required. Supporting copy shown below the heading. HTML is allowed.",
+      "placeholder": "Show the platforms, services, and systems that support a modern operational stack."
+    },
+    "PrimaryButtonText": {
+      "type": "text",
+      "helper": "Optional. Primary CTA text. The button only displays when text and link are both set.",
+      "placeholder": "Get Started"
+    },
+    "PrimaryButtonLink": {
+      "type": "text",
+      "helper": "Optional. Primary CTA URL.",
+      "placeholder": "/contact"
+    },
+    "PrimaryButtonOpenInNewWindow": {
+      "type": "checkbox",
+      "helper": "Open the primary CTA in a new browser tab."
+    },
+    "SecondaryButtonText": {
+      "type": "text",
+      "helper": "Optional. Secondary CTA text. The button only displays when text and link are both set.",
+      "placeholder": "Learn More"
+    },
+    "SecondaryButtonLink": {
+      "type": "text",
+      "helper": "Optional. Secondary CTA URL.",
+      "placeholder": "/solutions"
+    },
+    "SecondaryButtonOpenInNewWindow": {
+      "type": "checkbox",
+      "helper": "Open the secondary CTA in a new browser tab."
+    },
+    "CenterIconClass": {
+      "type": "text",
+      "helper": "Font Awesome class for the center icon. Used only when Center Image is empty.",
+      "placeholder": "fas fa-cube"
+    },
+    "CenterImage": {
+      "type": "image",
+      "uploadfolder": "Content/OpenContent/OrbitStackFeature/",
+      "typeahead": {
+        "Folder": "Content/OpenContent/OrbitStackFeature/"
+      },
+      "helper": "Optional. Image used instead of the center icon."
+    },
+    "CenterIconColor": {
+      "type": "select",
+      "helper": "Choose the center icon color when Center Image is empty.",
+      "optionLabels": [
+        "Blue",
+        "Cyan",
+        "Green",
+        "Orange",
+        "Purple",
+        "Rose",
+        "Slate",
+        "Dark"
+      ],
+      "removeDefaultNone": true
+    },
+    "OrbitItems": {
+      "type": "accordion",
+      "titleField": "Label",
+      "helper": "Add orbit items in display order. Image takes priority over Icon Class. Angle is optional and should be a number from 0 to 359.",
+      "items": {
+        "fields": {
+          "Label": {
+            "type": "text",
+            "helper": "Required. Internal label and hover title for the item.",
+            "placeholder": "React"
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional. Font Awesome class. Used only when Image is empty.",
+            "placeholder": "fab fa-react"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "Content/OpenContent/OrbitStackFeature/",
+            "typeahead": {
+              "Folder": "Content/OpenContent/OrbitStackFeature/"
+            },
+            "helper": "Optional. Uploaded logo or icon image. Takes priority over Icon Class."
+          },
+          "IconColor": {
+            "type": "select",
+            "helper": "Choose the icon color when Image is empty.",
+            "optionLabels": [
+              "Blue",
+              "Cyan",
+              "Green",
+              "Orange",
+              "Purple",
+              "Rose",
+              "Slate",
+              "Dark"
+            ],
+            "removeDefaultNone": true
+          },
+          "OrbitNumber": {
+            "type": "select",
+            "helper": "Choose which dotted orbit ring should contain this item.",
+            "optionLabels": [
+              "Inner Orbit",
+              "Middle Orbit",
+              "Outer Orbit"
+            ],
+            "removeDefaultNone": true
+          },
+          "Angle": {
+            "type": "text",
+            "helper": "Optional. Custom starting angle in degrees, for example 45. Leave empty to auto-position by display order.",
+            "placeholder": "45"
+          }
+        }
+      }
+    }
+  }
+}

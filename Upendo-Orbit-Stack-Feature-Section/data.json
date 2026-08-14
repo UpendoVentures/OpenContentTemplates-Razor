@@ -1,0 +1,114 @@
+{
+  "ModuleTitle": "Orbit Stack Feature Section",
+  "ModuleAnchor": "orbit-stack-feature",
+  "EyebrowText": "Connected Stack",
+  "Heading": "Connect the tools behind your workflow.",
+  "IntroText": "Show the platforms, services, and systems that support a modern operational stack.",
+  "PrimaryButtonText": "Get Started",
+  "PrimaryButtonLink": "/contact",
+  "PrimaryButtonOpenInNewWindow": false,
+  "SecondaryButtonText": "Learn More",
+  "SecondaryButtonLink": "/solutions",
+  "SecondaryButtonOpenInNewWindow": false,
+  "CenterIconClass": "fas fa-cube",
+  "CenterImage": "",
+  "CenterIconColor": "orbit-color-blue",
+  "OrbitItems": [
+    {
+      "Label": "React",
+      "IconClass": "fab fa-react",
+      "Image": "",
+      "IconColor": "orbit-color-cyan",
+      "OrbitNumber": "1",
+      "Angle": ""
+    },
+    {
+      "Label": "AWS",
+      "IconClass": "fab fa-aws",
+      "Image": "",
+      "IconColor": "orbit-color-orange",
+      "OrbitNumber": "1",
+      "Angle": ""
+    },
+    {
+      "Label": "Docker",
+      "IconClass": "fab fa-docker",
+      "Image": "",
+      "IconColor": "orbit-color-blue",
+      "OrbitNumber": "1",
+      "Angle": ""
+    },
+    {
+      "Label": "Node.js",
+      "IconClass": "fab fa-node-js",
+      "Image": "",
+      "IconColor": "orbit-color-green",
+      "OrbitNumber": "2",
+      "Angle": ""
+    },
+    {
+      "Label": "GitHub",
+      "IconClass": "fab fa-github",
+      "Image": "",
+      "IconColor": "orbit-color-dark",
+      "OrbitNumber": "2",
+      "Angle": ""
+    },
+    {
+      "Label": "LinkedIn",
+      "IconClass": "fab fa-linkedin",
+      "Image": "",
+      "IconColor": "orbit-color-blue",
+      "OrbitNumber": "2",
+      "Angle": ""
+    },
+    {
+      "Label": "Apple",
+      "IconClass": "fab fa-apple",
+      "Image": "",
+      "IconColor": "orbit-color-slate",
+      "OrbitNumber": "2",
+      "Angle": ""
+    },
+    {
+      "Label": "Google",
+      "IconClass": "fab fa-google",
+      "Image": "",
+      "IconColor": "orbit-color-rose",
+      "OrbitNumber": "3",
+      "Angle": ""
+    },
+    {
+      "Label": "Database",
+      "IconClass": "fas fa-database",
+      "Image": "",
+      "IconColor": "orbit-color-purple",
+      "OrbitNumber": "3",
+      "Angle": ""
+    },
+    {
+      "Label": "Cloud",
+      "IconClass": "fas fa-cloud",
+      "Image": "",
+      "IconColor": "orbit-color-blue",
+      "OrbitNumber": "3",
+      "Angle": ""
+    },
+    {
+      "Label": "Security",
+      "IconClass": "fas fa-shield-halved",
+      "Image": "",
+      "IconColor": "orbit-color-green",
+      "OrbitNumber": "3",
+      "Angle": ""
+    },
+    {
+      "Label": "Network",
+      "IconClass": "fas fa-network-wired",
+      "Image": "",
+      "IconColor": "orbit-color-orange",
+      "OrbitNumber": "3",
+      "Angle": ""
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+@using System
+@using System.Collections.Generic
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(image);
+    }
+
+    private static bool GetBoolean(dynamic value)
+    {
+        if (value == null)
+        {
+            return false;
+        }
+
+        try
+        {
+            return Convert.ToBoolean(value);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static string GetLinkUrl(dynamic link)
+    {
+        if (link == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            if (link.Url != null)
+            {
+                return Convert.ToString(link.Url);
+            }
+        }
+        catch
+        {
+        }
+
+        return Convert.ToString(link);
+    }
+
+    private static int GetOrbitNumber(dynamic value)
+    {
+        if (value == null)
+        {
+            return 1;
+        }
+
+        try
+        {
+            var orbitNumber = Convert.ToInt32(value);
+            if (orbitNumber < 1 || orbitNumber > 3)
+            {
+                return 1;
+            }
+
+            return orbitNumber;
+        }
+        catch
+        {
+            return 1;
+        }
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var eyebrowText = Model.EyebrowText != null ? Convert.ToString(Model.EyebrowText) : string.Empty;
+    var heading = Model.Heading != null ? Convert.ToString(Model.Heading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+
+    var primaryButtonText = Model.PrimaryButtonText != null ? Convert.ToString(Model.PrimaryButtonText) : string.Empty;
+    var primaryButtonLink = GetLinkUrl(Model.PrimaryButtonLink);
+    var primaryButtonOpenInNewWindow = GetBoolean(Model.PrimaryButtonOpenInNewWindow);
+    var secondaryButtonText = Model.SecondaryButtonText != null ? Convert.ToString(Model.SecondaryButtonText) : string.Empty;
+    var secondaryButtonLink = GetLinkUrl(Model.SecondaryButtonLink);
+    var secondaryButtonOpenInNewWindow = GetBoolean(Model.SecondaryButtonOpenInNewWindow);
+
+    var centerIconClass = Model.CenterIconClass != null ? Convert.ToString(Model.CenterIconClass) : string.Empty;
+    var centerImageUrl = GetImageUrl(Model.CenterImage);
+    var centerIconColor = Model.CenterIconColor != null ? Convert.ToString(Model.CenterIconColor) : "orbit-color-blue";
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var containerClass = Model.Settings != null && Model.Settings.ContainerClass != null
+        ? Convert.ToString(Model.Settings.ContainerClass)
+        : "container-xxl";
+
+    var cardTheme = Model.Settings != null && Model.Settings.CardTheme != null
+        ? Convert.ToString(Model.Settings.CardTheme)
+        : "orbit-card-theme-light";
+
+    var animationSpeed = Model.Settings != null && Model.Settings.AnimationSpeed != null
+        ? Convert.ToString(Model.Settings.AnimationSpeed)
+        : "orbit-speed-normal";
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    if (string.IsNullOrWhiteSpace(containerClass))
+    {
+        containerClass = "container-xxl";
+    }
+
+    if (string.IsNullOrWhiteSpace(cardTheme))
+    {
+        cardTheme = "orbit-card-theme-light";
+    }
+
+    if (string.IsNullOrWhiteSpace(animationSpeed))
+    {
+        animationSpeed = "orbit-speed-normal";
+    }
+
+    if (string.IsNullOrWhiteSpace(centerIconClass))
+    {
+        centerIconClass = "fas fa-cube";
+    }
+
+    if (string.IsNullOrWhiteSpace(centerIconColor))
+    {
+        centerIconColor = "orbit-color-blue";
+    }
+
+    var orbitItems = new List<dynamic>();
+    if (Model.OrbitItems != null)
+    {
+        foreach (var item in Model.OrbitItems)
+        {
+            orbitItems.Add(item);
+        }
+    }
+
+    var sectionClass = "upendo-orbit-stack-feature";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+
+    var cardClass = "upendo-orbit-stack-feature__card " + cardTheme + " " + animationSpeed;
+    var hasPrimaryButton = !string.IsNullOrWhiteSpace(primaryButtonText) && !string.IsNullOrWhiteSpace(primaryButtonLink);
+    var hasSecondaryButton = !string.IsNullOrWhiteSpace(secondaryButtonText) && !string.IsNullOrWhiteSpace(secondaryButtonLink);
+    var hasTextContent = !string.IsNullOrWhiteSpace(eyebrowText) || !string.IsNullOrWhiteSpace(heading) || !string.IsNullOrWhiteSpace(introText) || hasPrimaryButton || hasSecondaryButton;
+    var hasOrbitContent = !string.IsNullOrWhiteSpace(centerImageUrl) || !string.IsNullOrWhiteSpace(centerIconClass) || orbitItems.Count > 0;
+    var hasRenderableContent = hasTextContent || hasOrbitContent;
+
+    var generatedModuleAnchor = "upendo-orbit-stack-feature-" + Model.Context.ModuleId;
+    var sectionId = !string.IsNullOrWhiteSpace(moduleAnchor) ? moduleAnchor : generatedModuleAnchor;
+    var headingId = generatedModuleAnchor + "-heading";
+    var ariaLabel = !string.IsNullOrWhiteSpace(moduleTitle)
+        ? moduleTitle
+        : (!string.IsNullOrWhiteSpace(heading) ? heading : "Orbit stack feature section");
+}
+
+@if (hasRenderableContent)
+{
+    <section class="@sectionClass" id="@sectionId" aria-label="@ariaLabel">
+        <div class="@containerClass">
+            <div class="@cardClass">
+                <div class="upendo-orbit-stack-feature__content">
+                    @if (!string.IsNullOrWhiteSpace(eyebrowText))
+                    {
+                        <p class="upendo-orbit-stack-feature__eyebrow">@Html.Raw(eyebrowText)</p>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(heading))
+                    {
+                        <h2 id="@headingId" class="upendo-orbit-stack-feature__heading text-notransform">@Html.Raw(heading)</h2>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(introText))
+                    {
+                        <div class="upendo-orbit-stack-feature__intro">@Html.Raw(introText)</div>
+                    }
+
+                    @if (hasPrimaryButton || hasSecondaryButton)
+                    {
+                        <div class="upendo-orbit-stack-feature__actions">
+                            @if (hasPrimaryButton)
+                            {
+                                if (primaryButtonOpenInNewWindow)
+                                {
+                                    <a class="upendo-orbit-stack-feature__button upendo-orbit-stack-feature__button--primary" href="@primaryButtonLink" target="_blank" rel="noopener noreferrer">@primaryButtonText</a>
+                                }
+                                else
+                                {
+                                    <a class="upendo-orbit-stack-feature__button upendo-orbit-stack-feature__button--primary" href="@primaryButtonLink">@primaryButtonText</a>
+                                }
+                            }
+
+                            @if (hasSecondaryButton)
+                            {
+                                if (secondaryButtonOpenInNewWindow)
+                                {
+                                    <a class="upendo-orbit-stack-feature__button upendo-orbit-stack-feature__button--secondary" href="@secondaryButtonLink" target="_blank" rel="noopener noreferrer">@secondaryButtonText</a>
+                                }
+                                else
+                                {
+                                    <a class="upendo-orbit-stack-feature__button upendo-orbit-stack-feature__button--secondary" href="@secondaryButtonLink">@secondaryButtonText</a>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="upendo-orbit-stack-feature__visual" aria-hidden="true">
+                    <div class="upendo-orbit-stack-feature__orbit-stage">
+                        @for (var orbitNumber = 1; orbitNumber <= 3; orbitNumber++)
+                        {
+                            var orbitClass = "upendo-orbit-stack-feature__orbit upendo-orbit-stack-feature__orbit--" + orbitNumber;
+                            var positionIndex = 0;
+
+                            <div class="@orbitClass">
+                                @foreach (var item in orbitItems)
+                                {
+                                    var itemOrbitNumber = GetOrbitNumber(item.OrbitNumber);
+                                    if (itemOrbitNumber != orbitNumber)
+                                    {
+                                        continue;
+                                    }
+
+                                    var label = item.Label != null ? Convert.ToString(item.Label) : string.Empty;
+                                    var iconClass = item.IconClass != null ? Convert.ToString(item.IconClass) : string.Empty;
+                                    var imageUrl = GetImageUrl(item.Image);
+                                    var iconColor = item.IconColor != null ? Convert.ToString(item.IconColor) : string.Empty;
+                                    var angle = item.Angle != null ? Convert.ToString(item.Angle) : string.Empty;
+
+                                    if (string.IsNullOrWhiteSpace(iconClass))
+                                    {
+                                        iconClass = "fas fa-circle";
+                                    }
+
+                                    if (string.IsNullOrWhiteSpace(iconColor))
+                                    {
+                                        iconColor = "orbit-color-slate";
+                                    }
+
+                                    var itemPositionClass = !string.IsNullOrWhiteSpace(angle)
+                                        ? "upendo-orbit-stack-feature__item--custom"
+                                        : "upendo-orbit-stack-feature__item--pos-" + (positionIndex % 8);
+                                    var itemClass = "upendo-orbit-stack-feature__item " + itemPositionClass + " " + iconColor;
+                                    var itemStyle = !string.IsNullOrWhiteSpace(angle) ? "--orbit-angle:" + angle + "deg;" : string.Empty;
+                                    positionIndex++;
+
+                                    <span class="@itemClass" style="@itemStyle" title="@label">
+                                        @if (!string.IsNullOrWhiteSpace(imageUrl))
+                                        {
+                                            <img src="@imageUrl" alt="" loading="lazy" decoding="async" />
+                                        }
+                                        else
+                                        {
+                                            <i class="@iconClass"></i>
+                                        }
+                                    </span>
+                                }
+                            </div>
+                        }
+
+                        <div class="upendo-orbit-stack-feature__center @centerIconColor">
+                            @if (!string.IsNullOrWhiteSpace(centerImageUrl))
+                            {
+                                <img src="@centerImageUrl" alt="" loading="lazy" decoding="async" />
+                            }
+                            else
+                            {
+                                <i class="@centerIconClass"></i>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
