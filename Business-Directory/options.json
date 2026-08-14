@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "Members": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "MemberName": {
+            "type": "text",
+            "helper": "first & last name"
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "Content/Board/",
+            "typeahead": {
+              "Folder": "Content/Board/"
+            }
+          },
+          "BoardRole": {
+            "type": "text",
+            "placeholder": "Director"
+          },
+          "CompanyName": {
+            "type": "text",
+            "placeholder": "ABC Company"
+          },
+          "CompanyUrl": {
+            "type": "text",
+            "placeholder": "https://example.com"
+          },
+          "MemberTitle": {
+            "type": "text"
+          },
+          "Email": {
+            "type": "email",
+            "placeholder": "you@example.com"
+          },
+          "MemberBio": {
+            "type": "ckeditor",
+            "configset": "basic"
+          }
+        }
+      }
+    }
+  }
+}
