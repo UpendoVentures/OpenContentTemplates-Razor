@@ -1,0 +1,47 @@
+{
+  "ModuleTitle": "Technical Insights",
+  "ModuleAnchor": "technical-insights",
+  "SectionAriaLabel": "Technical insights articles",
+  "SectionHeading": "Technical Insights",
+  "SectionHeadingElement": "h2",
+  "IssueLabel": "Issue 03",
+  "IntroText": "Explore practical engineering perspectives, implementation lessons, and architecture guidance.",
+  "FeaturedArticle": {
+    "Category": "Architecture",
+    "Title": "Designing Systems for Long-Term Technical Clarity",
+    "Description": "A practical look at how durable architecture decisions help teams ship complex work without losing maintainability.",
+    "Image": "",
+    "ImageAlt": "Engineering team reviewing a technical architecture diagram",
+    "ImageFocalPosition": "center center",
+    "CtaText": "Read Insight",
+    "Url": "#",
+    "LinkTarget": "_self",
+    "CtaAriaLabel": "Read the featured technical insight"
+  },
+  "SideArticles": [
+    {
+      "Category": "Implementation",
+      "Title": "Reducing Integration Risk Before Launch",
+      "Description": "A focused checklist for validating assumptions, dependencies, and operational readiness before production rollout.",
+      "Url": "#",
+      "LinkTarget": "_self",
+      "CtaAriaLabel": "Read about reducing integration risk before launch"
+    },
+    {
+      "Category": "Operations",
+      "Title": "What Reliable Delivery Pipelines Need to Prove",
+      "Description": "How automated checks, deployment boundaries, and observability create confidence across release cycles.",
+      "Url": "#",
+      "LinkTarget": "_self",
+      "CtaAriaLabel": "Read about reliable delivery pipelines"
+    },
+    {
+      "Category": "Strategy",
+      "Title": "Turning Technical Debt Into a Managed Portfolio",
+      "Description": "A decision framework for making maintenance work visible, scoped, and valuable to business stakeholders.",
+      "Url": "#",
+      "LinkTarget": "_self",
+      "CtaAriaLabel": "Read about managing technical debt"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "BackgroundColorClass": "bg-light",
+  "CardCorners": "square",
+  "ContainerWidth": "container-xxl",
+  "MarginBottom": "",
+  "MarginTop": "",
+  "PaddingBottom": "pb-5",
+  "PaddingTop": "pt-5",
+  "SideAccentStyle": "primary"
+}
