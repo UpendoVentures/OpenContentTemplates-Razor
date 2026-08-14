@@ -1,0 +1,133 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
+      "placeholder": "Contact and Social Information"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "contact-information",
+      "showMessages": false
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Admin/accessibility field. Used only when no contact heading is provided, so the section still has an accessible label.",
+      "placeholder": "Contact and social information"
+    },
+    "SocialHeadingLead": {
+      "type": "text",
+      "helper": "Bold first part of the social heading.",
+      "placeholder": "Follow Us"
+    },
+    "SocialHeadingText": {
+      "type": "text",
+      "helper": "Regular text shown after the bold social heading lead.",
+      "placeholder": "For Tips, Updates, And Behind-The-Scenes"
+    },
+    "SocialLinks": {
+      "type": "accordion",
+      "titleField": "Label",
+      "helper": "Add social links in display order. Network controls the hover/focus color class.",
+      "items": {
+        "fields": {
+          "Network": {
+            "type": "select",
+            "helper": "Controls the network-specific hover and focus color.",
+            "optionLabels": ["Instagram", "TikTok", "YouTube", "LinkedIn", "Facebook", "Twitter", "Custom"],
+            "removeDefaultNone": true
+          },
+          "Icon": {
+            "type": "text",
+            "helper": "Font Awesome class list. Only letters, numbers, hyphen, underscore, and spaces are rendered.",
+            "placeholder": "fab fa-instagram"
+          },
+          "Label": {
+            "type": "text",
+            "helper": "Visible social link label.",
+            "placeholder": "Instagram"
+          },
+          "Url": {
+            "type": "text",
+            "helper": "Optional link. Allowed protocols: http, https, mailto, tel, anchors, and relative URLs. If blank, the item renders as non-clickable text.",
+            "placeholder": "https://www.instagram.com/"
+          }
+        }
+      }
+    },
+    "ContactHeadingLead": {
+      "type": "text",
+      "helper": "Regular first part of the contact heading.",
+      "placeholder": "Contact"
+    },
+    "ContactHeadingEmphasis": {
+      "type": "text",
+      "helper": "Bold second part of the contact heading.",
+      "placeholder": "Information"
+    },
+    "ContactIntro": {
+      "type": "textarea",
+      "helper": "Introductory contact copy. HTML is encoded for safety; line breaks are preserved.",
+      "placeholder": "Reach our team directly through the contact details below."
+    },
+    "ContactItems": {
+      "type": "accordion",
+      "titleField": "Label",
+      "helper": "Add contact rows in display order.",
+      "items": {
+        "fields": {
+          "Icon": {
+            "type": "text",
+            "helper": "Font Awesome class list. Only letters, numbers, hyphen, underscore, and spaces are rendered.",
+            "placeholder": "fas fa-map-marker-alt"
+          },
+          "Label": {
+            "type": "text",
+            "helper": "Bold label shown before the value.",
+            "placeholder": "Address"
+          },
+          "Value": {
+            "type": "textarea",
+            "helper": "Contact value. Line breaks are rendered safely as line breaks.",
+            "placeholder": "1200 Aerospace Way, Suite 400\nArlington, VA 22202, USA"
+          }
+        }
+      }
+    },
+    "HoursHeadingLead": {
+      "type": "text",
+      "helper": "Regular first part of the hours heading.",
+      "placeholder": "Normal"
+    },
+    "HoursHeadingEmphasis": {
+      "type": "text",
+      "helper": "Bold second part of the hours heading.",
+      "placeholder": "Hours"
+    },
+    "HourItems": {
+      "type": "accordion",
+      "titleField": "Label",
+      "helper": "Add normal hours rows in display order.",
+      "items": {
+        "fields": {
+          "Icon": {
+            "type": "text",
+            "helper": "Font Awesome class list. Only letters, numbers, hyphen, underscore, and spaces are rendered.",
+            "placeholder": "far fa-clock"
+          },
+          "Label": {
+            "type": "text",
+            "helper": "Bold label shown before the value.",
+            "placeholder": "Monday - Friday"
+          },
+          "Value": {
+            "type": "textarea",
+            "helper": "Hours value. Line breaks are rendered safely as line breaks.",
+            "placeholder": "8:00 AM - 5:00 PM"
+          }
+        }
+      }
+    }
+  }
+}

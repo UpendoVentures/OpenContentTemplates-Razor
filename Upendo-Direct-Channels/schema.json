@@ -1,0 +1,115 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section Aria Label"
+    },
+    "SocialHeadingLead": {
+      "type": "string",
+      "title": "Social Heading Lead"
+    },
+    "SocialHeadingText": {
+      "type": "string",
+      "title": "Social Heading Text"
+    },
+    "SocialLinks": {
+      "type": "array",
+      "title": "Social Links",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Network": {
+            "type": "string",
+            "title": "Network",
+            "enum": ["instagram", "tiktok", "youtube", "linkedin", "facebook", "twitter", "custom"],
+            "default": "custom"
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "Label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "Url": {
+            "type": "string",
+            "title": "URL"
+          }
+        }
+      }
+    },
+    "ContactHeadingLead": {
+      "type": "string",
+      "title": "Contact Heading Lead"
+    },
+    "ContactHeadingEmphasis": {
+      "type": "string",
+      "title": "Contact Heading Emphasis"
+    },
+    "ContactIntro": {
+      "type": "string",
+      "title": "Contact Intro"
+    },
+    "ContactItems": {
+      "type": "array",
+      "title": "Contact Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Icon": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "Label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "Value": {
+            "type": "string",
+            "title": "Value"
+          }
+        }
+      }
+    },
+    "HoursHeadingLead": {
+      "type": "string",
+      "title": "Hours Heading Lead"
+    },
+    "HoursHeadingEmphasis": {
+      "type": "string",
+      "title": "Hours Heading Emphasis"
+    },
+    "HourItems": {
+      "type": "array",
+      "title": "Hour Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Icon": {
+            "type": "string",
+            "title": "Icon Class"
+          },
+          "Label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "Value": {
+            "type": "string",
+            "title": "Value"
+          }
+        }
+      }
+    }
+  }
+}

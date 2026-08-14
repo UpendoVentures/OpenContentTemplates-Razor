@@ -1,0 +1,84 @@
+{
+  "ModuleTitle": "Contact and Social Information",
+  "ModuleAnchor": "",
+  "SectionAriaLabel": "Contact and social information",
+  "SocialHeadingLead": "Follow Us",
+  "SocialHeadingText": "For Tips, Updates, And Behind-The-Scenes",
+  "SocialLinks": [
+    {
+      "Network": "instagram",
+      "Icon": "fab fa-instagram",
+      "Label": "Instagram",
+      "Url": "https://www.instagram.com/"
+    },
+    {
+      "Network": "tiktok",
+      "Icon": "fab fa-tiktok",
+      "Label": "TikTok",
+      "Url": "https://www.tiktok.com/"
+    },
+    {
+      "Network": "youtube",
+      "Icon": "fab fa-youtube",
+      "Label": "YouTube",
+      "Url": "https://www.youtube.com/"
+    },
+    {
+      "Network": "linkedin",
+      "Icon": "fab fa-linkedin-in",
+      "Label": "LinkedIn",
+      "Url": "https://www.linkedin.com/"
+    },
+    {
+      "Network": "facebook",
+      "Icon": "fab fa-facebook-f",
+      "Label": "Facebook",
+      "Url": "https://www.facebook.com/"
+    },
+    {
+      "Network": "twitter",
+      "Icon": "fab fa-twitter",
+      "Label": "Twitter",
+      "Url": "https://www.twitter.com/"
+    }
+  ],
+  "ContactHeadingLead": "Contact",
+  "ContactHeadingEmphasis": "Information",
+  "ContactIntro": "For more information about our services or to schedule an appointment, please contact us directly.",
+  "ContactItems": [
+    {
+      "Icon": "fas fa-map-marker-alt",
+      "Label": "Address",
+      "Value": "1200 Aerospace Way, Suite 400\nArlington, VA 22202, USA"
+    },
+    {
+      "Icon": "fas fa-phone",
+      "Label": "Phone",
+      "Value": "+1 (800) 555-PORTEXA"
+    },
+    {
+      "Icon": "fas fa-envelope",
+      "Label": "Email",
+      "Value": "hello@example.com"
+    }
+  ],
+  "HoursHeadingLead": "Normal",
+  "HoursHeadingEmphasis": "Hours",
+  "HourItems": [
+    {
+      "Icon": "far fa-clock",
+      "Label": "Monday - Friday",
+      "Value": "8:00 AM - 5:00 PM"
+    },
+    {
+      "Icon": "far fa-clock",
+      "Label": "Saturday",
+      "Value": "By appointment only"
+    },
+    {
+      "Icon": "far fa-clock",
+      "Label": "Sunday",
+      "Value": "Closed"
+    }
+  ]
+}
