@@ -1,0 +1,5 @@
+<!-- Example web.config appSettings entries. Replace every placeholder per environment. -->
+<add key="UpendoContactForm.ToEmail" value="contact@example.com" />
+<add key="UpendoContactForm.FromEmail" value="no-reply@example.com" />
+<add key="UpendoContactForm.Subject" value="Website contact request" />
+<add key="UpendoContactForm.RecaptchaSecret" value="REPLACE_WITH_RECAPTCHA_V2_SECRET" />

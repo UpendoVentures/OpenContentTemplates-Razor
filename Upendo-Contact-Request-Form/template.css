@@ -1,0 +1,214 @@
+.oc-contact-request-form {
+    --oc-crf-ink: #252525;
+    --oc-crf-muted: #6d6d6d;
+    --oc-crf-border: #dedede;
+    --oc-crf-accent: #ff4057;
+    --oc-crf-focus: rgba(255, 64, 87, 0.22);
+    --oc-crf-button: #333333;
+    --oc-crf-button-hover: #ff4057;
+    color: var(--oc-crf-ink);
+    position: relative;
+    width: 100%;
+}
+
+.oc-crf-content {
+    margin: 0 auto;
+    max-width: 46rem;
+}
+
+.oc-crf-heading {
+    color: var(--oc-crf-ink);
+    font-size: clamp(1.9rem, 3.4vw, 2.55rem);
+    font-weight: 500;
+    letter-spacing: -0.026em;
+    line-height: 1.12;
+    margin: 0 0 clamp(1.75rem, 4vw, 2.7rem);
+    text-align: left;
+}
+
+.oc-crf-heading span {
+    margin-right: 0.3rem;
+}
+
+.oc-crf-heading strong {
+    font-weight: 800;
+}
+
+.oc-crf-form {
+    display: grid;
+    gap: 1.15rem;
+    margin: 0;
+}
+
+.oc-crf-fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.oc-crf-group-label,
+.oc-crf-label {
+    color: var(--oc-crf-ink);
+    display: block;
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 0.45rem;
+}
+
+.oc-crf-name-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.oc-crf-field {
+    margin: 0;
+}
+
+.oc-crf-control {
+    background: #ffffff;
+    border: 1px solid var(--oc-crf-border);
+    border-left: 4px solid var(--oc-crf-accent);
+    border-radius: 0;
+    box-shadow: none;
+    color: var(--oc-crf-ink);
+    display: block;
+    font: inherit;
+    line-height: 1.45;
+    min-height: 3rem;
+    padding: 0.72rem 0.85rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+    width: 100%;
+}
+
+.oc-crf-control:focus {
+    border-color: var(--oc-crf-accent);
+    box-shadow: 0 0 0 0.2rem var(--oc-crf-focus);
+    outline: 0;
+}
+
+.oc-crf-textarea {
+    min-height: 10.5rem;
+    resize: vertical;
+}
+
+.oc-crf-sub-label {
+    color: var(--oc-crf-muted);
+    display: block;
+    font-size: 0.86rem;
+    line-height: 1.3;
+    margin-top: 0.35rem;
+}
+
+.oc-crf-required {
+    color: var(--oc-crf-accent);
+    font-weight: 800;
+    margin-left: 0.15rem;
+}
+
+.oc-crf-actions {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.oc-crf-recaptcha {
+    margin-top: 0.15rem;
+    max-width: 100%;
+    min-height: 78px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.25rem;
+}
+
+.oc-crf-honeypot {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
+
+.oc-crf-submit-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-top: 0.35rem;
+}
+
+.oc-crf-submit {
+    background: var(--oc-crf-button);
+    border: 1px solid var(--oc-crf-button);
+    border-radius: 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-weight: 800;
+    justify-content: center;
+    line-height: 1.2;
+    min-width: 7.5rem;
+    padding: 0.78rem 1.6rem;
+    text-align: center;
+    transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.oc-crf-submit:hover,
+.oc-crf-submit:focus {
+    background: var(--oc-crf-button-hover);
+    border-color: var(--oc-crf-button-hover);
+    color: #ffffff;
+}
+
+.oc-crf-submit:focus-visible {
+    box-shadow: 0 0 0 0.2rem var(--oc-crf-focus);
+    outline: 2px solid var(--oc-crf-accent);
+    outline-offset: 3px;
+}
+
+.oc-crf-submit:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.oc-crf-response {
+    color: var(--oc-crf-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    min-height: 1.5rem;
+}
+
+.oc-crf-response-success {
+    color: #1f7a3f;
+}
+
+.oc-crf-response-error {
+    color: #b42318;
+}
+
+@media (max-width: 575.98px) {
+    .oc-crf-content {
+        max-width: 100%;
+    }
+
+    .oc-crf-name-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .oc-crf-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .oc-crf-submit-row {
+        margin-left: 0;
+    }
+
+    .oc-crf-submit,
+    .oc-crf-submit-row {
+        width: 100%;
+    }
+}

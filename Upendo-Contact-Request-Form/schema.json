@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section Aria Label"
+    },
+    "HeadingLead": {
+      "type": "string",
+      "title": "Heading Lead"
+    },
+    "HeadingEmphasis": {
+      "type": "string",
+      "title": "Heading Emphasis"
+    },
+    "NameLabel": {
+      "type": "string",
+      "title": "Name Label"
+    },
+    "FirstNameLabel": {
+      "type": "string",
+      "title": "First Name Label"
+    },
+    "LastNameLabel": {
+      "type": "string",
+      "title": "Last Name Label"
+    },
+    "CompanyLabel": {
+      "type": "string",
+      "title": "Company Label"
+    },
+    "PhoneLabel": {
+      "type": "string",
+      "title": "Phone Label"
+    },
+    "EmailLabel": {
+      "type": "string",
+      "title": "Email Label"
+    },
+    "RequestLabel": {
+      "type": "string",
+      "title": "Request Label"
+    },
+    "RequestPlaceholder": {
+      "type": "string",
+      "title": "Request Placeholder"
+    },
+    "SubmitText": {
+      "type": "string",
+      "title": "Submit Text"
+    }
+  }
+}

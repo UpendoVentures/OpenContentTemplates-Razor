@@ -1,0 +1,425 @@
+@using System
+@using System.Web
+@using System.Text.RegularExpressions
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string GetString(dynamic value, string fallback = "")
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        var text = Convert.ToString(value);
+        return string.IsNullOrWhiteSpace(text) ? fallback : text;
+    }
+
+    private static bool GetBool(dynamic value, bool fallback)
+    {
+        if (value == null)
+        {
+            return fallback;
+        }
+
+        bool result;
+        return bool.TryParse(Convert.ToString(value), out result) ? result : fallback;
+    }
+
+    private static string GetSettingOrModelString(dynamic settingValue, dynamic modelValue, string fallback = "")
+    {
+        return settingValue == null ? GetString(modelValue, fallback) : GetString(settingValue, fallback);
+    }
+
+    private static bool GetSettingOrModelBool(dynamic settingValue, dynamic modelValue, bool fallback)
+    {
+        return settingValue == null ? GetBool(modelValue, fallback) : GetBool(settingValue, fallback);
+    }
+
+    private static string GetAllowedSettingOrModelString(dynamic settingValue, dynamic modelValue, string fallback, params string[] allowedValues)
+    {
+        var text = GetSettingOrModelString(settingValue, modelValue, fallback);
+
+        foreach (var allowedValue in allowedValues)
+        {
+            if (text.Equals(allowedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedValue;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetAllowedString(dynamic value, string fallback, params string[] allowedValues)
+    {
+        var text = GetString(value, fallback);
+
+        foreach (var allowedValue in allowedValues)
+        {
+            if (text.Equals(allowedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedValue;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetSafeAnchor(dynamic value)
+    {
+        var text = GetString(value).Trim();
+        return Regex.IsMatch(text, "^[a-zA-Z0-9\\-]+$") ? text : string.Empty;
+    }
+
+    private static string GetSafeFormAction(dynamic value)
+    {
+        var text = GetString(value).Trim();
+
+        if (string.IsNullOrWhiteSpace(text) || text.StartsWith("//"))
+        {
+            return string.Empty;
+        }
+
+        if (text.StartsWith("#") || text.StartsWith("/") || text.StartsWith("./") || text.StartsWith("../"))
+        {
+            return text;
+        }
+
+        Uri absoluteUri;
+        if (Uri.TryCreate(text, UriKind.Absolute, out absoluteUri))
+        {
+            var scheme = absoluteUri.Scheme.ToLowerInvariant();
+            return scheme == "http" || scheme == "https" ? text : string.Empty;
+        }
+
+        return text.Contains(":") ? string.Empty : text;
+    }
+
+    private static string GetSafeHexColor(dynamic value, string fallback)
+    {
+        var text = GetString(value, fallback).Trim();
+        return Regex.IsMatch(text, "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$") ? text : fallback;
+    }
+
+    private static string GetFocusColor(string hexColor)
+    {
+        var hex = hexColor.TrimStart('#');
+
+        if (hex.Length == 3)
+        {
+            hex = new string(new[] { hex[0], hex[0], hex[1], hex[1], hex[2], hex[2] });
+        }
+
+        var red = Convert.ToInt32(hex.Substring(0, 2), 16);
+        var green = Convert.ToInt32(hex.Substring(2, 2), 16);
+        var blue = Convert.ToInt32(hex.Substring(4, 2), 16);
+
+        return string.Format("rgba({0}, {1}, {2}, 0.22)", red, green, blue);
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = GetString(Model.ModuleTitle);
+    var moduleAnchor = GetSafeAnchor(Model.ModuleAnchor);
+    var headingLead = GetString(Model.HeadingLead, "How can we");
+    var headingEmphasis = GetString(Model.HeadingEmphasis, "help?");
+    var sectionAriaLabel = GetString(Model.SectionAriaLabel, !string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : (headingLead + " " + headingEmphasis).Trim());
+
+    var defaultFormAction = "/Portals/_default/Handlers/UpendoContactFormSubmit.ashx";
+    var settings = Model.Settings;
+    var formAction = GetSafeFormAction(settings != null ? GetSettingOrModelString(settings.FormAction, Model.FormAction, defaultFormAction) : GetString(Model.FormAction, defaultFormAction));
+    if (string.IsNullOrWhiteSpace(formAction) || string.Equals(formAction, "#", StringComparison.OrdinalIgnoreCase))
+    {
+        formAction = defaultFormAction;
+    }
+    var formMethod = settings != null ? GetAllowedSettingOrModelString(settings.FormMethod, Model.FormMethod, "post", "post", "get") : GetAllowedString(Model.FormMethod, "post", "post", "get");
+    var formActionAttribute = !string.IsNullOrWhiteSpace(formAction) ? " action=\"" + HttpUtility.HtmlAttributeEncode(formAction) + "\"" : string.Empty;
+    var enableRecaptcha = settings != null ? GetSettingOrModelBool(settings.EnableRecaptcha, Model.EnableRecaptcha, false) : GetBool(Model.EnableRecaptcha, false);
+    var recaptchaSiteKey = settings != null ? GetSettingOrModelString(settings.RecaptchaSiteKey, Model.RecaptchaSiteKey).Trim() : GetString(Model.RecaptchaSiteKey).Trim();
+    var recaptchaTheme = settings != null ? GetAllowedSettingOrModelString(settings.RecaptchaTheme, Model.RecaptchaTheme, "light", "light", "dark") : GetAllowedString(Model.RecaptchaTheme, "light", "light", "dark");
+    var recaptchaSize = settings != null ? GetAllowedSettingOrModelString(settings.RecaptchaSize, Model.RecaptchaSize, "normal", "normal", "compact") : GetAllowedString(Model.RecaptchaSize, "normal", "normal", "compact");
+    var showRecaptcha = enableRecaptcha && !string.IsNullOrWhiteSpace(recaptchaSiteKey);
+
+    var nameLabel = GetString(Model.NameLabel, "Name");
+    var firstNameLabel = GetString(Model.FirstNameLabel, "First");
+    var lastNameLabel = GetString(Model.LastNameLabel, "Last");
+    var companyLabel = GetString(Model.CompanyLabel, "Company");
+    var phoneLabel = GetString(Model.PhoneLabel, "Phone number (if you would like us to call)");
+    var emailLabel = GetString(Model.EmailLabel, "Email");
+    var requestLabel = GetString(Model.RequestLabel, "Request");
+    var requestPlaceholder = GetString(Model.RequestPlaceholder);
+    var requestPlaceholderAttribute = !string.IsNullOrWhiteSpace(requestPlaceholder) ? " placeholder=\"" + HttpUtility.HtmlAttributeEncode(requestPlaceholder) + "\"" : string.Empty;
+    var submitText = GetString(Model.SubmitText, "Submit");
+
+    var nameRequired = settings != null ? GetSettingOrModelBool(settings.NameRequired, Model.NameRequired, true) : GetBool(Model.NameRequired, true);
+    var emailRequired = settings != null ? GetSettingOrModelBool(settings.EmailRequired, Model.EmailRequired, true) : GetBool(Model.EmailRequired, true);
+    var requestRequired = settings != null ? GetSettingOrModelBool(settings.RequestRequired, Model.RequestRequired, true) : GetBool(Model.RequestRequired, true);
+
+    var moduleId = Convert.ToString(Model.Context.ModuleId);
+    var headingId = "oc-crf-heading-" + moduleId;
+    var firstNameId = "oc-crf-first-name-" + moduleId;
+    var lastNameId = "oc-crf-last-name-" + moduleId;
+    var companyId = "oc-crf-company-" + moduleId;
+    var phoneId = "oc-crf-phone-" + moduleId;
+    var emailId = "oc-crf-email-" + moduleId;
+    var requestId = "oc-crf-request-" + moduleId;
+    var websiteUrlId = "oc-crf-website-url-" + moduleId;
+
+    var hasHeading = !string.IsNullOrWhiteSpace(headingLead) || !string.IsNullOrWhiteSpace(headingEmphasis);
+    var ariaAttribute = hasHeading
+        ? "aria-labelledby=\"" + HttpUtility.HtmlAttributeEncode(headingId) + "\""
+        : (!string.IsNullOrWhiteSpace(sectionAriaLabel) ? "aria-label=\"" + HttpUtility.HtmlAttributeEncode(sectionAriaLabel) + "\"" : string.Empty);
+
+    var backgroundColorClass = settings != null ? GetAllowedString(settings.BackgroundColorClass, "bg-white", "", "bg-light", "bg-white", "bg-body", "bg-transparent", "bg-light-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-gray") : "bg-white";
+    var containerWidth = settings != null ? GetAllowedString(settings.ContainerWidth, "container", "container", "container-lg", "container-xl", "container-xxl", "container-fluid") : "container";
+    var marginTop = settings != null ? GetAllowedString(settings.MarginTop, "mt-0", "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto") : "mt-0";
+    var marginBottom = settings != null ? GetAllowedString(settings.MarginBottom, "mb-0", "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto") : "mb-0";
+    var paddingTop = settings != null ? GetAllowedString(settings.PaddingTop, "pt-5", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto") : "pt-5";
+    var paddingBottom = settings != null ? GetAllowedString(settings.PaddingBottom, "pb-5", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto") : "pb-5";
+    var accentColor = settings != null ? GetSafeHexColor(settings.AccentColor, "#ff4057") : "#ff4057";
+    var sectionStyle = "--oc-crf-accent: " + accentColor + "; --oc-crf-focus: " + GetFocusColor(accentColor) + ";";
+
+    var sectionClass = "oc-contact-request-form " + backgroundColorClass;
+
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+}
+
+@helper RenderRequiredMark(bool isRequired)
+{
+    if (isRequired)
+    {
+        <span class="oc-crf-required" aria-hidden="true">*</span>
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClass" style="@sectionStyle" @Html.Raw(ariaAttribute)>
+    <div class="@containerWidth">
+        <div class="oc-crf-content">
+            @if (hasHeading)
+            {
+                <h2 id="@headingId" class="oc-crf-heading text-notransform">
+                    @if (!string.IsNullOrWhiteSpace(headingLead))
+                    {
+                        <span>@headingLead</span>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(headingEmphasis))
+                    {
+                        <strong>@headingEmphasis</strong>
+                    }
+                </h2>
+            }
+
+            <div class="oc-crf-form" data-oc-crf-form="@moduleId" data-action="@formAction" data-method="@formMethod">
+                <div class="oc-crf-fieldset" role="group" aria-labelledby="oc-crf-name-label-@moduleId">
+                    <p id="oc-crf-name-label-@moduleId" class="oc-crf-group-label">@nameLabel @RenderRequiredMark(nameRequired)</p>
+                    <div class="oc-crf-name-grid">
+                        <div class="oc-crf-field oc-crf-subfield">
+                            <input id="@firstNameId" class="oc-crf-control" type="text" name="FirstName" autocomplete="given-name"@(nameRequired ? " required" : "") />
+                            <label class="oc-crf-sub-label" for="@firstNameId">@firstNameLabel</label>
+                        </div>
+                        <div class="oc-crf-field oc-crf-subfield">
+                            <input id="@lastNameId" class="oc-crf-control" type="text" name="LastName" autocomplete="family-name"@(nameRequired ? " required" : "") />
+                            <label class="oc-crf-sub-label" for="@lastNameId">@lastNameLabel</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="oc-crf-field">
+                    <label class="oc-crf-label" for="@companyId">@companyLabel</label>
+                    <input id="@companyId" class="oc-crf-control" type="text" name="Company" autocomplete="organization" />
+                </div>
+
+                <div class="oc-crf-field">
+                    <label class="oc-crf-label" for="@phoneId">@phoneLabel</label>
+                    <input id="@phoneId" class="oc-crf-control" type="tel" name="Phone" autocomplete="tel" />
+                </div>
+
+                <div class="oc-crf-field">
+                    <label class="oc-crf-label" for="@emailId">@emailLabel @RenderRequiredMark(emailRequired)</label>
+                    <input id="@emailId" class="oc-crf-control" type="email" name="Email" autocomplete="email"@(emailRequired ? " required" : "") />
+                </div>
+
+                <div class="oc-crf-field">
+                    <label class="oc-crf-label" for="@requestId">@requestLabel @RenderRequiredMark(requestRequired)</label>
+                    <textarea id="@requestId" class="oc-crf-control oc-crf-textarea" name="Request" rows="7"@(requestRequired ? " required" : "")@Html.Raw(requestPlaceholderAttribute)></textarea>
+                </div>
+
+                <div class="oc-crf-honeypot" aria-hidden="true">
+                    <label for="@websiteUrlId">Website URL</label>
+                    <input id="@websiteUrlId" type="text" name="WebsiteUrl" autocomplete="off" tabindex="-1" />
+                </div>
+
+                <div class="oc-crf-actions">
+                    @if (showRecaptcha)
+                    {
+                        <input type="hidden" name="RecaptchaEnabled" value="true" />
+                        <div class="oc-crf-recaptcha">
+                            <div class="g-recaptcha" data-sitekey="@Html.Raw(HttpUtility.HtmlAttributeEncode(recaptchaSiteKey))" data-theme="@Html.Raw(HttpUtility.HtmlAttributeEncode(recaptchaTheme))" data-size="@Html.Raw(HttpUtility.HtmlAttributeEncode(recaptchaSize))"></div>
+                        </div>
+                    }
+
+                    <div class="oc-crf-submit-row">
+                        <button class="oc-crf-submit" type="submit">@submitText</button>
+                    </div>
+                </div>
+                <div class="oc-crf-response" data-oc-crf-response="@moduleId" role="status" aria-live="polite"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        var form = document.querySelector('[data-oc-crf-form="@moduleId"]');
+        if (!form || form.getAttribute('data-bound') === 'true') {
+            return;
+        }
+
+        form.setAttribute('data-bound', 'true');
+
+        var response = document.querySelector('[data-oc-crf-response="@moduleId"]');
+        var submit = form.querySelector('.oc-crf-submit');
+
+        function setResponse(message, isError) {
+            if (!response) {
+                return;
+            }
+
+            response.textContent = message || '';
+            response.className = 'oc-crf-response' + (isError ? ' oc-crf-response-error' : ' oc-crf-response-success');
+        }
+
+        function appendField(data, name) {
+            var field = form.querySelector('[name="' + name + '"]');
+            if (field) {
+                data.append(name, field.value || '');
+            }
+        }
+
+        form.addEventListener('click', function (event) {
+            if (!event.target || !event.target.classList.contains('oc-crf-submit')) {
+                return;
+            }
+
+            event.preventDefault();
+
+            var requiredFields = form.querySelectorAll('[required]');
+            for (var index = 0; index < requiredFields.length; index += 1) {
+                if (!requiredFields[index].checkValidity()) {
+                    requiredFields[index].reportValidity();
+                    return;
+                }
+            }
+
+            var action = form.getAttribute('data-action') || '/Portals/_default/Handlers/UpendoContactFormSubmit.ashx';
+            var data = new FormData();
+            appendField(data, 'FirstName');
+            appendField(data, 'LastName');
+            appendField(data, 'Company');
+            appendField(data, 'Phone');
+            appendField(data, 'Email');
+            appendField(data, 'Request');
+            appendField(data, 'WebsiteUrl');
+
+            var recaptchaEnabled = form.querySelector('[name="RecaptchaEnabled"]');
+            if (recaptchaEnabled) {
+                data.append('RecaptchaEnabled', 'true');
+                if (typeof grecaptcha !== 'undefined') {
+                    data.append('g-recaptcha-response', grecaptcha.getResponse());
+                }
+            }
+
+            if (submit) {
+                submit.disabled = true;
+            }
+            setResponse('Sending...', false);
+
+            fetch(action, {
+                method: 'POST',
+                body: data,
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(function (result) {
+                return result.text().then(function (text) {
+                    return {
+                        ok: result.ok,
+                        contentType: result.headers.get('content-type') || '',
+                        text: text
+                    };
+                });
+            }).then(function (result) {
+                var message = '';
+
+                if (result.contentType.indexOf('application/json') !== -1 && result.text) {
+                    try {
+                        var json = JSON.parse(result.text);
+                        message = json && json.message ? json.message : '';
+                    } catch (ignore) {
+                        message = '';
+                    }
+                }
+
+                if (!message) {
+                    var temp = document.createElement('div');
+                    temp.innerHTML = result.text || '';
+                    var heading = temp.querySelector('h1');
+                    var paragraph = temp.querySelector('p');
+                    message = paragraph ? paragraph.textContent : (heading ? heading.textContent : (result.ok ? 'Thank you. Your request has been sent.' : 'The request could not be sent.'));
+                }
+
+                setResponse(message, !result.ok);
+                if (result.ok) {
+                    var fields = form.querySelectorAll('input, textarea');
+                    for (var index = 0; index < fields.length; index += 1) {
+                        if (fields[index].type !== 'hidden') {
+                            fields[index].value = '';
+                        }
+                    }
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
+                }
+            }).catch(function () {
+                setResponse('The request could not be sent. Please try again later.', true);
+            }).finally(function () {
+                if (submit) {
+                    submit.disabled = false;
+                }
+            });
+        });
+    }());
+</script>
+
+@if (showRecaptcha)
+{
+    <script>
+        (function () {
+            var scriptId = 'oc-crf-recaptcha-api';
+            if (document.getElementById(scriptId)) {
+                return;
+            }
+
+            var script = document.createElement('script');
+            script.id = scriptId;
+            script.src = 'https://www.google.com/recaptcha/api.js';
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }());
+    </script>
+}
