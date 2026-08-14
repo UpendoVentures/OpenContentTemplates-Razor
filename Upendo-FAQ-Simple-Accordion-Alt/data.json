@@ -1,0 +1,41 @@
+{
+    "ModuleTitle": "Portexa FAQ",
+    "ModuleAnchor": "",
+    "SectionHeading": "Portexa FAQ",
+    "IntroText": "",
+    "Groups": [
+        {
+            "GroupTitle": "General Questions",
+            "GroupDescription": "",
+            "Items": [
+                {
+                    "ItemLabel": "First question",
+                    "Question": "What should visitors know first?",
+                    "Answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>"
+                },
+                {
+                    "ItemLabel": "Second question",
+                    "Question": "How can this section be customized?",
+                    "Answer": "<p>Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla.</p>"
+                }
+            ]
+        },
+        {
+            "GroupTitle": "Additional Details",
+            "GroupDescription": "",
+            "Items": [
+                {
+                    "ItemLabel": "Third question",
+                    "Question": "What information belongs in a group?",
+                    "Answer": "<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean lacinia bibendum nulla sed consectetur.</p>"
+                },
+                {
+                    "ItemLabel": "Fourth question",
+                    "Question": "Can answers include formatted text?",
+                    "Answer": "<p>Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod.</p>"
+                }
+            ]
+        }
+    ],
+    "FooterMessage": "Still have questions? Reach out and we will be happy to help."
+}

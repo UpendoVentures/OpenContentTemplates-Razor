@@ -1,0 +1,233 @@
+.oc-faq-simple-accordion-alt {
+    --oc-fsaa-section-heading: #212529;
+    --oc-fsaa-section-text: #495057;
+    --oc-fsaa-item-heading: #212529;
+    --oc-fsaa-item-text: #495057;
+    --oc-fsaa-item-icon: #6c757d;
+}
+
+.oc-fsaa-section--dark {
+    --oc-fsaa-section-heading: #ffffff;
+    --oc-fsaa-section-text: rgba(255, 255, 255, 0.82);
+}
+
+.oc-fsaa-item--dark {
+    --oc-fsaa-item-heading: #ffffff;
+    --oc-fsaa-item-text: rgba(255, 255, 255, 0.82);
+    --oc-fsaa-item-icon: rgba(255, 255, 255, 0.82);
+}
+
+.oc-fsaa-item--light {
+    --oc-fsaa-item-heading: #212529;
+    --oc-fsaa-item-text: #495057;
+    --oc-fsaa-item-icon: #6c757d;
+}
+
+.oc-fsaa-intro {
+    max-width: 64rem;
+}
+
+.oc-fsaa-section-heading {
+    color: var(--oc-fsaa-section-heading) !important;
+    line-height: 1.2;
+}
+
+.oc-fsaa-intro-text,
+.oc-fsaa-intro-text p,
+.oc-fsaa-intro-text li,
+.oc-fsaa-intro-text span,
+.oc-fsaa-intro-text strong,
+.oc-fsaa-intro-text em {
+    color: var(--oc-fsaa-section-text) !important;
+}
+
+.oc-fsaa-intro-text>*:last-child {
+    margin-bottom: 0;
+}
+
+.oc-fsaa-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc-fsaa-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.oc-fsaa-group {
+    display: block;
+}
+
+.oc-fsaa-group-intro {
+    max-width: 54rem;
+    margin-bottom: 1.5rem;
+}
+
+.oc-fsaa-group-heading {
+    color: var(--oc-fsaa-section-heading) !important;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 0 0 0.75rem 0;
+}
+
+.oc-fsaa-group-description,
+.oc-fsaa-group-description p,
+.oc-fsaa-group-description li,
+.oc-fsaa-group-description span,
+.oc-fsaa-group-description strong,
+.oc-fsaa-group-description em,
+.oc-fsaa-group-description a {
+    color: var(--oc-fsaa-section-text) !important;
+}
+
+.oc-fsaa-group-description>*:last-child {
+    margin-bottom: 0;
+}
+
+.oc-fsaa-item {
+    border-radius: 1rem !important;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+.oc-fsaa-header {
+    margin: 0;
+}
+
+.oc-fsaa-button {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 1.5rem 1.75rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.oc-fsaa-button:not(.collapsed) {
+    background: transparent !important;
+}
+
+.oc-fsaa-button::after {
+    display: none !important;
+}
+
+.oc-fsaa-question {
+    display: block;
+    flex: 1 1 auto;
+    color: var(--oc-fsaa-item-heading) !important;
+    font-size: 1.25rem;
+    line-height: 1.35;
+}
+
+.oc-fsaa-icon {
+    flex: 0 0 auto;
+    color: var(--oc-fsaa-item-icon) !important;
+    transition: transform 0.2s ease-in-out;
+}
+
+.oc-fsaa-button:not(.collapsed) .oc-fsaa-icon {
+    transform: rotate(180deg);
+}
+
+.oc-fsaa-answer {
+    padding: 0 1.75rem 1.75rem 1.75rem;
+    color: var(--oc-fsaa-item-text) !important;
+}
+
+.oc-fsaa-answer,
+.oc-fsaa-answer p,
+.oc-fsaa-answer li,
+.oc-fsaa-answer span,
+.oc-fsaa-answer strong,
+.oc-fsaa-answer em,
+.oc-fsaa-answer a {
+    color: var(--oc-fsaa-item-text) !important;
+}
+
+.oc-fsaa-answer>*:last-child {
+    margin-bottom: 0;
+}
+
+.oc-fsaa-footer-message,
+.oc-fsaa-footer-message p,
+.oc-fsaa-footer-message span,
+.oc-fsaa-footer-message strong,
+.oc-fsaa-footer-message em,
+.oc-fsaa-footer-message a {
+    color: var(--oc-fsaa-section-text) !important;
+}
+
+.oc-fsaa-footer-message>*:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom background utilities */
+.bg-off-white {
+    background-color: #f8f7f3 !important;
+}
+
+.bg-warm-white {
+    background-color: #f7f3ed !important;
+}
+
+.bg-cream {
+    background-color: #f4efe6 !important;
+}
+
+.bg-soft-beige {
+    background-color: #e9ddd1 !important;
+}
+
+.bg-sand {
+    background-color: #ddd0bf !important;
+}
+
+.bg-light-sage {
+    background-color: #dfe8dd !important;
+}
+
+.bg-sage {
+    background-color: #b8c6b1 !important;
+}
+
+.bg-pale-green {
+    background-color: #e5eee3 !important;
+}
+
+.bg-mist {
+    background-color: #edf1ef !important;
+}
+
+.bg-soft-gray {
+    background-color: #f1f1ee !important;
+}
+
+.bg-forest-green {
+    background-color: #173f35 !important;
+}
+
+@media (max-width: 767.98px) {
+    .oc-fsaa-button {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .oc-fsaa-answer {
+        padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+
+    .oc-fsaa-question {
+        font-size: 1.125rem;
+    }
+
+    .oc-fsaa-groups {
+        gap: 2.5rem;
+    }
+
+    .oc-fsaa-group-intro {
+        margin-bottom: 1.25rem;
+    }
+}
