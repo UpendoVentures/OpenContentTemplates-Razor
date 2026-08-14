@@ -1,0 +1,16 @@
+{
+  "ModuleTitle": "Contact Request Form",
+  "ModuleAnchor": "",
+  "SectionAriaLabel": "Contact request form",
+  "HeadingLead": "How can we",
+  "HeadingEmphasis": "help?",
+  "NameLabel": "Name",
+  "FirstNameLabel": "First",
+  "LastNameLabel": "Last",
+  "CompanyLabel": "Company",
+  "PhoneLabel": "Phone number (if you would like us to call)",
+  "EmailLabel": "Email",
+  "RequestLabel": "Request",
+  "RequestPlaceholder": "",
+  "SubmitText": "Submit"
+}

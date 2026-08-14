@@ -1,0 +1,12 @@
+{
+  "BackgroundColorClass": "bg-off-white",
+  "ContainerClass": "container-xxl",
+  "ImagePosition": "left",
+  "ImageShape": "soft",
+  "ContentAlignment": "left",
+  "MaxWidth": "standard",
+  "MarginTop": "mt-auto",
+  "MarginBottom": "mb-auto",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5"
+}

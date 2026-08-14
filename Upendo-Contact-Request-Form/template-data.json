@@ -1,0 +1,18 @@
+{
+  "ContainerWidth": "container",
+  "MarginTop": "mt-0",
+  "MarginBottom": "mb-0",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5",
+  "BackgroundColorClass": "bg-white",
+  "AccentColor": "#ff4057",
+  "FormAction": "/Portals/_default/Handlers/UpendoContactFormSubmit.ashx",
+  "FormMethod": "post",
+  "NameRequired": true,
+  "EmailRequired": true,
+  "RequestRequired": true,
+  "EnableRecaptcha": true,
+  "RecaptchaSiteKey": "6LcW5oQtAAAAAAJsliEpRYHopyrrnl9NpWkwe5vx",
+  "RecaptchaTheme": "light",
+  "RecaptchaSize": "normal"
+}

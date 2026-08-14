@@ -1,0 +1,101 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionHeadingElement": {
+      "type": "string",
+      "title": "Section Heading Element",
+      "default": "h2",
+      "enum": ["h2", "h3", "h4"]
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section ARIA Label"
+    },
+    "Documents": {
+      "type": "array",
+      "title": "Documents",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "FileSource": {
+            "type": "string",
+            "title": "File Source",
+            "default": "url",
+            "enum": ["url", "upload"]
+          },
+          "Url": {
+            "type": "string",
+            "title": "URL",
+            "dependencies": ["FileSource"]
+          },
+          "UploadFile": {
+            "type": "string",
+            "title": "Upload File",
+            "dependencies": ["FileSource"]
+          },
+          "FileTypeLabel": {
+            "type": "string",
+            "title": "File Type Label Fallback",
+            "dependencies": ["FileSource"]
+          },
+          "FileMeta": {
+            "type": "string",
+            "title": "Legacy File Meta",
+            "dependencies": ["FileSource"]
+          },
+          "IconClass": {
+            "type": "string",
+            "title": "Icon Class",
+            "default": "fas fa-download"
+          },
+          "FooterLabel": {
+            "type": "string",
+            "title": "Footer Label"
+          },
+          "CtaText": {
+            "type": "string",
+            "title": "CTA Text"
+          },
+          "LinkTarget": {
+            "type": "string",
+            "title": "Link Target",
+            "default": "_self",
+            "enum": ["_self", "_blank"]
+          },
+          "CtaAriaLabel": {
+            "type": "string",
+            "title": "CTA ARIA Label"
+          }
+        },
+        "required": ["Title"]
+      }
+    }
+  },
+  "required": ["Documents"]
+}

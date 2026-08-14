@@ -1,6 +1,7 @@
 @using System
 @using System.Collections.Generic
 @using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
 @using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Models
@@ -139,6 +140,10 @@
 
     var portalSettings = PortalSettings.Current;
     var portalId = portalSettings != null ? portalSettings.PortalId : 0;
+    var currentUser = Dnn != null && Dnn.User != null
+        ? Dnn.User
+        : UserController.Instance.GetCurrentUserInfo();
+    var isAuthenticatedWebsiteMember = currentUser != null && currentUser.UserID > 0 && !currentUser.IsDeleted;
 
     var selectedCategoryIds = new List<int>();
     var activeCategories = portalId > 0
@@ -205,7 +210,11 @@
 
     if (portalId > 0 && selectedCategoryIds.Count > 0)
     {
-        var results = ChamberMembershipController.SearchCompaniesByCategoryIds(portalId, selectedCategoryIds, pageSize);
+        var results = ChamberMembershipController.SearchCompaniesByCategoryIds(
+            portalId,
+            selectedCategoryIds,
+            pageSize,
+            isAuthenticatedWebsiteMember);
 
         if (results != null && results.Items != null)
         {

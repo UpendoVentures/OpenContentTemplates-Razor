@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "Members": {
+      "type": "array",
+      "title": "Members",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "MemberName": {
+            "type": "string",
+            "title": "Name",
+            "required": true
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image",
+            "required": true
+          },
+          "BoardRole": {
+            "type": "string",
+            "title": "Board Role",
+            "required": true,
+            "default": "Director"
+          },
+          "CompanyName": {
+            "type": "string",
+            "title": "Company Name",
+            "required": true
+          },
+          "CompanyUrl": {
+            "type": "string",
+            "title": "Company Website",
+            "required": true
+          },
+          "MemberTitle": {
+            "type": "string",
+            "title": "Company Title"
+          },
+          "Email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "MemberBio": {
+            "type": "string",
+            "title": "Biography (keep it short)"
+          }
+        }
+      }
+    }
+  }
+}

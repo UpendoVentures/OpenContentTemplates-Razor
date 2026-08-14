@@ -1,0 +1,144 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "Eyebrow": {
+      "type": "string",
+      "title": "Eyebrow"
+    },
+    "HeadingElement": {
+      "type": "string",
+      "title": "Heading Element",
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
+      "default": "h2"
+    },
+    "Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "Image": {
+      "type": "string",
+      "title": "Image"
+    },
+    "ShowImageSettings": {
+      "type": "boolean",
+      "title": "Image Settings",
+      "default": false
+    },
+    "ImageAlt": {
+      "type": "string",
+      "title": "Image Alt Text",
+      "dependencies": ["ShowImageSettings"]
+    },
+    "ImageFocalPosition": {
+      "type": "string",
+      "title": "Image Focal Position",
+      "enum": ["left top", "left center", "left bottom", "center top", "center center", "center bottom", "right top", "right center", "right bottom"],
+      "default": "center center",
+      "dependencies": ["ShowImageSettings"]
+    },
+    "ShowStatusCard": {
+      "type": "boolean",
+      "title": "Status Card",
+      "default": false
+    },
+    "StatusLabel": {
+      "type": "string",
+      "title": "Status Label",
+      "dependencies": ["ShowStatusCard"]
+    },
+    "StatusText": {
+      "type": "string",
+      "title": "Status Text",
+      "dependencies": ["ShowStatusCard"]
+    },
+    "StatusDescription": {
+      "type": "string",
+      "title": "Status Description",
+      "dependencies": ["ShowStatusCard"]
+    },
+    "StatusAriaLabel": {
+      "type": "string",
+      "title": "Status Aria Label",
+      "dependencies": ["ShowStatusCard"]
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section Aria Label"
+    },
+    "CtaMode": {
+      "type": "string",
+      "title": "With CTAs",
+      "enum": ["none", "one", "two"],
+      "default": "none"
+    },
+    "PrimaryCtaText": {
+      "type": "string",
+      "title": "Primary CTA Text",
+      "dependencies": ["CtaMode"]
+    },
+    "PrimaryCtaUrl": {
+      "type": "string",
+      "title": "Primary CTA URL",
+      "dependencies": ["CtaMode"]
+    },
+    "PrimaryCtaTarget": {
+      "type": "string",
+      "title": "Primary CTA Target",
+      "enum": ["_self", "_blank"],
+      "default": "_self",
+      "dependencies": ["CtaMode"]
+    },
+    "PrimaryCtaAriaLabel": {
+      "type": "string",
+      "title": "Primary CTA Aria Label",
+      "dependencies": ["CtaMode"]
+    },
+    "PrimaryCtaIcon": {
+      "type": "string",
+      "title": "Primary CTA Icon",
+      "default": "fas fa-file-alt",
+      "dependencies": ["CtaMode"]
+    },
+    "SecondaryCtaText": {
+      "type": "string",
+      "title": "Secondary CTA Text",
+      "dependencies": ["CtaMode"]
+    },
+    "SecondaryCtaUrl": {
+      "type": "string",
+      "title": "Secondary CTA URL",
+      "dependencies": ["CtaMode"]
+    },
+    "SecondaryCtaTarget": {
+      "type": "string",
+      "title": "Secondary CTA Target",
+      "enum": ["_self", "_blank"],
+      "default": "_self",
+      "dependencies": ["CtaMode"]
+    },
+    "SecondaryCtaAriaLabel": {
+      "type": "string",
+      "title": "Secondary CTA Aria Label",
+      "dependencies": ["CtaMode"]
+    },
+    "SecondaryCtaIcon": {
+      "type": "string",
+      "title": "Secondary CTA Icon",
+      "default": "",
+      "dependencies": ["CtaMode"]
+    }
+  }
+}

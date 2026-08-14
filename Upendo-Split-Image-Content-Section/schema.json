@@ -1,0 +1,119 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "Eyebrow": {
+      "type": "string",
+      "title": "Eyebrow"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionHeadingElement": {
+      "type": "string",
+      "title": "Section Heading Element",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ]
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "ImageCount": {
+      "type": "string",
+      "title": "Image Count",
+      "enum": [
+        "one",
+        "two"
+      ]
+    },
+    "PrimaryImage": {
+      "type": "string",
+      "title": "Primary Image"
+    },
+    "PrimaryImageAlt": {
+      "type": "string",
+      "title": "Primary Image Alt Text"
+    },
+    "SecondaryImage": {
+      "type": "string",
+      "title": "Secondary Image",
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "SecondaryImageAlt": {
+      "type": "string",
+      "title": "Secondary Image Alt Text",
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "SecondaryImagePosition": {
+      "type": "string",
+      "title": "Secondary Image Focal Position",
+      "enum": [
+        "top left",
+        "top center",
+        "top right",
+        "center left",
+        "center center",
+        "center right",
+        "bottom left",
+        "bottom center",
+        "bottom right"
+      ],
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "SecondaryHeading": {
+      "type": "string",
+      "title": "Secondary Heading",
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "SecondaryHeadingElement": {
+      "type": "string",
+      "title": "Secondary Heading Element",
+      "enum": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ],
+      "dependencies": [
+        "ImageCount"
+      ]
+    },
+    "SecondaryText": {
+      "type": "string",
+      "title": "Secondary Text",
+      "dependencies": [
+        "ImageCount"
+      ]
+    }
+  },
+  "required": [
+    "SectionHeading",
+    "IntroText"
+  ]
+}

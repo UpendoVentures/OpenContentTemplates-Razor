@@ -1,0 +1,263 @@
+@using System
+@using System.Collections.Generic
+@using System.Text.RegularExpressions
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static object GetDynamicValue(dynamic source, string propertyName)
+    {
+        if (source == null || string.IsNullOrWhiteSpace(propertyName))
+        {
+            return null;
+        }
+
+        try
+        {
+            var dictionary = source as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey(propertyName))
+            {
+                return dictionary[propertyName];
+            }
+        }
+        catch { }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch { }
+
+        try
+        {
+            var property = ((object)source).GetType().GetProperty(propertyName);
+            return property != null ? property.GetValue(source, null) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string GetDynamicString(dynamic source, string propertyName)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        return value != null ? Convert.ToString(value) : string.Empty;
+    }
+
+    private static string GetImageUrl(dynamic image)
+    {
+        if (image == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            var dictionary = image as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey("Url") && dictionary["Url"] != null)
+            {
+                return Convert.ToString(dictionary["Url"]);
+            }
+        }
+        catch { }
+
+        try
+        {
+            if (image.Url != null)
+            {
+                return Convert.ToString(image.Url);
+            }
+        }
+        catch { }
+
+        return image is string ? Convert.ToString(image) : string.Empty;
+    }
+
+    private static string NormalizeSetting(string value, string fallback, HashSet<string> allowedValues)
+    {
+        var normalizedValue = !string.IsNullOrWhiteSpace(value) ? value.Trim() : fallback;
+        foreach (var allowedValue in allowedValues)
+        {
+            if (allowedValue.Equals(normalizedValue, StringComparison.OrdinalIgnoreCase))
+            {
+                return allowedValue;
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string StripHtml(string value, string fallback)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return fallback;
+        }
+
+        var strippedValue = Regex.Replace(value, "<.*?>", string.Empty);
+        return !string.IsNullOrWhiteSpace(strippedValue) ? strippedValue : fallback;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = GetDynamicString(Model, "ModuleTitle");
+    var moduleAnchor = GetDynamicString(Model, "ModuleAnchor");
+    var eyebrow = GetDynamicString(Model, "Eyebrow");
+    var sectionHeading = GetDynamicString(Model, "SectionHeading");
+    var sectionHeadingElement = GetDynamicString(Model, "SectionHeadingElement");
+    var introText = GetDynamicString(Model, "IntroText");
+    var imageCount = GetDynamicString(Model, "ImageCount");
+    var primaryImageUrl = GetImageUrl(GetDynamicValue(Model, "PrimaryImage"));
+    var primaryImageAlt = GetDynamicString(Model, "PrimaryImageAlt");
+    var secondaryImageUrl = GetImageUrl(GetDynamicValue(Model, "SecondaryImage"));
+    var secondaryImageAlt = GetDynamicString(Model, "SecondaryImageAlt");
+    var secondaryImagePosition = GetDynamicString(Model, "SecondaryImagePosition");
+    var secondaryHeading = GetDynamicString(Model, "SecondaryHeading");
+    var secondaryHeadingElement = GetDynamicString(Model, "SecondaryHeadingElement");
+    var secondaryText = GetDynamicString(Model, "SecondaryText");
+
+    var allowedBackgrounds = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary",
+        "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white",
+        "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle",
+        "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white",
+        "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray",
+        "bg-forest-green"
+    };
+
+    var allowedContainers = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "container", "container-lg", "container-xl", "container-xxl", "container-fluid" };
+    var allowedImagePositions = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "left", "right" };
+    var allowedImageShapes = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "soft", "rounded", "arch", "square" };
+    var allowedTextAlignments = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "left", "center" };
+    var allowedMaxWidths = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "standard", "wide" };
+    var allowedImageCounts = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "one", "two" };
+    var allowedHeadingElements = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "h1", "h2", "h3", "h4", "h5", "h6" };
+    var allowedObjectPositions = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "top left", "top center", "top right", "center left", "center center", "center right", "bottom left", "bottom center", "bottom right" };
+    var allowedSpacing = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto" };
+
+    var settings = GetDynamicValue(Model, "Settings");
+    var backgroundColorClass = NormalizeSetting(GetDynamicString(settings, "BackgroundColorClass"), "", allowedBackgrounds);
+    var containerClass = NormalizeSetting(GetDynamicString(settings, "ContainerClass"), "container-xxl", allowedContainers);
+    var imagePosition = NormalizeSetting(GetDynamicString(settings, "ImagePosition"), "left", allowedImagePositions);
+    var imageShape = NormalizeSetting(GetDynamicString(settings, "ImageShape"), "soft", allowedImageShapes);
+    var contentAlignment = NormalizeSetting(GetDynamicString(settings, "ContentAlignment"), "left", allowedTextAlignments);
+    var maxWidth = NormalizeSetting(GetDynamicString(settings, "MaxWidth"), "standard", allowedMaxWidths);
+    var marginTop = NormalizeSetting(GetDynamicString(settings, "MarginTop"), "mt-auto", allowedSpacing);
+    var marginBottom = NormalizeSetting(GetDynamicString(settings, "MarginBottom"), "mb-auto", allowedSpacing);
+    var paddingTop = NormalizeSetting(GetDynamicString(settings, "PaddingTop"), "pt-5", allowedSpacing);
+    var paddingBottom = NormalizeSetting(GetDynamicString(settings, "PaddingBottom"), "pb-5", allowedSpacing);
+    sectionHeadingElement = NormalizeSetting(sectionHeadingElement, "h2", allowedHeadingElements);
+    secondaryHeadingElement = NormalizeSetting(secondaryHeadingElement, "h3", allowedHeadingElements);
+    imageCount = NormalizeSetting(imageCount, "two", allowedImageCounts);
+    var useTwoImages = imageCount == "two";
+
+    if (string.IsNullOrWhiteSpace(primaryImageAlt))
+    {
+        primaryImageAlt = StripHtml(sectionHeading, "Mission environment computing");
+    }
+
+    if (useTwoImages && string.IsNullOrWhiteSpace(secondaryImageAlt))
+    {
+        secondaryImageAlt = StripHtml(secondaryHeading, "Deployable mission computing");
+    }
+
+    var hasEyebrow = !string.IsNullOrWhiteSpace(eyebrow);
+    var hasHeading = !string.IsNullOrWhiteSpace(sectionHeading);
+    var hasIntro = !string.IsNullOrWhiteSpace(introText);
+    var hasPrimaryImage = !string.IsNullOrWhiteSpace(primaryImageUrl);
+    var hasSecondaryImage = !string.IsNullOrWhiteSpace(secondaryImageUrl);
+    var hasVisual = useTwoImages ? (hasPrimaryImage || hasSecondaryImage) : hasPrimaryImage;
+    var primaryVisualUrl = useTwoImages && !hasPrimaryImage ? secondaryImageUrl : primaryImageUrl;
+    var primaryVisualAlt = useTwoImages && !hasPrimaryImage ? secondaryImageAlt : primaryImageAlt;
+    var hasSecondaryVisual = useTwoImages && hasPrimaryImage && hasSecondaryImage;
+    if (hasSecondaryVisual)
+    {
+        secondaryImagePosition = NormalizeSetting(secondaryImagePosition, "center center", allowedObjectPositions);
+    }
+    var secondaryImageStyle = hasSecondaryVisual ? "--oc-sics-secondary-position: " + secondaryImagePosition + ";" : null;
+    var hasSecondaryHeading = !string.IsNullOrWhiteSpace(secondaryHeading);
+    var hasSecondaryText = !string.IsNullOrWhiteSpace(secondaryText);
+    var hasSecondaryPanel = useTwoImages && (hasSecondaryHeading || hasSecondaryText);
+    var hasRenderableContent = hasEyebrow || hasHeading || hasIntro || hasVisual || hasSecondaryPanel;
+
+    var sectionId = "oc-split-image-content-section-" + Model.Context.ModuleId;
+    var headingId = !string.IsNullOrWhiteSpace(moduleAnchor) ? moduleAnchor + "-heading" : sectionId + "-heading";
+    var sectionClass = "oc-split-image-content-section oc-sics-image-" + imagePosition + " oc-sics-shape-" + imageShape + " oc-sics-align-" + contentAlignment + " oc-sics-width-" + maxWidth;
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClass += " " + backgroundColorClass; }
+    sectionClass += " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+
+    var imageColumnClass = "oc-sics-visual-col";
+    var contentColumnClass = "oc-sics-content-col";
+    var ariaLabel = !string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : (!string.IsNullOrWhiteSpace(sectionHeading) ? StripHtml(sectionHeading, "Mission environment computing") : "Mission environment computing");
+    var sectionAriaLabelledBy = hasHeading ? headingId : null;
+    var sectionAriaLabel = hasHeading ? null : ariaLabel;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasRenderableContent)
+{
+    <section id="@sectionId" class="@sectionClass" aria-labelledby="@sectionAriaLabelledBy" aria-label="@sectionAriaLabel">
+        <div class="@containerClass">
+            <div class="oc-sics-inner mx-auto">
+                <div class="oc-sics-layout">
+                    <div class="@contentColumnClass">
+                        <div class="oc-sics-content">
+                            @if (hasEyebrow)
+                            {
+                                <div class="oc-sics-eyebrow">@Html.Raw(eyebrow)</div>
+                            }
+
+                            @if (hasHeading)
+                            {
+                                @Html.Raw("<" + sectionHeadingElement + " id=\"" + HttpUtility.HtmlAttributeEncode(headingId) + "\" class=\"oc-sics-heading text-notransform\">")@Html.Raw(sectionHeading)@Html.Raw("</" + sectionHeadingElement + ">")
+                            }
+
+                            @if (hasIntro)
+                            {
+                                <div class="oc-sics-intro">@Html.Raw(introText)</div>
+                            }
+                        </div>
+                    </div>
+
+                    @if (hasVisual)
+                    {
+                        <div class="@imageColumnClass">
+                            <figure class="oc-sics-visual mb-0" style="@secondaryImageStyle">
+                                <img class="oc-sics-image oc-sics-primary-image" src="@primaryVisualUrl" alt="@HttpUtility.HtmlAttributeEncode(primaryVisualAlt)" loading="lazy" decoding="async" />
+                                @if (hasSecondaryVisual)
+                                {
+                                    <img class="oc-sics-image oc-sics-secondary-image" src="@secondaryImageUrl" alt="@HttpUtility.HtmlAttributeEncode(secondaryImageAlt)" loading="lazy" decoding="async" />
+                                }
+                            </figure>
+                        </div>
+                    }
+
+                    @if (hasSecondaryPanel)
+                    {
+                        <aside class="oc-sics-panel">
+                            @if (hasSecondaryHeading)
+                            {
+                                @Html.Raw("<" + secondaryHeadingElement + " class=\"oc-sics-panel-heading text-notransform\">")@Html.Raw(secondaryHeading)@Html.Raw("</" + secondaryHeadingElement + ">")
+                            }
+
+                            @if (hasSecondaryText)
+                            {
+                                <div class="oc-sics-panel-text">@Html.Raw(secondaryText)</div>
+                            }
+                        </aside>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}

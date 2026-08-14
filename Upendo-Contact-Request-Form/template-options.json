@@ -1,0 +1,101 @@
+{
+  "fields": {
+    "ContainerWidth": {
+      "type": "select",
+      "helper": "Layout. Controls the maximum width of the inner content container.",
+      "optionLabels": ["Default Container", "Large Container", "Extra Large Container", "Extra Extra Large Container", "Full Width Container"],
+      "removeDefaultNone": true
+    },
+    "MarginTop": {
+      "title": "Margin (top)",
+      "type": "select",
+      "helper": "Spacing. Optional utility class controlling spacing above this section.",
+      "optionLabels": ["None", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto"],
+      "removeDefaultNone": true
+    },
+    "MarginBottom": {
+      "title": "Margin (bottom)",
+      "type": "select",
+      "helper": "Spacing. Optional utility class controlling spacing below this section.",
+      "optionLabels": ["None", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto"],
+      "removeDefaultNone": true
+    },
+    "PaddingTop": {
+      "title": "Padding (top)",
+      "type": "select",
+      "helper": "Spacing. Optional utility class controlling inner spacing above the content.",
+      "optionLabels": ["None", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto"],
+      "removeDefaultNone": true
+    },
+    "PaddingBottom": {
+      "title": "Padding (bottom)",
+      "type": "select",
+      "helper": "Spacing. Optional utility class controlling inner spacing below the content.",
+      "optionLabels": ["None", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto"],
+      "removeDefaultNone": true
+    },
+    "BackgroundColorClass": {
+      "type": "select",
+      "helper": "Background. Choose a light shared Bootstrap/site background utility.",
+      "optionLabels": ["None", "Light", "White", "Body", "Transparent", "Light Subtle", "Off White", "Warm White", "Cream", "Soft Gray"],
+      "removeDefaultNone": true
+    },
+    "AccentColor": {
+      "type": "text",
+      "helper": "Design. Hex color used for the left accent border on form inputs. Use #RGB or #RRGGBB only. Defaults to #ff4057."
+    },
+    "FormAction": {
+      "type": "text",
+      "helper": "Behavior. Submission target for the form. Allowed values are relative URLs, anchors, http, or https. Leave blank to use the default handler.",
+      "placeholder": "/Portals/_default/Handlers/UpendoContactFormSubmit.ashx"
+    },
+    "FormMethod": {
+      "type": "select",
+      "helper": "Behavior. HTTP method used when the configured action receives the form.",
+      "optionLabels": ["POST", "GET"],
+      "removeDefaultNone": true
+    },
+    "NameRequired": {
+      "type": "checkbox",
+      "helper": "Required fields. When enabled, both first and last name inputs render with required attributes and a red asterisk."
+    },
+    "EmailRequired": {
+      "type": "checkbox",
+      "helper": "Required fields. When enabled, the email input renders with a required attribute and a red asterisk."
+    },
+    "RequestRequired": {
+      "type": "checkbox",
+      "helper": "Required fields. When enabled, the request textarea renders with a required attribute and a red asterisk."
+    },
+    "EnableRecaptcha": {
+      "type": "checkbox",
+      "helper": "reCAPTCHA. When enabled, renders a Google reCAPTCHA v2 checkbox before the submit button. The configured form handler must validate the response server-side."
+    },
+    "RecaptchaSiteKey": {
+      "type": "text",
+      "helper": "reCAPTCHA. Public Google reCAPTCHA site key. Do not enter the secret key here.",
+      "placeholder": "Your public site key",
+      "dependencies": {
+        "EnableRecaptcha": [true]
+      }
+    },
+    "RecaptchaTheme": {
+      "type": "select",
+      "helper": "reCAPTCHA. Visual theme for the reCAPTCHA checkbox.",
+      "optionLabels": ["Light", "Dark"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "EnableRecaptcha": [true]
+      }
+    },
+    "RecaptchaSize": {
+      "type": "select",
+      "helper": "reCAPTCHA. Size for the reCAPTCHA checkbox.",
+      "optionLabels": ["Normal", "Compact"],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "EnableRecaptcha": [true]
+      }
+    }
+  }
+}

@@ -1,0 +1,226 @@
+.oc-split-image-content-section {
+    width: 100%;
+    overflow: hidden;
+}
+
+.oc-split-image-content-section .oc-sics-inner {
+    width: 100%;
+}
+
+.oc-split-image-content-section .oc-sics-layout {
+    display: grid;
+    grid-template-areas:
+        "visual content"
+        "visual panel";
+    grid-template-columns: minmax(0, 48%) minmax(0, 52%);
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: 2rem;
+    align-items: center;
+}
+
+.oc-split-image-content-section.oc-sics-image-right .oc-sics-layout {
+    grid-template-areas:
+        "content visual"
+        "panel visual";
+    grid-template-columns: minmax(0, 52%) minmax(0, 48%);
+}
+
+.oc-split-image-content-section .oc-sics-visual-col {
+    grid-area: visual;
+}
+
+.oc-split-image-content-section .oc-sics-content-col {
+    grid-area: content;
+    align-self: end;
+}
+
+.oc-split-image-content-section.oc-sics-width-standard .oc-sics-inner {
+    max-width: 82rem;
+}
+
+.oc-split-image-content-section.oc-sics-width-wide .oc-sics-inner {
+    max-width: 96rem;
+}
+
+.oc-split-image-content-section .oc-sics-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 1.4vw, 1.25rem);
+    min-height: 100%;
+    padding: 0;
+}
+
+.oc-split-image-content-section .oc-sics-image {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.oc-split-image-content-section .oc-sics-primary-image {
+    aspect-ratio: 16 / 9;
+    object-position: center center;
+}
+
+.oc-split-image-content-section .oc-sics-secondary-image {
+    width: 84%;
+    margin-left: auto;
+    aspect-ratio: 16 / 6.25;
+    object-position: var(--oc-sics-secondary-position, center center);
+}
+
+.oc-split-image-content-section.oc-sics-shape-soft .oc-sics-image {
+    border-radius: 2.25rem;
+}
+
+.oc-split-image-content-section.oc-sics-shape-rounded .oc-sics-image {
+    border-radius: 1rem;
+}
+
+.oc-split-image-content-section.oc-sics-shape-arch .oc-sics-image {
+    border-radius: 7rem 7rem 1.75rem 1.75rem;
+}
+
+.oc-split-image-content-section.oc-sics-shape-square .oc-sics-image {
+    border-radius: 0;
+}
+
+.oc-split-image-content-section .oc-sics-content {
+    max-width: 42rem;
+}
+
+.oc-split-image-content-section.oc-sics-align-center .oc-sics-content {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.oc-split-image-content-section.oc-sics-align-left.oc-sics-image-left .oc-sics-content {
+    margin-left: auto;
+}
+
+.oc-split-image-content-section .oc-sics-eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bs-primary, #01233f);
+}
+
+.oc-split-image-content-section .oc-sics-heading {
+    margin: 0;
+    max-width: 12.5em;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.oc-split-image-content-section .oc-sics-intro {
+    margin-top: 1.5rem;
+    line-height: 1.75;
+    max-width: 650px;
+    opacity: 0.9;
+}
+
+.oc-split-image-content-section .oc-sics-intro > *:last-child,
+.oc-split-image-content-section .oc-sics-panel-text > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-split-image-content-section .oc-sics-panel {
+    grid-area: panel;
+    position: relative;
+    align-self: start;
+    margin: 0;
+    padding: 0 0 0 clamp(1.5rem, 2.4vw, 1.875rem);
+    border-left: 0.25rem solid var(--bs-primary, #01233f);
+}
+
+.oc-split-image-content-section.oc-sics-align-center .oc-sics-panel {
+    border-right: 0;
+}
+
+.oc-split-image-content-section .oc-sics-panel-heading {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+    line-height: 1.15;
+}
+
+.oc-split-image-content-section .oc-sics-panel-text {
+    line-height: 1.7;
+    opacity: 0.88;
+}
+
+@media (max-width: 991.98px) {
+    .oc-split-image-content-section .oc-sics-layout,
+    .oc-split-image-content-section.oc-sics-image-right .oc-sics-layout {
+        grid-template-areas:
+            "content visual"
+            "panel panel";
+        grid-template-columns: minmax(0, 50%) minmax(0, 50%);
+        column-gap: 2rem;
+    }
+
+    .oc-split-image-content-section .oc-sics-content {
+        max-width: none;
+    }
+
+    .oc-split-image-content-section.oc-sics-align-left.oc-sics-image-left .oc-sics-content {
+        margin-left: 0;
+    }
+
+    .oc-split-image-content-section .oc-sics-secondary-image {
+        width: 88%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .oc-split-image-content-section .oc-sics-layout,
+    .oc-split-image-content-section.oc-sics-image-right .oc-sics-layout {
+        grid-template-areas:
+            "content"
+            "visual"
+            "panel";
+        grid-template-columns: 1fr;
+        row-gap: 1.75rem;
+    }
+
+    .oc-split-image-content-section .oc-sics-primary-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .oc-split-image-content-section .oc-sics-secondary-image {
+        width: 100%;
+        margin-left: 0;
+        aspect-ratio: 16 / 7;
+    }
+
+    .oc-split-image-content-section.oc-sics-shape-soft .oc-sics-image {
+        border-radius: 1.35rem;
+    }
+
+    .oc-split-image-content-section.oc-sics-shape-arch .oc-sics-image {
+        border-radius: 4rem 4rem 1.25rem 1.25rem;
+    }
+
+    .oc-split-image-content-section .oc-sics-panel {
+        padding-left: 1.5rem;
+    }
+}
+
+/* Custom background colors scoped to this template's root. */
+.oc-split-image-content-section.bg-off-white { background-color: #faf9f6 !important; }
+.oc-split-image-content-section.bg-warm-white { background-color: #f7f5f0 !important; }
+.oc-split-image-content-section.bg-cream { background-color: #f3eee4 !important; }
+.oc-split-image-content-section.bg-soft-beige { background-color: #e9dfcf !important; }
+.oc-split-image-content-section.bg-sand { background-color: #ddd0bc !important; }
+.oc-split-image-content-section.bg-light-sage { background-color: #dfe8dc !important; }
+.oc-split-image-content-section.bg-sage { background-color: #c7d3c1 !important; }
+.oc-split-image-content-section.bg-pale-green { background-color: #e9eee8 !important; }
+.oc-split-image-content-section.bg-mist { background-color: #eef2ee !important; }
+.oc-split-image-content-section.bg-soft-gray { background-color: #f4f4f1 !important; }
+.oc-split-image-content-section.bg-forest-green { background-color: #1f3a2d !important; color: #fff; }

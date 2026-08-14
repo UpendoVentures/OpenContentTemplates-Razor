@@ -1,0 +1,13 @@
+{
+  "BackgroundColorClass": "bg-light",
+  "CardCorners": "soft",
+  "CardsPerRow": "3",
+  "CardStyle": "flat",
+  "ContainerWidth": "container-xxl",
+  "DefaultView": "grid",
+  "IconColor": "primary",
+  "MarginBottom": "",
+  "MarginTop": "",
+  "PaddingBottom": "pb-5",
+  "PaddingTop": "pt-5"
+}

@@ -1,0 +1,349 @@
+@using System
+@using System.Collections.Generic
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public bool ShouldOpenLinkInNewTab(dynamic linkTarget)
+    {
+        if (linkTarget == null)
+        {
+            return false;
+        }
+
+        var value = Convert.ToString(linkTarget);
+
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        return value.Equals("NewTab", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("New Tab", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("_blank", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("blank", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public string GetLinkAttributes(dynamic linkTarget)
+    {
+        return ShouldOpenLinkInNewTab(linkTarget)
+            ? " target=\"_blank\" rel=\"noopener noreferrer\""
+            : string.Empty;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var sectionClasses = "oc-portexa-link-cards-alt";
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClasses += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClasses += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClasses += " " + paddingBottom; }
+
+    var cards = new List<dynamic>();
+
+    if (Model.LinkCards != null)
+    {
+        var count = 0;
+        foreach (var item in Model.LinkCards)
+        {
+            if (count >= 4)
+            {
+                break;
+            }
+
+            cards.Add(item);
+            count++;
+        }
+    }
+
+    dynamic card1 = cards.Count > 0 ? cards[0] : null;
+    dynamic card2 = cards.Count > 1 ? cards[1] : null;
+    dynamic card3 = cards.Count > 2 ? cards[2] : null;
+    dynamic card4 = cards.Count > 3 ? cards[3] : null;
+}
+
+@if (cards.Count > 0)
+{
+    <section class="@sectionClasses"@if (!string.IsNullOrWhiteSpace(moduleAnchor)) { <text> id="@moduleAnchor"</text> }>
+        <div class="container">
+            @if (!string.IsNullOrWhiteSpace(sectionHeading))
+            {
+                <div class="oc-plca-heading-wrap">
+                    <h3 class="oc-plca-heading text-notransform">@sectionHeading</h3>
+                    <div class="oc-plca-heading-accent" aria-hidden="true"></div>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(sectionDescription))
+            {
+                <div class="oc-plca-description">
+                    <p class="py-1">@sectionDescription</p>
+                </div>
+            }
+
+            <div class="oc-plca-grid">
+                <div class="oc-plca-row oc-plca-row-1">
+                    @if (card1 != null)
+                    {
+                        var title = card1.Title != null ? Convert.ToString(card1.Title) : string.Empty;
+                        var description = card1.Description != null ? Convert.ToString(card1.Description) : string.Empty;
+                        var image = card1.BackgroundImage != null ? Convert.ToString(card1.BackgroundImage) : string.Empty;
+                        var hasImage = !string.IsNullOrWhiteSpace(image);
+                        var icon = card1.FontAwesomeIcon != null ? Convert.ToString(card1.FontAwesomeIcon) : string.Empty;
+                        var url = card1.Url != null ? Convert.ToString(card1.Url) : string.Empty;
+                        var linkAttributes = card1.LinkTarget != null ? GetLinkAttributes(card1.LinkTarget) : string.Empty;
+
+                        <div class="oc-plca-card oc-plca-card-1@(hasImage ? " oc-plca-card-has-image" : string.Empty)">
+                            @if (!string.IsNullOrWhiteSpace(url))
+                            {
+                                <a class="oc-plca-card-link" href="@url"@Html.Raw(linkAttributes)>
+                                    @if (hasImage)
+                                    {
+                                        <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                    }
+                                    <div class="oc-plca-overlay oc-plca-overlay-green"></div>
+                                    <div class="oc-plca-content oc-plca-content-bottom oc-plca-text-left">
+                                        <div class="oc-plca-text-wrap">
+                                            <h3 class="oc-plca-card-title oc-plca-card-title-light text-notransform">@title</h3>
+                                            <p class="oc-plca-card-text oc-plca-card-text-light">@description</p>
+                                        </div>
+                                        @if (!string.IsNullOrWhiteSpace(icon))
+                                        {
+                                            <div class="oc-plca-icon oc-plca-icon-bottom-left oc-plca-icon-light" aria-hidden="true">
+                                                <i class="@icon"></i>
+                                            </div>
+                                        }
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                if (hasImage)
+                                {
+                                    <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                }
+                                <div class="oc-plca-overlay oc-plca-overlay-green"></div>
+                                <div class="oc-plca-content oc-plca-content-bottom oc-plca-text-left">
+                                    <div class="oc-plca-text-wrap">
+                                        <h3 class="oc-plca-card-title oc-plca-card-title-light text-notransform">@title</h3>
+                                        <p class="oc-plca-card-text oc-plca-card-text-light">@description</p>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(icon))
+                                    {
+                                        <div class="oc-plca-icon oc-plca-icon-bottom-left oc-plca-icon-light" aria-hidden="true">
+                                            <i class="@icon"></i>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (card2 != null)
+                    {
+                        var title = card2.Title != null ? Convert.ToString(card2.Title) : string.Empty;
+                        var description = card2.Description != null ? Convert.ToString(card2.Description) : string.Empty;
+                        var image = card2.BackgroundImage != null ? Convert.ToString(card2.BackgroundImage) : string.Empty;
+                        var hasImage = !string.IsNullOrWhiteSpace(image);
+                        var icon = card2.FontAwesomeIcon != null ? Convert.ToString(card2.FontAwesomeIcon) : string.Empty;
+                        var url = card2.Url != null ? Convert.ToString(card2.Url) : string.Empty;
+                        var linkAttributes = card2.LinkTarget != null ? GetLinkAttributes(card2.LinkTarget) : string.Empty;
+
+                        <div class="oc-plca-card oc-plca-card-2@(hasImage ? " oc-plca-card-has-image" : string.Empty)">
+                            @if (!string.IsNullOrWhiteSpace(url))
+                            {
+                                <a class="oc-plca-card-link" href="@url"@Html.Raw(linkAttributes)>
+                                    @if (hasImage)
+                                    {
+                                        <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                    }
+                                    <div class="oc-plca-overlay oc-plca-overlay-beige"></div>
+                                    <div class="oc-plca-content oc-plca-content-middle oc-plca-text-left">
+                                        <div class="oc-plca-text-wrap oc-plca-text-wrap-card-2">
+                                            <h3 class="oc-plca-card-title oc-plca-card-title-dark text-notransform">@title</h3>
+                                            <p class="oc-plca-card-text oc-plca-card-text-dark">@description</p>
+                                        </div>
+                                        @if (!string.IsNullOrWhiteSpace(icon))
+                                        {
+                                            <div class="oc-plca-icon oc-plca-icon-bottom-left oc-plca-icon-dark" aria-hidden="true">
+                                                <i class="@icon"></i>
+                                            </div>
+                                        }
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                if (hasImage)
+                                {
+                                    <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                }
+                                <div class="oc-plca-overlay oc-plca-overlay-beige"></div>
+                                <div class="oc-plca-content oc-plca-content-middle oc-plca-text-left">
+                                    <div class="oc-plca-text-wrap oc-plca-text-wrap-card-2">
+                                        <h3 class="oc-plca-card-title oc-plca-card-title-dark text-notransform">@title</h3>
+                                        <p class="oc-plca-card-text oc-plca-card-text-dark">@description</p>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(icon))
+                                    {
+                                        <div class="oc-plca-icon oc-plca-icon-bottom-left oc-plca-icon-dark" aria-hidden="true">
+                                            <i class="@icon"></i>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="oc-plca-row oc-plca-row-2">
+                    @if (card3 != null)
+                    {
+                        var title = card3.Title != null ? Convert.ToString(card3.Title) : string.Empty;
+                        var description = card3.Description != null ? Convert.ToString(card3.Description) : string.Empty;
+                        var image = card3.BackgroundImage != null ? Convert.ToString(card3.BackgroundImage) : string.Empty;
+                        var hasImage = !string.IsNullOrWhiteSpace(image);
+                        var icon = card3.FontAwesomeIcon != null ? Convert.ToString(card3.FontAwesomeIcon) : string.Empty;
+                        var url = card3.Url != null ? Convert.ToString(card3.Url) : string.Empty;
+                        var linkAttributes = card3.LinkTarget != null ? GetLinkAttributes(card3.LinkTarget) : string.Empty;
+
+                        <div class="oc-plca-card oc-plca-card-3@(hasImage ? " oc-plca-card-has-image" : string.Empty)">
+                            @if (!string.IsNullOrWhiteSpace(url))
+                            {
+                                <a class="oc-plca-card-link" href="@url"@Html.Raw(linkAttributes)>
+                                    @if (hasImage)
+                                    {
+                                        <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                    }
+                                    <div class="oc-plca-content oc-plca-content-between oc-plca-text-left">
+                                        <div class="oc-plca-text-wrap">
+                                            <h3 class="oc-plca-card-title oc-plca-card-title-dark text-notransform">@title</h3>
+                                        </div>
+                                        <div class="oc-plca-card-footer">
+                                            <div class="oc-plca-text-wrap">
+                                                <p class="oc-plca-card-text oc-plca-card-text-dark">@description</p>
+                                            </div>
+                                            @if (!string.IsNullOrWhiteSpace(icon))
+                                            {
+                                                <div class="oc-plca-icon oc-plca-icon-bottom-right oc-plca-icon-dark" aria-hidden="true">
+                                                    <i class="@icon"></i>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                if (hasImage)
+                                {
+                                    <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                }
+                                <div class="oc-plca-content oc-plca-content-between oc-plca-text-left">
+                                    <div class="oc-plca-text-wrap">
+                                        <h3 class="oc-plca-card-title oc-plca-card-title-dark text-notransform">@title</h3>
+                                    </div>
+                                    <div class="oc-plca-card-footer">
+                                        <div class="oc-plca-text-wrap">
+                                            <p class="oc-plca-card-text oc-plca-card-text-dark">@description</p>
+                                        </div>
+                                        @if (!string.IsNullOrWhiteSpace(icon))
+                                        {
+                                            <div class="oc-plca-icon oc-plca-icon-bottom-right oc-plca-icon-dark" aria-hidden="true">
+                                                <i class="@icon"></i>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (card4 != null)
+                    {
+                        var title = card4.Title != null ? Convert.ToString(card4.Title) : string.Empty;
+                        var description = card4.Description != null ? Convert.ToString(card4.Description) : string.Empty;
+                        var image = card4.BackgroundImage != null ? Convert.ToString(card4.BackgroundImage) : string.Empty;
+                        var hasImage = !string.IsNullOrWhiteSpace(image);
+                        var icon = card4.FontAwesomeIcon != null ? Convert.ToString(card4.FontAwesomeIcon) : string.Empty;
+                        var url = card4.Url != null ? Convert.ToString(card4.Url) : string.Empty;
+                        var linkAttributes = card4.LinkTarget != null ? GetLinkAttributes(card4.LinkTarget) : string.Empty;
+
+                        <div class="oc-plca-card oc-plca-card-4@(hasImage ? " oc-plca-card-has-image" : string.Empty)">
+                            @if (!string.IsNullOrWhiteSpace(url))
+                            {
+                                <a class="oc-plca-card-link" href="@url"@Html.Raw(linkAttributes)>
+                                    @if (hasImage)
+                                    {
+                                        <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                    }
+                                    <div class="oc-plca-overlay oc-plca-overlay-red"></div>
+                                    <div class="oc-plca-content oc-plca-content-top oc-plca-text-left">
+                                        <div class="oc-plca-text-wrap oc-plca-text-wrap-card-4">
+                                            <h3 class="oc-plca-card-title oc-plca-card-title-light">@title</h3>
+                                            <p class="oc-plca-card-text oc-plca-card-text-light">@description</p>
+                                        </div>
+                                        @if (!string.IsNullOrWhiteSpace(icon))
+                                        {
+                                            <div class="oc-plca-icon oc-plca-icon-bottom-right oc-plca-icon-light" aria-hidden="true">
+                                                <i class="@icon"></i>
+                                            </div>
+                                        }
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                if (hasImage)
+                                {
+                                    <div class="oc-plca-bg" style="background-image:url('@image');"></div>
+                                }
+                                <div class="oc-plca-overlay oc-plca-overlay-red"></div>
+                                <div class="oc-plca-content oc-plca-content-top oc-plca-text-left">
+                                    <div class="oc-plca-text-wrap oc-plca-text-wrap-card-4">
+                                        <h3 class="oc-plca-card-title oc-plca-card-title-light">@title</h3>
+                                        <p class="oc-plca-card-text oc-plca-card-text-light">@description</p>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(icon))
+                                    {
+                                        <div class="oc-plca-icon oc-plca-icon-bottom-right oc-plca-icon-light" aria-hidden="true">
+                                            <i class="@icon"></i>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}

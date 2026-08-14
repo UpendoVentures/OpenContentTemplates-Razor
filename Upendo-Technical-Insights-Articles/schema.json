@@ -1,0 +1,124 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionAriaLabel": {
+      "type": "string",
+      "title": "Section ARIA Label"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionHeadingElement": {
+      "type": "string",
+      "title": "Section Heading Element",
+      "default": "h2",
+      "enum": ["h2", "h3", "h4"]
+    },
+    "IssueLabel": {
+      "type": "string",
+      "title": "Issue Label"
+    },
+    "IntroText": {
+      "type": "string",
+      "title": "Intro Text"
+    },
+    "FeaturedArticle": {
+      "type": "object",
+      "title": "Featured Article",
+      "properties": {
+        "Category": {
+          "type": "string",
+          "title": "Category"
+        },
+        "Title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "Description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "Image": {
+          "type": "string",
+          "title": "Image"
+        },
+        "ImageAlt": {
+          "type": "string",
+          "title": "Image Alt Text"
+        },
+        "ImageFocalPosition": {
+          "type": "string",
+          "title": "Image Focal Position",
+          "default": "center center",
+          "enum": ["center center", "center top", "center bottom", "left center", "left top", "left bottom", "right center", "right top", "right bottom"]
+        },
+        "CtaText": {
+          "type": "string",
+          "title": "CTA Text"
+        },
+        "Url": {
+          "type": "string",
+          "title": "URL"
+        },
+        "LinkTarget": {
+          "type": "string",
+          "title": "Link Target",
+          "default": "_self",
+          "enum": ["_self", "_blank"]
+        },
+        "CtaAriaLabel": {
+          "type": "string",
+          "title": "CTA ARIA Label"
+        }
+      },
+      "required": ["Title"]
+    },
+    "SideArticles": {
+      "type": "array",
+      "title": "Side Articles",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "LinkTarget": {
+            "type": "string",
+            "title": "Link Target",
+            "default": "_self",
+            "enum": ["_self", "_blank"]
+          },
+          "CtaAriaLabel": {
+            "type": "string",
+            "title": "CTA ARIA Label"
+          }
+        },
+        "required": ["Title"]
+      }
+    }
+  },
+  "required": ["FeaturedArticle"]
+}

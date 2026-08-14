@@ -1,0 +1,75 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
+      "placeholder": "Contact Request Form"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "contact-request",
+      "showMessages": false
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Admin/accessibility field. Used only when no visible heading is provided, so the section still has an accessible label.",
+      "placeholder": "Contact request form"
+    },
+    "HeadingLead": {
+      "type": "text",
+      "helper": "Regular first part of the split heading.",
+      "placeholder": "How can we"
+    },
+    "HeadingEmphasis": {
+      "type": "text",
+      "helper": "Bold second part of the split heading.",
+      "placeholder": "help?"
+    },
+    "NameLabel": {
+      "type": "text",
+      "helper": "Main label for the first and last name group.",
+      "placeholder": "Name"
+    },
+    "FirstNameLabel": {
+      "type": "text",
+      "helper": "Sub-label shown below the first name input.",
+      "placeholder": "First"
+    },
+    "LastNameLabel": {
+      "type": "text",
+      "helper": "Sub-label shown below the last name input.",
+      "placeholder": "Last"
+    },
+    "CompanyLabel": {
+      "type": "text",
+      "helper": "Label for the company input.",
+      "placeholder": "Company"
+    },
+    "PhoneLabel": {
+      "type": "text",
+      "helper": "Label for the optional phone input.",
+      "placeholder": "Phone number (if you would like us to call)"
+    },
+    "EmailLabel": {
+      "type": "text",
+      "helper": "Label for the email input.",
+      "placeholder": "Email"
+    },
+    "RequestLabel": {
+      "type": "text",
+      "helper": "Label for the request textarea.",
+      "placeholder": "Request"
+    },
+    "RequestPlaceholder": {
+      "type": "textarea",
+      "helper": "Optional placeholder text for the request textarea.",
+      "placeholder": "Tell us how we can help."
+    },
+    "SubmitText": {
+      "type": "text",
+      "helper": "Text shown on the submit button.",
+      "placeholder": "Submit"
+    }
+  }
+}

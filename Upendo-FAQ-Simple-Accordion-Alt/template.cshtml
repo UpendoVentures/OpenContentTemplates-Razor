@@ -1,0 +1,313 @@
+@using System
+@using System.Collections.Generic
+@using Newtonsoft.Json
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var introText = Model.IntroText != null ? Convert.ToString(Model.IntroText) : string.Empty;
+    var footerMessage = Model.FooterMessage != null ? Convert.ToString(Model.FooterMessage) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : "bg-body";
+
+    var itemBackgroundColorClass = Model.Settings != null && Model.Settings.ItemBackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.ItemBackgroundColorClass)
+        : "bg-white";
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null
+        ? Convert.ToString(Model.Settings.MarginTop)
+        : string.Empty;
+
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null
+        ? Convert.ToString(Model.Settings.MarginBottom)
+        : string.Empty;
+
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null
+        ? Convert.ToString(Model.Settings.PaddingTop)
+        : string.Empty;
+
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null
+        ? Convert.ToString(Model.Settings.PaddingBottom)
+        : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary",
+        "bg-primary-scoped",
+        "bg-secondary",
+        "bg-secondary-scoped",
+        "bg-tertiary",
+        "bg-quaternary",
+        "bg-h5",
+        "bg-h6",
+        "bg-dark",
+        "bg-dark-subtle",
+        "bg-success",
+        "bg-danger",
+        "bg-forest-green"
+    };
+
+    var isDarkSectionBackground = false;
+    var isDarkItemBackground = false;
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(backgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkSectionBackground = true;
+                break;
+            }
+        }
+    }
+
+    if (!string.IsNullOrWhiteSpace(itemBackgroundColorClass))
+    {
+        foreach (var darkClass in darkBackgroundClasses)
+        {
+            if (string.Equals(itemBackgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+            {
+                isDarkItemBackground = true;
+                break;
+            }
+        }
+    }
+
+    var sectionClasses = "oc-faq-simple-accordion-alt w-100";
+    sectionClasses += " " + (isDarkSectionBackground ? "oc-fsaa-section--dark" : "oc-fsaa-section--light");
+
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass))
+    {
+        sectionClasses += " " + backgroundColorClass;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginTop))
+    {
+        sectionClasses += " " + marginTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(marginBottom))
+    {
+        sectionClasses += " " + marginBottom;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingTop))
+    {
+        sectionClasses += " " + paddingTop;
+    }
+
+    if (!string.IsNullOrWhiteSpace(paddingBottom))
+    {
+        sectionClasses += " " + paddingBottom;
+    }
+
+    var itemClasses = "accordion-item oc-fsaa-item border-0";
+    itemClasses += " " + (isDarkItemBackground ? "oc-fsaa-item--dark" : "oc-fsaa-item--light");
+
+    if (!string.IsNullOrWhiteSpace(itemBackgroundColorClass))
+    {
+        itemClasses += " " + itemBackgroundColorClass;
+    }
+
+    var groups = new List<dynamic>();
+    if (Model.Groups != null)
+    {
+        var groupIndex = 0;
+        foreach (var group in Model.Groups)
+        {
+            var groupItems = new List<dynamic>();
+            if (group.Items != null)
+            {
+                foreach (var item in group.Items)
+                {
+                    var question = item.Question != null ? Convert.ToString(item.Question) : string.Empty;
+                    var answer = item.Answer != null ? Convert.ToString(item.Answer) : string.Empty;
+
+                    if (!string.IsNullOrWhiteSpace(question) && !string.IsNullOrWhiteSpace(answer))
+                    {
+                        groupItems.Add(item);
+                    }
+                }
+            }
+
+            if (groupItems.Count > 0)
+            {
+                groups.Add(new
+                {
+                    Group = group,
+                    Items = groupItems,
+                    Index = groupIndex
+                });
+            }
+
+            groupIndex++;
+        }
+    }
+
+    var faqEntities = new List<object>();
+
+    foreach (var faqGroup in groups)
+    {
+        foreach (var faq in faqGroup.Items)
+        {
+            var question = faq.Question != null ? Convert.ToString(faq.Question) : string.Empty;
+            var answer = faq.Answer != null ? Convert.ToString(faq.Answer) : string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(question) && !string.IsNullOrWhiteSpace(answer))
+            {
+                faqEntities.Add(new
+                {
+                    @type = "Question",
+                    name = question,
+                    acceptedAnswer = new
+                    {
+                        @type = "Answer",
+                        text = answer
+                    }
+                });
+            }
+        }
+    }
+
+    var faqJsonLd = faqEntities.Count > 0
+        ? JsonConvert.SerializeObject(new
+        {
+            @context = "https://schema.org",
+            @type = "FAQPage",
+            mainEntity = faqEntities
+        }, Formatting.None)
+        : string.Empty;
+
+    var hasIntro = !string.IsNullOrWhiteSpace(sectionHeading) || !string.IsNullOrWhiteSpace(introText);
+    var hasFooterMessage = !string.IsNullOrWhiteSpace(footerMessage);
+    var sectionAriaLabel = !string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Frequently asked questions";
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section class="@sectionClasses" aria-label="@sectionAriaLabel">
+    <div class="container-fluid px-0">
+        <div class="container-xxl">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-10">
+                    @if (hasIntro)
+                    {
+                        <div class="oc-fsaa-intro mb-4 mb-lg-5">
+                            @if (!string.IsNullOrWhiteSpace(sectionHeading))
+                            {
+                                <h2 class="oc-fsaa-section-heading mb-3">@Html.Raw(sectionHeading)</h2>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(introText))
+                            {
+                                <div class="oc-fsaa-intro-text">@Html.Raw(introText)</div>
+                            }
+                        </div>
+                    }
+
+                    @if (groups.Count > 0)
+                    {
+                        <div class="oc-fsaa-groups">
+                            @foreach (var faqGroup in groups)
+                            {
+                                var group = faqGroup.Group;
+                                var groupIndex = Convert.ToInt32(faqGroup.Index);
+                                var groupTitle = group.GroupTitle != null ? Convert.ToString(group.GroupTitle) : string.Empty;
+                                var groupDescription = group.GroupDescription != null ? Convert.ToString(group.GroupDescription) : string.Empty;
+                                var groupAccordionId = "oc-fsaa-accordion-" + Model.Context.ModuleId + "-" + groupIndex;
+                                var groupHeadingId = "oc-fsaa-group-heading-" + Model.Context.ModuleId + "-" + groupIndex;
+                                var groupHeadingClass = "oc-fsaa-group-heading";
+                                var groupHeadingText = groupTitle;
+
+                                if (string.IsNullOrWhiteSpace(groupHeadingText))
+                                {
+                                    groupHeadingClass += " visually-hidden";
+                                    groupHeadingText = "FAQ group " + (groupIndex + 1);
+                                }
+
+                                <section class="oc-fsaa-group" aria-labelledby="@groupHeadingId">
+                                    <div class="oc-fsaa-group-intro">
+                                        <h3 class="@groupHeadingClass" id="@groupHeadingId">@Html.Raw(groupHeadingText)</h3>
+
+                                        @if (!string.IsNullOrWhiteSpace(groupDescription))
+                                        {
+                                            <div class="oc-fsaa-group-description">@Html.Raw(groupDescription)</div>
+                                        }
+                                    </div>
+
+                                    <div class="accordion oc-fsaa-accordion" id="@groupAccordionId">
+                                        @{
+                                            var itemIndex = 0;
+                                        }
+                                        @foreach (var faq in faqGroup.Items)
+                                        {
+                                            var question = faq.Question != null ? Convert.ToString(faq.Question) : string.Empty;
+                                            var answer = faq.Answer != null ? Convert.ToString(faq.Answer) : string.Empty;
+                                            var headingId = "oc-fsaa-heading-" + Model.Context.ModuleId + "-" + groupIndex + "-" + itemIndex;
+                                            var collapseId = "oc-fsaa-collapse-" + Model.Context.ModuleId + "-" + groupIndex + "-" + itemIndex;
+                                            var collapseTarget = "#" + collapseId;
+                                            var accordionParent = "#" + groupAccordionId;
+
+                                            <div class="@itemClasses">
+                                                <h4 class="accordion-header oc-fsaa-header" id="@headingId">
+                                                    <button class="accordion-button collapsed oc-fsaa-button shadow-none"
+                                                            type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="@collapseTarget"
+                                                            aria-expanded="false"
+                                                            aria-controls="@collapseId">
+                                                        <span class="oc-fsaa-question fw-bold">@Html.Raw(question)</span>
+                                                        <span class="oc-fsaa-icon ms-3" aria-hidden="true">
+                                                            <i class="fa-solid fa-chevron-down"></i>
+                                                        </span>
+                                                    </button>
+                                                </h4>
+
+                                                <div id="@collapseId"
+                                                     class="accordion-collapse collapse"
+                                                     aria-labelledby="@headingId"
+                                                     data-bs-parent="@accordionParent">
+                                                    <div class="accordion-body oc-fsaa-answer pb-5">
+                                                        @Html.Raw(answer)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            itemIndex++;
+                                        }
+                                    </div>
+                                </section>
+                            }
+                        </div>
+                    }
+                    @if (hasFooterMessage)
+                    {
+                        <div class="oc-fsaa-footer-message text-center mt-4 mt-lg-5">
+                            @Html.Raw(footerMessage)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (!string.IsNullOrWhiteSpace(faqJsonLd))
+{
+    <script type="application/ld+json">
+        @Html.Raw(faqJsonLd)
+    </script>
+}

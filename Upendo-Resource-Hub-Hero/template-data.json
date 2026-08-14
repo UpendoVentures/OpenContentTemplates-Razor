@@ -1,0 +1,10 @@
+{
+  "BackgroundColorClass": "bg-white",
+  "ContainerWidth": "container-xxl",
+  "ImagePosition": "right",
+  "MarginTop": "mt-0",
+  "MarginBottom": "mb-0",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5",
+  "ImageTreatment": "grayscale"
+}

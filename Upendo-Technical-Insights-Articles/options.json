@@ -1,0 +1,136 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. Used as a fallback accessibility label when the section has no visible heading.",
+      "placeholder": "Technical Insights"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for #anchor-links on the page. Use letters, numbers, and hyphens only.",
+      "placeholder": "technical-insights",
+      "showMessages": false
+    },
+    "SectionAriaLabel": {
+      "type": "text",
+      "helper": "Optional. Used only when no visible section heading is provided.",
+      "placeholder": "Technical insights articles"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the article layout.",
+      "placeholder": "Technical Insights"
+    },
+    "SectionHeadingElement": {
+      "type": "select",
+      "helper": "Choose the heading level that fits the page outline.",
+      "optionLabels": ["Heading 2", "Heading 3", "Heading 4"],
+      "removeDefaultNone": true
+    },
+    "IssueLabel": {
+      "type": "text",
+      "helper": "Optional. Short label shown on the right side of the section header.",
+      "placeholder": "Issue 03"
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short intro shown below the heading.",
+      "placeholder": "Explore the latest analysis, implementation guidance, and engineering perspectives."
+    },
+    "FeaturedArticle": {
+      "type": "object",
+      "helper": "Large left-side article card. The entire card links when a safe URL is provided.",
+      "fields": {
+        "Category": {
+          "type": "text",
+          "helper": "Optional. Category label shown as a pill over the image.",
+          "placeholder": "Architecture"
+        },
+        "Title": {
+          "type": "text",
+          "helper": "Required. Featured article title.",
+          "placeholder": "Designing Systems for Long-Term Technical Clarity"
+        },
+        "Description": {
+          "type": "textarea",
+          "helper": "Optional. Short featured article summary.",
+          "placeholder": "A practical look at architecture decisions, delivery constraints, and maintainable implementation patterns."
+        },
+        "Image": {
+          "type": "image",
+          "helper": "Featured article image. If no image is selected, the card still renders with a readable dark background."
+        },
+        "ImageAlt": {
+          "type": "text",
+          "helper": "Describe meaningful image content. Leave empty only when the image is decorative.",
+          "placeholder": "Engineering team reviewing a technical architecture diagram"
+        },
+        "ImageFocalPosition": {
+          "type": "select",
+          "helper": "Controls the image object-position used inside the featured card.",
+          "optionLabels": ["Center", "Center Top", "Center Bottom", "Left Center", "Left Top", "Left Bottom", "Right Center", "Right Top", "Right Bottom"],
+          "removeDefaultNone": true
+        },
+        "CtaText": {
+          "type": "text",
+          "helper": "Optional. Visible call-to-action text shown inside the card.",
+          "placeholder": "Read Insight"
+        },
+        "Url": {
+          "type": "url",
+          "helper": "Allowed URL formats: anchors, slash-relative URLs, http, https, mailto, and tel. Protocol-relative URLs are rejected."
+        },
+        "LinkTarget": {
+          "type": "select",
+          "helper": "Choose whether the card opens in the current tab or a new tab.",
+          "optionLabels": ["Current Tab", "New Tab"],
+          "removeDefaultNone": true
+        },
+        "CtaAriaLabel": {
+          "type": "text",
+          "helper": "Optional. More descriptive label for screen readers.",
+          "placeholder": "Read the featured technical insight"
+        }
+      }
+    },
+    "SideArticles": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add smaller right-side article cards in display order. Each card links when a safe URL is provided.",
+      "items": {
+        "fields": {
+          "Category": {
+            "type": "text",
+            "helper": "Optional. Eyebrow label shown above the title.",
+            "placeholder": "Implementation"
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Required. Article title.",
+            "placeholder": "Reducing Integration Risk Before Launch"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Optional. Short article summary.",
+            "placeholder": "A focused checklist for validating assumptions before production rollout."
+          },
+          "Url": {
+            "type": "url",
+            "helper": "Allowed URL formats: anchors, slash-relative URLs, http, https, mailto, and tel. Protocol-relative URLs are rejected."
+          },
+          "LinkTarget": {
+            "type": "select",
+            "helper": "Choose whether the card opens in the current tab or a new tab.",
+            "optionLabels": ["Current Tab", "New Tab"],
+            "removeDefaultNone": true
+          },
+          "CtaAriaLabel": {
+            "type": "text",
+            "helper": "Optional. More descriptive label for screen readers.",
+            "placeholder": "Read about reducing integration risk"
+          }
+        }
+      }
+    }
+  }
+}

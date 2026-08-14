@@ -1,0 +1,210 @@
+.oc-direct-channels {
+    --oc-dc-ink: #222222;
+    --oc-dc-muted: #777777;
+    --oc-dc-soft-muted: #999999;
+    --oc-dc-value: #6f625c;
+    --oc-dc-divider: #e5e5e5;
+    --oc-dc-focus: rgba(31, 95, 159, 0.24);
+    color: var(--oc-dc-ink);
+    position: relative;
+    width: 100%;
+}
+
+.oc-dc-content {
+    margin: 0 auto;
+    max-width: 44rem;
+}
+
+.oc-dc-social-area {
+    margin: 0 auto clamp(2.5rem, 5vw, 3.75rem);
+    max-width: 42rem;
+    text-align: center;
+}
+
+.oc-dc-social-heading {
+    color: var(--oc-dc-muted);
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1.45;
+    margin: 0;
+}
+
+.oc-dc-social-heading strong {
+    color: var(--oc-dc-ink);
+    font-weight: 800;
+}
+
+.oc-dc-social-heading span {
+    margin-left: 0.25rem;
+}
+
+.oc-dc-social-list {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.3rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.oc-dc-social-link {
+    align-items: center;
+    color: var(--oc-dc-soft-muted);
+    display: inline-flex;
+    font-size: 0.96rem;
+    gap: 0.42rem;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+
+a.oc-dc-social-link:hover,
+a.oc-dc-social-link:focus {
+    color: var(--oc-dc-soft-muted);
+    text-decoration: none;
+}
+
+a.oc-dc-social-network-instagram:hover,
+a.oc-dc-social-network-instagram:focus {
+    color: #E1306C;
+}
+
+a.oc-dc-social-network-tiktok:hover,
+a.oc-dc-social-network-tiktok:focus {
+    color: #000000;
+}
+
+a.oc-dc-social-network-youtube:hover,
+a.oc-dc-social-network-youtube:focus {
+    color: #FF0000;
+}
+
+a.oc-dc-social-network-linkedin:hover,
+a.oc-dc-social-network-linkedin:focus {
+    color: #0077B5;
+}
+
+a.oc-dc-social-network-facebook:hover,
+a.oc-dc-social-network-facebook:focus {
+    color: #1877F2;
+}
+
+a.oc-dc-social-network-twitter:hover,
+a.oc-dc-social-network-twitter:focus {
+    color: #1DA1F2;
+}
+
+.oc-dc-social-icon {
+    color: currentColor;
+    font-size: 1.05em;
+}
+
+.oc-dc-block {
+    margin: 0;
+}
+
+.oc-dc-heading,
+.oc-dc-subheading {
+    color: var(--oc-dc-ink);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.oc-dc-subheading {
+    font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+}
+
+.oc-dc-heading span,
+.oc-dc-subheading span {
+    margin-right: 0.28rem;
+}
+
+.oc-dc-heading strong,
+.oc-dc-subheading strong {
+    font-weight: 800;
+}
+
+.oc-dc-intro {
+    color: var(--oc-dc-muted);
+    font-size: clamp(1rem, 1.25vw, 1.08rem);
+    line-height: 1.65;
+    margin: 0.95rem 0 0;
+    max-width: 40rem;
+}
+
+.oc-dc-info-list {
+    display: grid;
+    gap: 1.15rem;
+    margin-top: 1.55rem;
+}
+
+.oc-dc-info-row {
+    align-items: flex-start;
+    display: flex;
+    gap: 0.85rem;
+}
+
+.oc-dc-info-icon {
+    color: var(--oc-dc-soft-muted);
+    flex: 0 0 1.25rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-top: 0.08rem;
+    text-align: center;
+}
+
+.oc-dc-info-body {
+    color: var(--oc-dc-value);
+    min-width: 0;
+}
+
+.oc-dc-info-label {
+    color: var(--oc-dc-ink);
+    display: inline;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.55;
+    margin: 0 0.35rem 0 0;
+}
+
+.oc-dc-info-value {
+    color: var(--oc-dc-value);
+    display: inline;
+    font-size: 1rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.oc-dc-divider {
+    border: 0;
+    border-top: 1px solid var(--oc-dc-divider);
+    margin: clamp(2rem, 4vw, 2.75rem) 0;
+}
+
+.oc-direct-channels a:focus-visible {
+    box-shadow: 0 0 0 0.2rem var(--oc-dc-focus);
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+@media (max-width: 575.98px) {
+    .oc-dc-content {
+        max-width: 100%;
+    }
+
+    .oc-dc-social-area {
+        text-align: left;
+    }
+
+    .oc-dc-social-list {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .oc-dc-info-row {
+        gap: 0.75rem;
+    }
+}

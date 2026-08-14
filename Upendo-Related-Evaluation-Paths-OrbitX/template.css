@@ -1,0 +1,362 @@
+.upendo-related-evaluation-orbit {
+  --related-orbit-text: #111827;
+  --related-orbit-muted: #647084;
+  --related-orbit-line: rgba(18, 26, 44, 0.13);
+  --related-orbit-card: rgba(255, 255, 255, 0.95);
+  --related-orbit-accent: #2563eb;
+  --related-orbit-radius-1: 7.6rem;
+  --related-orbit-radius-2: 11.1rem;
+  --related-orbit-radius-3: 14.6rem;
+  position: relative;
+  overflow: hidden;
+  color: inherit;
+}
+
+.upendo-related-evaluation-orbit * {
+  box-sizing: border-box;
+}
+
+.upendo-related-evaluation-orbit.bg-soft-gray {
+  background-color: #ebeef3 !important;
+}
+
+.upendo-related-evaluation-orbit__container {
+  position: relative;
+  z-index: 2;
+}
+
+.upendo-related-evaluation-orbit__header {
+  max-width: 52rem;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.upendo-related-evaluation-orbit__heading {
+  margin: 0;
+  color: inherit;
+  line-height: 1.2;
+}
+
+.upendo-related-evaluation-orbit__section-eyebrow {
+  margin: 0 0 0.75rem;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  opacity: 0.82;
+}
+
+.upendo-related-evaluation-orbit__intro {
+  max-width: 44rem;
+  margin: 1rem auto 0;
+  color: var(--related-orbit-muted);
+  font-size: clamp(1rem, 1.25vw, 1.14rem);
+  line-height: 1.7;
+}
+
+.upendo-related-evaluation-orbit__intro p:last-child {
+  margin-bottom: 0;
+}
+
+.upendo-related-evaluation-orbit__layout {
+  position: relative;
+  min-height: 19rem;
+}
+
+.upendo-related-evaluation-orbit__cards {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  align-items: stretch;
+  justify-items: stretch;
+  gap: 1.5rem;
+  width: min(100%, 1320px);
+  margin: 0 auto;
+}
+
+.upendo-related-evaluation-orbit__cards--count-1 {
+  grid-template-columns: minmax(0, 24rem);
+  justify-content: center;
+}
+
+.upendo-related-evaluation-orbit__cards--count-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 45rem;
+}
+
+.upendo-related-evaluation-orbit__cards--count-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 68rem;
+}
+
+.upendo-related-evaluation-orbit__cards--count-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.upendo-related-evaluation-orbit__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 12rem;
+  margin-top: 0;
+  overflow: hidden;
+  border: 1px solid var(--related-orbit-line);
+  border-radius: 1.75rem;
+  background-color: #ffffff;
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.upendo-related-evaluation-orbit a.upendo-related-evaluation-orbit__card:hover,
+.upendo-related-evaluation-orbit a.upendo-related-evaluation-orbit__card:focus {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  background-color: var(--bs-secondary-bg, #f8f6ef);
+  text-decoration: none;
+  box-shadow: 0 0.85rem 1.8rem rgba(0, 0, 0, 0.08);
+  transform: translateY(-0.25rem);
+}
+
+.upendo-related-evaluation-orbit__card-inner {
+  display: grid;
+  grid-template-rows: 2.5rem 3.9rem 1fr;
+  row-gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 1.5rem;
+}
+
+.upendo-related-evaluation-orbit__eyebrow {
+  display: block;
+  align-self: start;
+  min-height: 0;
+  margin: 0;
+  color: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.upendo-related-evaluation-orbit__title {
+  display: block;
+  align-self: center;
+  margin: 0;
+  color: inherit;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.upendo-related-evaluation-orbit__description {
+  display: block;
+  align-self: start;
+  margin: 0;
+  color: inherit;
+  font-size: 0.975rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+.upendo-related-evaluation-orbit__visual {
+  position: absolute;
+  top: 50%;
+  right: clamp(-34rem, -28vw, -23rem);
+  z-index: 0;
+  width: 39rem;
+  height: 39rem;
+  opacity: var(--related-orbit-opacity, 1);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.upendo-related-evaluation-orbit.orbit-hidden .upendo-related-evaluation-orbit__visual {
+  display: none;
+}
+
+.upendo-related-evaluation-orbit__orbit-stage {
+  position: absolute;
+  inset: 0;
+}
+
+.upendo-related-evaluation-orbit__orbit-stage::before {
+  position: absolute;
+  inset: 11.5rem;
+  content: "";
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0));
+  filter: blur(0.15rem);
+}
+
+.upendo-related-evaluation-orbit__orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px dotted rgba(71, 85, 105, 0.18);
+  border-radius: 50%;
+  animation-name: upendoRelatedEvaluationOrbitSpin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.upendo-related-evaluation-orbit__orbit--1 {
+  width: calc(var(--related-orbit-radius-1) * 2);
+  height: calc(var(--related-orbit-radius-1) * 2);
+  animation-duration: 24s;
+}
+
+.upendo-related-evaluation-orbit__orbit--2 {
+  width: calc(var(--related-orbit-radius-2) * 2);
+  height: calc(var(--related-orbit-radius-2) * 2);
+  animation-duration: 34s;
+  animation-direction: reverse;
+}
+
+.upendo-related-evaluation-orbit__orbit--3 {
+  width: calc(var(--related-orbit-radius-3) * 2);
+  height: calc(var(--related-orbit-radius-3) * 2);
+  animation-duration: 46s;
+}
+
+.upendo-related-evaluation-orbit.orbit-speed-slow .upendo-related-evaluation-orbit__orbit--1 { animation-duration: 36s; }
+.upendo-related-evaluation-orbit.orbit-speed-slow .upendo-related-evaluation-orbit__orbit--2 { animation-duration: 52s; }
+.upendo-related-evaluation-orbit.orbit-speed-slow .upendo-related-evaluation-orbit__orbit--3 { animation-duration: 68s; }
+.upendo-related-evaluation-orbit.orbit-speed-fast .upendo-related-evaluation-orbit__orbit--1 { animation-duration: 15s; }
+.upendo-related-evaluation-orbit.orbit-speed-fast .upendo-related-evaluation-orbit__orbit--2 { animation-duration: 23s; }
+.upendo-related-evaluation-orbit.orbit-speed-fast .upendo-related-evaluation-orbit__orbit--3 { animation-duration: 31s; }
+
+.upendo-related-evaluation-orbit__orbit--1 .upendo-related-evaluation-orbit__item { --related-orbit-radius: var(--related-orbit-radius-1); }
+.upendo-related-evaluation-orbit__orbit--2 .upendo-related-evaluation-orbit__item { --related-orbit-radius: var(--related-orbit-radius-2); }
+.upendo-related-evaluation-orbit__orbit--3 .upendo-related-evaluation-orbit__item { --related-orbit-radius: var(--related-orbit-radius-3); }
+
+.upendo-related-evaluation-orbit__item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.35rem;
+  height: 3.35rem;
+  margin: -1.675rem 0 0 -1.675rem;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #334155;
+  font-size: 1.28rem;
+  box-shadow: 0 0.75rem 1.75rem rgba(15, 23, 42, 0.08);
+}
+
+.upendo-related-evaluation-orbit__item--pos-0 { transform: rotate(0deg) translateX(var(--related-orbit-radius)) rotate(0deg); }
+.upendo-related-evaluation-orbit__item--pos-1 { transform: rotate(45deg) translateX(var(--related-orbit-radius)) rotate(-45deg); }
+.upendo-related-evaluation-orbit__item--pos-2 { transform: rotate(90deg) translateX(var(--related-orbit-radius)) rotate(-90deg); }
+.upendo-related-evaluation-orbit__item--pos-3 { transform: rotate(135deg) translateX(var(--related-orbit-radius)) rotate(-135deg); }
+.upendo-related-evaluation-orbit__item--pos-4 { transform: rotate(180deg) translateX(var(--related-orbit-radius)) rotate(-180deg); }
+.upendo-related-evaluation-orbit__item--pos-5 { transform: rotate(225deg) translateX(var(--related-orbit-radius)) rotate(-225deg); }
+.upendo-related-evaluation-orbit__item--pos-6 { transform: rotate(270deg) translateX(var(--related-orbit-radius)) rotate(-270deg); }
+.upendo-related-evaluation-orbit__item--pos-7 { transform: rotate(315deg) translateX(var(--related-orbit-radius)) rotate(-315deg); }
+.upendo-related-evaluation-orbit__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.6rem;
+  height: 5.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 1.45rem;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--related-orbit-accent);
+  font-size: 2.35rem;
+  box-shadow: 0 1.25rem 3rem rgba(15, 23, 42, 0.1);
+  transform: translate(-50%, -50%);
+}
+
+.upendo-related-evaluation-orbit__center-image {
+  display: block;
+  max-width: 72%;
+  max-height: 72%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.upendo-related-evaluation-orbit .orbit-color-blue { color: #2563eb; }
+.upendo-related-evaluation-orbit .orbit-color-cyan { color: #0891b2; }
+.upendo-related-evaluation-orbit .orbit-color-green { color: #16a34a; }
+.upendo-related-evaluation-orbit .orbit-color-orange { color: #ea580c; }
+.upendo-related-evaluation-orbit .orbit-color-purple { color: #7c3aed; }
+.upendo-related-evaluation-orbit .orbit-color-rose { color: #e11d48; }
+.upendo-related-evaluation-orbit .orbit-color-slate { color: #475569; }
+.upendo-related-evaluation-orbit .orbit-color-dark { color: #111827; }
+
+@keyframes upendoRelatedEvaluationOrbitSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .upendo-related-evaluation-orbit__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 45rem;
+  }
+
+  .upendo-related-evaluation-orbit__cards--count-1 {
+    grid-template-columns: minmax(0, 24rem);
+  }
+
+  .upendo-related-evaluation-orbit__visual {
+    right: -25rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .upendo-related-evaluation-orbit__cards {
+    grid-template-columns: 1fr;
+    max-width: 28rem;
+  }
+
+  .upendo-related-evaluation-orbit__card {
+    min-height: 0;
+  }
+
+  .upendo-related-evaluation-orbit__eyebrow {
+    min-height: 0;
+    margin-bottom: 0.85rem;
+  }
+
+  .upendo-related-evaluation-orbit__title {
+    font-size: 1.3rem;
+  }
+
+  .upendo-related-evaluation-orbit__visual {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upendo-related-evaluation-orbit__orbit {
+    animation: none;
+  }
+
+  .upendo-related-evaluation-orbit__card {
+    transition: none;
+  }
+}

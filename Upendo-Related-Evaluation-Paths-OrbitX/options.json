@@ -1,0 +1,149 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
+      "placeholder": "Related Evaluation Paths Orbit"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page. Letters, numbers, and hyphens only.",
+      "placeholder": "related-evaluation-paths",
+      "showMessages": false
+    },
+    "SectionEyebrow": {
+      "type": "text",
+      "helper": "Optional. Small label shown above the section heading.",
+      "placeholder": "Related paths"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Required. Centered heading shown above the cards. HTML is allowed.",
+      "placeholder": "Related evaluation paths"
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Supporting copy shown below the heading. HTML is allowed.",
+      "placeholder": "Explore adjacent evaluation paths that connect mission data, geospatial workflows, network analysis, and deployable compute."
+    },
+    "CentralLogoType": {
+      "type": "select",
+      "helper": "Choose whether the center of the orbit renders a Font Awesome icon or an uploaded image.",
+      "optionLabels": [
+        "Icon",
+        "Image"
+      ],
+      "removeDefaultNone": true
+    },
+    "CentralIconClass": {
+      "type": "text",
+      "helper": "Font Awesome class for the center icon.",
+      "placeholder": "fas fa-route",
+      "dependencies": {
+        "CentralLogoType": [
+          "icon"
+        ]
+      }
+    },
+    "CentralLogoImage": {
+      "type": "image",
+      "uploadfolder": "Content/OpenContent/RelatedEvaluationPathsOrbit/",
+      "typeahead": {
+        "Folder": "Content/OpenContent/RelatedEvaluationPathsOrbit/"
+      },
+      "helper": "Image used in the center when Central Logo Type is Image. For this site, use the Portexa logo image.",
+      "dependencies": {
+        "CentralLogoType": [
+          "image"
+        ]
+      }
+    },
+    "CentralLogoAltText": {
+      "type": "text",
+      "helper": "Accessible alt text for the center image. Falls back to the module or section label when empty.",
+      "placeholder": "Portexa logo",
+      "dependencies": {
+        "CentralLogoType": [
+          "image"
+        ]
+      }
+    },
+    "Cards": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add one to four cards. The editor allows up to four cards.",
+      "items": {
+        "fields": {
+          "Eyebrow": {
+            "type": "text",
+            "helper": "Optional. Small category label shown above the card title.",
+            "placeholder": "Mission Data Workflows"
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Required. Card title.",
+            "placeholder": "C4ISR"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Optional. Card body copy. HTML is allowed.",
+            "placeholder": "Coordinate command, control, communications, computers, intelligence, surveillance, and reconnaissance workflows."
+          },
+          "Link": {
+            "type": "text",
+            "helper": "Optional. When set, the full card renders as a clickable link.",
+            "placeholder": "/solutions/command-and-control/c4isr"
+          },
+          "OpenInNewWindow": {
+            "type": "checkbox",
+            "helper": "Open the card link in a new browser tab."
+          }
+        }
+      }
+    },
+    "OrbitItems": {
+      "type": "accordion",
+      "titleField": "Label",
+      "helper": "Add decorative orbit chips. Use existing Font Awesome classes only. Items are positioned automatically by display order within each orbit.",
+      "items": {
+        "fields": {
+          "Label": {
+            "type": "text",
+            "helper": "Required. Internal label and hover title for the decorative chip.",
+            "placeholder": "Mission data workflows"
+          },
+          "IconClass": {
+            "type": "text",
+            "helper": "Optional. Existing Font Awesome class. Falls back to fas fa-circle.",
+            "placeholder": "fas fa-satellite-dish"
+          },
+          "IconColor": {
+            "type": "select",
+            "helper": "Choose the icon color.",
+            "optionLabels": [
+              "Blue",
+              "Cyan",
+              "Green",
+              "Orange",
+              "Purple",
+              "Rose",
+              "Slate",
+              "Dark"
+            ],
+            "removeDefaultNone": true
+          },
+          "OrbitNumber": {
+            "type": "select",
+            "helper": "Choose which dotted orbit ring should contain this item.",
+            "optionLabels": [
+              "Inner Orbit",
+              "Middle Orbit",
+              "Outer Orbit"
+            ],
+            "removeDefaultNone": true
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,487 @@
+.oc-resource-hub-hero {
+    --oc-rhh-primary: var(--bs-primary, #01233f);
+    --oc-rhh-primary-hover: var(--bs-primary-rgb, 1, 35, 63);
+    --oc-rhh-surface: var(--bs-light, #ebeef3);
+    --oc-rhh-surface-alt: var(--bs-white, #ffffff);
+    --oc-rhh-surface-card: var(--bs-light, #ebeef3);
+    --oc-rhh-text: var(--bs-dark, #0f2027);
+    --oc-rhh-muted: var(--bs-secondary-color, #5d6c7b);
+    --oc-rhh-line: rgba(var(--bs-primary-rgb, 1, 35, 63), 0.16);
+    --oc-rhh-focus: rgba(var(--bs-primary-rgb, 1, 35, 63), 0.35);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--oc-rhh-text);
+    background-color: var(--oc-rhh-surface);
+}
+
+.oc-resource-hub-hero.bg-primary,
+.oc-resource-hub-hero.bg-primary-scoped,
+.oc-resource-hub-hero.bg-secondary,
+.oc-resource-hub-hero.bg-secondary-scoped,
+.oc-resource-hub-hero.bg-tertiary,
+.oc-resource-hub-hero.bg-quaternary,
+.oc-resource-hub-hero.bg-h5,
+.oc-resource-hub-hero.bg-h6,
+.oc-resource-hub-hero.bg-success,
+.oc-resource-hub-hero.bg-danger,
+.oc-resource-hub-hero.bg-dark,
+.oc-resource-hub-hero.bg-dark-subtle,
+.oc-resource-hub-hero.bg-forest-green,
+.oc-resource-hub-hero.oc-rhh-bg-dark {
+    --oc-rhh-text: var(--bs-white, #ffffff);
+    --oc-rhh-muted: rgba(255, 255, 255, 0.78);
+    --oc-rhh-line: rgba(255, 255, 255, 0.2);
+}
+
+.oc-resource-hub-hero.bg-primary,
+.oc-resource-hub-hero.bg-primary-scoped,
+.oc-resource-hub-hero.oc-rhh-bg-dark {
+    --oc-rhh-surface: var(--bs-primary, #01233f);
+}
+
+.oc-resource-hub-hero.bg-secondary,
+.oc-resource-hub-hero.bg-secondary-scoped {
+    --oc-rhh-surface: var(--bs-secondary, #6c757d);
+}
+
+.oc-resource-hub-hero.bg-dark,
+.oc-resource-hub-hero.bg-dark-subtle {
+    --oc-rhh-surface: var(--bs-dark, #0f2027);
+}
+
+.oc-resource-hub-hero.bg-light,
+.oc-resource-hub-hero.bg-light-subtle,
+.oc-resource-hub-hero.oc-rhh-bg-pale {
+    --oc-rhh-surface: var(--bs-light, #ebeef3);
+}
+
+.oc-resource-hub-hero.oc-rhh-bg-white {
+    --oc-rhh-surface: var(--bs-white, #ffffff);
+}
+
+.oc-resource-hub-hero.bg-mist,
+.oc-resource-hub-hero.oc-rhh-bg-mist {
+    --oc-rhh-surface: var(--bs-light, #ebeef3);
+}
+
+.oc-resource-hub-hero.bg-body {
+    --oc-rhh-surface: var(--bs-body-bg, #ffffff);
+}
+
+.oc-resource-hub-hero.bg-transparent {
+    --oc-rhh-surface: transparent;
+}
+
+.oc-resource-hub-hero.bg-white {
+    --oc-rhh-surface: var(--bs-white, #ffffff);
+}
+
+.oc-resource-hub-hero .oc-rhh-motif {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+}
+
+.oc-resource-hub-hero.oc-rhh-motif-dots .oc-rhh-motif {
+    background-image: radial-gradient(var(--oc-rhh-primary) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.oc-resource-hub-hero.oc-rhh-motif-grid .oc-rhh-motif {
+    background-image: linear-gradient(var(--oc-rhh-primary) 1px, transparent 1px), linear-gradient(90deg, var(--oc-rhh-primary) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.oc-resource-hub-hero.bg-primary .oc-rhh-motif,
+.oc-resource-hub-hero.bg-primary-scoped .oc-rhh-motif,
+.oc-resource-hub-hero.bg-secondary .oc-rhh-motif,
+.oc-resource-hub-hero.bg-secondary-scoped .oc-rhh-motif,
+.oc-resource-hub-hero.bg-tertiary .oc-rhh-motif,
+.oc-resource-hub-hero.bg-quaternary .oc-rhh-motif,
+.oc-resource-hub-hero.bg-h5 .oc-rhh-motif,
+.oc-resource-hub-hero.bg-h6 .oc-rhh-motif,
+.oc-resource-hub-hero.bg-success .oc-rhh-motif,
+.oc-resource-hub-hero.bg-danger .oc-rhh-motif,
+.oc-resource-hub-hero.bg-dark .oc-rhh-motif,
+.oc-resource-hub-hero.bg-dark-subtle .oc-rhh-motif,
+.oc-resource-hub-hero.bg-forest-green .oc-rhh-motif,
+.oc-resource-hub-hero.oc-rhh-bg-dark .oc-rhh-motif {
+    opacity: 0.12;
+    filter: invert(1);
+}
+
+.oc-resource-hub-hero .oc-rhh-container {
+    position: relative;
+    z-index: 1;
+}
+
+.oc-resource-hub-hero.oc-rhh-spacing-compact {
+    padding: 3.5rem 0;
+}
+
+.oc-resource-hub-hero.oc-rhh-spacing-medium {
+    padding: 5rem 0;
+}
+
+.oc-resource-hub-hero.oc-rhh-spacing-large {
+    padding: 6.5rem 0;
+}
+
+.oc-resource-hub-hero.oc-rhh-spacing-spacious {
+    padding: 8rem 0;
+}
+
+.oc-resource-hub-hero .oc-rhh-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.oc-resource-hub-hero .oc-rhh-content {
+    max-width: 48rem;
+}
+
+.oc-resource-hub-hero .oc-rhh-content-right {
+    justify-self: end;
+}
+
+.oc-resource-hub-hero .oc-rhh-eyebrow {
+    display: block;
+    margin: 0 0 1rem;
+    color: var(--oc-rhh-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.oc-resource-hub-hero.bg-primary .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-primary-scoped .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-secondary .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-secondary-scoped .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-tertiary .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-quaternary .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-h5 .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-h6 .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-success .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-danger .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-dark .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-dark-subtle .oc-rhh-eyebrow,
+.oc-resource-hub-hero.bg-forest-green .oc-rhh-eyebrow,
+.oc-resource-hub-hero.oc-rhh-bg-dark .oc-rhh-eyebrow {
+    color: #9bc4f0;
+}
+
+.oc-resource-hub-hero .oc-rhh-heading {
+    margin: 0 0 1rem;
+    color: var(--oc-rhh-primary);
+    line-height: 1.15;
+    text-transform: none;
+}
+
+.oc-resource-hub-hero.bg-primary .oc-rhh-heading,
+.oc-resource-hub-hero.bg-primary-scoped .oc-rhh-heading,
+.oc-resource-hub-hero.bg-secondary .oc-rhh-heading,
+.oc-resource-hub-hero.bg-secondary-scoped .oc-rhh-heading,
+.oc-resource-hub-hero.bg-tertiary .oc-rhh-heading,
+.oc-resource-hub-hero.bg-quaternary .oc-rhh-heading,
+.oc-resource-hub-hero.bg-h5 .oc-rhh-heading,
+.oc-resource-hub-hero.bg-h6 .oc-rhh-heading,
+.oc-resource-hub-hero.bg-success .oc-rhh-heading,
+.oc-resource-hub-hero.bg-danger .oc-rhh-heading,
+.oc-resource-hub-hero.bg-dark .oc-rhh-heading,
+.oc-resource-hub-hero.bg-dark-subtle .oc-rhh-heading,
+.oc-resource-hub-hero.bg-forest-green .oc-rhh-heading,
+.oc-resource-hub-hero.oc-rhh-bg-dark .oc-rhh-heading {
+    color: var(--bs-white, #ffffff);
+}
+
+.oc-resource-hub-hero .oc-rhh-intro {
+    max-width: 42rem;
+    color: var(--oc-rhh-muted);
+    font-size: clamp(1rem, 1.35vw, 1.1875rem);
+    line-height: 1.7;
+}
+
+.oc-resource-hub-hero .oc-rhh-intro > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-resource-hub-hero .oc-rhh-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.25rem;
+    margin-top: 2rem;
+}
+
+.oc-resource-hub-hero .oc-rhh-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.35rem;
+    font-weight: 700;
+    line-height: 1.2;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.oc-resource-hub-hero .oc-rhh-button:hover,
+.oc-resource-hub-hero .oc-rhh-button:focus {
+    text-decoration: none;
+}
+
+.oc-resource-hub-hero .oc-rhh-button:focus-visible {
+    outline: 3px solid var(--oc-rhh-focus);
+    outline-offset: 4px;
+}
+
+.oc-resource-hub-hero .oc-rhh-button-primary {
+    border: 1px solid var(--oc-rhh-primary);
+    color: var(--bs-white, #ffffff);
+    background: var(--oc-rhh-primary);
+    box-shadow: 0 1rem 2rem rgba(var(--bs-primary-rgb, 1, 35, 63), 0.18);
+}
+
+.oc-resource-hub-hero .oc-rhh-button-primary:hover,
+.oc-resource-hub-hero .oc-rhh-button-primary:focus {
+    color: var(--bs-white, #ffffff);
+    background: rgba(var(--oc-rhh-primary-hover), 0.9);
+    border-color: rgba(var(--oc-rhh-primary-hover), 0.9);
+    transform: translateY(-2px);
+}
+
+.oc-resource-hub-hero .oc-rhh-button-secondary {
+    border: 1px solid var(--oc-rhh-line);
+    color: var(--oc-rhh-primary);
+    background: transparent;
+}
+
+.oc-resource-hub-hero .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero .oc-rhh-button-secondary:focus {
+    color: var(--oc-rhh-primary);
+    border-color: var(--oc-rhh-primary);
+    background: rgba(var(--bs-primary-rgb, 1, 35, 63), 0.06);
+}
+
+.oc-resource-hub-hero.bg-primary .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-primary-scoped .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-secondary .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-secondary-scoped .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-tertiary .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-quaternary .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-h5 .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-h6 .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-success .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-danger .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-dark .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-dark-subtle .oc-rhh-button-secondary,
+.oc-resource-hub-hero.bg-forest-green .oc-rhh-button-secondary,
+.oc-resource-hub-hero.oc-rhh-bg-dark .oc-rhh-button-secondary {
+    color: var(--bs-white, #ffffff);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.oc-resource-hub-hero.bg-primary .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-primary .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-primary-scoped .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-primary-scoped .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-secondary .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-secondary .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-secondary-scoped .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-secondary-scoped .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-tertiary .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-tertiary .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-quaternary .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-quaternary .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-h5 .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-h5 .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-h6 .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-h6 .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-success .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-success .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-danger .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-danger .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-dark .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-dark .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-dark-subtle .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-dark-subtle .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.bg-forest-green .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.bg-forest-green .oc-rhh-button-secondary:focus,
+.oc-resource-hub-hero.oc-rhh-bg-dark .oc-rhh-button-secondary:hover,
+.oc-resource-hub-hero.oc-rhh-bg-dark .oc-rhh-button-secondary:focus {
+    color: var(--bs-white, #ffffff);
+    border-color: var(--bs-white, #ffffff);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.oc-resource-hub-hero .oc-rhh-button-icon {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+}
+
+.oc-resource-hub-hero .oc-rhh-visual {
+    width: 100%;
+}
+
+.oc-resource-hub-hero .oc-rhh-image-card {
+    position: relative;
+    max-width: 38rem;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 0.35rem;
+    background: transparent;
+}
+
+.oc-resource-hub-hero.oc-rhh-card-outlined .oc-rhh-image-card {
+    border: 1px solid var(--oc-rhh-line);
+    background: transparent;
+}
+
+.oc-resource-hub-hero.oc-rhh-card-elevated .oc-rhh-image-card {
+    background: transparent;
+    box-shadow: none;
+}
+
+.oc-resource-hub-hero .oc-rhh-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+.oc-resource-hub-hero.oc-rhh-image-treatment-grayscale .oc-rhh-image {
+    filter: grayscale(1) contrast(1.08);
+}
+
+.oc-resource-hub-hero.oc-rhh-image-treatment-color .oc-rhh-image {
+    filter: none;
+}
+
+.oc-resource-hub-hero .oc-rhh-status-badge {
+    position: absolute;
+    left: -1.5rem;
+    bottom: -1.5rem;
+    max-width: min(20rem, calc(100% - 1rem));
+    padding: clamp(1.4rem, 2.25vw, 2rem) clamp(1.6rem, 2.5vw, 2.25rem);
+    border-left: 4px solid var(--oc-rhh-primary);
+    border-radius: 0;
+    color: var(--oc-rhh-primary);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 1.25rem 2.5rem rgba(var(--bs-primary-rgb, 1, 35, 63), 0.14);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.oc-resource-hub-hero.oc-rhh-badge-light .oc-rhh-status-badge {
+    color: var(--oc-rhh-primary);
+    background: rgba(255, 255, 255, 0.88);
+}
+
+.oc-resource-hub-hero.oc-rhh-badge-dark .oc-rhh-status-badge {
+    color: var(--oc-rhh-primary);
+    background: rgba(255, 255, 255, 0.88);
+}
+
+.oc-resource-hub-hero .oc-rhh-status-label {
+    margin-bottom: 0.5rem;
+    color: #64748b;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    opacity: 0.78;
+}
+
+.oc-resource-hub-hero .oc-rhh-status-text {
+    font-size: clamp(1rem, 1.6vw, 1rem);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.oc-resource-hub-hero .oc-rhh-status-description {
+    margin-top: 1rem;
+    color: #64748b;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+@media (min-width: 992px) {
+    .oc-resource-hub-hero .oc-rhh-layout {
+        grid-template-columns: minmax(0, 7fr) minmax(20rem, 5fr);
+        gap: clamp(3rem, 6vw, 6rem);
+    }
+
+    .oc-resource-hub-hero.oc-rhh-image-left .oc-rhh-layout {
+        grid-template-columns: minmax(20rem, 5fr) minmax(0, 7fr);
+    }
+
+    .oc-resource-hub-hero .oc-rhh-visual-left {
+        order: -1;
+    }
+
+    .oc-resource-hub-hero .oc-rhh-status-badge {
+        left: -1.5rem;
+        bottom: -1.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .oc-resource-hub-hero.oc-rhh-spacing-compact,
+    .oc-resource-hub-hero.oc-rhh-spacing-medium,
+    .oc-resource-hub-hero.oc-rhh-spacing-large,
+    .oc-resource-hub-hero.oc-rhh-spacing-spacious {
+        padding: 4rem 0;
+    }
+
+    .oc-resource-hub-hero .oc-rhh-content,
+    .oc-resource-hub-hero .oc-rhh-content-right {
+        max-width: none;
+        justify-self: auto;
+    }
+
+    .oc-resource-hub-hero .oc-rhh-actions {
+        align-items: stretch;
+    }
+
+    .oc-resource-hub-hero .oc-rhh-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-resource-hub-hero .oc-rhh-heading {
+        font-size: clamp(2.35rem, 12vw, 3.75rem);
+    }
+
+    .oc-resource-hub-hero .oc-rhh-image-card {
+        padding: 0;
+    }
+
+    .oc-resource-hub-hero .oc-rhh-status-badge {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        max-width: none;
+        margin: -0.75rem 0.75rem 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-resource-hub-hero .oc-rhh-button {
+        transition: none;
+    }
+
+    .oc-resource-hub-hero .oc-rhh-button-primary:hover,
+    .oc-resource-hub-hero .oc-rhh-button-primary:focus {
+        transform: none;
+    }
+}

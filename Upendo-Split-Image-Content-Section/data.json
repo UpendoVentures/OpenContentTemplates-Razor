@@ -1,0 +1,17 @@
+{
+  "ModuleTitle": "OC: Split Image Content Section",
+  "ModuleAnchor": "",
+  "Eyebrow": "MILITARY DEPLOYMENT",
+  "SectionHeading": "Computing Across the Mission Environment",
+  "SectionHeadingElement": "h2",
+  "IntroText": "Military computing requirements extend across fixed facilities, vehicles, deployable environments, communications infrastructure, intelligence workflows, and temporary field operations.",
+  "ImageCount": "two",
+  "PrimaryImage": "/Portals/0/Images/mission-environment-computing.jpg",
+  "PrimaryImageAlt": "Integrated computing systems in a fixed mission environment",
+  "SecondaryImage": "/Portals/0/Images/deployable-mission-computing.jpg",
+  "SecondaryImageAlt": "Deployable computing system prepared for transport",
+  "SecondaryImagePosition": "center center",
+  "SecondaryHeading": "From Fixed Operations to Forward Deployment",
+  "SecondaryHeadingElement": "h3",
+  "SecondaryText": "The right platform depends on where it will operate, how it will be transported or installed, what it must connect to, and the workload it needs to support. Portexa can help evaluate these requirements before narrowing the configuration path."
+}

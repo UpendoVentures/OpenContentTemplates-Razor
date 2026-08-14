@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+        "ModuleTitle": {
+            "type": "string",
+            "title": "Module Title"
+        },
+        "ModuleAnchor": {
+            "type": "string",
+            "title": "Module Anchor",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "SectionHeading": {
+            "type": "string",
+            "title": "Section Heading"
+        },
+        "IntroText": {
+            "type": "string",
+            "title": "Intro Text"
+        },
+        "Groups": {
+            "type": "array",
+            "title": "FAQ Groups",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "GroupTitle": {
+                        "type": "string",
+                        "title": "Group Title"
+                    },
+                    "GroupDescription": {
+                        "type": "string",
+                        "title": "Group Description"
+                    },
+                    "Items": {
+                        "type": "array",
+                        "title": "Questions",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ItemLabel": {
+                                    "type": "string",
+                                    "title": "Editor Label"
+                                },
+                                "Question": {
+                                    "type": "string",
+                                    "title": "Question"
+                                },
+                                "Answer": {
+                                    "type": "string",
+                                    "title": "Answer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "FooterMessage": {
+            "type": "string",
+            "title": "Footer Message"
+        }
+    }
+}

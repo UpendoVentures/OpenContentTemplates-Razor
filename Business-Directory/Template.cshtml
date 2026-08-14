@@ -9,6 +9,7 @@
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Common
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Helpers
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Models
+@using Upendo.Libraries.RunsOnUpendoCore.Features.Directory.Services
 @using Upendo.Libraries.RunsOnUpendoCore.Features.Seo.Helpers
 
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
@@ -38,6 +39,22 @@
         ? Dnn.User
         : UserController.Instance.GetCurrentUserInfo();
     bool isAuthenticatedWebsiteMember = currentUser != null && currentUser.UserID > 0 && !currentUser.IsDeleted;
+    string configuredInitialSort = "default";
+    bool hideEmail = false;
+    try
+    {
+        var configuredSortValue = Convert.ToString(Model.Settings.SortBy).Trim().ToLowerInvariant();
+        if (configuredSortValue == "name" || configuredSortValue == "activity")
+        {
+            configuredInitialSort = configuredSortValue;
+        }
+        hideEmail = string.Equals(Convert.ToString(Model.Settings.HideEmail).Trim(), "yes", StringComparison.OrdinalIgnoreCase);
+    }
+    catch
+    {
+        configuredInitialSort = "default";
+        hideEmail = false;
+    }
 
     // detail support
     CompanyDetail company = null;
@@ -111,7 +128,9 @@
         * SEARCH/DIRECTORY VIEW
         *------------------------------------------------------------*/
         // existing listing/search logic
-        var sort = (Request.QueryString["sort"] ?? "default").Trim().ToLowerInvariant();
+        var explicitSort = (Request.QueryString["sort"] ?? string.Empty).Trim().ToLowerInvariant();
+        var hasValidExplicitSort = explicitSort == "default" || explicitSort == "name" || explicitSort == "featured" || explicitSort == "activity";
+        var sort = hasValidExplicitSort ? explicitSort : configuredInitialSort;
         var rsRaw = (Request.QueryString["rs"] ?? string.Empty).Trim();
         int rs;
         var hasSeed = int.TryParse(rsRaw, out rs) && rs > 0;
@@ -131,6 +150,10 @@
         }
 
         req = ChamberMembershipController.ParseRequest(HttpContext.Current.Request);
+        if (!hasValidExplicitSort)
+        {
+            req.Sort = sort;
+        }
         if (req.Sort == "default" && (!req.RandomSeed.HasValue || req.RandomSeed.Value <= 0))
         {
             throw new InvalidOperationException(
@@ -293,8 +316,6 @@
     // Render detail view
         if (company == null)
     {
-        string detailEditUrl = canEditBusinesses ? DirectoryPageUrlHelper.GetEditUrl(company.CompanyId) : string.Empty;
-
         <section class="bcc-company-not-found py-4 py-lg-5">
             <div class="container px-0">
 
@@ -307,17 +328,6 @@
                             <span>Back to <strong>Directory</strong></span>
                         </a>
 
-                        @if (!string.IsNullOrWhiteSpace(detailEditUrl))
-                        {
-                            <a href="@detailEditUrl"
-                                class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center"
-                                target="_blank"
-                                rel="noopener"
-                                aria-label="Edit @company.CompanyName">
-                                <i class="fa-solid fa-pen-to-square me-2" aria-hidden="true"></i>
-                                <span>Edit</span>
-                            </a>
-                        }
                     </div>
                 </div>
 
@@ -418,7 +428,7 @@
                                             else
                                             {
                                                 <a href="@companyUrl" class="savetime-directory">
-                                                    <img src="/Portals/@portalId/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png"
+                                                    <img src="/Portals/@portalId/Images/scbng-member-logo-placeholder-blues-01-512x512.webp"
                                                          alt="Placeholder Logo for @item.CompanyName"
                                                          class="w-100 h-100 object-fit-contain p-3"
                                                          loading="lazy"
@@ -489,15 +499,17 @@
     {
         string logoUrl = ChamberMembershipController.ResolveLogoUrl(portalId, company.LogoFileId, company.LogoUrl);
         string primaryCategory = ChamberMembershipController.GetPrimaryCategoryName(company);
-        string primaryEmail = ChamberMembershipController.GetPrimaryEmail(company);
+        string primaryEmail = hideEmail ? string.Empty : ChamberMembershipController.GetPrimaryEmail(company);
         bool hasSocial = ChamberMembershipController.HasSocialLinks(company);
         bool hasLocation = ChamberMembershipController.HasCompanyAddress(company);
         List<string> addressLines = ChamberMembershipController.GetCompanyAddressLines(company);
         string googleMapsUrl = ChamberMembershipController.BuildCompanyGoogleMapsUrl(company);
-        string listEditUrl = canEditBusinesses ? DirectoryPageUrlHelper.GetEditUrl(company.CompanyId) : string.Empty;
+        bool canEditCompany = canEditBusinesses ||
+            new BusinessDirectoryAccessService().CanCurrentUserEditCompany(portalId, company.CompanyId);
+        string listEditUrl = canEditCompany ? DirectoryPageUrlHelper.GetEditUrl(company.CompanyId) : string.Empty;
 
         <a href="@backToDirectoryUrl"
-            class="text-decoration-none d-inline-flex align-items-center me-2"
+            class="text-decoration-none d-inline-flex align-items-center"
             aria-label="Back to Directory">
             <i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>
             <span>Back to <strong>Directory</strong></span>
@@ -505,7 +517,7 @@
 
         if (!string.IsNullOrWhiteSpace(listEditUrl))
         {
-            <a href="@listEditUrl" class="btn btn-outline-secondary btn-sm flex-shrink-0 me-2"
+            <a href="@listEditUrl" class="btn btn-outline-secondary btn-sm flex-shrink-0"
                 target="_blank" aria-label="Edit @company.CompanyName">
                 <i class="fa-solid fa-pen-to-square me-2" aria-hidden="true"></i>
                 <span>Edit</span>
@@ -530,7 +542,7 @@
                                 {
                                     @* TODO: Replace placeholder logo with OpenContent setting/value *@
                                     <div class="bg-white rounded-4 p-3 mb-3" style="max-width: 320px;">
-                                        <img src="/Portals/@portalId/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png"
+                                        <img src="/Portals/@portalId/Images/scbng-member-logo-placeholder-blues-01-512x512.webp"
                                             alt="Placeholder Logo for @company.CompanyName" class="img-fluid" style="max-height: 320px;" loading="lazy" decoding="async" />
                                     </div>
                                 }
@@ -821,7 +833,8 @@
             company,
             companyDetailAbsoluteUrl,
             logoUrl,
-            (company.Categories != null ? company.Categories.Select(c => c.CategoryName) : null)
+            (company.Categories != null ? company.Categories.Select(c => c.CategoryName) : null),
+            !hideEmail
         )
     }
 }
@@ -831,15 +844,15 @@ else
     <section id="bcc-directory" class="bcc-directory py-4" aria-labelledby="bcc-directory-title">
         <div class="container">
 
-            <header class="mb-0">
+            <div class="mb-0">
                 <h1 id="bcc-directory-title" class="h3 mb-1">
                     <span class="d-inline-flex align-items-center">
                         <i class="fa-solid fa-building-circle-check me-2" aria-hidden="true"></i>
                         <span>Business Directory</span>
                     </span>
                 </h1>
-                <p class="text-muted mb-0">Search and explore Burlingame Chamber member businesses.</p>
-            </header>
+                <p class="text-muted mb-0">Search and explore SCBNG member businesses.</p>
+            </div>
 
             <!-- FILTERS -->
             <div class="card border-0 shadow-sm rounded-4 p-3 mb-4"
@@ -855,8 +868,10 @@ else
                             <span>Keyword</span>
                         </span>
                     </label>
-                    <input id="q" type="search" autocomplete="off" 
-                        class="form-control" placeholder="Search businesses"
+                    <input id="q"
+                        type="search"
+                        class="form-control"
+                        placeholder="Search businesses"
                         value="@req.Query" />
                 </div>
 
@@ -893,6 +908,7 @@ else
                     <select id="sort" class="form-select" aria-label="Sort results">
                         <option value="default" @(req.Sort == "default" ? "selected" : "")>Default (random)</option>
                         <option value="name" @(req.Sort == "name" ? "selected" : "")>Name (A–Z)</option>
+                        <option value="activity" @(req.Sort == "activity" ? "selected" : "")>Activity-Based (most recent 30 days)</option>
                     </select>
                 </div>
 
@@ -979,7 +995,7 @@ else
                                     {
                                         @* TODO: Replace placeholder logo with OpenContent setting/value *@
                                         <a href="@companyUrl" class="savetime-directory">
-                                            <img src="/Portals/@portalId/Content/Members/burlingame-chamber-member-logo-placeholder-512x512.png" alt="Placeholder Logo for @item.CompanyName" class="w-100 h-100 object-fit-contain p-3" loading="lazy" decoding="async" />
+                                            <img src="/Portals/@portalId/Images/scbng-member-logo-placeholder-blues-01-512x512.webp" alt="Placeholder Logo for @item.CompanyName" class="w-100 h-100 object-fit-contain p-3" loading="lazy" decoding="async" />
                                         </a>
                                     }
                                 </div>

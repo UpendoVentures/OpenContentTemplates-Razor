@@ -1,0 +1,70 @@
+{
+  "fields": {
+    "BackgroundColorClass": {
+      "type": "select",
+      "helper": "Background setting. Applies an allow-listed Bootstrap or site background class to the section.",
+      "optionLabels": ["None", "Light", "White", "Dark", "Transparent", "Body", "Primary", "Primary Subtle", "Secondary Subtle", "Light Subtle", "Dark Subtle", "Off White", "Warm White", "Cream", "Soft Beige", "Sand", "Light Sage", "Sage", "Pale Green", "Mist", "Soft Gray", "Forest Green"],
+      "removeDefaultNone": true
+    },
+    "CardCorners": {
+      "type": "select",
+      "helper": "Card styling setting. Controls square or softly rounded card corners.",
+      "optionLabels": ["Square", "Soft"],
+      "removeDefaultNone": true
+    },
+    "CardsPerRow": {
+      "type": "select",
+      "helper": "Layout setting. Controls desktop card columns. Tablet is capped at two columns and mobile is one column.",
+      "optionLabels": ["1 Card", "2 Cards", "3 Cards", "4 Cards"],
+      "removeDefaultNone": true
+    },
+    "CardStyle": {
+      "type": "select",
+      "helper": "Card styling setting. Controls card border and shadow treatment.",
+      "optionLabels": ["Flat", "Outlined", "Elevated"],
+      "removeDefaultNone": true
+    },
+    "ContainerWidth": {
+      "type": "select",
+      "helper": "Layout setting. Controls the Bootstrap container width for the section content.",
+      "optionLabels": ["Container", "Container Small", "Container Medium", "Container Large", "Container XL", "Container XXL", "Full Width"],
+      "removeDefaultNone": true
+    },
+    "DefaultView": {
+      "type": "select",
+      "helper": "Layout setting. Initial layout used by the card list.",
+      "optionLabels": ["Grid", "List"],
+      "removeDefaultNone": true
+    },
+    "IconColor": {
+      "type": "select",
+      "helper": "Icon styling setting. Controls the card icon color treatment.",
+      "optionLabels": ["Primary", "Muted", "Dark"],
+      "removeDefaultNone": true
+    },
+    "MarginBottom": {
+      "type": "select",
+      "helper": "Spacing setting. Adds a Bootstrap margin-bottom utility class to the section.",
+      "optionLabels": ["None", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto"],
+      "removeDefaultNone": true
+    },
+    "MarginTop": {
+      "type": "select",
+      "helper": "Spacing setting. Adds a Bootstrap margin-top utility class to the section.",
+      "optionLabels": ["None", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto"],
+      "removeDefaultNone": true
+    },
+    "PaddingBottom": {
+      "type": "select",
+      "helper": "Spacing setting. Adds a Bootstrap padding-bottom utility class to the section.",
+      "optionLabels": ["None", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto"],
+      "removeDefaultNone": true
+    },
+    "PaddingTop": {
+      "type": "select",
+      "helper": "Spacing setting. Adds a Bootstrap padding-top utility class to the section.",
+      "optionLabels": ["None", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto"],
+      "removeDefaultNone": true
+    }
+  }
+}
