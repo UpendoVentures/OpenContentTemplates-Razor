@@ -1,0 +1,12 @@
+{
+  "BackgroundColorClass": "bg-body",
+  "ContainerClass": "container-xxl",
+  "MarginTop": "mt-5",
+  "MarginBottom": "mb-5",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5",
+  "DisplayMode": "grouped",
+  "CardsPerRow": "2",
+  "CompactSpacing": false,
+  "ShowBackToTop": true
+}

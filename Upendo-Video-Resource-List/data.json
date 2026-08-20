@@ -1,0 +1,57 @@
+{
+  "ModuleTitle": "Upendo-Video-Resource-List",
+  "ModuleAnchor": "resources-videos",
+  "Eyebrow": "Video Resources",
+  "SectionHeading": "Upendo Ventures Video Library",
+  "SectionDescription": "<p>At Upendo Ventures, we help business owners like you turn frustrating, outdated websites into powerful business tools. Whether you're migrating from Wix, Squarespace, or WordPress—or just tired of your site not doing its job—we’re here to help you fix it, modernize it, and grow with it.</p>",
+  "Videos": [
+    {
+      "Title": "Quick Technical Wins for ANY Small Business",
+      "Description": "<p>Is your small business making the impact it should be online? In this short and practical video, Upendo Ventures shares five simple but powerful tips that any business owner can start using today to look more professional, boost online visibility, and build customer trust.</p>",
+      "YouTubeUrl": "https://www.youtube.com/watch?v=UiuAZU8YG8U",
+      "ThumbnailImage": "https://img.youtube.com/vi/UiuAZU8YG8U/maxresdefault.jpg",
+      "ThumbnailAlt": "Quick Technical Wins for ANY Small Business video thumbnail",
+      "Category": "Upendo Ventures",
+      "Tags": "Small Business Tips, Digital Marketing, Upendo Ventures, Entrepreneur Tips, Business Growth, Online Branding, Password Manager, Marketing Simplified",
+      "CtaText": "Watch on YouTube",
+      "CtaUrl": "https://www.youtube.com/watch?v=UiuAZU8YG8U",
+      "CtaTarget": "_blank"
+    },
+    {
+      "Title": "Modern Website Migrations for Small Businesses",
+      "Description": "<p>Tired of your outdated website? We make it easy to migrate from Wix, Squarespace, WordPress, and more—without the stress. Let’s build something better together.</p>",
+      "YouTubeUrl": "https://www.youtube.com/watch?v=UDhDlJ2AEgY",
+      "ThumbnailImage": "https://img.youtube.com/vi/UDhDlJ2AEgY/maxresdefault.jpg",
+      "ThumbnailAlt": "Modern Website Migrations for Small Businesses video thumbnail",
+      "Category": "Upendo Ventures",
+      "Tags": "Small Business, Website Migration, Digital Transformation, Upendo Ventures",
+      "CtaText": "Watch on YouTube",
+      "CtaUrl": "https://www.youtube.com/watch?v=UDhDlJ2AEgY",
+      "CtaTarget": "_blank"
+    },
+    {
+      "Title": "How to Edit Page Meta Data in DNN CMS",
+      "Description": "<p>Learn how to easily edit and manage page-level SEO meta data in DNN CMS using a custom OpenContent template combined with the OpenContentHelper theme object. We’ll walk through how to update your page titles, descriptions, canonical URLs, Open Graph tags, and Twitter Cards — all without writing custom code. Perfect for developers, site owners, and marketers who want more control and better SEO performance from their DNN site.</p>",
+      "YouTubeUrl": "https://www.youtube.com/watch?v=8JtyEsgXiGo",
+      "ThumbnailImage": "https://img.youtube.com/vi/8JtyEsgXiGo/maxresdefault.jpg",
+      "ThumbnailAlt": "How to Edit Page Meta Data in DNN CMS video thumbnail",
+      "Category": "Technical Briefings",
+      "Tags": "DNN, SEO, OpenContent, Resources",
+      "CtaText": "Watch on YouTube",
+      "CtaUrl": "https://www.youtube.com/watch?v=8JtyEsgXiGo",
+      "CtaTarget": "_blank"
+    },
+    {
+      "Title": "How to Upgrade DNN",
+      "Description": "<p>Upgrading DNN is far more simple than some people make it out to be.  As long as you only install trusted extensions and only ones that you need, upgrades can literally be as easy as you see in this video.</p>",
+      "YouTubeUrl": "https://www.youtube.com/watch?v=bSgJ07AAT4s&t=48s",
+      "ThumbnailImage": "https://img.youtube.com/vi/bSgJ07AAT4s/maxresdefault.jpg",
+      "ThumbnailAlt": "How to Upgrade DNN video thumbnail",
+      "Category": "Technical Briefings",
+      "Tags": "DNN, Upgrades, Technical Briefing, Decision Support",
+      "CtaText": "Watch on YouTube",
+      "CtaUrl": "https://www.youtube.com/watch?v=bSgJ07AAT4s&t=48s",
+      "CtaTarget": "_blank"
+    }
+  ]
+}
