@@ -1,0 +1,80 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "Eyebrow": {
+      "type": "string",
+      "title": "Eyebrow"
+    },
+    "SectionHeading": {
+      "type": "string",
+      "title": "Section Heading"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "Videos": {
+      "type": "array",
+      "title": "Videos",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "YouTubeUrl": {
+            "type": "string",
+            "title": "YouTube URL"
+          },
+          "ThumbnailImage": {
+            "type": "string",
+            "title": "Thumbnail Image"
+          },
+          "ThumbnailAlt": {
+            "type": "string",
+            "title": "Thumbnail Alt Text"
+          },
+          "Category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "Tags": {
+            "type": "string",
+            "title": "Tags"
+          },
+          "CtaText": {
+            "type": "string",
+            "title": "CTA Text"
+          },
+          "CtaUrl": {
+            "type": "string",
+            "title": "CTA URL"
+          },
+          "CtaTarget": {
+            "type": "string",
+            "title": "CTA Target",
+            "enum": ["_self", "_blank"],
+            "default": "_self"
+          }
+        },
+        "required": [
+          "Title"
+        ]
+      }
+    }
+  }
+}
