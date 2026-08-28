@@ -1,0 +1,167 @@
+@using System
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string AllowList(string value, string fallback, params string[] allowedValues)
+    {
+        if (!string.IsNullOrWhiteSpace(value))
+        {
+            foreach (var allowedValue in allowedValues)
+            {
+                if (string.Equals(value, allowedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return allowedValue;
+                }
+            }
+        }
+
+        return fallback;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+    var sectionImage = Model.SectionImage != null ? Convert.ToString(Model.SectionImage) : string.Empty;
+    var sectionImageAlt = Model.SectionImageAlt != null ? Convert.ToString(Model.SectionImageAlt) : string.Empty;
+    var primaryCtaText = Model.PrimaryCTAText != null ? Convert.ToString(Model.PrimaryCTAText) : string.Empty;
+    var primaryCtaUrl = Model.PrimaryCTAURL != null ? Convert.ToString(Model.PrimaryCTAURL) : string.Empty;
+    var primaryCtaIcon = Model.PrimaryCTAIcon != null ? Convert.ToString(Model.PrimaryCTAIcon) : string.Empty;
+    var secondaryCtaText = Model.SecondaryCTAText != null ? Convert.ToString(Model.SecondaryCTAText) : string.Empty;
+    var secondaryCtaUrl = Model.SecondaryCTAURL != null ? Convert.ToString(Model.SecondaryCTAURL) : string.Empty;
+    var secondaryCtaIcon = Model.SecondaryCTAIcon != null ? Convert.ToString(Model.SecondaryCTAIcon) : string.Empty;
+    var sectionFooter = Model.SectionFooter != null ? Convert.ToString(Model.SectionFooter) : string.Empty;
+
+    var settings = Model.Settings;
+    var backgroundColorClass = AllowList(
+        settings != null && settings.BackgroundColorClass != null ? Convert.ToString(settings.BackgroundColorClass) : string.Empty,
+        string.Empty,
+        "", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary",
+        "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white",
+        "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle",
+        "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white",
+        "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray",
+        "bg-forest-green"
+    );
+    var marginTop = AllowList(settings != null && settings.MarginTop != null ? Convert.ToString(settings.MarginTop) : string.Empty, string.Empty, "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto");
+    var marginBottom = AllowList(settings != null && settings.MarginBottom != null ? Convert.ToString(settings.MarginBottom) : string.Empty, string.Empty, "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto");
+    var paddingTop = AllowList(settings != null && settings.PaddingTop != null ? Convert.ToString(settings.PaddingTop) : string.Empty, "pt-5", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto");
+    var paddingBottom = AllowList(settings != null && settings.PaddingBottom != null ? Convert.ToString(settings.PaddingBottom) : string.Empty, "pb-5", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto");
+    var animationLevel = AllowList(settings != null && settings.AnimationLevel != null ? Convert.ToString(settings.AnimationLevel) : string.Empty, "light", "none", "light", "medium", "high");
+    var showBreadcrumb = settings == null || settings.Breadcrumb == null || !string.Equals(Convert.ToString(settings.Breadcrumb), "no", StringComparison.OrdinalIgnoreCase);
+
+    var breadcrumbAnimation = animationLevel == "light" ? "fadeIn" : "fadeInDown";
+    var contentAnimation = animationLevel == "light" ? "fadeIn" : "fadeInLeft";
+    var mediaAnimation = animationLevel == "high" ? "zoomIn" : (animationLevel == "medium" ? "fadeInRight" : "fadeIn");
+    var breadcrumbAnimationClass = animationLevel == "none" ? string.Empty : " appear-animation " + breadcrumbAnimation + " appear-animation-visible";
+    var contentAnimationClass = animationLevel == "none" ? string.Empty : " appear-animation " + contentAnimation + " appear-animation-visible";
+    var mediaAnimationClass = animationLevel == "none" ? string.Empty : " appear-animation";
+    var sectionClasses = "oc-side-image-cta position-relative w-100 " + backgroundColorClass + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+    var sectionId = "oc-side-image-cta-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+    var resolvedImageAlt = !string.IsNullOrWhiteSpace(sectionImageAlt) ? sectionImageAlt : string.Empty;
+    var hasImage = UrlValidationHelper.IsLocalOrExternalHttpUrl(sectionImage);
+    var hasPrimaryCta = !string.IsNullOrWhiteSpace(primaryCtaText) && UrlValidationHelper.IsLocalOrExternalHttpUrl(primaryCtaUrl);
+    var hasSecondaryCta = !string.IsNullOrWhiteSpace(secondaryCtaText) && UrlValidationHelper.IsLocalOrExternalHttpUrl(secondaryCtaUrl);
+    var breadcrumbItems = showBreadcrumb ? TemplateHelper.GetActiveTabBreadcrumbs(true) : null;
+    var hasBreadcrumbs = breadcrumbItems != null && breadcrumbItems.Count > 0;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section id="@sectionId"
+         class="@sectionClasses"
+         data-animation-level="@animationLevel"
+         aria-labelledby="@headingId">
+    <div class="container-xxl">
+        @if (hasBreadcrumbs)
+        {
+            <nav class="oc-side-image-cta__breadcrumb@breadcrumbAnimationClass" aria-label="Breadcrumb" data-appear-animation="@(animationLevel == "none" ? null : breadcrumbAnimation)">
+                <ol class="oc-side-image-cta__breadcrumb-list list-unstyled mb-0" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    @for (var i = 0; i < breadcrumbItems.Count; i++)
+                    {
+                        var item = breadcrumbItems[i];
+                        <li class="oc-side-image-cta__breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            @if (!item.IsCurrent && !string.IsNullOrWhiteSpace(item.Url))
+                            {
+                                <a class="oc-side-image-cta__breadcrumb-link" href="@item.Url" itemprop="item">
+                                    <span itemprop="name">@item.Text</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="oc-side-image-cta__breadcrumb-current" aria-current="page" itemprop="name">@item.Text</span>
+                            }
+                            <meta itemprop="position" content="@item.Position" />
+                        </li>
+                    }
+                </ol>
+            </nav>
+        }
+
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+                <div class="oc-side-image-cta__content@contentAnimationClass" data-appear-animation="@(animationLevel == "none" ? null : contentAnimation)" data-appear-animation-delay="@(animationLevel == "none" ? null : "100")" style="@(animationLevel == "none" ? null : "animation-delay: 100ms;")">
+                    <h1 id="@headingId" class="oc-side-image-cta__title">@Html.Raw(sectionTitle)</h1>
+
+                    <div class="oc-side-image-cta__description">@Html.Raw(sectionDescription)</div>
+
+                    @if (hasPrimaryCta || hasSecondaryCta)
+                    {
+                        <div class="oc-side-image-cta__actions">
+                            @if (hasPrimaryCta)
+                            {
+                                <a class="btn rounded-pill oc-side-image-cta__button oc-side-image-cta__button--primary" href="@primaryCtaUrl">
+                                    @if (!string.IsNullOrWhiteSpace(primaryCtaIcon))
+                                    {
+                                        <i class="@primaryCtaIcon mx-2" aria-hidden="true"></i>
+                                    }
+                                    <span>@Html.Raw(primaryCtaText)</span>
+                                </a>
+                            }
+
+                            @if (hasSecondaryCta)
+                            {
+                                <a class="btn rounded-pill oc-side-image-cta__button oc-side-image-cta__button--secondary" href="@secondaryCtaUrl">
+                                    @if (!string.IsNullOrWhiteSpace(secondaryCtaIcon))
+                                    {
+                                        <i class="@secondaryCtaIcon mx-2" aria-hidden="true"></i>
+                                    }
+                                    <span>@Html.Raw(secondaryCtaText)</span>
+                                </a>
+                            }
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(sectionFooter))
+                    {
+                        <div class="oc-side-image-cta__footer">@Html.Raw(sectionFooter)</div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                @if (hasImage)
+                {
+                    <div class="oc-side-image-cta__media-wrap@mediaAnimationClass" data-appear-animation="@(animationLevel == "none" ? null : mediaAnimation)" data-appear-animation-delay="@(animationLevel == "none" ? null : "250")">
+                        <div class="oc-side-image-cta__media">
+                            <img class="img-fluid oc-side-image-cta__image"
+                                 src="@sectionImage"
+                                 alt="@resolvedImageAlt"
+                                 loading="lazy"
+                                 decoding="async" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
