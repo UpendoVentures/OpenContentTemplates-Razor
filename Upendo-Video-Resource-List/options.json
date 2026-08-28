@@ -1,0 +1,92 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this OpenContent module. This helps identify the content block and is not displayed to visitors.",
+      "placeholder": "Video Resource List"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create a page anchor, such as resources-videos. Use letters, numbers, and hyphens only.",
+      "placeholder": "resources-videos",
+      "showMessages": false
+    },
+    "Eyebrow": {
+      "type": "text",
+      "helper": "Optional. Small label shown above the section heading.",
+      "placeholder": "Video Resources"
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the video list.",
+      "placeholder": "Video Library"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Short introduction shown above the videos. HTML is allowed.",
+      "placeholder": "Watch brief explainers, product conversations, and field notes from the team."
+    },
+    "Videos": {
+      "type": "accordion",
+      "helper": "Add each video resource here. Categories and tags are simple text fields so this template can remain independent.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Public title for this video.",
+            "placeholder": "Platform Overview"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Optional. Short description shown below the video.",
+            "placeholder": "A draft overview of how teams can evaluate and operationalize technical decisions."
+          },
+          "YouTubeUrl": {
+            "type": "url",
+            "helper": "Optional. Paste a YouTube watch, youtu.be, shorts, or embed URL. The public embed uses youtube-nocookie.com when the video ID can be parsed.",
+            "placeholder": "https://www.youtube.com/watch?v=VIDEO_ID"
+          },
+          "ThumbnailImage": {
+            "type": "image",
+            "helper": "Optional fallback image shown when no usable YouTube URL is configured. Recommended minimum: 1280 x 720 px.",
+            "uploadfolder": "Content/OpenContent/VideoResourceList/",
+            "typeahead": {
+              "Folder": "Content/OpenContent/VideoResourceList/"
+            }
+          },
+          "ThumbnailAlt": {
+            "type": "text",
+            "helper": "Describe the thumbnail for assistive technology. Leave empty only if the image is decorative.",
+            "placeholder": "Video thumbnail"
+          },
+          "Category": {
+            "type": "text",
+            "helper": "Optional. Simple label shown above the title and used for grouping when multiple categories exist.",
+            "placeholder": "Platform Overview"
+          },
+          "Tags": {
+            "type": "text",
+            "helper": "Optional. Comma-separated tags shown as small badges.",
+            "placeholder": "AI strategy, evaluation, operations"
+          },
+          "CtaText": {
+            "type": "text",
+            "helper": "Optional. Link text shown below the description. If empty, the YouTube URL is used as a source link only when a fallback card renders.",
+            "placeholder": "Watch on YouTube"
+          },
+          "CtaUrl": {
+            "type": "url",
+            "helper": "Optional. Link URL for the CTA. If empty, the YouTube URL is used when CTA text is present.",
+            "placeholder": "https://www.youtube.com/watch?v=VIDEO_ID"
+          },
+          "CtaTarget": {
+            "type": "select",
+            "helper": "Open the CTA in the same tab or a new tab. New tabs automatically receive noopener and noreferrer.",
+            "optionLabels": ["Same Tab", "New Tab"],
+            "removeDefaultNone": true
+          }
+        }
+      }
+    }
+  }
+}

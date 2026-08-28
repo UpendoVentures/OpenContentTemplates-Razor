@@ -1,0 +1,800 @@
+@using System
+@using System.Collections.Generic
+@using System.Text
+@using System.Web
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var output = new StringBuilder();
+    var moduleTitle = Model.ModuleTitle == null ? string.Empty : Convert.ToString(Model.ModuleTitle).Trim();
+    var moduleAnchor = Model.ModuleAnchor == null ? string.Empty : Convert.ToString(Model.ModuleAnchor).Trim();
+    var eyebrow = Model.Eyebrow == null ? string.Empty : Convert.ToString(Model.Eyebrow).Trim();
+    var sectionHeading = Model.SectionHeading == null ? string.Empty : Convert.ToString(Model.SectionHeading).Trim();
+    var sectionDescription = Model.SectionDescription == null ? string.Empty : Convert.ToString(Model.SectionDescription).Trim();
+
+    var backgroundColorClass = "bg-body";
+    var containerClass = "container-xxl";
+    var marginTop = string.Empty;
+    var marginBottom = string.Empty;
+    var paddingTop = string.Empty;
+    var paddingBottom = string.Empty;
+    var displayMode = "grouped";
+    var cardsPerRow = "2";
+    var compactSpacing = false;
+    var showBackToTop = false;
+
+    if (Model.Settings != null)
+    {
+        var settingValue = Model.Settings.BackgroundColorClass == null ? string.Empty : Convert.ToString(Model.Settings.BackgroundColorClass).Trim();
+        var allowedBackgrounds = new List<string> { "", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white", "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green" };
+        for (var i = 0; i < allowedBackgrounds.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedBackgrounds[i], StringComparison.OrdinalIgnoreCase))
+            {
+                backgroundColorClass = allowedBackgrounds[i];
+            }
+        }
+
+        settingValue = Model.Settings.ContainerClass == null ? string.Empty : Convert.ToString(Model.Settings.ContainerClass).Trim();
+        var allowedContainers = new List<string> { "container", "container-sm", "container-md", "container-lg", "container-xl", "container-xxl", "container-fluid" };
+        for (var i = 0; i < allowedContainers.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedContainers[i], StringComparison.OrdinalIgnoreCase))
+            {
+                containerClass = allowedContainers[i];
+            }
+        }
+
+        settingValue = Model.Settings.MarginTop == null ? string.Empty : Convert.ToString(Model.Settings.MarginTop).Trim();
+        var allowedMarginTop = new List<string> { "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto" };
+        for (var i = 0; i < allowedMarginTop.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedMarginTop[i], StringComparison.OrdinalIgnoreCase))
+            {
+                marginTop = allowedMarginTop[i];
+            }
+        }
+
+        settingValue = Model.Settings.MarginBottom == null ? string.Empty : Convert.ToString(Model.Settings.MarginBottom).Trim();
+        var allowedMarginBottom = new List<string> { "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto" };
+        for (var i = 0; i < allowedMarginBottom.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedMarginBottom[i], StringComparison.OrdinalIgnoreCase))
+            {
+                marginBottom = allowedMarginBottom[i];
+            }
+        }
+
+        settingValue = Model.Settings.PaddingTop == null ? string.Empty : Convert.ToString(Model.Settings.PaddingTop).Trim();
+        var allowedPaddingTop = new List<string> { "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto" };
+        for (var i = 0; i < allowedPaddingTop.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedPaddingTop[i], StringComparison.OrdinalIgnoreCase))
+            {
+                paddingTop = allowedPaddingTop[i];
+            }
+        }
+
+        settingValue = Model.Settings.PaddingBottom == null ? string.Empty : Convert.ToString(Model.Settings.PaddingBottom).Trim();
+        var allowedPaddingBottom = new List<string> { "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto" };
+        for (var i = 0; i < allowedPaddingBottom.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedPaddingBottom[i], StringComparison.OrdinalIgnoreCase))
+            {
+                paddingBottom = allowedPaddingBottom[i];
+            }
+        }
+
+        settingValue = Model.Settings.DisplayMode == null ? string.Empty : Convert.ToString(Model.Settings.DisplayMode).Trim();
+        var allowedDisplayModes = new List<string> { "grouped", "grid" };
+        for (var i = 0; i < allowedDisplayModes.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedDisplayModes[i], StringComparison.OrdinalIgnoreCase))
+            {
+                displayMode = allowedDisplayModes[i];
+            }
+        }
+
+        settingValue = Model.Settings.CardsPerRow == null ? string.Empty : Convert.ToString(Model.Settings.CardsPerRow).Trim();
+        var allowedCardsPerRow = new List<string> { "2", "3" };
+        for (var i = 0; i < allowedCardsPerRow.Count; i++)
+        {
+            if (string.Equals(settingValue, allowedCardsPerRow[i], StringComparison.OrdinalIgnoreCase))
+            {
+                cardsPerRow = allowedCardsPerRow[i];
+            }
+        }
+
+        settingValue = Model.Settings.CompactSpacing == null ? string.Empty : Convert.ToString(Model.Settings.CompactSpacing).Trim();
+        compactSpacing = string.Equals(settingValue, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(settingValue, "1", StringComparison.OrdinalIgnoreCase) || string.Equals(settingValue, "yes", StringComparison.OrdinalIgnoreCase);
+
+        settingValue = Model.Settings.ShowBackToTop == null ? string.Empty : Convert.ToString(Model.Settings.ShowBackToTop).Trim();
+        if (string.Equals(settingValue, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(settingValue, "1", StringComparison.OrdinalIgnoreCase) || string.Equals(settingValue, "yes", StringComparison.OrdinalIgnoreCase))
+        {
+            showBackToTop = true;
+        }
+    }
+
+    var videos = new List<dynamic>();
+    var categories = new List<string>();
+
+    if (Model.Videos != null)
+    {
+        foreach (var video in Model.Videos)
+        {
+            videos.Add(video);
+
+            var itemCategory = video.Category == null ? string.Empty : Convert.ToString(video.Category).Trim();
+            if (string.IsNullOrWhiteSpace(itemCategory))
+            {
+                itemCategory = "Featured Videos";
+            }
+
+            var categoryExists = false;
+            for (var i = 0; i < categories.Count; i++)
+            {
+                if (string.Equals(categories[i], itemCategory, StringComparison.OrdinalIgnoreCase))
+                {
+                    categoryExists = true;
+                }
+            }
+
+            if (!categoryExists)
+            {
+                categories.Add(itemCategory);
+            }
+        }
+    }
+
+    var sectionId = !string.IsNullOrWhiteSpace(moduleAnchor) ? moduleAnchor : "oc-video-resource-list-" + Model.Context.ModuleId;
+    var headingId = "oc-video-resource-list-heading-" + Model.Context.ModuleId;
+    var sectionLabel = !string.IsNullOrWhiteSpace(sectionHeading) ? sectionHeading : (!string.IsNullOrWhiteSpace(moduleTitle) ? moduleTitle : "Video resources");
+    var sectionClass = "oc-video-resource-list oc-video-resource-list--" + displayMode + " oc-video-resource-list--cols-" + cardsPerRow + " " + backgroundColorClass;
+    var columnClass = string.Equals(cardsPerRow, "3", StringComparison.OrdinalIgnoreCase) ? "col-12 col-lg-4" : "col-12 col-lg-6";
+    var gridClass = compactSpacing ? "row g-3 oc-video-resource-list__grid" : "row g-4 oc-video-resource-list__grid";
+
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClass += " " + paddingBottom; }
+    if (compactSpacing) { sectionClass += " oc-video-resource-list--compact"; }
+
+    var isEditMode = false;
+    try
+    {
+        isEditMode = Model.Context.IsEditMode;
+    }
+    catch
+    {
+        try
+        {
+            isEditMode = Model.Context.IsEditable;
+        }
+        catch
+        {
+        }
+    }
+
+    if (videos.Count > 0)
+    {
+        output.Append("<section id=\"");
+        output.Append(HttpUtility.HtmlAttributeEncode(sectionId));
+        output.Append("\" class=\"");
+        output.Append(HttpUtility.HtmlAttributeEncode(sectionClass));
+        output.Append("\" aria-labelledby=\"");
+        output.Append(HttpUtility.HtmlAttributeEncode(headingId));
+        output.Append("\"><div class=\"");
+        output.Append(HttpUtility.HtmlAttributeEncode(containerClass));
+        output.Append("\">");
+        output.Append("<div class=\"oc-video-resource-list__intro row justify-content-center\"><div class=\"col-12 col-lg-9 text-center\">");
+
+        if (!string.IsNullOrWhiteSpace(eyebrow))
+        {
+            output.Append("<p class=\"oc-video-resource-list__eyebrow mb-2\">");
+            output.Append(HttpUtility.HtmlEncode(eyebrow));
+            output.Append("</p>");
+        }
+
+        if (!string.IsNullOrWhiteSpace(sectionHeading))
+        {
+            output.Append("<h2 id=\"");
+            output.Append(HttpUtility.HtmlAttributeEncode(headingId));
+            output.Append("\" class=\"oc-video-resource-list__heading text-notransform mb-2\">");
+            output.Append(HttpUtility.HtmlEncode(sectionHeading));
+            output.Append("</h2>");
+        }
+        else
+        {
+            output.Append("<h2 id=\"");
+            output.Append(HttpUtility.HtmlAttributeEncode(headingId));
+            output.Append("\" class=\"visually-hidden\">");
+            output.Append(HttpUtility.HtmlEncode(sectionLabel));
+            output.Append("</h2>");
+        }
+
+        if (!string.IsNullOrWhiteSpace(sectionDescription))
+        {
+            output.Append("<div class=\"oc-video-resource-list__description mx-auto\">");
+            output.Append(sectionDescription);
+            output.Append("</div>");
+        }
+
+        output.Append("</div></div>");
+
+        if (categories.Count > 1 && string.Equals(displayMode, "grouped", StringComparison.OrdinalIgnoreCase))
+        {
+            output.Append("<nav class=\"oc-video-resource-list__nav\" aria-label=\"Video categories\"><ul class=\"nav flex-wrap justify-content-center gap-1 mb-0\">");
+            for (var categoryNavIndex = 0; categoryNavIndex < categories.Count; categoryNavIndex++)
+            {
+                var navCategoryId = "oc-video-resource-category-" + Model.Context.ModuleId + "-" + (categoryNavIndex + 1);
+                output.Append("<li class=\"nav-item\"><a class=\"btn btn-sm rounded-pill oc-video-resource-list__nav-link\" href=\"#");
+                output.Append(HttpUtility.HtmlAttributeEncode(navCategoryId));
+                output.Append("\">");
+                output.Append(HttpUtility.HtmlEncode(categories[categoryNavIndex]));
+                output.Append("</a></li>");
+            }
+            output.Append("</ul></nav>");
+        }
+
+        if (string.Equals(displayMode, "grid", StringComparison.OrdinalIgnoreCase))
+        {
+            output.Append("<div class=\"");
+            output.Append(HttpUtility.HtmlAttributeEncode(gridClass));
+            output.Append("\">");
+
+            for (var videoIndex = 0; videoIndex < videos.Count; videoIndex++)
+            {
+                var video = videos[videoIndex];
+                var category = video.Category == null ? string.Empty : Convert.ToString(video.Category).Trim();
+                if (string.IsNullOrWhiteSpace(category))
+                {
+                    category = "Featured Videos";
+                }
+
+                var title = video.Title == null ? string.Empty : Convert.ToString(video.Title).Trim();
+                if (string.IsNullOrWhiteSpace(title))
+                {
+                    title = "Video";
+                }
+
+                var description = video.Description == null ? string.Empty : Convert.ToString(video.Description).Trim();
+                var youtubeUrl = video.YouTubeUrl == null ? string.Empty : Convert.ToString(video.YouTubeUrl).Trim();
+                var safeYoutubeUrl = string.Empty;
+                if (!string.IsNullOrWhiteSpace(youtubeUrl) && !youtubeUrl.Contains("<") && !youtubeUrl.Contains(">") && !youtubeUrl.StartsWith("//", StringComparison.Ordinal))
+                {
+                    if (youtubeUrl.StartsWith("#", StringComparison.Ordinal) || youtubeUrl.StartsWith("/", StringComparison.Ordinal))
+                    {
+                        safeYoutubeUrl = youtubeUrl;
+                    }
+                    else
+                    {
+                        Uri parsedSafeUrl;
+                        if (Uri.TryCreate(youtubeUrl, UriKind.Absolute, out parsedSafeUrl) &&
+                            (parsedSafeUrl.Scheme == Uri.UriSchemeHttp || parsedSafeUrl.Scheme == Uri.UriSchemeHttps || parsedSafeUrl.Scheme == Uri.UriSchemeMailto || parsedSafeUrl.Scheme == "tel"))
+                        {
+                            safeYoutubeUrl = youtubeUrl;
+                        }
+                    }
+                }
+
+                var youtubeVideoId = string.Empty;
+                if (!string.IsNullOrWhiteSpace(youtubeUrl) && !youtubeUrl.Contains("<") && !youtubeUrl.Contains(">"))
+                {
+                    Uri parsedYouTubeUrl;
+                    if (Uri.TryCreate(youtubeUrl, UriKind.Absolute, out parsedYouTubeUrl) &&
+                        parsedYouTubeUrl != null &&
+                        (string.Equals(parsedYouTubeUrl.Scheme, "http", StringComparison.OrdinalIgnoreCase) || string.Equals(parsedYouTubeUrl.Scheme, "https", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        var host = parsedYouTubeUrl.Host == null ? string.Empty : parsedYouTubeUrl.Host.ToLowerInvariant();
+                        var path = parsedYouTubeUrl.AbsolutePath == null ? string.Empty : parsedYouTubeUrl.AbsolutePath.Trim('/');
+                        var candidateVideoId = string.Empty;
+
+                        if (host == "youtu.be")
+                        {
+                            var pathParts = path.Split('/');
+                            if (pathParts.Length > 0)
+                            {
+                                candidateVideoId = pathParts[0];
+                            }
+                        }
+                        else if (host == "youtube.com" || host == "www.youtube.com" || host == "m.youtube.com" || host == "music.youtube.com" || host == "www.youtube-nocookie.com" || host == "youtube-nocookie.com")
+                        {
+                            var queryValues = HttpUtility.ParseQueryString(parsedYouTubeUrl.Query);
+                            candidateVideoId = queryValues["v"];
+
+                            if (string.IsNullOrWhiteSpace(candidateVideoId))
+                            {
+                                var pathParts = path.Split('/');
+                                if (pathParts.Length >= 2 &&
+                                    (string.Equals(pathParts[0], "embed", StringComparison.OrdinalIgnoreCase) || string.Equals(pathParts[0], "shorts", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    candidateVideoId = pathParts[1];
+                                }
+                            }
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(candidateVideoId))
+                        {
+                            for (var i = 0; i < candidateVideoId.Length; i++)
+                            {
+                                var c = candidateVideoId[i];
+                                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_' || c == '-')
+                                {
+                                    youtubeVideoId += c;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var embedUrl = !string.IsNullOrWhiteSpace(youtubeVideoId) ? "https://www.youtube-nocookie.com/embed/" + youtubeVideoId + "?rel=0&modestbranding=1&playsinline=1" : string.Empty;
+                var thumbnailImage = string.Empty;
+                if (video.ThumbnailImage != null)
+                {
+                    try
+                    {
+                        if (video.ThumbnailImage.Url != null)
+                        {
+                            thumbnailImage = Convert.ToString(video.ThumbnailImage.Url).Trim();
+                        }
+                    }
+                    catch
+                    {
+                    }
+
+                    if (string.IsNullOrWhiteSpace(thumbnailImage))
+                    {
+                        thumbnailImage = Convert.ToString(video.ThumbnailImage).Trim();
+                    }
+                }
+
+                var thumbnailAlt = video.ThumbnailAlt == null ? string.Empty : Convert.ToString(video.ThumbnailAlt).Trim();
+                if (string.IsNullOrWhiteSpace(thumbnailAlt))
+                {
+                    thumbnailAlt = title;
+                }
+
+                var ctaText = video.CtaText == null ? string.Empty : Convert.ToString(video.CtaText).Trim();
+                var rawCtaUrl = video.CtaUrl == null ? string.Empty : Convert.ToString(video.CtaUrl).Trim();
+                if (string.IsNullOrWhiteSpace(rawCtaUrl))
+                {
+                    rawCtaUrl = youtubeUrl;
+                }
+
+                var ctaUrl = string.Empty;
+                if (!string.IsNullOrWhiteSpace(rawCtaUrl) && !rawCtaUrl.Contains("<") && !rawCtaUrl.Contains(">") && !rawCtaUrl.StartsWith("//", StringComparison.Ordinal))
+                {
+                    if (rawCtaUrl.StartsWith("#", StringComparison.Ordinal) || rawCtaUrl.StartsWith("/", StringComparison.Ordinal))
+                    {
+                        ctaUrl = rawCtaUrl;
+                    }
+                    else
+                    {
+                        Uri parsedCtaUrl;
+                        if (Uri.TryCreate(rawCtaUrl, UriKind.Absolute, out parsedCtaUrl) &&
+                            (parsedCtaUrl.Scheme == Uri.UriSchemeHttp || parsedCtaUrl.Scheme == Uri.UriSchemeHttps || parsedCtaUrl.Scheme == Uri.UriSchemeMailto || parsedCtaUrl.Scheme == "tel"))
+                        {
+                            ctaUrl = rawCtaUrl;
+                        }
+                    }
+                }
+
+                var ctaTarget = video.CtaTarget == null ? string.Empty : Convert.ToString(video.CtaTarget).Trim();
+                if (!string.Equals(ctaTarget, "_blank", StringComparison.OrdinalIgnoreCase))
+                {
+                    ctaTarget = "_self";
+                }
+
+                var opensNewWindow = string.Equals(ctaTarget, "_blank", StringComparison.OrdinalIgnoreCase);
+                var targetAttributes = opensNewWindow ? " target=\"_blank\" rel=\"noopener noreferrer\"" : string.Empty;
+                var hasEmbed = !string.IsNullOrWhiteSpace(embedUrl);
+                var hasThumbnail = !string.IsNullOrWhiteSpace(thumbnailImage);
+                var hasCta = !string.IsNullOrWhiteSpace(ctaText) && !string.IsNullOrWhiteSpace(ctaUrl);
+                var tags = new List<string>();
+                var tagsText = video.Tags == null ? string.Empty : Convert.ToString(video.Tags).Trim();
+                if (!string.IsNullOrWhiteSpace(tagsText))
+                {
+                    var tagParts = tagsText.Split(',');
+                    for (var i = 0; i < tagParts.Length; i++)
+                    {
+                        var tag = tagParts[i].Trim();
+                        if (!string.IsNullOrWhiteSpace(tag))
+                        {
+                            tags.Add(tag);
+                        }
+                    }
+                }
+
+                output.Append("<div class=\"");
+                output.Append(HttpUtility.HtmlAttributeEncode(columnClass));
+                output.Append("\"><article class=\"oc-video-resource-list__card h-100\"><div class=\"oc-video-resource-list__media\">");
+
+                if (hasEmbed)
+                {
+                    output.Append("<iframe class=\"oc-video-resource-list__iframe\" src=\"");
+                    output.Append(HttpUtility.HtmlAttributeEncode(embedUrl));
+                    output.Append("\" title=\"");
+                    output.Append(HttpUtility.HtmlAttributeEncode(title));
+                    output.Append("\" loading=\"lazy\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
+                }
+                else if (hasThumbnail)
+                {
+                    if (!string.IsNullOrWhiteSpace(safeYoutubeUrl))
+                    {
+                        output.Append("<a class=\"oc-video-resource-list__thumbnail-link\" href=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(safeYoutubeUrl));
+                        output.Append("\"");
+                        output.Append(targetAttributes);
+                        output.Append(" aria-label=\"Open video: ");
+                        output.Append(HttpUtility.HtmlAttributeEncode(title));
+                        output.Append("\"><img class=\"oc-video-resource-list__thumbnail\" src=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(thumbnailImage));
+                        output.Append("\" alt=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(thumbnailAlt));
+                        output.Append("\" loading=\"lazy\" decoding=\"async\" /><span class=\"oc-video-resource-list__play\" aria-hidden=\"true\"><i class=\"fas fa-play\"></i></span></a>");
+                    }
+                    else
+                    {
+                        output.Append("<img class=\"oc-video-resource-list__thumbnail\" src=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(thumbnailImage));
+                        output.Append("\" alt=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(thumbnailAlt));
+                        output.Append("\" loading=\"lazy\" decoding=\"async\" />");
+                    }
+                }
+                else if (isEditMode)
+                {
+                    output.Append("<div class=\"oc-video-resource-list__editor-warning\" role=\"status\">Add a valid YouTube URL or fallback thumbnail for this video.</div>");
+                }
+
+                output.Append("</div><div class=\"oc-video-resource-list__body\">");
+
+                if (!string.IsNullOrWhiteSpace(category))
+                {
+                    output.Append("<p class=\"oc-video-resource-list__category mb-2\">");
+                    output.Append(HttpUtility.HtmlEncode(category));
+                    output.Append("</p>");
+                }
+
+                output.Append("<h3 class=\"oc-video-resource-list__title text-notransform mb-2\">");
+                output.Append(HttpUtility.HtmlEncode(title));
+                output.Append("</h3>");
+
+                if (!string.IsNullOrWhiteSpace(description))
+                {
+                    output.Append("<div class=\"oc-video-resource-list__card-description\">");
+                    output.Append(description);
+                    output.Append("</div>");
+                }
+
+                if (tags.Count > 0)
+                {
+                    output.Append("<ul class=\"oc-video-resource-list__tags list-unstyled d-flex flex-wrap gap-1 mb-0 mt-2\" aria-label=\"Video tags\">");
+                    for (var i = 0; i < tags.Count; i++)
+                    {
+                        output.Append("<li><span class=\"oc-video-resource-list__tag\">");
+                        output.Append(HttpUtility.HtmlEncode(tags[i]));
+                        output.Append("</span></li>");
+                    }
+                    output.Append("</ul>");
+                }
+
+                if (hasCta)
+                {
+                    output.Append("<a class=\"btn btn-sm oc-video-resource-list__button mt-4\" href=\"");
+                    output.Append(HttpUtility.HtmlAttributeEncode(ctaUrl));
+                    output.Append("\"");
+                    output.Append(targetAttributes);
+                    output.Append(" aria-label=\"");
+                    output.Append(HttpUtility.HtmlAttributeEncode(ctaText + ": " + title));
+                    output.Append("\">");
+                    output.Append(HttpUtility.HtmlEncode(ctaText));
+                    output.Append("<i class=\"fas fa-arrow-right ms-2\" aria-hidden=\"true\"></i></a>");
+                }
+
+                output.Append("</div></article></div>");
+            }
+
+            output.Append("</div>");
+        }
+
+        for (var categoryIndex = 0; categoryIndex < categories.Count && string.Equals(displayMode, "grouped", StringComparison.OrdinalIgnoreCase); categoryIndex++)
+        {
+            var currentCategory = categories[categoryIndex];
+            var categoryId = "oc-video-resource-category-" + Model.Context.ModuleId + "-" + (categoryIndex + 1);
+
+            output.Append("<div id=\"");
+            output.Append(HttpUtility.HtmlAttributeEncode(categoryId));
+            output.Append("\" class=\"oc-video-resource-list__category-anchor\"></div>");
+
+            if (categories.Count > 1)
+            {
+                output.Append("<div class=\"oc-video-resource-list__category-heading-wrap d-flex align-items-center flex-wrap gap-1\"><h3 class=\"oc-video-resource-list__category-heading text-notransform mb-0\">");
+                output.Append(HttpUtility.HtmlEncode(currentCategory));
+                output.Append("</h3>");
+                if (showBackToTop && categoryIndex > 0)
+                {
+                    output.Append("<a class=\"oc-video-resource-list__back-link text-decoration-none\" href=\"#");
+                    output.Append(HttpUtility.HtmlAttributeEncode(sectionId));
+                    output.Append("\">Back to top<i class=\"fas fa-arrow-up ms-2\" aria-hidden=\"true\"></i></a>");
+                }
+                output.Append("</div>");
+            }
+
+            output.Append("<div class=\"");
+            output.Append(HttpUtility.HtmlAttributeEncode(gridClass));
+            output.Append("\">");
+
+            foreach (var video in videos)
+            {
+                var category = video.Category == null ? string.Empty : Convert.ToString(video.Category).Trim();
+                if (string.IsNullOrWhiteSpace(category))
+                {
+                    category = "Featured Videos";
+                }
+
+                if (string.Equals(category, currentCategory, StringComparison.OrdinalIgnoreCase))
+                {
+                    var title = video.Title == null ? string.Empty : Convert.ToString(video.Title).Trim();
+                    if (string.IsNullOrWhiteSpace(title))
+                    {
+                        title = "Video";
+                    }
+
+                    var description = video.Description == null ? string.Empty : Convert.ToString(video.Description).Trim();
+                    var youtubeUrl = video.YouTubeUrl == null ? string.Empty : Convert.ToString(video.YouTubeUrl).Trim();
+                    var safeYoutubeUrl = string.Empty;
+                    if (!string.IsNullOrWhiteSpace(youtubeUrl) && !youtubeUrl.Contains("<") && !youtubeUrl.Contains(">") && !youtubeUrl.StartsWith("//", StringComparison.Ordinal))
+                    {
+                        if (youtubeUrl.StartsWith("#", StringComparison.Ordinal) || youtubeUrl.StartsWith("/", StringComparison.Ordinal))
+                        {
+                            safeYoutubeUrl = youtubeUrl;
+                        }
+                        else
+                        {
+                            Uri parsedSafeUrl;
+                            if (Uri.TryCreate(youtubeUrl, UriKind.Absolute, out parsedSafeUrl) &&
+                                (parsedSafeUrl.Scheme == Uri.UriSchemeHttp || parsedSafeUrl.Scheme == Uri.UriSchemeHttps || parsedSafeUrl.Scheme == Uri.UriSchemeMailto || parsedSafeUrl.Scheme == "tel"))
+                            {
+                                safeYoutubeUrl = youtubeUrl;
+                            }
+                        }
+                    }
+
+                    var youtubeVideoId = string.Empty;
+                    if (!string.IsNullOrWhiteSpace(youtubeUrl) && !youtubeUrl.Contains("<") && !youtubeUrl.Contains(">"))
+                    {
+                        Uri parsedYouTubeUrl;
+                        if (Uri.TryCreate(youtubeUrl, UriKind.Absolute, out parsedYouTubeUrl) &&
+                            parsedYouTubeUrl != null &&
+                            (string.Equals(parsedYouTubeUrl.Scheme, "http", StringComparison.OrdinalIgnoreCase) || string.Equals(parsedYouTubeUrl.Scheme, "https", StringComparison.OrdinalIgnoreCase)))
+                        {
+                            var host = parsedYouTubeUrl.Host == null ? string.Empty : parsedYouTubeUrl.Host.ToLowerInvariant();
+                            var path = parsedYouTubeUrl.AbsolutePath == null ? string.Empty : parsedYouTubeUrl.AbsolutePath.Trim('/');
+                            var candidateVideoId = string.Empty;
+
+                            if (host == "youtu.be")
+                            {
+                                var pathParts = path.Split('/');
+                                if (pathParts.Length > 0)
+                                {
+                                    candidateVideoId = pathParts[0];
+                                }
+                            }
+                            else if (host == "youtube.com" || host == "www.youtube.com" || host == "m.youtube.com" || host == "music.youtube.com" || host == "www.youtube-nocookie.com" || host == "youtube-nocookie.com")
+                            {
+                                var queryValues = HttpUtility.ParseQueryString(parsedYouTubeUrl.Query);
+                                candidateVideoId = queryValues["v"];
+
+                                if (string.IsNullOrWhiteSpace(candidateVideoId))
+                                {
+                                    var pathParts = path.Split('/');
+                                    if (pathParts.Length >= 2 &&
+                                        (string.Equals(pathParts[0], "embed", StringComparison.OrdinalIgnoreCase) || string.Equals(pathParts[0], "shorts", StringComparison.OrdinalIgnoreCase)))
+                                    {
+                                        candidateVideoId = pathParts[1];
+                                    }
+                                }
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(candidateVideoId))
+                            {
+                                for (var i = 0; i < candidateVideoId.Length; i++)
+                                {
+                                    var c = candidateVideoId[i];
+                                    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_' || c == '-')
+                                    {
+                                        youtubeVideoId += c;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    var embedUrl = !string.IsNullOrWhiteSpace(youtubeVideoId) ? "https://www.youtube-nocookie.com/embed/" + youtubeVideoId + "?rel=0&modestbranding=1&playsinline=1" : string.Empty;
+                    var thumbnailImage = string.Empty;
+                    if (video.ThumbnailImage != null)
+                    {
+                        try
+                        {
+                            if (video.ThumbnailImage.Url != null)
+                            {
+                                thumbnailImage = Convert.ToString(video.ThumbnailImage.Url).Trim();
+                            }
+                        }
+                        catch
+                        {
+                        }
+
+                        if (string.IsNullOrWhiteSpace(thumbnailImage))
+                        {
+                            thumbnailImage = Convert.ToString(video.ThumbnailImage).Trim();
+                        }
+                    }
+
+                    var thumbnailAlt = video.ThumbnailAlt == null ? string.Empty : Convert.ToString(video.ThumbnailAlt).Trim();
+                    if (string.IsNullOrWhiteSpace(thumbnailAlt))
+                    {
+                        thumbnailAlt = title;
+                    }
+
+                    var ctaText = video.CtaText == null ? string.Empty : Convert.ToString(video.CtaText).Trim();
+                    var rawCtaUrl = video.CtaUrl == null ? string.Empty : Convert.ToString(video.CtaUrl).Trim();
+                    if (string.IsNullOrWhiteSpace(rawCtaUrl))
+                    {
+                        rawCtaUrl = youtubeUrl;
+                    }
+
+                    var ctaUrl = string.Empty;
+                    if (!string.IsNullOrWhiteSpace(rawCtaUrl) && !rawCtaUrl.Contains("<") && !rawCtaUrl.Contains(">") && !rawCtaUrl.StartsWith("//", StringComparison.Ordinal))
+                    {
+                        if (rawCtaUrl.StartsWith("#", StringComparison.Ordinal) || rawCtaUrl.StartsWith("/", StringComparison.Ordinal))
+                        {
+                            ctaUrl = rawCtaUrl;
+                        }
+                        else
+                        {
+                            Uri parsedCtaUrl;
+                            if (Uri.TryCreate(rawCtaUrl, UriKind.Absolute, out parsedCtaUrl) &&
+                                (parsedCtaUrl.Scheme == Uri.UriSchemeHttp || parsedCtaUrl.Scheme == Uri.UriSchemeHttps || parsedCtaUrl.Scheme == Uri.UriSchemeMailto || parsedCtaUrl.Scheme == "tel"))
+                            {
+                                ctaUrl = rawCtaUrl;
+                            }
+                        }
+                    }
+
+                    var ctaTarget = video.CtaTarget == null ? string.Empty : Convert.ToString(video.CtaTarget).Trim();
+                    if (!string.Equals(ctaTarget, "_blank", StringComparison.OrdinalIgnoreCase))
+                    {
+                        ctaTarget = "_self";
+                    }
+
+                    var opensNewWindow = string.Equals(ctaTarget, "_blank", StringComparison.OrdinalIgnoreCase);
+                    var targetAttributes = opensNewWindow ? " target=\"_blank\" rel=\"noopener noreferrer\"" : string.Empty;
+                    var hasEmbed = !string.IsNullOrWhiteSpace(embedUrl);
+                    var hasThumbnail = !string.IsNullOrWhiteSpace(thumbnailImage);
+                    var hasCta = !string.IsNullOrWhiteSpace(ctaText) && !string.IsNullOrWhiteSpace(ctaUrl);
+                    var tags = new List<string>();
+                    var tagsText = video.Tags == null ? string.Empty : Convert.ToString(video.Tags).Trim();
+                    if (!string.IsNullOrWhiteSpace(tagsText))
+                    {
+                        var tagParts = tagsText.Split(',');
+                        for (var i = 0; i < tagParts.Length; i++)
+                        {
+                            var tag = tagParts[i].Trim();
+                            if (!string.IsNullOrWhiteSpace(tag))
+                            {
+                                tags.Add(tag);
+                            }
+                        }
+                    }
+
+                    output.Append("<div class=\"");
+                    output.Append(HttpUtility.HtmlAttributeEncode(columnClass));
+                    output.Append("\"><article class=\"oc-video-resource-list__card h-100\"><div class=\"oc-video-resource-list__media\">");
+
+                    if (hasEmbed)
+                    {
+                        output.Append("<iframe class=\"oc-video-resource-list__iframe\" src=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(embedUrl));
+                        output.Append("\" title=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(title));
+                        output.Append("\" loading=\"lazy\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
+                    }
+                    else if (hasThumbnail)
+                    {
+                        if (!string.IsNullOrWhiteSpace(safeYoutubeUrl))
+                        {
+                            output.Append("<a class=\"oc-video-resource-list__thumbnail-link\" href=\"");
+                            output.Append(HttpUtility.HtmlAttributeEncode(safeYoutubeUrl));
+                            output.Append("\"");
+                            output.Append(targetAttributes);
+                            output.Append(" aria-label=\"Open video: ");
+                            output.Append(HttpUtility.HtmlAttributeEncode(title));
+                            output.Append("\"><img class=\"oc-video-resource-list__thumbnail\" src=\"");
+                            output.Append(HttpUtility.HtmlAttributeEncode(thumbnailImage));
+                            output.Append("\" alt=\"");
+                            output.Append(HttpUtility.HtmlAttributeEncode(thumbnailAlt));
+                            output.Append("\" loading=\"lazy\" decoding=\"async\" /><span class=\"oc-video-resource-list__play\" aria-hidden=\"true\"><i class=\"fas fa-play\"></i></span></a>");
+                        }
+                        else
+                        {
+                            output.Append("<img class=\"oc-video-resource-list__thumbnail\" src=\"");
+                            output.Append(HttpUtility.HtmlAttributeEncode(thumbnailImage));
+                            output.Append("\" alt=\"");
+                            output.Append(HttpUtility.HtmlAttributeEncode(thumbnailAlt));
+                            output.Append("\" loading=\"lazy\" decoding=\"async\" />");
+                        }
+                    }
+                    else if (isEditMode)
+                    {
+                        output.Append("<div class=\"oc-video-resource-list__editor-warning\" role=\"status\">Add a valid YouTube URL or fallback thumbnail for this video.</div>");
+                    }
+
+                    output.Append("</div><div class=\"oc-video-resource-list__body\">");
+
+                    if (!string.IsNullOrWhiteSpace(category))
+                    {
+                        output.Append("<p class=\"oc-video-resource-list__category mb-2\">");
+                        output.Append(HttpUtility.HtmlEncode(category));
+                        output.Append("</p>");
+                    }
+
+                    output.Append("<h3 class=\"oc-video-resource-list__title text-notransform mb-2\">");
+                    output.Append(HttpUtility.HtmlEncode(title));
+                    output.Append("</h3>");
+
+                    if (!string.IsNullOrWhiteSpace(description))
+                    {
+                        output.Append("<div class=\"oc-video-resource-list__card-description\">");
+                        output.Append(description);
+                        output.Append("</div>");
+                    }
+
+                    if (tags.Count > 0)
+                    {
+                        output.Append("<ul class=\"oc-video-resource-list__tags list-unstyled d-flex flex-wrap gap-1 mb-0 mt-2\" aria-label=\"Video tags\">");
+                        for (var i = 0; i < tags.Count; i++)
+                        {
+                            output.Append("<li><span class=\"oc-video-resource-list__tag\">");
+                            output.Append(HttpUtility.HtmlEncode(tags[i]));
+                            output.Append("</span></li>");
+                        }
+                        output.Append("</ul>");
+                    }
+
+                    if (hasCta)
+                    {
+                        output.Append("<a class=\"btn btn-sm oc-video-resource-list__button mt-4\" href=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(ctaUrl));
+                        output.Append("\"");
+                        output.Append(targetAttributes);
+                        output.Append(" aria-label=\"");
+                        output.Append(HttpUtility.HtmlAttributeEncode(ctaText + ": " + title));
+                        output.Append("\">");
+                        output.Append(HttpUtility.HtmlEncode(ctaText));
+                        output.Append("<i class=\"fas fa-arrow-right ms-2\" aria-hidden=\"true\"></i></a>");
+                    }
+
+                    output.Append("</div></article></div>");
+                }
+            }
+
+            output.Append("</div>");
+        }
+
+        output.Append("</div></section>");
+    }
+    else if (isEditMode)
+    {
+        output.Append("<div class=\"alert alert-warning my-3\" role=\"status\">Add at least one video resource to render the video list.</div>");
+    }
+
+    var renderedHtml = output.ToString();
+}
+
+@Html.Raw(renderedHtml)
