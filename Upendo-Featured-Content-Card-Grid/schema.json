@@ -1,0 +1,109 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionEyebrow": {
+      "type": "string",
+      "title": "Section Eyebrow"
+    },
+    "SectionEyebrowColor": {
+      "type": "string",
+      "title": "Section Eyebrow Color",
+      "enum": [
+        "",
+        "text-primary",
+        "text-secondary",
+        "text-success",
+        "text-danger",
+        "text-warning",
+        "text-info",
+        "text-light",
+        "text-dark",
+        "text-body",
+        "text-body-secondary",
+        "text-black",
+        "text-white"
+      ],
+      "default": ""
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "SectionFooter": {
+      "type": "string",
+      "title": "Section Footer"
+    },
+    "SectionRows": {
+      "type": "array",
+      "title": "Content Cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ContentCards": {
+            "type": "array",
+            "title": "Content Cards",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "Title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "Description": {
+                  "type": "string",
+                  "title": "Description"
+                },
+                "CardIcon": {
+                  "type": "string",
+                  "title": "Card Icon"
+                },
+                "ActionText": {
+                  "type": "string",
+                  "title": "Action Text"
+                },
+                "ActionLink": {
+                  "type": "string",
+                  "title": "Action Link"
+                },
+                "Image": {
+                  "type": "string",
+                  "title": "Image"
+                },
+                "ImageAlt": {
+                  "type": "string",
+                  "title": "Image Alt Text"
+                }
+              },
+              "required": [
+                "Title",
+                "Description",
+                "CardIcon"
+              ]
+            }
+          }
+        },
+        "required": [
+          "ContentCards"
+        ]
+      }
+    }
+  },
+  "required": [
+    "SectionRows"
+  ]
+}

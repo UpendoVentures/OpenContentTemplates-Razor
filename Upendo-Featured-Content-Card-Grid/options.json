@@ -1,0 +1,108 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Featured Content Card Grid"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Creates a page anchor. Use only letters, numbers, and hyphens.",
+      "placeholder": "featured-content",
+      "showMessages": false
+    },
+    "SectionEyebrow": {
+      "type": "text",
+      "helper": "Optional. A short label displayed above the section title.",
+      "placeholder": "Solutions"
+    },
+    "SectionEyebrowColor": {
+      "type": "select",
+      "helper": "Optional. Choose a built-in Bootstrap text color for the eyebrow.",
+      "optionLabels": [
+        "Theme Default",
+        "Primary",
+        "Secondary",
+        "Success",
+        "Danger",
+        "Warning",
+        "Info",
+        "Light",
+        "Dark",
+        "Body",
+        "Body Secondary",
+        "Black",
+        "White"
+      ],
+      "removeDefaultNone": true
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. The main heading displayed above the card rows.",
+      "placeholder": "Everything your business needs to move forward online."
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Supporting text displayed below the section title. HTML is rendered as entered.",
+      "placeholder": "Describe what visitors will find in this group of cards."
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. A short message displayed below all card rows. HTML is rendered as entered.",
+      "placeholder": "Choose a solution to learn more."
+    },
+    "SectionRows": {
+      "type": "accordion",
+      "label": "Content Cards",
+      "helper": "Add rows of content cards. Each row displays only its first three cards; additional cards in that row are ignored.",
+      "items": {
+        "fields": {
+          "ContentCards": {
+            "type": "accordion",
+            "titleField": "Title",
+            "helper": "Add cards for this row. One to three cards fill the row evenly.",
+            "items": {
+              "fields": {
+                "Title": {
+                  "type": "text",
+                  "helper": "Required. A short, clear card heading.",
+                  "placeholder": "Content Management"
+                },
+                "Description": {
+                  "type": "text",
+                  "helper": "Required. Briefly explain the feature or destination.",
+                  "placeholder": "Build, edit, and publish engaging content without needing a developer."
+                },
+                "CardIcon": {
+                  "type": "text",
+                  "helper": "Required. Enter a free Font Awesome class, such as <code>fas fa-file-alt</code>. The icon is decorative and hidden from assistive technology.",
+                  "placeholder": "fas fa-file-alt"
+                },
+                "ActionText": {
+                  "type": "text",
+                  "helper": "Optional. Link text displayed at the bottom of the card. The link appears only when both text and URL are provided.",
+                  "placeholder": "Learn More"
+                },
+                "ActionLink": {
+                  "type": "url",
+                  "helper": "Optional. Select a local page or enter a valid local or external URL."
+                },
+                "Image": {
+                  "type": "image",
+                  "helper": "Optional. Images display only when the row has one or two cards. Recommended minimum width: 1200 px.",
+                  "uploadfolder": "Content/Hero/"
+                },
+                "ImageAlt": {
+                  "type": "text",
+                  "helper": "Optional but strongly recommended for meaningful images. Describe the image for people using assistive technology; leave blank only when decorative.",
+                  "placeholder": "Dashboard showing organized content blocks"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,437 @@
+.oc-fccg {
+    --oc-fccg-heading-color: var(--bs-body-color, #212529);
+    --oc-fccg-body-color: var(--bs-secondary-color, #5c636a);
+    --oc-fccg-border-color: rgba(33, 37, 41, 0.1);
+    width: 100%;
+}
+
+.oc-fccg-header {
+    max-width: 52rem;
+}
+
+.oc-fccg-eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.oc-fccg-title {
+    margin: 0;
+    color: var(--oc-fccg-heading-color);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+}
+
+.oc-fccg-description {
+    margin: 1.25rem auto 0;
+    max-width: 44rem;
+    color: var(--oc-fccg-body-color);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.oc-fccg-description > *:last-child,
+.oc-fccg-card-description > *:last-child,
+.oc-fccg-footer > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-fccg-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.oc-fccg-card {
+    display: flex;
+    min-width: 0;
+    min-height: 17rem;
+    overflow: hidden;
+    border: 1px solid var(--oc-fccg-border-color);
+    border-radius: 1rem;
+    box-shadow: 0 0.25rem 1.25rem rgba(15, 23, 42, 0.05);
+    color: var(--oc-fccg-body-color);
+    transition: box-shadow 220ms ease, transform 220ms ease, border-radius 220ms ease;
+}
+
+.oc-fccg-card-primary {
+    background: rgba(var(--bs-primary-rgb, 13, 110, 253), 0.08);
+}
+
+.oc-fccg-card-secondary {
+    background: rgba(var(--bs-secondary-rgb, 108, 117, 125), 0.08);
+}
+
+.oc-fccg-card-success {
+    background: rgba(var(--bs-success-rgb, 25, 135, 84), 0.08);
+}
+
+.oc-fccg-card-danger {
+    background: rgba(var(--bs-danger-rgb, 220, 53, 69), 0.08);
+}
+
+.oc-fccg-card-warning {
+    background: rgba(var(--bs-warning-rgb, 255, 193, 7), 0.1);
+}
+
+.oc-fccg-card-info {
+    background: rgba(var(--bs-info-rgb, 13, 202, 240), 0.09);
+}
+
+.oc-fccg-card-light {
+    background: rgba(var(--bs-light-rgb, 248, 249, 250), 0.78);
+}
+
+.oc-fccg-card-dark {
+    background: rgba(var(--bs-dark-rgb, 33, 37, 41), 0.08);
+}
+
+.oc-fccg-card-black {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.oc-fccg-card-white {
+    background: rgba(var(--bs-white-rgb, 255, 255, 255), 0.82);
+}
+
+.oc-fccg-card-body {
+    background: rgba(var(--bs-body-bg-rgb, 255, 255, 255), 0.78);
+}
+
+.oc-fccg-card-light,
+.oc-fccg-card-white,
+.oc-fccg-card-body {
+    --oc-fccg-heading-color: var(--bs-body-color, #212529);
+    --oc-fccg-body-color: var(--bs-secondary-color, #5c636a);
+}
+
+.oc-fccg-card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.oc-fccg-card-title {
+    margin: 0 0 0.65rem;
+    color: var(--oc-fccg-heading-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.oc-fccg-card-description {
+    color: var(--oc-fccg-body-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.oc-fccg-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 0.7rem;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.oc-fccg-icon-default {
+    background: rgba(var(--bs-light-rgb, 248, 249, 250), 0.82);
+    color: var(--bs-body-color, #212529);
+}
+
+.oc-fccg-icon-primary {
+    background: rgba(var(--bs-primary-rgb, 13, 110, 253), 0.12);
+}
+
+.oc-fccg-icon-secondary {
+    background: rgba(var(--bs-secondary-rgb, 108, 117, 125), 0.12);
+}
+
+.oc-fccg-icon-success {
+    background: rgba(var(--bs-success-rgb, 25, 135, 84), 0.12);
+}
+
+.oc-fccg-icon-danger {
+    background: rgba(var(--bs-danger-rgb, 220, 53, 69), 0.12);
+}
+
+.oc-fccg-icon-warning {
+    background: rgba(var(--bs-warning-rgb, 255, 193, 7), 0.16);
+}
+
+.oc-fccg-icon-info {
+    background: rgba(var(--bs-info-rgb, 13, 202, 240), 0.14);
+}
+
+.oc-fccg-icon-light {
+    background: rgba(var(--bs-light-rgb, 248, 249, 250), 0.75);
+}
+
+.oc-fccg-icon-dark {
+    background: rgba(var(--bs-dark-rgb, 33, 37, 41), 0.1);
+}
+
+.oc-fccg-icon-body {
+    background: rgba(var(--bs-body-color-rgb, 33, 37, 41), 0.1);
+}
+
+.oc-fccg-icon-black {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.oc-fccg-icon-white {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(33, 37, 41, 0.18);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+.oc-fccg-action {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    color: var(--bs-link-color, var(--bs-primary, #0d6efd));
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.oc-fccg-action i {
+    font-size: 0.72em;
+    transition: transform 180ms ease;
+}
+
+.oc-fccg-action:hover,
+.oc-fccg-action:focus-visible {
+    color: var(--bs-link-hover-color, var(--bs-primary, #0d6efd));
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.oc-fccg-action:hover i,
+.oc-fccg-action:focus-visible i {
+    transform: translateX(0.2rem);
+}
+
+.oc-fccg-action:focus-visible {
+    border-radius: 0.2rem;
+    outline: 0.2rem solid rgba(var(--bs-primary-rgb, 13, 110, 253), 0.35);
+    outline-offset: 0.2rem;
+}
+
+.oc-fccg-image-wrap {
+    flex: 0 0 42%;
+    min-width: 0;
+    min-height: 17rem;
+    overflow: hidden;
+}
+
+.oc-fccg-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 17rem;
+    object-fit: cover;
+}
+
+.oc-fccg-card-image-right {
+    flex-direction: row-reverse;
+}
+
+.oc-fccg-footer {
+    color: var(--oc-fccg-body-color);
+    line-height: 1.6;
+}
+
+.oc-fccg[data-animation-level='light'] .oc-fccg-card:hover {
+    box-shadow: 0 0.65rem 1.75rem rgba(15, 23, 42, 0.08);
+    transform: translateY(-0.12rem);
+}
+
+.oc-fccg[data-animation-level='medium'] .oc-fccg-card:hover {
+    border-radius: 1.15rem;
+    box-shadow: 0 0.9rem 2.25rem rgba(15, 23, 42, 0.11);
+    transform: translateY(-0.3rem);
+}
+
+.oc-fccg[data-animation-level='high'] .oc-fccg-card:hover {
+    border-radius: 1.25rem;
+    box-shadow: 0 1.15rem 2.75rem rgba(15, 23, 42, 0.14);
+    transform: translateY(-0.45rem) scale(1.008);
+}
+
+.oc-fccg[data-animation-level='light'] .oc-fccg-card:active {
+    transform: translateY(0);
+}
+
+.oc-fccg[data-animation-level='medium'] .oc-fccg-card:active,
+.oc-fccg[data-animation-level='high'] .oc-fccg-card:active {
+    transform: translateY(-0.08rem) scale(0.99);
+}
+
+.oc-fccg.bg-primary,
+.oc-fccg.bg-primary-scoped,
+.oc-fccg.bg-secondary,
+.oc-fccg.bg-secondary-scoped,
+.oc-fccg.bg-tertiary,
+.oc-fccg.bg-quaternary,
+.oc-fccg.bg-h5,
+.oc-fccg.bg-h6,
+.oc-fccg.bg-success,
+.oc-fccg.bg-danger,
+.oc-fccg.bg-dark,
+.oc-fccg.bg-forest-green {
+    --oc-fccg-heading-color: #ffffff;
+    --oc-fccg-body-color: rgba(255, 255, 255, 0.86);
+    --oc-fccg-border-color: rgba(255, 255, 255, 0.18);
+}
+
+.oc-fccg.bg-primary .oc-fccg-action,
+.oc-fccg.bg-primary-scoped .oc-fccg-action,
+.oc-fccg.bg-secondary .oc-fccg-action,
+.oc-fccg.bg-secondary-scoped .oc-fccg-action,
+.oc-fccg.bg-tertiary .oc-fccg-action,
+.oc-fccg.bg-quaternary .oc-fccg-action,
+.oc-fccg.bg-h5 .oc-fccg-action,
+.oc-fccg.bg-h6 .oc-fccg-action,
+.oc-fccg.bg-success .oc-fccg-action,
+.oc-fccg.bg-danger .oc-fccg-action,
+.oc-fccg.bg-dark .oc-fccg-action,
+.oc-fccg.bg-forest-green .oc-fccg-action {
+    color: #ffffff;
+}
+
+.oc-fccg.bg-primary .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-primary-scoped .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-secondary .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-secondary-scoped .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-tertiary .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-quaternary .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-h5 .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-h6 .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-success .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-danger .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-dark .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg.bg-forest-green .oc-fccg-card-light .oc-fccg-action,
+.oc-fccg .oc-fccg-card-white .oc-fccg-action,
+.oc-fccg .oc-fccg-card-body .oc-fccg-action {
+    color: var(--bs-link-color, var(--bs-primary, #0d6efd));
+}
+
+.oc-fccg.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.oc-fccg.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.oc-fccg.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.oc-fccg.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.oc-fccg.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.oc-fccg.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.oc-fccg.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.oc-fccg.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.oc-fccg.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.oc-fccg.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.oc-fccg.bg-forest-green {
+    background-color: #143d2d !important;
+}
+
+@media (max-width: 991.98px) {
+    .oc-fccg-card-image-left,
+    .oc-fccg-card-image-right {
+        flex-direction: column;
+    }
+
+    .oc-fccg-image-wrap {
+        flex-basis: auto;
+        min-height: 13rem;
+    }
+
+    .oc-fccg-image {
+        min-height: 13rem;
+        max-height: 20rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-fccg-header {
+        margin-bottom: 2rem !important;
+    }
+
+    .oc-fccg-rows {
+        gap: 1rem;
+    }
+
+    .oc-fccg-row {
+        --bs-gutter-y: 1rem;
+    }
+
+    .oc-fccg-card {
+        min-height: auto;
+        border-radius: 0.85rem;
+    }
+
+    .oc-fccg-card-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-fccg .appear-animation {
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .oc-fccg-card,
+    .oc-fccg-action i {
+        transition: none !important;
+    }
+
+    .oc-fccg-card:hover,
+    .oc-fccg-card:active,
+    .oc-fccg-action:hover i,
+    .oc-fccg-action:focus-visible i {
+        transform: none !important;
+    }
+}
+
+
