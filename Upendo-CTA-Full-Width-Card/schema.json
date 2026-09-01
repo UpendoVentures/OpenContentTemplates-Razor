@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": { "type": "string", "title": "Module Title" },
+    "ModuleAnchor": { "type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$" },
+    "SectionTitle": { "type": "string", "title": "Section Title", "minLength": 1, "pattern": ".*\\S.*" },
+    "SectionDescription": { "type": "string", "title": "Section Description", "minLength": 1, "pattern": ".*\\S.*" },
+    "SectionImage": { "type": "string", "title": "Section Image", "minLength": 1, "pattern": ".*\\S.*" },
+    "SectionImageAltText": { "type": "string", "title": "Section Image Alt Text" },
+    "PrimaryCTAText": { "type": "string", "title": "Primary CTA Text" },
+    "PrimaryCTAURL": { "type": "string", "title": "Primary CTA URL", "minLength": 1, "pattern": ".*\\S.*" },
+    "PrimaryCTAIcon": { "type": "string", "title": "Primary CTA Icon" },
+    "SecondaryCTAText": { "type": "string", "title": "Secondary CTA Text" },
+    "SecondaryCTAURL": { "type": "string", "title": "Secondary CTA URL" },
+    "SecondaryCTAIcon": { "type": "string", "title": "Secondary CTA Icon" }
+  },
+  "required": ["SectionTitle", "SectionDescription", "SectionImage", "PrimaryCTAURL"]
+}
