@@ -1,0 +1,291 @@
+.oc-service-cards-alt-section {
+    width: 100%;
+    overflow: hidden;
+    --oc-service-cards-alt-heading-color: #101828;
+    --oc-service-cards-alt-body-color: #475467;
+    --oc-service-cards-alt-card-heading-color: #101828;
+    --oc-service-cards-alt-card-body-color: #475467;
+    --oc-service-cards-alt-teal: #2f7778;
+}
+
+.oc-service-cards-alt-header {
+    max-width: 58rem;
+    margin: 0 auto 3.5rem;
+}
+
+.oc-service-cards-alt-heading {
+    margin: 0 0 0.75rem;
+    color: var(--oc-service-cards-alt-heading-color);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+}
+
+.oc-service-cards-alt-intro {
+    max-width: 46rem;
+    color: var(--oc-service-cards-alt-body-color);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+.oc-service-cards-alt-intro > *:last-child,
+.oc-service-cards-alt-intro:last-child {
+    margin-bottom: 0;
+}
+
+.oc-service-cards-alt-card {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    border-radius: 1.5rem;
+    box-shadow: 0 0.25rem 1.25rem rgba(15, 23, 42, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.oc-service-cards-alt-image-wrap {
+    width: 100%;
+    height: 12rem;
+    flex: 0 0 12rem;
+    overflow: hidden;
+    background-color: rgba(15, 23, 42, 0.055);
+}
+
+.oc-service-cards-alt-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.82;
+    transform: scale(1.001);
+    transition: opacity 0.25s ease, transform 0.35s ease;
+}
+
+.oc-service-cards-alt-card:hover .oc-service-cards-alt-image,
+.oc-service-cards-alt-card:focus-within .oc-service-cards-alt-image {
+    opacity: 1;
+    transform: scale(1.015);
+}
+
+.oc-service-cards-alt-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 1.75rem;
+}
+
+.oc-service-cards-alt-eyebrow {
+    margin: 0 0 0.7rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+}
+
+.oc-service-cards-alt-eyebrow.text-teal {
+    color: var(--oc-service-cards-alt-teal) !important;
+}
+
+.oc-service-cards-alt-title {
+    margin: 0 0 0.65rem;
+    color: var(--oc-service-cards-alt-card-heading-color);
+    font-size: clamp(1.5rem, 2vw, 1.875rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+.oc-service-cards-alt-description {
+    color: var(--oc-service-cards-alt-card-body-color);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.oc-service-cards-alt-description > *:last-child,
+.oc-service-cards-alt-description:last-child {
+    margin-bottom: 0;
+}
+
+.oc-service-cards-alt-link {
+    border-radius: inherit;
+}
+
+.oc-service-cards-alt-link:focus-visible {
+    outline: 0.1875rem solid currentColor;
+    outline-offset: -0.3rem;
+}
+
+.oc-service-cards-alt-section[data-animation-level='none'] .oc-service-cards-alt-card,
+.oc-service-cards-alt-section[data-animation-level='none'] .oc-service-cards-alt-image {
+    transition: none;
+}
+
+.oc-service-cards-alt-section[data-animation-level='none'] .oc-service-cards-alt-card:hover {
+    transform: none;
+}
+
+.oc-service-cards-alt-section[data-animation-level='light'] .oc-service-cards-alt-card:hover {
+    box-shadow: 0 0.55rem 1.4rem rgba(15, 23, 42, 0.11);
+    transform: translateY(-0.1rem);
+}
+
+.oc-service-cards-alt-section[data-animation-level='medium'] .oc-service-cards-alt-card:hover {
+    box-shadow: 0 0.85rem 2rem rgba(15, 23, 42, 0.16);
+    transform: translateY(-0.25rem);
+}
+
+.oc-service-cards-alt-section[data-animation-level='high'] .oc-service-cards-alt-card:hover {
+    box-shadow: 0 1.1rem 2.6rem rgba(15, 23, 42, 0.21);
+    transform: translateY(-0.4rem);
+}
+
+.oc-service-cards-alt-section[data-animation-level='light'] .oc-service-cards-alt-card--linked:active {
+    transform: translateY(0);
+}
+
+.oc-service-cards-alt-section[data-animation-level='medium'] .oc-service-cards-alt-card--linked:active,
+.oc-service-cards-alt-section[data-animation-level='high'] .oc-service-cards-alt-card--linked:active {
+    transform: translateY(-0.05rem) scale(0.99);
+}
+
+.oc-service-cards-alt-section.bg-primary,
+.oc-service-cards-alt-section.bg-primary-scoped,
+.oc-service-cards-alt-section.bg-secondary,
+.oc-service-cards-alt-section.bg-secondary-scoped,
+.oc-service-cards-alt-section.bg-tertiary,
+.oc-service-cards-alt-section.bg-quaternary,
+.oc-service-cards-alt-section.bg-h5,
+.oc-service-cards-alt-section.bg-h6,
+.oc-service-cards-alt-section.bg-success,
+.oc-service-cards-alt-section.bg-danger,
+.oc-service-cards-alt-section.bg-dark,
+.oc-service-cards-alt-section.bg-black,
+.oc-service-cards-alt-section.bg-forest-green {
+    --oc-service-cards-alt-heading-color: #fff;
+    --oc-service-cards-alt-body-color: rgba(255, 255, 255, 0.88);
+}
+
+.oc-service-cards-alt-card.bg-primary,
+.oc-service-cards-alt-card.bg-primary-scoped,
+.oc-service-cards-alt-card.bg-secondary,
+.oc-service-cards-alt-card.bg-secondary-scoped,
+.oc-service-cards-alt-card.bg-tertiary,
+.oc-service-cards-alt-card.bg-quaternary,
+.oc-service-cards-alt-card.bg-h5,
+.oc-service-cards-alt-card.bg-h6,
+.oc-service-cards-alt-card.bg-success,
+.oc-service-cards-alt-card.bg-danger,
+.oc-service-cards-alt-card.bg-dark,
+.oc-service-cards-alt-card.bg-black,
+.oc-service-cards-alt-card.bg-forest-green,
+.oc-service-cards-alt-section.bg-primary .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-primary-scoped .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-secondary .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-secondary-scoped .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-tertiary .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-quaternary .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-h5 .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-h6 .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-success .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-danger .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-dark .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-black .oc-service-cards-alt-card.bg-transparent,
+.oc-service-cards-alt-section.bg-forest-green .oc-service-cards-alt-card.bg-transparent {
+    --oc-service-cards-alt-card-heading-color: #fff;
+    --oc-service-cards-alt-card-body-color: rgba(255, 255, 255, 0.88);
+    --oc-service-cards-alt-teal: #8ed4d4;
+}
+
+.oc-service-cards-alt-section.bg-off-white {
+    background-color: #faf9f6 !important;
+}
+
+.oc-service-cards-alt-section.bg-warm-white {
+    background-color: #f7f5f0 !important;
+}
+
+.oc-service-cards-alt-section.bg-cream {
+    background-color: #f3eee4 !important;
+}
+
+.oc-service-cards-alt-section.bg-soft-beige {
+    background-color: #e9dfcf !important;
+}
+
+.oc-service-cards-alt-section.bg-sand {
+    background-color: #ddd0bc !important;
+}
+
+.oc-service-cards-alt-section.bg-light-sage {
+    background-color: #dfe8dc !important;
+}
+
+.oc-service-cards-alt-section.bg-sage {
+    background-color: #c7d3c1 !important;
+}
+
+.oc-service-cards-alt-section.bg-pale-green {
+    background-color: #e9eee8 !important;
+}
+
+.oc-service-cards-alt-section.bg-mist {
+    background-color: #eef2ee !important;
+}
+
+.oc-service-cards-alt-section.bg-soft-gray {
+    background-color: #f4f4f1 !important;
+}
+
+.oc-service-cards-alt-section.bg-forest-green {
+    background-color: #143d2d !important;
+}
+
+@media (max-width: 991.98px) {
+    .oc-service-cards-alt-header {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-service-cards-alt-header {
+        margin-bottom: 2rem;
+    }
+
+    .oc-service-cards-alt-image-wrap {
+        height: 11rem;
+        flex-basis: 11rem;
+    }
+
+    .oc-service-cards-alt-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-service-cards-alt-section .appear-animation {
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .oc-service-cards-alt-card,
+    .oc-service-cards-alt-image {
+        transition: none !important;
+    }
+
+    .oc-service-cards-alt-card:hover,
+    .oc-service-cards-alt-card:active {
+        transform: none !important;
+    }
+}
