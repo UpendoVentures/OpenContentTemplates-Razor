@@ -1,0 +1,347 @@
+.oc-benefit-cards {
+    --oc-benefit-heading-color: var(--bs-body-color, #212529);
+    --oc-benefit-body-color: var(--bs-secondary-color, #5c636a);
+    --oc-benefit-card-opacity: 0.98;
+    --oc-benefit-icon-opacity: 0.12;
+    --oc-benefit-card-border: #e9e1d8;
+    --oc-benefit-card-text: #212529;
+    --oc-benefit-card-muted: #5c636a;
+    --oc-benefit-card-radius: 0.75rem;
+    --oc-benefit-card-shadow: 0 0.3rem 1.25rem rgba(74, 58, 45, 0.08);
+    width: 100%;
+}
+
+.oc-benefit-cards__header {
+    max-width: 48rem;
+}
+
+.oc-benefit-cards__title {
+    margin: 0;
+    color: var(--oc-benefit-heading-color);
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-transform: none !important;
+}
+
+.oc-benefit-cards__description {
+    margin-top: 1rem;
+    color: var(--oc-benefit-body-color);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.oc-benefit-cards__description *,
+.oc-benefit-cards__card-description *,
+.oc-benefit-cards__footer * {
+    color: inherit;
+}
+
+.oc-benefit-cards__description > *:last-child,
+.oc-benefit-cards__card-description > *:last-child,
+.oc-benefit-cards__footer > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-benefit-cards__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: clamp(1.5rem, 3vw, 2rem) !important;
+    border: 1px solid var(--oc-benefit-card-border) !important;
+    border-radius: var(--oc-benefit-card-radius) !important;
+    background-color: rgba(255, 255, 255, var(--oc-benefit-card-opacity)) !important;
+    box-shadow: var(--oc-benefit-card-shadow) !important;
+    color: var(--oc-benefit-card-text) !important;
+    transition: border-radius 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+/* Porto entrance animations otherwise retain their final transform and block card interaction motion. */
+.oc-benefit-cards__card.appear-animation.animated,
+.oc-benefit-cards__card.appear-animation.appear-animation-visible {
+    animation-fill-mode: none !important;
+}
+
+.oc-benefit-cards__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-bottom: 1.15rem;
+    border-radius: 0.75rem;
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: border-radius 220ms ease, transform 220ms ease, width 220ms ease, height 220ms ease;
+}
+
+.oc-benefit-cards__icon--default {
+    background: rgba(var(--bs-body-color-rgb, 33, 37, 41), var(--oc-benefit-icon-opacity));
+    color: var(--bs-body-color, #212529);
+}
+
+.oc-benefit-cards__icon--primary {
+    background: rgba(var(--bs-primary-rgb, 13, 110, 253), var(--oc-benefit-icon-opacity));
+    color: var(--bs-primary, #0d6efd);
+}
+
+.oc-benefit-cards__icon--secondary {
+    background: rgba(var(--bs-secondary-rgb, 108, 117, 125), var(--oc-benefit-icon-opacity));
+    color: var(--bs-secondary, #5c636a);
+}
+
+.oc-benefit-cards__icon--success {
+    background: rgba(var(--bs-success-rgb, 25, 135, 84), var(--oc-benefit-icon-opacity));
+    color: var(--bs-success, #198754);
+}
+
+.oc-benefit-cards__icon--danger {
+    background: rgba(var(--bs-danger-rgb, 220, 53, 69), var(--oc-benefit-icon-opacity));
+    color: var(--bs-danger, #dc3545);
+}
+
+.oc-benefit-cards__icon--warning {
+    background: rgba(var(--bs-warning-rgb, 255, 193, 7), var(--oc-benefit-icon-opacity));
+    color: #7a5500;
+}
+
+.oc-benefit-cards__icon--info {
+    background: rgba(var(--bs-info-rgb, 13, 202, 240), var(--oc-benefit-icon-opacity));
+    color: #087990;
+}
+
+.oc-benefit-cards__icon--dark {
+    background: rgba(var(--bs-dark-rgb, 33, 37, 41), var(--oc-benefit-icon-opacity));
+    color: var(--bs-dark, #212529);
+}
+
+.oc-benefit-cards__card-title {
+    margin: 0 0 0.75rem;
+    color: var(--oc-benefit-card-text) !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-transform: none !important;
+    transition: transform 220ms ease;
+}
+
+.oc-benefit-cards__card-description {
+    color: var(--oc-benefit-card-muted) !important;
+    line-height: 1.65;
+    transition: transform 220ms ease;
+}
+
+.oc-benefit-cards__link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.55rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    color: var(--bs-link-color, var(--bs-primary, #0d6efd));
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.oc-benefit-cards__link i {
+    font-size: 0.78em;
+    transition: transform 180ms ease;
+}
+
+.oc-benefit-cards__link:hover,
+.oc-benefit-cards__link:focus-visible {
+    color: var(--bs-link-hover-color, var(--bs-primary, #0d6efd));
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.oc-benefit-cards__link:focus-visible {
+    border-radius: 0.2rem;
+    outline: 0.2rem solid rgba(var(--bs-primary-rgb, 13, 110, 253), 0.38);
+    outline-offset: 0.2rem;
+}
+
+.oc-benefit-cards__card:focus-within {
+    box-shadow: 0 0 0 0.22rem rgba(var(--bs-primary-rgb, 13, 110, 253), 0.24), 0 0.8rem 2rem rgba(74, 58, 45, 0.14) !important;
+}
+
+.oc-benefit-cards__footer {
+    color: var(--oc-benefit-body-color);
+    line-height: 1.65;
+}
+
+.oc-benefit-cards[data-animation-level='none'] {
+    --oc-benefit-card-opacity: 0.99;
+    --oc-benefit-icon-opacity: 0.1;
+    --oc-benefit-card-radius: 0.75rem;
+    --oc-benefit-card-shadow: 0 0.25rem 1rem rgba(74, 58, 45, 0.07);
+}
+
+.oc-benefit-cards[data-animation-level='none'] .oc-benefit-cards__card {
+    transition: none;
+}
+
+.oc-benefit-cards[data-animation-level='none'] .oc-benefit-cards__icon {
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 0.45rem;
+    transition: none;
+}
+
+.oc-benefit-cards[data-animation-level='none'] .oc-benefit-cards__link i {
+    transition: none !important;
+}
+
+.oc-benefit-cards[data-animation-level='none'] .oc-benefit-cards__card--linked:hover .oc-benefit-cards__link i,
+.oc-benefit-cards[data-animation-level='none'] .oc-benefit-cards__link:focus-visible i {
+    transform: none !important;
+}
+
+.oc-benefit-cards[data-animation-level='light'] .oc-benefit-cards__card:hover {
+    box-shadow: 0 0.65rem 1.75rem rgba(74, 58, 45, 0.12) !important;
+    transform: translateY(-0.12rem);
+}
+
+.oc-benefit-cards[data-animation-level='light'] .oc-benefit-cards__card:hover .oc-benefit-cards__card-title,
+.oc-benefit-cards[data-animation-level='light'] .oc-benefit-cards__card:hover .oc-benefit-cards__card-description {
+    transform: translateY(-0.04rem);
+}
+
+.oc-benefit-cards[data-animation-level='medium'] {
+    --oc-benefit-card-opacity: 0.96;
+    --oc-benefit-icon-opacity: 0.14;
+    --oc-benefit-card-radius: 1rem;
+    --oc-benefit-card-shadow: 0 0.55rem 1.75rem rgba(74, 58, 45, 0.12);
+}
+
+.oc-benefit-cards[data-animation-level='medium'] .oc-benefit-cards__icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.oc-benefit-cards[data-animation-level='medium'] .oc-benefit-cards__card:hover {
+    --oc-benefit-card-radius: 1.1rem;
+    box-shadow: 0 0.95rem 2.35rem rgba(74, 58, 45, 0.17) !important;
+    transform: translateY(-0.3rem);
+}
+
+.oc-benefit-cards[data-animation-level='high'] {
+    --oc-benefit-card-opacity: 0.93;
+    --oc-benefit-icon-opacity: 0.17;
+    --oc-benefit-card-radius: 1.2rem;
+    --oc-benefit-card-shadow: 0 0.8rem 2.25rem rgba(74, 58, 45, 0.16);
+}
+
+.oc-benefit-cards[data-animation-level='high'] .oc-benefit-cards__icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+}
+
+.oc-benefit-cards[data-animation-level='high'] .oc-benefit-cards__card:hover {
+    --oc-benefit-card-radius: 1.35rem;
+    box-shadow: 0 1.2rem 2.8rem rgba(74, 58, 45, 0.22) !important;
+    transform: translateY(-0.45rem) scale(1.008);
+}
+
+.oc-benefit-cards[data-animation-level='medium'] .oc-benefit-cards__card:hover .oc-benefit-cards__icon {
+    transform: scale(1.05);
+}
+
+.oc-benefit-cards[data-animation-level='high'] .oc-benefit-cards__card:hover .oc-benefit-cards__icon {
+    transform: rotate(-4deg) scale(1.09);
+}
+
+.oc-benefit-cards[data-animation-level='medium'] .oc-benefit-cards__card:hover .oc-benefit-cards__card-title,
+.oc-benefit-cards[data-animation-level='medium'] .oc-benefit-cards__card:hover .oc-benefit-cards__card-description {
+    transform: translateY(-0.08rem);
+}
+
+.oc-benefit-cards[data-animation-level='high'] .oc-benefit-cards__card:hover .oc-benefit-cards__card-title {
+    transform: translateY(-0.12rem);
+}
+
+.oc-benefit-cards[data-animation-level='high'] .oc-benefit-cards__card:hover .oc-benefit-cards__card-description {
+    transform: translateY(-0.08rem);
+}
+
+.oc-benefit-cards[data-animation-level='light'] .oc-benefit-cards__card--linked:active {
+    transform: translateY(0);
+}
+
+.oc-benefit-cards[data-animation-level='medium'] .oc-benefit-cards__card--linked:active,
+.oc-benefit-cards[data-animation-level='high'] .oc-benefit-cards__card--linked:active {
+    transform: translateY(-0.06rem) scale(0.99);
+}
+
+.oc-benefit-cards__card--linked:hover .oc-benefit-cards__link i,
+.oc-benefit-cards__link:focus-visible i {
+    transform: translateX(0.2rem);
+}
+
+.oc-benefit-cards.bg-primary,
+.oc-benefit-cards.bg-primary-scoped,
+.oc-benefit-cards.bg-secondary,
+.oc-benefit-cards.bg-secondary-scoped,
+.oc-benefit-cards.bg-tertiary,
+.oc-benefit-cards.bg-quaternary,
+.oc-benefit-cards.bg-h5,
+.oc-benefit-cards.bg-h6,
+.oc-benefit-cards.bg-success,
+.oc-benefit-cards.bg-danger,
+.oc-benefit-cards.bg-dark,
+.oc-benefit-cards.bg-forest-green {
+    --oc-benefit-heading-color: #ffffff;
+    --oc-benefit-body-color: rgba(255, 255, 255, 0.88);
+}
+
+.oc-benefit-cards.bg-off-white { background-color: #faf9f6 !important; }
+.oc-benefit-cards.bg-warm-white { background-color: #f7f5f0 !important; }
+.oc-benefit-cards.bg-cream { background-color: #f3eee4 !important; }
+.oc-benefit-cards.bg-soft-beige { background-color: #e9dfcf !important; }
+.oc-benefit-cards.bg-sand { background-color: #ddd0bc !important; }
+.oc-benefit-cards.bg-light-sage { background-color: #dfe8dc !important; }
+.oc-benefit-cards.bg-sage { background-color: #c7d3c1 !important; }
+.oc-benefit-cards.bg-pale-green { background-color: #e9eee8 !important; }
+.oc-benefit-cards.bg-mist { background-color: #eef2ee !important; }
+.oc-benefit-cards.bg-soft-gray { background-color: #f4f4f1 !important; }
+.oc-benefit-cards.bg-forest-green { background-color: #143d2d !important; }
+
+@media (max-width: 575.98px) {
+    .oc-benefit-cards__header {
+        margin-bottom: 1.75rem !important;
+    }
+
+    .oc-benefit-cards__card {
+        padding: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-benefit-cards .appear-animation {
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .oc-benefit-cards__card,
+    .oc-benefit-cards__icon,
+    .oc-benefit-cards__card-title,
+    .oc-benefit-cards__card-description,
+    .oc-benefit-cards__link i {
+        transition: none !important;
+    }
+
+    .oc-benefit-cards__card:hover,
+    .oc-benefit-cards__card:active,
+    .oc-benefit-cards__card:hover .oc-benefit-cards__icon,
+    .oc-benefit-cards__card:hover .oc-benefit-cards__card-title,
+    .oc-benefit-cards__card:hover .oc-benefit-cards__card-description,
+    .oc-benefit-cards__card--linked:hover .oc-benefit-cards__link i,
+    .oc-benefit-cards__link:focus-visible i {
+        transform: none !important;
+    }
+}

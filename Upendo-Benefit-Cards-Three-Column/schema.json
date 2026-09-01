@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": { "type": "string", "title": "Module Title" },
+    "ModuleAnchor": { "type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$" },
+    "SectionTitle": { "type": "string", "title": "Section Title" },
+    "SectionDescription": { "type": "string", "title": "Section Description", "minLength": 1, "pattern": ".*\\S.*" },
+    "Cards": {
+      "type": "array",
+      "title": "Cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": { "type": "string", "title": "Title", "minLength": 1, "pattern": ".*\\S.*" },
+          "Description": { "type": "string", "title": "Description", "minLength": 1, "pattern": ".*\\S.*" },
+          "Icon": { "type": "string", "title": "Icon", "minLength": 1, "pattern": ".*\\S.*" },
+          "IconColor": {
+            "type": "string",
+            "title": "Icon Color",
+            "enum": ["", "primary", "secondary", "success", "danger", "warning", "info", "dark"],
+            "default": ""
+          },
+          "CardLink": { "type": "string", "title": "Card Link" }
+        },
+        "required": ["Title", "Description", "Icon"]
+      }
+    },
+    "SectionFooter": { "type": "string", "title": "Section Footer" }
+  },
+  "required": ["SectionDescription", "Cards"]
+}

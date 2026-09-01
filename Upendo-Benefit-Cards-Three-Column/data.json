@@ -1,0 +1,30 @@
+{
+  "ModuleTitle": "Three-Column Benefit Cards",
+  "ModuleAnchor": "",
+  "SectionTitle": "Designed for clarity and trust.",
+  "SectionDescription": "<p>Give visitors a clear view of the benefits that matter most.</p>",
+  "Cards": [
+    {
+      "Title": "Help customers find choice",
+      "Description": "Organize your offerings intuitively so customers can quickly find exactly what they need.",
+      "Icon": "fas fa-search",
+      "IconColor": "info",
+      "CardLink": ""
+    },
+    {
+      "Title": "Remove hesitation",
+      "Description": "Use clear information and strong trust signals to help customers move forward with confidence.",
+      "Icon": "fas fa-shield-alt",
+      "IconColor": "danger",
+      "CardLink": ""
+    },
+    {
+      "Title": "Keep the relationship going",
+      "Description": "Support customers after their first action and make it easy for them to return.",
+      "Icon": "fas fa-heart",
+      "IconColor": "dark",
+      "CardLink": ""
+    }
+  ],
+  "SectionFooter": ""
+}
