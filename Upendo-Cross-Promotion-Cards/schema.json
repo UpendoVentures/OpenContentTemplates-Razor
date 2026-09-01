@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": { "type": "string", "title": "Module Title" },
+    "ModuleAnchor": { "type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$" },
+    "SectionTitle": { "type": "string", "title": "Section Title" },
+    "SectionDescription": { "type": "string", "title": "Section Description", "minLength": 1, "pattern": ".*\\S.*" },
+    "CrossPromotions": {
+      "type": "array",
+      "title": "Cross Promotions",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": { "type": "string", "title": "Title", "minLength": 1, "pattern": ".*\\S.*" },
+          "Description": { "type": "string", "title": "Description", "minLength": 1, "pattern": ".*\\S.*" },
+          "Icon": { "type": "string", "title": "Icon", "minLength": 1, "pattern": ".*\\S.*" },
+          "CardLink": { "type": "string", "title": "Card Link" }
+        },
+        "required": ["Title", "Description", "Icon"]
+      }
+    },
+    "SectionFooter": { "type": "string", "title": "Section Footer" }
+  },
+  "required": ["SectionDescription", "CrossPromotions"]
+}

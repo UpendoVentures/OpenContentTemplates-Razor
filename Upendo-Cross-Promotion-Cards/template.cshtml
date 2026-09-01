@@ -1,0 +1,235 @@
+@using System
+@using System.Collections
+@using System.Collections.Generic
+@using System.Text.RegularExpressions
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static object GetDynamicValue(dynamic source, string propertyName)
+    {
+        if (source == null || string.IsNullOrWhiteSpace(propertyName))
+        {
+            return null;
+        }
+
+        try
+        {
+            var dictionary = source as IDictionary<string, object>;
+            if (dictionary != null && dictionary.ContainsKey(propertyName))
+            {
+                return dictionary[propertyName];
+            }
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            return source[propertyName];
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            var property = ((object)source).GetType().GetProperty(propertyName);
+            return property != null ? property.GetValue(source, null) : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string GetDynamicString(dynamic source, string propertyName)
+    {
+        var value = GetDynamicValue(source, propertyName);
+        return value != null ? Convert.ToString(value) : string.Empty;
+    }
+
+    private static string AllowList(string value, string fallback, params string[] allowedValues)
+    {
+        if (!string.IsNullOrWhiteSpace(value))
+        {
+            foreach (var allowedValue in allowedValues)
+            {
+                if (string.Equals(value, allowedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return allowedValue;
+                }
+            }
+        }
+
+        return fallback;
+    }
+
+    private static string GetSafeIconClass(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return string.Empty;
+        }
+
+        var iconClass = value.Trim();
+        return Regex.IsMatch(iconClass, @"^[A-Za-z0-9_ -]+$") ? iconClass : string.Empty;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var settings = Model.Settings;
+    var moduleAnchor = GetDynamicString(Model, "ModuleAnchor");
+    if (!Regex.IsMatch(moduleAnchor ?? string.Empty, @"^[A-Za-z0-9-]+$"))
+    {
+        moduleAnchor = string.Empty;
+    }
+
+    var sectionTitle = GetDynamicString(Model, "SectionTitle");
+    var sectionDescription = GetDynamicString(Model, "SectionDescription");
+    var sectionFooter = GetDynamicString(Model, "SectionFooter");
+
+    var allowedColors = new[]
+    {
+        "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary",
+        "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info",
+        "bg-light", "bg-dark", "bg-black", "bg-white", "bg-body", "bg-transparent", "bg-primary-subtle",
+        "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle",
+        "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige",
+        "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green"
+    };
+
+    var sectionColors = new List<string> { "" };
+    sectionColors.AddRange(allowedColors);
+    var backgroundColorClass = AllowList(GetDynamicString(settings, "BackgroundColorClass"), string.Empty, sectionColors.ToArray());
+    var cardColorClass = AllowList(GetDynamicString(settings, "CardColorClass"), "bg-light", allowedColors);
+    var iconColorClass = AllowList(GetDynamicString(settings, "IconColorClass"), "bg-secondary", allowedColors);
+    var cardColorName = cardColorClass.StartsWith("bg-", StringComparison.OrdinalIgnoreCase)
+        ? cardColorClass.Substring(3)
+        : "light";
+    var iconColorName = iconColorClass.StartsWith("bg-", StringComparison.OrdinalIgnoreCase)
+        ? iconColorClass.Substring(3)
+        : "secondary";
+    var cardTintClass = "oc-cross-promotion-cards__tint oc-cross-promotion-cards__color--" + cardColorName;
+    var iconTintClass = "oc-cross-promotion-cards__icon-tint oc-cross-promotion-cards__color--" + iconColorName;
+    var iconGlyphClass = "oc-cross-promotion-cards__icon-glyph oc-cross-promotion-cards__icon-glyph--" + iconColorName;
+    var animationLevel = AllowList(GetDynamicString(settings, "AnimationLevel"), "light", "none", "light", "medium", "high");
+    var animationName = animationLevel == "high" ? "zoomIn" : (animationLevel == "medium" ? "fadeInUp" : "fadeIn");
+    var animationStep = animationLevel == "high" ? 160 : (animationLevel == "medium" ? 100 : 60);
+    var animationClass = animationLevel == "none" ? string.Empty : " appear-animation";
+
+    var marginTop = AllowList(GetDynamicString(settings, "MarginTop"), string.Empty, "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto");
+    var marginBottom = AllowList(GetDynamicString(settings, "MarginBottom"), string.Empty, "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto");
+    var paddingTop = AllowList(GetDynamicString(settings, "PaddingTop"), "pt-5", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto");
+    var paddingBottom = AllowList(GetDynamicString(settings, "PaddingBottom"), "pb-5", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto");
+
+    var crossPromotions = new List<dynamic>();
+    var crossPromotionValues = GetDynamicValue(Model, "CrossPromotions") as IEnumerable;
+    if (crossPromotionValues != null)
+    {
+        foreach (var crossPromotionValue in crossPromotionValues)
+        {
+            crossPromotions.Add(crossPromotionValue);
+        }
+    }
+
+    var sectionId = "oc-cross-promotion-cards-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+    var sectionClass = "oc-cross-promotion-cards w-100 " + backgroundColorClass + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+    var headerClass = "oc-cross-promotion-cards__header mb-4" + animationClass;
+    var hasContent = !string.IsNullOrWhiteSpace(sectionTitle)
+        || !string.IsNullOrWhiteSpace(sectionDescription)
+        || crossPromotions.Count > 0
+        || !string.IsNullOrWhiteSpace(sectionFooter);
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+@if (hasContent)
+{
+    <section id="@sectionId"
+             class="@sectionClass"
+             data-animation-level="@animationLevel"
+             aria-labelledby="@headingId">
+        <div class="container-xxl">
+            <div class="@headerClass"
+                 data-appear-animation="@(animationLevel == "none" ? null : animationName)">
+                @if (!string.IsNullOrWhiteSpace(sectionTitle))
+                {
+                    <h2 id="@headingId" class="oc-cross-promotion-cards__title text-notransform">@Html.Raw(sectionTitle)</h2>
+                }
+                else
+                {
+                    <h2 id="@headingId" class="visually-hidden">Cross promotions</h2>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(sectionDescription))
+                {
+                    <div class="oc-cross-promotion-cards__description">@Html.Raw(sectionDescription)</div>
+                }
+            </div>
+
+            @if (crossPromotions.Count > 0)
+            {
+                <div class="row g-4" role="list">
+                    @for (var cardIndex = 0; cardIndex < crossPromotions.Count; cardIndex++)
+                    {
+                        var card = crossPromotions[cardIndex];
+                        var cardTitle = GetDynamicString(card, "Title");
+                        var cardDescription = GetDynamicString(card, "Description");
+                        var iconClass = GetSafeIconClass(GetDynamicString(card, "Icon"));
+                        var cardLink = GetDynamicString(card, "CardLink");
+                        var hasCardLink = UrlValidationHelper.IsLocalOrExternalHttpUrl(cardLink);
+                        var cardId = sectionId + "-card-" + cardIndex;
+                        var cardDelay = (cardIndex + 1) * animationStep;
+                        var linkedCardClass = hasCardLink ? " oc-cross-promotion-cards__card--linked" : string.Empty;
+                        var cardClass = "oc-cross-promotion-cards__card position-relative d-flex align-items-center w-100" + linkedCardClass + animationClass;
+
+                        <div class="col-12 col-md-6 col-lg-4 d-flex" role="listitem">
+                            <article class="@cardClass"
+                                     aria-labelledby="@(cardId + "-title")"
+                                     data-appear-animation="@(animationLevel == "none" ? null : animationName)"
+                                     data-appear-animation-delay="@(animationLevel == "none" ? null : Convert.ToString(cardDelay))">
+                                <span class="@cardTintClass" aria-hidden="true"></span>
+
+                                @if (!string.IsNullOrWhiteSpace(iconClass))
+                                {
+                                    <span class="oc-cross-promotion-cards__icon" aria-hidden="true">
+                                        <span class="@iconTintClass"></span>
+                                        <span class="@iconGlyphClass"><i class="@iconClass"></i></span>
+                                    </span>
+                                }
+
+                                <div class="oc-cross-promotion-cards__content">
+                                    <h3 id="@(cardId + "-title")" class="oc-cross-promotion-cards__card-title text-notransform">@Html.Raw(cardTitle)</h3>
+                                    <div class="oc-cross-promotion-cards__card-description">@Html.Raw(cardDescription)</div>
+                                </div>
+
+                                @if (hasCardLink)
+                                {
+                                    <a class="oc-cross-promotion-cards__link stretched-link"
+                                       href="@cardLink"
+                                       aria-labelledby="@(cardId + "-title") @(cardId + "-link-text")">
+                                        <span id="@(cardId + "-link-text")" class="visually-hidden">Learn more</span>
+                                    </a>
+                                }
+                            </article>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(sectionFooter))
+            {
+                <div class="oc-cross-promotion-cards__footer mt-4">@Html.Raw(sectionFooter)</div>
+            }
+        </div>
+    </section>
+}

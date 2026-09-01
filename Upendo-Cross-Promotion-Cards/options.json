@@ -1,0 +1,59 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Cross-Promotion Cards"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Creates a page anchor for direct links to this section. Use only letters, numbers, and hyphens.",
+      "placeholder": "related-solutions",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. Add a short heading above the cards. HTML is allowed and will render as entered.",
+      "placeholder": "Works seamlessly with"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Required. Briefly explain how these related offerings help visitors. HTML is allowed and will render as entered.",
+      "placeholder": "<p>Explore related solutions that work well together.</p>"
+    },
+    "CrossPromotions": {
+      "type": "accordion",
+      "label": "Cross Promotions",
+      "titleField": "Title",
+      "helper": "Add as many cross-promotion cards as needed. Every saved card is displayed.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Use a short, recognizable name for the related offering. HTML is allowed and will render as entered.",
+            "placeholder": "Marketing"
+          },
+          "Description": {
+            "type": "text",
+            "helper": "Required. Use a phrase or short sentence instead of a long description. HTML is allowed and will render as entered.",
+            "placeholder": "Drive traffic to your store."
+          },
+          "Icon": {
+            "type": "text",
+            "helper": "Required. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
+            "placeholder": "fas fa-heart"
+          },
+          "CardLink": {
+            "type": "url",
+            "helper": "Optional. Select a local page or enter a complete http or https URL. When provided, the whole card becomes a link."
+          }
+        }
+      }
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. Add a short note beneath the cards. HTML is allowed and will render as entered.",
+      "placeholder": "Not sure where to start? Contact our team."
+    }
+  }
+}
