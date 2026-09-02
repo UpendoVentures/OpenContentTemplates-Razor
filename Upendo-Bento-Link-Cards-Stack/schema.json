@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {"type": "string", "title": "Module Title"},
+    "ModuleAnchor": {"type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$"},
+    "SectionTitle": {"type": "string", "title": "Section Title"},
+    "SectionDescription": {"type": "string", "title": "Section Description"},
+    "BentoCards": {
+      "type": "array",
+      "title": "Bento Cards",
+      "items": {
+        "type": "object",
+        "properties": {
+          "CardTitle": {"type": "string", "title": "Card Title"},
+          "CardDescription": {"type": "string", "title": "Card Description"},
+          "CardIcon": {"type": "string", "title": "Card Icon"},
+          "CardIconColor": {
+            "type": "string",
+            "title": "Card Icon Color",
+            "enum": ["default", "primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h1", "h2", "h3", "h4", "h5", "h6", "body", "body-secondary", "body-tertiary", "dark", "black", "black-50", "light", "white", "white-50", "muted", "success", "danger", "warning", "info", "teal"],
+            "default": "default"
+          },
+          "Image": {"type": "string", "title": "Image", "minLength": 1, "pattern": ".*\\S.*"},
+          "ImageAltText": {"type": "string", "title": "Image Alt Text"},
+          "LearnMoreText": {"type": "string", "title": "Learn More Text"},
+          "LearnMoreUrl": {"type": "string", "title": "Learn More URL"},
+          "ValuePropositions": {
+            "type": "array",
+            "title": "Value Propositions",
+            "items": {"type": "string"}
+          }
+        },
+        "required": ["Image"]
+      }
+    },
+    "SectionFooter": {"type": "string", "title": "Section Footer"}
+  }
+}

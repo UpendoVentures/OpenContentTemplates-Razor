@@ -1,0 +1,53 @@
+{
+  "ModuleTitle": "Bento Link Cards Stack",
+  "ModuleAnchor": "",
+  "SectionTitle": "Comprehensive Website Solutions",
+  "SectionDescription": "Practical, dependable services tailored to help organizations establish and grow their online presence.",
+  "BentoCards": [
+    {
+      "CardTitle": "Design and Implementation",
+      "CardDescription": "Build an accessible, fast-loading website that looks professional and remains easy to manage.",
+      "CardIcon": "fas fa-pencil-ruler",
+      "CardIconColor": "danger",
+      "Image": "/Portals/0/Content/website-design.jpg",
+      "ImageAltText": "A desktop monitor displaying a website design interface",
+      "LearnMoreText": "Learn more",
+      "LearnMoreUrl": "",
+      "ValuePropositions": []
+    },
+    {
+      "CardTitle": "Website Strategy",
+      "CardDescription": "Create a clear plan that connects your website to your business goals and ideal customers.",
+      "CardIcon": "fas fa-compass",
+      "CardIconColor": "info",
+      "Image": "/Portals/0/Content/website-strategy.jpg",
+      "ImageAltText": "",
+      "LearnMoreText": "Learn more",
+      "LearnMoreUrl": "",
+      "ValuePropositions": []
+    },
+    {
+      "CardTitle": "Website Migration",
+      "CardDescription": "Move content safely, preserve search visibility, and transition to a platform that supports growth.",
+      "CardIcon": "fas fa-exchange-alt",
+      "CardIconColor": "secondary",
+      "Image": "/Portals/0/Content/website-migration.jpg",
+      "ImageAltText": "",
+      "LearnMoreText": "Learn more",
+      "LearnMoreUrl": "",
+      "ValuePropositions": []
+    },
+    {
+      "CardTitle": "Ongoing Improvement",
+      "CardDescription": "Keep your digital presence useful through thoughtful support, performance work, and strategic updates.",
+      "CardIcon": "fas fa-chart-line",
+      "CardIconColor": "dark",
+      "Image": "/Portals/0/Content/ongoing-improvement.jpg",
+      "ImageAltText": "",
+      "LearnMoreText": "",
+      "LearnMoreUrl": "",
+      "ValuePropositions": ["Performance audits", "Security updates", "Content strategy adjustments"]
+    }
+  ],
+  "SectionFooter": ""
+}
