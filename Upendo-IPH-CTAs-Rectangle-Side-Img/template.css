@@ -1,0 +1,53 @@
+.oc-side-image-cta {
+    --oc-side-image-cta-primary: var(--bs-primary, #b72c1c);
+    --oc-side-image-cta-text: var(--bs-body-color, #212529);
+    --oc-side-image-cta-muted: var(--bs-secondary-color, #5c636a);
+    --oc-side-image-cta-primary-text: #fff;
+    width: 100%; overflow: hidden; color: var(--oc-side-image-cta-text);
+}
+.oc-side-image-cta.bg-primary, .oc-side-image-cta.bg-primary-scoped, .oc-side-image-cta.bg-secondary, .oc-side-image-cta.bg-secondary-scoped, .oc-side-image-cta.bg-tertiary, .oc-side-image-cta.bg-quaternary, .oc-side-image-cta.bg-h5, .oc-side-image-cta.bg-h6, .oc-side-image-cta.bg-dark, .oc-side-image-cta.bg-success, .oc-side-image-cta.bg-danger, .oc-side-image-cta.bg-forest-green {
+    --oc-side-image-cta-primary: #fff;
+    --oc-side-image-cta-primary-text: #212529;
+    --oc-side-image-cta-text: #fff;
+    --oc-side-image-cta-muted: rgba(255,255,255,.82);
+}
+.oc-side-image-cta__breadcrumb { margin-bottom: 2.5rem; }
+.oc-side-image-cta__breadcrumb-list { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem; }
+.oc-side-image-cta__breadcrumb-item { display: inline-flex; align-items: center; }
+.oc-side-image-cta__breadcrumb-item:not(:last-child)::after { content: "/"; margin-left: .75rem; opacity: .4; }
+.oc-side-image-cta__breadcrumb-link, .oc-side-image-cta__breadcrumb-current { color: inherit; font-size: .875rem; line-height: 1.4; text-decoration: none; }
+.oc-side-image-cta__breadcrumb-link:hover, .oc-side-image-cta__breadcrumb-link:focus { color: var(--oc-side-image-cta-primary); font-size: .875rem; line-height: 1.4; text-decoration: underline; text-underline-offset: .2em; }
+.oc-side-image-cta__content { max-width: 42rem; }
+.oc-side-image-cta__title { margin-bottom: 1rem; color: inherit; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.08; }
+.oc-side-image-cta__description { max-width: 38rem; color: var(--oc-side-image-cta-muted); font-size: 1.125rem; line-height: 1.65; }
+.oc-side-image-cta__description > *:last-child, .oc-side-image-cta__footer > *:last-child { margin-bottom: 0; }
+.oc-side-image-cta__actions { display: flex; flex-wrap: wrap; gap: .875rem; margin-top: 1.75rem; }
+.oc-side-image-cta__button { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: .75rem 1.5rem; border-style: solid !important; border-width: 2px !important; border-radius: 50rem !important; font-weight: 600; line-height: 1.2; text-decoration: none !important; white-space: nowrap; transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.oc-side-image-cta__button--primary, .oc-side-image-cta__button--primary:hover, .oc-side-image-cta__button--primary:focus, .oc-side-image-cta__button--primary:visited { color: var(--oc-side-image-cta-primary-text) !important; background-color: var(--oc-side-image-cta-primary) !important; border-color: var(--oc-side-image-cta-primary) !important; padding-right:18px !important; }
+.oc-side-image-cta__button--secondary, .oc-side-image-cta__button--secondary:hover, .oc-side-image-cta__button--secondary:focus, .oc-side-image-cta__button--secondary:visited { color: var(--oc-side-image-cta-primary) !important; background-color: transparent !important; border-color: var(--oc-side-image-cta-primary) !important; padding-right:18px !important; }
+.oc-side-image-cta__button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.oc-side-image-cta__footer { margin-top: 1.25rem; color: var(--oc-side-image-cta-muted); font-size: .925rem; }
+.oc-side-image-cta__media-wrap { max-width: 48rem; margin: 0 auto; padding: clamp(.75rem, 2vw, 1.5rem); border-radius: 1rem; background: rgba(255,255,255,.86); box-shadow: 0 .5rem 1.75rem rgba(33,37,41,.10), 0 .125rem .5rem rgba(33,37,41,.06); transform: translateZ(0); transition: transform 240ms cubic-bezier(.2,.65,.3,1), box-shadow 240ms ease, border-radius 240ms ease; will-change: transform, box-shadow; }
+.oc-side-image-cta__media-wrap.appear-animation { -webkit-animation-fill-mode: none; animation-fill-mode: none; }
+.oc-side-image-cta__media { overflow: hidden; border: 1px solid rgba(33,37,41,.08); border-radius: .75rem; background-color: var(--bs-light, #f8f9fa); }
+.oc-side-image-cta__image { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 240ms ease; }
+.oc-side-image-cta[data-animation-level="light"] .oc-side-image-cta__button:hover { transform: translateY(-1px); box-shadow: 0 .35rem .9rem rgba(33,37,41,.12); }
+.oc-side-image-cta[data-animation-level="medium"] .oc-side-image-cta__button:hover { transform: translateY(-3px); box-shadow: 0 .6rem 1.3rem rgba(33,37,41,.16); }
+.oc-side-image-cta[data-animation-level="high"] .oc-side-image-cta__button:hover { transform: translateY(-4px) scale(1.025); box-shadow: 0 .8rem 1.6rem rgba(33,37,41,.2); }
+.oc-side-image-cta[data-animation-level="light"] .oc-side-image-cta__media-wrap { box-shadow: 0 .75rem 2rem rgba(33,37,41,.11), 0 .125rem .5rem rgba(33,37,41,.06); }
+.oc-side-image-cta[data-animation-level="light"] .oc-side-image-cta__media-wrap:hover { transform: translateY(-.15rem); box-shadow: 0 1rem 2.5rem rgba(33,37,41,.14), 0 .25rem .75rem rgba(33,37,41,.08); }
+.oc-side-image-cta[data-animation-level="light"] .oc-side-image-cta__media-wrap:hover .oc-side-image-cta__image { transform: scale(1.008); }
+.oc-side-image-cta[data-animation-level="medium"] .oc-side-image-cta__media-wrap { box-shadow: 0 .9rem 2.5rem rgba(33,37,41,.14), 0 .2rem .65rem rgba(33,37,41,.08); }
+.oc-side-image-cta[data-animation-level="medium"] .oc-side-image-cta__media-wrap:hover { border-radius: 1.125rem; box-shadow: 0 1.25rem 3rem rgba(33,37,41,.18), 0 .3rem .9rem rgba(33,37,41,.10); transform: translateY(-.35rem) scale(1.005); }
+.oc-side-image-cta[data-animation-level="medium"] .oc-side-image-cta__media-wrap:hover .oc-side-image-cta__image { transform: scale(1.025); }
+.oc-side-image-cta[data-animation-level="high"] .oc-side-image-cta__media-wrap { box-shadow: 0 1rem 2.75rem rgba(33,37,41,.16), 0 .25rem .75rem rgba(33,37,41,.09); }
+.oc-side-image-cta[data-animation-level="high"] .oc-side-image-cta__media-wrap:hover { border-radius: 1.25rem; box-shadow: 0 1.5rem 3.5rem rgba(33,37,41,.22), 0 .4rem 1rem rgba(33,37,41,.12); transform: translateY(-.5rem) scale(1.012); }
+.oc-side-image-cta[data-animation-level="high"] .oc-side-image-cta__media-wrap:hover .oc-side-image-cta__image { transform: scale(1.05); }
+.oc-side-image-cta[data-animation-level]:not([data-animation-level="none"]) .oc-side-image-cta__media-wrap:active { border-radius: 1rem; box-shadow: 0 .35rem 1.25rem rgba(33,37,41,.10); transform: translateY(-.05rem) scale(.99); }
+.oc-side-image-cta[data-animation-level]:not([data-animation-level="none"]) .oc-side-image-cta__button:active { transform: translateY(0) scale(.98); box-shadow: none; }
+.bg-off-white { background-color: #f8f7f3 !important; } .bg-warm-white { background-color: #f7f3ed !important; } .bg-cream { background-color: #f4efe6 !important; } .bg-soft-beige { background-color: #e9ddd1 !important; } .bg-sand { background-color: #ddd0bf !important; } .bg-light-sage { background-color: #dfe8dd !important; } .bg-sage { background-color: #b8c6b1 !important; } .bg-pale-green { background-color: #e5eee3 !important; } .bg-mist { background-color: #edf1ef !important; } .bg-soft-gray { background-color: #f1f1ee !important; } .bg-forest-green { background-color: #173f35 !important; }
+@media (max-width: 991.98px) { .oc-side-image-cta__breadcrumb { margin-bottom: 2rem; } .oc-side-image-cta__content { max-width: none; } }
+@media (max-width: 575.98px) { .oc-side-image-cta__actions, .oc-side-image-cta__button { width: 100%; } .oc-side-image-cta__media-wrap { border-radius: .75rem; } }
+@media (prefers-reduced-motion: reduce) { .oc-side-image-cta *, .oc-side-image-cta *::before, .oc-side-image-cta *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .oc-side-image-cta .appear-animation, .oc-side-image-cta .appear-animation-visible, .oc-side-image-cta .oc-side-image-cta__media-wrap:hover, .oc-side-image-cta .oc-side-image-cta__media-wrap:active, .oc-side-image-cta .oc-side-image-cta__media-wrap:hover .oc-side-image-cta__image { opacity: 1 !important; transform: none !important; } }
+
+

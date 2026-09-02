@@ -1,0 +1,8 @@
+{
+  "BackgroundColorClass": "bg-light",
+  "TextColorClass": "text-dark",
+  "MarginTop": "mt-2",
+  "MarginBottom": "mb-2",
+  "PaddingTop": "pt-3",
+  "PaddingBottom": "pb-3"
+}

@@ -1,0 +1,27 @@
+{
+  "ModuleTitle": "Cross-Promotion Cards",
+  "ModuleAnchor": "",
+  "SectionTitle": "Works seamlessly with",
+  "SectionDescription": "<p>Explore related solutions that help your business grow.</p>",
+  "CrossPromotions": [
+    {
+      "Title": "Marketing",
+      "Description": "Drive traffic to your store.",
+      "Icon": "fas fa-bullhorn",
+      "CardLink": ""
+    },
+    {
+      "Title": "Content Management",
+      "Description": "Tell your product's story.",
+      "Icon": "fas fa-file-alt",
+      "CardLink": ""
+    },
+    {
+      "Title": "Membership",
+      "Description": "Reward loyal customers.",
+      "Icon": "fas fa-id-card",
+      "CardLink": ""
+    }
+  ],
+  "SectionFooter": ""
+}

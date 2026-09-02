@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "EyebrowText": {
+      "type": "string",
+      "title": "Eyebrow Text"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "Cta1Text": {
+      "type": "string",
+      "title": "CTA 1 Text"
+    },
+    "Cta1Icon": {
+      "type": "string",
+      "title": "CTA 1 Icon"
+    },
+    "Cta1Url": {
+      "type": "string",
+      "title": "CTA 1 URL"
+    }
+  }
+}

@@ -1,0 +1,157 @@
+@using System
+@using System.Collections.Generic
+@using System.Text.RegularExpressions
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string AllowList(string value, string fallback, params string[] allowedValues)
+    {
+        if (!string.IsNullOrWhiteSpace(value))
+        {
+            foreach (var allowedValue in allowedValues)
+            {
+                if (string.Equals(value, allowedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return allowedValue;
+                }
+            }
+        }
+
+        return fallback;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    if (!Regex.IsMatch(moduleAnchor ?? string.Empty, @"^[A-Za-z0-9-]+$"))
+    {
+        moduleAnchor = string.Empty;
+    }
+
+    var sectionTitle = Model.SectionTitle != null ? Convert.ToString(Model.SectionTitle) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+    var sectionFooter = Model.SectionFooter != null ? Convert.ToString(Model.SectionFooter) : string.Empty;
+    var settings = Model.Settings;
+
+    var backgroundColorClass = AllowList(
+        settings != null && settings.BackgroundColorClass != null ? Convert.ToString(settings.BackgroundColorClass) : string.Empty,
+        string.Empty,
+        "", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary",
+        "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white",
+        "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle",
+        "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white",
+        "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray",
+        "bg-forest-green"
+    );
+    var stepsValue = settings != null && settings.Steps != null ? Convert.ToString(settings.Steps) : string.Empty;
+    var stepLimit = string.Equals(stepsValue, "4", StringComparison.OrdinalIgnoreCase) ? 4 : 3;
+    var animationLevel = AllowList(settings != null && settings.AnimationLevel != null ? Convert.ToString(settings.AnimationLevel) : string.Empty, "light", "none", "light", "medium", "high");
+    var marginTop = AllowList(settings != null && settings.MarginTop != null ? Convert.ToString(settings.MarginTop) : string.Empty, string.Empty, "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto");
+    var marginBottom = AllowList(settings != null && settings.MarginBottom != null ? Convert.ToString(settings.MarginBottom) : string.Empty, string.Empty, "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto");
+    var paddingTop = AllowList(settings != null && settings.PaddingTop != null ? Convert.ToString(settings.PaddingTop) : string.Empty, "pt-5", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto");
+    var paddingBottom = AllowList(settings != null && settings.PaddingBottom != null ? Convert.ToString(settings.PaddingBottom) : string.Empty, "pb-5", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto");
+
+    var items = new List<dynamic>();
+    if (Model.Items != null)
+    {
+        foreach (var item in Model.Items)
+        {
+            if (items.Count >= stepLimit)
+            {
+                break;
+            }
+
+            items.Add(item);
+        }
+    }
+
+    var animationName = animationLevel == "high" ? "zoomIn" : (animationLevel == "medium" ? "fadeInUp" : "fadeIn");
+    var animationDelay = animationLevel == "high" ? 180 : (animationLevel == "medium" ? 120 : 70);
+    var animationClass = animationLevel == "none" ? string.Empty : " appear-animation";
+    var sectionId = "oc-process-journey-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+    var sectionClasses = "oc-process-journey position-relative w-100 " + backgroundColorClass + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section id="@sectionId"
+         class="@sectionClasses"
+         data-animation-level="@animationLevel"
+         aria-labelledby="@headingId">
+    <div class="container-xxl">
+        <div class="oc-process-journey__header text-center mx-auto mb-5@animationClass"
+                data-appear-animation="@(animationLevel == "none" ? null : animationName)">
+            @if (!string.IsNullOrWhiteSpace(sectionTitle))
+            {
+                <h2 id="@headingId" class="oc-process-journey__title text-notransform">@Html.Raw(sectionTitle)</h2>
+            }
+            else
+            {
+                <h2 id="@headingId" class="visually-hidden">Process</h2>
+            }
+
+            <div class="oc-process-journey__description">@Html.Raw(sectionDescription)</div>
+        </div>
+
+        @if (items.Count > 0)
+        {
+            <ol class="oc-process-journey__steps list-unstyled mt-3 mb-0 py-5"
+                data-step-count="@items.Count"
+                style="--oc-process-step-count: @items.Count;">
+                @for (var itemIndex = 0; itemIndex < items.Count; itemIndex++)
+                {
+                    var item = items[itemIndex];
+                    var itemTitle = item.Title != null ? Convert.ToString(item.Title) : string.Empty;
+                    var itemDescription = item.Description != null ? Convert.ToString(item.Description) : string.Empty;
+                    var itemIcon = item.Icon != null ? Convert.ToString(item.Icon) : string.Empty;
+                    var iconColor = AllowList(item.IconColor != null ? Convert.ToString(item.IconColor) : string.Empty, string.Empty, "", "primary", "secondary", "success", "danger", "warning", "info", "dark");
+                    var cardLink = item.CardLink != null ? Convert.ToString(item.CardLink) : string.Empty;
+                    var hasCardLink = UrlValidationHelper.IsLocalOrExternalHttpUrl(cardLink);
+                    var itemId = sectionId + "-item-" + itemIndex;
+                    var delay = (itemIndex + 1) * animationDelay;
+                    var colorClass = string.IsNullOrWhiteSpace(iconColor) ? "oc-process-journey__icon--default" : "oc-process-journey__icon--" + iconColor;
+                    var linkedClass = hasCardLink ? " oc-process-journey__step--linked" : string.Empty;
+
+                    <li class="oc-process-journey__step@linkedClass@animationClass"
+                        data-appear-animation="@(animationLevel == "none" ? null : animationName)"
+                        data-appear-animation-delay="@(animationLevel == "none" ? null : Convert.ToString(delay))"
+                        style="@(animationLevel == "none" ? null : "animation-delay: " + delay + "ms;")">
+                        <div class="oc-process-journey__icon @colorClass" aria-hidden="true">
+                            <i class="@itemIcon"></i>
+                        </div>
+
+                        <div class="oc-process-journey__content">
+                            <h3 id="@(itemId + "-title")" class="oc-process-journey__item-title text-notransform">@Html.Raw(itemTitle)</h3>
+                            <div class="oc-process-journey__item-description">@Html.Raw(itemDescription)</div>
+                        </div>
+
+                        @if (hasCardLink)
+                        {
+                            <a class="oc-process-journey__link stretched-link"
+                               href="@cardLink"
+                               aria-labelledby="@(itemId + "-title") @(itemId + "-link-text")">
+                                <span id="@(itemId + "-link-text")" class="visually-hidden">View step details</span>
+                            </a>
+                        }
+                    </li>
+                }
+            </ol>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(sectionFooter))
+        {
+            <div class="oc-process-journey__footer text-center mt-5@animationClass"
+                 data-appear-animation="@(animationLevel == "none" ? null : animationName)">
+                @Html.Raw(sectionFooter)
+            </div>
+        }
+    </div>
+</section>

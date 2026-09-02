@@ -1,0 +1,86 @@
+{
+  "ModuleTitle": "Featured Content Card Grid",
+  "ModuleAnchor": "solutions",
+  "SectionEyebrow": "Solutions",
+  "SectionEyebrowColor": "text-primary",
+  "SectionTitle": "Everything your business needs to move forward online.",
+  "SectionDescription": "Create better ways for customers to discover, engage, join, register, and buy.",
+  "SectionFooter": "",
+  "SectionRows": [
+    {
+      "ContentCards": [
+        {
+          "Title": "Commerce",
+          "Description": "Streamline sales with an intuitive storefront, secure checkout, and simple inventory management.",
+          "CardIcon": "fas fa-shopping-cart",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        },
+        {
+          "Title": "Content Management",
+          "Description": "Build, edit, and publish engaging content without needing a developer.",
+          "CardIcon": "fas fa-file-alt",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        }
+      ]
+    },
+    {
+      "ContentCards": [
+        {
+          "Title": "Directory",
+          "Description": "Help visitors find partners, locations, or staff in a clear, searchable directory.",
+          "CardIcon": "fas fa-address-book",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        },
+        {
+          "Title": "Events",
+          "Description": "Support registration, ticketing, and reminders for virtual or in-person events.",
+          "CardIcon": "fas fa-calendar-alt",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        },
+        {
+          "Title": "Marketing",
+          "Description": "Reach more people with campaigns, search optimization, and social sharing.",
+          "CardIcon": "fas fa-bullhorn",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        }
+      ]
+    },
+    {
+      "ContentCards": [
+        {
+          "Title": "Membership",
+          "Description": "Build loyalty with gated content, subscriptions, and member experiences.",
+          "CardIcon": "fas fa-id-card",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        },
+        {
+          "Title": "Networking",
+          "Description": "Bring your audience together through community, messaging, and collaboration.",
+          "CardIcon": "fas fa-project-diagram",
+          "ActionText": "Learn More",
+          "ActionLink": "",
+          "Image": "",
+          "ImageAlt": ""
+        }
+      ]
+    }
+  ]
+}

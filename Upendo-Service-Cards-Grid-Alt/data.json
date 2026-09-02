@@ -1,0 +1,35 @@
+{
+  "ModuleTitle": "Service Cards Grid Alt",
+  "ModuleAnchor": "",
+  "SectionHeading": "The right result should feel easy to find.",
+  "IntroText": "Experience a seamless journey from intent to connection.",
+  "Cards": [
+    {
+      "Eyebrow": "Step 1",
+      "EyebrowColorClass": "text-teal",
+      "CardImage": "https://placehold.co/1200x675/f4f0e8/2f6f72?text=Search",
+      "CardImageAlt": "Search interface surrounded by profile results",
+      "Title": "Search",
+      "Description": "Type a need, see immediate, relevant suggestions.",
+      "Link": {"Title": "Learn more", "Url": ""}
+    },
+    {
+      "Eyebrow": "Step 2",
+      "EyebrowColorClass": "text-teal",
+      "CardImage": "https://placehold.co/1200x675/f4f0e8/2f6f72?text=Compare",
+      "CardImageAlt": "Two structured profiles displayed side by side for comparison",
+      "Title": "Compare",
+      "Description": "Review structured profiles side-by-side to make informed decisions.",
+      "Link": {"Title": "Learn more", "Url": ""}
+    },
+    {
+      "Eyebrow": "Step 3",
+      "EyebrowColorClass": "text-teal",
+      "CardImage": "https://placehold.co/1200x675/f4f0e8/2f6f72?text=Connect",
+      "CardImageAlt": "Two people connecting through a successful message",
+      "Title": "Connect",
+      "Description": "Reach out directly through integrated communication tools.",
+      "Link": {"Title": "Learn more", "Url": ""}
+    }
+  ]
+}

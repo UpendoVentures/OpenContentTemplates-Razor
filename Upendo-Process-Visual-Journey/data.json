@@ -1,0 +1,30 @@
+{
+  "ModuleTitle": "Process Visual Journey",
+  "ModuleAnchor": "",
+  "SectionTitle": "From \"I'm interested\" to \"Order complete\".",
+  "SectionDescription": "<p>A seamless flow designed to support the customer at every step of their journey.</p>",
+  "Items": [
+    {
+      "Title": "Discover",
+      "Description": "Engaging product displays and clear descriptions capture attention.",
+      "Icon": "fas fa-search",
+      "IconColor": "secondary",
+      "CardLink": ""
+    },
+    {
+      "Title": "Choose",
+      "Description": "Frictionless selection, easy cart management, and clear pricing.",
+      "Icon": "fas fa-hand-pointer",
+      "IconColor": "primary",
+      "CardLink": ""
+    },
+    {
+      "Title": "Complete",
+      "Description": "Secure checkout, instant confirmation, and clear next steps.",
+      "Icon": "fas fa-check",
+      "IconColor": "danger",
+      "CardLink": ""
+    }
+  ],
+  "SectionFooter": ""
+}

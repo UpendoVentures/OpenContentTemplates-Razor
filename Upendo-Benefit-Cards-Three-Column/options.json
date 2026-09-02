@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Three-Column Benefit Cards"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Creates a page anchor for direct links to this section. Use only letters, numbers, and hyphens.",
+      "placeholder": "key-benefits",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. The main heading displayed above the cards. HTML is allowed and will render as entered.",
+      "placeholder": "Designed for clarity and trust."
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Required. Introduce this group of cards in one or two short sentences. HTML is allowed and will render as entered.",
+      "placeholder": "<p>Explain the shared benefit these cards help visitors understand.</p>"
+    },
+    "Cards": {
+      "type": "accordion",
+      "label": "Cards",
+      "titleField": "Title",
+      "helper": "Add as many cards as needed. Only the first three cards are displayed on the website.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Add a short, clear heading for this card. HTML is allowed and will render as entered.",
+            "placeholder": "Help customers find the right choice"
+          },
+          "Description": {
+            "type": "text",
+            "helper": "Required. Briefly explain this benefit. HTML is allowed and will render as entered.",
+            "placeholder": "Organize your offerings so customers can quickly find what they need."
+          },
+          "Icon": {
+            "type": "text",
+            "helper": "Required. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
+            "placeholder": "fas fa-heart"
+          },
+          "IconColor": {
+            "type": "select",
+            "helper": "Choose a strong icon color. Its background uses a lighter transparent version of the same color. Default uses the current theme text color.",
+            "optionLabels": ["Default", "Primary", "Secondary", "Success", "Danger", "Warning", "Info", "Dark"],
+            "removeDefaultNone": true
+          },
+          "CardLink": {
+            "type": "url",
+            "helper": "Optional. Select a local page or enter a complete http or https URL. When provided, the whole card becomes a link and displays Learn More."
+          }
+        }
+      }
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. Add a short note below the cards. HTML is allowed and will render as entered.",
+      "placeholder": "Choose a benefit to learn more."
+    }
+  }
+}

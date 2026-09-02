@@ -1,0 +1,14 @@
+{
+  "ModuleTitle": "Full-Width Call to Action Card",
+  "ModuleAnchor": "",
+  "SectionTitle": "Make the next step feel simple.",
+  "SectionDescription": "<p>Help visitors understand the value, feel confident, and take action.</p>",
+  "SectionImage": "/Portals/0/Content/call-to-action-square.jpg",
+  "SectionImageAltText": "A person confidently taking the next step",
+  "PrimaryCTAText": "Get Started",
+  "PrimaryCTAURL": "/contact",
+  "PrimaryCTAIcon": "",
+  "SecondaryCTAText": "Learn More",
+  "SecondaryCTAURL": "/solutions",
+  "SecondaryCTAIcon": "fas fa-arrow-right"
+}

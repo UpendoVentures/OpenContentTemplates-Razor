@@ -1,0 +1,88 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Bento Link Cards Stack"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Creates a page anchor for direct links to this section. Use only letters, numbers, and hyphens.",
+      "placeholder": "website-services",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. Main heading displayed above the cards. HTML is allowed and will render as entered.",
+      "placeholder": "Comprehensive Website Solutions"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Briefly introduce this group of cards. HTML is allowed and will render as entered.",
+      "placeholder": "Practical, dependable services designed around your goals."
+    },
+    "BentoCards": {
+      "type": "accordion",
+      "titleField": "CardTitle",
+      "helper": "Add as many cards as needed. Only the first four are displayed. Card 1 displays its image, and Card 4 displays up to four value propositions.",
+      "items": {
+        "fields": {
+          "CardTitle": {
+            "type": "text",
+            "helper": "Optional. Add a short, clear card heading. HTML is allowed and will render as entered.",
+            "placeholder": "Website Strategy"
+          },
+          "CardDescription": {
+            "type": "textarea",
+            "helper": "Optional. Explain this item in one or two concise sentences. HTML is allowed and will render as entered.",
+            "placeholder": "Build a clear plan that connects your website to your business goals."
+          },
+          "CardIcon": {
+            "type": "text",
+            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
+            "placeholder": "fas fa-building"
+          },
+          "CardIconColor": {
+            "type": "select",
+            "helper": "Choose a Bootstrap or portal.css text color. The icon background uses a transparent version of the same color. Check the selected color against the card background for accessible contrast.",
+            "optionLabels": ["Default", "Primary", "Primary (theme scoped)", "Secondary", "Secondary (theme scoped)", "Tertiary (theme)", "Quaternary (theme)", "Heading 1 (theme)", "Heading 2 (theme)", "Heading 3 (theme)", "Heading 4 (theme)", "Heading 5 (theme)", "Heading 6 (theme)", "Body", "Body Secondary", "Body Tertiary", "Dark", "Black", "Black 50%", "Light", "White", "White 50%", "Muted", "Success", "Danger", "Warning", "Info", "Teal (theme)"],
+            "removeDefaultNone": true
+          },
+          "Image": {
+            "type": "image",
+            "uploadfolder": "Content/",
+            "typeahead": {"Folder": "Content/"},
+            "helper": "Required. Uploads go to Content/. Use a landscape image at least 1200 by 675 pixels. Only Card 1 displays its image in this layout."
+          },
+          "ImageAltText": {
+            "type": "text",
+            "helper": "Optional but IMPORTANT for meaningful images. Describe what the image communicates for people using assistive technology. Leave blank only when the image is decorative.",
+            "placeholder": "Two people reviewing a website plan together"
+          },
+          "LearnMoreText": {
+            "type": "text",
+            "helper": "Optional. Text displayed for the card link. When a URL is present and this is blank, Learn more is used. If the card title is blank, use descriptive link text for accessibility.",
+            "placeholder": "Learn more"
+          },
+          "LearnMoreUrl": {
+            "type": "url",
+            "helper": "Optional. Select a local page or enter a complete http or https URL. When valid, the entire card becomes clickable."
+          },
+          "ValuePropositions": {
+            "type": "array",
+            "helper": "Optional. Add short supporting points. Only Card 4 displays these values, and only its first four entries are rendered.",
+            "items": {
+              "type": "text",
+              "placeholder": "Performance audits"
+            }
+          }
+        }
+      }
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. Add a short note below the cards. HTML is allowed and will render as entered.",
+      "placeholder": "Choose a service to learn more."
+    }
+  }
+}

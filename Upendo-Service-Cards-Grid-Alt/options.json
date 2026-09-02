@@ -1,0 +1,111 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and is not displayed to visitors.",
+      "placeholder": "Service Cards Grid Alt"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used for page anchor links. Use letters, numbers, and hyphens only.",
+      "placeholder": "service-cards-grid-alt",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the card grid. HTML is allowed.",
+      "placeholder": "The right result should feel easy to find."
+    },
+    "HeadingCss": {
+      "type": "text",
+      "helper": "Optional. CSS classes for styling the section heading.",
+      "placeholder": "h2 text-center"
+    },
+    "IntroText": {
+      "type": "textarea",
+      "helper": "Optional. Short introduction shown below the heading. HTML is allowed.",
+      "placeholder": "Experience a seamless journey from intent to connection."
+    },
+    "Cards": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add image-top cards in display order. Every card requires an image; icon and alternate visual modes are intentionally not available.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Required. Card title. HTML is allowed.",
+            "placeholder": "Search"
+          },
+          "TitleCss": {
+            "type": "text",
+            "helper": "Optional. CSS classes for styling the card title.",
+            "placeholder": "h3 text-center"
+          },
+          "Description": {
+            "type": "textarea",
+            "helper": "Required. Short supporting description. HTML is allowed.",
+            "placeholder": "Type a need, see immediate, relevant suggestions."
+          },
+          "Eyebrow": {
+            "type": "text",
+            "helper": "Optional. Short uppercase label displayed above the card title.",
+            "placeholder": "Step 1"
+          },
+          "EyebrowColorClass": {
+            "type": "select",
+            "helper": "Choose a Bootstrap or portal.css text utility. Teal is the default. Use a light color on dark card backgrounds and a dark color on light card backgrounds for accessible contrast.",
+            "optionLabels": [
+              "Theme Default",
+              "Primary",
+              "Primary (theme scoped)",
+              "Secondary",
+              "Secondary (theme scoped)",
+              "Tertiary (theme)",
+              "Quaternary (theme)",
+              "Heading 1 (theme)",
+              "Heading 2 (theme)",
+              "Heading 3 (theme)",
+              "Heading 4 (theme)",
+              "Heading 5 (theme)",
+              "Heading 6 (theme)",
+              "Body",
+              "Body Secondary",
+              "Body Tertiary",
+              "Dark",
+              "Black",
+              "Black 50%",
+              "Light",
+              "White",
+              "White 50%",
+              "Muted",
+              "Success",
+              "Danger",
+              "Warning",
+              "Info",
+              "Teal (theme)"
+            ],
+            "removeDefaultNone": true
+          },
+          "CardImage": {
+            "type": "image",
+            "uploadfolder": "Content/",
+            "typeahead": {
+              "Folder": "Content/"
+            },
+            "helper": "Required. Uploads go to Content/. Use a landscape image at least 1200 by 675 pixels. The image renders in a fixed 12rem-high, full-width crop."
+          },
+          "CardImageAlt": {
+            "type": "text",
+            "helper": "Optional but strongly recommended for meaningful images. Describe the image for people using assistive technology; leave blank only when decorative.",
+            "placeholder": "Search interface surrounded by profile results"
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. If a link is added, the entire card becomes clickable."
+          }
+        }
+      }
+    }
+  }
+}

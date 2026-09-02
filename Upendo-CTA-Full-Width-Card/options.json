@@ -1,0 +1,64 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Full-Width Call to Action Card"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Creates a page anchor for direct links to this section. Use only letters, numbers, and hyphens.",
+      "placeholder": "get-started",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Required. Add a short heading that clearly explains the next step. HTML is allowed and will render as entered.",
+      "placeholder": "Make the next step feel simple."
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Required. Briefly explain the value or next step. HTML is allowed and will render as entered.",
+      "placeholder": "<p>Help visitors understand the value and take action with confidence.</p>"
+    },
+    "SectionImage": {
+      "type": "image",
+      "uploadfolder": "Content/",
+      "typeahead": { "Folder": "Content/" },
+      "helper": "Required. Uploads go to Content/. Use a square image at least 800 by 800 pixels, with important details near the center."
+    },
+    "SectionImageAltText": {
+      "type": "text",
+      "helper": "Optional but important for accessibility. Describe the image for visitors using screen readers. Leave this blank only when the image is purely decorative.",
+      "placeholder": "A person confidently taking the next step"
+    },
+    "PrimaryCTAText": {
+      "type": "text",
+      "helper": "Optional. Add button text to display the primary action. HTML is allowed and will render as entered.",
+      "placeholder": "Get Started"
+    },
+    "PrimaryCTAURL": {
+      "type": "url",
+      "helper": "Required. Select a local page or enter a complete http or https URL. The image links here, and the primary button appears when text is also provided."
+    },
+    "PrimaryCTAIcon": {
+      "type": "text",
+      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
+      "placeholder": "fas fa-building"
+    },
+    "SecondaryCTAText": {
+      "type": "text",
+      "helper": "Optional. Add this together with a Secondary CTA URL to display a visually secondary action. HTML is allowed and will render as entered.",
+      "placeholder": "Learn More"
+    },
+    "SecondaryCTAURL": {
+      "type": "url",
+      "helper": "Optional. Select a local page or enter a complete http or https URL. The secondary action appears only when both text and a valid URL are provided."
+    },
+    "SecondaryCTAIcon": {
+      "type": "text",
+      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
+      "placeholder": "fas fa-arrow-right"
+    }
+  }
+}

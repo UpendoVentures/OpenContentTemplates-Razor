@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {"type": "string", "title": "Module Title"},
+    "ModuleAnchor": {"type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$"},
+    "SectionHeading": {"type": "string", "title": "Section Heading"},
+    "HeadingCss": {"type": "string", "title": "Heading CSS Class(es)"},
+    "IntroText": {"type": "string", "title": "Intro Text"},
+    "Cards": {
+      "type": "array",
+      "title": "Cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {"type": "string", "title": "Title"},
+          "TitleCss": {"type": "string", "title": "Title CSS Class(es)"},
+          "Description": {"type": "string", "title": "Description"},
+          "Eyebrow": {"type": "string", "title": "Eyebrow"},
+          "EyebrowColorClass": {
+            "type": "string",
+            "title": "Eyebrow Color",
+            "default": "text-teal",
+            "enum": [
+              "", "text-primary", "text-primary-scoped", "text-secondary", "text-secondary-scoped",
+              "text-tertiary", "text-quaternary", "text-h1", "text-h2", "text-h3", "text-h4",
+              "text-h5", "text-h6", "text-body", "text-body-secondary", "text-body-tertiary",
+              "text-dark", "text-black", "text-black-50", "text-light", "text-white", "text-white-50",
+              "text-muted", "text-success", "text-danger", "text-warning", "text-info", "text-teal"
+            ]
+          },
+          "CardImage": {"type": "string", "title": "Card Image", "minLength": 1, "pattern": ".*\\S.*"},
+          "CardImageAlt": {"type": "string", "title": "Image Alt Text"},
+          "Link": {"type": "object", "title": "Link"}
+        },
+        "required": ["CardImage", "Title", "Description"]
+      }
+    }
+  },
+  "required": ["Cards"]
+}
