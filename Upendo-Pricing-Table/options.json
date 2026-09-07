@@ -1,0 +1,114 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Pricing Table"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Creates a page anchor for direct links to this section. Use only letters, numbers, and hyphens.",
+      "placeholder": "pricing-options",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the pricing cards. HTML is allowed and will render as entered.",
+      "placeholder": "Clear, upfront implementation with room to grow."
+    },
+    "SectionEyebrow": {
+      "type": "text",
+      "helper": "Optional. Short label displayed above the section title. HTML is allowed and will render as entered.",
+      "placeholder": "Engagement tiers"
+    },
+    "SectionEyebrowColor": {
+      "type": "select",
+      "helper": "Choose a Bootstrap or portal.css text utility. Select a color with enough contrast against the section background.",
+      "optionLabels": ["Primary", "Primary (theme scoped)", "Secondary", "Secondary (theme scoped)", "Tertiary (theme)", "Quaternary (theme)", "Heading 1 (theme)", "Heading 2 (theme)", "Heading 3 (theme)", "Heading 4 (theme)", "Heading 5 (theme)", "Heading 6 (theme)", "Body", "Body Secondary", "Body Tertiary", "Dark", "Black", "Black 50%", "Light", "White", "White 50%", "Muted", "Success", "Danger", "Warning", "Info", "Teal (theme)"],
+      "removeDefaultNone": true
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Supporting text shown below the section title. HTML is allowed and will render as entered.",
+      "placeholder": "<p>Every tier pairs an expert-led initial build with a dependable managed platform.</p>"
+    },
+    "PricingCards": {
+      "type": "accordion",
+      "titleField": "SolutionTitle",
+      "helper": "Add pricing cards in display order. Featured cards receive the Most Popular label, a larger presentation, and a solid next-step button.",
+      "items": {
+        "fields": {
+          "SolutionTitle": {
+            "type": "text",
+            "helper": "Required. Short name for this pricing option. HTML is allowed and will render as entered.",
+            "placeholder": "Managed Launch"
+          },
+          "SolutionEyebrow": {
+            "type": "text",
+            "helper": "Required. Short category label shown above the solution title. HTML is allowed and will render as entered.",
+            "placeholder": "Turnkey execution"
+          },
+          "SolutionDescription": {
+            "type": "textarea",
+            "helper": "Optional. Explain who this option is for. HTML is allowed and will render as entered.",
+            "placeholder": "For businesses that want an expert team to manage the work from start to finish."
+          },
+          "PriceBandColor": {
+            "type": "select",
+            "helper": "Required. Sets the price band color and the matching eyebrow and next-step button contrast. Choose a color that supports readable text.",
+            "optionLabels": ["Primary", "Primary (theme scoped)", "Secondary", "Secondary (theme scoped)", "Tertiary (theme)", "Quaternary (theme)", "H5 (theme)", "H6 (theme)", "Success", "Danger", "Warning", "Info", "Light", "Dark", "White", "Body", "Transparent", "Primary Subtle", "Secondary Subtle", "Success Subtle", "Danger Subtle", "Warning Subtle", "Info Subtle", "Light Subtle", "Dark Subtle", "Off White", "Warm White", "Cream", "Soft Beige", "Sand", "Light Sage", "Sage", "Pale Green", "Mist", "Soft Gray", "Forest Green"],
+            "removeDefaultNone": true
+          },
+          "PriceText": {
+            "type": "text",
+            "helper": "Required. Display the price or pricing phrase. HTML is allowed and will render as entered.",
+            "placeholder": "Starting at $4,999"
+          },
+          "PriceEyebrow": {
+            "type": "text",
+            "helper": "Optional. Small label shown above the price. HTML is allowed and will render as entered.",
+            "placeholder": "One-time implementation"
+          },
+          "SolutionMatchInnerCardText": {
+            "type": "textarea",
+            "helper": "Optional. Add a short fit, philosophy, or discovery note inside the card. HTML is allowed and will render as entered.",
+            "placeholder": "Ideal match: teams that want milestone reviews and expert guidance."
+          },
+          "SolutionMatchInnerCardColor": {
+            "type": "select",
+            "helper": "Optional. Sets the note background. The template selects a contrasting text color for common light and dark utilities.",
+            "optionLabels": ["Primary", "Primary (theme scoped)", "Secondary", "Secondary (theme scoped)", "Tertiary (theme)", "Quaternary (theme)", "H5 (theme)", "H6 (theme)", "Success", "Danger", "Warning", "Info", "Light", "Dark", "White", "Body", "Transparent", "Primary Subtle", "Secondary Subtle", "Success Subtle", "Danger Subtle", "Warning Subtle", "Info Subtle", "Light Subtle", "Dark Subtle", "Off White", "Warm White", "Cream", "Soft Beige", "Sand", "Light Sage", "Sage", "Pale Green", "Mist", "Soft Gray", "Forest Green"],
+            "removeDefaultNone": true
+          },
+          "NextStepText": {
+            "type": "text",
+            "helper": "Optional. Button label. The button appears only when both this field and Next Step URL are valid.",
+            "placeholder": "Discuss this option"
+          },
+          "NextStepURL": {
+            "type": "url",
+            "helper": "Optional. Select a local page or enter a complete http or https URL. Local and external HTTP links are supported."
+          },
+          "IsFeatured": {
+            "type": "checkbox",
+            "helper": "Optional. Marks this card as Most Popular, enlarges it slightly, and changes its next-step button to a solid style."
+          },
+          "SolutionValuePropositions": {
+            "type": "array",
+            "helper": "Required. Add one benefit per item. Each item displays with a green FontAwesome check icon.",
+            "items": {
+              "type": "text",
+              "helper": "HTML is allowed and will render as entered.",
+              "placeholder": "Flat initial implementation fee"
+            }
+          }
+        }
+      }
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. Short note centered below the pricing cards. HTML is allowed and will render as entered.",
+      "placeholder": "All plans include managed hosting, updates, and support."
+    }
+  }
+}

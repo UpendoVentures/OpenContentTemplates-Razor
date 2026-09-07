@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": { "type": "string", "title": "Module Title" },
+    "ModuleAnchor": { "type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$" },
+    "SectionTitle": { "type": "string", "title": "Section Title" },
+    "SectionEyebrow": { "type": "string", "title": "Section Eyebrow" },
+    "SectionEyebrowColor": {
+      "type": "string",
+      "title": "Section Eyebrow Color",
+      "enum": ["text-primary", "text-primary-scoped", "text-secondary", "text-secondary-scoped", "text-tertiary", "text-quaternary", "text-h1", "text-h2", "text-h3", "text-h4", "text-h5", "text-h6", "text-body", "text-body-secondary", "text-body-tertiary", "text-dark", "text-black", "text-black-50", "text-light", "text-white", "text-white-50", "text-muted", "text-success", "text-danger", "text-warning", "text-info", "text-teal"],
+      "default": "text-light"
+    },
+    "SectionDescription": { "type": "string", "title": "Section Description" },
+    "PricingCards": {
+      "type": "array",
+      "title": "Pricing Cards",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "SolutionTitle": { "type": "string", "title": "Solution Title", "minLength": 1, "pattern": ".*\\S.*" },
+          "SolutionEyebrow": { "type": "string", "title": "Solution Eyebrow", "minLength": 1, "pattern": ".*\\S.*" },
+          "SolutionDescription": { "type": "string", "title": "Solution Description" },
+          "PriceBandColor": {
+            "type": "string",
+            "title": "Price Band Color",
+            "enum": ["bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white", "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green"],
+            "default": "bg-light"
+          },
+          "PriceText": { "type": "string", "title": "Price Text", "minLength": 1, "pattern": ".*\\S.*" },
+          "PriceEyebrow": { "type": "string", "title": "Price Eyebrow" },
+          "SolutionMatchInnerCardText": { "type": "string", "title": "Solution Match Inner Card Text" },
+          "SolutionMatchInnerCardColor": {
+            "type": "string",
+            "title": "Solution Match Inner Card Color",
+            "enum": ["bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white", "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green"],
+            "default": "bg-light"
+          },
+          "NextStepText": { "type": "string", "title": "Next Step Text" },
+          "NextStepURL": { "type": "string", "title": "Next Step URL" },
+          "IsFeatured": { "type": "boolean", "title": "Is Featured", "default": false },
+          "SolutionValuePropositions": {
+            "type": "array",
+            "title": "Solution Value Propositions",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        },
+        "required": ["SolutionTitle", "SolutionEyebrow", "PriceBandColor", "PriceText", "SolutionValuePropositions"]
+      }
+    },
+    "SectionFooter": { "type": "string", "title": "Section Footer" }
+  },
+  "required": ["PricingCards"]
+}
