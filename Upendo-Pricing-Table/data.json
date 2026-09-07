@@ -1,0 +1,74 @@
+{
+  "ModuleTitle": "Upendo Pricing Table",
+  "ModuleAnchor": "pricing-options",
+  "SectionEyebrow": "Engagement tiers",
+  "SectionEyebrowColor": "text-secondary",
+  "SectionTitle": "Clear, upfront implementation with room to grow.",
+  "SectionDescription": "<p>No surprise invoices or opaque scope creep. Every tier pairs an expert-led initial build with a dependable managed platform.</p>",
+  "PricingCards": [
+    {
+      "SolutionTitle": "Managed Launch",
+      "SolutionEyebrow": "Turnkey execution",
+      "SolutionDescription": "For businesses that want an expert team to take care of design, migration, launch, and the ongoing platform experience.",
+      "PriceBandColor": "bg-light",
+      "PriceText": "Starting at $4,999",
+      "PriceEyebrow": "One-time implementation",
+      "SolutionMatchInnerCardText": "<strong>Philosophy note:</strong> Designed for business owners who want results without becoming webmasters.",
+      "SolutionMatchInnerCardColor": "bg-soft-gray",
+      "NextStepText": "Discuss this option",
+      "NextStepURL": "/contact",
+      "IsFeatured": false,
+      "SolutionValuePropositions": [
+        "Flat initial implementation fee",
+        "Best for straightforward websites with clear goals",
+        "Standard content migration tooling",
+        "Full turnkey design, build, and platform configuration",
+        "Current and future platform features included in the monthly fee",
+        "Client editing access available upon request"
+      ]
+    },
+    {
+      "SolutionTitle": "Collaborative Build",
+      "SolutionEyebrow": "Co-created precision",
+      "SolutionDescription": "For businesses that want meaningful involvement in the design and build process while relying on an experienced team to guide the work.",
+      "PriceBandColor": "bg-primary-subtle",
+      "PriceText": "Starting at $8,499",
+      "PriceEyebrow": "One-time implementation",
+      "SolutionMatchInnerCardText": "<strong>Ideal match:</strong> Teams that want milestone review sessions to guide visual direction, content framing, and workflows.",
+      "SolutionMatchInnerCardColor": "bg-light",
+      "NextStepText": "Discuss this option",
+      "NextStepURL": "/contact",
+      "IsFeatured": true,
+      "SolutionValuePropositions": [
+        "Iterative design and build collaboration with milestones",
+        "Direct review cycles to shape creative direction",
+        "Expert technical architecture and custom components",
+        "Ongoing managed platform relationship",
+        "Hosting, continuous updates, proactive security, and growth",
+        "Client editing access available upon request"
+      ]
+    },
+    {
+      "SolutionTitle": "Custom Build",
+      "SolutionEyebrow": "Complex and specialized",
+      "SolutionDescription": "For organizations that need advanced integrations, specialized workflows, or a multi-system migration.",
+      "PriceBandColor": "bg-light",
+      "PriceText": "Starting at $30,000",
+      "PriceEyebrow": "Bespoke engagement",
+      "SolutionMatchInnerCardText": "<strong>Discovery driven:</strong> Final pricing and execution scope are mapped following formal requirements discovery.",
+      "SolutionMatchInnerCardColor": "bg-soft-gray",
+      "NextStepText": "Request a custom consultation",
+      "NextStepURL": "/contact",
+      "IsFeatured": false,
+      "SolutionValuePropositions": [
+        "Tailored digital strategy and enterprise architecture",
+        "Bespoke user experience and custom features",
+        "Advanced third-party integrations, APIs, and data pipelines",
+        "Complex database and multi-site migration planning",
+        "Enterprise and dedicated deployment configurations",
+        "Formal discovery and transparent scoping"
+      ]
+    }
+  ],
+  "SectionFooter": ""
+}

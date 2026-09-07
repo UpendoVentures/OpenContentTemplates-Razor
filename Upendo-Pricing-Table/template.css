@@ -1,0 +1,378 @@
+.oc-pricing-table {
+    width: 100%;
+    overflow: hidden;
+    --oc-pricing-heading: var(--bs-body-color, #212529);
+    --oc-pricing-body: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+    --oc-pricing-border: rgba(33, 37, 41, 0.1);
+}
+
+.oc-pricing-table--dark {
+    --oc-pricing-heading: #ffffff;
+    --oc-pricing-body: rgba(255, 255, 255, 0.88);
+}
+
+.oc-pricing-table__header {
+    max-width: 58rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.oc-pricing-table__section-eyebrow,
+.oc-pricing-table__solution-eyebrow,
+.oc-pricing-table__price-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.oc-pricing-table__section-eyebrow {
+    margin-bottom: 0.65rem;
+}
+
+.oc-pricing-table__section-title {
+    margin: 0 0 0.85rem;
+    color: var(--oc-pricing-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+}
+
+.oc-pricing-table__section-description {
+    max-width: 48rem;
+    margin: 0 auto;
+    color: var(--oc-pricing-body);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+.oc-pricing-table__section-description > *:last-child,
+.oc-pricing-table__footer > *:last-child,
+.oc-pricing-table__match > *:last-child,
+.oc-pricing-table__solution-description > *:last-child {
+    margin-bottom: 0;
+}
+
+.oc-pricing-table__card {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    overflow: visible;
+    border: 1px solid var(--oc-pricing-border);
+    border-radius: 1rem;
+    box-shadow: 0 0.35rem 1.25rem rgba(15, 23, 42, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-radius 0.25s ease;
+}
+
+.oc-pricing-table__card-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1.75rem;
+}
+
+.oc-pricing-table__solution-eyebrow {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-bottom: 0.85rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(33, 37, 41, 0.08);
+    color: inherit;
+}
+
+.oc-pricing-table__solution-title {
+    margin: 0 0 0.65rem;
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.oc-pricing-table__solution-description {
+    min-height: 4.5rem;
+    margin-bottom: 1.5rem;
+    color: inherit;
+    opacity: 0.82;
+    line-height: 1.55;
+}
+
+.oc-pricing-table__price-band {
+    margin: 0 -1.75rem 1.5rem;
+    padding: 1.2rem 1.75rem 1.35rem;
+}
+
+.oc-pricing-table__price-eyebrow {
+    margin-bottom: 0.35rem;
+    opacity: 0.78;
+}
+
+.oc-pricing-table__price {
+    font-size: clamp(1.65rem, 2.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.oc-pricing-table__match {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.oc-pricing-table__propositions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: auto 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.oc-pricing-table__propositions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: inherit;
+    line-height: 1.45;
+}
+
+.oc-pricing-table__propositions i {
+    flex: 0 0 auto;
+    margin-top: 0.2rem;
+}
+
+.oc-pricing-table__card-footer {
+    padding: 0 1.75rem 1.75rem;
+}
+
+.oc-pricing-table__next-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid currentColor;
+    border-radius: 0.5rem;
+    color: inherit;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.oc-pricing-table__next-step:hover,
+.oc-pricing-table__next-step:focus-visible {
+    color: inherit;
+    background-color: rgba(33, 37, 41, 0.08);
+    text-decoration: none;
+}
+
+.oc-pricing-table__next-step--featured {
+    border-color: transparent;
+}
+
+.oc-pricing-table__next-step--featured span {
+    color: inherit !important;
+}
+
+.oc-pricing-table__featured-label {
+    position: absolute;
+    top: -0.9rem;
+    left: 50%;
+    z-index: 1;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: var(--bs-primary, #0d6efd);
+    color: var(--bs-white, #ffffff);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.oc-pricing-table__card.bg-primary,
+.oc-pricing-table__card.bg-primary-scoped,
+.oc-pricing-table__card.bg-secondary,
+.oc-pricing-table__card.bg-secondary-scoped,
+.oc-pricing-table__card.bg-tertiary,
+.oc-pricing-table__card.bg-quaternary,
+.oc-pricing-table__card.bg-h5,
+.oc-pricing-table__card.bg-h6,
+.oc-pricing-table__card.bg-success,
+.oc-pricing-table__card.bg-danger,
+.oc-pricing-table__card.bg-dark,
+.oc-pricing-table__card.bg-forest-green {
+    --oc-pricing-heading: #ffffff;
+    --oc-pricing-body: rgba(255, 255, 255, 0.88);
+    --oc-pricing-border: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.oc-pricing-table__price-band.bg-primary,
+.oc-pricing-table__price-band.bg-primary-scoped,
+.oc-pricing-table__price-band.bg-secondary,
+.oc-pricing-table__price-band.bg-secondary-scoped,
+.oc-pricing-table__price-band.bg-tertiary,
+.oc-pricing-table__price-band.bg-quaternary,
+.oc-pricing-table__price-band.bg-h5,
+.oc-pricing-table__price-band.bg-h6,
+.oc-pricing-table__price-band.bg-success,
+.oc-pricing-table__price-band.bg-danger,
+.oc-pricing-table__price-band.bg-dark,
+.oc-pricing-table__price-band.bg-forest-green,
+.oc-pricing-table__match.bg-primary,
+.oc-pricing-table__match.bg-primary-scoped,
+.oc-pricing-table__match.bg-secondary,
+.oc-pricing-table__match.bg-secondary-scoped,
+.oc-pricing-table__match.bg-tertiary,
+.oc-pricing-table__match.bg-quaternary,
+.oc-pricing-table__match.bg-h5,
+.oc-pricing-table__match.bg-h6,
+.oc-pricing-table__match.bg-success,
+.oc-pricing-table__match.bg-danger,
+.oc-pricing-table__match.bg-dark,
+.oc-pricing-table__match.bg-forest-green {
+    --oc-pricing-button-text: #ffffff;
+}
+
+.oc-pricing-table__price-band.bg-light,
+.oc-pricing-table__price-band.bg-white,
+.oc-pricing-table__price-band.bg-body,
+.oc-pricing-table__price-band.bg-light-subtle,
+.oc-pricing-table__price-band.bg-warning,
+.oc-pricing-table__price-band.bg-info,
+.oc-pricing-table__price-band.bg-off-white,
+.oc-pricing-table__price-band.bg-warm-white,
+.oc-pricing-table__price-band.bg-cream,
+.oc-pricing-table__price-band.bg-soft-beige,
+.oc-pricing-table__price-band.bg-sand,
+.oc-pricing-table__price-band.bg-light-sage,
+.oc-pricing-table__price-band.bg-sage,
+.oc-pricing-table__price-band.bg-pale-green,
+.oc-pricing-table__price-band.bg-mist,
+.oc-pricing-table__price-band.bg-soft-gray {
+    --oc-pricing-button-text: #212529;
+}
+
+.oc-pricing-table__match.bg-light,
+.oc-pricing-table__match.bg-white,
+.oc-pricing-table__match.bg-body,
+.oc-pricing-table__match.bg-light-subtle,
+.oc-pricing-table__match.bg-warning,
+.oc-pricing-table__match.bg-info,
+.oc-pricing-table__match.bg-off-white,
+.oc-pricing-table__match.bg-warm-white,
+.oc-pricing-table__match.bg-cream,
+.oc-pricing-table__match.bg-soft-beige,
+.oc-pricing-table__match.bg-sand,
+.oc-pricing-table__match.bg-light-sage,
+.oc-pricing-table__match.bg-sage,
+.oc-pricing-table__match.bg-pale-green,
+.oc-pricing-table__match.bg-mist,
+.oc-pricing-table__match.bg-soft-gray {
+    --oc-pricing-button-text: #212529;
+}
+
+.oc-pricing-table[data-animation-level='light'] .oc-pricing-table__card:hover,
+.oc-pricing-table[data-animation-level='light'] .oc-pricing-table__card:focus-within {
+    box-shadow: 0 0.65rem 1.65rem rgba(15, 23, 42, 0.11);
+    transform: translateY(-0.15rem);
+}
+
+.oc-pricing-table[data-animation-level='medium'] .oc-pricing-table__card:hover,
+.oc-pricing-table[data-animation-level='medium'] .oc-pricing-table__card:focus-within {
+    border-radius: 1.1rem;
+    box-shadow: 0 0.95rem 2.25rem rgba(15, 23, 42, 0.16);
+    transform: translateY(-0.3rem);
+}
+
+.oc-pricing-table[data-animation-level='high'] .oc-pricing-table__card:hover,
+.oc-pricing-table[data-animation-level='high'] .oc-pricing-table__card:focus-within {
+    border-radius: 1.25rem;
+    box-shadow: 0 1.2rem 2.75rem rgba(15, 23, 42, 0.2);
+    transform: translateY(-0.45rem) scale(1.008);
+}
+
+.oc-pricing-table[data-animation-level='medium'] .oc-pricing-table__card--featured,
+.oc-pricing-table[data-animation-level='high'] .oc-pricing-table__card--featured {
+    transform: scale(1.015);
+}
+
+.oc-pricing-table__footer {
+    margin: 2.5rem auto 0;
+    color: var(--oc-pricing-body);
+    text-align: center;
+}
+
+/* Shared portal.css may provide these utilities. Keep local fallbacks for older portals. */
+.oc-pricing-table .bg-off-white { background-color: #f8f7f3 !important; }
+.oc-pricing-table .bg-warm-white { background-color: #f7f3ed !important; }
+.oc-pricing-table .bg-cream { background-color: #f4efe6 !important; }
+.oc-pricing-table .bg-soft-beige { background-color: #e9ddd1 !important; }
+.oc-pricing-table .bg-sand { background-color: #ddd0bf !important; }
+.oc-pricing-table .bg-light-sage { background-color: #dfe8dd !important; }
+.oc-pricing-table .bg-sage { background-color: #b8c6b1 !important; }
+.oc-pricing-table .bg-pale-green { background-color: #e5eee3 !important; }
+.oc-pricing-table .bg-mist { background-color: #edf1ef !important; }
+.oc-pricing-table .bg-soft-gray { background-color: #f1f1ee !important; }
+.oc-pricing-table .bg-forest-green { background-color: #173f35 !important; }
+
+@media (min-width: 992px) {
+    .oc-pricing-table__card--featured {
+        margin-top: -0.75rem;
+        margin-bottom: -0.75rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .oc-pricing-table__header {
+        margin-bottom: 2rem;
+    }
+
+    .oc-pricing-table__card-body {
+        padding: 1.5rem;
+    }
+
+    .oc-pricing-table__price-band {
+        margin-right: -1.5rem;
+        margin-left: -1.5rem;
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    .oc-pricing-table__card-footer {
+        padding-right: 1.5rem;
+        padding-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-pricing-table .appear-animation,
+    .oc-pricing-table__card,
+    .oc-pricing-table__next-step {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .oc-pricing-table__card:hover,
+    .oc-pricing-table__card:focus-within,
+    .oc-pricing-table__card--featured,
+    .oc-pricing-table[data-animation-level='medium'] .oc-pricing-table__card--featured,
+    .oc-pricing-table[data-animation-level='high'] .oc-pricing-table__card--featured {
+        transform: none !important;
+    }
+}
