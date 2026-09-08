@@ -1,4 +1,4 @@
-<img width="1200" height="628" alt="Upendo DNN - OpenContent Templates Razor GitHub Banner-1200x628" src="https://github.com/user-attachments/assets/6fe24263-e20c-42b5-9eaa-50f2443f7dca" />
+<img width="1200" height="628" alt="runsonupendo-opencontent-templates-repo-banner-1200x630" src="https://github.com/user-attachments/assets/2c43a47e-f7cf-4815-aeb4-1d6862519be1" />
 
 > These are templates that we commonly use for various projects. This repository replaces [the previous one which used Handlebars](https://github.com/UpendoVentures/OpenContentTemplates), instead of Razor.
 
@@ -8,7 +8,7 @@ Learn more about DNN CMS at [the official DNN community website](https://dncommu
 
 # 🚀 Open Content Templates for Razor  
 ### Supercharge Your DNN Sites with Developer-Friendly Templates  
-More than 150 templates available, so far! 🤯 
+More than 160 templates available, so far! 🤯 
 
 ---
 
@@ -19,7 +19,6 @@ More than 150 templates available, so far! 🤯
 - **🛠️ 30+ Production-Ready Razor Templates**  
 - **📦 Drop-in Ready for Rapid Development**  
 - **🧪 Thoroughly Tested in Real Deployments**  
-- **🔒 Optional SLA-Based Support from UpendoDNN**
 - **⏩ Saves you hours and hours of time building content**  
 
 ---
