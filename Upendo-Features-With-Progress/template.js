@@ -56,10 +56,19 @@
 
   function centerActiveFeature(state) {
     var isSmall = window.matchMedia && window.matchMedia('(max-width: 991.98px)').matches;
-    if (!isSmall || !state.features[state.activeIndex] || !state.features[state.activeIndex].scrollIntoView) {
+    var feature = state.features[state.activeIndex];
+    var rail = state.root.querySelector('.upendo-features-with-progress__feature-rail');
+    if (!isSmall || !feature || !rail || !rail.scrollTo) {
       return;
     }
-    state.features[state.activeIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+    // Center within the rail without scrolling the document or other ancestors.
+    var featureRect = feature.getBoundingClientRect();
+    var railRect = rail.getBoundingClientRect();
+    var left = rail.scrollLeft + featureRect.left - railRect.left - rail.clientLeft
+      + (featureRect.width - rail.clientWidth) / 2;
+    var maxLeft = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    rail.scrollTo({ left: Math.max(0, Math.min(left, maxLeft)), behavior: 'smooth' });
   }
 
   function setActive(state, index, shouldReset) {
