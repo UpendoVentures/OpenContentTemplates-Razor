@@ -289,6 +289,10 @@
         background-attachment: scroll;
     }
 
+    .oc-hero-header-advanced h1.oc-hha-title {
+        font-size: 2rem;
+    }
+
     .oc-hero-header-advanced .oc-hha-content {
         padding-top: 4rem;
         padding-bottom: 3rem;
