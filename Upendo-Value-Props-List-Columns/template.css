@@ -106,6 +106,10 @@
 }
 
 @media (max-width: 767.98px) {
+    .oc-value-props-two-column .row.g-4.g-lg-5 {
+        --bs-gutter-y: 1.25rem;
+    }
+
     .oc-value-props-two-column .oc-vptc-list {
         gap: 1.25rem;
     }

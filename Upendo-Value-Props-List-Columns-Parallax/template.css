@@ -135,6 +135,10 @@
         background-attachment: scroll;
     }
 
+    .oc-value-props-parallax .row.g-4.g-lg-5 {
+        --bs-gutter-y: 1.25rem;
+    }
+
     .oc-value-props-parallax .oc-vpp-list {
         gap: 1.25rem;
     }
