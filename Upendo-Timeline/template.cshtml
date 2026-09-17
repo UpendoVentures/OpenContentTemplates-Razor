@@ -1,0 +1,166 @@
+@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using System.Text.RegularExpressions
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private static string AllowList(string value, string fallback, params string[] allowedValues)
+    {
+        if (!string.IsNullOrWhiteSpace(value))
+        {
+            foreach (var allowedValue in allowedValues)
+            {
+                if (string.Equals(value, allowedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return allowedValue;
+                }
+            }
+        }
+        return fallback;
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    if (!Regex.IsMatch(moduleAnchor ?? string.Empty, @"^[A-Za-z0-9-]+$"))
+    {
+        moduleAnchor = string.Empty;
+    }
+    var settings = Model.Settings;
+    var cardImagePosition = AllowList(settings != null && settings.CardImagePosition != null ? Convert.ToString(settings.CardImagePosition) : string.Empty, "outside", "inside", "outside", "none");
+    var cardVerticalSpacing = AllowList(settings != null && settings.CardVerticalSpacing != null ? Convert.ToString(settings.CardVerticalSpacing) : string.Empty, "default", "default", "medium", "large");
+    var dateDisplayed = AllowList(settings != null && settings.DateDisplayed != null ? Convert.ToString(settings.DateDisplayed) : string.Empty, "yes", "yes", "no");
+    var dateFormat = AllowList(settings != null && settings.DateFormat != null ? Convert.ToString(settings.DateFormat) : string.Empty, "locale", "locale", "friendly", "us-short", "international-short", "iso", "hide");
+    var sectionEyebrowColor = AllowList(Model.SectionEyebrowColor != null ? Convert.ToString(Model.SectionEyebrowColor) : string.Empty, "primary", "primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h5", "h6", "success", "danger", "warning", "info", "light", "dark", "white", "body", "transparent", "primary-subtle", "secondary-subtle", "success-subtle", "success-subtle", "danger-subtle", "warning-subtle", "info-subtle", "light-subtle", "dark-subtle", "off-white", "warm-white", "cream", "soft-beige", "sand", "light-sage", "sage", "pale-green", "mist", "soft-gray", "forest-green");
+    var background = AllowList(settings != null && settings.BackgroundColorClass != null ? Convert.ToString(settings.BackgroundColorClass) : string.Empty, string.Empty, "", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white", "bg-body", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green");
+    var cardBackground = AllowList(settings != null && settings.CardBackgroundColorClass != null ? Convert.ToString(settings.CardBackgroundColorClass) : string.Empty, "bg-white", "bg-white", "bg-body", "bg-light", "bg-dark", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green");
+    var animation = AllowList(settings != null && settings.AnimationLevel != null ? Convert.ToString(settings.AnimationLevel) : string.Empty, "light", "none", "light", "medium", "high");
+    var marginTop = AllowList(settings != null && settings.MarginTop != null ? Convert.ToString(settings.MarginTop) : string.Empty, string.Empty, "", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto");
+    var marginBottom = AllowList(settings != null && settings.MarginBottom != null ? Convert.ToString(settings.MarginBottom) : string.Empty, string.Empty, "", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto");
+    var paddingTop = AllowList(settings != null && settings.PaddingTop != null ? Convert.ToString(settings.PaddingTop) : string.Empty, "pt-5", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto");
+    var paddingBottom = AllowList(settings != null && settings.PaddingBottom != null ? Convert.ToString(settings.PaddingBottom) : string.Empty, "pb-5", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto");
+    var darkBackgrounds = new[] { "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-dark", "bg-success", "bg-danger", "bg-forest-green" };
+    var isDarkCard = false;
+    foreach (var darkClass in darkBackgrounds)
+    {
+        if (string.Equals(cardBackground, darkClass, StringComparison.OrdinalIgnoreCase))
+        {
+            isDarkCard = true;
+        }
+    }
+    var sectionId = "oc-timeline-" + Model.Context.ModuleId;
+    var headingId = sectionId + "-heading";
+    var appear = animation == "none" ? string.Empty : " appear-animation";
+    var appearName = animation == "high" ? "zoomIn" : (animation == "medium" ? "fadeInUp" : "fadeIn");
+    var sectionClasses = "oc-timeline oc-timeline--spacing-" + cardVerticalSpacing + " position-relative w-100 " + background + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor)) { <div id="@moduleAnchor"></div> }
+<section id="@sectionId" class="@sectionClasses" data-animation-level="@animation" aria-labelledby="@headingId">
+    <div class="container-xxl">
+        <div class="oc-timeline__header text-center mx-auto mb-5@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)">
+            @if (Model.SectionEyebrow != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionEyebrow))) { <div class="oc-timeline__section-eyebrow text-@sectionEyebrowColor">@Html.Raw(Convert.ToString(Model.SectionEyebrow))</div> }
+            @if (Model.SectionTitle != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionTitle))) { <h2 id="@headingId" class="oc-timeline__title text-notransform">@Html.Raw(Convert.ToString(Model.SectionTitle))</h2> }
+            else { <h2 id="@headingId" class="visually-hidden">Timeline</h2> }
+            @if (Model.SectionDescription != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionDescription))) { <div class="oc-timeline__description">@Html.Raw(Convert.ToString(Model.SectionDescription))</div> }
+        </div>
+        @if (Model.Moments != null)
+        {
+            <ol class="oc-timeline__list list-unstyled mb-0">
+            @{ var index = 0; }
+            @foreach (var moment in Model.Moments)
+            {
+                var title = moment.MomentTitle != null ? Convert.ToString(moment.MomentTitle) : string.Empty;
+                var eyebrow = moment.MomentEyebrow != null ? Convert.ToString(moment.MomentEyebrow) : string.Empty;
+                var description = moment.MomentDescription != null ? Convert.ToString(moment.MomentDescription) : string.Empty;
+                var image = moment.MomentImage != null ? Convert.ToString(moment.MomentImage) : string.Empty;
+                var date = moment.MomentDateTime != null ? Convert.ToString(moment.MomentDateTime) : string.Empty;
+                var linkText = moment.LinkText != null ? Convert.ToString(moment.LinkText) : string.Empty;
+                var linkUrl = moment.LinkUrl != null ? Convert.ToString(moment.LinkUrl) : string.Empty;
+                var linkIcon = moment.LinkIcon != null ? Convert.ToString(moment.LinkIcon) : string.Empty;
+                var hasCardLink = UrlValidationHelper.IsLocalOrExternalHttpUrl(linkUrl);
+                var isExternalLink = false;
+                Uri linkUri = null;
+                if (hasCardLink && Uri.TryCreate(linkUrl.Trim(), UriKind.Absolute, out linkUri))
+                {
+                    isExternalLink = string.Equals(linkUri.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase) || string.Equals(linkUri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase);
+                }
+                var renderedLinkText = string.IsNullOrWhiteSpace(linkText) ? "View details" : linkText;
+                var hasImage = !string.IsNullOrWhiteSpace(image) && cardImagePosition != "none";
+                var imageOutside = hasImage && cardImagePosition == "outside";
+                var showDate = dateDisplayed == "yes" && dateFormat != "hide" && !string.IsNullOrWhiteSpace(date);
+                var displayDate = date;
+                DateTime parsedDate = DateTime.MinValue;
+                if (showDate && DateTime.TryParse(date, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out parsedDate))
+                {
+                    if (dateFormat == "friendly")
+                    {
+                        displayDate = parsedDate.ToString("dddd, MMMM d, yyyy", CultureInfo.CurrentCulture);
+                    }
+                    else if (dateFormat == "us-short")
+                    {
+                        displayDate = parsedDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    else if (dateFormat == "international-short")
+                    {
+                        displayDate = parsedDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    else if (dateFormat == "iso")
+                    {
+                        displayDate = parsedDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        displayDate = parsedDate.ToString("D", CultureInfo.CurrentCulture);
+                    }
+                }
+                var shape = AllowList(moment.MomentShape != null ? Convert.ToString(moment.MomentShape) : string.Empty, "circle", "circle", "square", "rounded-square", "diamond", "pill");
+                var color = AllowList(moment.MomentShapeColor != null ? Convert.ToString(moment.MomentShapeColor) : string.Empty, "primary", "primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h5", "h6", "success", "danger", "warning", "info", "light", "dark", "white", "body", "transparent", "primary-subtle", "secondary-subtle", "success-subtle", "danger-subtle", "warning-subtle", "info-subtle", "light-subtle", "dark-subtle", "off-white", "warm-white", "cream", "soft-beige", "sand", "light-sage", "sage", "pale-green", "mist", "soft-gray", "forest-green");
+                var itemId = sectionId + "-item-" + index;
+                var delay = (index + 1) * (animation == "high" ? 160 : (animation == "medium" ? 110 : 60));
+                <li id="@itemId" class="oc-timeline__item@(imageOutside ? " oc-timeline__item--outside-image" : string.Empty)@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)" data-appear-animation-delay="@(animation == "none" ? null : Convert.ToString(delay))" style="@(animation == "none" ? null : "animation-delay: " + delay + "ms;")">
+                    <div class="oc-timeline__marker oc-timeline__marker--@shape bg-@color" aria-hidden="true"></div>
+                    @if (imageOutside)
+                    {
+                        <div class="oc-timeline__outside-image">
+                            @if (hasCardLink)
+                            {
+                                <a class="oc-timeline__outside-image-link" href="@linkUrl" aria-label="@renderedLinkText"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
+                                    <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" />
+                                </a>
+                            }
+                            else
+                            {
+                                <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" />
+                            }
+                        </div>
+                    }
+                    <article class="oc-timeline__card @cardBackground @(isDarkCard ? "oc-timeline__card--dark" : "oc-timeline__card--light")">
+                        <div class="oc-timeline__content">
+                            @if (!string.IsNullOrWhiteSpace(eyebrow)) { <div class="oc-timeline__eyebrow">@Html.Raw(eyebrow)</div> }
+                            <h3 class="oc-timeline__moment-title text-notransform">@Html.Raw(title)</h3>
+                            @if (!string.IsNullOrWhiteSpace(description)) { <div class="oc-timeline__moment-description">@Html.Raw(description)</div> }
+                            @if (hasCardLink)
+                            {
+                                <a class="oc-timeline__link text-decoration-none stretched-link" href="@linkUrl"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
+                                    @if (!string.IsNullOrWhiteSpace(linkIcon)) { <i class="@linkIcon me-2" aria-hidden="true"></i> }
+                                    @if (!string.IsNullOrWhiteSpace(linkText)) { <span>@Html.Raw(renderedLinkText)</span> } else { <span class="visually-hidden">@Html.Raw(renderedLinkText)</span> }
+                                </a>
+                            }
+                            @if (showDate) { <time class="oc-timeline__date" datetime="@date">@Html.Raw(displayDate)</time> }
+                        </div>
+                        @if (hasImage && !imageOutside) { <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" /> }
+                    </article>
+                </li>
+                index++;
+            }
+            </ol>
+        }
+        @if (Model.SectionFooter != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionFooter))) { <footer class="oc-timeline__footer text-center mt-5@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)">@Html.Raw(Convert.ToString(Model.SectionFooter))</footer> }
+    </div>
+</section>

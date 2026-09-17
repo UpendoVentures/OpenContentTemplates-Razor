@@ -1,0 +1,27 @@
+{
+  "fields": {
+    "ModuleTitle": { "type": "text", "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.", "placeholder": "Timeline" },
+    "ModuleAnchor": { "type": "text", "helper": "Optional. Creates a page anchor for direct links to this section. Use only letters, numbers, and hyphens.", "placeholder": "our-history", "showMessages": false },
+    "SectionEyebrow": { "type": "text", "helper": "Optional. A short label above the section title. HTML is allowed and will render as entered.", "placeholder": "Our Story" },
+    "SectionEyebrowColor": { "type": "select", "helper": "Optional. Choose the color of the section eyebrow.", "optionLabels": ["Primary", "Primary (theme)", "Secondary", "Secondary (theme)", "Tertiary (theme)", "Quaternary (theme)", "H5 (theme)", "H6 (theme)", "Success", "Danger", "Warning", "Info", "Light", "Dark", "White", "Body", "Transparent", "Primary Subtle", "Secondary Subtle", "Success Subtle", "Danger Subtle", "Warning Subtle", "Info Subtle", "Light Subtle", "Dark Subtle", "Off White", "Warm White", "Cream", "Soft Beige", "Sand", "Light Sage", "Sage", "Pale Green", "Mist", "Soft Gray", "Forest Green"], "removeDefaultNone": true },
+    "SectionTitle": { "type": "text", "helper": "Optional. The main heading above the timeline. HTML is allowed and will render as entered.", "placeholder": "A history of meaningful moments" },
+    "SectionDescription": { "type": "textarea", "helper": "Optional. Introduce the story in one or two short paragraphs. HTML is allowed and will render as entered.", "placeholder": "<p>Introduce the milestones visitors are about to explore.</p>" },
+    "Moments": {
+      "type": "accordion", "label": "Timeline Moments", "titleField": "MomentTitle",
+      "helper": "Add moments in chronological order. Each moment appears as a card on the timeline.",
+      "items": { "fields": {
+        "MomentTitle": { "type": "text", "helper": "Required. Add a concise title for this milestone. HTML is allowed and will render as entered.", "placeholder": "The beginning" },
+        "MomentEyebrow": { "type": "text", "helper": "Optional. Add a year, period, or short label above the title. HTML is allowed and will render as entered.", "placeholder": "1985" },
+        "MomentDescription": { "type": "textarea", "helper": "Optional. Explain why this moment matters. HTML is allowed and will render as entered.", "placeholder": "<p>Explain what happened and why it matters.</p>" },
+        "MomentImage": { "type": "image", "helper": "Optional. Choose an image for this moment. Uploads are stored in Content/Timeline/.", "uploadfolder": "Content/Timeline/" },
+        "MomentShape": { "type": "select", "helper": "Required. Choose the marker shape used for this moment.", "optionLabels": ["Circle", "Square", "Rounded Square", "Diamond", "Pill"], "removeDefaultNone": true },
+        "MomentShapeColor": { "type": "select", "helper": "Required. Choose a marker color. The template selects contrasting marker text automatically.", "optionLabels": ["Primary", "Primary (theme)", "Secondary", "Secondary (theme)", "Tertiary (theme)", "Quaternary (theme)", "H5 (theme)", "H6 (theme)", "Success", "Danger", "Warning", "Info", "Light", "Dark", "White", "Body", "Transparent", "Primary Subtle", "Secondary Subtle", "Success Subtle", "Danger Subtle", "Warning Subtle", "Info Subtle", "Light Subtle", "Dark Subtle", "Off White", "Warm White", "Cream", "Soft Beige", "Sand", "Light Sage", "Sage", "Pale Green", "Mist", "Soft Gray", "Forest Green" ], "removeDefaultNone": true },
+        "MomentDateTime": { "type": "date", "dateformat": "YYYY-MM-DD", "helper": "Required. Enter the date associated with this moment. It is also exposed to assistive technology.", "placeholder": "1985-01-01" },
+        "LinkText": { "type": "text", "helper": "Optional. Add the visible text for the moment link. HTML is allowed and will render as entered.", "placeholder": "Learn more" },
+        "LinkUrl": { "type": "url", "helper": "Optional. Select a local page or enter a complete http or https URL. When provided, the content card becomes a link." },
+        "LinkIcon": { "type": "text", "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>", "placeholder": "fas fa-heart" }
+      } }
+    },
+    "SectionFooter": { "type": "text", "helper": "Optional. Add a short centered note below the timeline. HTML is allowed and will render as entered.", "placeholder": "More milestones are still ahead." }
+  }
+}
