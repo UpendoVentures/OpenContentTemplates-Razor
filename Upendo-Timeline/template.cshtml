@@ -147,7 +147,7 @@
                             @if (!string.IsNullOrWhiteSpace(description)) { <div class="oc-timeline__moment-description">@Html.Raw(description)</div> }
                             @if (hasCardLink)
                             {
-                                <a class="oc-timeline__link text-decoration-none stretched-link" href="@linkUrl"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
+                                <a class="oc-timeline__link text-decoration-none" href="@linkUrl"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
                                     @if (!string.IsNullOrWhiteSpace(linkIcon)) { <i class="@linkIcon me-2" aria-hidden="true"></i> }
                                     @if (!string.IsNullOrWhiteSpace(linkText)) { <span>@Html.Raw(renderedLinkText)</span> } else { <span class="visually-hidden">@Html.Raw(renderedLinkText)</span> }
                                 </a>
