@@ -13,6 +13,14 @@
       "type": "string",
       "title": "Business Directory Manage URL"
     },
+    "ChangePlanButtonState": {
+      "type": "string",
+      "title": "Change Plan button state",
+      "enum": [
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "BackgroundColorClass": {
       "type": "string",
       "title": "Background Color Class",

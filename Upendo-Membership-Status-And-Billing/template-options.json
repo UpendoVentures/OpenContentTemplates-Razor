@@ -6,13 +6,24 @@
       "placeholder": "membership@example.org"
     },
     "ViewAllBenefitsUrl": {
-      "type": "text",
+      "type": "url",
       "helper": "Required. Enter a local page URL or external URL where members can review their benefits. Examples: /membership/benefits or https://example.org/member-benefits.",
       "placeholder": "/membership/benefits"
     },
     "BusinessDirectoryManageUrl": {
-      "type": "string",
+      "type": "url",
       "title": "Business Directory Manage URL"
+    },
+    "ChangePlanButtonState": {
+      "type": "select",
+      "title": "Change Plan button state", 
+      "helper": "Controls whether the Change Plan button is enabled or disabled.",
+      "optionLabels": [
+        "Enabled",
+        "Disabled"
+      ],
+      "sort": true,
+      "removeDefaultNone": true
     },
     "BackgroundColorClass": {
       "type": "select",
