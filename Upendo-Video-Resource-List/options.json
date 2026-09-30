@@ -48,7 +48,7 @@
           },
           "ThumbnailImage": {
             "type": "image",
-            "helper": "Optional fallback image shown when no usable YouTube URL is configured. Recommended minimum: 1280 x 720 px.",
+            "helper": "Optional fallback image shown when no usable YouTube URL is configured. Recommended minimum: 1280 x 720 px.<br /><br /><strong>Default Thumbnail:</strong> To use the default YouTube thumbnail, <a href=\"https://www.get-youtube-thumbnail.com/\" target=\"_blank\" rel=\"noopener noreferrer\">grab it from this third-party site using the YouTube URL</a>.",
             "uploadfolder": "Content/OpenContent/VideoResourceList/",
             "typeahead": {
               "Folder": "Content/OpenContent/VideoResourceList/"

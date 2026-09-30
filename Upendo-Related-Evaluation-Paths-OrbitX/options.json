@@ -37,7 +37,7 @@
     },
     "CentralIconClass": {
       "type": "text",
-      "helper": "Font Awesome class for the center icon.",
+      "helper": "Font Awesome class for the center icon. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
       "placeholder": "fas fa-route",
       "dependencies": {
         "CentralLogoType": [
@@ -114,7 +114,7 @@
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional. Existing Font Awesome class. Falls back to fas fa-circle.",
+            "helper": "Optional. Existing FontAwesome class - falls back to <code>fas fa-circle</code>. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
             "placeholder": "fas fa-satellite-dish"
           },
           "IconColor": {
