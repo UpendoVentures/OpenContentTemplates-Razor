@@ -69,7 +69,7 @@
         "fields": {
           "IconClass": {
             "type": "text",
-            "helper": "Font Awesome class for the icon.",
+            "helper": "FontAwesome class for the icon. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
             "placeholder": "fas fa-check"
           },
           "IconTheme": {

@@ -1,0 +1,38 @@
+{
+  "ModuleTitle": "Timeline",
+  "ModuleAnchor": "",
+  "SectionEyebrow": "Our Story",
+  "SectionEyebrowColor": "primary",
+  "SectionTitle": "A history of meaningful moments",
+  "SectionDescription": "<p>Highlight the milestones that shaped your organization.</p>",
+  "SectionFooter": "",
+  "Moments": [
+    {
+      "MomentTitle": "The beginning",
+      "MomentEyebrow": "1985",
+      "MomentDescription": "<p>Share the story behind your first important milestone.</p>",
+      "MomentImage": "",
+      "MomentShape": "circle",
+      "MomentShapeColor": "primary",
+      "MomentDateTime": "1985-01-01"
+    },
+    {
+      "MomentTitle": "A new chapter",
+      "MomentEyebrow": "2005",
+      "MomentDescription": "<p>Describe how your work, team, or community grew.</p>",
+      "MomentImage": "",
+      "MomentShape": "diamond",
+      "MomentShapeColor": "secondary",
+      "MomentDateTime": "2005-01-01"
+    },
+    {
+      "MomentTitle": "Looking ahead",
+      "MomentEyebrow": "Today",
+      "MomentDescription": "<p>Close with the progress you are carrying into the future.</p>",
+      "MomentImage": "",
+      "MomentShape": "rounded-square",
+      "MomentShapeColor": "success",
+      "MomentDateTime": "2026-01-01"
+    }
+  ]
+}

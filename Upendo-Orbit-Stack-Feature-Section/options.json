@@ -56,7 +56,7 @@
     },
     "CenterIconClass": {
       "type": "text",
-      "helper": "Font Awesome class for the center icon. Used only when Center Image is empty.",
+      "helper": "Icon value to use for the center icon. Used only when Center Image is empty. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
       "placeholder": "fas fa-cube"
     },
     "CenterImage": {
@@ -95,7 +95,7 @@
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional. Font Awesome class. Used only when Image is empty.",
+            "helper": "Optional. Used only when Image is empty. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
             "placeholder": "fab fa-react"
           },
           "Image": {

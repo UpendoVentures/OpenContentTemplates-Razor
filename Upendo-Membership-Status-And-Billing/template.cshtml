@@ -32,6 +32,11 @@
     var businessDirectoryManageUrl = Model.Settings.BusinessDirectoryManageUrl != null
         ? Convert.ToString(Model.Settings.BusinessDirectoryManageUrl)
         : "/manage/business-directory";
+    
+    var changePlanButtonState = Model.Settings.ChangePlanButtonState != null
+        ? Convert.ToString(Model.Settings.ChangePlanButtonState)
+        : "Enabled";
+    var isChangePlanButtonEnabled = string.Equals(changePlanButtonState, "Enabled", StringComparison.OrdinalIgnoreCase);
 
     var backgroundColorClass = Model.Settings.BackgroundColorClass != null
         ? Convert.ToString(Model.Settings.BackgroundColorClass)
@@ -121,7 +126,7 @@
                         </span>
                         <span data-last-updated-wrap hidden>
                             <i class="fas fa-sync-alt me-1" aria-hidden="true"></i>
-                            <em>Last updated <span data-last-updated></span></em>
+                            <em>Page last updated <span data-last-updated></span></em>
                         </span>
                     </div>
                 </div>
@@ -261,7 +266,7 @@
                                     </span>
                                 </div>
 
-                                <h3 class="upendo-membership-dashboard__plan-name mb-4" data-plan-name></h3>
+                                <h3 class="upendo-membership-dashboard__plan-name text-light mb-4" data-plan-name></h3>
 
                                 <div class="row g-4">
                                     <div class="col-12 col-md-4">
@@ -362,7 +367,8 @@
                         <button type="button"
                                 class="upendo-membership-dashboard__action-card w-100"
                                 data-portal-action="subscription_update"
-                                aria-label="Review membership plan options securely through Stripe">
+                                aria-label="Review membership plan options securely through Stripe"
+                                @(isChangePlanButtonEnabled ? "" : "disabled")>
                             <i class="fas fa-level-up-alt" aria-hidden="true"></i>
                             <strong>Change Plan</strong>
                             <span>Opens available Stripe options</span>
@@ -408,8 +414,20 @@
                     </div>
 
                     <div class="col-12 col-xl-4">
-                        <aside class="upendo-membership-dashboard__help-card mb-4">
-                            <h3 class="h4">Need help?</h3>
+                        <aside class="upendo-membership-dashboard__security-card mb-3" aria-label="Security information">
+                            <div class="d-flex gap-3">
+                                <span class="upendo-membership-dashboard__security-icon" aria-hidden="true">
+                                    <i class="fas fa-shield-alt"></i>
+                                </span>
+                                <div>
+                                    <strong class="d-block text-uppercase">Security First</strong>
+                                    <p class="mb-0">Financial details are managed using Stripe's secure billing tools.</p>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <aside class="upendo-membership-dashboard__help-card" aria-label="Help and support information">
+                            <h3 class="h4 text-light">Need help?</h3>
                             <p>Have questions about your membership benefits or billing? Our support team is here to assist you.</p>
 
                             <a class="btn upendo-membership-dashboard__support-button w-100 mb-3"
@@ -434,18 +452,6 @@
                             <p class="upendo-membership-dashboard__cancel-helper mb-0 mt-2">
                                 Opens secure cancellation options.
                             </p>
-                        </aside>
-
-                        <aside class="upendo-membership-dashboard__security-card">
-                            <div class="d-flex gap-3">
-                                <span class="upendo-membership-dashboard__security-icon" aria-hidden="true">
-                                    <i class="fas fa-shield-alt"></i>
-                                </span>
-                                <div>
-                                    <strong class="d-block text-uppercase">Security First</strong>
-                                    <p class="mb-0">Financial details are managed using Stripe's secure billing tools.</p>
-                                </div>
-                            </div>
                         </aside>
                     </div>
                 </div>

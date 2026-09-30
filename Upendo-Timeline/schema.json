@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": { "type": "string", "title": "Module Title" },
+    "ModuleAnchor": { "type": "string", "title": "Module Anchor", "pattern": "^$|^[a-zA-Z0-9\\-]+$" },
+    "SectionEyebrow": { "type": "string", "title": "Section Eyebrow" },
+    "SectionEyebrowColor": { "type": "string", "title": "Section Eyebrow Color", "enum": ["primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h5", "h6", "success", "danger", "warning", "info", "light", "dark", "white", "body", "transparent", "primary-subtle", "secondary-subtle", "success-subtle", "danger-subtle", "warning-subtle", "info-subtle", "light-subtle", "dark-subtle", "off-white", "warm-white", "cream", "soft-beige", "sand", "light-sage", "sage", "pale-green", "mist", "soft-gray", "forest-green"], "default": "primary" },
+    "SectionTitle": { "type": "string", "title": "Section Title" },
+    "SectionDescription": { "type": "string", "title": "Section Description" },
+    "Moments": { "type": "array", "title": "Timeline Moments", "items": { "type": "object", "properties": {
+      "MomentTitle": { "type": "string", "title": "Moment Title", "minLength": 1, "pattern": ".*\\S.*" },
+      "MomentEyebrow": { "type": "string", "title": "Moment Eyebrow" },
+      "MomentDescription": { "type": "string", "title": "Moment Description" },
+      "MomentImage": { "type": "string", "title": "Moment Image" },
+      "MomentShape": { "type": "string", "title": "Moment Shape", "enum": ["circle", "square", "rounded-square", "diamond", "pill"], "default": "circle" },
+      "MomentShapeColor": { "type": "string", "title": "Moment Shape Color", "enum": ["primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h5", "h6", "success", "danger", "warning", "info", "light", "dark", "white", "body", "transparent", "primary-subtle", "secondary-subtle", "success-subtle", "danger-subtle", "warning-subtle", "info-subtle", "light-subtle", "dark-subtle", "off-white", "warm-white", "cream", "soft-beige", "sand", "light-sage", "sage", "pale-green", "mist", "soft-gray", "forest-green"], "default": "primary" },
+      "MomentDateTime": { "type": "string", "title": "Moment Date/Time", "minLength": 1, "pattern": ".*\\S.*" },
+      "LinkText": { "type": "string", "title": "Link Text" },
+      "LinkUrl": { "type": "string", "title": "Link URL" },
+      "LinkIcon": { "type": "string", "title": "Link Icon" }
+    }, "required": ["MomentTitle", "MomentShape", "MomentShapeColor", "MomentDateTime"] } },
+    "SectionFooter": { "type": "string", "title": "Section Footer" }
+  },
+  "required": ["Moments"]
+}

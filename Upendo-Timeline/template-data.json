@@ -1,0 +1,13 @@
+{
+  "BackgroundColorClass": "",
+  "CardBackgroundColorClass": "bg-white",
+  "CardImagePosition": "outside",
+  "CardVerticalSpacing": "default",
+  "DateDisplayed": "yes",
+  "DateFormat": "locale",
+  "AnimationLevel": "light",
+  "MarginTop": "",
+  "MarginBottom": "",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5"
+}
