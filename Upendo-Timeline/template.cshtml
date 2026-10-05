@@ -1,6 +1,7 @@
 @using System
 @using System.Collections.Generic
 @using System.Globalization
+@using System.Linq
 @using System.Text.RegularExpressions
 @using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
@@ -19,6 +20,15 @@
             }
         }
         return fallback;
+    }
+
+    private static DateTime GetMomentDate(dynamic moment)
+    {
+        var dateValue = moment.MomentDateTime != null ? Convert.ToString(moment.MomentDateTime) : string.Empty;
+        DateTime parsedDate;
+        return DateTime.TryParse(dateValue, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out parsedDate)
+            ? parsedDate
+            : DateTime.MaxValue;
     }
 }
 
@@ -81,13 +91,13 @@
         </div>
         @if (Model.Moments != null)
         {
-            var totalMomentCount = 0;
-            foreach (var unusedMoment in Model.Moments) { totalMomentCount++; }
+            var sortedMoments = ((IEnumerable<dynamic>)Model.Moments).OrderByDescending(GetMomentDate).ToList();
+            var totalMomentCount = sortedMoments.Count;
             var renderedMomentCount = infinityMode && totalMomentCount > 25 ? 25 : totalMomentCount;
             <div class="oc-timeline__viewport@(infinityMode && totalMomentCount > 5 ? " oc-timeline__viewport--faded" : string.Empty)" aria-live="@(infinityMode ? "polite" : "off")">
             <ol id="@sectionId-list" class="oc-timeline__list list-unstyled mb-0">
             @{ var index = 0; }
-            @foreach (var moment in Model.Moments)
+            @foreach (var moment in sortedMoments)
             {
                 if (index >= renderedMomentCount) { break; }
                 var title = moment.MomentTitle != null ? Convert.ToString(moment.MomentTitle) : string.Empty;
