@@ -3,6 +3,7 @@
   "CardBackgroundColorClass": "bg-white",
   "CardImagePosition": "outside",
   "CardVerticalSpacing": "default",
+  "InfinityMode": false,
   "DateDisplayed": "yes",
   "DateFormat": "locale",
   "AnimationLevel": "light",
