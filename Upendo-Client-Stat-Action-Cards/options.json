@@ -1,0 +1,84 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "label": "Module Title",
+      "type": "text",
+      "helper": "Administrator-facing title used by OpenContent and DNN module settings. It is not displayed to visitors.",
+      "placeholder": "Website Activity"
+    },
+    "ModuleAnchor": {
+      "label": "Module Anchor",
+      "type": "text",
+      "helper": "Optional. Creates a direct #anchor link to this section. Use letters, numbers, and hyphens only.",
+      "placeholder": "website-activity",
+      "showMessages": false
+    },
+    "SectionTitle": {
+      "label": "Section Title",
+      "type": "text",
+      "helper": "Optional heading displayed above the activity cards. HTML is allowed and will be rendered as entered.",
+      "placeholder": "Website activity"
+    },
+    "SectionEyebrow": {
+      "label": "Section Eyebrow",
+      "type": "text",
+      "helper": "Optional short label displayed above the section title. HTML is allowed and will be rendered as entered.",
+      "placeholder": "Management dashboard"
+    },
+    "SectionEyebrowColor": {
+      "label": "Section Eyebrow Color",
+      "type": "select",
+      "helper": "Choose a Bootstrap or theme text color with enough contrast against the section background.",
+      "sort": false,
+      "optionLabels": ["Default", "Primary", "Secondary", "Success", "Danger", "Warning", "Info", "Light", "Dark"],
+      "optionValues": ["text-body-secondary", "text-primary", "text-secondary", "text-success", "text-danger", "text-warning", "text-info", "text-light", "text-dark"],
+      "removeDefaultNone": true
+    },
+    "SectionDescription": {
+      "label": "Section Description",
+      "type": "textarea",
+      "helper": "Optional supporting text below the title. HTML is allowed and will be rendered as entered.",
+      "placeholder": "A quick view of the work that needs attention."
+    },
+    "SectionFooter": {
+      "label": "Section Footer",
+      "type": "text",
+      "helper": "Optional note displayed below the activity cards. HTML is allowed and will be rendered as entered.",
+      "placeholder": "Select a card to review the related feature."
+    },
+    "Alerts": {
+      "label": "Alert Banners",
+      "type": "accordion",
+      "titleField": "Content",
+      "helper": "Optional. Add one or more alerts. One saved alert is selected at random for each page render.",
+      "items": {
+        "fields": {
+          "Content": {
+            "label": "Content",
+            "type": "textarea",
+            "helper": "Required when this alert is used. HTML is allowed and will be rendered as entered.",
+            "placeholder": "A short message about an important website task or update."
+          },
+          "Icon": {
+            "label": "Icon",
+            "type": "text",
+            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code> or <code>fas fa-phone</code>.",
+            "placeholder": "fas fa-circle-exclamation"
+          },
+          "ActionLabel": {
+            "label": "Action Label",
+            "type": "text",
+            "helper": "Optional. Short label for the alert action button.",
+            "placeholder": "Review now"
+          },
+          "ActionUrl": {
+            "label": "Action URL",
+            "type": "url",
+            "helper": "Optional. Local and external URLs are supported. External links open in a new tab.",
+            "placeholder": "/manage/example"
+          }
+        }
+      }
+    }
+  }
+}

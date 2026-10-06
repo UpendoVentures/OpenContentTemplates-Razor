@@ -1,0 +1,26 @@
+{
+  "ModuleTitle": "",
+  "ModuleAnchor": "",
+  "SectionTitle": "",
+  "SectionEyebrow": "",
+  "SectionEyebrowColor": "",
+  "SectionDescription": "",
+  "SectionFooter": "",
+  "Alerts": [
+    {
+      "Content": "",
+      "Icon": "",
+      "ActionLabel": "",
+      "ActionUrl": ""
+    }
+  ],
+  "FeatureMembership": true,
+  "FeatureDirectory": true,
+  "FeatureForms": true,
+  "FeatureEvents": true,
+  "FeatureBlog": true,
+  "FeatureNetworking": true,
+  "FeatureAnalytics": true,
+  "FeatureGallery": true,
+  "FeatureCrm": true
+}

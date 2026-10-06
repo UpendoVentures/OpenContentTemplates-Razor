@@ -1,0 +1,173 @@
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@using System
+@using System.Collections
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleTitle = Model.ModuleTitle == null ? String.Empty : Convert.ToString(Model.ModuleTitle);
+    var moduleAnchor = Model.ModuleAnchor == null ? String.Empty : Convert.ToString(Model.ModuleAnchor);
+    var heading = Model.SectionTitle == null ? Convert.ToString(Model.SectionHeading) : Convert.ToString(Model.SectionTitle);
+    var eyebrow = Convert.ToString(Model.SectionEyebrow);
+    var eyebrowColor = String.IsNullOrWhiteSpace(Convert.ToString(Model.SectionEyebrowColor)) ? "text-body-secondary" : Convert.ToString(Model.SectionEyebrowColor);
+    var description = Convert.ToString(Model.SectionDescription);
+    var footer = Convert.ToString(Model.SectionFooter);
+    var alert = Model.Alerts != null && Model.Alerts.Count > 0 ? Model.Alerts[new Random().Next(Model.Alerts.Count)] : null;
+    var alertContent = alert == null ? String.Empty : Convert.ToString(alert.Content);
+    if (String.IsNullOrWhiteSpace(alertContent) && alert != null) { alertContent = Convert.ToString(alert.Message); }
+    var alertIcon = alert == null ? "fas fa-circle-exclamation" : Convert.ToString(alert.Icon);
+    var alertUrl = alert == null ? String.Empty : Convert.ToString(alert.ActionUrl);
+    var alertIsOffsite = TemplateHelper.IsOffsiteLink(alertUrl);
+    var settings = Model.Settings;
+    var backgroundClass = settings == null ? String.Empty : Convert.ToString(settings.BackgroundColorClass);
+    var animation = settings == null || String.IsNullOrWhiteSpace(Convert.ToString(settings.AnimationLevel)) ? "light" : Convert.ToString(settings.AnimationLevel);
+    var marginTop = settings == null ? String.Empty : Convert.ToString(settings.MarginTop);
+    var marginBottom = settings == null ? String.Empty : Convert.ToString(settings.MarginBottom);
+    var paddingTop = settings == null ? String.Empty : Convert.ToString(settings.PaddingTop);
+    var paddingBottom = settings == null ? String.Empty : Convert.ToString(settings.PaddingBottom);
+    var featureCrm = Convert.ToString(Model.FeatureCrm);
+    var statisticsToShow = String.Empty;
+    if (settings != null && settings.StatisticsToShow != null)
+    {
+        var selectedStatisticsText = settings.StatisticsToShow as string;
+        if (!String.IsNullOrWhiteSpace(selectedStatisticsText) && selectedStatisticsText.IndexOf("System.Object", StringComparison.OrdinalIgnoreCase) < 0)
+        {
+            foreach (var selectedStatistic in selectedStatisticsText.Split(new[] { ',', '|' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                statisticsToShow += "|" + selectedStatistic.Trim().ToLowerInvariant() + "|";
+            }
+        }
+        else
+        {
+            var selectedStatistics = settings.StatisticsToShow as IEnumerable;
+            if (selectedStatistics != null)
+            {
+                foreach (var selectedStatistic in selectedStatistics)
+                {
+                    var selectedStatisticText = Convert.ToString(selectedStatistic);
+                    if (!String.IsNullOrWhiteSpace(selectedStatisticText))
+                    {
+                        statisticsToShow += "|" + selectedStatisticText.Trim().ToLowerInvariant() + "|";
+                    }
+                }
+            }
+        }
+    }
+}
+@if (!String.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+<section class="oc-client-stat-cards @marginTop @marginBottom @paddingTop @paddingBottom @backgroundClass" data-animation="@animation" data-statistics-to-show="@statisticsToShow" aria-labelledby="oc-client-stat-heading-@Dnn.Module.ModuleID">
+    <div class="oc-dashboard-header">
+        <div class="oc-dashboard-heading">
+            @if (!String.IsNullOrWhiteSpace(eyebrow))
+            {
+                <div class="oc-dashboard-eyebrow @eyebrowColor">@Html.Raw(eyebrow)</div>
+            }
+            @if (!String.IsNullOrWhiteSpace(heading))
+            {
+                <h2 id="oc-client-stat-heading-@Dnn.Module.ModuleID">@Html.Raw(heading)</h2>
+            }
+            else
+            {
+                <h2 id="oc-client-stat-heading-@Dnn.Module.ModuleID" class="visually-hidden">@Html.Raw(Convert.ToString(Model.SectionAriaLabel))</h2>
+            }
+            @if (!String.IsNullOrWhiteSpace(description))
+            {
+                <p>@Html.Raw(description)</p>
+            }
+        </div>
+        @if (String.IsNullOrWhiteSpace(featureCrm) || !String.Equals(featureCrm, "false", StringComparison.OrdinalIgnoreCase))
+        {
+            <a class="oc-crm-status" data-crm-status href="/manage/crm" aria-label="CRM status: loading">
+                <span class="oc-crm-status-dot" aria-hidden="true"></span>
+                <strong data-crm-status-title>CRM</strong>
+            </a>
+        }
+    </div>
+    @if (alert != null && !String.IsNullOrWhiteSpace(alertContent))
+    {
+        <div class="oc-dashboard-alert" role="status">
+            <div class="oc-dashboard-alert-copy"><span class="@alertIcon" aria-hidden="true"></span><div>@Html.Raw(alertContent)</div></div>
+            @if (!String.IsNullOrWhiteSpace(alertUrl))
+            {
+                <a href="@alertUrl" @if (alertIsOffsite) { <text>target="_blank" rel="noopener noreferrer"</text> }>@Html.Raw(Convert.ToString(alert.ActionLabel)) <span aria-hidden="true">&rarr;</span></a>
+            }
+        </div>
+    }
+    <div id="oc-client-stat-grid-@Dnn.Module.ModuleID" class="oc-dashboard-grid" data-dashboard-grid data-module-id="@Dnn.Module.ModuleID" data-tab-id="@Dnn.Module.TabID" data-endpoint="/DesktopModules/OpenContentHelper/API/ClientDashboard/GetSummary" aria-live="polite">
+        <div class="oc-dashboard-loading" data-dashboard-loading><span class="placeholder"></span><span class="placeholder"></span><span class="placeholder"></span></div>
+    </div>
+    <div class="oc-dashboard-expander-wrap d-none" data-dashboard-expander-wrap><button type="button" class="oc-dashboard-expander" data-dashboard-expander aria-expanded="false"><span class="fa fa-chevron-down" aria-hidden="true"></span><span data-dashboard-expander-label>Expand to see more activity tiles</span></button></div>
+    @if (!String.IsNullOrWhiteSpace(footer))
+    {
+        <footer class="oc-dashboard-footer">@Html.Raw(footer)</footer>
+    }
+    <div class="visually-hidden" data-dashboard-status role="status"></div>
+</section>
+
+<script>
+(function () {
+    var script = document.currentScript;
+    var root = script && script.previousElementSibling;
+    if (!root || !root.hasAttribute('data-dashboard-grid')) root = document.querySelector('[data-dashboard-grid]');
+    if (!root || root.dataset.loaded === 'true') return;
+    root.dataset.loaded = 'true';
+    var section = root.closest('.oc-client-stat-cards');
+    var expanderWrap = section.querySelector('[data-dashboard-expander-wrap]');
+    var expander = section.querySelector('[data-dashboard-expander]');
+    var expanderLabel = section.querySelector('[data-dashboard-expander-label]');
+    var status = section.querySelector('[data-crm-status]');
+    var moduleId = root.getAttribute('data-module-id');
+    var tabId = root.getAttribute('data-tab-id');
+    var endpoint = root.getAttribute('data-endpoint');
+    var expanded = false;
+    var metadata = {
+        membership:{icon:'fa-id-card',className:'membership',action:'Review membership'},
+        directory:{icon:'fa-address-book',className:'directory',action:'Review updates'},
+        forms:{icon:'fa-inbox',className:'forms',action:'Read messages'},
+        events:{icon:'fa-calendar-days',className:'events',action:'Manage events'},
+        blog:{icon:'fa-newspaper',className:'blog',action:'Open editorial'},
+        networking:{icon:'fa-handshake',className:'networking',action:'Manage referrals'},
+        analytics:{icon:'fa-chart-line',className:'analytics',action:'Inspect pages'},
+        gallery:{icon:'fa-images',className:'gallery',action:'Organize media'},
+        crm:{icon:'fa-users',className:'crm',action:'Review CRM'}
+    };
+    function render(cards) {
+        var visibleCards = (cards || []).filter(function (card) {
+            var selected = section.getAttribute('data-statistics-to-show'); return !selected || selected.indexOf('|' + card.Key.toLowerCase() + '|') >= 0;
+        });
+        root.innerHTML = visibleCards.map(function (card, index) {
+            var item = metadata[card.Key] || {icon:'fa-chart-line',className:'default',action:'Open feature'};
+            var stateClass = card.Enabled ? '' : ' is-disabled';
+            var hidden = index >= 8 && !expanded ? ' is-collapsed' : '';
+            var stateText = card.Enabled ? 'Active' : 'No current activity';
+            return '<div class="oc-dashboard-card-wrap' + hidden + '" data-dashboard-card-index="' + index + '"><a class="oc-client-stat-card ' + item.className + stateClass + '" href="' + card.ActionUrl + '" aria-label="' + card.Title + ': ' + card.Value + '" title="' + (card.Tooltip || card.SupportingText) + '"><span class="oc-card-watermark fa ' + item.icon + '" aria-hidden="true"></span><span class="oc-card-content"><span class="oc-card-topline"><span class="oc-card-title">' + card.Title + '</span><span class="oc-card-state">' + stateText + '</span></span><span class="oc-card-value">' + card.Value + '</span><span class="oc-card-supporting">' + card.SupportingText + '</span></span><span class="oc-card-footer"><span>' + item.action + '</span><span aria-hidden="true">&rarr;</span></span></a></div>';
+        }).join('');
+        var hasMore = visibleCards.length > 8;
+        expanderWrap.classList.toggle('d-none', !hasMore);
+        expander.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        expander.querySelector('.fa').className = 'fa ' + (expanded ? 'fa-chevron-up' : 'fa-chevron-down');
+        expanderLabel.textContent = expanded ? 'Show fewer activity tiles' : 'Expand to see more activity tiles (' + (visibleCards.length - 8) + ' more)';
+    }
+    function updateCrmStatus(connected) {
+        if (!status) return;
+        status.classList.toggle('is-connected', connected);
+        status.querySelector('[data-crm-status-title]').textContent = connected ? 'CRM Connected' : 'CRM not Connected';
+        status.setAttribute('aria-label', connected ? 'CRM status: connected' : 'CRM status: not connected');
+    }
+    expander.addEventListener('click', function () { expanded = !expanded; render(window.__ocDashboardCards || []); });
+    fetch(endpoint, {credentials:'same-origin', headers:{'Accept':'application/json', 'moduleid':moduleId, 'tabid':tabId}})
+        .then(function (response) { if (!response.ok) throw new Error('Dashboard request failed.'); return response.json(); })
+        .then(function (payload) {
+            window.__ocDashboardCards = payload.Cards || payload.cards || [];
+            updateCrmStatus(payload.CrmConnected === true || payload.crmConnected === true);
+            render(window.__ocDashboardCards);
+        })
+        .catch(function () { root.innerHTML = '<div class="oc-dashboard-error" role="alert">Dashboard activity is temporarily unavailable. Please try again later.</div>'; });
+}());
+</script>
+
+

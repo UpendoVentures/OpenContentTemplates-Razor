@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "SectionEyebrow": {
+      "type": "string",
+      "title": "Section Eyebrow"
+    },
+    "SectionEyebrowColor": {
+      "type": "string",
+      "title": "Section Eyebrow Color"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "SectionFooter": {
+      "type": "string",
+      "title": "Section Footer"
+    },
+    "Alerts": {
+      "type": "array",
+      "title": "Alert Banners",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Content": {
+            "type": "string",
+            "title": "Content",
+            "minLength": 1
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "ActionLabel": {
+            "type": "string",
+            "title": "Action Label"
+          },
+          "ActionUrl": {
+            "type": "string",
+            "title": "Action URL"
+          }
+        },
+        "required": ["Content"]
+      }
+    }
+  }
+}
