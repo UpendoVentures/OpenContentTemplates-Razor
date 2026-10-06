@@ -1,6 +1,8 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @using System
 @using System.Collections
+@using System.Collections.Generic
+@using Newtonsoft.Json
 @using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @{
     TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
@@ -22,7 +24,29 @@
             alerts.Add(alertValue);
         }
     }
-    var alert = alerts.Count > 0 ? alerts[new Random().Next(alerts.Count)] : null;
+    var alertCandidates = new ArrayList();
+    var alertPayload = new List<object>();
+    foreach (var alertValue in alerts)
+    {
+        var candidateContent = TemplateHelper.GetDynamicString(alertValue, "Content");
+        if (String.IsNullOrWhiteSpace(candidateContent)) { candidateContent = TemplateHelper.GetDynamicString(alertValue, "Message"); }
+        if (String.IsNullOrWhiteSpace(candidateContent)) { continue; }
+
+        var candidateIconValue = TemplateHelper.GetDynamicString(alertValue, "Icon");
+        var candidateIcon = String.IsNullOrWhiteSpace(candidateIconValue) ? "fas fa-circle-exclamation" : candidateIconValue;
+        var candidateActionUrl = TemplateHelper.GetDynamicString(alertValue, "ActionUrl");
+        alertCandidates.Add(alertValue);
+        alertPayload.Add(new
+        {
+            content = candidateContent,
+            icon = candidateIcon,
+            actionLabel = TemplateHelper.GetDynamicString(alertValue, "ActionLabel"),
+            actionUrl = candidateActionUrl,
+            isOffsite = TemplateHelper.IsOffsiteLink(candidateActionUrl)
+        });
+    }
+    var selectedAlertIndex = alertCandidates.Count > 0 ? new Random().Next(alertCandidates.Count) : -1;
+    var alert = selectedAlertIndex >= 0 ? alertCandidates[selectedAlertIndex] : null;
     var alertContent = TemplateHelper.GetDynamicString(alert, "Content");
     if (String.IsNullOrWhiteSpace(alertContent)) { alertContent = TemplateHelper.GetDynamicString(alert, "Message"); }
     var alertIconValue = TemplateHelper.GetDynamicString(alert, "Icon");
@@ -37,6 +61,9 @@
     var paddingTop = settings == null ? String.Empty : Convert.ToString(settings.PaddingTop);
     var paddingBottom = settings == null ? String.Empty : Convert.ToString(settings.PaddingBottom);
     var featureCrm = Convert.ToString(Model.FeatureCrm);
+    var alertJson = alertPayload.Count > 1
+        ? JsonConvert.SerializeObject(alertPayload, new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml })
+        : String.Empty;
     var statisticsToShow = String.Empty;
     if (settings != null && settings.StatisticsToShow != null)
     {
@@ -99,13 +126,17 @@
     </div>
     @if (alert != null && !String.IsNullOrWhiteSpace(alertContent))
     {
-        <div class="oc-dashboard-alert" role="status">
+        <div class="oc-dashboard-alert" role="status" data-alert-rotation data-alert-index="@selectedAlertIndex">
             <div class="oc-dashboard-alert-copy"><span class="@alertIcon" aria-hidden="true"></span><div>@Html.Raw(alertContent)</div></div>
             @if (!String.IsNullOrWhiteSpace(alertUrl))
             {
                 <a href="@alertUrl" @if (alertIsOffsite) { <text>target="_blank" rel="noopener noreferrer"</text> }>@Html.Raw(TemplateHelper.GetDynamicString(alert, "ActionLabel")) <span aria-hidden="true">&rarr;</span></a>
             }
         </div>
+    }
+    @if (alertPayload.Count > 1)
+    {
+        <script type="application/json" data-alert-payload>@Html.Raw(alertJson)</script>
     }
     <div id="oc-client-stat-grid-@Dnn.Module.ModuleID" class="oc-dashboard-grid" data-dashboard-grid data-module-id="@Dnn.Module.ModuleID" data-tab-id="@Dnn.Module.TabID" data-endpoint="/DesktopModules/OpenContentHelper/API/ClientDashboard/GetSummary" aria-live="polite">
         <div class="oc-dashboard-loading" data-dashboard-loading><span class="placeholder"></span><span class="placeholder"></span><span class="placeholder"></span></div>
@@ -117,6 +148,125 @@
     }
     <div class="visually-hidden" data-dashboard-status role="status"></div>
 </section>
+
+@if (alertPayload.Count > 1)
+{
+<script>
+(function () {
+    var intervalId = null;
+
+    function fail(error) {
+        if (intervalId !== null) {
+            window.clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        if (window.console && typeof window.console.error === 'function') {
+            window.console.error('[OpenContent] Alert rotation failed.', error);
+        }
+    }
+
+    try {
+        var script = document.currentScript;
+        var section = script && script.previousElementSibling;
+        if (!section || !section.classList.contains('oc-client-stat-cards')) {
+            return;
+        }
+
+        var alertElement = section.querySelector('[data-alert-rotation]');
+        var payloadElement = section.querySelector('[data-alert-payload]');
+        if (!alertElement || !payloadElement) {
+            return;
+        }
+
+        var alerts = JSON.parse(payloadElement.textContent || '[]');
+        if (!Array.isArray(alerts) || alerts.length < 2) {
+            return;
+        }
+
+        var currentIndex = parseInt(alertElement.getAttribute('data-alert-index'), 10);
+        if (isNaN(currentIndex) || currentIndex < 0 || currentIndex >= alerts.length) {
+            currentIndex = 0;
+        }
+
+        var animation = (section.getAttribute('data-animation') || 'light').toLowerCase();
+        var reducedMotion = false;
+        if (window.matchMedia) {
+            reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+
+        function getNextIndex() {
+            var nextIndex = currentIndex;
+            while (nextIndex === currentIndex) {
+                nextIndex = Math.floor(Math.random() * alerts.length);
+            }
+            return nextIndex;
+        }
+
+        function buildAlert(candidate, index) {
+            if (!candidate || typeof candidate.content !== 'string' || !candidate.content.trim()) {
+                throw new Error('Alert payload is invalid.');
+            }
+
+            var nextAlert = document.createElement('div');
+            nextAlert.className = alertElement.className;
+            nextAlert.setAttribute('role', 'status');
+            nextAlert.setAttribute('data-alert-rotation', '');
+            nextAlert.setAttribute('data-alert-index', String(index));
+
+            var copy = document.createElement('div');
+            copy.className = 'oc-dashboard-alert-copy';
+
+            var icon = document.createElement('span');
+            icon.className = candidate.icon || 'fas fa-circle-exclamation';
+            icon.setAttribute('aria-hidden', 'true');
+
+            var content = document.createElement('div');
+            content.innerHTML = candidate.content;
+
+            copy.appendChild(icon);
+            copy.appendChild(content);
+            nextAlert.appendChild(copy);
+
+            if (candidate.actionUrl) {
+                var action = document.createElement('a');
+                action.href = candidate.actionUrl;
+                if (candidate.isOffsite === true) {
+                    action.target = '_blank';
+                    action.rel = 'noopener noreferrer';
+                }
+                action.innerHTML = (candidate.actionLabel || '') + ' <span aria-hidden="true">&rarr;</span>';
+                nextAlert.appendChild(action);
+            }
+
+            if (!reducedMotion && animation !== 'none') {
+                nextAlert.classList.add('is-alert-rotating');
+            }
+
+            return nextAlert;
+        }
+
+        function rotateAlert() {
+            var nextIndex = getNextIndex();
+            var nextAlert = buildAlert(alerts[nextIndex], nextIndex);
+            alertElement.parentNode.replaceChild(nextAlert, alertElement);
+            alertElement = nextAlert;
+            currentIndex = nextIndex;
+        }
+
+        intervalId = window.setInterval(function () {
+            try {
+                rotateAlert();
+            } catch (error) {
+                fail(error);
+            }
+        }, 7000);
+    } catch (error) {
+        fail(error);
+    }
+}());
+</script>
+}
 
 <script>
 (function () {
@@ -178,5 +328,4 @@
         .catch(function () { root.innerHTML = '<div class="oc-dashboard-error" role="alert">Dashboard activity is temporarily unavailable. Please try again later.</div>'; });
 }());
 </script>
-
 
