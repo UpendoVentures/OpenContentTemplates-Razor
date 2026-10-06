@@ -1,37 +1,34 @@
-@using DotNetNuke.Entities.Controllers
 @using DotNetNuke.Entities.Users
+@using DotNetNuke.Entities.Controllers
+@using DotNetNuke.Common
 @using System
-@using System.Text.RegularExpressions
-@using System.Web
 @{
-    var ticketsUrlRaw = HostController.Instance.GetString("Upendo.Support.TicketsUrl", string.Empty);
+    // Read HostSettings directly (no local function)
+    var ticketsUrlRaw   = HostController.Instance.GetString("Upendo.Support.TicketsUrl", string.Empty);
     var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);
-    var docsUrlRaw = HostController.Instance.GetString("Upendo.Support.DocsUrl", string.Empty);
+    var docsUrlRaw      = HostController.Instance.GetString("Upendo.Support.DocsUrl", string.Empty);
 
-    var ticketsUrl = string.IsNullOrWhiteSpace(ticketsUrlRaw) ? string.Empty : ticketsUrlRaw.Trim();
-    var supportEmail = string.IsNullOrWhiteSpace(supportEmailRaw) ? string.Empty : supportEmailRaw.Trim();
-    var docsUrl = string.IsNullOrWhiteSpace(docsUrlRaw) ? string.Empty : docsUrlRaw.Trim();
+    var ticketsUrl   = (string.IsNullOrEmpty(ticketsUrlRaw)   ? string.Empty : ticketsUrlRaw);
+    var supportEmail = (string.IsNullOrEmpty(supportEmailRaw) ? string.Empty : supportEmailRaw);
+    var docsUrl      = (string.IsNullOrEmpty(docsUrlRaw)      ? string.Empty : docsUrlRaw);
 
-    if (string.IsNullOrWhiteSpace(ticketsUrl))
-    {
-        ticketsUrl = "#";
-    }
-
-    if (string.IsNullOrWhiteSpace(docsUrl))
-    {
-        docsUrl = "#";
-    }
+    if (string.IsNullOrEmpty(ticketsUrl) || ticketsUrl.Trim().Length == 0) { ticketsUrl = "#"; }
+    if (string.IsNullOrEmpty(docsUrl)    || docsUrl.Trim().Length    == 0) { docsUrl    = "#"; }
 
     var host = Context.Request.Url.Host;
-    var domainName = host.StartsWith("www.", StringComparison.OrdinalIgnoreCase)
+
+    // Normalize to remove "www." or other unwanted subdomains
+    string domainName = host.StartsWith("www.", StringComparison.OrdinalIgnoreCase)
         ? host.Substring(4)
         : host;
 
+    // Current user info (avoid null-conditional)
     var user = (Dnn != null && Dnn.User != null) ? Dnn.User : UserController.Instance.GetCurrentUserInfo();
-    var displayName = (user != null && !string.IsNullOrWhiteSpace(user.FirstName))
-        ? user.FirstName.Trim()
-        : (user != null && !string.IsNullOrWhiteSpace(user.DisplayName) ? user.DisplayName.Trim() : "there");
+    var displayName = (user != null && !string.IsNullOrEmpty(user.FirstName))
+        ? user.FirstName
+        : (user != null ? user.Username : "there");
 
+    // Last visit determination
     DateTime lastVisit = DateTime.MinValue;
     try
     {
@@ -44,328 +41,128 @@
                 if (valObj is DateTime)
                 {
                     DateTime valDt = (DateTime)valObj;
-                    if (valDt != DateTime.MinValue)
-                    {
-                        lastVisit = valDt;
-                    }
+                    if (valDt != DateTime.MinValue) { lastVisit = valDt; }
                 }
             }
-
-            if (lastVisit == DateTime.MinValue && user.Membership.LastLoginDate != DateTime.MinValue)
-            {
-                lastVisit = user.Membership.LastLoginDate;
-            }
-
-            if (lastVisit == DateTime.MinValue && user.Membership.LastActivityDate != DateTime.MinValue)
-            {
-                lastVisit = user.Membership.LastActivityDate;
-            }
+            if (lastVisit == DateTime.MinValue && user.Membership.LastLoginDate != DateTime.MinValue) { lastVisit = user.Membership.LastLoginDate; }
+            if (lastVisit == DateTime.MinValue && user.Membership.LastActivityDate != DateTime.MinValue) { lastVisit = user.Membership.LastActivityDate; }
         }
     }
-    catch
+    catch { }
+
+    string lastVisitText;
+    if (lastVisit != DateTime.MinValue)
     {
+        lastVisitText = lastVisit.ToLocalTime().ToString("MMM d, yyyy h:mm tt");
+    }
+    else
+    {
+        lastVisitText = "--";
     }
 
-    var lastVisitText = lastVisit != DateTime.MinValue
-        ? lastVisit.ToLocalTime().ToString("MMM d, yyyy h:mm tt")
-        : "--";
-
-    var moduleId = (Dnn != null && Dnn.Module != null) ? Dnn.Module.ModuleID : 0;
-    var uniqueSuffix = moduleId > 0 ? moduleId.ToString() : DateTime.UtcNow.Ticks.ToString();
-    var componentId = "uv-dashboard-header-" + uniqueSuffix;
-    var headingId = componentId + "-heading";
-
-    var moduleAnchorRaw = Model.ModuleAnchor as string;
-    var moduleAnchor = string.Empty;
-    if (!string.IsNullOrWhiteSpace(moduleAnchorRaw))
-    {
-        moduleAnchor = Regex.Replace(moduleAnchorRaw.Trim(), "[^a-zA-Z0-9-]", string.Empty);
-    }
-
-    var supportHref = string.Empty;
-    if (!string.IsNullOrWhiteSpace(supportEmail))
-    {
-        supportHref = "mailto:" + supportEmail + "?subject=" + HttpUtility.UrlEncode(domainName + ": Support Inquiry");
-    }
-
-    var referSubject = HttpUtility.UrlEncode("Quick intro: Will at Upendo Ventures");
-    var referBody = HttpUtility.UrlEncode("Hi [Friend's first name],\r\n\r\nThought of you for this. I work with Upendo Ventures, a local, small-business friendly team. They help with websites, support, and everyday tech questions.\r\n\r\nIf you decide to sign up, you'll also get 15% off their site migration service with the code: FRIENDSOFUPENDO.\r\n\r\nThanks!\r\n[Your name]");
-    var referLink = "mailto:?cc=solutions@upendoventures.com&subject=" + referSubject + "&body=" + referBody;
+    var hdrId = "support-header-" + (user != null ? user.UserID.ToString() : DateTime.UtcNow.Ticks.ToString());
+    var referLink = "mailto:?cc=solutions@upendoventures.com&subject=Quick%20intro%3A%20Will%20at%20Upendo%20Ventures&amp;body=Hi%20%5BFriend%E2%80%99s%20first%20name%5D%2C%0D%0A%0D%0AThought%20of%20you%20for%20this.%20I%20work%20with%20Upendo%20Ventures%20(local%2C%20small-business%20friendly).%20They%20help%20with%20websites%2C%20support%2C%20and%20everyday%20tech%20questions.%0D%0A%0D%0AIf%20you%20decide%20to%20sign%20up%2C%20you%E2%80%99ll%20also%20get%2015%25%20off%20their%20site%20migration%20service%20with%20the%20code%3A%20FRIENDSOFUPENDO.%0D%0A%0D%0AThanks!%0D%0A%5BYour%20name%5D";
 }
 
-@if (!string.IsNullOrWhiteSpace(moduleAnchor))
-{
-    <span id="@moduleAnchor" class="uv-dashboard-header-anchor" aria-hidden="true"></span>
-}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+</symbol>
+<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+</symbol>
+<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+</symbol>
+</svg>
+<div class="alert alert-success mb-5 d-flex align-items-center justify-content-between" role="alert">
+  <div>
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+      <use xlink:href="#info-fill"/>
+    </svg>
+    Know of someone who could also benefit from our services? If you 
+    <a href="@referLink" class="alert-link track-client" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top" title="Click here to make referring a colleague to us super-easy!">refer them</a> and they become a client, 
+    we'll give you <strong>a month of service free!</strong><br />  
+    <a href="@referLink" class="btn btn-sm btn-primary btn-outline mx-5 mt-2 track-client" data-plugin-tooltip="tooltip" data-toggle="tooltip" data-placement="top" 
+      title="Click here for a prefilled email to make referring to us super easy!"><i class="fas fa-envelope me-2" aria-hidden="true"></i>Refer a Friend</a>
+  </div>
 
-<style>
-    #@componentId {
-        margin: 0 0 2rem;
-    }
+  <button type="button" class="btn-close ms-3" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 
-    #@componentId,
-    #@componentId * {
-        box-sizing: border-box;
-    }
 
-    #@componentId .uv-dashboard-header__notice {
-        margin-bottom: 2rem;
-    }
+<section class="mb-0 p-3 pb-0" aria-labelledby="@hdrId">
+  <div class="card shadow-sm border-0">
+    <div class="card-body d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3 text-dark">
+      <div class="flex-grow-1">
+        <h1 id="@hdrId" class="h5 mb-1 heading-primary">
+          <i class="fas fa-heart me-2 text-danger" aria-hidden="true"></i>
+          Welcome back, <span class="fw-bold">@displayName</span>
+        </h1>
+        <p class="mb-0 text-muted">
+          <i class="far fa-clock me-2" aria-hidden="true"></i>
+          Last visit: <span aria-live="polite">@lastVisitText</span>
+        </p>
+      </div>
 
-    #@componentId .uv-dashboard-header__notice-body {
-        display: table;
-        width: 100%;
-    }
+      <div class="ms-md-auto d-flex flex-wrap gap-2" role="group" aria-label="Support quick links">
 
-    #@componentId .uv-dashboard-header__notice-icon,
-    #@componentId .uv-dashboard-header__notice-copy,
-    #@componentId .uv-dashboard-header__notice-action {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    #@componentId .uv-dashboard-header__notice-icon {
-        width: 2rem;
-        padding-right: 0.75rem;
-        font-size: 1.25rem;
-    }
-
-    #@componentId .uv-dashboard-header__notice-copy {
-        line-height: 1.45;
-    }
-
-    #@componentId .uv-dashboard-header__notice-action {
-        width: 1%;
-        padding-left: 1rem;
-        white-space: nowrap;
-    }
-
-    #@componentId .uv-dashboard-header__panel {
-        display: table;
-        width: 100%;
-        padding: 0 0 1.5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.16);
-    }
-
-    #@componentId .uv-dashboard-header__summary,
-    #@componentId .uv-dashboard-header__actions {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    #@componentId .uv-dashboard-header__summary {
-        width: 45%;
-        padding-right: 1.5rem;
-    }
-
-    #@componentId .uv-dashboard-header__actions {
-        width: 55%;
-        text-align: right;
-    }
-
-    #@componentId .uv-dashboard-header__title {
-        margin-top: 0;
-        margin-bottom: 0.25rem;
-        font-size: 1.15rem;
-        line-height: 1.3;
-    }
-
-    #@componentId .uv-dashboard-header__title-icon {
-        margin-right: 0.45rem;
-        color: #dc3545;
-    }
-
-    #@componentId .uv-dashboard-header__meta {
-        margin: 0;
-        color: #777;
-        line-height: 1.35;
-    }
-
-    #@componentId .uv-dashboard-header__meta-icon {
-        margin-right: 0.45rem;
-        color: #999;
-    }
-
-    #@componentId .uv-dashboard-header__actions .btn-group {
-        max-width: 100%;
-        white-space: nowrap;
-    }
-
-    #@componentId .uv-dashboard-header__actions .btn {
-        float: none;
-    }
-
-    #@componentId .uv-dashboard-header__actions .btn .fa {
-        margin-right: 0.45rem;
-    }
-
-    #@componentId .uv-dashboard-header__notice-action .btn .fa {
-        margin-right: 0.45rem;
-    }
-
-    @@media (max-width: 767px) {
-        #@componentId .uv-dashboard-header__notice-body,
-        #@componentId .uv-dashboard-header__notice-icon,
-        #@componentId .uv-dashboard-header__notice-copy,
-        #@componentId .uv-dashboard-header__notice-action,
-        #@componentId .uv-dashboard-header__panel,
-        #@componentId .uv-dashboard-header__summary,
-        #@componentId .uv-dashboard-header__actions {
-            display: block;
-            width: auto;
+        @if (!(string.IsNullOrEmpty(supportEmail) || supportEmail.Trim().Length == 0))
+        {
+          <a class="btn btn-sm btn-primary track-client" 
+             href="mailto:@supportEmail?subject=@domainName: Support Inquiry" 
+             aria-label="Email support at @supportEmail"
+             data-bs-toggle="tooltip" data-bs-placement="top"
+             title="Email our support team directly for help.">
+            <i class="far fa-envelope me-2" aria-hidden="true"></i>Email Support
+          </a>
+        }
+        else
+        {
+          <button type="button" class="btn btn-sm btn-secondary track-client" disabled="disabled" aria-disabled="true"
+                  data-bs-toggle="tooltip" data-bs-placement="top"
+                  title="Support email is not configured. Please contact your administrator.">
+            <i class="far fa-envelope me-2" aria-hidden="true"></i>Support email not configured
+          </button>
         }
 
-        #@componentId .uv-dashboard-header__notice-icon {
-            float: left;
-            width: auto;
-            padding-right: 0.75rem;
-        }
+        <a class="btn btn-sm btn-secondary track-client" 
+           href="https://upendoventures.com/schedule-us" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Schedule a meeting w/ Upendo Support"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Schedule a meeting with us right away">
+          <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>Need to Meet?
+        </a>
 
-        #@componentId .uv-dashboard-header__notice-action {
-            padding-top: 0.85rem;
-            padding-left: 0;
-            white-space: normal;
-        }
+        <!--
+        <a class="btn btn-sm btn-primary track-client" href="@ticketsUrl" target="_blank" rel="noopener" 
+           aria-label="Open My Tickets in a new tab"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Create or manage your support tickets.">
+          <i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>New Ticket
+        </a>
+        -->
 
-        #@componentId .uv-dashboard-header__summary {
-            padding-right: 0;
-            margin-bottom: 1rem;
-        }
+        <a class="btn btn-sm btn-secondary track-client" 
+           href="https://swisstransfer.com/" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Send files via SwissTransfer"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Securely send us files through SwissTransfer.">
+          <i class="fas fa-file-upload me-2" aria-hidden="true"></i>Send Files
+        </a>
 
-        #@componentId .uv-dashboard-header__actions {
-            text-align: left;
-        }
-
-        #@componentId .uv-dashboard-header__actions .btn-group {
-            display: block;
-            width: 100%;
-        }
-
-        #@componentId .uv-dashboard-header__actions .btn-group > .btn,
-        #@componentId .uv-dashboard-header__actions .btn-group > .btn:first-child,
-        #@componentId .uv-dashboard-header__actions .btn-group > .btn:last-child {
-            display: block;
-            width: 100%;
-            margin: 0 0 0.5rem;
-            border-radius: 0.25rem;
-        }
-    }
-</style>
-
-<section id="@componentId" class="uv-dashboard-header" aria-labelledby="@headingId">
-    <div class="alert alert-success uv-dashboard-header__notice" role="status" aria-label="Referral program">
-        <div class="uv-dashboard-header__notice-body">
-            <div class="uv-dashboard-header__notice-icon" aria-hidden="true">
-                <i class="fa fa-info-circle"></i>
-            </div>
-
-            <div class="uv-dashboard-header__notice-copy">
-                Know of someone who could benefit from our services? If you
-                <a href="@referLink"
-                   class="alert-link track-client"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="top"
-                   title="Open a prefilled email to make referring to us easy.">refer them</a>
-                and they become a client, we'll give you <strong>a month of service free!</strong>
-            </div>
-
-            <div class="uv-dashboard-header__notice-action">
-                <a href="@referLink"
-                   class="btn btn-sm btn-primary track-client"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="top"
-                   title="Open a prefilled referral email.">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>Refer a Friend
-                </a>
-            </div>
-        </div>
+        <a class="btn btn-sm btn-secondary" 
+           href="@docsUrl" target="_blank" rel="noopener noreferrer" 
+           aria-label="View documentation in a new tab"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Browse our documentation to find answers quickly.">
+          <i class="fas fa-book me-2" aria-hidden="true"></i>Documentation
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div class="uv-dashboard-header__panel">
-        <div class="uv-dashboard-header__summary">
-            <h2 id="@headingId" class="uv-dashboard-header__title">
-                <i class="fa fa-heart uv-dashboard-header__title-icon" aria-hidden="true"></i>
-                Welcome back, <strong>@displayName</strong>
-            </h2>
-            <p class="uv-dashboard-header__meta">
-                <i class="fa fa-clock-o uv-dashboard-header__meta-icon" aria-hidden="true"></i>
-                Last visit: <span aria-live="polite">@lastVisitText</span>
-            </p>
-        </div>
-
-        <nav class="uv-dashboard-header__actions" aria-label="Support quick links">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Support quick links">
-                @if (!string.IsNullOrWhiteSpace(supportEmail))
-                {
-                    <a class="btn btn-primary track-client"
-                       href="@supportHref"
-                       aria-label="Email support at @supportEmail"
-                       data-toggle="tooltip"
-                       data-placement="top"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       title="Email our support team directly for help.">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>Email Support
-                    </a>
-                }
-                else
-                {
-                    <button type="button"
-                            class="btn btn-secondary track-client"
-                            disabled="disabled"
-                            aria-disabled="true"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Support email is not configured. Please contact your administrator.">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>Support email not configured
-                    </button>
-                }
-
-                <a class="btn btn-secondary track-client"
-                   href="https://upendoventures.com/Schedule-Us"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="Schedule a meeting with Upendo Support"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="top"
-                   title="Schedule a meeting with us right away.">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>Need to Meet?
-                </a>
-
-                <a class="btn btn-secondary track-client"
-                   href="https://upendoventures.wetransfer.com/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="Send files via WeTransfer"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="top"
-                   title="Securely send us files through WeTransfer.">
-                    <i class="fa fa-upload" aria-hidden="true"></i>Send Files
-                </a>
-
-                <a class="btn btn-secondary"
-                   href="@docsUrl"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="View documentation in a new tab"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="top"
-                   title="Browse our documentation to find answers quickly.">
-                    <i class="fa fa-book" aria-hidden="true"></i>Documentation
-                </a>
-            </div>
-        </nav>
-    </div>
+  <hr class="my-4" />
 </section>

@@ -5,6 +5,7 @@
     "CardBackgroundColorClass": { "type": "string", "title": "Card Background Color", "enum": ["bg-white", "bg-body", "bg-light", "bg-dark", "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-transparent", "bg-primary-subtle", "bg-secondary-subtle", "bg-success-subtle", "bg-danger-subtle", "bg-warning-subtle", "bg-info-subtle", "bg-light-subtle", "bg-dark-subtle", "bg-off-white", "bg-warm-white", "bg-cream", "bg-soft-beige", "bg-sand", "bg-light-sage", "bg-sage", "bg-pale-green", "bg-mist", "bg-soft-gray", "bg-forest-green" ], "default": "bg-white" },
     "CardImagePosition": { "type": "string", "title": "Card Image Position", "enum": ["inside", "outside", "none"], "default": "outside" },
     "CardVerticalSpacing": { "type": "string", "title": "Card Vertical Spacing", "enum": ["default", "medium", "large"], "default": "default" },
+    "InfinityMode": { "type": "boolean", "title": "Infinity Mode", "default": false },
     "DateDisplayed": { "type": "string", "title": "Date Displayed", "enum": ["yes", "no"], "default": "yes" },
     "DateFormat": { "type": "string", "title": "Date Format", "enum": ["locale", "friendly", "us-short", "international-short", "iso", "hide"], "default": "locale" },
     "AnimationLevel": { "type": "string", "title": "Animation Level", "enum": ["none", "light", "medium", "high"], "default": "light" },

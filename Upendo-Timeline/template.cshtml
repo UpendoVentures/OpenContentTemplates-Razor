@@ -1,6 +1,7 @@
 @using System
 @using System.Collections.Generic
 @using System.Globalization
+@using System.Linq
 @using System.Text.RegularExpressions
 @using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
@@ -20,6 +21,15 @@
         }
         return fallback;
     }
+
+    private static DateTime GetMomentDate(dynamic moment)
+    {
+        var dateValue = moment.MomentDateTime != null ? Convert.ToString(moment.MomentDateTime) : string.Empty;
+        DateTime parsedDate;
+        return DateTime.TryParse(dateValue, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out parsedDate)
+            ? parsedDate
+            : DateTime.MaxValue;
+    }
 }
 
 @{
@@ -34,6 +44,8 @@
     var settings = Model.Settings;
     var cardImagePosition = AllowList(settings != null && settings.CardImagePosition != null ? Convert.ToString(settings.CardImagePosition) : string.Empty, "outside", "inside", "outside", "none");
     var cardVerticalSpacing = AllowList(settings != null && settings.CardVerticalSpacing != null ? Convert.ToString(settings.CardVerticalSpacing) : string.Empty, "default", "default", "medium", "large");
+    var infinityModeValue = settings != null && settings.InfinityMode != null ? Convert.ToString(settings.InfinityMode) : string.Empty;
+    var infinityMode = string.Equals(infinityModeValue, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(infinityModeValue, "1", StringComparison.OrdinalIgnoreCase);
     var dateDisplayed = AllowList(settings != null && settings.DateDisplayed != null ? Convert.ToString(settings.DateDisplayed) : string.Empty, "yes", "yes", "no");
     var dateFormat = AllowList(settings != null && settings.DateFormat != null ? Convert.ToString(settings.DateFormat) : string.Empty, "locale", "locale", "friendly", "us-short", "international-short", "iso", "hide");
     var sectionEyebrowColor = AllowList(Model.SectionEyebrowColor != null ? Convert.ToString(Model.SectionEyebrowColor) : string.Empty, "primary", "primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h5", "h6", "success", "danger", "warning", "info", "light", "dark", "white", "body", "transparent", "primary-subtle", "secondary-subtle", "success-subtle", "success-subtle", "danger-subtle", "warning-subtle", "info-subtle", "light-subtle", "dark-subtle", "off-white", "warm-white", "cream", "soft-beige", "sand", "light-sage", "sage", "pale-green", "mist", "soft-gray", "forest-green");
@@ -45,6 +57,14 @@
     var paddingTop = AllowList(settings != null && settings.PaddingTop != null ? Convert.ToString(settings.PaddingTop) : string.Empty, "pt-5", "", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto");
     var paddingBottom = AllowList(settings != null && settings.PaddingBottom != null ? Convert.ToString(settings.PaddingBottom) : string.Empty, "pb-5", "", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto");
     var darkBackgrounds = new[] { "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped", "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-dark", "bg-success", "bg-danger", "bg-forest-green" };
+    var isDarkSection = false;
+    foreach (var darkClass in darkBackgrounds)
+    {
+        if (string.Equals(background, darkClass, StringComparison.OrdinalIgnoreCase))
+        {
+            isDarkSection = true;
+        }
+    }
     var isDarkCard = false;
     foreach (var darkClass in darkBackgrounds)
     {
@@ -57,24 +77,29 @@
     var headingId = sectionId + "-heading";
     var appear = animation == "none" ? string.Empty : " appear-animation";
     var appearName = animation == "high" ? "zoomIn" : (animation == "medium" ? "fadeInUp" : "fadeIn");
-    var sectionClasses = "oc-timeline oc-timeline--spacing-" + cardVerticalSpacing + " position-relative w-100 " + background + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+    var sectionClasses = "oc-timeline oc-timeline--spacing-" + cardVerticalSpacing + " oc-timeline--" + (isDarkSection ? "dark" : "light") + (infinityMode ? " oc-timeline--infinity" : string.Empty) + " position-relative w-100 " + background + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
 }
 
 @if (!string.IsNullOrWhiteSpace(moduleAnchor)) { <div id="@moduleAnchor"></div> }
-<section id="@sectionId" class="@sectionClasses" data-animation-level="@animation" aria-labelledby="@headingId">
+<section id="@sectionId" class="@sectionClasses" data-animation-level="@animation" aria-labelledby="@headingId" itemscope itemtype="https://schema.org/ItemList">
     <div class="container-xxl">
         <div class="oc-timeline__header text-center mx-auto mb-5@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)">
             @if (Model.SectionEyebrow != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionEyebrow))) { <div class="oc-timeline__section-eyebrow text-@sectionEyebrowColor">@Html.Raw(Convert.ToString(Model.SectionEyebrow))</div> }
-            @if (Model.SectionTitle != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionTitle))) { <h2 id="@headingId" class="oc-timeline__title text-notransform">@Html.Raw(Convert.ToString(Model.SectionTitle))</h2> }
+            @if (Model.SectionTitle != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionTitle))) { <h2 id="@headingId" class="oc-timeline__title text-notransform" itemprop="name">@Html.Raw(Convert.ToString(Model.SectionTitle))</h2> }
             else { <h2 id="@headingId" class="visually-hidden">Timeline</h2> }
             @if (Model.SectionDescription != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionDescription))) { <div class="oc-timeline__description">@Html.Raw(Convert.ToString(Model.SectionDescription))</div> }
         </div>
         @if (Model.Moments != null)
         {
-            <ol class="oc-timeline__list list-unstyled mb-0">
+            var sortedMoments = ((IEnumerable<dynamic>)Model.Moments).OrderByDescending(GetMomentDate).ToList();
+            var totalMomentCount = sortedMoments.Count;
+            var renderedMomentCount = infinityMode && totalMomentCount > 25 ? 25 : totalMomentCount;
+            <div class="oc-timeline__viewport@(infinityMode && totalMomentCount > 5 ? " oc-timeline__viewport--faded" : string.Empty)" aria-live="@(infinityMode ? "polite" : "off")">
+            <ol id="@sectionId-list" class="oc-timeline__list list-unstyled mb-0">
             @{ var index = 0; }
-            @foreach (var moment in Model.Moments)
+            @foreach (var moment in sortedMoments)
             {
+                if (index >= renderedMomentCount) { break; }
                 var title = moment.MomentTitle != null ? Convert.ToString(moment.MomentTitle) : string.Empty;
                 var eyebrow = moment.MomentEyebrow != null ? Convert.ToString(moment.MomentEyebrow) : string.Empty;
                 var description = moment.MomentDescription != null ? Convert.ToString(moment.MomentDescription) : string.Empty;
@@ -123,7 +148,8 @@
                 var color = AllowList(moment.MomentShapeColor != null ? Convert.ToString(moment.MomentShapeColor) : string.Empty, "primary", "primary", "primary-scoped", "secondary", "secondary-scoped", "tertiary", "quaternary", "h5", "h6", "success", "danger", "warning", "info", "light", "dark", "white", "body", "transparent", "primary-subtle", "secondary-subtle", "success-subtle", "danger-subtle", "warning-subtle", "info-subtle", "light-subtle", "dark-subtle", "off-white", "warm-white", "cream", "soft-beige", "sand", "light-sage", "sage", "pale-green", "mist", "soft-gray", "forest-green");
                 var itemId = sectionId + "-item-" + index;
                 var delay = (index + 1) * (animation == "high" ? 160 : (animation == "medium" ? 110 : 60));
-                <li id="@itemId" class="oc-timeline__item@(imageOutside ? " oc-timeline__item--outside-image" : string.Empty)@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)" data-appear-animation-delay="@(animation == "none" ? null : Convert.ToString(delay))" style="@(animation == "none" ? null : "animation-delay: " + delay + "ms;")">
+                <li id="@itemId" class="oc-timeline__item@(imageOutside ? " oc-timeline__item--outside-image" : string.Empty)@(infinityMode && index >= 5 ? " oc-timeline__item--deferred" : string.Empty)@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)" data-appear-animation-delay="@(animation == "none" ? null : Convert.ToString(delay))" style="@(animation == "none" ? null : "animation-delay: " + delay + "ms;")" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-setsize="@renderedMomentCount" aria-posinset="@(index + 1)">
+                    <meta itemprop="position" content="@(index + 1)" />
                     <div class="oc-timeline__marker oc-timeline__marker--@shape bg-@color" aria-hidden="true"></div>
                     @if (imageOutside)
                     {
@@ -131,36 +157,90 @@
                             @if (hasCardLink)
                             {
                                 <a class="oc-timeline__outside-image-link" href="@linkUrl" aria-label="@renderedLinkText"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
-                                    <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" />
+                                    <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" itemprop="image" />
                                 </a>
                             }
                             else
                             {
-                                <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" />
+                                <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" itemprop="image" />
                             }
                         </div>
                     }
-                    <article class="oc-timeline__card @cardBackground @(isDarkCard ? "oc-timeline__card--dark" : "oc-timeline__card--light")">
+                    <article class="oc-timeline__card @cardBackground @(isDarkCard ? "oc-timeline__card--dark" : "oc-timeline__card--light")" itemprop="item" itemscope itemtype="https://schema.org/CreativeWork">
                         <div class="oc-timeline__content">
                             @if (!string.IsNullOrWhiteSpace(eyebrow)) { <div class="oc-timeline__eyebrow">@Html.Raw(eyebrow)</div> }
-                            <h3 class="oc-timeline__moment-title text-notransform">@Html.Raw(title)</h3>
-                            @if (!string.IsNullOrWhiteSpace(description)) { <div class="oc-timeline__moment-description">@Html.Raw(description)</div> }
+                            <h3 class="oc-timeline__moment-title text-notransform" itemprop="name">@Html.Raw(title)</h3>
+                            @if (!string.IsNullOrWhiteSpace(description)) { <div class="oc-timeline__moment-description" itemprop="description">@Html.Raw(description)</div> }
                             @if (hasCardLink)
                             {
-                                <a class="oc-timeline__link text-decoration-none" href="@linkUrl"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
+                                <a class="oc-timeline__link text-decoration-none" href="@linkUrl" itemprop="url"@(isExternalLink ? " target=\"_blank\" rel=\"noopener\"" : string.Empty)>
                                     @if (!string.IsNullOrWhiteSpace(linkIcon)) { <i class="@linkIcon me-2" aria-hidden="true"></i> }
                                     @if (!string.IsNullOrWhiteSpace(linkText)) { <span>@Html.Raw(renderedLinkText)</span> } else { <span class="visually-hidden">@Html.Raw(renderedLinkText)</span> }
                                 </a>
                             }
-                            @if (showDate) { <time class="oc-timeline__date" datetime="@date">@Html.Raw(displayDate)</time> }
+                            @if (showDate) { <time class="oc-timeline__date" datetime="@date" itemprop="datePublished">@Html.Raw(displayDate)</time> }
                         </div>
-                        @if (hasImage && !imageOutside) { <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" /> }
+                        @if (hasImage && !imageOutside) { <img class="oc-timeline__image" src="@image" alt="" loading="lazy" decoding="async" itemprop="image" /> }
                     </article>
                 </li>
                 index++;
             }
             </ol>
+            </div>
+            if (infinityMode && renderedMomentCount > 5)
+            {
+                <div class="oc-timeline__load-more-wrap text-center mt-4">
+                    <button type="button" class="oc-timeline__load-more btn btn-primary" aria-controls="@sectionId-list" aria-label="View more timeline items">View More</button>
+                </div>
+            }
         }
         @if (Model.SectionFooter != null && !string.IsNullOrWhiteSpace(Convert.ToString(Model.SectionFooter))) { <footer class="oc-timeline__footer text-center mt-5@(appear)" data-appear-animation="@(animation == "none" ? null : appearName)">@Html.Raw(Convert.ToString(Model.SectionFooter))</footer> }
     </div>
 </section>
+@if (infinityMode)
+{
+<script>
+(function () {
+    var sections = document.querySelectorAll('.oc-timeline--infinity');
+    for (var sectionIndex = 0; sectionIndex < sections.length; sectionIndex++) {
+        (function (section) {
+            var items = section.querySelectorAll('.oc-timeline__item');
+            var button = section.querySelector('.oc-timeline__load-more');
+            var shown = 5;
+            var maximum = Math.min(items.length, 25);
+            section.className += ' is-enhanced';
+
+            function updateItems() {
+                for (var itemIndex = 0; itemIndex < items.length; itemIndex++) {
+                    var visible = itemIndex < shown;
+                    items[itemIndex].setAttribute('aria-hidden', visible ? 'false' : 'true');
+                    if (visible) {
+                        items[itemIndex].className = items[itemIndex].className.replace(' oc-timeline__item--deferred', '');
+                    } else if (items[itemIndex].className.indexOf(' oc-timeline__item--deferred') < 0) {
+                        items[itemIndex].className += ' oc-timeline__item--deferred';
+                    }
+                }
+                if (button) {
+                    if (shown >= maximum) {
+                        button.style.display = 'none';
+                        button.setAttribute('aria-hidden', 'true');
+                    } else {
+                        button.style.display = '';
+                        button.removeAttribute('aria-hidden');
+                    }
+                }
+            }
+
+            updateItems();
+            if (button) {
+                button.addEventListener('click', function () {
+                    shown = Math.min(shown + 5, maximum);
+                    updateItems();
+                    if (shown >= maximum) { button.focus(); }
+                });
+            }
+        }(sections[sectionIndex]));
+    }
+}());
+</script>
+}

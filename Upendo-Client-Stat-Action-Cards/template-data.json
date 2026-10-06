@@ -1,0 +1,18 @@
+{
+  "BackgroundColorClass": "",
+  "AnimationLevel": "light",
+  "MarginTop": "mt-5",
+  "MarginBottom": "mb-5",
+  "PaddingTop": "pt-5",
+  "PaddingBottom": "pb-5",
+  "StatisticsToShow": [
+    "Analytics",
+    "Blog",
+    "Directory",
+    "Events",
+    "Forms",
+    "Gallery",
+    "Membership",
+    "Networking"
+  ]
+}
