@@ -46,9 +46,9 @@
       "title": "Statistics to Show",
       "items": {
         "type": "string",
-        "enum": ["Analytics", "Blog", "Directory", "CRM", "Events", "Forms", "Gallery", "Membership", "Networking"]
+        "enum": ["Analytics", "Blog", "Directory", "Events", "Forms", "Gallery", "Membership", "Networking"]
       },
-      "default": ["Analytics", "Blog", "Directory", "CRM", "Events", "Forms", "Gallery", "Membership", "Networking"]
+      "default": ["Analytics", "Blog", "Directory", "Events", "Forms", "Gallery", "Membership", "Networking"]
     }
   }
 }
