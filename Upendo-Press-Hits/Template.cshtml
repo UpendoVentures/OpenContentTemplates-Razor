@@ -1,0 +1,288 @@
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+@using System
+@using System.Globalization
+@using System.Linq
+@using System.Collections.Generic
+@using DotNetNuke.Entities.Modules
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@{
+    // Update or create the "hideadminborder" setting with the value "True"
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleID, Model.Context.TabID);
+}
+
+@if (!string.IsNullOrEmpty(Model.ModuleAnchor))
+{
+    <div id="@Model.ModuleAnchor"></div>
+}
+
+@functions {
+
+  public DateTime? ParseDate(object value)
+  {
+    if (value == null) return null;
+
+    var s = value.ToString();
+    if (string.IsNullOrWhiteSpace(s)) return null;
+
+    DateTime dt;
+    if (DateTime.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out dt))
+    {
+      return dt;
+    }
+
+    return null;
+  }
+
+  public string FormatDateLong(DateTime? dt)
+  {
+    if (!dt.HasValue) return "";
+    return dt.Value.ToString("MMMM d, yyyy", CultureInfo.InvariantCulture);
+  }
+
+  public string TypeLabel(string type)
+  {
+    var t = (type ?? "").Trim().ToLowerInvariant();
+    switch (t)
+    {
+      case "podcast": return "Podcast Interview";
+      case "article_quote": return "Quoted in an Article";
+      case "article_feature": return "Featured Article";
+      case "press_release": return "Press Release";
+      default: return "Press Mention";
+    }
+  }
+
+  public string TypeIcon(string type)
+  {
+    var t = (type ?? "").Trim().ToLowerInvariant();
+    switch (t)
+    {
+      case "podcast": return "fa-solid fa-microphone-lines";
+      case "article_quote": return "fa-solid fa-quote-left";
+      case "article_feature": return "fa-regular fa-newspaper";
+      case "press_release": return "fa-solid fa-bullhorn";
+      default: return "fa-solid fa-circle-info";
+    }
+  }
+
+  public string Safe(string s)
+  {
+    return s ?? "";
+  }
+}
+
+@{
+  var heroTitle = Safe((string)Model.HeroTitle);
+  var heroIntro = Model.HeroIntro;
+
+  var items = new List<dynamic>();
+  if (Model.PressItems != null)
+  {
+    foreach (var x in Model.PressItems)
+    {
+      items.Add(x);
+    }
+  }
+
+  var sorted = items
+    .OrderByDescending(i => ParseDate(i.Date) ?? DateTime.MinValue)
+    .ToList();
+}
+
+<section class="container py-5">
+
+  <!-- Hero -->
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="p-4 p-md-5 rounded-4 shadow-sm bg-light">
+        <div class="d-flex align-items-start gap-3">
+          <div class="flex-shrink-0">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white shadow-sm"
+                  style="width:48px;height:48px;"
+                  aria-hidden="true">
+              <i class="fa-solid fa-newspaper fs-4"></i>
+            </span>
+          </div>
+          <div class="flex-grow-1">
+            <h2 class="display-6 mb-2">@heroTitle</h2>
+
+            @if (heroIntro != null && !string.IsNullOrWhiteSpace(heroIntro.ToString()))
+            {
+              <div class="lead mb-0">
+                @Html.Raw(heroIntro.ToString())
+              </div>
+            }
+  
+            <p class="text-end small pt-3 mb-0">Media inquiries &amp; speaking engagements: Reach out and <a href="/contact">let’s start the conversation</a>.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-10">
+      <div class="row g-4">
+        @if (sorted.Count == 0)
+        {
+          <div class="col-12">
+            <div class="alert alert-info mb-0" role="status">
+              No press mentions have been added yet.
+            </div>
+          </div>
+        }
+        else
+        {
+          foreach (var item in sorted)
+          {
+            var type = Safe((string)item.Type);
+            var source = Safe((string)item.Source);
+            var title = Safe((string)item.Title);
+            var description = Safe((string)item.Description);
+            var upendoLink = Safe((string)item.UpendoLink);
+
+            var thumbnail = Safe((string)item.Thumbnail);
+            var thumbnailAlt = Safe((string)item.ThumbnailAlt);
+
+            var featured = (item.Featured != null && item.Featured == true);
+
+            var dt = ParseDate(item.Date);
+            var dateLabel = FormatDateLong(dt);
+
+            var links = new List<dynamic>();
+            if (item.Links != null)
+            {
+              foreach (var l in item.Links)
+              {
+                links.Add(l);
+              }
+            }
+
+            <div class="col-12">
+              <article class="card border-0 shadow-lg rounded-4 mb-5">
+                <div class="card-body p-4 p-md-4">
+
+                  <div class="row g-3 align-items-start">
+
+                    <!-- Thumbnail -->
+                    <div class="col-12 col-md-3 col-lg-2">
+                      @if (!string.IsNullOrWhiteSpace(thumbnail))
+                      {
+                        var altText = !string.IsNullOrWhiteSpace(thumbnailAlt)
+                          ? thumbnailAlt
+                          : string.Format("{0} thumbnail", source);
+
+                        <div class="ratio ratio-1x1 rounded-3 overflow-hidden bg-light">
+                          <img src="@thumbnail" alt="@altText" loading="lazy" class="w-100 h-100" style="object-fit: cover;" decoding="async" />
+                        </div>
+                      }
+                      else
+                      {
+                        <div class="ratio ratio-1x1 rounded-3 bg-light d-flex align-items-center justify-content-center" aria-hidden="true">
+                          <i class="@TypeIcon(type) fs-3 text-muted"></i>
+                        </div>
+                      }
+                    </div>
+
+                    <!-- Content -->
+                    <div class="col-12 col-md-9 col-lg-10">
+                      <div class="d-flex align-items-start gap-3">
+                        <div class="flex-shrink-0">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light"
+                                style="width:44px;height:44px;" aria-hidden="true">
+                            <i class="@TypeIcon(type)"></i>
+                          </span>
+                        </div>
+
+                        <div class="flex-grow-1 px-3">
+                          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                            <span class="badge text-bg-secondary">@TypeLabel(type)</span>
+
+                            @if (!string.IsNullOrWhiteSpace(source))
+                            {
+                              <span class="text-muted small">
+                                <i class="fa-regular fa-building me-1" aria-hidden="true"></i>
+                                <span class="visually-hidden">Source:</span>
+                                @source
+                              </span>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(dateLabel))
+                            {
+                              <span class="text-muted small">
+                                <i class="fa-regular fa-calendar me-1" aria-hidden="true"></i>
+                                <span class="visually-hidden">Date:</span>
+                                @dateLabel
+                              </span>
+                            }
+
+                            @if (featured)
+                            {
+                              <span class="badge text-bg-warning">
+                                <i class="fa-solid fa-star me-1" aria-hidden="true"></i>
+                                Featured
+                              </span>
+                            }
+                          </div>
+
+                          <h2 class="h5 mb-2">@title</h2>
+
+                          @if (!string.IsNullOrWhiteSpace(description))
+                          {
+                            <p class="mb-3">@description</p>
+                          }
+
+                          @if (links.Count > 0 || !string.IsNullOrWhiteSpace(upendoLink))
+                          {
+                            <div class="d-flex flex-column gap-2">
+
+                              @if (links.Count > 0)
+                              {
+                                <div class="d-flex flex-wrap gap-2">
+                                  @foreach (var l in links)
+                                  {
+                                    var lbl = Safe((string)l.Label);
+                                    var url = Safe((string)l.Url);
+
+                                    if (!string.IsNullOrWhiteSpace(url))
+                                    {
+                                      var ariaLabel = string.Format("{0} (opens in a new tab)", lbl);
+
+                                      <a class="btn btn-sm btn-outline-secondary" href="@url" target="_blank" rel="noopener noreferrer" aria-label="@ariaLabel">
+                                        <i class="fa-solid fa-arrow-up-right-from-square me-1" aria-hidden="true"></i>
+                                        @lbl
+                                      </a>
+                                    }
+                                  }
+                                </div>
+                              }
+
+                              @if (!string.IsNullOrWhiteSpace(upendoLink))
+                              {
+                                <div>
+                                  <a class="link-primary" href="@upendoLink" aria-label="Our thoughts on this press mention">
+                                    <i class="fa-solid fa-link me-1" aria-hidden="true"></i>
+                                    Our thoughts on this press mention
+                                  </a>
+                                </div>
+                              }
+
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </article>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+
+</section>

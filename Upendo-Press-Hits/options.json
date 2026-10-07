@@ -1,0 +1,79 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+    },
+    "HeroTitle": {
+      "type": "text",
+      "helper": "If left empty, it won't display."
+    },
+    "HeroIntro": {
+      "type": "wysihtml",
+      "helper": "If left empty, it won't display."
+    },
+    "PressItems": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text"
+          },
+          "Source": {
+            "type": "text"
+          },
+          "Type": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Podcast Interview",
+              "Quoted in an Article",
+              "Featured Article",
+              "Press Release",
+              "Other"
+            ]
+          },
+          "Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Thumbnail": {
+            "type": "image",
+            "uploadfolder": "Images/Press-Hits/",
+            "typeahead": {
+              "Folder": "Images/Press-Hits/"
+            }
+          },
+          "ThumbnailAlt": {
+            "type": "text"
+          },
+          "Description": {
+            "type": "wysihtml"
+          },
+          "UpendoLink": {
+            "type": "url"
+          },
+          "Links": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "Label": {
+                  "type": "text"
+                },
+                "Url": {
+                  "type": "url"
+                }
+              }
+            }
+          },
+          "Featured": {
+            "type": "checkbox"
+          }
+        }
+      }
+    }
+  }
+}
