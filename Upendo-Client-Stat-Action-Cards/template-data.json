@@ -1,10 +1,10 @@
 {
   "BackgroundColorClass": "",
   "AnimationLevel": "light",
-  "MarginTop": "mt-5",
-  "MarginBottom": "mb-5",
-  "PaddingTop": "pt-5",
-  "PaddingBottom": "pb-5",
+  "MarginTop": "mt-0",
+  "MarginBottom": "mb-0",
+  "PaddingTop": "pt-0",
+  "PaddingBottom": "pb-0",
   "StatisticsToShow": [
     "Analytics",
     "Blog",
