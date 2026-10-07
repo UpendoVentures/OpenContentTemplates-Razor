@@ -116,13 +116,19 @@
                 <p>@Html.Raw(description)</p>
             }
         </div>
-        @if (String.IsNullOrWhiteSpace(featureCrm) || !String.Equals(featureCrm, "false", StringComparison.OrdinalIgnoreCase))
-        {
-            <a class="oc-crm-status" data-crm-status href="/manage/crm" aria-label="CRM status: loading">
+        <div class="oc-dashboard-statuses">
+            <a class="oc-crm-status" data-newsletter-status href="mailto:solutions@upendoventures.com?subject=runsonUpendo%20Newsletter%20Selection%20Request" aria-label="Newsletter status: loading">
                 <span class="oc-crm-status-dot" aria-hidden="true"></span>
-                <strong data-crm-status-title>CRM</strong>
+                <strong data-newsletter-status-title>Newsletter</strong>
             </a>
-        }
+            @if (String.IsNullOrWhiteSpace(featureCrm) || !String.Equals(featureCrm, "false", StringComparison.OrdinalIgnoreCase))
+            {
+                <a class="oc-crm-status" data-crm-status href="/manage/crm" aria-label="CRM status: loading">
+                    <span class="oc-crm-status-dot" aria-hidden="true"></span>
+                    <strong data-crm-status-title>CRM</strong>
+                </a>
+            }
+        </div>
     </div>
     @if (alert != null && !String.IsNullOrWhiteSpace(alertContent))
     {
@@ -280,6 +286,7 @@
     var expander = section.querySelector('[data-dashboard-expander]');
     var expanderLabel = section.querySelector('[data-dashboard-expander-label]');
     var status = section.querySelector('[data-crm-status]');
+    var newsletterStatus = section.querySelector('[data-newsletter-status]');
     var moduleId = root.getAttribute('data-module-id');
     var tabId = root.getAttribute('data-tab-id');
     var endpoint = root.getAttribute('data-endpoint');
@@ -311,6 +318,20 @@
         expander.querySelector('.fa').className = 'fa ' + (expanded ? 'fa-chevron-up' : 'fa-chevron-down');
         expanderLabel.textContent = expanded ? 'Show fewer activity tiles' : 'Expand to see more activity tiles (' + (visibleCards.length - 8) + ' more)';
     }
+    function updateNewsletterStatus(connected, provider) {
+        if (!newsletterStatus) return;
+        newsletterStatus.classList.toggle('is-connected', connected);
+        newsletterStatus.querySelector('[data-newsletter-status-title]').textContent = connected ? 'Newsletter: ' + (provider || 'Newsletter') : 'Newsletter not Connected';
+        newsletterStatus.setAttribute('aria-label', connected ? 'Newsletter status: connected' : 'Newsletter status: not connected');
+        newsletterStatus.href = connected ? '/subscribe' : 'mailto:solutions@upendoventures.com?subject=runsonUpendo%20Newsletter%20Selection%20Request';
+        if (connected) {
+            newsletterStatus.target = '_blank';
+            newsletterStatus.rel = 'noopener noreferrer';
+        } else {
+            newsletterStatus.removeAttribute('target');
+            newsletterStatus.removeAttribute('rel');
+        }
+    }
     function updateCrmStatus(connected) {
         if (!status) return;
         status.classList.toggle('is-connected', connected);
@@ -322,6 +343,7 @@
         .then(function (response) { if (!response.ok) throw new Error('Dashboard request failed.'); return response.json(); })
         .then(function (payload) {
             window.__ocDashboardCards = payload.Cards || payload.cards || [];
+            updateNewsletterStatus(payload.NewsletterConnected === true || payload.newsletterConnected === true, payload.NewsletterProvider || payload.newsletterProvider);
             updateCrmStatus(payload.CrmConnected === true || payload.crmConnected === true);
             render(window.__ocDashboardCards);
         })
