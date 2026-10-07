@@ -1,0 +1,196 @@
+{
+  "formfields": [
+    {
+      "fieldname": "ModuleTitle",
+      "title": "Module Title",
+      "fieldtype": "text",
+      "advanced": false
+    },
+    {
+      "fieldname": "ModuleAnchor",
+      "title": "Module Anchor",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeroTitle",
+      "title": "Hero Title",
+      "fieldtype": "text",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "If left empty, it won't display.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "HeroIntro",
+      "title": "Intro Lead",
+      "fieldtype": "wysihtml",
+      "advanced": true,
+      "required": false,
+      "hidden": false,
+      "helper": "If left empty, it won't display.",
+      "multilanguage": false,
+      "index": false,
+      "position": "1col1",
+      "dependencies": []
+    },
+    {
+      "fieldname": "PressItems",
+      "title": "Press Items",
+      "fieldtype": "accordion",
+      "subfields": [
+        {
+          "fieldname": "Title",
+          "title": "Title",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Source",
+          "title": "Source",
+          "fieldtype": "text",
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "multilanguage": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Type",
+          "title": "Type",
+          "fieldtype": "select",
+          "fieldoptions": [
+            {
+              "value": "podcast",
+              "text": "Podcast Interview"
+            },
+            {
+              "value": "article_quote",
+              "text": "Quoted in an Article"
+            },
+            {
+              "value": "article_feature",
+              "text": "Featured Article"
+            },
+            {
+              "value": "press_release",
+              "text": "Press Release"
+            },
+            {
+              "value": "other",
+              "text": "Other"
+            }
+          ],
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Date",
+          "title": "Date",
+          "fieldtype": "date",
+          "dateoptions": {},
+          "advanced": true,
+          "required": true,
+          "hidden": false,
+          "index": false,
+          "position": "1col1",
+          "dependencies": []
+        },
+        {
+          "fieldname": "Thumbnail",
+          "title": "Thumbnail (1:1 square)",
+          "fieldtype": "image",
+          "imageoptions": {
+            "folder": "Images/Press-Hits/"
+          },
+          "advanced": false
+        },
+        {
+          "fieldname": "ThumbnailAlt",
+          "title": "Thumbnail Alt Text",
+          "fieldtype": "text",
+          "advanced": false
+        },
+        {
+          "fieldname": "Description",
+          "title": "Description",
+          "fieldtype": "wysihtml",
+          "advanced": false
+        },
+        {
+          "fieldname": "UpendoLink",
+          "title": "Related Local Site Link (optional)",
+          "fieldtype": "url",
+          "advanced": false
+        },
+        {
+          "fieldname": "Links",
+          "title": "External Site Links",
+          "fieldtype": "array",
+          "subfields": [
+            {
+              "fieldname": "Label",
+              "title": "Link Label",
+              "fieldtype": "text",
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            },
+            {
+              "fieldname": "Url",
+              "title": "Link URL",
+              "fieldtype": "url",
+              "advanced": true,
+              "required": true,
+              "hidden": false,
+              "multilanguage": false,
+              "index": false,
+              "position": "1col1",
+              "dependencies": []
+            }
+          ],
+          "advanced": false
+        },
+        {
+          "fieldname": "Featured",
+          "title": "Featured (optional)",
+          "fieldtype": "checkbox",
+          "advanced": false
+        }
+      ],
+      "advanced": true,
+      "required": true,
+      "hidden": false,
+      "position": "1col1",
+      "dependencies": []
+    }
+  ],
+  "formtype": "object"
+}

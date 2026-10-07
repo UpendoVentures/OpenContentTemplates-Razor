@@ -1,0 +1,97 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor"
+    },
+    "HeroTitle": {
+      "type": "string",
+      "title": "Hero Title"
+    },
+    "HeroIntro": {
+      "type": "string",
+      "title": "Intro Lead"
+    },
+    "PressItems": {
+      "type": "array",
+      "title": "Press Items",
+      "required": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title",
+            "required": true
+          },
+          "Source": {
+            "type": "string",
+            "title": "Source",
+            "required": true
+          },
+          "Type": {
+            "type": "string",
+            "title": "Type",
+            "enum": [
+              "podcast",
+              "article_quote",
+              "article_feature",
+              "press_release",
+              "other"
+            ],
+            "default": "podcast",
+            "required": true
+          },
+          "Date": {
+            "title": "Date",
+            "required": true
+          },
+          "Thumbnail": {
+            "type": "string",
+            "title": "Thumbnail (1:1 square)"
+          },
+          "ThumbnailAlt": {
+            "type": "string",
+            "title": "Thumbnail Alt Text"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "UpendoLink": {
+            "type": "string",
+            "title": "Related Local Site Link (optional)"
+          },
+          "Links": {
+            "type": "array",
+            "title": "External Site Links",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Label": {
+                  "type": "string",
+                  "title": "Link Label",
+                  "required": true
+                },
+                "Url": {
+                  "type": "string",
+                  "title": "Link URL",
+                  "required": true
+                }
+              }
+            }
+          },
+          "Featured": {
+            "type": "boolean",
+            "title": "Featured (optional)"
+          }
+        }
+      }
+    }
+  }
+}
