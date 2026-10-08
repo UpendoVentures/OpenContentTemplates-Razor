@@ -1,6 +1,7 @@
 @using System
 @using System.Collections.Generic
 @using System.Collections.Specialized
+@using System.Linq
 @using System.Web
 @using DotNetNuke.Entities.Modules
 @using DotNetNuke.Entities.Users
@@ -39,6 +40,13 @@
         ? Dnn.User
         : UserController.Instance.GetCurrentUserInfo();
     bool isAuthenticatedWebsiteMember = currentUser != null && currentUser.UserID > 0 && !currentUser.IsDeleted;
+    var dnnDataHelper = new DnnDataHelper();
+    const string directoryResourceFile = "~/DesktopModules/UpendoBusinessDirectoryManager/App_LocalResources/View.resx";
+    Func<string, string, string> getDirectoryText = (key, fallback) =>
+    {
+        var localized = dnnDataHelper.GetLocalizedString(key, directoryResourceFile);
+        return string.IsNullOrWhiteSpace(localized) || localized == key ? fallback : localized;
+    };
     string configuredInitialSort = "default";
     bool hideEmail = false;
     try
@@ -507,6 +515,13 @@
         bool canEditCompany = canEditBusinesses ||
             new BusinessDirectoryAccessService().CanCurrentUserEditCompany(portalId, company.CompanyId);
         string listEditUrl = canEditCompany ? DirectoryPageUrlHelper.GetEditUrl(company.CompanyId) : string.Empty;
+        var associatedProfiles = company.AssociatedProfiles ?? new List<BusinessDirectoryAssociatedProfileDto>();
+        decimal? displayedImpactScore = company.NetworkingImpactScore.HasValue
+            ? (decimal?)Math.Ceiling(company.NetworkingImpactScore.Value * 10M) / 10M
+            : null;
+        string organizationRepresentativeText = getDirectoryText("BusinessDirectory.OrganizationRepresentative", "Organization Representative");
+        string biographyNotProvidedText = getDirectoryText("BusinessDirectory.BiographyNotProvided", "(biography not yet provided)");
+        string impactScoreTooltipText = getDirectoryText("BusinessDirectory.ImpactScoreTooltip", "Impact Score reflects recent business networking activity over the past 30 days.");
 
         <a href="@backToDirectoryUrl"
             class="text-decoration-none d-inline-flex align-items-center"
@@ -670,10 +685,10 @@
 
             <!-- Lower content: Contact & Business Info + Business Profile -->
             <div class="row justify-content-center mt-2">
-              <div class="col-12 col-lg-8">
+              <div class="col-12 col-xl-10">
 
                   <div class="row g-4">
-                      <div class="col-12 col-lg-6">
+                      <div class="col-12 col-md-4 order-2">
                           <!-- Contact & Business Info -->
                           <div class="pt-3">
                             <h3 class="small fw-bold mb-3">
@@ -754,7 +769,7 @@
                         </div>
                       </div>
 
-                      <div class="col-12 col-lg-6">
+                      <div class="col-12 col-md-4 order-3">
                           <!-- Business Profile -->
                           <div class="pt-3">
                             <h3 class="small fw-bold mb-3">
@@ -816,10 +831,55 @@
                             </div>
                         </div>
                       </div>
-                  </div>
-
-              </div>
-          </div>
+                       @if (associatedProfiles.Count > 0)
+                       {
+                           <div class="col-12 col-md-4 order-1">
+                               <div class="pt-3 bcc-associated-people text-center" aria-labelledby="bcc-associated-people-title">
+                                   <h3 id="bcc-associated-people-title" class="small fw-bold mb-3">
+                                       <span class="d-inline-flex align-items-center">
+                                           <i class="fa-solid fa-people-group me-2" aria-hidden="true"></i>
+                                           <span>People at this business</span>
+                                       </span>
+                                   </h3>
+                                   <div class="d-flex flex-column align-items-center gap-4">
+                                       @foreach (var profile in associatedProfiles)
+                                       {
+                                           var displayName = string.IsNullOrWhiteSpace(profile.DisplayName) ? organizationRepresentativeText : profile.DisplayName.Trim();
+                                           var roleTitle = string.IsNullOrWhiteSpace(profile.RoleTitle) ? organizationRepresentativeText : profile.RoleTitle.Trim();
+                                           var biography = string.IsNullOrWhiteSpace(profile.Biography) ? biographyNotProvidedText : profile.Biography.Trim();
+                                           var avatarAlt = "Avatar for " + displayName;
+                                           <article class="bcc-associated-person" aria-label="@displayName, @roleTitle">
+                                               <div class="bcc-associated-person__visual">
+                                                   @if (!string.IsNullOrWhiteSpace(profile.PhotoUrl))
+                                                   {
+                                                       <img class="bcc-associated-person__avatar" src="@profile.PhotoUrl" alt="@avatarAlt" title="@avatarAlt" loading="lazy" decoding="async" />
+                                                   }
+                                                   else
+                                                   {
+                                                       <div class="bcc-associated-person__avatar bcc-associated-person__avatar--fallback" role="img" aria-label="@avatarAlt" title="@avatarAlt">
+                                                           <i class="fa-solid fa-user" aria-hidden="true"></i>
+                                                       </div>
+                                                   }
+                                                   @if (displayedImpactScore.HasValue)
+                                                   {
+                                                       <span class="badge rounded-pill text-bg-success mt-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="@impactScoreTooltipText" aria-label="@impactScoreTooltipText">
+                                                           <i class="fa-solid fa-heart-pulse me-1" aria-hidden="true"></i>
+                                                           Impact Score @displayedImpactScore.Value.ToString("0.0")
+                                                       </span>
+                                                   }
+                                               </div>
+                                               <h4 class="h6 fw-bold mt-2 mb-1">@displayName</h4>
+                                               <div class="small fw-semibold text-muted">@roleTitle</div>
+                                               <p class="small text-muted mb-0">@biography</p>
+                                           </article>
+                                       }
+                                   </div>
+                               </div>
+                           </div>
+                       }
+                   </div>
+               </div>
+           </div>
         </section>
 
         <a href="@backToDirectoryUrl"
@@ -1309,9 +1369,20 @@ else
             });
         }, true);
 
+        function initializeImpactScoreTooltips() {
+            safe(function () {
+                if (!window.bootstrap || !window.bootstrap.Tooltip) return;
+                var elements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                for (var i = 0; i < elements.length; i++) {
+                    window.bootstrap.Tooltip.getOrCreateInstance(elements[i], { placement: "top", trigger: "hover focus" });
+                }
+            });
+        }
         // After load, if cookie exists, scroll once (subtle)
         // Using window load helps ensure layout/images have settled.
+        document.addEventListener("DOMContentLoaded", initializeImpactScoreTooltips);
         window.addEventListener("load", function () {
+            initializeImpactScoreTooltips();
             scrollToDirectoryIfNeeded();
         });
 
