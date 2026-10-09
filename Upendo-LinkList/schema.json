@@ -66,12 +66,12 @@
             "type": "string",
             "title": "Rel",
             "enum": [
+              "",
               "nofollow",
               "noopener",
               "noreferrer"
             ],
-            "default": "nofollow",
-            "required": true
+            "default": ""
           },
           "OpenInNewTab": {
             "type": "boolean",
