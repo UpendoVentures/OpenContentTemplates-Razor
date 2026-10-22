@@ -1,0 +1,207 @@
+@using System
+@using System.Collections.Generic
+@using System.Text.RegularExpressions
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    public string GetAnchorSlug(string title, IDictionary<string, int> anchorCounts)
+    {
+        var slug = Regex.Replace((title ?? string.Empty).ToLowerInvariant(), "[^a-z0-9]+", "-").Trim('-');
+        if (string.IsNullOrWhiteSpace(slug))
+        {
+            slug = "job-posting";
+        }
+
+        int count;
+        if (!anchorCounts.TryGetValue(slug, out count))
+        {
+            count = 0;
+        }
+
+        count++;
+        anchorCounts[slug] = count;
+        return count == 1 ? slug : slug + "-" + count.ToString();
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    RegisterStyleSheet("template.css");
+
+    var moduleAnchor = Model.ModuleAnchor != null ? Convert.ToString(Model.ModuleAnchor) : string.Empty;
+    var sectionHeading = Model.SectionHeading != null ? Convert.ToString(Model.SectionHeading) : string.Empty;
+    var sectionDescription = Model.SectionDescription != null ? Convert.ToString(Model.SectionDescription) : string.Empty;
+
+    var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
+        ? Convert.ToString(Model.Settings.BackgroundColorClass)
+        : string.Empty;
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : string.Empty;
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : string.Empty;
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : string.Empty;
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : string.Empty;
+
+    var darkBackgroundClasses = new[]
+    {
+        "bg-primary", "bg-primary-scoped", "bg-secondary", "bg-secondary-scoped",
+        "bg-tertiary", "bg-quaternary", "bg-h5", "bg-h6", "bg-success",
+        "bg-danger", "bg-dark", "bg-dark-subtle", "bg-forest-green"
+    };
+
+    var isDarkBackground = false;
+    foreach (var darkClass in darkBackgroundClasses)
+    {
+        if (string.Equals(backgroundColorClass, darkClass, StringComparison.OrdinalIgnoreCase))
+        {
+            isDarkBackground = true;
+            break;
+        }
+    }
+
+    var contrastClass = isDarkBackground ? "upendo-job-postings--dark" : "upendo-job-postings--light";
+    var sectionClasses = "upendo-job-postings w-100 " + contrastClass;
+    if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClasses += " " + backgroundColorClass; }
+    if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { sectionClasses += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { sectionClasses += " " + paddingBottom; }
+
+    var postings = new List<dynamic>();
+    if (Model.JobPostings != null)
+    {
+        foreach (var posting in Model.JobPostings)
+        {
+            if (posting.ShowPosting == null || string.Equals(Convert.ToString(posting.ShowPosting), "true", StringComparison.OrdinalIgnoreCase))
+            {
+                postings.Add(posting);
+            }
+        }
+    }
+
+    var anchorCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+}
+
+@if (!string.IsNullOrWhiteSpace(moduleAnchor))
+{
+    <div id="@Html.Raw(moduleAnchor)"></div>
+}
+
+<section class="@sectionClasses" aria-label="Job opportunities">
+    <div class="container-fluid">
+        <div class="upendo-job-postings__inner mx-auto">
+            @if (!string.IsNullOrWhiteSpace(sectionHeading))
+            {
+                <h2 class="upendo-job-postings__heading">@Html.Raw(sectionHeading)</h2>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(sectionDescription))
+            {
+                <div class="upendo-job-postings__description">@Html.Raw(sectionDescription)</div>
+            }
+
+            @if (postings.Count == 0)
+            {
+                <p class="upendo-job-postings__empty" role="status">There are no open positions at this time.</p>
+            }
+            else
+            {
+                <div class="upendo-job-postings__list">
+                    @foreach (var posting in postings)
+                    {
+                        var title = posting.Title != null ? Convert.ToString(posting.Title) : string.Empty;
+                        var anchor = GetAnchorSlug(title, anchorCounts);
+                        var detailUrl = posting.DetailUrl != null ? Convert.ToString(posting.DetailUrl) : string.Empty;
+                        var isOffsiteDetail = !string.IsNullOrWhiteSpace(detailUrl) && TemplateHelper.IsOffsiteLink(detailUrl);
+                        var department = posting.Department != null ? Convert.ToString(posting.Department) : string.Empty;
+                        var employmentType = posting.EmploymentType != null ? Convert.ToString(posting.EmploymentType) : string.Empty;
+                        var workplaceType = posting.WorkplaceType != null ? Convert.ToString(posting.WorkplaceType) : string.Empty;
+                        var location = posting.Location != null ? Convert.ToString(posting.Location) : string.Empty;
+                        var postedDate = posting.PostedDate != null ? Convert.ToString(posting.PostedDate) : string.Empty;
+                        var closingDate = posting.ClosingDate != null ? Convert.ToString(posting.ClosingDate) : string.Empty;
+                        var responsibilitiesId = anchor + "-responsibilities";
+                        var qualificationsId = anchor + "-qualifications";
+                        var preferredQualificationsId = anchor + "-preferred-qualifications";
+
+                        <article id="@anchor" class="upendo-job-postings__posting">
+                            <header class="upendo-job-postings__posting-header">
+                                <div>
+                                    @if (!string.IsNullOrWhiteSpace(title))
+                                    {
+                                        <h3 class="upendo-job-postings__title">@Html.Raw(title)</h3>
+                                    }
+
+                                    <div class="upendo-job-postings__meta" aria-label="Job details">
+                                        @if (!string.IsNullOrWhiteSpace(department)) { <span>@Html.Raw(department)</span> }
+                                        @if (!string.IsNullOrWhiteSpace(employmentType)) { <span>@Html.Raw(employmentType)</span> }
+                                        @if (!string.IsNullOrWhiteSpace(workplaceType)) { <span>@Html.Raw(workplaceType)</span> }
+                                        @if (!string.IsNullOrWhiteSpace(location)) { <span>@Html.Raw(location)</span> }
+                                    </div>
+                                </div>
+
+                                <a class="upendo-job-postings__anchor-link" href="#@anchor" aria-label="Link to this job posting">#</a>
+                            </header>
+
+                            @if (posting.Summary != null && !string.IsNullOrWhiteSpace(Convert.ToString(posting.Summary)))
+                            {
+                                <div class="upendo-job-postings__summary">@Html.Raw(posting.Summary)</div>
+                            }
+
+                            @if (posting.Responsibilities != null && !string.IsNullOrWhiteSpace(Convert.ToString(posting.Responsibilities)))
+                            {
+                                <section class="upendo-job-postings__details" aria-labelledby="@responsibilitiesId">
+                                    <h4 id="@responsibilitiesId">Responsibilities</h4>
+                                    <div>@Html.Raw(posting.Responsibilities)</div>
+                                </section>
+                            }
+
+                            @if (posting.Qualifications != null && !string.IsNullOrWhiteSpace(Convert.ToString(posting.Qualifications)))
+                            {
+                                <section class="upendo-job-postings__details" aria-labelledby="@qualificationsId">
+                                    <h4 id="@qualificationsId">Qualifications</h4>
+                                    <div>@Html.Raw(posting.Qualifications)</div>
+                                </section>
+                            }
+
+                            @if (posting.PreferredQualifications != null && !string.IsNullOrWhiteSpace(Convert.ToString(posting.PreferredQualifications)))
+                            {
+                                <section class="upendo-job-postings__details" aria-labelledby="@preferredQualificationsId">
+                                    <h4 id="@preferredQualificationsId">Preferred Qualifications</h4>
+                                    <div>@Html.Raw(posting.PreferredQualifications)</div>
+                                </section>
+                            }
+
+                            <footer class="upendo-job-postings__footer">
+                                <div class="upendo-job-postings__footer-meta">
+                                    @if (posting.Compensation != null && !string.IsNullOrWhiteSpace(Convert.ToString(posting.Compensation)))
+                                    {
+                                        <span><strong>Compensation:</strong> @Html.Raw(posting.Compensation)</span>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(postedDate))
+                                    {
+                                        <span><strong>Posted:</strong> <time datetime="@postedDate">@Html.Raw(postedDate)</time></span>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(closingDate))
+                                    {
+                                        <span><strong>Apply by:</strong> <time datetime="@closingDate">@Html.Raw(closingDate)</time></span>
+                                    }
+                                </div>
+
+                                @if (!string.IsNullOrWhiteSpace(detailUrl))
+                                {
+                                    if (isOffsiteDetail)
+                                    {
+                                        <a class="upendo-job-postings__detail-link" href="@detailUrl" target="_blank" rel="noopener noreferrer">View Job Details</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="upendo-job-postings__detail-link" href="@detailUrl">View Job Details</a>
+                                    }
+                                }
+                            </footer>
+                        </article>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</section>

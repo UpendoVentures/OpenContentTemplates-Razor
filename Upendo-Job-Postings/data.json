@@ -1,0 +1,40 @@
+{
+  "ModuleTitle": "Job Postings",
+  "ModuleAnchor": "careers",
+  "SectionHeading": "Open Positions",
+  "SectionDescription": "<p>Explore current opportunities to join our team.</p>",
+  "JobPostings": [
+    {
+      "ShowPosting": true,
+      "Title": "Senior Software Engineer",
+      "Summary": "<p>Build reliable CMS and SaaS features for growing businesses.</p>",
+      "Department": "Product Engineering",
+      "EmploymentType": "Full-time",
+      "WorkplaceType": "Hybrid",
+      "Location": "Austin, TX",
+      "Responsibilities": "<ul><li>Design and implement maintainable product features.</li><li>Collaborate with design, product, and customer teams.</li></ul>",
+      "Qualifications": "<ul><li>Professional experience building web applications.</li><li>Strong understanding of C# and modern web development.</li></ul>",
+      "PreferredQualifications": "<ul><li>Experience with DNN or another CMS platform.</li></ul>",
+      "Compensation": "Competitive salary and benefits",
+      "PostedDate": "2026-01-15",
+      "ClosingDate": "",
+      "DetailUrl": "/careers/senior-software-engineer"
+    },
+    {
+      "ShowPosting": true,
+      "Title": "Senior Software Engineer",
+      "Summary": "<p>Improve the infrastructure and developer experience behind our platform.</p>",
+      "Department": "Platform Engineering",
+      "EmploymentType": "Full-time",
+      "WorkplaceType": "Remote",
+      "Location": "United States",
+      "Responsibilities": "<ul><li>Improve deployment and observability workflows.</li><li>Partner with engineering teams on platform capabilities.</li></ul>",
+      "Qualifications": "<ul><li>Experience operating production web platforms.</li><li>Strong troubleshooting and communication skills.</li></ul>",
+      "PreferredQualifications": "",
+      "Compensation": "Competitive salary and benefits",
+      "PostedDate": "2026-01-10",
+      "ClosingDate": "",
+      "DetailUrl": "https://jobs.example.com/senior-software-engineer-platform"
+    }
+  ]
+}

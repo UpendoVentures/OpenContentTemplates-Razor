@@ -1,0 +1,160 @@
+.upendo-job-postings {
+    --upendo-job-text: var(--bs-body-color, #212529);
+    --upendo-job-muted: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
+    --upendo-job-border: rgba(0, 0, 0, 0.14);
+    --upendo-job-card: rgba(255, 255, 255, 0.86);
+    color: var(--upendo-job-text) !important;
+    width: 100%;
+    overflow: hidden;
+}
+
+.upendo-job-postings--dark {
+    --upendo-job-text: #ffffff;
+    --upendo-job-muted: rgba(255, 255, 255, 0.84);
+    --upendo-job-border: rgba(255, 255, 255, 0.3);
+    --upendo-job-card: rgba(0, 0, 0, 0.12);
+}
+
+.upendo-job-postings h1,
+.upendo-job-postings h2,
+.upendo-job-postings h3,
+.upendo-job-postings h4,
+.upendo-job-postings h5,
+.upendo-job-postings h6,
+.upendo-job-postings p,
+.upendo-job-postings li,
+.upendo-job-postings span,
+.upendo-job-postings strong,
+.upendo-job-postings div {
+    color: inherit;
+}
+
+.upendo-job-postings a {
+    color: inherit;
+}
+
+.upendo-job-postings__inner {
+    max-width: 1320px;
+    padding: 3rem 1.5rem;
+}
+
+.upendo-job-postings__heading {
+    margin: 0 0 0.75rem;
+}
+
+.upendo-job-postings__description {
+    color: var(--upendo-job-muted) !important;
+}
+
+.upendo-job-postings__description > *:last-child,
+.upendo-job-postings__summary > *:last-child,
+.upendo-job-postings__details > div > *:last-child {
+    margin-bottom: 0;
+}
+
+.upendo-job-postings__list {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.upendo-job-postings__posting {
+    padding: 1.5rem;
+    border: 1px solid var(--upendo-job-border);
+    border-radius: 0.5rem;
+    background: var(--upendo-job-card);
+    scroll-margin-top: 2rem;
+}
+
+.upendo-job-postings__posting-header,
+.upendo-job-postings__footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.upendo-job-postings__title {
+    margin: 0;
+}
+
+.upendo-job-postings__meta,
+.upendo-job-postings__footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    color: var(--upendo-job-muted) !important;
+    font-size: 0.9375rem;
+}
+
+.upendo-job-postings__meta {
+    margin-top: 0.5rem;
+}
+
+.upendo-job-postings__meta span + span::before {
+    margin-right: 1rem;
+    color: var(--upendo-job-muted);
+    content: "\2022";
+}
+
+.upendo-job-postings__anchor-link {
+    flex: 0 0 auto;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    color: inherit !important;
+    font-weight: 700;
+    line-height: 2.25rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.upendo-job-postings__anchor-link:hover,
+.upendo-job-postings__anchor-link:focus-visible,
+.upendo-job-postings__detail-link:hover,
+.upendo-job-postings__detail-link:focus-visible {
+    text-decoration: underline;
+}
+
+.upendo-job-postings__summary,
+.upendo-job-postings__details {
+    margin-top: 1.25rem;
+}
+
+.upendo-job-postings__details h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.upendo-job-postings__footer {
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--upendo-job-border);
+}
+
+.upendo-job-postings__detail-link {
+    font-weight: 600;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.upendo-job-postings__empty {
+    margin: 2rem 0 0;
+}
+
+@media (max-width: 575.98px) {
+    .upendo-job-postings__inner {
+        padding: 2rem 1rem;
+    }
+
+    .upendo-job-postings__posting-header,
+    .upendo-job-postings__footer {
+        display: block;
+    }
+
+    .upendo-job-postings__anchor-link,
+    .upendo-job-postings__detail-link {
+        display: inline-block;
+        margin-top: 0.75rem;
+    }
+}
