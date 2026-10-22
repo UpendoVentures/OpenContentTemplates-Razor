@@ -3,6 +3,9 @@
     --upendo-job-muted: var(--bs-secondary-color, rgba(33, 37, 41, 0.78));
     --upendo-job-border: rgba(0, 0, 0, 0.14);
     --upendo-job-card: rgba(255, 255, 255, 0.86);
+    --upendo-job-title: var(--bs-body-color, #212529);
+    --upendo-job-shadow: none;
+    --upendo-job-radius: 0.5rem;
     color: var(--upendo-job-text) !important;
     width: 100%;
     overflow: hidden;
@@ -13,6 +16,73 @@
     --upendo-job-muted: rgba(255, 255, 255, 0.84);
     --upendo-job-border: rgba(255, 255, 255, 0.3);
     --upendo-job-card: rgba(0, 0, 0, 0.12);
+    --upendo-job-title: #ffffff;
+}
+
+.upendo-job-postings--beach {
+    --upendo-job-card: linear-gradient(180deg, #ffffff 0%, #fffaf4 100%);
+    --upendo-job-border: rgba(0, 105, 148, 0.22);
+    --upendo-job-accent: #0b7285;
+    --upendo-job-text: #31444a;
+    --upendo-job-title: #173f4f;
+    --upendo-job-muted: #6f7f84;
+    --upendo-job-shadow: 0 0.75rem 1.75rem rgba(11, 114, 133, 0.1);
+    --upendo-job-radius: 1rem;
+}
+
+.upendo-job-postings--industrial {
+    --upendo-job-card: #f8f9fa;
+    --upendo-job-border: #343a40;
+    --upendo-job-text: #343a40;
+    --upendo-job-title: #212529;
+    --upendo-job-muted: #6c757d;
+    --upendo-job-shadow: 0.35rem 0.35rem 0 rgba(33, 37, 41, 0.16);
+    --upendo-job-radius: 0.35rem;
+}
+
+.upendo-job-postings--professional {
+    --upendo-job-card: #ffffff;
+    --upendo-job-border: rgba(13, 27, 42, 0.18);
+    --upendo-job-text: #334155;
+    --upendo-job-title: #0d1b2a;
+    --upendo-job-muted: #64748b;
+    --upendo-job-shadow: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.08);
+    --upendo-job-radius: 0.75rem;
+}
+
+.upendo-job-postings--techie {
+    --upendo-job-card: #0f172a;
+    --upendo-job-border: rgba(56, 189, 248, 0.45);
+    --upendo-job-accent: #38bdf8;
+    --upendo-job-text: #dbeafe;
+    --upendo-job-title: #f8fafc;
+    --upendo-job-muted: #93c5fd;
+    --upendo-job-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.22);
+    --upendo-job-radius: 0.85rem;
+}
+
+.upendo-job-postings.upendo-job-postings--dark {
+    --upendo-job-text: #ffffff;
+    --upendo-job-title: #ffffff;
+    --upendo-job-muted: rgba(255, 255, 255, 0.84);
+}
+
+.upendo-job-postings--dark.upendo-job-postings--beach .upendo-job-postings__details-panel {
+    --upendo-job-text: #31444a;
+    --upendo-job-title: #173f4f;
+    --upendo-job-muted: #6f7f84;
+}
+
+.upendo-job-postings--dark.upendo-job-postings--industrial .upendo-job-postings__details-panel {
+    --upendo-job-text: #343a40;
+    --upendo-job-title: #212529;
+    --upendo-job-muted: #6c757d;
+}
+
+.upendo-job-postings--dark.upendo-job-postings--professional .upendo-job-postings__details-panel {
+    --upendo-job-text: #334155;
+    --upendo-job-title: #0d1b2a;
+    --upendo-job-muted: #64748b;
 }
 
 .upendo-job-postings h1,
@@ -26,7 +96,13 @@
 .upendo-job-postings span,
 .upendo-job-postings strong,
 .upendo-job-postings div {
-    color: inherit;
+    color: var(--upendo-job-text);
+}
+
+.upendo-job-postings__heading,
+.upendo-job-postings__title,
+.upendo-job-postings__details h4 {
+    color: var(--upendo-job-title);
 }
 
 .upendo-job-postings a {
@@ -66,8 +142,9 @@
 
 .upendo-job-postings__details-panel {
     border: 1px solid var(--upendo-job-border);
-    border-radius: 0.5rem;
+    border-radius: var(--upendo-job-radius);
     background: var(--upendo-job-card);
+    box-shadow: var(--upendo-job-shadow);
 }
 
 .upendo-job-postings__summary-row {
@@ -194,6 +271,89 @@
 
 .upendo-job-postings__empty {
     margin: 2rem 0 0;
+}
+
+.upendo-job-postings--beach .upendo-job-postings__details-panel {
+    border-bottom: 0.25rem solid #f4c27a;
+}
+
+.upendo-job-postings--industrial .upendo-job-postings__details-panel {
+    border-width: 2px;
+}
+
+.upendo-job-postings--industrial .upendo-job-postings__title {
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+.upendo-job-postings--professional .upendo-job-postings__details-panel {
+    border-top: 0.25rem solid rgba(29, 78, 216, 0.16);
+}
+
+.upendo-job-postings--professional .upendo-job-postings__detail-link {
+    font-weight: 600;
+}
+
+.upendo-job-postings--techie .upendo-job-postings__details-panel {
+    border-color: var(--upendo-job-border);
+}
+
+.upendo-job-postings--techie .upendo-job-postings__badge {
+    color: var(--upendo-job-accent);
+}
+
+/* Animation levels are scoped to the existing job-postings root and preserve the template's selectors. */
+.upendo-job-postings[data-animation-level="none"] .upendo-job-postings__posting {
+    transition: none;
+}
+
+.upendo-job-postings[data-animation-level="light"] .upendo-job-postings__posting,
+.upendo-job-postings[data-animation-level="medium"] .upendo-job-postings__posting,
+.upendo-job-postings[data-animation-level="high"] .upendo-job-postings__posting {
+    transition: transform 0.2s ease-in-out;
+}
+
+.upendo-job-postings[data-animation-level="light"] .upendo-job-postings__posting:hover,
+.upendo-job-postings[data-animation-level="light"] .upendo-job-postings__posting:focus-within {
+    transform: translateY(-0.12rem);
+}
+
+.upendo-job-postings[data-animation-level="medium"] .upendo-job-postings__posting,
+.upendo-job-postings[data-animation-level="high"] .upendo-job-postings__posting {
+    transition-duration: 0.28s;
+}
+
+.upendo-job-postings[data-animation-level="medium"] .upendo-job-postings__posting:hover,
+.upendo-job-postings[data-animation-level="medium"] .upendo-job-postings__posting:focus-within {
+    transform: translateY(-0.25rem);
+}
+
+.upendo-job-postings[data-animation-level="high"] .upendo-job-postings__posting:hover,
+.upendo-job-postings[data-animation-level="high"] .upendo-job-postings__posting:focus-within {
+    transform: translateY(-0.4rem) scale(1.005);
+}
+
+.upendo-job-postings[data-animation-level="light"] .upendo-job-postings__toggle,
+.upendo-job-postings[data-animation-level="medium"] .upendo-job-postings__toggle,
+.upendo-job-postings[data-animation-level="high"] .upendo-job-postings__toggle {
+    transition: transform 0.2s ease-in-out;
+}
+
+.upendo-job-postings[data-animation-level="medium"] .upendo-job-postings__toggle,
+.upendo-job-postings[data-animation-level="high"] .upendo-job-postings__toggle {
+    transition-duration: 0.28s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .upendo-job-postings .upendo-job-postings__posting,
+    .upendo-job-postings .upendo-job-postings__toggle {
+        transition: none !important;
+    }
+
+    .upendo-job-postings .upendo-job-postings__posting:hover,
+    .upendo-job-postings .upendo-job-postings__posting:focus-within {
+        transform: none !important;
+    }
 }
 
 @media (max-width: 575.98px) {

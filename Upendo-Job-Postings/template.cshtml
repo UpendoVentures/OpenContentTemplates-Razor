@@ -23,6 +23,33 @@
         anchorCounts[slug] = count;
         return count == 1 ? slug : slug + "-" + count.ToString();
     }
+
+    public string NormalizeAnimationLevel(object value)
+    {
+        var level = value == null ? string.Empty : value.ToString().Trim().ToLowerInvariant();
+
+        switch (level)
+        {
+            case "none": return "none";
+            case "medium": return "medium";
+            case "high": return "high";
+            default: return "light";
+        }
+    }
+
+    public string NormalizeTheme(object value)
+    {
+        var theme = value == null ? string.Empty : value.ToString().Trim().ToLowerInvariant();
+
+        switch (theme)
+        {
+            case "beach": return "beach";
+            case "industrial": return "industrial";
+            case "professional": return "professional";
+            case "techie": return "techie";
+            default: return "default";
+        }
+    }
 }
 
 @{
@@ -36,6 +63,14 @@
     var backgroundColorClass = Model.Settings != null && Model.Settings.BackgroundColorClass != null
         ? Convert.ToString(Model.Settings.BackgroundColorClass)
         : string.Empty;
+    var animationLevelSetting = Model.Settings != null && Model.Settings.AnimationLevel != null
+        ? Model.Settings.AnimationLevel
+        : "light";
+    var animationLevel = NormalizeAnimationLevel(animationLevelSetting);
+    var themeSetting = Model.Settings != null && Model.Settings.Theme != null
+        ? Model.Settings.Theme
+        : "_default";
+    var theme = NormalizeTheme(themeSetting);
     var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : string.Empty;
     var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : string.Empty;
     var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : string.Empty;
@@ -59,7 +94,7 @@
     }
 
     var contrastClass = isDarkBackground ? "upendo-job-postings--dark" : "upendo-job-postings--light";
-    var sectionClasses = "upendo-job-postings w-100 " + contrastClass;
+    var sectionClasses = "upendo-job-postings w-100 upendo-job-postings--" + theme + " " + contrastClass;
     if (!string.IsNullOrWhiteSpace(backgroundColorClass)) { sectionClasses += " " + backgroundColorClass; }
     if (!string.IsNullOrWhiteSpace(marginTop)) { sectionClasses += " " + marginTop; }
     if (!string.IsNullOrWhiteSpace(marginBottom)) { sectionClasses += " " + marginBottom; }
@@ -86,7 +121,7 @@
     <div id="@Html.Raw(moduleAnchor)"></div>
 }
 
-<section class="@sectionClasses" data-upendo-job-postings-module="@Dnn.Module.ModuleID" aria-label="Job opportunities">
+<section class="@sectionClasses" data-upendo-job-postings-module="@Dnn.Module.ModuleID" data-animation-level="@animationLevel" aria-label="Job opportunities">
     <div class="container-fluid">
         <div class="upendo-job-postings__inner mx-auto">
             @if (!string.IsNullOrWhiteSpace(sectionHeading))

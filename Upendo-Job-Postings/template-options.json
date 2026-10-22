@@ -13,6 +13,20 @@
       ],
       "removeDefaultNone": true
     },
+    "AnimationLevel": {
+      "title": "Animation Level",
+      "type": "select",
+      "helper": "Controls interaction motion. Reduced-motion preferences are always respected.",
+      "optionLabels": ["None", "Light", "Medium", "High"],
+      "removeDefaultNone": true
+    },
+    "Theme": {
+      "title": "Theme",
+      "type": "select",
+      "helper": "Choose a visual theme. _default preserves the current appearance.",
+      "optionLabels": ["_default", "Beach", "Industrial", "Professional", "Techie"],
+      "removeDefaultNone": true
+    },
     "MarginTop": {
       "title": "Margin (top)",
       "type": "select",

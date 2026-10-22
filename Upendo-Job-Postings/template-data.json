@@ -1,5 +1,7 @@
 {
   "BackgroundColorClass": "bg-light",
+  "AnimationLevel": "light",
+  "Theme": "_default",
   "MarginTop": "mt-0",
   "MarginBottom": "mb-0",
   "PaddingTop": "pt-5",
