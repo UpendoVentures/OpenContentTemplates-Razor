@@ -59,23 +59,49 @@
 }
 
 .upendo-job-postings__posting {
-    padding: 1.5rem;
-    border: 1px solid var(--upendo-job-border);
-    border-radius: 0.5rem;
-    background: var(--upendo-job-card);
+    position: relative;
+    padding: 0;
     scroll-margin-top: 2rem;
 }
 
-.upendo-job-postings__posting-header,
-.upendo-job-postings__footer {
+.upendo-job-postings__details-panel {
+    border: 1px solid var(--upendo-job-border);
+    border-radius: 0.5rem;
+    background: var(--upendo-job-card);
+}
+
+.upendo-job-postings__summary-row {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    padding: 1.25rem 3.5rem 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.upendo-job-postings__summary-row::-webkit-details-marker {
+    display: none;
+}
+
+.upendo-job-postings__summary-row::marker {
+    display: none;
+    content: "";
+}
+
+.upendo-job-postings__summary-row:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+}
+
+.upendo-job-postings__summary-content {
+    min-width: 0;
 }
 
 .upendo-job-postings__title {
+    display: block;
     margin: 0;
+    font-weight: 600;
 }
 
 .upendo-job-postings__meta,
@@ -89,16 +115,24 @@
 
 .upendo-job-postings__meta {
     margin-top: 0.5rem;
+    align-items: center;
 }
 
-.upendo-job-postings__meta span + span::before {
-    margin-right: 1rem;
-    color: var(--upendo-job-muted);
-    content: "\2022";
+.upendo-job-postings__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    line-height: 1.2;
 }
 
 .upendo-job-postings__anchor-link {
-    flex: 0 0 auto;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
     min-width: 2.25rem;
     min-height: 2.25rem;
     color: inherit !important;
@@ -106,6 +140,23 @@
     line-height: 2.25rem;
     text-align: center;
     text-decoration: none;
+}
+
+.upendo-job-postings__toggle {
+    flex: 0 0 auto;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.upendo-job-postings__details-panel[open] .upendo-job-postings__toggle {
+    transform: rotate(225deg);
+}
+
+.upendo-job-postings__expanded-content {
+    padding: 0 1.5rem 1.5rem;
 }
 
 .upendo-job-postings__anchor-link:hover,
@@ -126,7 +177,10 @@
 }
 
 .upendo-job-postings__footer {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     margin-top: 1.5rem;
     padding-top: 1rem;
     border-top: 1px solid var(--upendo-job-border);
@@ -147,9 +201,17 @@
         padding: 2rem 1rem;
     }
 
-    .upendo-job-postings__posting-header,
+    .upendo-job-postings__summary-row,
     .upendo-job-postings__footer {
         display: block;
+    }
+
+    .upendo-job-postings__summary-row {
+        padding: 1rem 3rem 1rem 1rem;
+    }
+
+    .upendo-job-postings__expanded-content {
+        padding: 0 1rem 1rem;
     }
 
     .upendo-job-postings__anchor-link,

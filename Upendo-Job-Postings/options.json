@@ -50,13 +50,15 @@
           "EmploymentType": {
             "type": "select",
             "helper": "Optional. Choose the employment arrangement.",
-            "optionLabels": ["Full-time", "Part-time", "Contract", "Temporary", "Internship"],
+            "optionLabels": ["Full-Time", "Part-Time", "Contract", "Freelance"],
+            "optionValues": ["Full-Time", "Part-Time", "Contract", "Freelance"],
             "removeDefaultNone": false
           },
           "WorkplaceType": {
             "type": "select",
             "helper": "Optional. Choose how the work is performed.",
-            "optionLabels": ["On-site", "Hybrid", "Remote"],
+            "optionLabels": ["On-Site", "Offsite", "Hybrid"],
+            "optionValues": ["On-Site", "Offsite", "Hybrid"],
             "removeDefaultNone": false
           },
           "Location": {
