@@ -13,6 +13,18 @@
 			],
 			"removeDefaultNone": true
 		},
+		"AnimationLevel": {
+			"title": "Animation Level",
+			"type": "select",
+			"helper": "Controls interaction motion. Reduced-motion preferences are always respected.",
+			"optionLabels": [
+				"None",
+				"Light",
+				"Medium",
+				"High"
+			],
+			"removeDefaultNone": true
+		},
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",

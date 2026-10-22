@@ -189,3 +189,60 @@
         height: 2.75rem;
     }
 }
+
+/* Animation levels are scoped to the existing Press Hits root and do not alter theme selectors. */
+.upendo-press-hits[data-animation-level="none"] .upendo-press-hits__external-link,
+.upendo-press-hits[data-animation-level="none"] .upendo-press-hits__local-link {
+    transition: none;
+}
+
+.upendo-press-hits[data-animation-level="light"] .upendo-press-hits__card,
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__card,
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__card {
+    transition: transform .2s ease-in-out;
+}
+
+.upendo-press-hits[data-animation-level="light"] .upendo-press-hits__card:hover,
+.upendo-press-hits[data-animation-level="light"] .upendo-press-hits__card:focus-within {
+    transform: translateY(-.12rem);
+}
+
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__card,
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__card {
+    transition-duration: .28s;
+}
+
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__card:hover,
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__card:focus-within {
+    transform: translateY(-.25rem);
+}
+
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__card:hover,
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__card:focus-within {
+    transform: translateY(-.4rem) scale(1.005);
+}
+
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__type-icon,
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__type-icon {
+    transition: transform .25s ease-in-out;
+}
+
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__card:hover .upendo-press-hits__type-icon,
+.upendo-press-hits[data-animation-level="medium"] .upendo-press-hits__card:focus-within .upendo-press-hits__type-icon {
+    transform: scale(1.05);
+}
+
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__card:hover .upendo-press-hits__type-icon,
+.upendo-press-hits[data-animation-level="high"] .upendo-press-hits__card:focus-within .upendo-press-hits__type-icon {
+    transform: rotate(-4deg) scale(1.09);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .upendo-press-hits .upendo-press-hits__card,
+    .upendo-press-hits .upendo-press-hits__type-icon,
+    .upendo-press-hits .upendo-press-hits__external-link,
+    .upendo-press-hits .upendo-press-hits__local-link {
+        transition: none !important;
+        transform: none !important;
+    }
+}

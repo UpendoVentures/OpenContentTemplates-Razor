@@ -13,6 +13,17 @@
             ],
             "default": "_default"
         },
+        "AnimationLevel": {
+            "title": "Animation Level",
+            "type": "string",
+            "enum": [
+                "none",
+                "light",
+                "medium",
+                "high"
+            ],
+            "default": "light"
+        },
         "MarginTop": {
             "title": "Margin (top)",
             "type": "string",

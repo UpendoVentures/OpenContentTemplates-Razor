@@ -32,6 +32,19 @@
     }
   }
 
+  public string NormalizeAnimationLevel(object value)
+  {
+    var level = value == null ? "" : value.ToString().Trim().ToLowerInvariant();
+
+    switch (level)
+    {
+      case "none": return "none";
+      case "medium": return "medium";
+      case "high": return "high";
+      default: return "light";
+    }
+  }
+
   public DateTime? ParseDate(object value)
   {
     if (value == null) return null;
@@ -93,6 +106,10 @@
     ? Model.Settings.PressHitsStyle
     : "_default";
   var pressHitsStyle = NormalizePressHitsStyle(pressHitsStyleSetting);
+  var animationLevelSetting = Model.Settings != null && Model.Settings.AnimationLevel != null
+    ? Model.Settings.AnimationLevel
+    : "light";
+  var animationLevel = NormalizeAnimationLevel(animationLevelSetting);
 
   var items = new List<dynamic>();
   if (Model.PressItems != null)
@@ -108,7 +125,7 @@
     .ToList();
 }
 
-<section class="container py-5 upendo-press-hits upendo-press-hits--@pressHitsStyle">
+<section class="container py-5 upendo-press-hits upendo-press-hits--@pressHitsStyle" data-animation-level="@animationLevel">
 
   <!-- Hero -->
   <div class="row justify-content-center">
