@@ -54,10 +54,11 @@
             "sort": false,
             "optionLabels": [
               "None",
-              "NoFollow",
-              "NoOpener",
-              "NoReferrrer"
-            ]
+              "No Follow",
+              "No Opener",
+              "No Referrrer"
+            ],
+			      "removeDefaultNone": true
           },
           "OpenInNewTab": {
             "type": "checkbox",

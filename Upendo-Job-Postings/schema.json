@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": { "type": "string", "title": "Module Title" },
+    "ModuleAnchor": { "type": "string", "title": "Module Anchor", "pattern": "^[a-zA-Z0-9\\-]+$" },
+    "SectionHeading": { "type": "string", "title": "Section Heading" },
+    "SectionDescription": { "type": "string", "title": "Section Description" },
+    "JobPostings": {
+      "type": "array",
+      "title": "Job Postings",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ShowPosting": { "type": "boolean", "title": "Show Posting", "default": true },
+          "Title": { "type": "string", "title": "Job Title" },
+          "Summary": { "type": "string", "title": "Summary" },
+          "Department": { "type": "string", "title": "Department" },
+          "EmploymentType": { "type": "string", "title": "Employment Type", "enum": ["Full-Time", "Part-Time", "Contract", "Freelance"] },
+          "WorkplaceType": { "type": "string", "title": "Workplace Type", "enum": ["On-Site", "Offsite", "Hybrid"] },
+          "Location": { "type": "string", "title": "Location" },
+          "Responsibilities": { "type": "string", "title": "Responsibilities" },
+          "Qualifications": { "type": "string", "title": "Qualifications" },
+          "PreferredQualifications": { "type": "string", "title": "Preferred Qualifications" },
+          "Compensation": { "type": "string", "title": "Compensation" },
+          "PostedDate": { "type": "string", "title": "Posted Date" },
+          "ClosingDate": { "type": "string", "title": "Closing Date" },
+          "DetailUrl": { "type": "string", "title": "Detail URL" }
+        },
+        "required": ["Title"]
+      }
+    }
+  },
+  "required": ["JobPostings"]
+}

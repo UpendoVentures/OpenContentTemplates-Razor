@@ -1,0 +1,105 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
+      "placeholder": "Job Postings"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Optional. Used to create #anchor-links on the page. Use only letters, numbers, and hyphens.",
+      "placeholder": "careers",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Optional. Main heading shown above the job postings. HTML is allowed and will render in the view.",
+      "placeholder": "Open Positions"
+    },
+    "SectionDescription": {
+      "type": "textarea",
+      "helper": "Optional. Supporting introduction shown below the heading. HTML is allowed and will render in the view.",
+      "placeholder": "<p>Explore current opportunities to join our team.</p>"
+    },
+    "JobPostings": {
+      "type": "accordion",
+      "titleField": "Title",
+      "helper": "Add job postings in the order they should appear. Hidden postings remain available for later use.",
+      "items": {
+        "fields": {
+          "ShowPosting": {
+            "type": "checkbox",
+            "helper": "Show this job posting to site visitors.",
+            "default": true
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Required. The public job title.",
+            "placeholder": "Senior Software Engineer"
+          },
+          "Summary": {
+            "type": "textarea",
+            "helper": "Optional. Short summary shown near the top of the posting. HTML is allowed.",
+            "placeholder": "<p>Briefly describe the opportunity.</p>"
+          },
+          "Department": {
+            "type": "text",
+            "helper": "Optional. Team or department responsible for the role.",
+            "placeholder": "Product Engineering"
+          },
+          "EmploymentType": {
+            "type": "select",
+            "helper": "Optional. Choose the employment arrangement.",
+            "optionLabels": ["Full-Time", "Part-Time", "Contract", "Freelance"],
+            "optionValues": ["Full-Time", "Part-Time", "Contract", "Freelance"],
+            "removeDefaultNone": false
+          },
+          "WorkplaceType": {
+            "type": "select",
+            "helper": "Optional. Choose how the work is performed.",
+            "optionLabels": ["On-Site", "Offsite", "Hybrid"],
+            "optionValues": ["On-Site", "Offsite", "Hybrid"],
+            "removeDefaultNone": false
+          },
+          "Location": {
+            "type": "text",
+            "helper": "Optional. City, region, country, or other location description.",
+            "placeholder": "Austin, TX"
+          },
+          "Responsibilities": {
+            "type": "textarea",
+            "helper": "Optional. Describe the main responsibilities. HTML is allowed and will render in the view.",
+            "placeholder": "<ul><li>Lead meaningful work.</li><li>Collaborate with the team.</li></ul>"
+          },
+          "Qualifications": {
+            "type": "textarea",
+            "helper": "Optional. List required qualifications. HTML is allowed and will render in the view.",
+            "placeholder": "<ul><li>Relevant professional experience.</li></ul>"
+          },
+          "PreferredQualifications": {
+            "type": "textarea",
+            "helper": "Optional. List preferred qualifications. HTML is allowed and will render in the view.",
+            "placeholder": "<ul><li>Additional experience that would help.</li></ul>"
+          },
+          "Compensation": {
+            "type": "text",
+            "helper": "Optional. Provide a salary range, benefits summary, or a note such as ‘Not disclosed’.",
+            "placeholder": "Competitive salary and benefits"
+          },
+          "PostedDate": {
+            "type": "date",
+            "helper": "Optional. Date this posting was published."
+          },
+          "ClosingDate": {
+            "type": "date",
+            "helper": "Optional. Last date to apply."
+          },
+          "DetailUrl": {
+            "type": "url",
+            "helper": "Optional. Enter or select a local or external detail-page URL."
+          }
+        }
+      }
+    }
+  }
+}

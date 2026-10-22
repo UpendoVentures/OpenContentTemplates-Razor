@@ -19,3 +19,43 @@
     overflow: hidden;
   }
   
+.bcc-associated-people {
+  min-height: 100%;
+}
+
+.bcc-associated-person {
+  max-width: 18rem;
+  width: 100%;
+  text-align: center;
+}
+
+.bcc-associated-person__visual {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.bcc-associated-person__visual .badge {
+  background-color: var(--bs-success, #198754) !important;
+  color: #fff !important;
+}
+
+.bcc-associated-person__avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  border: .25rem solid rgba(182, 143, 62, .25);
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .12);
+}
+
+.bcc-associated-person__avatar--fallback {
+  background: #f8f9fa;
+  color: #4d4d4d;
+  font-size: 1.75rem;
+}

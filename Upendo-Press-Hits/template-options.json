@@ -1,5 +1,30 @@
 {
-	"fields": {		
+	"fields": {
+		"PressHitsStyle": {
+			"title": "Press Hits Style",
+			"type": "select",
+			"helper": "Choose the visual styling for the press hits section. _default preserves the current appearance.",
+			"optionLabels": [
+				"_default",
+				"Beach",
+				"Industrial",
+				"Professional",
+				"Techie"
+			],
+			"removeDefaultNone": true
+		},
+		"AnimationLevel": {
+			"title": "Animation Level",
+			"type": "select",
+			"helper": "Controls interaction motion. Reduced-motion preferences are always respected.",
+			"optionLabels": [
+				"None",
+				"Light",
+				"Medium",
+				"High"
+			],
+			"removeDefaultNone": true
+		},
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",
