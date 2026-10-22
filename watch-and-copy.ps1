@@ -45,7 +45,7 @@ function Copy-ChangedFile {
 
         Copy-Item -Path $fullPath -Destination $targetPath -Force
 
-        Write-Host "[COPIED] $relativePath" -ForegroundColor Green
+        Write-Host ("[COPIED {0}] {1}" -f (Get-Date -Format "yyyy-MM-dd HH:mm:ss"), $relativePath) -ForegroundColor Green
     }
     catch {
         Write-Host "[ERROR] $fullPath" -ForegroundColor Red
