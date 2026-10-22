@@ -8,6 +8,7 @@
 @{
     // Update or create the "hideadminborder" setting with the value "True"
     TemplateHelper.HideAdminBorder(Model.Context.ModuleID, Model.Context.TabID);
+    RegisterStyleSheet("template.css");
 }
 
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
@@ -16,6 +17,20 @@
 }
 
 @functions {
+
+  public string NormalizePressHitsStyle(object value)
+  {
+    var style = value == null ? "" : value.ToString().Trim().ToLowerInvariant();
+
+    switch (style)
+    {
+      case "beach": return "beach";
+      case "industrial": return "industrial";
+      case "professional": return "professional";
+      case "techie": return "techie";
+      default: return "default";
+    }
+  }
 
   public DateTime? ParseDate(object value)
   {
@@ -74,6 +89,10 @@
 @{
   var heroTitle = Safe((string)Model.HeroTitle);
   var heroIntro = Model.HeroIntro;
+  var pressHitsStyleSetting = Model.Settings != null && Model.Settings.PressHitsStyle != null
+    ? Model.Settings.PressHitsStyle
+    : "_default";
+  var pressHitsStyle = NormalizePressHitsStyle(pressHitsStyleSetting);
 
   var items = new List<dynamic>();
   if (Model.PressItems != null)
@@ -89,16 +108,15 @@
     .ToList();
 }
 
-<section class="container py-5">
+<section class="container py-5 upendo-press-hits upendo-press-hits--@pressHitsStyle">
 
   <!-- Hero -->
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <div class="p-4 p-md-5 rounded-4 shadow-sm bg-light">
+      <div class="p-4 p-md-5 rounded-4 shadow-sm bg-light upendo-press-hits__hero">
         <div class="d-flex align-items-start gap-3">
           <div class="flex-shrink-0">
-            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white shadow-sm"
-                  style="width:48px;height:48px;"
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-white shadow-sm upendo-press-hits__hero-icon"
                   aria-hidden="true">
               <i class="fa-solid fa-newspaper fs-4"></i>
             </span>
@@ -113,7 +131,7 @@
               </div>
             }
   
-            <p class="text-end small pt-3 mb-0">Media inquiries &amp; speaking engagements: Reach out and <a href="/contact">let’s start the conversation</a>.</p>
+            <p class="text-end small pt-3 mb-0 upendo-press-hits__contact">Media inquiries &amp; speaking engagements: Reach out and <a href="/contact">let’s start the conversation</a>.</p>
 
           </div>
         </div>
@@ -160,7 +178,7 @@
             }
 
             <div class="col-12">
-              <article class="card border-0 shadow-lg rounded-4 mb-5">
+              <article class="card border-0 shadow-lg rounded-4 mb-5 upendo-press-hits__card">
                 <div class="card-body p-4 p-md-4">
 
                   <div class="row g-3 align-items-start">
@@ -173,13 +191,13 @@
                           ? thumbnailAlt
                           : string.Format("{0} thumbnail", source);
 
-                        <div class="ratio ratio-1x1 rounded-3 overflow-hidden bg-light">
-                          <img src="@thumbnail" alt="@altText" loading="lazy" class="w-100 h-100" style="object-fit: cover;" decoding="async" />
+                        <div class="ratio ratio-1x1 rounded-3 overflow-hidden bg-light upendo-press-hits__thumbnail">
+                          <img src="@thumbnail" alt="@altText" loading="lazy" class="w-100 h-100 upendo-press-hits__thumbnail-image" decoding="async" />
                         </div>
                       }
                       else
                       {
-                        <div class="ratio ratio-1x1 rounded-3 bg-light d-flex align-items-center justify-content-center" aria-hidden="true">
+                        <div class="ratio ratio-1x1 rounded-3 bg-light d-flex align-items-center justify-content-center upendo-press-hits__thumbnail-placeholder" aria-hidden="true">
                           <i class="@TypeIcon(type) fs-3 text-muted"></i>
                         </div>
                       }
@@ -189,14 +207,14 @@
                     <div class="col-12 col-md-9 col-lg-10">
                       <div class="d-flex align-items-start gap-3">
                         <div class="flex-shrink-0">
-                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light"
-                                style="width:44px;height:44px;" aria-hidden="true">
+                          <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light upendo-press-hits__type-icon"
+                                aria-hidden="true">
                             <i class="@TypeIcon(type)"></i>
                           </span>
                         </div>
 
                         <div class="flex-grow-1 px-3">
-                          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                          <div class="d-flex flex-wrap align-items-center gap-2 mb-2 upendo-press-hits__meta">
                             <span class="badge text-bg-secondary">@TypeLabel(type)</span>
 
                             @if (!string.IsNullOrWhiteSpace(source))
@@ -219,7 +237,7 @@
 
                             @if (featured)
                             {
-                              <span class="badge text-bg-warning">
+                              <span class="badge text-bg-warning upendo-press-hits__featured">
                                 <i class="fa-solid fa-star me-1" aria-hidden="true"></i>
                                 Featured
                               </span>
@@ -235,7 +253,7 @@
 
                           @if (links.Count > 0 || !string.IsNullOrWhiteSpace(upendoLink))
                           {
-                            <div class="d-flex flex-column gap-2">
+                            <div class="d-flex flex-column gap-2 upendo-press-hits__actions">
 
                               @if (links.Count > 0)
                               {
@@ -249,7 +267,7 @@
                                     {
                                       var ariaLabel = string.Format("{0} (opens in a new tab)", lbl);
 
-                                      <a class="btn btn-sm btn-outline-secondary" href="@url" target="_blank" rel="noopener noreferrer" aria-label="@ariaLabel">
+                                      <a class="btn btn-sm btn-outline-secondary upendo-press-hits__external-link" href="@url" target="_blank" rel="noopener noreferrer" aria-label="@ariaLabel">
                                         <i class="fa-solid fa-arrow-up-right-from-square me-1" aria-hidden="true"></i>
                                         @lbl
                                       </a>
@@ -261,7 +279,7 @@
                               @if (!string.IsNullOrWhiteSpace(upendoLink))
                               {
                                 <div>
-                                  <a class="link-primary" href="@upendoLink" aria-label="Our thoughts on this press mention">
+                                  <a class="link-primary upendo-press-hits__local-link" href="@upendoLink" aria-label="Our thoughts on this press mention">
                                     <i class="fa-solid fa-link me-1" aria-hidden="true"></i>
                                     Our thoughts on this press mention
                                   </a>

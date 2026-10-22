@@ -1,5 +1,18 @@
 {
-	"fields": {		
+	"fields": {
+		"PressHitsStyle": {
+			"title": "Press Hits Style",
+			"type": "select",
+			"helper": "Choose the visual styling for the press hits section. _default preserves the current appearance.",
+			"optionLabels": [
+				"_default",
+				"Beach",
+				"Industrial",
+				"Professional",
+				"Techie"
+			],
+			"removeDefaultNone": true
+		},
 		"MarginTop": {
 			"title": "Margin (top)",
 			"type": "select",

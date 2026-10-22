@@ -1,6 +1,18 @@
 {
     "type": "object",
-    "properties": {        
+    "properties": {
+        "PressHitsStyle": {
+            "title": "Press Hits Style",
+            "type": "string",
+            "enum": [
+                "_default",
+                "Beach",
+                "Industrial",
+                "Professional",
+                "Techie"
+            ],
+            "default": "_default"
+        },
         "MarginTop": {
             "title": "Margin (top)",
             "type": "string",
