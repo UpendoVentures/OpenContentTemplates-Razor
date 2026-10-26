@@ -65,9 +65,7 @@ This solution is created and maintained by [Upendo Ventures](https://upendoventu
 - [Sponsor Us](https://github.com/sponsors/UpendoVentures) (we're grateful at any level 🙏🏽)  
 
 ## 🛠️ Need SLA-Based Support?  
-If you need more help than what we can provide here, we'd be happy to help you via [Upendo DNN Support](https://upendodnn.com).  
-
->  😎 This is an **officially supported** extension! 🙌🏽   [DNN Extensions with Support](https://upendodnn.com/Extensions)  
+If you need more help than what we can provide here, we'd be happy to help you via [Upendo DNN Support](https://upendoventures.com/contact).  
 
 <hr />  
 
@@ -78,6 +76,10 @@ If you're not a developer, the rest of this README is not going to interest you.
 <hr />
 
 Oh, you want to help build some templates? Sweet!  Here's how you can do it.  
+
+## Development Guide
+
+See the [OpenContent Template Development Guide](OPENCONTENT-TEMPLATE-DEVELOPMENT-GUIDE.md) for the repository's legacy Razor, OpenContent metadata, security, accessibility, image, theme, animation, and validation conventions.
 
 > *The optional steps could be replaced with installing and using any theme built using Bootstrap 5 & FontAwesome 5.*  
 
