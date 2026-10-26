@@ -43,6 +43,7 @@
     }
     var settings = Model.Settings;
     var cardImagePosition = AllowList(settings != null && settings.CardImagePosition != null ? Convert.ToString(settings.CardImagePosition) : string.Empty, "outside", "inside", "outside", "none");
+    var imageHeight = AllowList(settings != null && settings.ImageHeight != null ? Convert.ToString(settings.ImageHeight) : string.Empty, "short", "short", "medium", "tall", "taller");
     var cardVerticalSpacing = AllowList(settings != null && settings.CardVerticalSpacing != null ? Convert.ToString(settings.CardVerticalSpacing) : string.Empty, "default", "default", "medium", "large");
     var infinityModeValue = settings != null && settings.InfinityMode != null ? Convert.ToString(settings.InfinityMode) : string.Empty;
     var infinityMode = string.Equals(infinityModeValue, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(infinityModeValue, "1", StringComparison.OrdinalIgnoreCase);
@@ -77,7 +78,7 @@
     var headingId = sectionId + "-heading";
     var appear = animation == "none" ? string.Empty : " appear-animation";
     var appearName = animation == "high" ? "zoomIn" : (animation == "medium" ? "fadeInUp" : "fadeIn");
-    var sectionClasses = "oc-timeline oc-timeline--spacing-" + cardVerticalSpacing + " oc-timeline--" + (isDarkSection ? "dark" : "light") + (infinityMode ? " oc-timeline--infinity" : string.Empty) + " position-relative w-100 " + background + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
+    var sectionClasses = "oc-timeline oc-timeline--spacing-" + cardVerticalSpacing + " oc-timeline--image-height-" + imageHeight + " oc-timeline--" + (isDarkSection ? "dark" : "light") + (infinityMode ? " oc-timeline--infinity" : string.Empty) + " position-relative w-100 " + background + " " + marginTop + " " + marginBottom + " " + paddingTop + " " + paddingBottom;
 }
 
 @if (!string.IsNullOrWhiteSpace(moduleAnchor)) { <div id="@moduleAnchor"></div> }
