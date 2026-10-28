@@ -1,96 +1,134 @@
-@using System
-@using System.Text
-@using System.Data.SqlClient
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @{
-	var intPortalId = Dnn.Portal.PortalId;
-	var strPortalAlias = Dnn.Portal.PortalAlias;
-	
-	var db = Database.Open("SiteSqlServer");
-	var txtSql = @"SELECT Tabs.TabID, 
-	Tabs.PortalID, 
-	Tabs.TabName ,
-	Tabs.TabId,
-	Tabs.TabPath as Path,
-	Modules.ModuleID,
-	ModuleDefinitions.FriendlyName, 
-	ModuleSettings.SettingName, 
-	ModuleSettings.SettingValue as Template
-	FROM            ModuleDefinitions INNER JOIN
-	 Modules ON ModuleDefinitions.ModuleDefID = Modules.ModuleDefID INNER JOIN
-	 TabModules ON Modules.ModuleID = TabModules.ModuleID INNER JOIN
-	 Tabs ON TabModules.TabID = Tabs.TabID INNER JOIN
-	 ModuleSettings ON Modules.ModuleID = ModuleSettings.ModuleID
-	 WHERE ModuleDefinitions.FriendlyName = 'OpenContent' AND ModuleSettings.SettingName = 'template' {0}
-	 ORDER BY  ModuleSettings.SettingValue, Tabs.PortalID";
-	 
-
-	 var portalFilter = string.Empty;
-	 
-
-	 if (Model.Settings != null && Model.Settings.ThisPortal){
-			 portalFilter = " AND Tabs.PortalID =" + Dnn.Portal.PortalId.ToString();
-	 }
-
-	txtSql = string.Format(txtSql, portalFilter);
-
-	 int tables = 0;
-	 string lastTemplate = string.Empty;
-	 string tableOpen = "<table class='table table-striped table-hover'><tr><th scope='col' class='col-portal'>PortalId</th><th scope='col' class='col-page'>Page Name</th><th scope='col' class='col-path'>Path</th></tr>";
-	 string tableClose = "</table>";
-	 
+    var moduleId = Dnn.Module.ModuleID;
+    var tabId = Dnn.Module.TabID;
+    var initialScope = Model.Settings != null && Model.Settings.ThisPortal ? "portal" : "instance";
 }
 
-<div class="section">
-	<div class="oc-template-list row">
-		<div class="col">
-		
-			@foreach(var row in db.Query(txtSql)) {
-			
-				string template = row.Template;
+<link rel="stylesheet" href="https://cdn.datatables.net/3.1.4/css/dataTables.dataTables.css" />
+<section id="oc-template-usage-@moduleId" class="oc-template-usage" data-template-usage data-module-id="@moduleId" data-tab-id="@tabId" data-scope="@initialScope" aria-labelledby="oc-template-usage-title-@moduleId">
+    <header class="oc-template-usage__header">
+        <div>
+            <p class="oc-template-usage__eyebrow"><span class="fa fa-screwdriver-wrench" aria-hidden="true"></span> Administrative inventory</p>
+            <h2 id="oc-template-usage-title-@moduleId">OpenContent Template Usage</h2>
+            <p class="oc-template-usage__intro">Search template references, physical portal templates, and shared <code>_default</code> templates without loading the entire report into the page.</p>
+        </div>
+        <div class="oc-template-usage__actions">
+            <label for="oc-template-usage-scope-@moduleId">Inventory scope</label>
+            <select id="oc-template-usage-scope-@moduleId" class="form-select form-select-sm" data-template-usage-scope>
+                <option value="portal">Current portal</option>
+                <option value="instance">Entire DNN instance</option>
+            </select>
+            <select class="form-select form-select-sm" data-template-usage-source aria-label="Template source filter"><option value="">All sources</option><option value="Portal">Portal templates</option><option value="_default">_default templates</option></select>
+            <select class="form-select form-select-sm" data-template-usage-status-filter aria-label="Template status filter"><option value="">All statuses</option><option value="in-use">In use</option><option value="unused">Unused</option><option value="missing">Missing</option></select>
+            <button type="button" class="btn btn-primary btn-sm" data-template-usage-refresh><span class="fa fa-rotate" aria-hidden="true"></span> Refresh</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-template-usage-candidates><span class="fa fa-broom" aria-hidden="true"></span> Review findings</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-template-usage-export><span class="fa fa-download" aria-hidden="true"></span> Export inventory</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-template-usage-candidate-export><span class="fa fa-file-arrow-down" aria-hidden="true"></span> Export findings</button>
+        </div>
+    </header>
+    <div class="oc-template-usage__status" data-template-usage-status role="status" aria-live="polite">Loading summary…</div>
+    <div class="oc-template-usage__summary" data-template-usage-summary></div>
+    <section class="oc-template-usage__panel" aria-labelledby="oc-template-usage-templates-title-@moduleId">
+        <h3 id="oc-template-usage-templates-title-@moduleId">Physical templates</h3>
+        <p class="text-muted">Search and filter physical templates and missing references. Results are loaded page by page.</p>
+        <div class="table-responsive"><table id="oc-template-usage-templates-@moduleId" class="table table-sm table-striped align-middle" style="width:100%">
+            <thead><tr><th>Source</th><th>Portal</th><th>Template</th><th>Status</th><th>Uses</th></tr></thead>
+        </table></div>
+    </section>
+    <section class="oc-template-usage__panel" aria-labelledby="oc-template-usage-usages-title-@moduleId">
+        <h3 id="oc-template-usage-usages-title-@moduleId">Module usage</h3>
+        <p class="text-muted">Every OpenContent module instance using a configured template.</p>
+        <div class="table-responsive"><table id="oc-template-usage-usages-@moduleId" class="table table-sm table-striped align-middle" style="width:100%">
+            <thead><tr><th>Template</th><th>Portal</th><th>Page</th><th>Module</th></tr></thead>
+        </table></div>
+    </section>
+    <section class="oc-template-usage__candidates" data-template-usage-candidate-panel hidden aria-labelledby="oc-template-usage-candidates-title-@moduleId">
+        <h3 id="oc-template-usage-candidates-title-@moduleId">Review findings</h3>
+        <p class="text-muted">These are read-only findings. Review them before making manual file or module changes.</p>
+        <div class="table-responsive"><table class="table table-sm table-striped align-middle">
+            <thead><tr><th>Status</th><th>Source</th><th>Portal</th><th>Template</th><th>Uses</th><th>Reason</th></tr></thead>
+            <tbody data-template-usage-candidates></tbody>
+        </table></div>
+    </section>
+</section>
+<script src="https://cdn.datatables.net/3.1.4/js/dataTables.js"></script>
+<script>
+(function () {
+    var script = document.currentScript;
+    var root = script && script.previousElementSibling;
+    if (!root || !root.hasAttribute('data-template-usage') || !window.DataTable) return;
+    var moduleId = root.getAttribute('data-module-id');
+    var tabId = root.getAttribute('data-tab-id');
+    var scopeSelect = root.querySelector('[data-template-usage-scope]');
+    var sourceSelect = root.querySelector('[data-template-usage-source]');
+    var statusSelect = root.querySelector('[data-template-usage-status-filter]');
+    var status = root.querySelector('[data-template-usage-status]');
+    var summary = root.querySelector('[data-template-usage-summary]');
+    var candidatePanel = root.querySelector('[data-template-usage-candidate-panel]');
+    var candidates = root.querySelector('[data-template-usage-candidates]');
+    var scope = scopeSelect.value;
+    var templatesTable;
+    var usagesTable;
+    function getServicesFramework() {
+        try {
+            if (window.jQuery && window.jQuery.ServicesFramework) return window.jQuery.ServicesFramework(moduleId);
+            if (window.$ && window.$.ServicesFramework) return window.$.ServicesFramework(moduleId);
+        } catch (error) { return null; }
+        return null;
+    }
+    function getHeaders() {
+        var headers = { 'Accept': 'application/json', 'ModuleId': moduleId, 'TabId': tabId };
+        var sf = getServicesFramework();
+        if (sf && sf.getAntiForgeryValue) headers.RequestVerificationToken = sf.getAntiForgeryValue();
+        return headers;
+    }
+    function apiUrl(path) { return '/DesktopModules/OpenContentHelper/API/TemplateUsage/' + path + '?scope=' + encodeURIComponent(scope); }
+    function renderSummary(data) {
+        var items = [['Referenced templates', data.DistinctReferencedTemplates], ['OpenContent instances', data.OpenContentModuleInstances], ['Portal templates', data.PhysicalPortalTemplates], ['_default templates', data.PhysicalDefaultTemplates], ['Unused physical', data.UnusedPhysicalTemplates], ['Missing references', data.MissingTemplateReferences]];
+        summary.innerHTML = '';
+        items.forEach(function (item) { var card = document.createElement('div'); card.className = 'oc-template-usage__metric'; var value = document.createElement('strong'); value.textContent = item[1]; var label = document.createElement('span'); label.textContent = item[0]; card.appendChild(value); card.appendChild(label); summary.appendChild(card); });
+    }
+    function fetchSummary() {
+        return fetch(apiUrl('GetSummary'), { credentials: 'same-origin', headers: getHeaders() }).then(function (response) { if (!response.ok) throw new Error('The inventory summary request failed.'); return response.json(); }).then(function (data) { renderSummary(data || {}); });
+    }
+    function tableRequest(path, d) {
+        var params = new URLSearchParams(); params.set('scope', scope); params.set('draw', d.draw); params.set('start', d.start); params.set('length', d.length); params.set('searchValue', d.search && d.search.value ? d.search.value : ''); params.set('orderColumn', d.order && d.order.length ? d.order[0].column : 0); params.set('orderDir', d.order && d.order.length ? d.order[0].dir : 'asc'); params.set('source', sourceSelect.value); params.set('status', statusSelect.value);
+        return fetch('/DesktopModules/OpenContentHelper/API/TemplateUsage/' + path + '?' + params.toString(), { credentials: 'same-origin', headers: getHeaders() }).then(function (response) { if (!response.ok) throw new Error('The inventory table request failed.'); return response.json(); });
+    }
+    function initTables() {
+        templatesTable = new DataTable('#oc-template-usage-templates-' + moduleId, { processing: true, serverSide: true, pageLength: 25, searching: true, order: [[2, 'asc']], ajax: function (d, callback) { tableRequest('GetTemplates', d).then(normalizeDataTableResponse).then(callback).catch(function (error) { status.textContent = error.message; callback({ draw: d.draw, recordsTotal: 0, recordsFiltered: 0, data: [] }); }); }, columns: [{ data: 'Source' }, { data: 'PortalName' }, { data: 'TemplatePath' }, { data: null, render: function (data) { return !data.Exists ? 'Missing' : data.UsageCount > 0 ? 'In use' : 'Unused'; } }, { data: 'UsageCount' }] });
+        usagesTable = new DataTable('#oc-template-usage-usages-' + moduleId, { processing: true, serverSide: true, pageLength: 25, searching: true, order: [[0, 'asc']], ajax: function (d, callback) { tableRequest('GetUsages', d).then(normalizeDataTableResponse).then(function (payload) { (payload.data || []).forEach(function (item) { item.TemplatePath = escapeHtml(item.TemplatePath); item.TabName = escapeHtml(item.TabName) + (item.TabPath ? ' (' + escapeHtml(item.TabPath) + ')' : ''); }); callback(payload); }).catch(function (error) { status.textContent = error.message; callback({ draw: d.draw, recordsTotal: 0, recordsFiltered: 0, data: [] }); }); }, columns: [{ data: 'TemplatePath', render: function (data, type, row) { return type === 'display' ? '<a href="/default.aspx?tabid=' + encodeURIComponent(row.TabId) + '#' + encodeURIComponent(row.ModuleId) + '" target="_blank" rel="noopener noreferrer">' + data + '</a>' : data; } }, { data: 'PortalName' }, { data: 'TabName' }, { data: 'ModuleId' }] });
+    }
+    function escapeHtml(value) {
+        return String(value == null ? '' : value).replace(/[&<>'"]/g, function (character) {
+            switch (character) {
+                case '&': return '&amp;';
+                case '<': return '&lt;';
+                case '>': return '&gt;';
+                case '"': return '&quot;';
+                case "'": return String.fromCharCode(38, 35, 51, 57, 59);
+                default: return character;
+            }
+        });
+    }
+    function normalizeDataTableResponse(payload) { return { draw: payload.draw || payload.Draw, recordsTotal: payload.recordsTotal || payload.RecordsTotal, recordsFiltered: payload.recordsFiltered || payload.RecordsFiltered, data: payload.data || payload.Data || [] }; }
 
-				if (Model.Settings != null && Model.Settings.ShortPath != null){
-					if(Model.Settings.ShortPath){
-						string[] items = template.Split(new char[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
-						template = string.Join("/", items.Skip(4));
-					}
-				}			
-			
-				// Close previous tables to start a new one
-				if(lastTemplate != template && tables > 0){
-					@Html.Raw(tableClose);
-				}
-				
-				// Start a new table if there's a new template
-				if(lastTemplate != template){
-					<h5 class="oc-template-title"><span class="oc-title">Template:</span><span class="oc-template">@template</span></h5>
-					@Html.Raw(tableOpen);
-					tables++ ;
-				}
+    function loadCandidates() {
+        candidatePanel.hidden = false; candidates.innerHTML = '<tr><td colspan="6">Loading findings…</td></tr>';
+        fetch(apiUrl('GetCleanupCandidates'), { credentials: 'same-origin', headers: getHeaders() }).then(function (response) { if (!response.ok) throw new Error('The findings request failed.'); return response.json(); }).then(function (items) { candidates.innerHTML = ''; (items || []).forEach(function (item) { var row = document.createElement('tr'); [item.Status, item.Source, item.PortalName, item.TemplatePath, item.UsageCount, item.Reason].forEach(function (value) { var cell = document.createElement('td'); cell.textContent = value == null ? '' : value; row.appendChild(cell); }); candidates.appendChild(row); }); if (!candidates.children.length) candidates.innerHTML = '<tr><td colspan="6">No findings were found.</td></tr>'; }).catch(function (error) { candidates.innerHTML = '<tr><td colspan="6">' + escapeHtml(error.message) + '</td></tr>'; });
+    }
+    function exportReport(report, fileName) {
+        fetch(apiUrl('Export') + '&report=' + encodeURIComponent(report) + '&searchValue=' + encodeURIComponent(templatesTable ? templatesTable.search() : '') + '&source=' + encodeURIComponent(sourceSelect.value) + '&status=' + encodeURIComponent(statusSelect.value), { credentials: 'same-origin', headers: getHeaders() }).then(function (response) { if (!response.ok) throw new Error('The CSV export failed.'); return response.blob(); }).then(function (blob) { var link = document.createElement('a'); var url = URL.createObjectURL(blob); link.href = url; link.download = fileName; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url); }).catch(function (error) { status.textContent = error.message; });
+    }
+    function load() {
+        scope = scopeSelect.value; candidatePanel.hidden = true; status.textContent = 'Loading summary…';
+        fetchSummary().then(function () { templatesTable.ajax.reload(null, true); usagesTable.ajax.reload(null, true); status.textContent = 'Inventory loaded. Tables support search, sorting, and paging.'; }).catch(function (error) { status.textContent = error.message; summary.innerHTML = ''; });
+    }
+    sourceSelect.addEventListener('change', function () { templatesTable.ajax.reload(null, true); }); statusSelect.addEventListener('change', function () { templatesTable.ajax.reload(null, true); });
+    scopeSelect.addEventListener('change', load); root.querySelector('[data-template-usage-refresh]').addEventListener('click', load); root.querySelector('[data-template-usage-candidates]').addEventListener('click', loadCandidates); root.querySelector('[data-template-usage-export]').addEventListener('click', function () { exportReport('inventory', 'opencontent-template-inventory.csv'); }); root.querySelector('[data-template-usage-candidate-export]').addEventListener('click', function () { exportReport('candidates', 'opencontent-template-cleanup-candidates.csv'); });
+    initTables(); load();
+}());
+</script>
 
-				<tr scope="row">
-					<td>@row.PortalID</td>
-					<td><a href="/default.aspx?tabid=@row.Tabid#@row.ModuleID" target="_blank">@row.TabName</a> &raquo;</td>
-					<td><a href="/default.aspx?tabid=@row.Tabid#@row.ModuleID" target="_blank">@row.Path.Replace("//", "/")</a></td>
-				</tr>
-
-				lastTemplate = template;
-			}
-			
-			@{
-			
-				// Close previous tables
-				if(tables > 0){
-					@Html.Raw(tableClose);
-				}
-			
-			}
-		</div>
-	</div>
-</div>
-<div class="section">
-	<div class="row">
-		<p class="text-center muted"><strong>Attribution:</strong> This template is based on a template of the same name in <a href="https://github.com/sachatrauwaen/OpenContent-Templates" target="_blank">the original template repo</a>.</p>
-	</div>
-</div>
