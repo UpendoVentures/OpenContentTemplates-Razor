@@ -30,7 +30,7 @@
     </header>
     <div class="oc-template-usage__status" data-template-usage-status role="status" aria-live="polite">Loading summary…</div>
     <div class="oc-template-usage__summary" data-template-usage-summary></div>
-    <section class="oc-template-usage__panel" aria-labelledby="oc-template-usage-templates-title-@moduleId">
+   <section class="oc-template-usage__panel" aria-labelledby="oc-template-usage-templates-title-@moduleId">
         <h3 id="oc-template-usage-templates-title-@moduleId">Physical templates</h3>
         <p class="text-muted">Search and filter physical templates and missing references. Results are loaded page by page.</p>
         <div class="table-responsive"><table id="oc-template-usage-templates-@moduleId" class="table table-sm table-striped align-middle" style="width:100%">
@@ -56,21 +56,19 @@
 <script src="https://cdn.datatables.net/3.1.4/js/dataTables.js"></script>
 <script>
 (function () {
-    var script = document.currentScript;
-    var root = script && script.previousElementSibling;
-    if (!root || !root.hasAttribute('data-template-usage') || !window.DataTable) return;
-    var moduleId = root.getAttribute('data-module-id');
-    var tabId = root.getAttribute('data-tab-id');
-    var scopeSelect = root.querySelector('[data-template-usage-scope]');
-    var sourceSelect = root.querySelector('[data-template-usage-source]');
-    var statusSelect = root.querySelector('[data-template-usage-status-filter]');
-    var status = root.querySelector('[data-template-usage-status]');
-    var summary = root.querySelector('[data-template-usage-summary]');
-    var candidatePanel = root.querySelector('[data-template-usage-candidate-panel]');
-    var candidates = root.querySelector('[data-template-usage-candidates]');
-    var scope = scopeSelect.value;
-    var templatesTable;
-    var usagesTable;
+    var script = document.currentScript, root = script, moduleId, tabId, scopeSelect, sourceSelect, statusSelect, status, summary, candidatePanel, candidates, scope, templatesTable, usagesTable;
+    while (root && (!root.hasAttribute || !root.hasAttribute('data-template-usage'))) { root = root.previousElementSibling; }
+    if (!root) return;
+    moduleId = root.getAttribute('data-module-id');
+    tabId = root.getAttribute('data-tab-id');
+    scopeSelect = root.querySelector('[data-template-usage-scope]');
+    sourceSelect = root.querySelector('[data-template-usage-source]');
+    statusSelect = root.querySelector('[data-template-usage-status-filter]');
+    status = root.querySelector('[data-template-usage-status]');
+    summary = root.querySelector('[data-template-usage-summary]');
+    candidatePanel = root.querySelector('[data-template-usage-candidate-panel]');
+    candidates = root.querySelector('[data-template-usage-candidates]');
+    scope = scopeSelect.value;
     function getServicesFramework() {
         try {
             if (window.jQuery && window.jQuery.ServicesFramework) return window.jQuery.ServicesFramework(moduleId);
@@ -114,16 +112,15 @@
         });
     }
     function normalizeDataTableResponse(payload) { return { draw: payload.draw || payload.Draw, recordsTotal: payload.recordsTotal || payload.RecordsTotal, recordsFiltered: payload.recordsFiltered || payload.RecordsFiltered, data: payload.data || payload.Data || [] }; }
-
     function loadCandidates() {
-        candidatePanel.hidden = false; candidates.innerHTML = '<tr><td colspan="6">Loading findings…</td></tr>';
+        candidatePanel.hidden = false; candidates.innerHTML = '<tr><td colspan="6">Loading findingsâ€¦</td></tr>';
         fetch(apiUrl('GetCleanupCandidates'), { credentials: 'same-origin', headers: getHeaders() }).then(function (response) { if (!response.ok) throw new Error('The findings request failed.'); return response.json(); }).then(function (items) { candidates.innerHTML = ''; (items || []).forEach(function (item) { var row = document.createElement('tr'); [item.Status, item.Source, item.PortalName, item.TemplatePath, item.UsageCount, item.Reason].forEach(function (value) { var cell = document.createElement('td'); cell.textContent = value == null ? '' : value; row.appendChild(cell); }); candidates.appendChild(row); }); if (!candidates.children.length) candidates.innerHTML = '<tr><td colspan="6">No findings were found.</td></tr>'; }).catch(function (error) { candidates.innerHTML = '<tr><td colspan="6">' + escapeHtml(error.message) + '</td></tr>'; });
     }
     function exportReport(report, fileName) {
         fetch(apiUrl('Export') + '&report=' + encodeURIComponent(report) + '&searchValue=' + encodeURIComponent(templatesTable ? templatesTable.search() : '') + '&source=' + encodeURIComponent(sourceSelect.value) + '&status=' + encodeURIComponent(statusSelect.value), { credentials: 'same-origin', headers: getHeaders() }).then(function (response) { if (!response.ok) throw new Error('The CSV export failed.'); return response.blob(); }).then(function (blob) { var link = document.createElement('a'); var url = URL.createObjectURL(blob); link.href = url; link.download = fileName; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url); }).catch(function (error) { status.textContent = error.message; });
     }
     function load() {
-        scope = scopeSelect.value; candidatePanel.hidden = true; status.textContent = 'Loading summary…';
+        scope = scopeSelect.value; candidatePanel.hidden = true; status.textContent = 'Loading summaryâ€¦';
         fetchSummary().then(function () { templatesTable.ajax.reload(null, true); usagesTable.ajax.reload(null, true); status.textContent = 'Inventory loaded. Tables support search, sorting, and paging.'; }).catch(function (error) { status.textContent = error.message; summary.innerHTML = ''; });
     }
     sourceSelect.addEventListener('change', function () { templatesTable.ajax.reload(null, true); }); statusSelect.addEventListener('change', function () { templatesTable.ajax.reload(null, true); });
