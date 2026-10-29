@@ -3,7 +3,7 @@
 	"properties": {
 		"ThisPortal": {
 			"type": "boolean",
-			"title": "Show only current Portal"
+			"title": "Show only current Website"
 			},
 			"ShortPath": {
 			"type": "boolean",

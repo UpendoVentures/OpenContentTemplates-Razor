@@ -12,20 +12,33 @@
 .DnnModule-OpenContent .oc-template-usage h2, .DnnModule-OpenContent .oc-template-usage h3 { color: #212529; margin-top: 0; }
 .DnnModule-OpenContent .oc-template-usage__intro { color: #495057; margin-bottom: 0; }
 .DnnModule-OpenContent .oc-template-usage__actions { align-items: end; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; }
-.DnnModule-OpenContent .oc-template-usage__actions label { flex-basis: 100%; color: #495057; font-size: .8rem; font-weight: 600; }
+.DnnModule-OpenContent .oc-template-usage__scope-control { display: flex; flex-basis: 100%; flex-wrap: wrap; gap: .5rem; }
+.DnnModule-OpenContent .oc-template-usage__scope-label { align-items: center; display: flex; gap: .3rem; width: 100%; }
+.DnnModule-OpenContent .oc-template-usage__scope-label label { color: #212529; font-size: .85rem; font-weight: 700; margin: 0; }
+.DnnModule-OpenContent .oc-template-usage__scope-label .btn-link { color: #495057; line-height: 1; }
 .DnnModule-OpenContent .oc-template-usage__actions select { min-width: 12rem; }
-.DnnModule-OpenContent .oc-template-usage__status { color: #495057; padding: .75rem 0; }
+.DnnModule-OpenContent .oc-template-usage__status { color: #212529; }
 .DnnModule-OpenContent .oc-template-usage__summary { display: grid; gap: .75rem; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-bottom: 1rem; }
-.DnnModule-OpenContent .oc-template-usage__metric { background: #fff; border: 1px solid #ced4da; border-radius: .35rem; padding: .75rem; }
+.DnnModule-OpenContent .oc-template-usage__metric { background: #fff; border: 1px solid #ced4da; border-radius: .35rem; cursor: help; padding: .75rem; }
 .DnnModule-OpenContent .oc-template-usage__metric strong, .DnnModule-OpenContent .oc-template-usage__metric span { display: block; }
 .DnnModule-OpenContent .oc-template-usage__metric strong { font-size: 1.5rem; }
 .DnnModule-OpenContent .oc-template-usage__metric span { color: #495057; font-size: .8rem; }
-.DnnModule-OpenContent .oc-template-usage__panel, .DnnModule-OpenContent .oc-template-usage__candidates { background: #fff; border: 1px solid #dee2e6; border-radius: .35rem; margin-top: 1rem; padding: 1rem; }
-.DnnModule-OpenContent .oc-template-usage__panel:first-of-type { margin-top: 0; }
+.DnnModule-OpenContent .oc-template-usage__tabs { background: #fff; border: 1px solid #dee2e6; border-radius: .35rem; padding: 1rem 1rem 0; }
+.DnnModule-OpenContent .oc-template-usage__tabs .nav-tabs { border-bottom-color: #adb5bd; }
+.DnnModule-OpenContent .oc-template-usage__tabs .nav-link { color: #495057; font-weight: 700; }
+.DnnModule-OpenContent .oc-template-usage__tabs .nav-link:hover, .DnnModule-OpenContent .oc-template-usage__tabs .nav-link:focus { color: #212529; }
+.DnnModule-OpenContent .oc-template-usage__tabs .nav-link.active { background: #212529; border-color: #212529; color: #fff; }
+.DnnModule-OpenContent .oc-template-usage__panel, .DnnModule-OpenContent .oc-template-usage__candidates { background: #fff; border: 0; border-radius: 0; margin-top: 1rem; padding: 0 0 1rem; }
+.DnnModule-OpenContent .oc-template-usage__candidates { border: 1px solid #dee2e6; border-radius: .35rem; margin-top: 1rem; padding: 1rem; }
 .DnnModule-OpenContent .oc-template-usage table { margin-bottom: 0; }
 .DnnModule-OpenContent .oc-template-usage .dt-container { color: #343a40; }
 .DnnModule-OpenContent .oc-template-usage .dt-search input, .DnnModule-OpenContent .oc-template-usage .dt-length select { border: 1px solid #adb5bd; border-radius: .25rem; padding: .25rem .5rem; }
 .DnnModule-OpenContent .oc-template-usage .dt-paging button { border-radius: .25rem; }
+.DnnModule-OpenContent .oc-template-usage__truncated { max-width: 16rem; vertical-align: bottom; }
+.DnnModule-OpenContent .oc-template-usage td:first-child .oc-template-usage__truncated { max-width: 20rem; }
+.DnnModule-OpenContent .oc-template-usage td a { color: #176b73; }
+.DnnModule-OpenContent .oc-template-usage td a:hover, .DnnModule-OpenContent .oc-template-usage td a:focus { color: #0f4f55; }
+.DnnModule-OpenContent .oc-template-usage .badge.bg-warning { color: #212529 !important; }
 
 @media (max-width: 992px) {
     .DnnModule-OpenContent .oc-template-usage__summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -35,4 +48,5 @@
     .DnnModule-OpenContent .oc-template-usage__header { flex-direction: column; }
     .DnnModule-OpenContent .oc-template-usage__actions { justify-content: flex-start; width: 100%; }
     .DnnModule-OpenContent .oc-template-usage__summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .DnnModule-OpenContent .oc-template-usage__truncated { max-width: 10rem; }
 }
