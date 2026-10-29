@@ -54,13 +54,55 @@ else
 {
     if(Model.Context.IsEditMode)
     {
-    <div class="dnnFormMessage dnnFormSuccess">
-        <h5>Content Template Message</h5>
-        <p>
-            <em>Only visible when in edit mode.</em><br />
-            Personalized content template iss loaded, but display conditions are not met. 
-        </p>
-    </div>
+    <style>
+        .upendo-admin-template-panel { margin: 1rem 0; border: 1px dashed #6b7280; border-left: 4px dashed #111827; border-radius: .5rem; background: #f3f4f6; box-shadow: 0 .125rem .35rem rgba(17, 24, 39, .12); color: #111827; }
+        .upendo-admin-template-panel__header { padding: 1rem 1.25rem; background: #e5e7eb; }
+        .upendo-admin-template-panel__eyebrow { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+        .upendo-admin-template-panel__badge { display: inline-flex; align-items: center; gap: .35rem; padding: .25rem .55rem; border-radius: 999px; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+        .upendo-admin-template-panel__badge--admin { background: #111827; color: #fff; }
+        .upendo-admin-template-panel__badge--status { background: #d1d5db; color: #1f2937; }
+        .upendo-admin-template-panel__title { display: flex; align-items: center; gap: .6rem; margin: 0; color: #111827; font-size: 1.35rem; }
+        .upendo-admin-template-panel__title-icon { color: #374151; }
+        .upendo-admin-template-panel__description { margin: .4rem 0 0; color: #374151; }
+        .upendo-admin-template-panel__details { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; margin: .9rem 0 0; }
+        .upendo-admin-template-panel__detail { display: flex; gap: .35rem; margin: 0; font-size: .85rem; }
+        .upendo-admin-template-panel__detail dt { color: #4b5563; font-weight: 600; }
+        .upendo-admin-template-panel__detail dd { margin: 0; font-weight: 700; }
+        .upendo-admin-template-panel__body { padding: 1rem 1.25rem; }
+        @@media (max-width: 575.98px) { .upendo-admin-template-panel__title { font-size: 1.15rem; } .upendo-admin-template-panel__body, .upendo-admin-template-panel__header { padding: .9rem; } }
+    </style>
+
+    <section class="upendo-admin-template-panel" aria-labelledby="upendo-html-content-admin-title-@Model.Context.ModuleId">
+        <div class="upendo-admin-template-panel__header">
+            <div class="upendo-admin-template-panel__eyebrow" aria-label="Administrative module status">
+                <span class="upendo-admin-template-panel__badge upendo-admin-template-panel__badge--admin" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Administrative module: configuration is intended for authorized editors."><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Admin module</span>
+                <span class="upendo-admin-template-panel__badge upendo-admin-template-panel__badge--status" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="This panel is shown only while edit mode is active."><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Edit mode only</span>
+                <span class="upendo-admin-template-panel__badge upendo-admin-template-panel__badge--status" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="This management panel is hidden from public visitors."><i class="fa-solid fa-eye-slash" aria-hidden="true"></i> Hidden from visitors</span>
+            </div>
+            <h2 id="upendo-html-content-admin-title-@Model.Context.ModuleId" class="upendo-admin-template-panel__title"><i class="fa-solid fa-code-branch upendo-admin-template-panel__title-icon" aria-hidden="true"></i> Contextual HTML Content</h2>
+            <p class="upendo-admin-template-panel__description">Display configured HTML content when the query-string condition is met.</p>
+            <dl class="upendo-admin-template-panel__details">
+                <div class="upendo-admin-template-panel__detail"><dt>Module</dt><dd>@Model.Context.ModuleTitle</dd></div>
+                <div class="upendo-admin-template-panel__detail"><dt>Tab ID</dt><dd>@Model.Context.TabId</dd></div>
+                <div class="upendo-admin-template-panel__detail"><dt>Module ID</dt><dd>@Model.Context.ModuleId</dd></div>
+            </dl>
+        </div>
+        <div class="upendo-admin-template-panel__body">
+            <p class="mb-1">The personalized content template is loaded, but the current display conditions are not met.</p>
+            <p class="mb-0 text-muted"><i class="fa-solid fa-circle-info me-1" aria-hidden="true"></i>Configure the query-string key and value, then preview the matching URL.</p>
+        </div>
+    </section>
+    <script>
+        (function () {
+            function initializeAdminPanelTooltip() {
+                if (!window.bootstrap || !window.bootstrap.Tooltip) return;
+                var tooltips = document.querySelectorAll('.upendo-admin-template-panel__badge[data-bs-toggle="tooltip"]');
+                for (var i = 0; i < tooltips.length; i++) window.bootstrap.Tooltip.getOrCreateInstance(tooltips[i], { placement: 'top', trigger: 'hover focus' });
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeAdminPanelTooltip);
+            else initializeAdminPanelTooltip();
+        }());
+    </script>
     }
     else
     {
