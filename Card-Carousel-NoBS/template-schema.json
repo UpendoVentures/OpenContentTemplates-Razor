@@ -34,6 +34,12 @@
       "type": "boolean",
       "title": "Show Navigation",
       "default": true
+    },
+    "Theme": {
+      "type": "string",
+      "title": "Theme",
+      "enum": ["beach", "default", "industrial", "professional", "techie"],
+      "default": "default"
     }
   }
 }

@@ -1,0 +1,377 @@
+/*
+ * Card Carousel NoBS
+ * Standalone styles: no Bootstrap, Porto, or other framework classes required.
+ * Every rule is scoped to .card-carousel-nobs. Override the custom properties below to adjust the look per site.
+ */
+
+.card-carousel-nobs {
+    --ccn-space-xs: 0.5rem;
+    --ccn-space-sm: 1rem;
+    --ccn-space-md: 2rem;
+    --ccn-space-lg: 3rem;
+    --ccn-space-xl: 5rem;
+    --ccn-gap: 1rem;
+    --ccn-per-view: 2;
+    --ccn-radius: 0.5rem;
+    --ccn-border-color: rgba(127, 127, 127, 0.35);
+    --ccn-card-bg: transparent;
+    --ccn-muted-opacity: 0.8;
+    --ccn-nav-size: 2.5rem;
+    --ccn-focus-color: currentColor;
+    --ccn-image-ratio: 16 / 9;
+    --ccn-image-bg: rgba(127, 127, 127, 0.12);
+    --ccn-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.12);
+
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.card-carousel-nobs *,
+.card-carousel-nobs *::before,
+.card-carousel-nobs *::after {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .card-carousel-nobs {
+        --ccn-per-view: 3;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-carousel-nobs {
+        --ccn-per-view: 4;
+    }
+}
+
+/* Spacing settings */
+.card-carousel-nobs.ccn--mt-xs { margin-top: var(--ccn-space-xs); }
+.card-carousel-nobs.ccn--mt-sm { margin-top: var(--ccn-space-sm); }
+.card-carousel-nobs.ccn--mt-md { margin-top: var(--ccn-space-md); }
+.card-carousel-nobs.ccn--mt-lg { margin-top: var(--ccn-space-lg); }
+.card-carousel-nobs.ccn--mt-xl { margin-top: var(--ccn-space-xl); }
+.card-carousel-nobs.ccn--pt-xs { padding-top: var(--ccn-space-xs); }
+.card-carousel-nobs.ccn--pt-sm { padding-top: var(--ccn-space-sm); }
+.card-carousel-nobs.ccn--pt-md { padding-top: var(--ccn-space-md); }
+.card-carousel-nobs.ccn--pt-lg { padding-top: var(--ccn-space-lg); }
+.card-carousel-nobs.ccn--pt-xl { padding-top: var(--ccn-space-xl); }
+.card-carousel-nobs.ccn--pb-xs { padding-bottom: var(--ccn-space-xs); }
+.card-carousel-nobs.ccn--pb-sm { padding-bottom: var(--ccn-space-sm); }
+.card-carousel-nobs.ccn--pb-md { padding-bottom: var(--ccn-space-md); }
+.card-carousel-nobs.ccn--pb-lg { padding-bottom: var(--ccn-space-lg); }
+.card-carousel-nobs.ccn--pb-xl { padding-bottom: var(--ccn-space-xl); }
+.card-carousel-nobs.ccn--mb-xs { margin-bottom: var(--ccn-space-xs); }
+.card-carousel-nobs.ccn--mb-sm { margin-bottom: var(--ccn-space-sm); }
+.card-carousel-nobs.ccn--mb-md { margin-bottom: var(--ccn-space-md); }
+.card-carousel-nobs.ccn--mb-lg { margin-bottom: var(--ccn-space-lg); }
+.card-carousel-nobs.ccn--mb-xl { margin-bottom: var(--ccn-space-xl); }
+
+/* Screen-reader-only text */
+.card-carousel-nobs .ccn__sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Header */
+.card-carousel-nobs .ccn__header {
+    margin-bottom: 1.5rem;
+}
+
+.card-carousel-nobs .ccn__header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+}
+
+.card-carousel-nobs .ccn__header-row--end {
+    justify-content: flex-end;
+}
+
+.card-carousel-nobs .ccn__title {
+    margin: 0;
+}
+
+.card-carousel-nobs .ccn__show-all {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.card-carousel-nobs .ccn__show-all:focus-visible {
+    outline: 2px solid var(--ccn-focus-color);
+    outline-offset: 2px;
+}
+
+.card-carousel-nobs .ccn__section-description {
+    margin-top: 0.75rem;
+}
+
+.card-carousel-nobs .ccn__section-description > :first-child,
+.card-carousel-nobs .ccn__description > :first-child {
+    margin-top: 0;
+}
+
+.card-carousel-nobs .ccn__section-description > :last-child,
+.card-carousel-nobs .ccn__description > :last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+    .card-carousel-nobs .ccn__show-all {
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Toolbar (pause/play) */
+.card-carousel-nobs .ccn__toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.card-carousel-nobs .ccn__pause {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--ccn-border-color);
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.875em;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.card-carousel-nobs .ccn__pause .ccn__icon--play,
+.card-carousel-nobs .ccn__pause.is-paused .ccn__icon--pause {
+    display: none;
+}
+
+.card-carousel-nobs .ccn__pause.is-paused .ccn__icon--play {
+    display: inline-block;
+}
+
+/* Stage: previous button, cards, next button */
+.card-carousel-nobs .ccn__stage {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-carousel-nobs .ccn__nav {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: var(--ccn-nav-size);
+    height: var(--ccn-nav-size);
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ccn-border-color);
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.card-carousel-nobs .ccn__nav:hover,
+.card-carousel-nobs .ccn__pause:hover {
+    background: rgba(127, 127, 127, 0.12);
+}
+
+.card-carousel-nobs .ccn__nav:focus-visible,
+.card-carousel-nobs .ccn__pause:focus-visible {
+    outline: 2px solid var(--ccn-focus-color);
+    outline-offset: 2px;
+}
+
+.card-carousel-nobs .ccn__nav[disabled],
+.card-carousel-nobs .ccn__nav.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.card-carousel-nobs .ccn__nav[hidden],
+.card-carousel-nobs .ccn__pause[hidden],
+.card-carousel-nobs .ccn__nav.swiper-button-lock {
+    display: none;
+}
+
+.card-carousel-nobs .ccn__icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+}
+
+@media (max-width: 575.98px) {
+    .card-carousel-nobs {
+        --ccn-nav-size: 2rem;
+    }
+
+    .card-carousel-nobs .ccn__stage {
+        gap: 0.25rem;
+    }
+}
+
+/* Viewport. column-gap is read by the script to size the Swiper gap. */
+.card-carousel-nobs .ccn__swiper {
+    flex: 1 1 auto;
+    min-width: 0;
+    column-gap: var(--ccn-gap);
+    padding-top: 0.25rem;
+    padding-bottom: 0.75rem;
+}
+
+/* Before Swiper starts (or without it): lay cards out at the same widths to avoid layout jumps. */
+.card-carousel-nobs .ccn__swiper:not(.swiper-initialized) .ccn__track {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ccn-gap);
+}
+
+.card-carousel-nobs .ccn__swiper:not(.swiper-initialized) .ccn__slide {
+    flex: 0 0 auto;
+    width: calc((100% - (var(--ccn-per-view) - 1) * var(--ccn-gap)) / var(--ccn-per-view));
+}
+
+/* With the script running, keep a single row until Swiper takes over. Static mode keeps the wrapped grid. */
+.ccn-js .card-carousel-nobs:not(.ccn--static) .ccn__swiper:not(.swiper-initialized) .ccn__track {
+    flex-wrap: nowrap;
+}
+
+.card-carousel-nobs .ccn__swiper .ccn__slide {
+    display: flex;
+    height: auto;
+}
+
+/* Card */
+.card-carousel-nobs .ccn__card {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--ccn-border-color);
+    border-radius: var(--ccn-radius);
+    background: var(--ccn-card-bg);
+    transition: box-shadow 0.2s ease;
+}
+
+.card-carousel-nobs .ccn__card--linked:hover {
+    box-shadow: var(--ccn-shadow);
+}
+
+.card-carousel-nobs .ccn__media {
+    aspect-ratio: var(--ccn-image-ratio);
+    overflow: hidden;
+    background: var(--ccn-image-bg);
+}
+
+.card-carousel-nobs .ccn__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+}
+
+.card-carousel-nobs .ccn__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+}
+
+.card-carousel-nobs .ccn__card-title {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.3;
+}
+
+.card-carousel-nobs .ccn__subtitle {
+    margin: 0;
+    font-size: 0.9em;
+    opacity: var(--ccn-muted-opacity);
+}
+
+.card-carousel-nobs .ccn__description {
+    font-size: 0.95em;
+}
+
+/* Stretched title link: the ::after layer makes the whole card clickable. */
+.card-carousel-nobs .ccn__link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-carousel-nobs .ccn__link:hover {
+    text-decoration: underline;
+}
+
+.card-carousel-nobs .ccn__link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: var(--ccn-radius);
+}
+
+.card-carousel-nobs .ccn__link:focus-visible {
+    outline: none;
+}
+
+.card-carousel-nobs .ccn__link:focus-visible::after {
+    outline: 2px solid var(--ccn-focus-color);
+    outline-offset: -3px;
+}
+
+/* Links inside the description stay clickable above the stretched layer. */
+.card-carousel-nobs .ccn__description a {
+    position: relative;
+    z-index: 2;
+}
+
+/* Footer */
+.card-carousel-nobs .ccn__footer {
+    margin: 1.5rem 0 0;
+    font-size: 0.9em;
+    text-align: center;
+    opacity: var(--ccn-muted-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-carousel-nobs .ccn__card {
+        transition: none;
+    }
+}
+
+/* Edit-mode notice (shown only to editors when no cards are visible) */
+.ccn-edit-note {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px dashed rgba(127, 127, 127, 0.6);
+    border-radius: 0.5rem;
+    font-size: 0.9em;
+}

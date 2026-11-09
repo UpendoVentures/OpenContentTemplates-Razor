@@ -37,6 +37,13 @@
       "type": "checkbox",
       "rightLabel": "Show previous and next buttons",
       "helper": "Adds left and right buttons that move the cards one at a time. Buttons are hidden automatically when all cards already fit on screen."
+    },
+    "Theme": {
+      "type": "select",
+      "helper": "Choose the look of the cards, buttons, and Show all link. Default (current) inherits your site's own styles. Each theme can also use its own card markup in cards/{theme}.cshtml.",
+      "optionLabels": ["Beach", "Default (current)", "Industrial", "Professional", "Techie"],
+      "sort": false,
+      "removeDefaultNone": true
     }
   }
 }

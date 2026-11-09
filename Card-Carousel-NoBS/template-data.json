@@ -4,5 +4,6 @@
   "PaddingBottom": "md",
   "MarginBottom": "md",
   "AutoForward": false,
-  "ShowNavigation": true
+  "ShowNavigation": true,
+  "Theme": "default"
 }

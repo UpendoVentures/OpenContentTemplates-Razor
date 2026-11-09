@@ -1,8 +1,12 @@
 @using System
 @using System.Collections.Generic
 @using System.Globalization
+@using System.Dynamic
 @using System.Text.RegularExpressions
+@using System.Web
+@using System.Web.Hosting
 @using DotNetNuke.Entities.Portals
+@using DotNetNuke.Services.Exceptions
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
@@ -226,13 +230,73 @@
     {
         return linkKind == LinkExternal ? "noopener noreferrer" : null;
     }
+
+    // Theme names map to files (cards/{theme}.cshtml, css/themes/{theme}.css), so only safe file-name characters are allowed.
+    private static string SanitizeTheme(string value)
+    {
+        string theme = (value ?? string.Empty).Trim().ToLowerInvariant();
+        return Regex.IsMatch(theme, "^[a-z0-9][a-z0-9-]{0,49}$") ? theme : "default";
+    }
+
+    // App-relative folder of this template, e.g. "~/Portals/0/OpenContent/Templates/Card-Carousel-NoBS/".
+    private string GetTemplateFolder(string templatePathFallback)
+    {
+        string path = VirtualPath;
+        if (!string.IsNullOrEmpty(path))
+        {
+            return path.EndsWith("/", StringComparison.Ordinal) ? path : VirtualPathUtility.GetDirectory(path);
+        }
+        return string.IsNullOrEmpty(templatePathFallback) ? null : VirtualPathUtility.AppendTrailingSlash(templatePathFallback);
+    }
+
+    private static bool VirtualFileExists(string virtualPath)
+    {
+        try
+        {
+            return !string.IsNullOrEmpty(virtualPath) && HostingEnvironment.VirtualPathProvider.FileExists(virtualPath);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    // Renders one card file. If a theme card file throws, the error is logged and the default card file is used instead.
+    private string RenderCardSafely(string cardPath, string defaultCardPath, object cardModel, out bool usedFallback)
+    {
+        usedFallback = false;
+        try
+        {
+            return RenderPage(cardPath, cardModel).ToHtmlString();
+        }
+        catch (Exception ex)
+        {
+            Exceptions.LogException(ex);
+        }
+
+        if (string.Equals(cardPath, defaultCardPath, StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        usedFallback = true;
+        try
+        {
+            return RenderPage(defaultCardPath, cardModel).ToHtmlString();
+        }
+        catch (Exception ex)
+        {
+            Exceptions.LogException(ex);
+            return string.Empty;
+        }
+    }
 }
 
 @{
     RegisterStyleSheet("css/swiper-bundle.min.css");
-    RegisterStyleSheet("css/nobs-card-rotator.css");
+    RegisterStyleSheet("css/card-carousel-nobs.css");
     RegisterScript("js/swiper-bundle.min.js");
-    RegisterScript("js/nobs-card-rotator.js");
+    RegisterScript("js/card-carousel-nobs.js");
 
     var settings = Model.Settings;
     string marginTop = AllowList(settings != null ? AsString(settings.MarginTop) : string.Empty, "md", SpacingSizes);
@@ -241,6 +305,22 @@
     string marginBottom = AllowList(settings != null ? AsString(settings.MarginBottom) : string.Empty, "md", SpacingSizes);
     bool autoForward = IsTrue(settings != null ? AsString(settings.AutoForward) : string.Empty, false);
     bool showNavigation = IsTrue(settings != null ? AsString(settings.ShowNavigation) : string.Empty, true);
+    string theme = SanitizeTheme(settings != null ? AsString(settings.Theme) : string.Empty);
+
+    // Each theme can supply its own card markup (cards/{theme}.cshtml) and styles (css/themes/{theme}.css).
+    string templateFolder = GetTemplateFolder(AsString(Model.Context.TemplatePath));
+    string defaultCardPath = (templateFolder ?? string.Empty) + "cards/default.cshtml";
+    string cardPath = (templateFolder ?? string.Empty) + "cards/" + theme + ".cshtml";
+    bool themeCardMissing = false;
+    if (!string.Equals(cardPath, defaultCardPath, StringComparison.OrdinalIgnoreCase) && !VirtualFileExists(cardPath))
+    {
+        themeCardMissing = true;
+        cardPath = defaultCardPath;
+    }
+    if (theme != "default" && VirtualFileExists((templateFolder ?? string.Empty) + "css/themes/" + theme + ".css"))
+    {
+        RegisterStyleSheet("css/themes/" + theme + ".css");
+    }
 
     string sectionTitle = AsString(Model.SectionTitle);
     string titleTag = SafeHeadingTag(AsString(Model.TitleTag));
@@ -277,81 +357,88 @@
     }
     int cardCount = visibleCards.Count;
 
-    string baseId = "nobs-cr-" + Convert.ToString(Model.Context.ModuleId, CultureInfo.InvariantCulture);
+    string baseId = "ccn-" + Convert.ToString(Model.Context.ModuleId, CultureInfo.InvariantCulture);
     string titleId = baseId + "-title";
     string trackId = baseId + "-track";
     string carouselLabel = hasTitle ? sectionTitle : "Featured cards";
-    string sectionClasses = "nobs-card-rotator"
-        + " nobs-cr--mt-" + marginTop
-        + " nobs-cr--pt-" + paddingTop
-        + " nobs-cr--pb-" + paddingBottom
-        + " nobs-cr--mb-" + marginBottom;
+    string sectionClasses = "card-carousel-nobs"
+        + " ccn--theme-" + theme
+        + " ccn--mt-" + marginTop
+        + " ccn--pt-" + paddingTop
+        + " ccn--pb-" + paddingBottom
+        + " ccn--mb-" + marginBottom;
     bool renderPause = autoForward && cardCount > 1;
     bool renderNavigation = showNavigation && cardCount > 1;
     bool isEditMode = Model.Context.IsEditMode;
+    bool cardFileFailed = false;
+}
+
+@if (cardCount > 0 && isEditMode && themeCardMissing)
+{
+    <div class="ccn-edit-note" role="note">Card Carousel NoBS: the "@theme" theme has no cards/@(theme).cshtml file, so cards use cards/default.cshtml. This note is shown only in edit mode.</div>
 }
 
 @if (cardCount == 0)
 {
     if (isEditMode)
     {
-        <div class="nobs-cr-edit-note" role="note">NoBS Card Rotator: no cards are visible right now. Add a card, or check each card's Start and End Date/Time. This note is shown only in edit mode.</div>
+        <div class="ccn-edit-note" role="note">Card Carousel NoBS: no cards are visible right now. Add a card, or check each card's Start and End Date/Time. This note is shown only in edit mode.</div>
     }
 }
 else
 {
     <section id="@baseId" class="@sectionClasses" aria-labelledby="@(hasTitle ? titleId : null)" aria-label="@(hasTitle ? null : carouselLabel)"
-             data-nobs-card-rotator
+             data-card-carousel-nobs
              data-autoplay="@(autoForward ? "true" : "false")"
              data-autoplay-delay="5000"
              data-navigation="@(showNavigation ? "true" : "false")"
              data-label="@carouselLabel"
              data-label-pause="Pause automatic rotation"
              data-label-play="Play automatic rotation">
-        <div class="nobs-cr__inner">
+        <div class="ccn__inner">
             @if (hasHeader)
             {
-                <div class="nobs-cr__header">
+                <div class="ccn__header">
                     @if (hasTitle || hasShowAll)
                     {
-                        <div class="nobs-cr__header-row@(hasTitle ? string.Empty : " nobs-cr__header-row--end")">
+                        <div class="ccn__header-row@(hasTitle ? string.Empty : " ccn__header-row--end")">
                             @if (hasTitle)
                             {
-                                <text>@Html.Raw("<" + titleTag + " id=\"" + titleId + "\" class=\"nobs-cr__title\">")@(sectionTitle)@Html.Raw("</" + titleTag + ">")</text>
+                                <text>@Html.Raw("<" + titleTag + " id=\"" + titleId + "\" class=\"ccn__title\">")@(sectionTitle)@Html.Raw("</" + titleTag + ">")</text>
                             }
                             @if (hasShowAll)
                             {
-                                <a class="nobs-cr__show-all" href="@showAllUrl" target="@GetLinkTarget(showAllKind)" rel="@GetLinkRel(showAllKind)"><span>Show all</span>@if (hasTitle){<span class="nobs-cr__sr-only"> @sectionTitle</span>}@if (showAllKind == LinkExternal){<span class="nobs-cr__sr-only"> (opens in a new tab)</span>}</a>
+                                <a class="ccn__show-all" href="@showAllUrl" target="@GetLinkTarget(showAllKind)" rel="@GetLinkRel(showAllKind)"><span>Show all</span>@if (hasTitle){<span class="ccn__sr-only"> @sectionTitle</span>}@if (showAllKind == LinkExternal){<span class="ccn__sr-only"> (opens in a new tab)</span>}</a>
                             }
                         </div>
                     }
                     @if (hasDescription)
                     {
-                        <div class="nobs-cr__section-description">@Html.Raw(sectionDescription)</div>
+                        <div class="ccn__section-description">@Html.Raw(sectionDescription)</div>
                     }
                 </div>
             }
 
-            <div class="nobs-cr__carousel">
+            <div class="ccn__carousel">
                 @if (renderPause)
                 {
-                    <div class="nobs-cr__toolbar">
-                        <button type="button" class="nobs-cr__pause" aria-label="Pause automatic rotation" aria-controls="@trackId" hidden>
-                            <svg class="nobs-cr__icon nobs-cr__icon--pause" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2h3v12H4zM9 2h3v12H9z" /></svg>
-                            <svg class="nobs-cr__icon nobs-cr__icon--play" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2l10 6-10 6z" /></svg>
-                            <span class="nobs-cr__pause-text">Pause</span>
+                    <div class="ccn__toolbar">
+                        <button type="button" class="ccn__pause" aria-label="Pause automatic rotation" aria-controls="@trackId" hidden>
+                            <svg class="ccn__icon ccn__icon--pause" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2h3v12H4zM9 2h3v12H9z" /></svg>
+                            <svg class="ccn__icon ccn__icon--play" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2l10 6-10 6z" /></svg>
+                            <span class="ccn__pause-text">Pause</span>
                         </button>
                     </div>
                 }
-                <div class="nobs-cr__stage">
+                <div class="ccn__stage">
                     @if (renderNavigation)
                     {
-                        <button type="button" class="nobs-cr__nav nobs-cr__nav--prev" aria-label="Previous card" aria-controls="@trackId" hidden>
-                            <svg class="nobs-cr__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 3L5 8l5 5" /></svg>
+                        <button type="button" class="ccn__nav ccn__nav--prev" aria-label="Previous card" aria-controls="@trackId" hidden>
+                            <svg class="ccn__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 3L5 8l5 5" /></svg>
                         </button>
                     }
-                    <div class="swiper nobs-cr__swiper">
-                        <div class="swiper-wrapper nobs-cr__track" id="@trackId">
+                    <div class="swiper ccn__swiper">
+                        <div class="swiper-wrapper ccn__track" id="@trackId">
                             @{ int cardNumber = 0; }
                             @foreach (var card in visibleCards)
                             {
@@ -370,50 +457,45 @@ else
                                 string fallbackLinkLabel = (string.IsNullOrEmpty(cardSubtitle) ? "Open card " + cardNumber.ToString(CultureInfo.InvariantCulture) : cardSubtitle)
                                     + (cardIsExternal ? " (opens in a new tab)" : string.Empty);
 
-                                <div class="swiper-slide nobs-cr__slide">
-                                    <div class="nobs-cr__card@(cardHasLink ? " nobs-cr__card--linked" : string.Empty)">
-                                        @if (!string.IsNullOrEmpty(cardImage))
-                                        {
-                                            <div class="nobs-cr__media">
-                                                <img class="nobs-cr__image" src="@cardImage" alt="@cardImageAlt" loading="lazy" decoding="async" />
-                                            </div>
-                                        }
-                                        <div class="nobs-cr__body">
-                                            @if (cardHasTitle)
-                                            {
-                                                <text>@Html.Raw("<" + cardTitleTag + " class=\"nobs-cr__card-title\">")</text>
-                                                if (cardHasLink)
-                                                {
-                                                    <a class="nobs-cr__link" href="@cardUrl" target="@GetLinkTarget(cardLinkKind)" rel="@GetLinkRel(cardLinkKind)">@(cardTitle)@if (cardIsExternal){<span class="nobs-cr__sr-only"> (opens in a new tab)</span>}</a>
-                                                }
-                                                else
-                                                {
-                                                    <text>@cardTitle</text>
-                                                }
-                                                <text>@Html.Raw("</" + cardTitleTag + ">")</text>
-                                            }
-                                            else if (cardHasLink)
-                                            {
-                                                <a class="nobs-cr__link nobs-cr__link--label-only" href="@cardUrl" target="@GetLinkTarget(cardLinkKind)" rel="@GetLinkRel(cardLinkKind)" aria-label="@fallbackLinkLabel"></a>
-                                            }
-                                            @if (!string.IsNullOrEmpty(cardSubtitle))
-                                            {
-                                                <p class="nobs-cr__subtitle">@cardSubtitle</p>
-                                            }
-                                            @if (cardHasDescription)
-                                            {
-                                                <div class="nobs-cr__description">@Html.Raw(cardDescription)</div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
+                                // Prepared, already-validated values for the card file. See cards/default.cshtml for the full contract.
+                                var cardModel = new ExpandoObject();
+                                var cardValues = (IDictionary<string, object>)cardModel;
+                                cardValues["Title"] = cardTitle;
+                                cardValues["HasTitle"] = cardHasTitle;
+                                cardValues["Subtitle"] = cardSubtitle;
+                                cardValues["DescriptionHtml"] = cardDescription;
+                                cardValues["HasDescription"] = cardHasDescription;
+                                cardValues["ImageUrl"] = cardImage;
+                                cardValues["ImageAlt"] = cardImageAlt;
+                                cardValues["Url"] = cardUrl;
+                                cardValues["HasLink"] = cardHasLink;
+                                cardValues["IsExternal"] = cardIsExternal;
+                                cardValues["LinkTarget"] = GetLinkTarget(cardLinkKind);
+                                cardValues["LinkRel"] = GetLinkRel(cardLinkKind);
+                                cardValues["FallbackLinkLabel"] = fallbackLinkLabel;
+                                cardValues["HeadingTag"] = cardTitleTag;
+                                cardValues["CardNumber"] = cardNumber;
+                                cardValues["CardCount"] = cardCount;
+                                cardValues["Theme"] = theme;
+                                cardValues["IdPrefix"] = baseId + "-card-" + cardNumber.ToString(CultureInfo.InvariantCulture);
+                                cardValues["Item"] = card;
+                                cardValues["Settings"] = settings;
+
+                                bool usedFallback;
+                                string cardHtml = RenderCardSafely(cardPath, defaultCardPath, cardModel, out usedFallback);
+                                if (usedFallback)
+                                {
+                                    cardFileFailed = true;
+                                }
+
+                                <div class="swiper-slide ccn__slide">@Html.Raw(cardHtml)</div>
                             }
                         </div>
                     </div>
                     @if (renderNavigation)
                     {
-                        <button type="button" class="nobs-cr__nav nobs-cr__nav--next" aria-label="Next card" aria-controls="@trackId" hidden>
-                            <svg class="nobs-cr__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 3l5 5-5 5" /></svg>
+                        <button type="button" class="ccn__nav ccn__nav--next" aria-label="Next card" aria-controls="@trackId" hidden>
+                            <svg class="ccn__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 3l5 5-5 5" /></svg>
                         </button>
                     }
                 </div>
@@ -421,8 +503,13 @@ else
 
             @if (hasFooter)
             {
-                <p class="nobs-cr__footer">@sectionFooter</p>
+                <p class="ccn__footer">@sectionFooter</p>
             }
         </div>
     </section>
+
+    if (isEditMode && cardFileFailed)
+    {
+        <div class="ccn-edit-note" role="note">Card Carousel NoBS: cards/@(theme).cshtml failed to render, so cards/default.cshtml was used. Details are in the DNN Admin Log. This note is shown only in edit mode.</div>
+    }
 }

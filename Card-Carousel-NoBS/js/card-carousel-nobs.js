@@ -1,20 +1,20 @@
 /*
- * NoBS Card Rotator
- * Starts every [data-nobs-card-rotator] element on the page exactly once, using the bundled Swiper.
+ * Card Carousel NoBS
+ * Starts every [data-card-carousel-nobs] element on the page exactly once, using the bundled Swiper.
  * Safe to load more than once and safe with any number of rotators per page.
  */
 (function (window, document) {
     'use strict';
 
-    if (window.NoBSCardRotator) {
+    if (window.CardCarouselNoBS) {
         return;
     }
 
-    var SELECTOR = '[data-nobs-card-rotator]';
-    var READY_ATTRIBUTE = 'data-nobs-cr-ready';
+    var SELECTOR = '[data-card-carousel-nobs]';
+    var READY_ATTRIBUTE = 'data-ccn-ready';
     var LOOP_MINIMUM_CARDS = 5; // Swiper loop needs slidesPerView (max 4) + 1 slides.
 
-    document.documentElement.classList.add('nobs-cr-js');
+    document.documentElement.classList.add('ccn-js');
 
     function prefersReducedMotion() {
         return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -31,14 +31,14 @@
         }
         root.setAttribute(READY_ATTRIBUTE, 'true');
 
-        var viewport = root.querySelector('.nobs-cr__swiper');
+        var viewport = root.querySelector('.ccn__swiper');
         if (!viewport) {
             return;
         }
 
         if (typeof window.Swiper !== 'function') {
             // Swiper is missing: show the cards as a plain wrapped grid.
-            root.classList.add('nobs-cr--static');
+            root.classList.add('ccn--static');
             return;
         }
 
@@ -48,10 +48,10 @@
         var delay = parseInt(root.getAttribute('data-autoplay-delay'), 10) || 5000;
         var pauseLabel = root.getAttribute('data-label-pause') || 'Pause automatic rotation';
         var playLabel = root.getAttribute('data-label-play') || 'Play automatic rotation';
-        var prevButton = root.querySelector('.nobs-cr__nav--prev');
-        var nextButton = root.querySelector('.nobs-cr__nav--next');
-        var pauseButton = root.querySelector('.nobs-cr__pause');
-        var pauseText = pauseButton ? pauseButton.querySelector('.nobs-cr__pause-text') : null;
+        var prevButton = root.querySelector('.ccn__nav--prev');
+        var nextButton = root.querySelector('.ccn__nav--next');
+        var pauseButton = root.querySelector('.ccn__pause');
+        var pauseText = pauseButton ? pauseButton.querySelector('.ccn__pause-text') : null;
         var reducedMotion = prefersReducedMotion();
         var useLoop = slideCount >= LOOP_MINIMUM_CARDS;
 
@@ -188,9 +188,9 @@
             try {
                 initRotator(rotators[i]);
             } catch (error) {
-                rotators[i].classList.add('nobs-cr--static');
+                rotators[i].classList.add('ccn--static');
                 if (window.console && window.console.error) {
-                    window.console.error('NoBS Card Rotator could not start.', error);
+                    window.console.error('Card Carousel NoBS could not start.', error);
                 }
             }
         }
@@ -207,7 +207,7 @@
         }
     }
 
-    window.NoBSCardRotator = { init: initAll };
+    window.CardCarouselNoBS = { init: initAll };
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initAll);
