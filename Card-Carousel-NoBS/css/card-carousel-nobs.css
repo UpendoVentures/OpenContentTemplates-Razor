@@ -26,6 +26,11 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    /* Size by the available space, never by the cards. Without this, a skin that places panes in an auto-sized
+       <table> grows the cell to fit the full row of slides, stretching the page and any width-measuring modules. */
+    contain: inline-size;
 }
 
 .card-carousel-nobs *,
