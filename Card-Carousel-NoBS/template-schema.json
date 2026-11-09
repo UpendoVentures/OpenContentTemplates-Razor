@@ -38,7 +38,7 @@
     "Theme": {
       "type": "string",
       "title": "Theme",
-      "enum": ["beach", "default", "industrial", "professional", "techie"],
+      "enum": ["beach", "default", "hoverinfo", "industrial", "professional", "techie"],
       "default": "default"
     }
   }
