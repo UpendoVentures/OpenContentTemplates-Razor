@@ -1,0 +1,428 @@
+@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using System.Text.RegularExpressions
+@using DotNetNuke.Entities.Portals
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private const int LinkNone = 0;
+    private const int LinkLocal = 1;
+    private const int LinkExternal = 2;
+    private const int LinkOther = 3;
+
+    private static readonly string[] HeadingTags = new string[] { "h1", "h2", "h3", "h4", "h5", "h6" };
+    private static readonly string[] SpacingSizes = new string[] { "xs", "sm", "md", "lg", "xl" };
+    private static readonly string[] CardDateFormats = new string[]
+    {
+        "yyyy-MM-dd HH:mm",
+        "yyyy-MM-dd H:mm",
+        "yyyy-MM-dd HH:mm:ss",
+        "yyyy-MM-dd'T'HH:mm",
+        "yyyy-MM-dd'T'HH:mm:ss",
+        "yyyy-MM-dd"
+    };
+
+    private static string AsString(object value)
+    {
+        return value == null ? string.Empty : Convert.ToString(value, CultureInfo.InvariantCulture).Trim();
+    }
+
+    private static string AllowList(string value, string fallback, string[] allowedValues)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            foreach (string allowedValue in allowedValues)
+            {
+                if (string.Equals(value, allowedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return allowedValue;
+                }
+            }
+        }
+        return fallback;
+    }
+
+    private static bool IsTrue(string value, bool fallback)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return fallback;
+        }
+        return string.Equals(value, "true", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(value, "1", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(value, "on", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string SafeHeadingTag(string value)
+    {
+        return AllowList(value, "h3", HeadingTags);
+    }
+
+    private static string ChildHeadingTag(string headingTag)
+    {
+        int level = int.Parse(headingTag.Substring(1), CultureInfo.InvariantCulture);
+        return "h" + Math.Min(6, level + 1).ToString(CultureInfo.InvariantCulture);
+    }
+
+    private static TimeZoneInfo GetPortalTimeZone()
+    {
+        try
+        {
+            PortalSettings portalSettings = PortalSettings.Current;
+            if (portalSettings != null && portalSettings.TimeZone != null)
+            {
+                return portalSettings.TimeZone;
+            }
+        }
+        catch (Exception)
+        {
+            // Fall back to UTC when the portal time zone is unavailable.
+        }
+        return TimeZoneInfo.Utc;
+    }
+
+    // Dates are stored as "YYYY-MM-DD HH:mm" in portal local time. Values with an explicit offset are converted.
+    private static bool TryParseCardDate(string value, TimeZoneInfo portalZone, out DateTime result)
+    {
+        result = DateTime.MinValue;
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        DateTime parsed;
+        if (DateTime.TryParseExact(value, CardDateFormats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out parsed))
+        {
+            result = parsed;
+            return true;
+        }
+
+        if (DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out parsed)
+            || DateTime.TryParse(value, CultureInfo.CurrentCulture, DateTimeStyles.RoundtripKind, out parsed))
+        {
+            if (parsed.Kind == DateTimeKind.Utc)
+            {
+                parsed = TimeZoneInfo.ConvertTimeFromUtc(parsed, portalZone);
+            }
+            else if (parsed.Kind == DateTimeKind.Local)
+            {
+                parsed = TimeZoneInfo.ConvertTime(parsed, portalZone);
+            }
+            result = DateTime.SpecifyKind(parsed, DateTimeKind.Unspecified);
+            return true;
+        }
+
+        return false;
+    }
+
+    // Empty or unreadable dates never hide a card.
+    private static bool IsCardVisible(string startValue, string endValue, DateTime portalNow, TimeZoneInfo portalZone)
+    {
+        DateTime startDate;
+        if (TryParseCardDate(startValue, portalZone, out startDate) && portalNow < startDate)
+        {
+            return false;
+        }
+
+        DateTime endDate;
+        if (TryParseCardDate(endValue, portalZone, out endDate) && portalNow >= endDate)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool HasRichContent(string html)
+    {
+        if (string.IsNullOrWhiteSpace(html))
+        {
+            return false;
+        }
+        if (Regex.IsMatch(html, @"<(img|picture|svg|video|iframe)\b", RegexOptions.IgnoreCase))
+        {
+            return true;
+        }
+        string text = Regex.Replace(html, "<[^>]*>", string.Empty);
+        text = text.Replace("&nbsp;", " ").Replace("&#160;", " ").Replace(" ", " ");
+        return !string.IsNullOrWhiteSpace(text);
+    }
+
+    // Removes script-capable URLs. Returns an empty string when there is nothing safe to link to.
+    private static string GetSafeUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return string.Empty;
+        }
+        string trimmed = url.Trim();
+        string compact = Regex.Replace(trimmed, @"[\s\u0000-\u001F]+", string.Empty).ToLowerInvariant();
+        if (compact.StartsWith("javascript:", StringComparison.Ordinal)
+            || compact.StartsWith("vbscript:", StringComparison.Ordinal)
+            || compact.StartsWith("data:", StringComparison.Ordinal))
+        {
+            return string.Empty;
+        }
+        return trimmed;
+    }
+
+    private static string NormalizeHost(string host)
+    {
+        string value = (host ?? string.Empty).Trim().TrimEnd('.').ToLowerInvariant();
+        if (value.StartsWith("www.", StringComparison.Ordinal))
+        {
+            value = value.Substring(4);
+        }
+        return value;
+    }
+
+    // Same host (with or without "www.") and relative links are local; other http(s) hosts are external.
+    private int GetLinkKind(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+        {
+            return LinkNone;
+        }
+
+        string candidate = url.StartsWith("//", StringComparison.Ordinal) ? "http:" + url : url;
+        Uri absoluteUri;
+        if (Uri.TryCreate(candidate, UriKind.Absolute, out absoluteUri))
+        {
+            if (string.Equals(absoluteUri.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(absoluteUri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
+            {
+                string currentHost = NormalizeHost(Request != null && Request.Url != null ? Request.Url.Host : string.Empty);
+                return currentHost.Length > 0 && string.Equals(NormalizeHost(absoluteUri.Host), currentHost, StringComparison.Ordinal)
+                    ? LinkLocal
+                    : LinkExternal;
+            }
+            return LinkOther;
+        }
+
+        // Looks absolute but could not be parsed: treat it as external to be safe.
+        if (url.IndexOf("://", StringComparison.Ordinal) >= 0)
+        {
+            return LinkExternal;
+        }
+
+        return LinkLocal;
+    }
+
+    private static string GetLinkTarget(int linkKind)
+    {
+        if (linkKind == LinkLocal)
+        {
+            return "_top";
+        }
+        if (linkKind == LinkExternal)
+        {
+            return "_blank";
+        }
+        return null;
+    }
+
+    private static string GetLinkRel(int linkKind)
+    {
+        return linkKind == LinkExternal ? "noopener noreferrer" : null;
+    }
+}
+
+@{
+    RegisterStyleSheet("css/swiper-bundle.min.css");
+    RegisterStyleSheet("css/nobs-card-rotator.css");
+    RegisterScript("js/swiper-bundle.min.js");
+    RegisterScript("js/nobs-card-rotator.js");
+
+    var settings = Model.Settings;
+    string marginTop = AllowList(settings != null ? AsString(settings.MarginTop) : string.Empty, "md", SpacingSizes);
+    string paddingTop = AllowList(settings != null ? AsString(settings.PaddingTop) : string.Empty, "md", SpacingSizes);
+    string paddingBottom = AllowList(settings != null ? AsString(settings.PaddingBottom) : string.Empty, "md", SpacingSizes);
+    string marginBottom = AllowList(settings != null ? AsString(settings.MarginBottom) : string.Empty, "md", SpacingSizes);
+    bool autoForward = IsTrue(settings != null ? AsString(settings.AutoForward) : string.Empty, false);
+    bool showNavigation = IsTrue(settings != null ? AsString(settings.ShowNavigation) : string.Empty, true);
+
+    string sectionTitle = AsString(Model.SectionTitle);
+    string titleTag = SafeHeadingTag(AsString(Model.TitleTag));
+    string sectionDescription = AsString(Model.SectionDescription);
+    string showAllUrl = GetSafeUrl(AsString(Model.ShowAllLink));
+    int showAllKind = GetLinkKind(showAllUrl);
+    string sectionFooter = AsString(Model.SectionFooter);
+
+    bool hasTitle = !string.IsNullOrEmpty(sectionTitle);
+    bool hasDescription = HasRichContent(sectionDescription);
+    bool hasShowAll = showAllKind != LinkNone;
+    bool hasHeader = hasTitle || hasDescription || hasShowAll;
+    bool hasFooter = !string.IsNullOrEmpty(sectionFooter);
+    string cardTitleTag = hasTitle ? ChildHeadingTag(titleTag) : titleTag;
+
+    TimeZoneInfo portalZone = GetPortalTimeZone();
+    DateTime portalNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, portalZone);
+    var visibleCards = new List<dynamic>();
+    if (Model.Cards != null)
+    {
+        foreach (var card in Model.Cards)
+        {
+            if (card == null)
+            {
+                continue;
+            }
+            string startValue = AsString(card.StartDate);
+            string endValue = AsString(card.EndDate);
+            if (IsCardVisible(startValue, endValue, portalNow, portalZone))
+            {
+                visibleCards.Add(card);
+            }
+        }
+    }
+    int cardCount = visibleCards.Count;
+
+    string baseId = "nobs-cr-" + Convert.ToString(Model.Context.ModuleId, CultureInfo.InvariantCulture);
+    string titleId = baseId + "-title";
+    string trackId = baseId + "-track";
+    string carouselLabel = hasTitle ? sectionTitle : "Featured cards";
+    string sectionClasses = "nobs-card-rotator"
+        + " nobs-cr--mt-" + marginTop
+        + " nobs-cr--pt-" + paddingTop
+        + " nobs-cr--pb-" + paddingBottom
+        + " nobs-cr--mb-" + marginBottom;
+    bool renderPause = autoForward && cardCount > 1;
+    bool renderNavigation = showNavigation && cardCount > 1;
+    bool isEditMode = Model.Context.IsEditMode;
+}
+
+@if (cardCount == 0)
+{
+    if (isEditMode)
+    {
+        <div class="nobs-cr-edit-note" role="note">NoBS Card Rotator: no cards are visible right now. Add a card, or check each card's Start and End Date/Time. This note is shown only in edit mode.</div>
+    }
+}
+else
+{
+    <section id="@baseId" class="@sectionClasses" aria-labelledby="@(hasTitle ? titleId : null)" aria-label="@(hasTitle ? null : carouselLabel)"
+             data-nobs-card-rotator
+             data-autoplay="@(autoForward ? "true" : "false")"
+             data-autoplay-delay="5000"
+             data-navigation="@(showNavigation ? "true" : "false")"
+             data-label="@carouselLabel"
+             data-label-pause="Pause automatic rotation"
+             data-label-play="Play automatic rotation">
+        <div class="nobs-cr__inner">
+            @if (hasHeader)
+            {
+                <div class="nobs-cr__header">
+                    @if (hasTitle || hasShowAll)
+                    {
+                        <div class="nobs-cr__header-row@(hasTitle ? string.Empty : " nobs-cr__header-row--end")">
+                            @if (hasTitle)
+                            {
+                                <text>@Html.Raw("<" + titleTag + " id=\"" + titleId + "\" class=\"nobs-cr__title\">")@(sectionTitle)@Html.Raw("</" + titleTag + ">")</text>
+                            }
+                            @if (hasShowAll)
+                            {
+                                <a class="nobs-cr__show-all" href="@showAllUrl" target="@GetLinkTarget(showAllKind)" rel="@GetLinkRel(showAllKind)"><span>Show all</span>@if (hasTitle){<span class="nobs-cr__sr-only"> @sectionTitle</span>}@if (showAllKind == LinkExternal){<span class="nobs-cr__sr-only"> (opens in a new tab)</span>}</a>
+                            }
+                        </div>
+                    }
+                    @if (hasDescription)
+                    {
+                        <div class="nobs-cr__section-description">@Html.Raw(sectionDescription)</div>
+                    }
+                </div>
+            }
+
+            <div class="nobs-cr__carousel">
+                @if (renderPause)
+                {
+                    <div class="nobs-cr__toolbar">
+                        <button type="button" class="nobs-cr__pause" aria-label="Pause automatic rotation" aria-controls="@trackId" hidden>
+                            <svg class="nobs-cr__icon nobs-cr__icon--pause" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2h3v12H4zM9 2h3v12H9z" /></svg>
+                            <svg class="nobs-cr__icon nobs-cr__icon--play" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2l10 6-10 6z" /></svg>
+                            <span class="nobs-cr__pause-text">Pause</span>
+                        </button>
+                    </div>
+                }
+                <div class="nobs-cr__stage">
+                    @if (renderNavigation)
+                    {
+                        <button type="button" class="nobs-cr__nav nobs-cr__nav--prev" aria-label="Previous card" aria-controls="@trackId" hidden>
+                            <svg class="nobs-cr__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 3L5 8l5 5" /></svg>
+                        </button>
+                    }
+                    <div class="swiper nobs-cr__swiper">
+                        <div class="swiper-wrapper nobs-cr__track" id="@trackId">
+                            @{ int cardNumber = 0; }
+                            @foreach (var card in visibleCards)
+                            {
+                                cardNumber++;
+                                string cardTitle = AsString(card.Title);
+                                string cardSubtitle = AsString(card.Subtitle);
+                                string cardDescription = AsString(card.Description);
+                                string cardImage = AsString(card.Image);
+                                string cardImageAlt = AsString(card.ImageAlt);
+                                string cardUrl = GetSafeUrl(AsString(card.Link));
+                                int cardLinkKind = GetLinkKind(cardUrl);
+                                bool cardHasLink = cardLinkKind != LinkNone;
+                                bool cardIsExternal = cardLinkKind == LinkExternal;
+                                bool cardHasTitle = !string.IsNullOrEmpty(cardTitle);
+                                bool cardHasDescription = HasRichContent(cardDescription);
+                                string fallbackLinkLabel = (string.IsNullOrEmpty(cardSubtitle) ? "Open card " + cardNumber.ToString(CultureInfo.InvariantCulture) : cardSubtitle)
+                                    + (cardIsExternal ? " (opens in a new tab)" : string.Empty);
+
+                                <div class="swiper-slide nobs-cr__slide">
+                                    <div class="nobs-cr__card@(cardHasLink ? " nobs-cr__card--linked" : string.Empty)">
+                                        @if (!string.IsNullOrEmpty(cardImage))
+                                        {
+                                            <div class="nobs-cr__media">
+                                                <img class="nobs-cr__image" src="@cardImage" alt="@cardImageAlt" loading="lazy" decoding="async" />
+                                            </div>
+                                        }
+                                        <div class="nobs-cr__body">
+                                            @if (cardHasTitle)
+                                            {
+                                                <text>@Html.Raw("<" + cardTitleTag + " class=\"nobs-cr__card-title\">")</text>
+                                                if (cardHasLink)
+                                                {
+                                                    <a class="nobs-cr__link" href="@cardUrl" target="@GetLinkTarget(cardLinkKind)" rel="@GetLinkRel(cardLinkKind)">@(cardTitle)@if (cardIsExternal){<span class="nobs-cr__sr-only"> (opens in a new tab)</span>}</a>
+                                                }
+                                                else
+                                                {
+                                                    <text>@cardTitle</text>
+                                                }
+                                                <text>@Html.Raw("</" + cardTitleTag + ">")</text>
+                                            }
+                                            else if (cardHasLink)
+                                            {
+                                                <a class="nobs-cr__link nobs-cr__link--label-only" href="@cardUrl" target="@GetLinkTarget(cardLinkKind)" rel="@GetLinkRel(cardLinkKind)" aria-label="@fallbackLinkLabel"></a>
+                                            }
+                                            @if (!string.IsNullOrEmpty(cardSubtitle))
+                                            {
+                                                <p class="nobs-cr__subtitle">@cardSubtitle</p>
+                                            }
+                                            @if (cardHasDescription)
+                                            {
+                                                <div class="nobs-cr__description">@Html.Raw(cardDescription)</div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @if (renderNavigation)
+                    {
+                        <button type="button" class="nobs-cr__nav nobs-cr__nav--next" aria-label="Next card" aria-controls="@trackId" hidden>
+                            <svg class="nobs-cr__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 3l5 5-5 5" /></svg>
+                        </button>
+                    }
+                </div>
+            </div>
+
+            @if (hasFooter)
+            {
+                <p class="nobs-cr__footer">@sectionFooter</p>
+            }
+        </div>
+    </section>
+}

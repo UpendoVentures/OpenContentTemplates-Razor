@@ -1,0 +1,377 @@
+/*
+ * NoBS Card Rotator
+ * Standalone styles: no Bootstrap, Porto, or other framework classes required.
+ * Every rule is scoped to .nobs-card-rotator. Override the custom properties below to adjust the look per site.
+ */
+
+.nobs-card-rotator {
+    --nobs-cr-space-xs: 0.5rem;
+    --nobs-cr-space-sm: 1rem;
+    --nobs-cr-space-md: 2rem;
+    --nobs-cr-space-lg: 3rem;
+    --nobs-cr-space-xl: 5rem;
+    --nobs-cr-gap: 1rem;
+    --nobs-cr-per-view: 2;
+    --nobs-cr-radius: 0.5rem;
+    --nobs-cr-border-color: rgba(127, 127, 127, 0.35);
+    --nobs-cr-card-bg: transparent;
+    --nobs-cr-muted-opacity: 0.8;
+    --nobs-cr-nav-size: 2.5rem;
+    --nobs-cr-focus-color: currentColor;
+    --nobs-cr-image-ratio: 16 / 9;
+    --nobs-cr-image-bg: rgba(127, 127, 127, 0.12);
+    --nobs-cr-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.12);
+
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.nobs-card-rotator *,
+.nobs-card-rotator *::before,
+.nobs-card-rotator *::after {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .nobs-card-rotator {
+        --nobs-cr-per-view: 3;
+    }
+}
+
+@media (min-width: 992px) {
+    .nobs-card-rotator {
+        --nobs-cr-per-view: 4;
+    }
+}
+
+/* Spacing settings */
+.nobs-card-rotator.nobs-cr--mt-xs { margin-top: var(--nobs-cr-space-xs); }
+.nobs-card-rotator.nobs-cr--mt-sm { margin-top: var(--nobs-cr-space-sm); }
+.nobs-card-rotator.nobs-cr--mt-md { margin-top: var(--nobs-cr-space-md); }
+.nobs-card-rotator.nobs-cr--mt-lg { margin-top: var(--nobs-cr-space-lg); }
+.nobs-card-rotator.nobs-cr--mt-xl { margin-top: var(--nobs-cr-space-xl); }
+.nobs-card-rotator.nobs-cr--pt-xs { padding-top: var(--nobs-cr-space-xs); }
+.nobs-card-rotator.nobs-cr--pt-sm { padding-top: var(--nobs-cr-space-sm); }
+.nobs-card-rotator.nobs-cr--pt-md { padding-top: var(--nobs-cr-space-md); }
+.nobs-card-rotator.nobs-cr--pt-lg { padding-top: var(--nobs-cr-space-lg); }
+.nobs-card-rotator.nobs-cr--pt-xl { padding-top: var(--nobs-cr-space-xl); }
+.nobs-card-rotator.nobs-cr--pb-xs { padding-bottom: var(--nobs-cr-space-xs); }
+.nobs-card-rotator.nobs-cr--pb-sm { padding-bottom: var(--nobs-cr-space-sm); }
+.nobs-card-rotator.nobs-cr--pb-md { padding-bottom: var(--nobs-cr-space-md); }
+.nobs-card-rotator.nobs-cr--pb-lg { padding-bottom: var(--nobs-cr-space-lg); }
+.nobs-card-rotator.nobs-cr--pb-xl { padding-bottom: var(--nobs-cr-space-xl); }
+.nobs-card-rotator.nobs-cr--mb-xs { margin-bottom: var(--nobs-cr-space-xs); }
+.nobs-card-rotator.nobs-cr--mb-sm { margin-bottom: var(--nobs-cr-space-sm); }
+.nobs-card-rotator.nobs-cr--mb-md { margin-bottom: var(--nobs-cr-space-md); }
+.nobs-card-rotator.nobs-cr--mb-lg { margin-bottom: var(--nobs-cr-space-lg); }
+.nobs-card-rotator.nobs-cr--mb-xl { margin-bottom: var(--nobs-cr-space-xl); }
+
+/* Screen-reader-only text */
+.nobs-card-rotator .nobs-cr__sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Header */
+.nobs-card-rotator .nobs-cr__header {
+    margin-bottom: 1.5rem;
+}
+
+.nobs-card-rotator .nobs-cr__header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+}
+
+.nobs-card-rotator .nobs-cr__header-row--end {
+    justify-content: flex-end;
+}
+
+.nobs-card-rotator .nobs-cr__title {
+    margin: 0;
+}
+
+.nobs-card-rotator .nobs-cr__show-all {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.nobs-card-rotator .nobs-cr__show-all:focus-visible {
+    outline: 2px solid var(--nobs-cr-focus-color);
+    outline-offset: 2px;
+}
+
+.nobs-card-rotator .nobs-cr__section-description {
+    margin-top: 0.75rem;
+}
+
+.nobs-card-rotator .nobs-cr__section-description > :first-child,
+.nobs-card-rotator .nobs-cr__description > :first-child {
+    margin-top: 0;
+}
+
+.nobs-card-rotator .nobs-cr__section-description > :last-child,
+.nobs-card-rotator .nobs-cr__description > :last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+    .nobs-card-rotator .nobs-cr__show-all {
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Toolbar (pause/play) */
+.nobs-card-rotator .nobs-cr__toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.nobs-card-rotator .nobs-cr__pause {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--nobs-cr-border-color);
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.875em;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.nobs-card-rotator .nobs-cr__pause .nobs-cr__icon--play,
+.nobs-card-rotator .nobs-cr__pause.is-paused .nobs-cr__icon--pause {
+    display: none;
+}
+
+.nobs-card-rotator .nobs-cr__pause.is-paused .nobs-cr__icon--play {
+    display: inline-block;
+}
+
+/* Stage: previous button, cards, next button */
+.nobs-card-rotator .nobs-cr__stage {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nobs-card-rotator .nobs-cr__nav {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: var(--nobs-cr-nav-size);
+    height: var(--nobs-cr-nav-size);
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--nobs-cr-border-color);
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.nobs-card-rotator .nobs-cr__nav:hover,
+.nobs-card-rotator .nobs-cr__pause:hover {
+    background: rgba(127, 127, 127, 0.12);
+}
+
+.nobs-card-rotator .nobs-cr__nav:focus-visible,
+.nobs-card-rotator .nobs-cr__pause:focus-visible {
+    outline: 2px solid var(--nobs-cr-focus-color);
+    outline-offset: 2px;
+}
+
+.nobs-card-rotator .nobs-cr__nav[disabled],
+.nobs-card-rotator .nobs-cr__nav.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.nobs-card-rotator .nobs-cr__nav[hidden],
+.nobs-card-rotator .nobs-cr__pause[hidden],
+.nobs-card-rotator .nobs-cr__nav.swiper-button-lock {
+    display: none;
+}
+
+.nobs-card-rotator .nobs-cr__icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+}
+
+@media (max-width: 575.98px) {
+    .nobs-card-rotator {
+        --nobs-cr-nav-size: 2rem;
+    }
+
+    .nobs-card-rotator .nobs-cr__stage {
+        gap: 0.25rem;
+    }
+}
+
+/* Viewport. column-gap is read by the script to size the Swiper gap. */
+.nobs-card-rotator .nobs-cr__swiper {
+    flex: 1 1 auto;
+    min-width: 0;
+    column-gap: var(--nobs-cr-gap);
+    padding-top: 0.25rem;
+    padding-bottom: 0.75rem;
+}
+
+/* Before Swiper starts (or without it): lay cards out at the same widths to avoid layout jumps. */
+.nobs-card-rotator .nobs-cr__swiper:not(.swiper-initialized) .nobs-cr__track {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nobs-cr-gap);
+}
+
+.nobs-card-rotator .nobs-cr__swiper:not(.swiper-initialized) .nobs-cr__slide {
+    flex: 0 0 auto;
+    width: calc((100% - (var(--nobs-cr-per-view) - 1) * var(--nobs-cr-gap)) / var(--nobs-cr-per-view));
+}
+
+/* With the script running, keep a single row until Swiper takes over. Static mode keeps the wrapped grid. */
+.nobs-cr-js .nobs-card-rotator:not(.nobs-cr--static) .nobs-cr__swiper:not(.swiper-initialized) .nobs-cr__track {
+    flex-wrap: nowrap;
+}
+
+.nobs-card-rotator .nobs-cr__swiper .nobs-cr__slide {
+    display: flex;
+    height: auto;
+}
+
+/* Card */
+.nobs-card-rotator .nobs-cr__card {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--nobs-cr-border-color);
+    border-radius: var(--nobs-cr-radius);
+    background: var(--nobs-cr-card-bg);
+    transition: box-shadow 0.2s ease;
+}
+
+.nobs-card-rotator .nobs-cr__card--linked:hover {
+    box-shadow: var(--nobs-cr-shadow);
+}
+
+.nobs-card-rotator .nobs-cr__media {
+    aspect-ratio: var(--nobs-cr-image-ratio);
+    overflow: hidden;
+    background: var(--nobs-cr-image-bg);
+}
+
+.nobs-card-rotator .nobs-cr__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+}
+
+.nobs-card-rotator .nobs-cr__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+}
+
+.nobs-card-rotator .nobs-cr__card-title {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.3;
+}
+
+.nobs-card-rotator .nobs-cr__subtitle {
+    margin: 0;
+    font-size: 0.9em;
+    opacity: var(--nobs-cr-muted-opacity);
+}
+
+.nobs-card-rotator .nobs-cr__description {
+    font-size: 0.95em;
+}
+
+/* Stretched title link: the ::after layer makes the whole card clickable. */
+.nobs-card-rotator .nobs-cr__link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nobs-card-rotator .nobs-cr__link:hover {
+    text-decoration: underline;
+}
+
+.nobs-card-rotator .nobs-cr__link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: var(--nobs-cr-radius);
+}
+
+.nobs-card-rotator .nobs-cr__link:focus-visible {
+    outline: none;
+}
+
+.nobs-card-rotator .nobs-cr__link:focus-visible::after {
+    outline: 2px solid var(--nobs-cr-focus-color);
+    outline-offset: -3px;
+}
+
+/* Links inside the description stay clickable above the stretched layer. */
+.nobs-card-rotator .nobs-cr__description a {
+    position: relative;
+    z-index: 2;
+}
+
+/* Footer */
+.nobs-card-rotator .nobs-cr__footer {
+    margin: 1.5rem 0 0;
+    font-size: 0.9em;
+    text-align: center;
+    opacity: var(--nobs-cr-muted-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nobs-card-rotator .nobs-cr__card {
+        transition: none;
+    }
+}
+
+/* Edit-mode notice (shown only to editors when no cards are visible) */
+.nobs-cr-edit-note {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px dashed rgba(127, 127, 127, 0.6);
+    border-radius: 0.5rem;
+    font-size: 0.9em;
+}

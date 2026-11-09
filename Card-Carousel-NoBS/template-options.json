@@ -1,0 +1,42 @@
+{
+  "fields": {
+    "MarginTop": {
+      "type": "select",
+      "helper": "Space outside the section, above it.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "PaddingTop": {
+      "type": "select",
+      "helper": "Space inside the section, above the content.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "PaddingBottom": {
+      "type": "select",
+      "helper": "Space inside the section, below the content.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "MarginBottom": {
+      "type": "select",
+      "helper": "Space outside the section, below it.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "AutoForward": {
+      "type": "checkbox",
+      "rightLabel": "Automatically advance one card every 5 seconds",
+      "helper": "Rotation pauses on hover and keyboard focus, and visitors get a Pause/Play button. It starts paused for visitors who prefer reduced motion."
+    },
+    "ShowNavigation": {
+      "type": "checkbox",
+      "rightLabel": "Show previous and next buttons",
+      "helper": "Adds left and right buttons that move the cards one at a time. Buttons are hidden automatically when all cards already fit on screen."
+    }
+  }
+}
