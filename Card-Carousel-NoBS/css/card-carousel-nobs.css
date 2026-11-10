@@ -312,6 +312,20 @@
     line-height: 1.3;
 }
 
+/* Headings keep the case the editor typed (some titles are case-sensitive for branding).
+   !important overrides theme and site skin text-transform rules, like Bootstrap's text utilities. */
+.card-carousel-nobs h1,
+.card-carousel-nobs h2,
+.card-carousel-nobs h3,
+.card-carousel-nobs h4,
+.card-carousel-nobs h5,
+.card-carousel-nobs h6,
+.card-carousel-nobs .ccn__title,
+.card-carousel-nobs .ccn__card-title,
+.card-carousel-nobs .ccn__card-title .ccn__link {
+    text-transform: none !important;
+}
+
 .card-carousel-nobs .ccn__subtitle {
     margin: 0;
     font-size: 0.9em;
