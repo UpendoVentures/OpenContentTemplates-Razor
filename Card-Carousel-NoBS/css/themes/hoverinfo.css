@@ -1,0 +1,231 @@
+/*
+ * Card Carousel NoBS - HoverInfo theme
+ * Inspired by "Card Hover Interactions" by Ryan Mulligan (https://codepen.io/hexagoncircle/pen/XWbWKwL).
+ * Full-bleed image cards with white text over a gradient. Only the title shows at rest; hover or keyboard
+ * focus reveals the subtitle and description. Touch/narrow screens and unlinked cards show everything.
+ * Uses the cards/hoverinfo.cshtml markup. Scoped to .card-carousel-nobs.ccn--theme-hoverinfo.
+ * Contrast: white on the no-image fallback (#1f2937) is 14.68:1; controls are white on #111111 (18.88:1).
+ * Text over photos relies on the gradient plus a text shadow; very bright images may need a darker shade.
+ */
+
+.card-carousel-nobs.ccn--theme-hoverinfo {
+    --ccn-radius: 0;
+    --ccn-border-color: transparent;
+    --ccn-card-bg: #1f2937;
+    --ccn-focus-color: #111111;
+    --ccn-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1);
+    --ccn-hi-duration: 700ms;
+    --ccn-hi-ease: cubic-bezier(0.19, 1, 0.22, 1);
+    --ccn-hi-min-height: 18rem;
+    --ccn-hi-text: #ffffff;
+}
+
+/* Card shell: the image and shade sit behind the content inside an isolated stacking context. */
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card {
+    position: relative;
+    isolation: isolate;
+    justify-content: flex-end;
+    min-height: var(--ccn-hi-min-height);
+    border: 0;
+    box-shadow: var(--ccn-shadow);
+    color: var(--ccn-hi-text);
+    text-align: center;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 110%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform calc(var(--ccn-hi-duration) * 1.5) var(--ccn-hi-ease);
+    pointer-events: none;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 200%;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.034) 22.1%,
+        rgba(0, 0, 0, 0.123) 39.4%,
+        rgba(0, 0, 0, 0.249) 53.1%,
+        rgba(0, 0, 0, 0.394) 64.3%,
+        rgba(0, 0, 0, 0.54) 74.1%,
+        rgba(0, 0, 0, 0.668) 83.6%,
+        rgba(0, 0, 0, 0.762) 94.1%,
+        rgba(0, 0, 0, 0.79) 100%
+    );
+    transform: translateY(-50%);
+    transition: transform calc(var(--ccn-hi-duration) * 2) var(--ccn-hi-ease);
+    pointer-events: none;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1.25rem 1rem;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__title {
+    margin: 0;
+    color: var(--ccn-hi-text);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__title .ccn__link {
+    color: inherit;
+}
+
+/* Revealed area. A 0fr/1fr grid row animates the height without guessing the title's size. */
+/* The reveal sits above the stretched title link (its transform/opacity create a stacking context), so clicks
+   pass through it to the card link everywhere except on real links inside the description. */
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__reveal {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr;
+    width: 100%;
+    pointer-events: none;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__reveal a {
+    pointer-events: auto;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__reveal-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0.75rem 0.25rem 0.25rem;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__subtitle {
+    margin: 0;
+    color: var(--ccn-hi-text);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__description {
+    color: var(--ccn-hi-text);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.35;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__description a {
+    color: var(--ccn-hi-text);
+    text-decoration: underline;
+}
+
+/* Keyboard focus: a white ring with a dark edge stays visible on light and dark images. */
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card .ccn__link:focus-visible::after {
+    outline: 3px solid #ffffff;
+    outline-offset: -6px;
+    box-shadow: inset 0 0 0 3px #111111;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__description a:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* Hover-capable, wider screens: hide the details until hover or focus (linked cards only). */
+@media (hover: hover) and (min-width: 768px) {
+    .card-carousel-nobs.ccn--theme-hoverinfo {
+        --ccn-hi-min-height: 22rem;
+    }
+
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive .ccn-hi__shade {
+        transform: translateY(0);
+    }
+
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive .ccn-hi__reveal {
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            grid-template-rows var(--ccn-hi-duration) var(--ccn-hi-ease),
+            transform var(--ccn-hi-duration) var(--ccn-hi-ease),
+            opacity var(--ccn-hi-duration) var(--ccn-hi-ease);
+    }
+
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:hover .ccn-hi__image,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:focus-within .ccn-hi__image {
+        transform: translateY(-4%);
+    }
+
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:hover .ccn-hi__shade,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:focus-within .ccn-hi__shade {
+        transform: translateY(-50%);
+    }
+
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:hover .ccn-hi__reveal,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:focus-within .ccn-hi__reveal {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(var(--ccn-hi-duration) / 8);
+    }
+
+    /* Keyboard focus reveals instantly, as in the original. */
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:focus-within .ccn-hi__image,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:focus-within .ccn-hi__shade,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card--interactive:focus-within .ccn-hi__reveal {
+        transition-duration: 0s;
+        transition-delay: 0s;
+    }
+}
+
+/* Carousel controls and Show all link */
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn__nav,
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn__pause {
+    border-color: #111111;
+    border-radius: 0;
+    background: #111111;
+    color: #ffffff;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn__nav:hover,
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn__pause:hover {
+    background: #2b2b2b;
+}
+
+.card-carousel-nobs.ccn--theme-hoverinfo .ccn__show-all {
+    color: #111111;
+    font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__image,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__shade,
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__reveal {
+        transition: none !important;
+    }
+
+    .card-carousel-nobs.ccn--theme-hoverinfo .ccn-hi__card .ccn-hi__image {
+        transform: none !important;
+    }
+}

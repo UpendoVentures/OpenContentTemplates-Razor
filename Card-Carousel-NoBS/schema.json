@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "TitleTag": {
+      "type": "string",
+      "title": "Title Tag",
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
+      "default": "h3"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "ShowAllLink": {
+      "type": "string",
+      "title": "Show All Link"
+    },
+    "SectionFooter": {
+      "type": "string",
+      "title": "Section Footer"
+    },
+    "Cards": {
+      "type": "array",
+      "title": "Navigation Cards",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Subtitle": {
+            "type": "string",
+            "title": "Subtitle"
+          },
+          "Description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Link"
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "ImageAlt": {
+            "type": "string",
+            "title": "Image Alt Text"
+          },
+          "StartDate": {
+            "type": "string",
+            "title": "Start Date/Time"
+          },
+          "EndDate": {
+            "type": "string",
+            "title": "End Date/Time"
+          }
+        }
+      }
+    }
+  }
+}

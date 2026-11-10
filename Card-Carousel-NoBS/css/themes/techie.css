@@ -1,0 +1,67 @@
+/*
+ * Card Carousel NoBS - Techie theme
+ * Dark navy cards, neon-cyan accents and glow, monospace subtitles.
+ * Scoped to .card-carousel-nobs.ccn--theme-techie so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): text 14.48:1, subtitle 6.96:1, cyan accent 9.88:1, hover 12.32:1 on the card;
+ * Show all and outside focus ring 5.36:1 on white (a darker cyan, because bright cyan is too light on light pages).
+ */
+
+.card-carousel-nobs.ccn--theme-techie {
+    --ccn-radius: 0.75rem;
+    --ccn-border-color: #1e293b;
+    --ccn-card-bg: #0f172a;
+    --ccn-image-bg: #1e293b;
+    --ccn-focus-color: #0e7490;
+    --ccn-shadow: 0 0 0 1px #22d3ee, 0 0 1.25rem rgba(34, 211, 238, 0.35);
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__card {
+    --ccn-focus-color: #22d3ee;
+    color: #e2e8f0;
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__card-title,
+.card-carousel-nobs.ccn--theme-techie .ccn__link {
+    color: #22d3ee;
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__link:hover,
+.card-carousel-nobs.ccn--theme-techie .ccn__description a,
+.card-carousel-nobs.ccn--theme-techie .ccn__description a:hover {
+    color: #67e8f9;
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__subtitle {
+    color: #94a3b8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    opacity: 1;
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__nav,
+.card-carousel-nobs.ccn--theme-techie .ccn__pause {
+    border-color: #22d3ee;
+    background: #0f172a;
+    color: #22d3ee;
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__nav:hover,
+.card-carousel-nobs.ccn--theme-techie .ccn__pause:hover {
+    background: #0f172a;
+    box-shadow: 0 0 0.75rem rgba(34, 211, 238, 0.55);
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__show-all {
+    color: #0e7490;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.card-carousel-nobs.ccn--theme-techie .ccn__show-all:hover {
+    color: #155e75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-carousel-nobs.ccn--theme-techie .ccn__nav:hover,
+    .card-carousel-nobs.ccn--theme-techie .ccn__pause:hover {
+        box-shadow: none;
+    }
+}

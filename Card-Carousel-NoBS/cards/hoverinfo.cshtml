@@ -1,0 +1,76 @@
+@inherits System.Web.WebPages.WebPage
+@*
+    Card Carousel NoBS - card markup for the "hoverinfo" theme.
+    Inspired by "Card Hover Interactions" by Ryan Mulligan (https://codepen.io/hexagoncircle/pen/XWbWKwL).
+
+    The image fills the card and only the title shows at rest. On hover or keyboard focus the subtitle and
+    description slide up and fade in. Touch screens, narrow screens, and cards without a link show everything.
+
+    PageData[0] is the same prepared card described in cards/default.cshtml.
+    The title link uses the shared stretched-link pattern (ccn__card-title + ccn__link), so the whole card is
+    clickable and links inside the description stay usable.
+*@
+@{
+    var card = (dynamic)PageData[0];
+    string title = card.Title;
+    bool hasTitle = card.HasTitle;
+    string subtitle = card.Subtitle;
+    string descriptionHtml = card.DescriptionHtml;
+    bool hasDescription = card.HasDescription;
+    string imageUrl = card.ImageUrl;
+    string imageAlt = card.ImageAlt;
+    string url = card.Url;
+    bool hasLink = card.HasLink;
+    bool isExternal = card.IsExternal;
+    string linkTarget = card.LinkTarget;
+    string linkRel = card.LinkRel;
+    string fallbackLinkLabel = card.FallbackLinkLabel;
+    string headingTag = card.HeadingTag;
+
+    bool hasImage = !string.IsNullOrEmpty(imageUrl);
+    bool hasSubtitle = !string.IsNullOrEmpty(subtitle);
+    string cardClasses = "ccn__card ccn-hi__card"
+        + (hasLink ? " ccn__card--linked ccn-hi__card--interactive" : " ccn-hi__card--static")
+        + (hasImage ? string.Empty : " ccn-hi__card--no-image");
+}
+<div class="@cardClasses">
+    @if (hasImage)
+    {
+        <img class="ccn-hi__image" src="@imageUrl" alt="@imageAlt" loading="lazy" decoding="async" />
+    }
+    <div class="ccn-hi__shade" aria-hidden="true"></div>
+    <div class="ccn-hi__content">
+        @if (hasTitle)
+        {
+            <text>@Html.Raw("<" + headingTag + " class=\"ccn__card-title ccn-hi__title\">")</text>
+            if (hasLink)
+            {
+                <a class="ccn__link" href="@url" target="@linkTarget" rel="@linkRel">@(title)@if (isExternal){<span class="ccn__sr-only"> (opens in a new tab)</span>}</a>
+            }
+            else
+            {
+                <text>@title</text>
+            }
+            <text>@Html.Raw("</" + headingTag + ">")</text>
+        }
+        else if (hasLink)
+        {
+            <a class="ccn__link ccn__link--label-only" href="@url" target="@linkTarget" rel="@linkRel" aria-label="@fallbackLinkLabel"></a>
+        }
+        @if (hasSubtitle || hasDescription)
+        {
+            <div class="ccn-hi__reveal">
+                <div class="ccn-hi__reveal-inner">
+                    @if (hasSubtitle)
+                    {
+                        <p class="ccn__subtitle ccn-hi__subtitle">@subtitle</p>
+                    }
+                    @if (hasDescription)
+                    {
+                        <div class="ccn__description ccn-hi__description">@Html.Raw(descriptionHtml)</div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

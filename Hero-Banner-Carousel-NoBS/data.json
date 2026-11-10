@@ -1,0 +1,41 @@
+{
+  "SectionTitle": "",
+  "TitleTag": "h2",
+  "SectionDescription": "",
+  "ShowAllLink": "",
+  "SectionFooter": "",
+  "Banners": [
+    {
+      "Name": "Everything your business needs to move forward online",
+      "AltDescription": "Everything your business needs to move forward online, from runsonUpendo.",
+      "Image": "https://placehold.co/1880x600/2f6f62/ffffff/png?text=Everything+your+business+needs&font=montserrat",
+      "Link": "https://runsonupendo.com/solutions",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Name": "Sell Anything Online",
+      "AltDescription": "Sell anything online with a storefront, secure checkout, and simple inventory management.",
+      "Image": "https://placehold.co/1880x600/1f3a5f/ffffff/png?text=Sell+Anything+Online&font=montserrat",
+      "Link": "https://runsonupendo.com/solutions/commerce",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Name": "Event Management",
+      "AltDescription": "Event management: registration, ticketing, and reminders for virtual or in-person events.",
+      "Image": "https://placehold.co/1880x600/136f7a/ffffff/png?text=Event+Management&font=montserrat",
+      "Link": "https://runsonupendo.com/solutions/event-management",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Name": "One website. One price. Every solution.",
+      "AltDescription": "",
+      "Image": "https://placehold.co/1880x600/7a4f00/ffffff/png?text=One+website.+One+price.+Every+solution.&font=montserrat",
+      "Link": "",
+      "StartDate": "",
+      "EndDate": ""
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "MarginTop": {
+      "type": "string",
+      "title": "Top Margin",
+      "enum": ["xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "PaddingTop": {
+      "type": "string",
+      "title": "Top Padding",
+      "enum": ["xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "PaddingBottom": {
+      "type": "string",
+      "title": "Bottom Padding",
+      "enum": ["xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "MarginBottom": {
+      "type": "string",
+      "title": "Bottom Margin",
+      "enum": ["xs", "sm", "md", "lg", "xl"],
+      "default": "md"
+    },
+    "AutoForward": {
+      "type": "boolean",
+      "title": "Auto-Forward Banners?",
+      "default": true
+    },
+    "PauseOnHover": {
+      "type": "boolean",
+      "title": "Pause on Hover",
+      "default": true
+    },
+    "ShowNavigation": {
+      "type": "boolean",
+      "title": "Show Navigation",
+      "default": true
+    },
+    "Theme": {
+      "type": "string",
+      "title": "Theme",
+      "enum": ["beach", "default", "hoverinfo", "industrial", "professional", "techie"],
+      "default": "default"
+    }
+  }
+}

@@ -1,0 +1,352 @@
+/*
+ * Hero Banner Carousel NoBS
+ * Standalone styles: no Bootstrap, Porto, or other framework classes required.
+ * Every rule is scoped to .hero-banner-carousel-nobs. Override the custom properties below to adjust the look per site.
+ * One banner shows at a time on every screen size. Each banner fills the full width and keeps its own proportions.
+ */
+
+.hero-banner-carousel-nobs {
+    --hbc-space-xs: 0.5rem;
+    --hbc-space-sm: 1rem;
+    --hbc-space-md: 2rem;
+    --hbc-space-lg: 3rem;
+    --hbc-space-xl: 5rem;
+    --hbc-radius: 0;
+    --hbc-border: 0;
+    --hbc-shadow: none;
+    --hbc-banner-bg: rgba(127, 127, 127, 0.12);
+    --hbc-muted-opacity: 0.8;
+    --hbc-nav-size: 2.75rem;
+    --hbc-control-inset: 0.75rem;
+    --hbc-control-bg: rgba(255, 255, 255, 0.88);
+    --hbc-control-bg-hover: #ffffff;
+    --hbc-control-color: #111111;
+    --hbc-control-border: 0;
+    --hbc-control-radius: 50%;
+    --hbc-pause-radius: 999px;
+    --hbc-focus-color: #111111;
+    --hbc-focus-contrast: #ffffff;
+
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.hero-banner-carousel-nobs *,
+.hero-banner-carousel-nobs *::before,
+.hero-banner-carousel-nobs *::after {
+    box-sizing: border-box;
+}
+
+/* Spacing settings */
+.hero-banner-carousel-nobs.hbc--mt-xs { margin-top: var(--hbc-space-xs); }
+.hero-banner-carousel-nobs.hbc--mt-sm { margin-top: var(--hbc-space-sm); }
+.hero-banner-carousel-nobs.hbc--mt-md { margin-top: var(--hbc-space-md); }
+.hero-banner-carousel-nobs.hbc--mt-lg { margin-top: var(--hbc-space-lg); }
+.hero-banner-carousel-nobs.hbc--mt-xl { margin-top: var(--hbc-space-xl); }
+.hero-banner-carousel-nobs.hbc--pt-xs { padding-top: var(--hbc-space-xs); }
+.hero-banner-carousel-nobs.hbc--pt-sm { padding-top: var(--hbc-space-sm); }
+.hero-banner-carousel-nobs.hbc--pt-md { padding-top: var(--hbc-space-md); }
+.hero-banner-carousel-nobs.hbc--pt-lg { padding-top: var(--hbc-space-lg); }
+.hero-banner-carousel-nobs.hbc--pt-xl { padding-top: var(--hbc-space-xl); }
+.hero-banner-carousel-nobs.hbc--pb-xs { padding-bottom: var(--hbc-space-xs); }
+.hero-banner-carousel-nobs.hbc--pb-sm { padding-bottom: var(--hbc-space-sm); }
+.hero-banner-carousel-nobs.hbc--pb-md { padding-bottom: var(--hbc-space-md); }
+.hero-banner-carousel-nobs.hbc--pb-lg { padding-bottom: var(--hbc-space-lg); }
+.hero-banner-carousel-nobs.hbc--pb-xl { padding-bottom: var(--hbc-space-xl); }
+.hero-banner-carousel-nobs.hbc--mb-xs { margin-bottom: var(--hbc-space-xs); }
+.hero-banner-carousel-nobs.hbc--mb-sm { margin-bottom: var(--hbc-space-sm); }
+.hero-banner-carousel-nobs.hbc--mb-md { margin-bottom: var(--hbc-space-md); }
+.hero-banner-carousel-nobs.hbc--mb-lg { margin-bottom: var(--hbc-space-lg); }
+.hero-banner-carousel-nobs.hbc--mb-xl { margin-bottom: var(--hbc-space-xl); }
+
+/* Screen-reader-only text */
+.hero-banner-carousel-nobs .hbc__sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Header */
+.hero-banner-carousel-nobs .hbc__header {
+    margin-bottom: 1.25rem;
+}
+
+.hero-banner-carousel-nobs .hbc__header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+}
+
+.hero-banner-carousel-nobs .hbc__header-row--end {
+    justify-content: flex-end;
+}
+
+.hero-banner-carousel-nobs .hbc__title {
+    margin: 0;
+}
+
+.hero-banner-carousel-nobs .hbc__show-all {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.hero-banner-carousel-nobs .hbc__show-all:focus-visible {
+    outline: 2px solid var(--hbc-focus-color);
+    outline-offset: 2px;
+}
+
+.hero-banner-carousel-nobs .hbc__section-description {
+    margin-top: 0.75rem;
+}
+
+.hero-banner-carousel-nobs .hbc__section-description > :first-child {
+    margin-top: 0;
+}
+
+.hero-banner-carousel-nobs .hbc__section-description > :last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+    .hero-banner-carousel-nobs .hbc__show-all {
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Stage: the banner viewport with the controls laid over its edges. */
+.hero-banner-carousel-nobs .hbc__stage {
+    position: relative;
+}
+
+.hero-banner-carousel-nobs .hbc__swiper {
+    width: 100%;
+    overflow: hidden;
+    border: var(--hbc-border);
+    border-radius: var(--hbc-radius);
+    background: var(--hbc-banner-bg);
+    box-shadow: var(--hbc-shadow);
+}
+
+.hero-banner-carousel-nobs .hbc__track {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Slides stay at 100% of the viewport, overriding the pixel width Swiper writes on each slide (the same value for one
+   banner per view). Percentage widths keep the carousel's minimum width at zero while it still prefers the full width,
+   so a skin that places panes in an auto-sized <table> neither grows the cell to fit the row of slides nor shrinks it. */
+.hero-banner-carousel-nobs .hbc__swiper .hbc__slide {
+    flex: 0 0 100%;
+    width: 100% !important;
+    height: auto;
+}
+
+/* Before Swiper starts: show only the first banner, so the page does not jump. */
+.hbc-js .hero-banner-carousel-nobs:not(.hbc--static) .hbc__swiper:not(.swiper-initialized) .hbc__slide ~ .hbc__slide {
+    display: none;
+}
+
+/* Without Swiper (or if it fails): stack the banners one below another. */
+.hero-banner-carousel-nobs.hbc--static .hbc__swiper {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.hero-banner-carousel-nobs.hbc--static .hbc__track {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hero-banner-carousel-nobs.hbc--static .hbc__banner {
+    overflow: hidden;
+    border: var(--hbc-border);
+    border-radius: var(--hbc-radius);
+    box-shadow: var(--hbc-shadow);
+}
+
+.hero-banner-carousel-nobs.hbc--static .hbc__nav,
+.hero-banner-carousel-nobs.hbc--static .hbc__pause {
+    display: none;
+}
+
+/* Banner */
+.hero-banner-carousel-nobs .hbc__banner {
+    position: relative;
+    width: 100%;
+}
+
+.hero-banner-carousel-nobs .hbc__image {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    border: 0;
+}
+
+.hero-banner-carousel-nobs .hbc__link {
+    position: relative;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.hero-banner-carousel-nobs .hbc__link:focus-visible {
+    outline: none;
+}
+
+/* Keyboard focus: a dark ring inside a light ring, visible on any banner image. */
+.hero-banner-carousel-nobs .hbc__link:focus-visible::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: var(--hbc-radius);
+    box-shadow: inset 0 0 0 3px var(--hbc-focus-contrast), inset 0 0 0 6px var(--hbc-focus-color);
+    pointer-events: none;
+}
+
+/* Controls: previous/next over the side edges, Pause/Play in the bottom corner. */
+.hero-banner-carousel-nobs .hbc__nav,
+.hero-banner-carousel-nobs .hbc__pause {
+    position: absolute;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: var(--hbc-control-border);
+    background: var(--hbc-control-bg);
+    color: var(--hbc-control-color);
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.2s ease;
+}
+
+.hero-banner-carousel-nobs .hbc__nav {
+    top: 50%;
+    width: var(--hbc-nav-size);
+    height: var(--hbc-nav-size);
+    padding: 0;
+    border-radius: var(--hbc-control-radius);
+    transform: translateY(-50%);
+}
+
+.hero-banner-carousel-nobs .hbc__nav--prev {
+    left: var(--hbc-control-inset);
+}
+
+.hero-banner-carousel-nobs .hbc__nav--next {
+    right: var(--hbc-control-inset);
+}
+
+.hero-banner-carousel-nobs .hbc__pause {
+    right: var(--hbc-control-inset);
+    bottom: var(--hbc-control-inset);
+    gap: 0.4rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--hbc-pause-radius);
+    font-size: 0.875rem;
+}
+
+.hero-banner-carousel-nobs .hbc__nav:hover,
+.hero-banner-carousel-nobs .hbc__pause:hover {
+    background: var(--hbc-control-bg-hover);
+}
+
+.hero-banner-carousel-nobs .hbc__nav:focus-visible,
+.hero-banner-carousel-nobs .hbc__pause:focus-visible {
+    outline: 3px solid var(--hbc-focus-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--hbc-focus-contrast);
+}
+
+.hero-banner-carousel-nobs .hbc__nav[disabled],
+.hero-banner-carousel-nobs .hbc__nav.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.hero-banner-carousel-nobs .hbc__nav[hidden],
+.hero-banner-carousel-nobs .hbc__pause[hidden],
+.hero-banner-carousel-nobs .hbc__nav.swiper-button-lock {
+    display: none;
+}
+
+.hero-banner-carousel-nobs .hbc__icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+}
+
+.hero-banner-carousel-nobs .hbc__pause .hbc__icon--play,
+.hero-banner-carousel-nobs .hbc__pause.is-paused .hbc__icon--pause {
+    display: none;
+}
+
+.hero-banner-carousel-nobs .hbc__pause.is-paused .hbc__icon--play {
+    display: inline-block;
+}
+
+/* Small screens: smaller controls, and an icon-only Pause/Play button (its label stays for screen readers). */
+@media (max-width: 575.98px) {
+    .hero-banner-carousel-nobs {
+        --hbc-nav-size: 2rem;
+        --hbc-control-inset: 0.4rem;
+    }
+
+    .hero-banner-carousel-nobs .hbc__pause {
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+    }
+
+    .hero-banner-carousel-nobs .hbc__pause-text {
+        display: none;
+    }
+}
+
+/* Footer */
+.hero-banner-carousel-nobs .hbc__footer {
+    margin: 1.25rem 0 0;
+    font-size: 0.9em;
+    text-align: center;
+    opacity: var(--hbc-muted-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-banner-carousel-nobs .hbc__nav,
+    .hero-banner-carousel-nobs .hbc__pause {
+        transition: none;
+    }
+}
+
+/* Edit-mode notice (shown only to editors) */
+.hbc-edit-note {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px dashed rgba(127, 127, 127, 0.6);
+    border-radius: 0.5rem;
+    font-size: 0.9em;
+}

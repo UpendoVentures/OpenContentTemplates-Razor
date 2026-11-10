@@ -1,0 +1,44 @@
+/*
+ * Hero Banner Carousel NoBS - Techie theme
+ * Rounded banner with a neon-cyan edge and glow; dark navy controls with cyan icons and monospace Pause/Play text.
+ * Scoped to .hero-banner-carousel-nobs.hbc--theme-techie so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): cyan #22d3ee on navy #0f172a is 9.88:1; Show all #0e7490 on white is 5.36:1
+ * (a darker cyan, because bright cyan is too light on light pages).
+ */
+
+.hero-banner-carousel-nobs.hbc--theme-techie {
+    --hbc-radius: 0.75rem;
+    --hbc-border: 1px solid #22d3ee;
+    --hbc-shadow: 0 0 1.25rem rgba(34, 211, 238, 0.35);
+    --hbc-banner-bg: #1e293b;
+    --hbc-control-bg: #0f172a;
+    --hbc-control-bg-hover: #0f172a;
+    --hbc-control-color: #22d3ee;
+    --hbc-control-border: 1px solid #22d3ee;
+    --hbc-focus-color: #0e7490;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-techie .hbc__nav:hover,
+.hero-banner-carousel-nobs.hbc--theme-techie .hbc__pause:hover {
+    box-shadow: 0 0 0.75rem rgba(34, 211, 238, 0.55);
+}
+
+.hero-banner-carousel-nobs.hbc--theme-techie .hbc__pause {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-techie .hbc__show-all {
+    color: #0e7490;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-techie .hbc__show-all:hover {
+    color: #155e75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-banner-carousel-nobs.hbc--theme-techie .hbc__nav:hover,
+    .hero-banner-carousel-nobs.hbc--theme-techie .hbc__pause:hover {
+        box-shadow: none;
+    }
+}

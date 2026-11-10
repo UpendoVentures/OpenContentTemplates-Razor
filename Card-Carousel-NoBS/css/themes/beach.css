@@ -1,0 +1,56 @@
+/*
+ * Card Carousel NoBS - Beach theme
+ * Warm sand cards, ocean-teal accents, coral hover, soft rounded corners.
+ * Scoped to .card-carousel-nobs.ccn--theme-beach so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): text 10.55:1, subtitle 5.94:1, accent 5.46:1, hover 5.82:1 on the card; accent 5.86:1 on white.
+ */
+
+.card-carousel-nobs.ccn--theme-beach {
+    --ccn-radius: 1rem;
+    --ccn-border-color: #ecdcc4;
+    --ccn-card-bg: #fdf6ec;
+    --ccn-image-bg: #f3e6d3;
+    --ccn-focus-color: #136f7a;
+    --ccn-shadow: 0 0.5rem 1.25rem rgba(19, 111, 122, 0.18);
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__card {
+    color: #3d3a35;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__card-title,
+.card-carousel-nobs.ccn--theme-beach .ccn__link,
+.card-carousel-nobs.ccn--theme-beach .ccn__description a {
+    color: #136f7a;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__link:hover,
+.card-carousel-nobs.ccn--theme-beach .ccn__description a:hover {
+    color: #a63f26;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__subtitle {
+    color: #6b5d4b;
+    opacity: 1;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__nav,
+.card-carousel-nobs.ccn--theme-beach .ccn__pause {
+    border-color: #136f7a;
+    background: #fdf6ec;
+    color: #136f7a;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__nav:hover,
+.card-carousel-nobs.ccn--theme-beach .ccn__pause:hover {
+    background: #136f7a;
+    color: #ffffff;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__show-all {
+    color: #136f7a;
+}
+
+.card-carousel-nobs.ccn--theme-beach .ccn__show-all:hover {
+    color: #a63f26;
+}

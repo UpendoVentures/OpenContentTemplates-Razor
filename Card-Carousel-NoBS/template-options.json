@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "MarginTop": {
+      "type": "select",
+      "helper": "Space outside the section, above it.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "PaddingTop": {
+      "type": "select",
+      "helper": "Space inside the section, above the content.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "PaddingBottom": {
+      "type": "select",
+      "helper": "Space inside the section, below the content.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "MarginBottom": {
+      "type": "select",
+      "helper": "Space outside the section, below it.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "AutoForward": {
+      "type": "checkbox",
+      "rightLabel": "Automatically advance one card every 5 seconds",
+      "helper": "Rotation pauses on hover and keyboard focus, and visitors get a Pause/Play button. It starts paused for visitors who prefer reduced motion."
+    },
+    "ShowNavigation": {
+      "type": "checkbox",
+      "rightLabel": "Show previous and next buttons",
+      "helper": "Adds left and right buttons that move the cards one at a time. Buttons are hidden automatically when all cards already fit on screen."
+    },
+    "Theme": {
+      "type": "select",
+      "helper": "Choose the look of the cards, buttons, and Show all link. Default (current) inherits your site's own styles. HoverInfo shows image cards that reveal the subtitle and description on hover. Each theme can also use its own card markup in cards/{theme}.cshtml.",
+      "optionLabels": ["Beach", "Default (current)", "HoverInfo", "Industrial", "Professional", "Techie"],
+      "sort": false,
+      "removeDefaultNone": true
+    }
+  }
+}

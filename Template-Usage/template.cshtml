@@ -4,14 +4,24 @@
     var moduleId = Dnn.Module.ModuleID;
     var tabId = Dnn.Module.TabID;
     var initialScope = Model.Settings != null && Model.Settings.ThisPortal ? "portal" : "instance";
+
+    var marginTop = Model.Settings != null && Model.Settings.MarginTop != null ? Convert.ToString(Model.Settings.MarginTop) : "mt-5";
+    var marginBottom = Model.Settings != null && Model.Settings.MarginBottom != null ? Convert.ToString(Model.Settings.MarginBottom) : "mb-5";
+    var paddingTop = Model.Settings != null && Model.Settings.PaddingTop != null ? Convert.ToString(Model.Settings.PaddingTop) : "pt-3";
+    var paddingBottom = Model.Settings != null && Model.Settings.PaddingBottom != null ? Convert.ToString(Model.Settings.PaddingBottom) : "pb-3";
+    var outerSectionClass = "";
+    if (!string.IsNullOrWhiteSpace(marginTop)) { outerSectionClass += " " + marginTop; }
+    if (!string.IsNullOrWhiteSpace(marginBottom)) { outerSectionClass += " " + marginBottom; }
+    if (!string.IsNullOrWhiteSpace(paddingTop)) { outerSectionClass += " " + paddingTop; }
+    if (!string.IsNullOrWhiteSpace(paddingBottom)) { outerSectionClass += " " + paddingBottom; }
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/3.1.4/css/dataTables.dataTables.css" />
-<section id="oc-template-usage-@moduleId" class="oc-template-usage" data-template-usage data-module-id="@moduleId" data-tab-id="@tabId" data-scope="@initialScope" aria-labelledby="oc-template-usage-title-@moduleId">
+<section id="oc-template-usage-@moduleId" class="oc-template-usage @outerSectionClass" data-template-usage data-module-id="@moduleId" data-tab-id="@tabId" data-scope="@initialScope" aria-labelledby="oc-template-usage-title-@moduleId">
     <div class="oc-template-usage__header">
         <div class="px-3">
             <p class="oc-template-usage__eyebrow"><span class="fa fa-screwdriver-wrench" aria-hidden="true"></span> Administrative inventory</p>
-            <h2 id="oc-template-usage-title-@moduleId">OpenContent Template Usage</h2>
+            <h2 id="oc-template-usage-title-@moduleId">OpenContent <strong>Template Usage</strong></h2>
             <p class="oc-template-usage__intro">Search template references, website templates, and shared <code>_default</code> templates without loading the entire report into the page.</p>
         </div>
         <div class="oc-template-usage__actions">

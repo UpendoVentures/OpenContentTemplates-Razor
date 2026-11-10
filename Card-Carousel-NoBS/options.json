@@ -1,0 +1,91 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. The heading shown above the cards. Leave empty to show the cards without a heading.",
+      "placeholder": "Explore our services"
+    },
+    "TitleTag": {
+      "type": "select",
+      "helper": "Choose the heading level for the Section Title so it fits the page outline. Card titles automatically use the next level down.",
+      "optionLabels": ["Heading1 (h1)", "Heading2 (h2)", "Heading3 (h3)", "Heading4 (h4)", "Heading5 (h5)", "Heading6 (h6)"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "SectionDescription": {
+      "type": "ckeditor",
+      "helper": "Optional. A short introduction shown below the Section Title. Formatting and links are allowed."
+    },
+    "ShowAllLink": {
+      "type": "url",
+      "helper": "Optional. When set, a \"Show all\" link appears at the top right of the section. Links to other websites open in a new tab.",
+      "placeholder": "https://example.com or a local site link"
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. A short note shown centered and subdued below the cards.",
+      "placeholder": "New cards are added every month."
+    },
+    "Cards": {
+      "type": "accordion",
+      "label": "Navigation Cards",
+      "titleField": "Title",
+      "helper": "Add the cards to rotate. Desktop shows 4 at a time, tablet 3, and mobile 2. Cards outside their Start/End Date/Time are hidden automatically.",
+      "items": {
+        "fields": {
+          "Title": {
+            "type": "text",
+            "helper": "Optional. The card heading. When a Link is set, the whole card becomes clickable through this title.",
+            "placeholder": "Web Design"
+          },
+          "Subtitle": {
+            "type": "text",
+            "helper": "Optional. A short line shown below the title.",
+            "placeholder": "Modern, accessible websites"
+          },
+          "Description": {
+            "type": "ckeditor",
+            "configset": "basic",
+            "helper": "Optional. A brief summary for this card. Formatting and links are allowed; avoid headings inside cards."
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. Where this card goes when clicked. Local pages open in the same window; other websites open in a new tab.",
+            "placeholder": "https://example.com or a local site link"
+          },
+          "Image": {
+            "type": "image",
+            "helper": "Optional. The card image, shown in a 16:9 frame. Uploads are stored in Content/Navigation-Cards/.",
+            "uploadfolder": "Content/Navigation-Cards/"
+          },
+          "ImageAlt": {
+            "type": "text",
+            "helper": "Optional. Describe the image for screen-reader users. Leave empty if the image is decorative.",
+            "placeholder": "Designer sketching a website layout on a tablet"
+          },
+          "StartDate": {
+            "type": "date",
+            "dateFormat": "YYYY-MM-DD HH:mm",
+            "picker": {
+              "format": "YYYY-MM-DD HH:mm"
+            },
+            "helper": "Optional. The card is hidden until this date and time (portal time zone). Leave empty to show it right away. If module caching is enabled, the change appears when the cache expires.",
+            "placeholder": "2026-12-01 08:00"
+          },
+          "EndDate": {
+            "type": "date",
+            "dateFormat": "YYYY-MM-DD HH:mm",
+            "picker": {
+              "format": "YYYY-MM-DD HH:mm"
+            },
+            "helper": "Optional. The card is hidden from this date and time onward (portal time zone). Leave empty to never hide it. If module caching is enabled, the change appears when the cache expires.",
+            "placeholder": "2026-12-31 23:59"
+          }
+        }
+      }
+    }
+  }
+}

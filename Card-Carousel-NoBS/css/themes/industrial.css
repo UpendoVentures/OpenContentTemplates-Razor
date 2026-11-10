@@ -1,0 +1,65 @@
+/*
+ * Card Carousel NoBS - Industrial theme
+ * Concrete-gray cards, heavy charcoal borders, square corners, safety-amber accents, uppercase titles.
+ * Scoped to .card-carousel-nobs.ccn--theme-industrial so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): text 13.83:1, subtitle 7.45:1, link hover 5.98:1 on the card; amber-on-charcoal controls 7.79:1;
+ * Show all 5.93:1 on white. The amber top stripe is decorative only.
+ */
+
+.card-carousel-nobs.ccn--theme-industrial {
+    --ccn-radius: 0;
+    --ccn-border-color: #2b2b2b;
+    --ccn-card-bg: #ecebe8;
+    --ccn-image-bg: #d6d4cf;
+    --ccn-focus-color: #1f1f1f;
+    --ccn-shadow: none;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__card {
+    border-width: 2px;
+    border-top: 6px solid #d99a00;
+    color: #1f1f1f;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__card--linked:hover {
+    background: #e3e1dc;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__card-title,
+.card-carousel-nobs.ccn--theme-industrial .ccn__link {
+    color: #1f1f1f;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__link:hover,
+.card-carousel-nobs.ccn--theme-industrial .ccn__description a,
+.card-carousel-nobs.ccn--theme-industrial .ccn__description a:hover {
+    color: #7a4f00;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__subtitle {
+    color: #4a4a48;
+    opacity: 1;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__nav,
+.card-carousel-nobs.ccn--theme-industrial .ccn__pause {
+    border: 2px solid #2b2b2b;
+    border-radius: 0;
+    background: #2b2b2b;
+    color: #f2b705;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__nav:hover,
+.card-carousel-nobs.ccn--theme-industrial .ccn__pause:hover {
+    background: #d99a00;
+    color: #1f1f1f;
+}
+
+.card-carousel-nobs.ccn--theme-industrial .ccn__show-all {
+    color: #8a5a00;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}

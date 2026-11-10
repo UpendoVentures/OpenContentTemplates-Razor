@@ -1,0 +1,123 @@
+/*
+ * Hero Banner Carousel NoBS - HoverInfo theme
+ * Inspired by "Card Hover Interactions" by Ryan Mulligan (https://codepen.io/hexagoncircle/pen/XWbWKwL).
+ * Square banner with a layered shadow. On hover or keyboard focus, linked banners shift slightly, a gradient rises,
+ * and the banner Name slides up as a caption. Touch/narrow screens and unlinked banners never show the caption,
+ * so text inside the image stays visible. Uses the banners/hoverinfo.cshtml markup.
+ * Scoped to .hero-banner-carousel-nobs.hbc--theme-hoverinfo.
+ * Contrast: controls are white on #111111 (18.88:1); the caption is white over a gradient ending at 79% black, plus a text shadow.
+ */
+
+.hero-banner-carousel-nobs.hbc--theme-hoverinfo {
+    --hbc-radius: 0;
+    --hbc-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1);
+    --hbc-banner-bg: #1f2937;
+    --hbc-control-bg: #111111;
+    --hbc-control-bg-hover: #2b2b2b;
+    --hbc-control-color: #ffffff;
+    --hbc-control-radius: 0;
+    --hbc-pause-radius: 0;
+    --hbc-focus-color: #111111;
+    --hbc-hi-duration: 700ms;
+    --hbc-hi-ease: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc__show-all {
+    color: #111111;
+    font-weight: 700;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner {
+    overflow: hidden;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__shade,
+.hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__caption {
+    display: none;
+}
+
+/* Hover-capable, wider screens only: linked banners reveal the caption on hover or focus. */
+@media (hover: hover) and (min-width: 768px) {
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__image {
+        transition: transform calc(var(--hbc-hi-duration) * 1.5) var(--hbc-hi-ease);
+    }
+
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__shade {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: block;
+        height: 60%;
+        background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.123) 39.4%,
+            rgba(0, 0, 0, 0.394) 64.3%,
+            rgba(0, 0, 0, 0.668) 83.6%,
+            rgba(0, 0, 0, 0.79) 100%
+        );
+        opacity: 0;
+        transition: opacity var(--hbc-hi-duration) var(--hbc-hi-ease);
+        pointer-events: none;
+    }
+
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__caption {
+        position: absolute;
+        right: 4.5rem;
+        bottom: 1.25rem;
+        left: 4.5rem;
+        z-index: 1;
+        display: block;
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            transform var(--hbc-hi-duration) var(--hbc-hi-ease),
+            opacity var(--hbc-hi-duration) var(--hbc-hi-ease);
+        pointer-events: none;
+    }
+
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:hover .hbc-hi__image,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:focus-within .hbc-hi__image {
+        transform: scale(1.03);
+    }
+
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:hover .hbc-hi__shade,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:focus-within .hbc-hi__shade {
+        opacity: 1;
+    }
+
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:hover .hbc-hi__caption,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:focus-within .hbc-hi__caption {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(var(--hbc-hi-duration) / 8);
+    }
+
+    /* Keyboard focus reveals instantly. */
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:focus-within .hbc-hi__image,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:focus-within .hbc-hi__shade,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner--interactive:focus-within .hbc-hi__caption {
+        transition-duration: 0s;
+        transition-delay: 0s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__image,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__shade,
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__caption {
+        transition: none !important;
+    }
+
+    .hero-banner-carousel-nobs.hbc--theme-hoverinfo .hbc-hi__banner .hbc-hi__image {
+        transform: none !important;
+    }
+}

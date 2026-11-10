@@ -1,0 +1,32 @@
+/*
+ * Hero Banner Carousel NoBS - Beach theme
+ * Soft rounded banner with a warm sand frame, ocean-teal controls, coral hover on the Show all link.
+ * Scoped to .hero-banner-carousel-nobs.hbc--theme-beach so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): teal #136f7a on the sand control background #fdf6ec is 5.46:1; white on teal 5.86:1;
+ * Show all teal 5.86:1 and coral hover #a63f26 6.25:1 on white.
+ */
+
+.hero-banner-carousel-nobs.hbc--theme-beach {
+    --hbc-radius: 1rem;
+    --hbc-border: 3px solid #ecdcc4;
+    --hbc-shadow: 0 0.5rem 1.25rem rgba(19, 111, 122, 0.18);
+    --hbc-banner-bg: #f3e6d3;
+    --hbc-control-bg: #fdf6ec;
+    --hbc-control-bg-hover: #136f7a;
+    --hbc-control-color: #136f7a;
+    --hbc-control-border: 2px solid #136f7a;
+    --hbc-focus-color: #136f7a;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-beach .hbc__nav:hover,
+.hero-banner-carousel-nobs.hbc--theme-beach .hbc__pause:hover {
+    color: #ffffff;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-beach .hbc__show-all {
+    color: #136f7a;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-beach .hbc__show-all:hover {
+    color: #a63f26;
+}

@@ -1,0 +1,79 @@
+{
+  "SectionTitle": "Everything your business needs to move forward online",
+  "TitleTag": "h2",
+  "SectionDescription": "<p>Create better ways for customers to discover, engage, join, register, and buy with one <strong>comprehensive suite</strong> of small business solutions from runsonUpendo.</p>",
+  "ShowAllLink": "https://runsonupendo.com/solutions",
+  "SectionFooter": "One website. One price. Every solution. No upcharges. No payment processing fees.",
+  "Cards": [
+    {
+      "Title": "Sell Anything Online",
+      "Subtitle": "Storefront, checkout, and inventory",
+      "Description": "<p>Streamline sales with an intuitive storefront, secure checkout, and simple inventory management.</p>",
+      "Link": "https://runsonupendo.com/solutions/commerce",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Sell+Anything+Online&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Title": "Content Management",
+      "Subtitle": "Publish without a developer",
+      "Description": "<p>Build, edit, and publish engaging content without needing a developer.</p>",
+      "Link": "https://runsonupendo.com/solutions/content-management",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Content+Management&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Title": "Directory Management",
+      "Subtitle": "Partners, locations, and staff",
+      "Description": "<p>Help visitors find partners, locations, or staff in a clear, searchable directory.</p>",
+      "Link": "https://runsonupendo.com/solutions/directory",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Directory+Management&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Title": "Event Management",
+      "Subtitle": "Registration, tickets, and reminders",
+      "Description": "<p>Support registration, ticketing, and reminders for virtual or in-person events.</p>",
+      "Link": "https://runsonupendo.com/solutions/events",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Event+Management&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Title": "Group Networking",
+      "Subtitle": "Community, messaging, and collaboration",
+      "Description": "<p>Bring your audience together through community, messaging, and collaboration.</p>",
+      "Link": "https://runsonupendo.com/solutions/networking",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Group+Networking&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Title": "Modern Marketing",
+      "Subtitle": "Campaigns, SEO, and social sharing",
+      "Description": "<p>Reach more people with campaigns, search optimization, and social sharing.</p>",
+      "Link": "https://runsonupendo.com/solutions/marketing",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Modern+Marketing&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    },
+    {
+      "Title": "Membership Subscriptions",
+      "Subtitle": "Gated content and member experiences",
+      "Description": "<p>Build loyalty with gated content, subscriptions, and member experiences.</p>",
+      "Link": "https://runsonupendo.com/solutions/membership",
+      "Image": "https://placehold.co/800x450/2f6f62/ffffff/png?text=Membership+Subscriptions&font=montserrat",
+      "ImageAlt": "",
+      "StartDate": "",
+      "EndDate": ""
+    }
+  ]
+}

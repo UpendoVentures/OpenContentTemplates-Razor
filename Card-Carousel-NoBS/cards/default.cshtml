@@ -1,0 +1,80 @@
+@inherits System.Web.WebPages.WebPage
+@*
+    Card Carousel NoBS - card markup for the "default" theme.
+
+    template.cshtml renders this file once per visible card, inside its own swiper-slide wrapper.
+    Each theme uses cards/{theme}.cshtml when it exists, otherwise this file. Edit a theme's copy to
+    change that theme's card markup without affecting the others. Keep the root element a single block.
+
+    PageData[0] is a prepared card. All values are already validated by template.cshtml:
+      Title, Subtitle            string  Plain text (Razor encodes it on output).
+      HasTitle                   bool
+      DescriptionHtml            string  Editor HTML. Render with Html.Raw.
+      HasDescription             bool    False when the description is empty or only whitespace.
+      ImageUrl, ImageAlt         string  ImageAlt may be empty (decorative image).
+      Url                        string  Safe link URL, or empty.
+      HasLink, IsExternal        bool
+      LinkTarget, LinkRel        string  "_top" / "_blank" and "noopener noreferrer", or null (attribute omitted).
+      FallbackLinkLabel          string  Accessible name for a link when the card has no title.
+      HeadingTag                 string  h1-h6, already allow-listed.
+      CardNumber, CardCount      int     1-based position and number of visible cards.
+      Theme                      string  Current theme name.
+      IdPrefix                   string  Unique per card on the page; use it to build element IDs.
+      Item                       dynamic Raw OpenContent card data (for custom schema fields).
+      Settings                   dynamic Raw template settings.
+
+    Keep the stretched-link pattern (ccn__card + ccn__link) so the whole card stays clickable
+    while links inside the description remain usable.
+*@
+@{
+    var card = (dynamic)PageData[0];
+    string title = card.Title;
+    bool hasTitle = card.HasTitle;
+    string subtitle = card.Subtitle;
+    string descriptionHtml = card.DescriptionHtml;
+    bool hasDescription = card.HasDescription;
+    string imageUrl = card.ImageUrl;
+    string imageAlt = card.ImageAlt;
+    string url = card.Url;
+    bool hasLink = card.HasLink;
+    bool isExternal = card.IsExternal;
+    string linkTarget = card.LinkTarget;
+    string linkRel = card.LinkRel;
+    string fallbackLinkLabel = card.FallbackLinkLabel;
+    string headingTag = card.HeadingTag;
+}
+<div class="ccn__card@(hasLink ? " ccn__card--linked" : string.Empty)">
+    @if (!string.IsNullOrEmpty(imageUrl))
+    {
+        <div class="ccn__media">
+            <img class="ccn__image" src="@imageUrl" alt="@imageAlt" loading="lazy" decoding="async" />
+        </div>
+    }
+    <div class="ccn__body">
+        @if (hasTitle)
+        {
+            <text>@Html.Raw("<" + headingTag + " class=\"ccn__card-title\">")</text>
+            if (hasLink)
+            {
+                <a class="ccn__link" href="@url" target="@linkTarget" rel="@linkRel">@(title)@if (isExternal){<span class="ccn__sr-only"> (opens in a new tab)</span>}</a>
+            }
+            else
+            {
+                <text>@title</text>
+            }
+            <text>@Html.Raw("</" + headingTag + ">")</text>
+        }
+        else if (hasLink)
+        {
+            <a class="ccn__link ccn__link--label-only" href="@url" target="@linkTarget" rel="@linkRel" aria-label="@fallbackLinkLabel"></a>
+        }
+        @if (!string.IsNullOrEmpty(subtitle))
+        {
+            <p class="ccn__subtitle">@subtitle</p>
+        }
+        @if (hasDescription)
+        {
+            <div class="ccn__description">@Html.Raw(descriptionHtml)</div>
+        }
+    </div>
+</div>

@@ -1,0 +1,29 @@
+/*
+ * Hero Banner Carousel NoBS - Professional theme
+ * Clean banner with restrained corners, a light slate border, a soft shadow, and navy controls.
+ * Scoped to .hero-banner-carousel-nobs.hbc--theme-professional so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): navy #1f3a5f on white is 11.48:1; white on navy 11.48:1.
+ */
+
+.hero-banner-carousel-nobs.hbc--theme-professional {
+    --hbc-radius: 0.375rem;
+    --hbc-border: 1px solid #d8dee6;
+    --hbc-shadow: 0 0.5rem 1rem rgba(31, 58, 95, 0.12);
+    --hbc-banner-bg: #eef2f6;
+    --hbc-control-bg: #ffffff;
+    --hbc-control-bg-hover: #1f3a5f;
+    --hbc-control-color: #1f3a5f;
+    --hbc-control-border: 1px solid #1f3a5f;
+    --hbc-pause-radius: 0.375rem;
+    --hbc-focus-color: #1f3a5f;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-professional .hbc__nav:hover,
+.hero-banner-carousel-nobs.hbc--theme-professional .hbc__pause:hover {
+    color: #ffffff;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-professional .hbc__show-all {
+    color: #1f3a5f;
+    font-weight: 600;
+}

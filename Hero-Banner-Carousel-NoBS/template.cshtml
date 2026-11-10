@@ -1,0 +1,507 @@
+@using System
+@using System.Collections.Generic
+@using System.Globalization
+@using System.Dynamic
+@using System.Text.RegularExpressions
+@using System.Web
+@using System.Web.Hosting
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Services.Exceptions
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    private const int LinkNone = 0;
+    private const int LinkLocal = 1;
+    private const int LinkExternal = 2;
+    private const int LinkOther = 3;
+
+    private static readonly string[] HeadingTags = new string[] { "h1", "h2", "h3", "h4", "h5", "h6" };
+    private static readonly string[] SpacingSizes = new string[] { "xs", "sm", "md", "lg", "xl" };
+    private static readonly string[] BannerDateFormats = new string[]
+    {
+        "yyyy-MM-dd HH:mm",
+        "yyyy-MM-dd H:mm",
+        "yyyy-MM-dd HH:mm:ss",
+        "yyyy-MM-dd'T'HH:mm",
+        "yyyy-MM-dd'T'HH:mm:ss",
+        "yyyy-MM-dd"
+    };
+
+    private static string AsString(object value)
+    {
+        return value == null ? string.Empty : Convert.ToString(value, CultureInfo.InvariantCulture).Trim();
+    }
+
+    private static string AllowList(string value, string fallback, string[] allowedValues)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            foreach (string allowedValue in allowedValues)
+            {
+                if (string.Equals(value, allowedValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    return allowedValue;
+                }
+            }
+        }
+        return fallback;
+    }
+
+    private static bool IsTrue(string value, bool fallback)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return fallback;
+        }
+        return string.Equals(value, "true", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(value, "1", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(value, "on", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string SafeHeadingTag(string value)
+    {
+        return AllowList(value, "h2", HeadingTags);
+    }
+
+    private static TimeZoneInfo GetPortalTimeZone()
+    {
+        try
+        {
+            PortalSettings portalSettings = PortalSettings.Current;
+            if (portalSettings != null && portalSettings.TimeZone != null)
+            {
+                return portalSettings.TimeZone;
+            }
+        }
+        catch (Exception)
+        {
+            // Fall back to UTC when the portal time zone is unavailable.
+        }
+        return TimeZoneInfo.Utc;
+    }
+
+    // Dates are stored as "YYYY-MM-DD HH:mm" in portal local time. Values with an explicit offset are converted.
+    private static bool TryParseBannerDate(string value, TimeZoneInfo portalZone, out DateTime result)
+    {
+        result = DateTime.MinValue;
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        DateTime parsed;
+        if (DateTime.TryParseExact(value, BannerDateFormats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out parsed))
+        {
+            result = parsed;
+            return true;
+        }
+
+        if (DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out parsed)
+            || DateTime.TryParse(value, CultureInfo.CurrentCulture, DateTimeStyles.RoundtripKind, out parsed))
+        {
+            if (parsed.Kind == DateTimeKind.Utc)
+            {
+                parsed = TimeZoneInfo.ConvertTimeFromUtc(parsed, portalZone);
+            }
+            else if (parsed.Kind == DateTimeKind.Local)
+            {
+                parsed = TimeZoneInfo.ConvertTime(parsed, portalZone);
+            }
+            result = DateTime.SpecifyKind(parsed, DateTimeKind.Unspecified);
+            return true;
+        }
+
+        return false;
+    }
+
+    // Empty or unreadable dates never hide a banner.
+    private static bool IsBannerScheduled(string startValue, string endValue, DateTime portalNow, TimeZoneInfo portalZone)
+    {
+        DateTime startDate;
+        if (TryParseBannerDate(startValue, portalZone, out startDate) && portalNow < startDate)
+        {
+            return false;
+        }
+
+        DateTime endDate;
+        if (TryParseBannerDate(endValue, portalZone, out endDate) && portalNow >= endDate)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool HasRichContent(string html)
+    {
+        if (string.IsNullOrWhiteSpace(html))
+        {
+            return false;
+        }
+        if (Regex.IsMatch(html, @"<(img|picture|svg|video|iframe)\b", RegexOptions.IgnoreCase))
+        {
+            return true;
+        }
+        string text = Regex.Replace(html, "<[^>]*>", string.Empty);
+        text = text.Replace("&nbsp;", " ").Replace("&#160;", " ").Replace(" ", " ");
+        return !string.IsNullOrWhiteSpace(text);
+    }
+
+    // Removes script-capable URLs. Returns an empty string when there is nothing safe to link to.
+    private static string GetSafeUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+        {
+            return string.Empty;
+        }
+        string trimmed = url.Trim();
+        string compact = Regex.Replace(trimmed, @"[\s\u0000-\u001F]+", string.Empty).ToLowerInvariant();
+        if (compact.StartsWith("javascript:", StringComparison.Ordinal)
+            || compact.StartsWith("vbscript:", StringComparison.Ordinal)
+            || compact.StartsWith("data:", StringComparison.Ordinal))
+        {
+            return string.Empty;
+        }
+        return trimmed;
+    }
+
+    private static string NormalizeHost(string host)
+    {
+        string value = (host ?? string.Empty).Trim().TrimEnd('.').ToLowerInvariant();
+        if (value.StartsWith("www.", StringComparison.Ordinal))
+        {
+            value = value.Substring(4);
+        }
+        return value;
+    }
+
+    // Same host (with or without "www.") and relative links are local; other http(s) hosts are external.
+    private int GetLinkKind(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+        {
+            return LinkNone;
+        }
+
+        string candidate = url.StartsWith("//", StringComparison.Ordinal) ? "http:" + url : url;
+        Uri absoluteUri;
+        if (Uri.TryCreate(candidate, UriKind.Absolute, out absoluteUri))
+        {
+            if (string.Equals(absoluteUri.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(absoluteUri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
+            {
+                string currentHost = NormalizeHost(Request != null && Request.Url != null ? Request.Url.Host : string.Empty);
+                return currentHost.Length > 0 && string.Equals(NormalizeHost(absoluteUri.Host), currentHost, StringComparison.Ordinal)
+                    ? LinkLocal
+                    : LinkExternal;
+            }
+            return LinkOther;
+        }
+
+        // Looks absolute but could not be parsed: treat it as external to be safe.
+        if (url.IndexOf("://", StringComparison.Ordinal) >= 0)
+        {
+            return LinkExternal;
+        }
+
+        return LinkLocal;
+    }
+
+    private static string GetLinkTarget(int linkKind)
+    {
+        if (linkKind == LinkLocal)
+        {
+            return "_top";
+        }
+        if (linkKind == LinkExternal)
+        {
+            return "_blank";
+        }
+        return null;
+    }
+
+    private static string GetLinkRel(int linkKind)
+    {
+        return linkKind == LinkExternal ? "noopener noreferrer" : null;
+    }
+
+    // Theme names map to files (banners/{theme}.cshtml, css/themes/{theme}.css), so only safe file-name characters are allowed.
+    private static string SanitizeTheme(string value)
+    {
+        string theme = (value ?? string.Empty).Trim().ToLowerInvariant();
+        return Regex.IsMatch(theme, "^[a-z0-9][a-z0-9-]{0,49}$") ? theme : "default";
+    }
+
+    // App-relative folder of this template, e.g. "~/Portals/0/OpenContent/Templates/Hero-Banner-Carousel-NoBS/".
+    private string GetTemplateFolder(string templatePathFallback)
+    {
+        string path = VirtualPath;
+        if (!string.IsNullOrEmpty(path))
+        {
+            return path.EndsWith("/", StringComparison.Ordinal) ? path : VirtualPathUtility.GetDirectory(path);
+        }
+        return string.IsNullOrEmpty(templatePathFallback) ? null : VirtualPathUtility.AppendTrailingSlash(templatePathFallback);
+    }
+
+    private static bool VirtualFileExists(string virtualPath)
+    {
+        try
+        {
+            return !string.IsNullOrEmpty(virtualPath) && HostingEnvironment.VirtualPathProvider.FileExists(virtualPath);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    // Renders one banner file. If a theme banner file throws, the error is logged and the default banner file is used instead.
+    private string RenderBannerSafely(string bannerPath, string defaultBannerPath, object bannerModel, out bool usedFallback)
+    {
+        usedFallback = false;
+        try
+        {
+            return RenderPage(bannerPath, bannerModel).ToHtmlString();
+        }
+        catch (Exception ex)
+        {
+            Exceptions.LogException(ex);
+        }
+
+        if (string.Equals(bannerPath, defaultBannerPath, StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Empty;
+        }
+
+        usedFallback = true;
+        try
+        {
+            return RenderPage(defaultBannerPath, bannerModel).ToHtmlString();
+        }
+        catch (Exception ex)
+        {
+            Exceptions.LogException(ex);
+            return string.Empty;
+        }
+    }
+}
+
+@{
+    RegisterStyleSheet("css/swiper-bundle.min.css");
+    RegisterStyleSheet("css/hero-banner-carousel-nobs.css");
+    RegisterScript("js/swiper-bundle.min.js");
+    RegisterScript("js/hero-banner-carousel-nobs.js");
+
+    var settings = Model.Settings;
+    string marginTop = AllowList(settings != null ? AsString(settings.MarginTop) : string.Empty, "md", SpacingSizes);
+    string paddingTop = AllowList(settings != null ? AsString(settings.PaddingTop) : string.Empty, "md", SpacingSizes);
+    string paddingBottom = AllowList(settings != null ? AsString(settings.PaddingBottom) : string.Empty, "md", SpacingSizes);
+    string marginBottom = AllowList(settings != null ? AsString(settings.MarginBottom) : string.Empty, "md", SpacingSizes);
+    bool autoForward = IsTrue(settings != null ? AsString(settings.AutoForward) : string.Empty, true);
+    bool pauseOnHover = IsTrue(settings != null ? AsString(settings.PauseOnHover) : string.Empty, true);
+    bool showNavigation = IsTrue(settings != null ? AsString(settings.ShowNavigation) : string.Empty, true);
+    string theme = SanitizeTheme(settings != null ? AsString(settings.Theme) : string.Empty);
+
+    // Each theme can supply its own styles (css/themes/{theme}.css) and, optionally, its own banner markup
+    // (banners/{theme}.cshtml). Themes without a banner file use banners/default.cshtml.
+    string templateFolder = GetTemplateFolder(AsString(Model.Context.TemplatePath));
+    string defaultBannerPath = (templateFolder ?? string.Empty) + "banners/default.cshtml";
+    string bannerPath = (templateFolder ?? string.Empty) + "banners/" + theme + ".cshtml";
+    if (!string.Equals(bannerPath, defaultBannerPath, StringComparison.OrdinalIgnoreCase) && !VirtualFileExists(bannerPath))
+    {
+        bannerPath = defaultBannerPath;
+    }
+    if (theme != "default" && VirtualFileExists((templateFolder ?? string.Empty) + "css/themes/" + theme + ".css"))
+    {
+        RegisterStyleSheet("css/themes/" + theme + ".css");
+    }
+
+    string sectionTitle = AsString(Model.SectionTitle);
+    string titleTag = SafeHeadingTag(AsString(Model.TitleTag));
+    string sectionDescription = AsString(Model.SectionDescription);
+    string showAllUrl = GetSafeUrl(AsString(Model.ShowAllLink));
+    int showAllKind = GetLinkKind(showAllUrl);
+    string sectionFooter = AsString(Model.SectionFooter);
+
+    bool hasTitle = !string.IsNullOrEmpty(sectionTitle);
+    bool hasDescription = HasRichContent(sectionDescription);
+    bool hasShowAll = showAllKind != LinkNone;
+    bool hasHeader = hasTitle || hasDescription || hasShowAll;
+    bool hasFooter = !string.IsNullOrEmpty(sectionFooter);
+
+    // A banner is shown when it is inside its Start/End window and has an image. Banners without an image are
+    // skipped (and reported to editors), because there is nothing to display.
+    TimeZoneInfo portalZone = GetPortalTimeZone();
+    DateTime portalNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, portalZone);
+    var visibleBanners = new List<dynamic>();
+    int bannersMissingImage = 0;
+    if (Model.Banners != null)
+    {
+        foreach (var banner in Model.Banners)
+        {
+            if (banner == null)
+            {
+                continue;
+            }
+            if (!IsBannerScheduled(AsString(banner.StartDate), AsString(banner.EndDate), portalNow, portalZone))
+            {
+                continue;
+            }
+            if (string.IsNullOrEmpty(AsString(banner.Image)))
+            {
+                bannersMissingImage++;
+                continue;
+            }
+            visibleBanners.Add(banner);
+        }
+    }
+    int bannerCount = visibleBanners.Count;
+
+    string baseId = "hbc-" + Convert.ToString(Model.Context.ModuleId, CultureInfo.InvariantCulture);
+    string titleId = baseId + "-title";
+    string trackId = baseId + "-track";
+    string carouselLabel = hasTitle ? sectionTitle : "Featured banners";
+    string sectionClasses = "hero-banner-carousel-nobs"
+        + " hbc--theme-" + theme
+        + " hbc--mt-" + marginTop
+        + " hbc--pt-" + paddingTop
+        + " hbc--pb-" + paddingBottom
+        + " hbc--mb-" + marginBottom;
+    bool renderPause = autoForward && bannerCount > 1;
+    bool renderNavigation = showNavigation && bannerCount > 1;
+    bool isEditMode = Model.Context.IsEditMode;
+    bool bannerFileFailed = false;
+}
+
+@if (isEditMode && bannersMissingImage > 0)
+{
+    <div class="hbc-edit-note" role="note">Hero Banner Carousel NoBS: @bannersMissingImage scheduled banner(s) have no Banner Image and are not shown. This note is shown only in edit mode.</div>
+}
+
+@if (bannerCount == 0)
+{
+    if (isEditMode)
+    {
+        <div class="hbc-edit-note" role="note">Hero Banner Carousel NoBS: no banners are visible right now. Add a banner with an image, or check each banner's Start and End Date/Time. This note is shown only in edit mode.</div>
+    }
+}
+else
+{
+    <section id="@baseId" class="@sectionClasses" aria-labelledby="@(hasTitle ? titleId : null)" aria-label="@(hasTitle ? null : carouselLabel)"
+             data-hero-banner-carousel-nobs
+             data-autoplay="@(autoForward ? "true" : "false")"
+             data-autoplay-delay="5000"
+             data-pause-on-hover="@(pauseOnHover ? "true" : "false")"
+             data-navigation="@(showNavigation ? "true" : "false")"
+             data-label="@carouselLabel"
+             data-label-pause="Pause automatic rotation"
+             data-label-play="Play automatic rotation">
+        <div class="hbc__inner">
+            @if (hasHeader)
+            {
+                <div class="hbc__header">
+                    @if (hasTitle || hasShowAll)
+                    {
+                        <div class="hbc__header-row@(hasTitle ? string.Empty : " hbc__header-row--end")">
+                            @if (hasTitle)
+                            {
+                                <text>@Html.Raw("<" + titleTag + " id=\"" + titleId + "\" class=\"hbc__title\">")@(sectionTitle)@Html.Raw("</" + titleTag + ">")</text>
+                            }
+                            @if (hasShowAll)
+                            {
+                                <a class="hbc__show-all" href="@showAllUrl" target="@GetLinkTarget(showAllKind)" rel="@GetLinkRel(showAllKind)"><span>Show all</span>@if (hasTitle){<span class="hbc__sr-only"> @sectionTitle</span>}@if (showAllKind == LinkExternal){<span class="hbc__sr-only"> (opens in a new tab)</span>}</a>
+                            }
+                        </div>
+                    }
+                    @if (hasDescription)
+                    {
+                        <div class="hbc__section-description">@Html.Raw(sectionDescription)</div>
+                    }
+                </div>
+            }
+
+            <div class="hbc__stage">
+                @if (renderNavigation)
+                {
+                    <button type="button" class="hbc__nav hbc__nav--prev" aria-label="Previous banner" aria-controls="@trackId" hidden>
+                        <svg class="hbc__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 3L5 8l5 5" /></svg>
+                    </button>
+                }
+                <div class="swiper hbc__swiper">
+                    <div class="swiper-wrapper hbc__track" id="@trackId">
+                        @{ int bannerNumber = 0; }
+                        @foreach (var banner in visibleBanners)
+                        {
+                            bannerNumber++;
+                            string bannerName = AsString(banner.Name);
+                            string bannerAlt = AsString(banner.AltDescription);
+                            if (string.IsNullOrEmpty(bannerAlt))
+                            {
+                                bannerAlt = bannerName;
+                            }
+                            string bannerUrl = GetSafeUrl(AsString(banner.Link));
+                            int bannerLinkKind = GetLinkKind(bannerUrl);
+                            bool bannerHasLink = bannerLinkKind != LinkNone;
+                            bool bannerIsExternal = bannerLinkKind == LinkExternal;
+                            string fallbackLabel = "Banner " + bannerNumber.ToString(CultureInfo.InvariantCulture);
+
+                            // Prepared, already-validated values for the banner file. See banners/default.cshtml for the full contract.
+                            var bannerModel = new ExpandoObject();
+                            var bannerValues = (IDictionary<string, object>)bannerModel;
+                            bannerValues["Name"] = bannerName;
+                            bannerValues["HasName"] = !string.IsNullOrEmpty(bannerName);
+                            bannerValues["Alt"] = bannerAlt;
+                            bannerValues["ImageUrl"] = AsString(banner.Image);
+                            bannerValues["Url"] = bannerUrl;
+                            bannerValues["HasLink"] = bannerHasLink;
+                            bannerValues["IsExternal"] = bannerIsExternal;
+                            bannerValues["LinkTarget"] = GetLinkTarget(bannerLinkKind);
+                            bannerValues["LinkRel"] = GetLinkRel(bannerLinkKind);
+                            bannerValues["FallbackLinkLabel"] = (string.IsNullOrEmpty(bannerAlt) ? fallbackLabel : bannerAlt) + (bannerIsExternal ? " (opens in a new tab)" : string.Empty);
+                            bannerValues["IsFirst"] = bannerNumber == 1;
+                            bannerValues["BannerNumber"] = bannerNumber;
+                            bannerValues["BannerCount"] = bannerCount;
+                            bannerValues["Theme"] = theme;
+                            bannerValues["IdPrefix"] = baseId + "-banner-" + bannerNumber.ToString(CultureInfo.InvariantCulture);
+                            bannerValues["Item"] = banner;
+                            bannerValues["Settings"] = settings;
+
+                            bool usedFallback;
+                            string bannerHtml = RenderBannerSafely(bannerPath, defaultBannerPath, bannerModel, out usedFallback);
+                            if (usedFallback)
+                            {
+                                bannerFileFailed = true;
+                            }
+
+                            <div class="swiper-slide hbc__slide">@Html.Raw(bannerHtml)</div>
+                        }
+                    </div>
+                </div>
+                @if (renderNavigation)
+                {
+                    <button type="button" class="hbc__nav hbc__nav--next" aria-label="Next banner" aria-controls="@trackId" hidden>
+                        <svg class="hbc__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 3l5 5-5 5" /></svg>
+                    </button>
+                }
+                @if (renderPause)
+                {
+                    <button type="button" class="hbc__pause" aria-label="Pause automatic rotation" aria-controls="@trackId" hidden>
+                        <svg class="hbc__icon hbc__icon--pause" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2h3v12H4zM9 2h3v12H9z" /></svg>
+                        <svg class="hbc__icon hbc__icon--play" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2l10 6-10 6z" /></svg>
+                        <span class="hbc__pause-text">Pause</span>
+                    </button>
+                }
+            </div>
+
+            @if (hasFooter)
+            {
+                <p class="hbc__footer">@sectionFooter</p>
+            }
+        </div>
+    </section>
+
+    if (isEditMode && bannerFileFailed)
+    {
+        <div class="hbc-edit-note" role="note">Hero Banner Carousel NoBS: banners/@(theme).cshtml failed to render, so banners/default.cshtml was used. Details are in the DNN Admin Log. This note is shown only in edit mode.</div>
+    }
+}
