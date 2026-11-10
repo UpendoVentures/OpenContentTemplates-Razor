@@ -1,5 +1,8 @@
 {
   "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
     "SectionTitle": {
       "type": "text",
       "helper": "Optional. The heading shown above the cards. Leave empty to show the cards without a heading.",
