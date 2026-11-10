@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "SectionTitle": {
+      "type": "string",
+      "title": "Section Title"
+    },
+    "TitleTag": {
+      "type": "string",
+      "title": "Title Tag",
+      "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
+      "default": "h2"
+    },
+    "SectionDescription": {
+      "type": "string",
+      "title": "Section Description"
+    },
+    "ShowAllLink": {
+      "type": "string",
+      "title": "Show All Link"
+    },
+    "SectionFooter": {
+      "type": "string",
+      "title": "Section Footer"
+    },
+    "Banners": {
+      "type": "array",
+      "title": "Banners",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "title": "Name",
+            "required": true
+          },
+          "AltDescription": {
+            "type": "string",
+            "title": "Alt Description"
+          },
+          "Image": {
+            "type": "string",
+            "title": "Banner Image"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Banner Link"
+          },
+          "StartDate": {
+            "type": "string",
+            "title": "Start Date/Time"
+          },
+          "EndDate": {
+            "type": "string",
+            "title": "End Date/Time"
+          }
+        }
+      }
+    }
+  }
+}

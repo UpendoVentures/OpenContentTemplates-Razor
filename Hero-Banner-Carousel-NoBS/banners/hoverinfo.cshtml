@@ -1,0 +1,49 @@
+@inherits System.Web.WebPages.WebPage
+@*
+    Hero Banner Carousel NoBS - banner markup for the "hoverinfo" theme.
+    Inspired by "Card Hover Interactions" by Ryan Mulligan (https://codepen.io/hexagoncircle/pen/XWbWKwL).
+
+    The banner image fills the carousel. On hover or keyboard focus, linked banners darken slightly and the
+    banner Name slides up as a caption. Touch screens, narrow screens, and banners without a link never show
+    the caption, so text inside the image is not covered.
+
+    The caption repeats the Name visually only (aria-hidden); the image alt text stays the accessible name.
+    PageData[0] is the same prepared banner described in banners/default.cshtml.
+*@
+@{
+    var banner = (dynamic)PageData[0];
+    string name = banner.Name;
+    bool hasName = banner.HasName;
+    string alt = banner.Alt;
+    string imageUrl = banner.ImageUrl;
+    string url = banner.Url;
+    bool hasLink = banner.HasLink;
+    bool isExternal = banner.IsExternal;
+    string linkTarget = banner.LinkTarget;
+    string linkRel = banner.LinkRel;
+    string fallbackLinkLabel = banner.FallbackLinkLabel;
+    bool isFirst = banner.IsFirst;
+    string loading = isFirst ? "eager" : "lazy";
+    string fetchPriority = isFirst ? "high" : null;
+}
+<div class="hbc__banner hbc-hi__banner@(hasLink ? " hbc__banner--linked hbc-hi__banner--interactive" : string.Empty)">
+    @if (hasLink)
+    {
+        <a class="hbc__link" href="@url" target="@linkTarget" rel="@linkRel" aria-label="@(string.IsNullOrEmpty(alt) ? fallbackLinkLabel : null)">
+            <img class="hbc__image hbc-hi__image" src="@imageUrl" alt="@alt" loading="@loading" fetchpriority="@fetchPriority" decoding="async" />
+            @if (isExternal && !string.IsNullOrEmpty(alt))
+            {
+                <span class="hbc__sr-only"> (opens in a new tab)</span>
+            }
+            <span class="hbc-hi__shade" aria-hidden="true"></span>
+            @if (hasName)
+            {
+                <span class="hbc-hi__caption" aria-hidden="true">@name</span>
+            }
+        </a>
+    }
+    else
+    {
+        <img class="hbc__image hbc-hi__image" src="@imageUrl" alt="@alt" loading="@loading" fetchpriority="@fetchPriority" decoding="async" />
+    }
+</div>

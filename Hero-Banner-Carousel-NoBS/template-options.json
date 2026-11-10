@@ -1,0 +1,54 @@
+{
+  "fields": {
+    "MarginTop": {
+      "type": "select",
+      "helper": "Space outside the section, above it.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "PaddingTop": {
+      "type": "select",
+      "helper": "Space inside the section, above the content.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "PaddingBottom": {
+      "type": "select",
+      "helper": "Space inside the section, below the content.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "MarginBottom": {
+      "type": "select",
+      "helper": "Space outside the section, below it.",
+      "optionLabels": ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "AutoForward": {
+      "type": "checkbox",
+      "rightLabel": "Automatically advance one banner every 5 seconds",
+      "helper": "Visitors get a Pause/Play button, and rotation pauses while a banner control has keyboard focus. It starts paused for visitors who prefer reduced motion."
+    },
+    "PauseOnHover": {
+      "type": "checkbox",
+      "rightLabel": "Pause rotation while the pointer is over the banner",
+      "helper": "Applies only when Auto-Forward is on. Rotation continues when the pointer leaves the banner."
+    },
+    "ShowNavigation": {
+      "type": "checkbox",
+      "rightLabel": "Show previous and next buttons",
+      "helper": "Adds left and right buttons over the banner edges. Buttons are hidden automatically when there is only one banner."
+    },
+    "Theme": {
+      "type": "select",
+      "helper": "Choose the look of the banner frame, buttons, and Show all link. Default (current) inherits your site's own styles. HoverInfo shows the banner Name as a caption on hover. Each theme can also use its own banner markup in banners/{theme}.cshtml.",
+      "optionLabels": ["Beach", "Default (current)", "HoverInfo", "Industrial", "Professional", "Techie"],
+      "sort": false,
+      "removeDefaultNone": true
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@inherits System.Web.WebPages.WebPage
+@*
+    Hero Banner Carousel NoBS - banner markup for the "default" theme.
+
+    template.cshtml renders this file once per visible banner, inside its own swiper-slide wrapper.
+    A theme uses banners/{theme}.cshtml when it exists, otherwise this file, so most themes only need a CSS file.
+    Keep the root element a single block.
+
+    PageData[0] is a prepared banner. All values are already validated by template.cshtml:
+      Name                       string  Plain text (Razor encodes it on output). Required in the editor.
+      HasName                    bool
+      Alt                        string  Alt Description, or the Name when the Alt Description is empty.
+      ImageUrl                   string  Never empty (banners without an image are skipped).
+      Url                        string  Safe link URL, or empty.
+      HasLink, IsExternal        bool
+      LinkTarget, LinkRel        string  "_top" / "_blank" and "noopener noreferrer", or null (attribute omitted).
+      FallbackLinkLabel          string  Accessible name for the link when the image has no alt text.
+      IsFirst                    bool    True for the first visible banner (loaded eagerly).
+      BannerNumber, BannerCount  int     1-based position and number of visible banners.
+      Theme                      string  Current theme name.
+      IdPrefix                   string  Unique per banner on the page; use it to build element IDs.
+      Item                       dynamic Raw OpenContent banner data (for custom schema fields).
+      Settings                   dynamic Raw template settings.
+
+    The image fills the full width of the carousel and keeps its own proportions, so text inside the image is never cropped.
+    When a link is set, the whole banner is the link and the image alt text is its accessible name.
+*@
+@{
+    var banner = (dynamic)PageData[0];
+    string alt = banner.Alt;
+    string imageUrl = banner.ImageUrl;
+    string url = banner.Url;
+    bool hasLink = banner.HasLink;
+    bool isExternal = banner.IsExternal;
+    string linkTarget = banner.LinkTarget;
+    string linkRel = banner.LinkRel;
+    string fallbackLinkLabel = banner.FallbackLinkLabel;
+    bool isFirst = banner.IsFirst;
+    string loading = isFirst ? "eager" : "lazy";
+    string fetchPriority = isFirst ? "high" : null;
+}
+<div class="hbc__banner@(hasLink ? " hbc__banner--linked" : string.Empty)">
+    @if (hasLink)
+    {
+        <a class="hbc__link" href="@url" target="@linkTarget" rel="@linkRel" aria-label="@(string.IsNullOrEmpty(alt) ? fallbackLinkLabel : null)">
+            <img class="hbc__image" src="@imageUrl" alt="@alt" loading="@loading" fetchpriority="@fetchPriority" decoding="async" />
+            @if (isExternal && !string.IsNullOrEmpty(alt))
+            {
+                <span class="hbc__sr-only"> (opens in a new tab)</span>
+            }
+        </a>
+    }
+    else
+    {
+        <img class="hbc__image" src="@imageUrl" alt="@alt" loading="@loading" fetchpriority="@fetchPriority" decoding="async" />
+    }
+</div>

@@ -1,0 +1,81 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "SectionTitle": {
+      "type": "text",
+      "helper": "Optional. The heading shown above the banners. Leave empty to show the banners without a heading.",
+      "placeholder": "Welcome"
+    },
+    "TitleTag": {
+      "type": "select",
+      "helper": "Choose the heading level for the Section Title so it fits the page outline.",
+      "optionLabels": ["Heading1 (h1)", "Heading2 (h2)", "Heading3 (h3)", "Heading4 (h4)", "Heading5 (h5)", "Heading6 (h6)"],
+      "sort": false,
+      "removeDefaultNone": true
+    },
+    "SectionDescription": {
+      "type": "ckeditor",
+      "helper": "Optional. A short introduction shown below the Section Title. Formatting and links are allowed."
+    },
+    "ShowAllLink": {
+      "type": "url",
+      "helper": "Optional. When set, a \"Show all\" link appears at the top right of the section. Links to other websites open in a new tab.",
+      "placeholder": "https://example.com or a local site link"
+    },
+    "SectionFooter": {
+      "type": "text",
+      "helper": "Optional. A short note shown centered and subdued below the banners.",
+      "placeholder": "New offers are added every month."
+    },
+    "Banners": {
+      "type": "accordion",
+      "label": "Banners",
+      "titleField": "Name",
+      "helper": "Add the banners to rotate. One banner shows at a time on every screen size, filling the full width. Banners outside their Start/End Date/Time, or without a Banner Image, are hidden automatically.",
+      "items": {
+        "fields": {
+          "Name": {
+            "type": "text",
+            "helper": "Required. Identifies the banner in this list, and is used as the image description when Alt Description is empty.",
+            "placeholder": "Welcome to the Store"
+          },
+          "AltDescription": {
+            "type": "text",
+            "helper": "Optional. Describe the banner for screen-reader users, including any words shown in the image. Leave empty to use the Name.",
+            "placeholder": "Welcome to the Store. Practitioners celebrating together."
+          },
+          "Image": {
+            "type": "image",
+            "helper": "The banner image. It fills the full width and keeps its proportions, so use the same size for every banner (for example 1880 x 600 pixels). Uploads are stored in Content/Navigation-Cards/.",
+            "uploadfolder": "Content/Navigation-Cards/"
+          },
+          "Link": {
+            "type": "url",
+            "helper": "Optional. Where this banner goes when clicked. Local pages open in the same window; other websites open in a new tab.",
+            "placeholder": "https://example.com or a local site link"
+          },
+          "StartDate": {
+            "type": "date",
+            "dateFormat": "YYYY-MM-DD HH:mm",
+            "picker": {
+              "format": "YYYY-MM-DD HH:mm"
+            },
+            "helper": "Optional. The banner is hidden until this date and time (portal time zone). Leave empty to show it right away. If module caching is enabled, the change appears when the cache expires.",
+            "placeholder": "2026-12-01 08:00"
+          },
+          "EndDate": {
+            "type": "date",
+            "dateFormat": "YYYY-MM-DD HH:mm",
+            "picker": {
+              "format": "YYYY-MM-DD HH:mm"
+            },
+            "helper": "Optional. The banner is hidden from this date and time onward (portal time zone). Leave empty to never hide it. If module caching is enabled, the change appears when the cache expires.",
+            "placeholder": "2026-12-31 23:59"
+          }
+        }
+      }
+    }
+  }
+}

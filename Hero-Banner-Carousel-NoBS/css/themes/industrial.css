@@ -1,0 +1,41 @@
+/*
+ * Hero Banner Carousel NoBS - Industrial theme
+ * Square banner with a heavy charcoal frame and a safety-amber top stripe; square charcoal controls with amber icons.
+ * Scoped to .hero-banner-carousel-nobs.hbc--theme-industrial so other instances and themes on the page are unaffected.
+ * Contrast (WCAG AA): amber #f2b705 on charcoal #2b2b2b is 7.79:1; #1f1f1f on the amber hover #d99a00 is 6.73:1;
+ * Show all #8a5a00 on white is 5.93:1. The amber stripe is decorative only.
+ */
+
+.hero-banner-carousel-nobs.hbc--theme-industrial {
+    --hbc-radius: 0;
+    --hbc-border: 2px solid #2b2b2b;
+    --hbc-banner-bg: #d6d4cf;
+    --hbc-control-bg: #2b2b2b;
+    --hbc-control-bg-hover: #d99a00;
+    --hbc-control-color: #f2b705;
+    --hbc-control-border: 2px solid #2b2b2b;
+    --hbc-control-radius: 0;
+    --hbc-pause-radius: 0;
+    --hbc-focus-color: #1f1f1f;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-industrial .hbc__swiper {
+    border-top: 6px solid #d99a00;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-industrial .hbc__nav:hover,
+.hero-banner-carousel-nobs.hbc--theme-industrial .hbc__pause:hover {
+    color: #1f1f1f;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-industrial .hbc__pause {
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.hero-banner-carousel-nobs.hbc--theme-industrial .hbc__show-all {
+    color: #8a5a00;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}

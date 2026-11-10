@@ -1,0 +1,10 @@
+{
+  "MarginTop": "md",
+  "PaddingTop": "md",
+  "PaddingBottom": "md",
+  "MarginBottom": "md",
+  "AutoForward": true,
+  "PauseOnHover": true,
+  "ShowNavigation": true,
+  "Theme": "default"
+}
