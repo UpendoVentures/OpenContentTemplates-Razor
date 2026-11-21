@@ -1,25 +1,13 @@
 @using System
-@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @using DotNetNuke.Entities.Modules
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
+    // Update or create the "hideadminborder" setting with the value "True"
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+
     RegisterScript(@Model.Context.TemplatePath + "/banner-scripts.js");
     RegisterStyleSheet(Model.Context.TemplatePath + "/banner-styles.css");
-
-    // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        // Check if the "hideadminborder" setting is not set or is not "True"
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            // Update or create the "hideadminborder" setting with the value "True"
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
 
     var headerBackgroundColor = Model.Settings.HeaderBackgroundColor;
     var headerTextColor = Model.Settings.HeaderTextColor;

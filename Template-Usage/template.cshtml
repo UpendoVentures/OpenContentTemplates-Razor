@@ -1,6 +1,7 @@
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
-
 @{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
     var moduleId = Dnn.Module.ModuleID;
     var tabId = Dnn.Module.TabID;
     var initialScope = Model.Settings != null && Model.Settings.ThisPortal ? "portal" : "instance";

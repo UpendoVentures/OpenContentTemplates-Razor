@@ -2,6 +2,8 @@
 @using DotNetNuke.Entities.Tabs
 @using DotNetNuke.Common
 @using DotNetNuke.Entities.Portals
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
   public bool ConvertToBool(dynamic value)
@@ -11,6 +13,8 @@
 }
 
 @{
+    // Update or create the "hideadminborder" setting with the value "True"
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
     RegisterStyleSheet("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
 
     // Get the URLs of the portal pages
@@ -24,24 +28,6 @@
     var pageUrlsJson = Newtonsoft.Json.JsonConvert.SerializeObject(tabs.Select(t => t.Url));
 
     var index = 0;
-}
-
-@{
-    // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        // Check if the "hideadminborder" setting is not set or is not "True"
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            // Update or create the "hideadminborder" setting with the value "True"
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
 }
 @if (!string.IsNullOrEmpty(Model.ModuleAnchor))
 {

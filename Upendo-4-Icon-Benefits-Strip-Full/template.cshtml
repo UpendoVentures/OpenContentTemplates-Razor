@@ -1,9 +1,11 @@
 @using System
 @using System.Collections.Generic
+@using DotNetNuke.Entities.Modules
 @using Upendo.Libraries.RunsOnUpendoCore.Helpers
-
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
-    TemplateHelper.HideAdminBorder(Model.Context.ModuleId, Model.Context.TabId);
+    // Update or create the "hideadminborder" setting with the value "True"
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
     RegisterStyleSheet("template.css");
 
     var moduleTitle = Model.ModuleTitle != null ? Convert.ToString(Model.ModuleTitle) : string.Empty;

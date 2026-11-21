@@ -7,6 +7,8 @@
 @using System.Web.Hosting
 @using DotNetNuke.Entities.Portals
 @using DotNetNuke.Services.Exceptions
+@using DotNetNuke.Entities.Modules
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
@@ -287,6 +289,9 @@
 }
 
 @{
+    // Update or create the "hideadminborder" setting with the value "True"
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    
     RegisterStyleSheet("css/swiper-bundle.min.css");
     RegisterStyleSheet("css/hero-banner-carousel-nobs.css");
     RegisterScript("js/swiper-bundle.min.js");

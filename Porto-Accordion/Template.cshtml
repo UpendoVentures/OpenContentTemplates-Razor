@@ -3,6 +3,8 @@
 @using System.Text.RegularExpressions
 @using Newtonsoft.Json
 @using DotNetNuke.Entities.Modules
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @functions {
     public string StripHtml(string input)
@@ -20,18 +22,7 @@
 
 @{
     // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-            ? currentModule.TabModuleSettings["hideadminborder"]
-            : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
 
     var itemsWithIndex = new List<dynamic>();
     if (Model.Items != null)
