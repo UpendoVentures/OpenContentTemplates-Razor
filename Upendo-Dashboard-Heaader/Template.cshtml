@@ -60,6 +60,12 @@
         lastVisitText = "--";
     }
 
+    // Current user's email for the voice memo link (authenticated users only, URL-encoded)
+    var userEmail = (user != null && user.UserID > 0 && !string.IsNullOrWhiteSpace(user.Email))
+        ? user.Email.Trim()
+        : string.Empty;
+    var voiceMemoUrl = "https://runsonupendo.com/resources/support/voice-memo?email=" + Uri.EscapeDataString(userEmail);
+
     var hdrId = "support-header-" + (user != null ? user.UserID.ToString() : DateTime.UtcNow.Ticks.ToString());
     var referLink = "mailto:?cc=solutions@upendoventures.com&subject=Quick%20intro%3A%20Will%20at%20Upendo%20Ventures&amp;body=Hi%20%5BFriend%E2%80%99s%20first%20name%5D%2C%0D%0A%0D%0AThought%20of%20you%20for%20this.%20I%20work%20with%20Upendo%20Ventures%20(local%2C%20small-business%20friendly).%20They%20help%20with%20websites%2C%20support%2C%20and%20everyday%20tech%20questions.%0D%0A%0D%0AIf%20you%20decide%20to%20sign%20up%2C%20you%E2%80%99ll%20also%20get%2015%25%20off%20their%20site%20migration%20service%20with%20the%20code%3A%20FRIENDSOFUPENDO.%0D%0A%0D%0AThanks!%0D%0A%5BYour%20name%5D";
 }
@@ -125,6 +131,15 @@
             <i class="far fa-envelope me-2" aria-hidden="true"></i>Support email not configured
           </button>
         }
+
+        <a class="btn btn-sm btn-primary track-client" 
+           href="@voiceMemoUrl"
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Send a voice memo to Upendo Support"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           title="Send a voice memo to us right away">
+          <i class="fas fa-microphone me-2" aria-hidden="true"></i>Send Voice Memo
+        </a>
 
         <a class="btn btn-sm btn-secondary track-client" 
            href="https://upendoventures.com/schedule-us" 

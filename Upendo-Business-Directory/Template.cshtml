@@ -14,10 +14,10 @@
 @inherits Satrabel.OpenContent.Components.OpenContentWebPage
 
 @{
-    RegisterStyleSheet("css/template.css");
-
     // Hide admin border
     TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("css/template.css");
+
 
     int portalId = -1;
     if (Dnn != null && Dnn.Portal != null)

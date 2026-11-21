@@ -1,20 +1,9 @@
 @using DotNetNuke.Entities.Modules
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
     // Update or create the "hideadminborder" setting with the value "True"
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        // Check if the "hideadminborder" setting is not set or is not "True"
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-        ? currentModule.TabModuleSettings["hideadminborder"]
-        : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            // Update or create the "hideadminborder" setting with the value "True"
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
 
     RegisterStyleSheet("Template.css");
 
@@ -33,7 +22,7 @@
     <div class="row @Model.Settings.MarginTop @Model.Settings.MarginBottom @Model.Settings.PaddingTop @Model.Settings.PaddingBottom">
         <p class="text-muted small mb-0 text-center">
         <em>
-            <a href="https://upendoventures.com/What/Migrate?utm_source=@strUtmSource&utm_medium=website&utm_campaign=referral&utm_content=site-footer&utm_term=site-migration" 
+            <a href="https://runsonupendo.com/?utm_source=@strUtmSource&utm_medium=website&utm_campaign=referral&utm_content=site-footer&utm_term=site-migration" 
             target="_blank" rel="noopener" class="upendo-footer-link track-referral">
             This website runs on Upendo! 
             <i class="fas fa-heart text-danger ms-1" aria-hidden="true"></i> Yours can too!
@@ -42,6 +31,3 @@
         </p>
     </div>
 </div>
-@*
-@ObjectInfo.Print(Model)
-*@

@@ -2,7 +2,10 @@
 @using DotNetNuke.Entities.Controllers
 @using DotNetNuke.Common
 @using System
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
+  TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
    bool isEdit = Model.Context.IsEditable;
     // Read HostSettings directly (no local function)
     var supportEmailRaw = HostController.Instance.GetString("Upendo.Support.Email", string.Empty);

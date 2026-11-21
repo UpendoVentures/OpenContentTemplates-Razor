@@ -1,17 +1,9 @@
 @using DotNetNuke.Entities.Modules
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
 @{
-    var currentModule = ModuleController.Instance.GetModule(Dnn.Module.ModuleID, Dnn.Module.TabID, false);
-    if (currentModule != null && currentModule.TabModuleID > 0)
-    {
-        var currentSetting = currentModule.TabModuleSettings.ContainsKey("hideadminborder")
-            ? currentModule.TabModuleSettings["hideadminborder"]
-            : null;
-
-        if (currentSetting == null || !currentSetting.ToString().Equals("True", StringComparison.OrdinalIgnoreCase))
-        {
-            ModuleController.Instance.UpdateTabModuleSetting(currentModule.TabModuleID, "hideadminborder", "True");
-        }
-    }
+    // Update or create the "hideadminborder" setting with the value "True"
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
 
     var smallTextCss = "";
     if (!string.IsNullOrEmpty(Model.Settings.Size) && Model.Settings.Size.ToLower() == "alert-sm"){
