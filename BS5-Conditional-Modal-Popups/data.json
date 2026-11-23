@@ -1,12 +1,19 @@
 {
-  "ButtonText": "Launch Modal",
-  "ModalTitle": "Modal Title",
-  "Items": [
+  "ModuleTitle": "Conditional Modal Popups",
+  "ModuleAnchor": "",
+  "Modals": [
     {
-      "Item": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href='#'>vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus."
-    },
-    {
-      "Item": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href='#'>vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus."
+      "ModalTitle": "Welcome, Campaign Visitor!",
+      "ModalTitleIcon": "fas fa-hand-sparkles",
+      "ModalLead": "This is a demo modal.",
+      "ModalContent": "<p>This modal only appears when the page is opened with <code>?utm_campaign=demo-modal</code> in the address. Edit or replace it with your own campaign message.</p>",
+      "ModalFooterCta": "Thanks for stopping by.",
+      "CloseButtonText": "Close",
+      "CloseButtonIcon": "fa-solid fa-times",
+      "Condition": "utm_campaign",
+      "ConditionValue": "demo-modal"
     }
-  ]
+  ],
+  "DelayTime": 0,
+  "ExitIntentTrigger": false
 }

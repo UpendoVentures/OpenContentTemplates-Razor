@@ -1,6 +1,35 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>", 
-    "Image": "https://example.com/image.jpg",
-    "Classes": "img-fluid",
-    "AltText": "This is my default alt text"
+  "ModuleTitle": "Product Cards",
+  "Products": [
+    {
+      "ProductName": "Starter",
+      "ProductDescription": "<p>Everything a small team needs to get started.</p>",
+      "MonthlyPrice": "$29",
+      "MonthlyLink": "#",
+      "YearlyPrice": "$290",
+      "YearlyLink": "#",
+      "HeaderImage": "https://placehold.co/600x400",
+      "IsFeatured": false
+    },
+    {
+      "ProductName": "Professional",
+      "ProductDescription": "<p>More features and priority support for growing organizations.</p>",
+      "MonthlyPrice": "$79",
+      "MonthlyLink": "#",
+      "YearlyPrice": "$790",
+      "YearlyLink": "#",
+      "HeaderImage": "https://placehold.co/600x400",
+      "IsFeatured": true
+    },
+    {
+      "ProductName": "Enterprise",
+      "ProductDescription": "<p>Custom options and dedicated guidance for larger teams.</p>",
+      "MonthlyPrice": "",
+      "MonthlyLink": "#",
+      "YearlyPrice": "",
+      "YearlyLink": "#",
+      "HeaderImage": "https://placehold.co/600x400",
+      "IsFeatured": false
+    }
+  ]
 }

@@ -1,3 +1,59 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Press Hits",
+  "ModuleAnchor": "",
+  "HeroTitle": "In the News",
+  "HeroIntro": "<p>Interviews, articles, and announcements featuring our team and our work.</p>",
+  "PressItems": [
+    {
+      "Title": "Building Websites That Serve Their Communities",
+      "Source": "Sample Business Podcast",
+      "Type": "podcast",
+      "Date": "09/15/2026",
+      "Thumbnail": "https://placehold.co/600x400",
+      "ThumbnailAlt": "Podcast episode artwork",
+      "Description": "<p>A conversation about planning websites around the people who use them.</p>",
+      "UpendoLink": "#",
+      "Links": [
+        {
+          "Label": "Listen to the Episode",
+          "Url": "#"
+        }
+      ],
+      "Featured": true
+    },
+    {
+      "Title": "Small Businesses Embrace Simple Digital Tools",
+      "Source": "Example Daily News",
+      "Type": "article_quote",
+      "Date": "07/02/2026",
+      "Thumbnail": "https://placehold.co/600x400",
+      "ThumbnailAlt": "Newspaper article preview",
+      "Description": "<p>Our team shared advice on choosing tools that are easy to maintain.</p>",
+      "UpendoLink": "#",
+      "Links": [
+        {
+          "Label": "Read the Article",
+          "Url": "#"
+        }
+      ],
+      "Featured": false
+    },
+    {
+      "Title": "New Support Plans Now Available",
+      "Source": "Company Announcement",
+      "Type": "press_release",
+      "Date": "05/20/2026",
+      "Thumbnail": "https://placehold.co/600x400",
+      "ThumbnailAlt": "Press release graphic",
+      "Description": "<p>Announcing flexible support plans for growing organizations.</p>",
+      "UpendoLink": "#",
+      "Links": [
+        {
+          "Label": "Read the Press Release",
+          "Url": "#"
+        }
+      ],
+      "Featured": false
+    }
+  ]
 }

@@ -1,3 +1,8 @@
 {
-
+  "ModuleTitle": "Before and After",
+  "ModuleAnchor": "",
+  "Heading": "See the Difference",
+  "SubHeading": "Drag the slider to compare the before and after images.",
+  "ImageBefore": "https://placehold.co/1200x800/png?text=Before",
+  "ImageAfter": "https://placehold.co/1200x800/png?text=After"
 }

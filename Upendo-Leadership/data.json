@@ -1,3 +1,30 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Leadership",
+  "ModuleAnchor": "",
+  "Leaders": [
+    {
+      "FullName": "Avery Sample",
+      "CompanyName": "Sample Design Studio",
+      "Title": "President",
+      "Image": "https://placehold.co/400x400",
+      "Email": "avery@example.com",
+      "MemberPage": "#"
+    },
+    {
+      "FullName": "Jordan Example",
+      "CompanyName": "Example Bookkeeping Co.",
+      "Title": "Treasurer",
+      "Image": "https://placehold.co/400x400",
+      "Email": "jordan@example.com",
+      "MemberPage": "#"
+    },
+    {
+      "FullName": "Morgan Demo",
+      "CompanyName": "Demo Home Services",
+      "Title": "Secretary",
+      "Image": "https://placehold.co/400x400",
+      "Email": "morgan@example.com",
+      "MemberPage": "#"
+    }
+  ]
 }

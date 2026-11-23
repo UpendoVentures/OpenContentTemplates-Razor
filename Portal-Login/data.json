@@ -1,3 +1,5 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Portal Login",
+  "ModuleAnchor": "",
+  "Paragraph": "<p>Log in to access the secure client portal.</p>"
 }

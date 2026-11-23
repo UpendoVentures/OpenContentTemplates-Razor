@@ -1,3 +1,36 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Business Directory",
+  "ModuleAnchor": "",
+  "Members": [
+    {
+      "MemberName": "Avery Sample",
+      "Image": "https://placehold.co/400x400",
+      "BoardRole": "President",
+      "CompanyName": "Sample Design Studio",
+      "CompanyUrl": "https://example.com",
+      "MemberTitle": "Founder & Creative Director",
+      "Email": "avery@example.com",
+      "MemberBio": "<p>Avery helps local businesses build clear, welcoming brands and has served on the board for three years.</p>"
+    },
+    {
+      "MemberName": "Jordan Example",
+      "Image": "https://placehold.co/400x400",
+      "BoardRole": "Treasurer",
+      "CompanyName": "Example Bookkeeping Co.",
+      "CompanyUrl": "https://example.com",
+      "MemberTitle": "Owner",
+      "Email": "jordan@example.com",
+      "MemberBio": "<p>Jordan keeps the organization's finances organized and offers bookkeeping support to small businesses.</p>"
+    },
+    {
+      "MemberName": "Morgan Demo",
+      "Image": "https://placehold.co/400x400",
+      "BoardRole": "Director",
+      "CompanyName": "Demo Home Services",
+      "CompanyUrl": "https://example.com",
+      "MemberTitle": "Operations Manager",
+      "Email": "morgan@example.com",
+      "MemberBio": "<p>Morgan coordinates member events and welcomes new members to the community.</p>"
+    }
+  ]
 }

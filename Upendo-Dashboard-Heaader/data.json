@@ -1,3 +1,7 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Dashboard Header",
+  "ModuleAnchor": "",
+  "HtmlContent": "",
+  "UseHtmlWrapper": true,
+  "IncludeContentWrapperClass": true
 }

@@ -1,3 +1,7 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Image",
+  "ModuleAnchor": "",
+  "Image": "https://placehold.co/1200x600",
+  "Classes": "img-fluid",
+  "AltText": "Placeholder image for this section"
 }

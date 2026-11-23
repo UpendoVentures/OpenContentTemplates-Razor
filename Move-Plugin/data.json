@@ -1,3 +1,19 @@
 {
-  "ModuleTitle": "move-plugin"
+  "ModuleTitle": "Move Plugin",
+  "querySelector": "#",
+  "queryValue": "move-plugin-target-not-set",
+  "editMode": false,
+  "modType": "2",
+  "moveTop": false,
+  "currentTop": "",
+  "newTop": "",
+  "moveLeft": false,
+  "currentLeft": "",
+  "newLeft": "",
+  "moveRight": false,
+  "currentRight": "",
+  "newRight": "",
+  "moveDown": false,
+  "currentBottom": "",
+  "newBottom": ""
 }

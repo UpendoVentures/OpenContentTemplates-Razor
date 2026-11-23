@@ -1,7 +1,14 @@
 {
-  "Heading": "<i class=\"fas fa-heart me-2\" aria-hidden=\"true\"></i>What is <strong>Lorem Ipsum</strong>?",
+  "ModuleTitle": "Section",
+  "ModuleAnchor": "",
+  "Heading": "<i class=\"fas fa-heart me-2\" aria-hidden=\"true\"></i>Why People <strong>Choose Us</strong>",
   "HeadingClasses": "",
-  "SubHeading": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eros ipsum, facilisis eget scelerisque non, fermentum at tellus.</p>",
-  "StyleType" : "Default",
-  "StyleDefault": "section section-default"
+  "SubHeading": "<p>We listen first, plan carefully, and stay with you long after launch. Use this section to highlight a key message for your visitors.</p>",
+  "TextLight": false,
+  "StyleType": "Default",
+  "StyleDefault": "section section-default",
+  "StyleParallax": "section section-text-light section-parallax section-center",
+  "StyleBackground": "section section-text-light section-background section-center",
+  "Image": "https://placehold.co/1920x1080",
+  "VideoUrl": ""
 }

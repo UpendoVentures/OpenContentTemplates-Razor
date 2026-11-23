@@ -1,3 +1,27 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Marketing Materials",
+  "ModuleAnchor": "",
+  "Materials": [
+    {
+      "Title": "Business Card",
+      "Description": "A double-sided business card with your logo and contact details.",
+      "Image": "https://placehold.co/600x400",
+      "FilePath": "#",
+      "Instructions": "Print on heavy card stock at standard business card size."
+    },
+    {
+      "Title": "Event Flyer",
+      "Description": "A one-page flyer to promote your next event.",
+      "Image": "https://placehold.co/600x400",
+      "FilePath": "#",
+      "Instructions": "Print in color on letter-size paper."
+    },
+    {
+      "Title": "Social Media Graphic",
+      "Description": "A square graphic sized for social media posts.",
+      "Image": "https://placehold.co/600x400",
+      "FilePath": "#",
+      "Instructions": "Upload directly to your social media profile."
+    }
+  ]
 }

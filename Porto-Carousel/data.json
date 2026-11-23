@@ -1,70 +1,96 @@
 {
+  "ModuleTitle": "Carousel",
+  "ModuleAnchor": "",
+  "InnerTopText": "Meet the people behind our work. Each member of our team brings a different strength to every project.",
+  "ItemsInnerText": [
+    {
+      "Text": "We believe good work starts with good listening, so every project begins with a conversation."
+    },
+    {
+      "Text": "From planning to launch, we keep you informed and involved at every step."
+    }
+  ],
   "Items": [
     {
-      "FullName": "Melinda Doe",
-      "Ocupation": "CEO",
-      "HoverStyleText": "HoverStyleText",
+      "Image": "https://placehold.co/600x600",
+      "HoverStyleText": "Leads strategy and planning for every project.",
+      "FullName": "Avery Sample",
+      "Ocupation": "Founder",
       "SocialMedia": [
         {
           "Name": "Facebook",
-          "Url": "http://www.facebook.com",
+          "Url": "#",
           "Icon": "fab fa-facebook-f"
         },
         {
-          "Name": "Twitter",
-          "Url": "http://www.twitter.com",
-          "Icon": "fab fa-twitter"
-        },
-        {
-          "Name": "Linkedin",
-          "Url": "http://www.linkedin.com",
+          "Name": "LinkedIn",
+          "Url": "#",
           "Icon": "fab fa-linkedin-in"
         }
-      ]
+      ],
+      "FullWidthProjectTitle": "Brand Refresh",
+      "FullWidthProjectType": "Design"
     },
     {
-      "FullName": "Craig Doe",
-      "Ocupation": "CEO",
-      "HoverStyleText": "HoverStyleText",
+      "Image": "https://placehold.co/600x600",
+      "HoverStyleText": "Keeps projects on schedule and on budget.",
+      "FullName": "Jordan Example",
+      "Ocupation": "Project Manager",
       "SocialMedia": [
         {
           "Name": "Facebook",
-          "Url": "http://www.facebook.com",
+          "Url": "#",
           "Icon": "fab fa-facebook-f"
         },
         {
-          "Name": "Twitter",
-          "Url": "http://www.twitter.com",
-          "Icon": "fab fa-twitter"
-        },
-        {
-          "Name": "Linkedin",
-          "Url": "http://www.linkedin.com",
+          "Name": "LinkedIn",
+          "Url": "#",
           "Icon": "fab fa-linkedin-in"
         }
-      ]
+      ],
+      "FullWidthProjectTitle": "Website Launch",
+      "FullWidthProjectType": "Development"
     },
     {
-      "FullName": "Richard Doe",
-      "Ocupation": "CEO",
-      "HoverStyleText": "HoverStyleText",
+      "Image": "https://placehold.co/600x600",
+      "HoverStyleText": "Builds fast, accessible websites.",
+      "FullName": "Morgan Demo",
+      "Ocupation": "Developer",
       "SocialMedia": [
         {
           "Name": "Facebook",
-          "Url": "http://www.facebook.com",
+          "Url": "#",
           "Icon": "fab fa-facebook-f"
         },
         {
-          "Name": "Twitter",
-          "Url": "http://www.twitter.com",
-          "Icon": "fab fa-twitter"
-        },
-        {
-          "Name": "Linkedin",
-          "Url": "http://www.linkedin.com",
+          "Name": "LinkedIn",
+          "Url": "#",
           "Icon": "fab fa-linkedin-in"
         }
-      ]
+      ],
+      "FullWidthProjectTitle": "Online Store",
+      "FullWidthProjectType": "E-Commerce"
+    },
+    {
+      "Image": "https://placehold.co/600x600",
+      "HoverStyleText": "Writes clear, helpful content.",
+      "FullName": "Riley Placeholder",
+      "Ocupation": "Content Strategist",
+      "SocialMedia": [
+        {
+          "Name": "Facebook",
+          "Url": "#",
+          "Icon": "fab fa-facebook-f"
+        },
+        {
+          "Name": "LinkedIn",
+          "Url": "#",
+          "Icon": "fab fa-linkedin-in"
+        }
+      ],
+      "FullWidthProjectTitle": "Content Plan",
+      "FullWidthProjectType": "Marketing"
     }
-  ]
+  ],
+  "Videos": []
 }

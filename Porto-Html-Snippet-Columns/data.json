@@ -1,3 +1,22 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "HTML Snippet Columns",
+  "ModuleAnchor": "",
+  "Columns": [
+    {
+      "Header": "Plan",
+      "Description": "<p>Start with a clear picture of your goals and your audience.</p>",
+      "HtmlSnippet": "<a class=\"btn btn-outline-primary\" href=\"#\">Start Planning</a>"
+    },
+    {
+      "Header": "Build",
+      "Description": "<p>Turn your plan into pages that are easy to read and navigate.</p>",
+      "HtmlSnippet": "<a class=\"btn btn-outline-primary\" href=\"#\">See Our Process</a>"
+    },
+    {
+      "Header": "Grow",
+      "Description": "<p>Measure what works and keep improving over time.</p>",
+      "HtmlSnippet": "<a class=\"btn btn-outline-primary\" href=\"#\">Get Support</a>"
+    }
+  ],
+  "JavaScript": ""
 }

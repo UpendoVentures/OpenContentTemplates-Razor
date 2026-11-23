@@ -1,37 +1,67 @@
 {
+  "ModuleTitle": "Counters",
+  "ModuleAnchor": "",
   "Style": "Default",
+  "WithBorders": false,
+  "WithBackground": false,
+  "Background": "section section-default",
+  "ParallaxImage": "https://placehold.co/1920x1080",
   "Grid": "col-md-3 col-sm-6",
   "Items": [
     {
       "Item": {
         "DataFrom": 0,
-        "DataTo": 54,
+        "DataTo": 1200,
+        "DataPrefix": "",
         "DataAppend": "+",
-        "Text": "John Doe",
+        "Icon": "fas fa-users",
+        "Text": "Happy Clients",
         "Color": "counter-primary",
-        "Speed": "5000"
+        "Speed": "3000"
       }
     },
     {
       "Item": {
         "DataFrom": 0,
-        "DataTo": 154,
-        "DataAppend": "",
-        "Text": "Sara Doe",
+        "DataTo": 350,
+        "DataPrefix": "",
+        "DataAppend": "+",
+        "Icon": "fas fa-check-circle",
+        "Text": "Projects Completed",
         "Color": "counter-secondary",
-        "Speed": "5000"
+        "Speed": "3000"
       }
     },
     {
       "Item": {
         "DataFrom": 0,
-        "DataTo": 254,
+        "DataTo": 25,
+        "DataPrefix": "",
         "DataAppend": "",
-        "Text": "Currency",
+        "Icon": "fas fa-calendar-alt",
+        "Text": "Years of Experience",
         "Color": "counter-tertiary",
-        "Speed": "5000",
-        "DataPrefix": "$"
+        "Speed": "3000"
+      }
+    },
+    {
+      "Item": {
+        "DataFrom": 0,
+        "DataTo": 98,
+        "DataPrefix": "",
+        "DataAppend": "%",
+        "Icon": "fas fa-smile",
+        "Text": "Satisfaction Rate",
+        "Color": "counter-quaternary",
+        "Speed": "3000"
       }
     }
-  ]
+  ],
+  "Inline": {
+    "FirstText": "We have helped more than",
+    "DataTo": 1200,
+    "DataFrom": 0,
+    "AlternativeFont": false,
+    "LastText": "clients reach their goals."
+  }
 }
