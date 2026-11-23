@@ -58,10 +58,10 @@
 
           @if(!string.IsNullOrEmpty(Model.SaText)){
           <a href="@Model.SaUrl" class="btn btn-outline-light rounded-pill shadow-sm fw-bold @Model.SaCssClass" aria-label="@Model.SaLabel">
-            @if (!string.IsNullOrEmpty(Model.PaIcon))
+            @if (!string.IsNullOrEmpty(Model.SaIcon))
             {
-              <i class="@Model.PaIcon me-2" aria-hidden="true"></i>
-            } 
+              <i class="@Model.SaIcon me-2" aria-hidden="true"></i>
+            }
             @Html.Raw(Model.SaText)
           </a>
           }
