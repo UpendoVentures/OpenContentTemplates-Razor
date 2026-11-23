@@ -24,7 +24,7 @@
         @if(Model.Posts != null)
         {
             foreach (var item in Model.Posts) {
-                var post = item.post as dynamic;
+                var post = item.Post as dynamic;
                 <div class="recent-posts">
                     <article class="post">
                         @if (ConvertToBool(post.UseCarousel)) {
@@ -36,7 +36,7 @@
                                         <img
                                             alt="Image"
                                             class="img-fluid rounded"
-                                            src="@image"
+                                            src="@image.Image"
                                             style="max-height:250px;min-height:250px;" />
                                     </div>
                                 }

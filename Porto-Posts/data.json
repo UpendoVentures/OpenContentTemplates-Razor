@@ -1,15 +1,110 @@
 {
+  "ModuleTitle": "Posts",
+  "ModuleAnchor": "",
   "Style": "Posts",
   "Posts": [
     {
       "Post": {
-        "Day": "5",
-        "Month": "feb",
-        "Title": "Mauris sagitis urna molestie",
+        "UseCarousel": false,
+        "Images": [
+          {
+            "Image": "https://placehold.co/600x400"
+          }
+        ],
+        "Day": "12",
+        "Month": "Jan",
+        "Title": "Five Ways to Refresh Your Website",
         "TitleLink": "#",
-        "Content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a lectus vitae arcu bibendum condimentum. In a porta nunc ...",
-        "ContentLink": "#"
+        "Content": "Small, simple updates can make your website easier to use and more welcoming for visitors.",
+        "ContentLink": "#",
+        "UsePostMeta": true,
+        "PostMeta": {
+          "Date": "01/12/2026",
+          "FullName": "Avery Sample",
+          "NewsLink": "#"
+        }
       }
+    },
+    {
+      "Post": {
+        "UseCarousel": false,
+        "Images": [
+          {
+            "Image": "https://placehold.co/600x400"
+          }
+        ],
+        "Day": "8",
+        "Month": "Feb",
+        "Title": "Planning Content for the Year Ahead",
+        "TitleLink": "#",
+        "Content": "A practical approach to mapping out what you will publish, and when.",
+        "ContentLink": "#",
+        "UsePostMeta": true,
+        "PostMeta": {
+          "Date": "02/08/2026",
+          "FullName": "Jordan Example",
+          "NewsLink": "#"
+        }
+      }
+    },
+    {
+      "Post": {
+        "UseCarousel": false,
+        "Images": [
+          {
+            "Image": "https://placehold.co/600x400"
+          }
+        ],
+        "Day": "20",
+        "Month": "Mar",
+        "Title": "Writing Clear Calls to Action",
+        "TitleLink": "#",
+        "Content": "Help visitors understand exactly what to do next with short, direct wording.",
+        "ContentLink": "#",
+        "UsePostMeta": true,
+        "PostMeta": {
+          "Date": "03/20/2026",
+          "FullName": "Morgan Demo",
+          "NewsLink": "#"
+        }
+      }
+    }
+  ],
+  "ChurchsStyle": "info",
+  "GridWidth": "col-md-4",
+  "Churchs": [
+    {
+      "Image": "https://placehold.co/600x400",
+      "Day": "14",
+      "Month": "Jan",
+      "Year": "2026",
+      "Time": "6:00 PM",
+      "Location": "Community Hall",
+      "Title": "Community Open House",
+      "Content": "Meet our team and learn about upcoming programs.",
+      "FullName": "Avery Sample"
+    },
+    {
+      "Image": "https://placehold.co/600x400",
+      "Day": "11",
+      "Month": "Feb",
+      "Year": "2026",
+      "Time": "10:00 AM",
+      "Location": "Main Library",
+      "Title": "Volunteer Orientation",
+      "Content": "Find out how you can get involved and make a difference.",
+      "FullName": "Jordan Example"
+    },
+    {
+      "Image": "https://placehold.co/600x400",
+      "Day": "18",
+      "Month": "Mar",
+      "Year": "2026",
+      "Time": "7:00 PM",
+      "Location": "Riverside Park",
+      "Title": "Spring Gathering",
+      "Content": "An evening of music, food, and conversation for all ages.",
+      "FullName": "Morgan Demo"
     }
   ]
 }

@@ -1,3 +1,7 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "HTML Content Snippet",
+  "ModuleAnchor": "",
+  "HtmlContent": "<h2>Welcome to Our Website</h2>\r\n<p>Use this space to share a short introduction, an announcement, or any custom HTML your page needs.</p>\r\n<p><a class=\"btn btn-primary\" href=\"#\">Learn More</a></p>",
+  "UseHtmlWrapper": true,
+  "IncludeContentWrapperClass": true
 }

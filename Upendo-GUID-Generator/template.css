@@ -1,0 +1,194 @@
+.oc-guid-generator {
+    position: relative;
+}
+
+.oc-guid-generator__card {
+    max-width: 44rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgba(0, 60, 113, 0.15);
+    border-radius: 0.75rem;
+    background-color: var(--bs-body-bg, #ffffff);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
+}
+
+.oc-guid-generator__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #003c71;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    font-weight: 700;
+}
+
+.oc-guid-generator__output {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid rgba(0, 60, 113, 0.25);
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: vertical;
+    cursor: copy;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.oc-guid-generator__output.is-single {
+    min-height: 0;
+    resize: none;
+    overflow: hidden;
+    text-align: center;
+    font-size: clamp(1rem, 2.6vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    word-break: break-all;
+}
+
+.oc-guid-generator__output:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.2);
+}
+
+.oc-guid-generator__help {
+    margin: 0.5rem 0 0;
+    color: var(--bs-secondary-color, #6c757d);
+    font-size: 0.95rem;
+}
+
+.oc-guid-generator__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.oc-guid-generator__copy {
+    flex: 2 1 12rem;
+    font-weight: 700;
+}
+
+.oc-guid-generator__generate {
+    flex: 1 1 10rem;
+}
+
+.oc-guid-generator__copy.is-copied {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.oc-guid-generator__status {
+    min-height: 1.5em;
+    margin: 0.75rem 0 0;
+    color: #198754;
+    font-weight: 600;
+    text-align: center;
+}
+
+.oc-guid-generator__status.is-error {
+    color: #dc3545;
+}
+
+.oc-guid-generator__advanced {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.oc-guid-generator__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    border: 0;
+    background: none;
+    color: #003c71;
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    cursor: pointer;
+}
+
+.oc-guid-generator__toggle:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.oc-guid-generator__toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.oc-guid-generator__toggle-icon {
+    font-size: 0.8em;
+    transition: transform 0.2s ease-in-out;
+}
+
+.oc-guid-generator__toggle[aria-expanded="true"] .oc-guid-generator__toggle-icon {
+    transform: rotate(90deg);
+}
+
+.oc-guid-generator__panel {
+    margin-top: 1rem;
+}
+
+.oc-guid-generator__panel[hidden] {
+    display: none;
+}
+
+.oc-guid-generator__panel-intro {
+    color: var(--bs-secondary-color, #6c757d);
+}
+
+.oc-guid-generator__field {
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: 0;
+}
+
+.oc-guid-generator__field:last-child {
+    margin-bottom: 0;
+}
+
+.oc-guid-generator__field legend {
+    float: none;
+    width: auto;
+    font-size: 1rem;
+}
+
+.oc-guid-generator__field .form-control,
+.oc-guid-generator__field .form-select {
+    max-width: 22rem;
+}
+
+.oc-guid-generator__example {
+    color: var(--bs-secondary-color, #6c757d);
+    font-size: 0.9em;
+}
+
+.oc-guid-generator [data-oc-guid-applies][hidden] {
+    display: none !important;
+}
+
+.oc-guid-generator__noscript {
+    margin: 1rem 0 0;
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.oc-guid-generator[aria-busy="true"] .oc-guid-generator__output {
+    color: var(--bs-secondary-color, #6c757d);
+    font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-guid-generator__output,
+    .oc-guid-generator__toggle-icon {
+        transition: none;
+    }
+}

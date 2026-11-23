@@ -1,3 +1,24 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Upcoming Speakers",
+  "ModuleAnchor": "",
+  "Speakers": [
+    {
+      "MemberName": "Avery Sample",
+      "CompanyName": "Sample Design Studio",
+      "MemberTitle": "Founder",
+      "Image": "https://placehold.co/400x400",
+      "MemberPage": "#",
+      "SpeakerRole": "Featured Speaker",
+      "RoleDescription": "Sharing practical tips for building a memorable brand."
+    },
+    {
+      "MemberName": "Jordan Example",
+      "CompanyName": "Example Bookkeeping Co.",
+      "MemberTitle": "Owner",
+      "Image": "https://placehold.co/400x400",
+      "MemberPage": "#",
+      "SpeakerRole": "Member Spotlight",
+      "RoleDescription": "Introducing their business and the referrals they are looking for."
+    }
+  ]
 }

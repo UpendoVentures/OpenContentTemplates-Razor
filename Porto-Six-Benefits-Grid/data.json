@@ -1,3 +1,36 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Six Benefits Grid",
+  "ModuleAnchor": "",
+  "Benefits": [
+    {
+      "Headline": "Fast Setup",
+      "Description": "<p>Get started quickly with a clear, guided process.</p>",
+      "IconClass": "fas fa-rocket"
+    },
+    {
+      "Headline": "Friendly Support",
+      "Description": "<p>Real people are ready to help when you need it.</p>",
+      "IconClass": "fas fa-headset"
+    },
+    {
+      "Headline": "Secure by Default",
+      "Description": "<p>Your information is protected at every step.</p>",
+      "IconClass": "fas fa-shield-alt"
+    },
+    {
+      "Headline": "Mobile Ready",
+      "Description": "<p>Every page looks great on phones and tablets.</p>",
+      "IconClass": "fas fa-mobile-alt"
+    },
+    {
+      "Headline": "Easy Updates",
+      "Description": "<p>Edit your content anytime without special tools.</p>",
+      "IconClass": "fas fa-edit"
+    },
+    {
+      "Headline": "Built to Grow",
+      "Description": "<p>Add new features as your needs change.</p>",
+      "IconClass": "fas fa-chart-line"
+    }
+  ]
 }

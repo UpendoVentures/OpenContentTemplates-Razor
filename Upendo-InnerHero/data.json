@@ -1,15 +1,22 @@
 {
-    "ModuleTitle": "Link List",
-    "SectionTitle": "Link List",
-    "SectionTitleTag": "h3",
-    "SectionAriaLabel": "List of resourceful links related to this page.",
-    "LinkList": [
-      {
-        "LinkText": "Upendo Ventures",
-        "LinkUrl": "https://upendoventures.com",
-        "LinkRel": "nofollow",
-        "OpenInNewTab": false,
-        "ItemProp": "url"
-      }
-    ]
-  }
+  "ModuleTitle": "Inner Page Hero",
+  "ModuleAnchor": "",
+  "Image": "https://placehold.co/2400x1200",
+  "ImageAlt": "Placeholder hero image for this page",
+  "PageTitle": "About Our Services",
+  "TitleCssClass": "",
+  "TitleIcon": "",
+  "Subtitle": "Thoughtful solutions designed around the people you serve.",
+  "SubtitleCssClass": "",
+  "SubtitleIcon": "",
+  "PaText": "Get Started",
+  "PaUrl": "/contact",
+  "PaCssClass": "",
+  "PaLabel": "Contact us to get started",
+  "PaIcon": "fas fa-paper-plane",
+  "SaText": "Learn More",
+  "SaUrl": "#",
+  "SaCssClass": "",
+  "SaLabel": "Learn more about our services",
+  "SaIcon": "fas fa-info-circle"
+}

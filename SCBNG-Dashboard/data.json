@@ -1,3 +1,24 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Member Dashboard",
+  "ModuleAnchor": "",
+  "PresentationSignUp": "#",
+  "MemberOnlineBinder": "",
+  "NextMeeting": [
+    {
+      "MeetingTitle": "Next SCBNG Meeting",
+      "StartDate": "12/14/2026 8:15 AM",
+      "EndDate": "12/14/2026 9:30 AM",
+      "ZoomLink": "",
+      "LocationName": "Community Meeting Room",
+      "MapUrl": "#",
+      "Address": "123 Main Street, Anytown",
+      "Speakers": [
+        {
+          "SpeakerName": "Avery Sample",
+          "SpeakerPage": "#",
+          "SpeakerSlot": "educator"
+        }
+      ]
+    }
+  ]
 }

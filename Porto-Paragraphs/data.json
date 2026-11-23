@@ -1,3 +1,5 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Paragraphs",
+  "ModuleAnchor": "",
+  "Paragraph": "<p>Use this area to tell your story in a few short paragraphs. Explain who you are, who you serve, and what makes your work valuable.</p>\r\n<p>Keep each paragraph focused on a single idea so visitors can scan the page and quickly find what matters to them.</p>"
 }

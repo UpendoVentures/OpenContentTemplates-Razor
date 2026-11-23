@@ -1,6 +1,9 @@
 {
-  "Title": "My DNN Message",
-  "Content": "<p>This is my default DNN message</p>",
-  "MessageType": "dnnFormInfo",
-  "Icon": "fas fa-info-circle"
+  "ModuleTitle": "Sticky Elements",
+  "ModuleAnchor": "",
+  "FirstParagraph": "Scroll down to see the image stay in view while the content beside it moves.",
+  "Content": "Use this area for longer content, such as a detailed description of a product or service. On larger screens, the image to the right stays pinned in place until you reach the end of this section, which keeps it visible while visitors read.",
+  "Image": "https://placehold.co/500x280",
+  "ImageText": "Product preview",
+  "LastParagraph": "Thanks for reading. Continue scrolling to see the rest of the page."
 }

@@ -28,13 +28,13 @@
         @foreach (var item in Model.Items)
         {
           <div class="@grid">
-            <div class="counter @item.item.Color">
-              <em class="@item.item.Icon mb-3" aria-hidden="true"></em>
-              <span class="counter-prepend">@item.item.DataPrefix</span>
-              <strong data-to="@item.item.DataTo"
-                data-plugin-options="{'speed': @item.item.Speed }">@item.item.DataFrom</strong>
-              <span class="counter-append">@item.item.DataAppend</span>
-              <label class="mt-3">@item.item.Text</label>
+            <div class="counter @item.Item.Color">
+              <em class="@item.Item.Icon mb-3" aria-hidden="true"></em>
+              <span class="counter-prepend">@item.Item.DataPrefix</span>
+              <strong data-to="@item.Item.DataTo"
+                data-plugin-options="{'speed': @item.Item.Speed }">@item.Item.DataFrom</strong>
+              <span class="counter-append">@item.Item.DataAppend</span>
+              <label class="mt-3">@item.Item.Text</label>
             </div>
           </div>
         }
@@ -53,13 +53,13 @@
             @foreach (var item in Model.Items)
             {
               <div class="@grid col-sm-6">
-                <div class="counter @item.item.Color">
-                  <em class="@item.item.Icon mb-3" aria-hidden="true"></em>
-                  <span class="counter-prepend">@item.item.DataPrefix</span>
-                  <strong data-to="@item.item.DataTo"
-                    data-plugin-options="{'speed': @item.item.Speed }">@item.item.DataFrom</strong>
-                  <span class="counter-append">@item.item.DataAppend</span>
-                  <label>@item.item.Text</label>
+                <div class="counter @item.Item.Color">
+                  <em class="@item.Item.Icon mb-3" aria-hidden="true"></em>
+                  <span class="counter-prepend">@item.Item.DataPrefix</span>
+                  <strong data-to="@item.Item.DataTo"
+                    data-plugin-options="{'speed': @item.Item.Speed }">@item.Item.DataFrom</strong>
+                  <span class="counter-append">@item.Item.DataAppend</span>
+                  <label>@item.Item.Text</label>
                 </div>
               </div>
             }

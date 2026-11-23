@@ -1,6 +1,25 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>", 
-    "Image": "https://example.com/image.jpg",
-    "Classes": "img-fluid",
-    "AltText": "This is my default alt text"
+  "ModuleTitle": "Content Cards",
+  "ContentTitle": "What We Offer",
+  "TitleIcon": "fas fa-star",
+  "ContentItems": [
+    {
+      "ContentTitle": "Consulting",
+      "ContentSubtitle": "Plan with confidence",
+      "ContentImage": "https://placehold.co/600x400",
+      "ContentBody": "<p>Work with our team to set clear goals and a realistic plan.</p>"
+    },
+    {
+      "ContentTitle": "Design",
+      "ContentSubtitle": "Look your best",
+      "ContentImage": "https://placehold.co/600x400",
+      "ContentBody": "<p>Create pages that are attractive, accessible, and easy to use.</p>"
+    },
+    {
+      "ContentTitle": "Support",
+      "ContentSubtitle": "Keep improving",
+      "ContentImage": "https://placehold.co/600x400",
+      "ContentBody": "<p>Get ongoing help so your website keeps working for you.</p>"
+    }
+  ]
 }

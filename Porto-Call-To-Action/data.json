@@ -1,6 +1,15 @@
 {
-  "Heading": "Porto is <strong>everything</strong> you need to create an <strong>awesome</strong> website!",
-  "SubHeading": "The <strong>#1 Selling</strong> DNN theme on DNN Store",
-  "Button": "Buy Now!",
-  "ButtonLink": "https://github.com/UpendoVentures/OpenContentTemplates"
+  "ModuleTitle": "Call to Action",
+  "ModuleAnchor": "",
+  "Heading": "Ready to take the next step?",
+  "SubHeading": "Tell us a little about your goals and we will help you find the right path forward.",
+  "Button": "Get in Touch",
+  "ButtonLink": "/contact",
+  "LinkTarget": "_self",
+  "Style": "Default",
+  "WithBorders": "none",
+  "Featured": "none",
+  "Color": "none",
+  "ParallaxImage": "https://placehold.co/1920x1080",
+  "Animation": "none"
 }

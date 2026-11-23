@@ -1,0 +1,163 @@
+@using System
+@using System.Globalization
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    // Only allow known spacing classes; fall back to the default otherwise.
+    public string GetSpacingClass(object setting, string prefix, string fallback)
+    {
+        try
+        {
+            var value = Convert.ToString(setting);
+            if (String.IsNullOrWhiteSpace(value))
+            {
+                return fallback;
+            }
+
+            value = value.Trim();
+            var allowed = new[] { "0", "1", "2", "3", "4", "5", "auto" };
+            foreach (var size in allowed)
+            {
+                if (value == prefix + "-" + size)
+                {
+                    return value;
+                }
+            }
+
+            return fallback;
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+    RegisterScript("guid-generator.js");
+
+    var moduleId = Dnn.Module.ModuleID.ToString(CultureInfo.InvariantCulture);
+    var sectionId = "oc-guid-generator-" + moduleId;
+    var moduleAnchor = Convert.ToString(Model.ModuleAnchor);
+
+    var settings = Model.Settings;
+    var spacingClasses = String.Join(" ", new[]
+    {
+        GetSpacingClass((object)(settings != null ? settings.MarginTop : null), "mt", "mt-5"),
+        GetSpacingClass((object)(settings != null ? settings.MarginBottom : null), "mb", "mb-5"),
+        GetSpacingClass((object)(settings != null ? settings.PaddingTop : null), "pt", "pt-5"),
+        GetSpacingClass((object)(settings != null ? settings.PaddingBottom : null), "pb", "pb-5")
+    });
+}
+
+@if (!String.IsNullOrEmpty(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section id="@sectionId" class="oc-guid-generator @spacingClasses" aria-label="GUID generator" aria-busy="true" data-oc-guid-generator>
+    <div class="oc-guid-generator__card">
+
+        <label for="@(sectionId)-output" class="oc-guid-generator__label">Your new GUID</label>
+        <textarea id="@(sectionId)-output"
+                  class="oc-guid-generator__output is-single"
+                  rows="1"
+                  readonly
+                  spellcheck="false"
+                  title="Click to copy"
+                  aria-describedby="@(sectionId)-output-help"
+                  data-oc-guid-output>Generating...</textarea>
+        <p id="@(sectionId)-output-help" class="oc-guid-generator__help" data-oc-guid-output-help>
+            Please wait a moment while your GUID is created.
+        </p>
+
+        <div class="oc-guid-generator__actions">
+            <button type="button" class="btn btn-primary btn-lg oc-guid-generator__copy" disabled data-oc-guid-copy>
+                <i class="fa-solid fa-copy me-2" aria-hidden="true" data-oc-guid-copy-icon></i><span data-oc-guid-copy-label>Copy</span>
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-lg oc-guid-generator__generate" disabled data-oc-guid-generate>
+                <i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Generate new
+            </button>
+        </div>
+        <p class="oc-guid-generator__status" role="status" aria-live="polite" data-oc-guid-status></p>
+
+        <div class="oc-guid-generator__advanced">
+            <button type="button"
+                    class="oc-guid-generator__toggle"
+                    aria-expanded="false"
+                    aria-controls="@(sectionId)-advanced"
+                    disabled
+                    data-oc-guid-toggle>
+                <i class="fa-solid fa-chevron-right oc-guid-generator__toggle-icon" aria-hidden="true"></i>
+                Advanced options
+            </button>
+
+            <div id="@(sectionId)-advanced" class="oc-guid-generator__panel" hidden data-oc-guid-panel>
+                <p class="oc-guid-generator__panel-intro">
+                    Most people never need to change these. Pick what you need, then click <strong>Generate new</strong>.
+                </p>
+
+                <div class="oc-guid-generator__field">
+                    <label for="@(sectionId)-count" class="form-label">How many to create</label>
+                    <input id="@(sectionId)-count" type="number" class="form-control" min="1" max="1000" step="1" value="1" inputmode="numeric" disabled aria-describedby="@(sectionId)-count-help" data-oc-guid-count />
+                    <div id="@(sectionId)-count-help" class="form-text">Choose any number from 1 to 1,000. Each one is shown on its own line.</div>
+                </div>
+
+                <div class="oc-guid-generator__field">
+                    <label for="@(sectionId)-version" class="form-label">Type</label>
+                    <select id="@(sectionId)-version" class="form-select" disabled aria-describedby="@(sectionId)-version-help" data-oc-guid-version>
+                        <option value="v4" selected>UUID v4 (also called a GUID)</option>
+                        <option value="v7">UUID v7 (sortable by time)</option>
+                        <option value="ulid">ULID (short and sortable)</option>
+                        <option value="nanoid">NanoID (shortest)</option>
+                    </select>
+                    <div id="@(sectionId)-version-help" class="form-text" data-oc-guid-version-help>The most common choice. Works almost everywhere a GUID or UUID is needed.</div>
+                </div>
+
+                <fieldset class="oc-guid-generator__field">
+                    <legend class="form-label">Format</legend>
+                    <div class="form-check" data-oc-guid-applies="uuid-text">
+                        <input id="@(sectionId)-hyphens" type="checkbox" class="form-check-input" checked disabled data-oc-guid-option="hyphens" />
+                        <label for="@(sectionId)-hyphens" class="form-check-label">Hyphens <span class="oc-guid-generator__example">(1234-5678)</span></label>
+                    </div>
+                    <div class="form-check" data-oc-guid-applies="uuid-text">
+                        <input id="@(sectionId)-braces" type="checkbox" class="form-check-input" disabled data-oc-guid-option="braces" />
+                        <label for="@(sectionId)-braces" class="form-check-label">Braces <span class="oc-guid-generator__example">{ }</span></label>
+                    </div>
+                    <div class="form-check" data-oc-guid-applies="uuid-text">
+                        <input id="@(sectionId)-uppercase" type="checkbox" class="form-check-input" disabled data-oc-guid-option="uppercase" />
+                        <label for="@(sectionId)-uppercase" class="form-check-label">Uppercase <span class="oc-guid-generator__example">(ABC)</span></label>
+                    </div>
+                    <div class="form-check">
+                        <input id="@(sectionId)-quotes" type="checkbox" class="form-check-input" disabled data-oc-guid-option="quotes" />
+                        <label for="@(sectionId)-quotes" class="form-check-label">Quotes <span class="oc-guid-generator__example">" "</span></label>
+                    </div>
+                    <div class="form-check">
+                        <input id="@(sectionId)-commas" type="checkbox" class="form-check-input" disabled data-oc-guid-option="commas" />
+                        <label for="@(sectionId)-commas" class="form-check-label">Commas <span class="oc-guid-generator__example">(between items)</span></label>
+                    </div>
+                    <div class="form-text">Hyphens is on by default. Options that do not apply to the selected type are hidden.</div>
+                </fieldset>
+
+                <div class="oc-guid-generator__field" data-oc-guid-applies="uuid">
+                    <label for="@(sectionId)-encoding" class="form-label">Encoding</label>
+                    <select id="@(sectionId)-encoding" class="form-select" disabled aria-describedby="@(sectionId)-encoding-help" data-oc-guid-encoding>
+                        <option value="none" selected>None</option>
+                        <option value="base64">Base 64</option>
+                        <option value="rfc7515">RFC 7515 (URL-safe Base 64)</option>
+                        <option value="url">URL Encode</option>
+                    </select>
+                    <div id="@(sectionId)-encoding-help" class="form-text">Leave this as None unless a developer asked for a specific encoding.</div>
+                </div>
+            </div>
+        </div>
+
+        <noscript>
+            <p class="oc-guid-generator__noscript">This tool needs JavaScript. Please turn on JavaScript in your browser to create a GUID.</p>
+        </noscript>
+    </div>
+</section>

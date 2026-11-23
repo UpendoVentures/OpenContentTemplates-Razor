@@ -1,0 +1,156 @@
+@using System
+@using System.Globalization
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using Upendo.Libraries.RunsOnUpendoCore.Helpers
+@inherits Satrabel.OpenContent.Components.OpenContentWebPage
+
+@functions {
+    // Only allow known spacing classes; fall back to the default otherwise.
+    public string GetSpacingClass(object setting, string prefix, string fallback)
+    {
+        try
+        {
+            var value = Convert.ToString(setting);
+            if (String.IsNullOrWhiteSpace(value))
+            {
+                return fallback;
+            }
+
+            value = value.Trim();
+            var allowed = new[] { "0", "1", "2", "3", "4", "5", "auto" };
+            foreach (var size in allowed)
+            {
+                if (value == prefix + "-" + size)
+                {
+                    return value;
+                }
+            }
+
+            return fallback;
+        }
+        catch
+        {
+            return fallback;
+        }
+    }
+}
+
+@{
+    TemplateHelper.HideAdminBorder(Dnn.Module.ModuleID, Dnn.Module.TabID);
+    RegisterStyleSheet("template.css");
+    RegisterScript("password-generator.js");
+
+    var moduleId = Dnn.Module.ModuleID.ToString(CultureInfo.InvariantCulture);
+    var sectionId = "oc-password-generator-" + moduleId;
+    var moduleAnchor = Convert.ToString(Model.ModuleAnchor);
+
+    var settings = Model.Settings;
+    var spacingClasses = String.Join(" ", new[]
+    {
+        GetSpacingClass((object)(settings != null ? settings.MarginTop : null), "mt", "mt-5"),
+        GetSpacingClass((object)(settings != null ? settings.MarginBottom : null), "mb", "mb-5"),
+        GetSpacingClass((object)(settings != null ? settings.PaddingTop : null), "pt", "pt-5"),
+        GetSpacingClass((object)(settings != null ? settings.PaddingBottom : null), "pb", "pb-5")
+    });
+}
+
+@if (!String.IsNullOrEmpty(moduleAnchor))
+{
+    <div id="@moduleAnchor"></div>
+}
+
+<section id="@sectionId" class="oc-password-generator @spacingClasses" aria-label="Password generator" aria-busy="true" data-oc-pw-generator>
+    <div class="oc-password-generator__card">
+
+        <span id="@(sectionId)-output-label" class="oc-password-generator__label">Your new password</span>
+        <div id="@(sectionId)-output"
+             class="oc-password-generator__output"
+             role="textbox"
+             aria-readonly="true"
+             aria-labelledby="@(sectionId)-output-label"
+             aria-describedby="@(sectionId)-output-help"
+             tabindex="0"
+             title="Click to copy"
+             translate="no"
+             data-oc-pw-output>Generating...</div>
+
+        <div class="oc-password-generator__strength" data-oc-pw-strength="none">
+            <div class="oc-password-generator__meter" aria-hidden="true">
+                <div class="oc-password-generator__meter-fill" data-oc-pw-meter></div>
+            </div>
+            <span class="oc-password-generator__strength-label">
+                <i class="fa-solid fa-shield-halved me-1" aria-hidden="true"></i><span class="visually-hidden">Strength: </span><span data-oc-pw-strength-label></span>
+            </span>
+        </div>
+
+        <p id="@(sectionId)-output-help" class="oc-password-generator__help" data-oc-pw-output-help>
+            Please wait a moment while your password is created.
+        </p>
+
+        <div class="oc-password-generator__actions">
+            <button type="button" class="btn btn-primary btn-lg oc-password-generator__copy" disabled data-oc-pw-copy>
+                <i class="fa-solid fa-copy me-2" aria-hidden="true" data-oc-pw-copy-icon></i>Copy
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-lg oc-password-generator__generate" disabled data-oc-pw-generate>
+                <i class="fa-solid fa-rotate me-2" aria-hidden="true"></i>Generate new
+            </button>
+        </div>
+        <p class="oc-password-generator__status" role="status" aria-live="polite" data-oc-pw-status></p>
+
+        <div class="oc-password-generator__options">
+            <div class="oc-password-generator__field">
+                <label for="@(sectionId)-length-range" class="form-label oc-password-generator__length-label">
+                    Password length
+                </label>
+                <div class="oc-password-generator__length">
+                    <input id="@(sectionId)-length-range"
+                           type="range"
+                           class="form-range"
+                           min="8"
+                           max="64"
+                           step="1"
+                           value="16"
+                           disabled
+                           aria-describedby="@(sectionId)-length-help"
+                           data-oc-pw-length-range />
+                    <input id="@(sectionId)-length"
+                           type="number"
+                           class="form-control oc-password-generator__length-input"
+                           min="8"
+                           max="64"
+                           step="1"
+                           value="16"
+                           inputmode="numeric"
+                           disabled
+                           aria-label="Password length (number of characters)"
+                           aria-describedby="@(sectionId)-length-help"
+                           data-oc-pw-length />
+                </div>
+                <div id="@(sectionId)-length-help" class="form-text">Choose from 8 to 64 characters. Longer passwords are harder to guess.</div>
+            </div>
+
+            <fieldset class="oc-password-generator__field">
+                <legend class="form-label">Characters to include</legend>
+                <div class="oc-password-generator__switches">
+                    <div class="form-check form-switch">
+                        <input id="@(sectionId)-numbers" type="checkbox" role="switch" class="form-check-input" checked disabled data-oc-pw-option="numbers" />
+                        <label for="@(sectionId)-numbers" class="form-check-label">Numbers <span class="oc-password-generator__example">(0-9)</span></label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input id="@(sectionId)-symbols" type="checkbox" role="switch" class="form-check-input" checked disabled data-oc-pw-option="symbols" />
+                        <label for="@(sectionId)-symbols" class="form-check-label">Symbols <span class="oc-password-generator__example">(!@@#$)</span></label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input id="@(sectionId)-mixed" type="checkbox" role="switch" class="form-check-input" checked disabled data-oc-pw-option="mixedCase" />
+                        <label for="@(sectionId)-mixed" class="form-check-label">Mixed case <span class="oc-password-generator__example">(aB)</span></label>
+                    </div>
+                </div>
+                <div class="form-text">Lowercase letters are always included. A new password is created as soon as you change an option.</div>
+            </fieldset>
+        </div>
+
+        <noscript>
+            <p class="oc-password-generator__noscript">This tool needs JavaScript. Please turn on JavaScript in your browser to create a password.</p>
+        </noscript>
+    </div>
+</section>

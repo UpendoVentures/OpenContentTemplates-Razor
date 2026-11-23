@@ -1,6 +1,8 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>", 
-    "Image": "https://example.com/image.jpg",
-    "Classes": "img-fluid",
-    "AltText": "This is my default alt text"
+  "ModuleTitle": "Business Directory",
+  "ModuleAnchor": "",
+  "Paragraph": "<p>Browse local businesses and organizations in our community directory.</p>",
+  "Image": "https://placehold.co/1200x600",
+  "Classes": "img-fluid",
+  "AltText": "Placeholder image for the business directory"
 }

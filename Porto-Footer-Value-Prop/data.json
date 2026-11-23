@@ -1,3 +1,54 @@
 {
-    "Paragraph": "<p>This is my default <strong>paragraph</strong> message</p>"
+  "ModuleTitle": "Footer Value Proposition",
+  "ModuleAnchor": "",
+  "Posts": [
+    {
+      "PostTitle": "Five Ways to Refresh Your Website",
+      "MonthName": "Jan",
+      "MonthDay": 15,
+      "PostUrl": "#",
+      "PostIntro": "Simple updates that make your site easier to use."
+    },
+    {
+      "PostTitle": "Planning Content for the Year Ahead",
+      "MonthName": "Feb",
+      "MonthDay": 3,
+      "PostUrl": "#",
+      "PostIntro": "A practical way to map out your publishing calendar."
+    },
+    {
+      "PostTitle": "Why Page Speed Matters",
+      "MonthName": "Mar",
+      "MonthDay": 21,
+      "PostUrl": "#",
+      "PostIntro": "Faster pages keep visitors engaged and coming back."
+    },
+    {
+      "PostTitle": "Writing Clear Calls to Action",
+      "MonthName": "Apr",
+      "MonthDay": 9,
+      "PostUrl": "#",
+      "PostIntro": "Help visitors understand exactly what to do next."
+    }
+  ],
+  "Testimonials": [
+    {
+      "ReviewerName": "Avery Sample",
+      "TitleCompany": "Owner, Sample Design Studio",
+      "ImageUrl": "https://placehold.co/100x100",
+      "ReviewBody": "The team made the whole process simple, and our new site is easier for customers to use."
+    },
+    {
+      "ReviewerName": "Jordan Example",
+      "TitleCompany": "Director, Example Nonprofit",
+      "ImageUrl": "https://placehold.co/100x100",
+      "ReviewBody": "Responsive, thoughtful, and always focused on what our visitors need."
+    },
+    {
+      "ReviewerName": "Morgan Demo",
+      "TitleCompany": "Manager, Demo Home Services",
+      "ImageUrl": "https://placehold.co/100x100",
+      "ReviewBody": "We finally have a website we are proud to share."
+    }
+  ]
 }
