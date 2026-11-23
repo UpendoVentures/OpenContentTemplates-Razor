@@ -1,0 +1,226 @@
+.oc-password-generator {
+    position: relative;
+}
+
+.oc-password-generator__card {
+    max-width: 44rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgba(0, 60, 113, 0.15);
+    border-radius: 0.75rem;
+    background-color: var(--bs-body-bg, #ffffff);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.06);
+}
+
+.oc-password-generator__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #003c71;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    font-weight: 700;
+}
+
+.oc-password-generator__output {
+    display: block;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.85rem 1rem;
+    border: 2px solid rgba(0, 60, 113, 0.25);
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-align: center;
+    word-break: break-all;
+    cursor: copy;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.oc-password-generator__output:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.2);
+}
+
+/* Accent colors meet WCAG AA contrast on the light output background. */
+.oc-password-generator__output .is-number {
+    color: #0a58ca;
+}
+
+.oc-password-generator__output .is-symbol {
+    color: #a3195b;
+}
+
+.oc-password-generator__strength {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    --oc-pw-strength-color: #6c757d;
+}
+
+.oc-password-generator__strength[data-oc-pw-strength="weak"] {
+    --oc-pw-strength-color: #b02a37;
+}
+
+.oc-password-generator__strength[data-oc-pw-strength="fair"] {
+    --oc-pw-strength-color: #a25100;
+}
+
+.oc-password-generator__strength[data-oc-pw-strength="good"] {
+    --oc-pw-strength-color: #6a7d10;
+}
+
+.oc-password-generator__strength[data-oc-pw-strength="strong"],
+.oc-password-generator__strength[data-oc-pw-strength="very-strong"] {
+    --oc-pw-strength-color: #146c43;
+}
+
+.oc-password-generator__meter {
+    flex: 1 1 auto;
+    height: 0.5rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.oc-password-generator__meter-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background-color: var(--oc-pw-strength-color);
+    transition: width 0.25s ease-in-out, background-color 0.25s ease-in-out;
+}
+
+.oc-password-generator__strength-label {
+    flex: 0 0 auto;
+    min-width: 7.5rem;
+    color: var(--oc-pw-strength-color);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.oc-password-generator__help {
+    margin: 0.5rem 0 0;
+    color: var(--bs-secondary-color, #6c757d);
+    font-size: 0.95rem;
+}
+
+.oc-password-generator__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.oc-password-generator__copy {
+    flex: 2 1 12rem;
+    font-weight: 700;
+}
+
+.oc-password-generator__generate {
+    flex: 1 1 10rem;
+}
+
+.oc-password-generator__copy.is-copied {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.oc-password-generator__status {
+    min-height: 1.5em;
+    margin: 0.75rem 0 0;
+    color: #198754;
+    font-weight: 600;
+    text-align: center;
+}
+
+.oc-password-generator__status.is-error {
+    color: #dc3545;
+}
+
+.oc-password-generator__options {
+    margin-top: 1rem;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 60, 113, 0.05);
+}
+
+.oc-password-generator__field {
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: 0;
+}
+
+.oc-password-generator__field:last-child {
+    margin-bottom: 0;
+}
+
+.oc-password-generator__field legend {
+    float: none;
+    width: auto;
+    font-size: 1rem;
+}
+
+.oc-password-generator__length-label,
+.oc-password-generator__field legend {
+    color: #003c71;
+    font-weight: 700;
+}
+
+.oc-password-generator__length {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.oc-password-generator__length .form-range {
+    flex: 1 1 auto;
+}
+
+.oc-password-generator__length-input {
+    flex: 0 0 5.5rem;
+    width: 5.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.oc-password-generator__switches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+}
+
+.oc-password-generator__switches .form-check {
+    margin-bottom: 0;
+}
+
+.oc-password-generator__example {
+    color: var(--bs-secondary-color, #6c757d);
+    font-size: 0.9em;
+}
+
+.oc-password-generator__noscript {
+    margin: 1rem 0 0;
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.oc-password-generator[aria-busy="true"] .oc-password-generator__output {
+    color: var(--bs-secondary-color, #6c757d);
+    font-style: italic;
+    font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oc-password-generator__output,
+    .oc-password-generator__meter-fill {
+        transition: none;
+    }
+}
