@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
-      "placeholder": "Resource Hub Hero"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",

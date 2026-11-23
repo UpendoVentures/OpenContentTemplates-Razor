@@ -1,20 +1,22 @@
 {
-    "fields": {
-      "ModuleTitle": {
-        "type": "text"
-      },
-      "ModuleAnchor": {
-        "type": "text",
-        "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-        "showMessages": false
-      },
-      "Items": {
-        "type": "array",
-        "items": {
-            "ListItemText": {
-              "type": "wysihtml"
-            }  
-         }
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "ListItemText": {
+          "type": "wysihtml"
+        }
       }
-    }  
+    }
   }
+}

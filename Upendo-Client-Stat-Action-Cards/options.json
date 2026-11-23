@@ -3,8 +3,8 @@
     "ModuleTitle": {
       "label": "Module Title",
       "type": "text",
-      "helper": "Administrator-facing title used by OpenContent and DNN module settings. It is not displayed to visitors.",
-      "placeholder": "Website Activity"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "label": "Module Anchor",
@@ -30,8 +30,28 @@
       "type": "select",
       "helper": "Choose a Bootstrap or theme text color with enough contrast against the section background.",
       "sort": false,
-      "optionLabels": ["Default", "Primary", "Secondary", "Success", "Danger", "Warning", "Info", "Light", "Dark"],
-      "optionValues": ["text-body-secondary", "text-primary", "text-secondary", "text-success", "text-danger", "text-warning", "text-info", "text-light", "text-dark"],
+      "optionLabels": [
+        "Default",
+        "Primary",
+        "Secondary",
+        "Success",
+        "Danger",
+        "Warning",
+        "Info",
+        "Light",
+        "Dark"
+      ],
+      "optionValues": [
+        "text-body-secondary",
+        "text-primary",
+        "text-secondary",
+        "text-success",
+        "text-danger",
+        "text-warning",
+        "text-info",
+        "text-light",
+        "text-dark"
+      ],
       "removeDefaultNone": true
     },
     "SectionDescription": {

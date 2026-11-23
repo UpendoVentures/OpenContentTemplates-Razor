@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Internal only. This syncs with the DNN module title and does not display to visitors.",
-      "placeholder": "Curated Pathways Cards"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",

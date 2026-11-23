@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
-      "placeholder": "Features Section With Gradient Background"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -24,7 +24,10 @@
     "ImageCount": {
       "type": "select",
       "helper": "Choose whether this section renders only the primary image or the current two-image overlapping composition. Secondary image fields are used only when Two Images is selected.",
-      "optionLabels": ["One Image", "Two Images"],
+      "optionLabels": [
+        "One Image",
+        "Two Images"
+      ],
       "removeDefaultNone": true
     },
     "PrimaryImage": {

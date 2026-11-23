@@ -1,6 +1,10 @@
 {
   "type": "object",
   "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
     "MemberName": {
       "type": "string",
       "title": "Name",
