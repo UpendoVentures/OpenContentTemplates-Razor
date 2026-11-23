@@ -3,7 +3,8 @@
   "properties": {
     "ModuleTitle": {
       "type": "string",
-      "title": "Module Title"
+      "title": "Module Title",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
     },
     "Products": {
       "type": "array",

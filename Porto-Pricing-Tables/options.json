@@ -7,7 +7,8 @@
     },
     "ModuleAnchor": {
       "type": "text",
-      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
     },
     "ParallaxImage": {
       "type": "image"

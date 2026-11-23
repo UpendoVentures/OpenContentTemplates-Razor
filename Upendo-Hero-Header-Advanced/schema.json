@@ -8,7 +8,7 @@
     "ModuleAnchor": {
       "type": "string",
       "title": "Module Anchor",
-      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+      "pattern": "^[a-zA-Z0-9\\-]+$"
     },
     "TitleVisible": {
       "type": "boolean",
