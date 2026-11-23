@@ -8,23 +8,28 @@
         "Image Gallery",
         "Image Gallery Carousel"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the show from the available options."
     },
     "DEFAULT_WITH_BORDER": {
       "label": "DEFAULT WITH BORDER",
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control default with border."
     },
     "WITH_ICON": {
       "label": "WITH ICON",
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "HOVER_EFFECT": {
       "label": "HOVER EFFECT",
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control hover effect."
     },
     "ZOOM": {
       "label": "ZOOM",
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control zoom."
     }
   }
 }

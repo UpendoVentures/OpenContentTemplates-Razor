@@ -1,24 +1,34 @@
 {
   "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
+    },
     "PlanSlug": {
       "type": "text",
-      "label": "Plan Slug"
+      "label": "Plan Slug",
+      "helper": "Enter the plan slug to use in this template. Use clear wording that visitors will understand."
     },
     "ButtonText": {
       "type": "text",
-      "label": "Button Text"
+      "label": "Button Text",
+      "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
     },
     "ButtonClass": {
       "type": "text",
-      "label": "Button CSS Class"
+      "label": "Button CSS Class",
+      "helper": "Enter the button class to use in this template. Use clear wording that visitors will understand."
     },
     "SuccessUrl": {
       "type": "text",
-      "label": "Success URL"
+      "label": "Success URL",
+      "helper": "Enter the success web addresses to use in this template. Use clear wording that visitors will understand."
     },
     "CancelUrl": {
       "type": "text",
-      "label": "Cancel URL"
+      "label": "Cancel URL",
+      "helper": "Enter the cancel web addresses to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

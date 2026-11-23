@@ -1,32 +1,38 @@
 {
-    "fields": {
-      "ModuleTitle": {
-      "type": "text"
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
       "showMessages": false
     },
-      "Items": {
-        "type": "array",
-        "items": {
-          "fields": {
-            "Class": {
-              "type": "text",
-              "helper": "Find values at: <a href=\"https://porto.mandeeps.com/shortcodes/shortcodes-1/social-media-icons\" target=\"_blank\">Porto Homepage</a>"
-            },
-            "Href": {
-              "type": "text"
-            },
-            "Title": {
-              "type": "text"
-            },
-            "Content": {
-              "type": "text"
-            }
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Class": {
+            "type": "text",
+            "helper": "Find values at: <a href=\"https://porto.mandeeps.com/shortcodes/shortcodes-1/social-media-icons\" target=\"_blank\">Porto Homepage</a>"
+          },
+          "Href": {
+            "type": "text",
+            "helper": "Enter the href to use in this template. Use clear wording that visitors will understand."
+          },
+          "Title": {
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
+          },
+          "Content": {
+            "type": "text",
+            "helper": "Enter the content to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
+}

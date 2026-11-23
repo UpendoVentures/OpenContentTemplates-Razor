@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this module. This helps OpenContent sync with DNN module settings.",
-      "placeholder": "Venue Spotlight"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -95,8 +95,8 @@
     },
     "LinkIcon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "CardImage": {
       "type": "image",

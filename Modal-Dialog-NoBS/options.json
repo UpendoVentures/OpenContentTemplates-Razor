@@ -1,31 +1,41 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModalId": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the modal id to use in this template. Use clear wording that visitors will understand."
     },
     "ModalDialogTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the modal dialog title to use in this template. Use clear wording that visitors will understand."
     },
     "ModalContent": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for modal content. Use short paragraphs so it is easy to read."
     },
     "EmailText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the email text to use in this template. Use clear wording that visitors will understand."
     },
     "ConfirmText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the confirm text to use in this template. Use clear wording that visitors will understand."
     },
     "PrimaryButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the primary button text to use in this template. Use clear wording that visitors will understand."
     },
     "SecondaryButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the secondary button text to use in this template. Use clear wording that visitors will understand."
     },
     "SecondaryButtonLink": {
-      "type": "text"
+      "type": "text",
+      "helper": "Optional. Enter the web address for the second button."
     }
   }
 }

@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,10 +11,12 @@
       "showMessages": false
     },
     "FormTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the form title to use in this template. Use clear wording that visitors will understand."
     },
     "ButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
     },
     "Items": {
       "type": "array",
@@ -23,7 +27,8 @@
             "items": {
               "fields": {
                 "Item": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the item to use in this template. Use clear wording that visitors will understand."
                 },
                 "DataType": {
                   "type": "select",
@@ -33,7 +38,8 @@
                     "email",
                     "url",
                     "textarea"
-                  ]
+                  ],
+                  "helper": "Choose the data type from the available options."
                 },
                 "GridWidth": {
                   "type": "select",
@@ -51,7 +57,8 @@
                     "col-md-3",
                     "col-md-2",
                     "col-md-1"
-                  ]
+                  ],
+                  "helper": "Choose the grid width from the available options."
                 },
                 "Rows": {
                   "type": "select",
@@ -72,13 +79,16 @@
                     "DataType": [
                       "textarea"
                     ]
-                  }
+                  },
+                  "helper": "Choose the rows from the available options."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for form group. Remove any item you do not need."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

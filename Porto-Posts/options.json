@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -14,7 +16,8 @@
       "optionLabels": [
         "Posts",
         "Church"
-      ]
+      ],
+      "helper": "Choose the style from the available options."
     },
     "Posts": {
       "type": "array",
@@ -29,7 +32,8 @@
             "type": "object",
             "fields": {
               "UseCarousel": {
-                "type": "checkbox"
+                "type": "checkbox",
+                "helper": "Turn this setting on or off to control use carousel."
               },
               "Images": {
                 "type": "array",
@@ -41,31 +45,40 @@
                 "items": {
                   "fields": {
                     "Image": {
-                      "type": "image"
+                      "type": "image",
+                      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
                     }
                   }
-                }
+                },
+                "helper": "Add and arrange the items used for images. Remove any item you do not need."
               },
               "Day": {
-                "type": "text"
+                "type": "text",
+                "helper": "Enter the day to use in this template. Use clear wording that visitors will understand."
               },
               "Month": {
-                "type": "text"
+                "type": "text",
+                "helper": "Enter the month to use in this template. Use clear wording that visitors will understand."
               },
               "Title": {
-                "type": "ckeditor"
+                "type": "ckeditor",
+                "helper": "Enter the formatted content for title. Keep the text clear and easy to read."
               },
               "TitleLink": {
-                "type": "url"
+                "type": "url",
+                "helper": "Enter the web address for title link. You can use a page on this site or another website."
               },
               "Content": {
-                "type": "ckeditor"
+                "type": "ckeditor",
+                "helper": "Enter the formatted content for content. Keep the text clear and easy to read."
               },
               "ContentLink": {
-                "type": "url"
+                "type": "url",
+                "helper": "Enter the web address for content link. You can use a page on this site or another website."
               },
               "UsePostMeta": {
-                "type": "checkbox"
+                "type": "checkbox",
+                "helper": "Turn this setting on or off to control use post meta."
               },
               "PostMeta": {
                 "type": "object",
@@ -79,20 +92,26 @@
                     "type": "date",
                     "picker": {
                       "format": "dd/MM/yyyy"
-                    }
+                    },
+                    "helper": "Choose the date or time to use for date."
                   },
                   "FullName": {
-                    "type": "text"
+                    "type": "text",
+                    "helper": "Enter the person's first and last name."
                   },
                   "NewsLink": {
-                    "type": "text"
+                    "type": "text",
+                    "helper": "Enter the news link to use in this template. Use clear wording that visitors will understand."
                   }
-                }
+                },
+                "helper": "Enter the post meta to use in this template. Use clear wording that visitors will understand."
               }
-            }
+            },
+            "helper": "Enter the post to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for posts. Remove any item you do not need."
     },
     "ChurchsStyle": {
       "type": "select",
@@ -106,7 +125,8 @@
         "Style": [
           "Church"
         ]
-      }
+      },
+      "helper": "Choose the churchs style from the available options."
     },
     "GridWidth": {
       "type": "select",
@@ -129,7 +149,8 @@
         "ChurchsStyle": [
           "info"
         ]
-      }
+      },
+      "helper": "Choose the grid width from the available options."
     },
     "Churchs": {
       "type": "array",
@@ -141,34 +162,44 @@
       "items": {
         "fields": {
           "Image": {
-            "type": "image"
+            "type": "image",
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           },
           "Day": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the day to use in this template. Use clear wording that visitors will understand."
           },
           "Month": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the month to use in this template. Use clear wording that visitors will understand."
           },
           "Year": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the year to use in this template. Use clear wording that visitors will understand."
           },
           "Time": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the time to use in this template. Use clear wording that visitors will understand."
           },
           "Location": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the location to use in this template. Use clear wording that visitors will understand."
           },
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Content": {
-            "type": "ckeditor"
+            "type": "ckeditor",
+            "helper": "Enter the formatted content for content. Keep the text clear and easy to read."
           },
           "FullName": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the person's first and last name."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for churchs. Remove any item you do not need."
     }
   }
 }

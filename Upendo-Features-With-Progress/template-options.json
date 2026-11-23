@@ -91,7 +91,8 @@
         "mt-5",
         "mt-auto"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (top) from the available options."
     },
     "MarginBottom": {
       "title": "Margin (bottom)",
@@ -105,7 +106,8 @@
         "mb-5",
         "mb-auto"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (bottom) from the available options."
     },
     "PaddingTop": {
       "title": "Padding (top)",
@@ -118,7 +120,8 @@
         "pt-4",
         "pt-5"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (top) from the available options."
     },
     "PaddingBottom": {
       "title": "Padding (bottom)",
@@ -131,7 +134,8 @@
         "pb-4",
         "pb-5"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (bottom) from the available options."
     }
   }
 }

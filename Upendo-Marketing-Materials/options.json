@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -12,10 +14,12 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Description": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for description. Use short paragraphs so it is easy to read."
           },
           "Image": {
             "type": "image",
@@ -30,13 +34,16 @@
             "uploadfolder": "/Downloads/Marketing",
             "typeahead": {
               "Folder": "/Downloads/Marketing"
-            }
+            },
+            "helper": "Choose the image or file to use for file path. Use a clear file that fits this content."
           },
           "Instructions": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for instructions. Use short paragraphs so it is easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for materials. Remove any item you do not need."
     }
   }
 }

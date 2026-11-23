@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,7 +11,8 @@
     },
     "HtmlContent": {
       "type": "textarea",
-      "placeholder": "<!-- be sure the HTML is valid -->"
+      "placeholder": "<!-- be sure the HTML is valid -->",
+      "helper": "Enter the text for formatted content content. Use short paragraphs so it is easy to read."
     }
   }
 }

@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
-      "placeholder": "Contact Request Form"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -43,7 +43,7 @@
     },
     "CompanyLabel": {
       "type": "text",
-      "helper": "Label for the company input.",
+      "helper": "Enter the label shown next to the company name field.",
       "placeholder": "Company"
     },
     "PhoneLabel": {
@@ -53,7 +53,7 @@
     },
     "EmailLabel": {
       "type": "text",
-      "helper": "Label for the email input.",
+      "helper": "Enter the label shown next to the email address field.",
       "placeholder": "Email"
     },
     "RequestLabel": {

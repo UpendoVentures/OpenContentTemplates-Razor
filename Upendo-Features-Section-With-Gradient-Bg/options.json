@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this module. This syncs with DNN module settings and does not display to visitors.",
-      "placeholder": "Features Section With Gradient Background"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -13,18 +13,21 @@
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Optional. Main heading shown above the feature section. HTML is allowed.",
+      "helper": "Optional. Main heading shown above the feature section. Formatted text and links are allowed.",
       "placeholder": "Everything you need to move faster."
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "helper": "Optional. Short intro shown below the heading. Formatted text and links are allowed.",
       "placeholder": "Bring analytics, security, and reporting together in one focused experience."
     },
     "ImageCount": {
       "type": "select",
       "helper": "Choose whether this section renders only the primary image or the current two-image overlapping composition. Secondary image fields are used only when Two Images is selected.",
-      "optionLabels": ["One Image", "Two Images"],
+      "optionLabels": [
+        "One Image",
+        "Two Images"
+      ],
       "removeDefaultNone": true
     },
     "PrimaryImage": {
@@ -69,12 +72,12 @@
         "fields": {
           "IconClass": {
             "type": "text",
-            "helper": "FontAwesome class for the icon. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
-            "placeholder": "fas fa-check"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "IconTheme": {
             "type": "select",
-            "helper": "Choose one visual theme. This controls both the icon color and circular background.",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
             "optionLabels": [
               "Violet",
               "Green",
@@ -90,12 +93,12 @@
           },
           "Title": {
             "type": "text",
-            "helper": "Required. Feature title. HTML is allowed.",
+            "helper": "Required. Feature title. Formatted text and links are allowed.",
             "placeholder": "Real-Time Analytics"
           },
           "Description": {
             "type": "textarea",
-            "helper": "Required. Short supporting description. HTML is allowed.",
+            "helper": "Required. Short supporting description. Formatted text and links are allowed.",
             "placeholder": "Track performance as it happens with clear dashboards and actionable signals."
           }
         }

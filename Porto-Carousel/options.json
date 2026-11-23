@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,72 +11,88 @@
       "showMessages": false
     },
     "InnerTopText": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for inner top text. Use short paragraphs so it is easy to read."
     },
     "ItemsInnerText": {
       "type": "array",
       "items": {
         "fields": {
           "Text": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for text. Use short paragraphs so it is easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items inner text. Remove any item you do not need."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "Image": {
-            "type": "image"
+            "type": "image",
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           },
           "HoverStyleText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the hover style text to use in this template. Use clear wording that visitors will understand."
           },
           "FullName": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the person's first and last name."
           },
           "Ocupation": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the ocupation to use in this template. Use clear wording that visitors will understand."
           },
           "SocialMedia": {
             "type": "array",
             "items": {
               "fields": {
                 "Name": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the name to use in this template. Use clear wording that visitors will understand."
                 },
                 "Url": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the web addresses to use in this template. Use clear wording that visitors will understand."
                 },
                 "Icon": {
                   "type": "text",
-                  "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+                  "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for social media. Remove any item you do not need."
           },
           "FullWidthProjectTitle": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the full width project title to use in this template. Use clear wording that visitors will understand."
           },
           "FullWidthProjectType": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the full width project type to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     },
     "Videos": {
       "type": "array",
       "items": {
         "fields": {
           "Url": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the web addresses to use in this template. Use clear wording that visitors will understand."
           },
           "TextIndent": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the text indent to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for videos. Remove any item you do not need."
     }
   }
 }

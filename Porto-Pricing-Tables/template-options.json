@@ -3,14 +3,23 @@
     "PricingTableStyle": {
       "title": "Pricing Table Style",
       "type": "select",
-      "optionLabels": ["Style 1", "Style 2", "Parallax"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "Style 1",
+        "Style 2",
+        "Parallax"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the pricing table style from the available options."
     },
     "PricingTableSize": {
       "title": "Pricing Table Size",
       "type": "select",
-      "optionLabels": ["Standard", "Small"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "Standard",
+        "Small"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the pricing table size from the available options."
     }
   }
 }

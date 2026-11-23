@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for the module. This helps OpenContent sync with DNN module settings.",
-      "placeholder": "Final CTA"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -66,12 +66,12 @@
     },
     "SecondaryCtaButtonText": {
       "type": "text",
-      "helper": "Optional. If both the text and URL are filled in, the second button will be shown.",
+      "helper": "Optional. If both the text and web addresses are filled in, the second button will be shown.",
       "placeholder": "Download Starter Guide"
     },
     "SecondaryCtaButtonUrl": {
       "type": "url",
-      "helper": "Optional. Fill this in along with the second button text to show the second CTA."
+      "helper": "Optional. Fill this in along with the second button text to show the second button."
     }
   }
 }

@@ -1,32 +1,34 @@
 {
-	"fields": {		
-		"ButtonColor": {
-			"title": "Button Color",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Success",
-				"Info",
-				"Warning",
-				"Danger",
-				"Dark",
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"Quaternary"
-			],
-			"removeDefaultNone": true
-		},
-		"TooltipDirection": {
-			"title": "Tooltip Direction",
-			"type": "select",
-			"optionLabels": [
-				"left",
-				"top",
-				"bottom",
-				"right"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "ButtonColor": {
+      "title": "Button Color",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Success",
+        "Info",
+        "Warning",
+        "Danger",
+        "Dark",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the button color from the available options."
+    },
+    "TooltipDirection": {
+      "title": "Tooltip Direction",
+      "type": "select",
+      "optionLabels": [
+        "left",
+        "top",
+        "bottom",
+        "right"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the tooltip direction from the available options."
+    }
+  }
 }

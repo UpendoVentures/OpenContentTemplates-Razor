@@ -1,10 +1,12 @@
 {
   "fields": {
     "HeaderBackgroundColor": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header background color to use in this template. Use clear wording that visitors will understand."
     },
     "HeaderTextColor": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header text color to use in this template. Use clear wording that visitors will understand."
     },
     "HeaderTextType": {
       "type": "select",
@@ -15,25 +17,32 @@
         "h3",
         "h4",
         "h5"
-      ]
+      ],
+      "helper": "Choose the header text type from the available options."
     },
     "VerificationEndPoint": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the verification end point to use in this template. Use clear wording that visitors will understand."
     },
     "ConfirmationEndPoint": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the confirmation end point to use in this template. Use clear wording that visitors will understand."
     },
     "ConfirmErrorMessage": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the confirm error message to use in this template. Use clear wording that visitors will understand."
     },
     "GenericErrorMessage": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the generic error message to use in this template. Use clear wording that visitors will understand."
     },
     "NoUserLoggedInText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the no user logged in text to use in this template. Use clear wording that visitors will understand."
     },
     "NonConfirmMessage": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the non confirm message to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

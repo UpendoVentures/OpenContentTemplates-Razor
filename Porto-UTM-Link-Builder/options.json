@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,57 +11,72 @@
       "showMessages": false
     },
     "HeaderText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header text to use in this template. Use clear wording that visitors will understand."
     },
     "SubHeaderText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the sub header text to use in this template. Use clear wording that visitors will understand."
     },
     "WebSiteUrl": {
       "type": "object",
       "fields": {
         "Label": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the text visitors should see for this link."
         },
         "Placeholder": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the placeholder to use in this template. Use clear wording that visitors will understand."
         }
-      }
+      },
+      "helper": "Enter the web site web addresses to use in this template. Use clear wording that visitors will understand."
     },
     "Fields": {
       "type": "array",
       "items": {
         "fields": {
           "Label": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the text visitors should see for this link."
           },
           "Description": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the description to use in this template. Use clear wording that visitors will understand."
           },
           "Parameter": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the parameter to use in this template. Use clear wording that visitors will understand."
           },
           "IsRequired": {
-            "type": "checkbox"
+            "type": "checkbox",
+            "helper": "Turn this setting on or off to control is required."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for fields. Remove any item you do not need."
     },
     "GeneratedUTM": {
       "type": "object",
       "fields": {
         "Label": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the text visitors should see for this link."
         },
         "ValidationMessage": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the validation message to use in this template. Use clear wording that visitors will understand."
         },
         "ButtonText": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
         },
         "CopiedMeesage": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the copied meesage to use in this template. Use clear wording that visitors will understand."
         }
-      }
+      },
+      "helper": "Enter the generated utm to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

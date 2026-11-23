@@ -1,35 +1,42 @@
 {
-    "fields": {
-      "ModuleTitle": {
-      "type": "text"
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
       "showMessages": false
     },
-      "Latitud": {
-        "type": "text"
-      },
-      "Longitud": {
-        "type": "text"
-      },
-      "MarkerIcon": {
-        "type": "image",
-        "helper": "Url of the image"
-      },
-      "Markers": {
-        "type": "array",
-        "items": {
-          "fields": {
-            "Address": {
-              "type": "text"
-            },
-            "Html": {
-              "type": "wysihtml"
-            }
+    "Latitud": {
+      "type": "text",
+      "helper": "Enter the latitud to use in this template. Use clear wording that visitors will understand."
+    },
+    "Longitud": {
+      "type": "text",
+      "helper": "Enter the longitud to use in this template. Use clear wording that visitors will understand."
+    },
+    "MarkerIcon": {
+      "type": "image",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "Markers": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Address": {
+            "type": "text",
+            "helper": "Enter the address to use in this template. Use clear wording that visitors will understand."
+          },
+          "Html": {
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for formatted content. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for markers. Remove any item you do not need."
     }
+  }
 }

@@ -1,56 +1,61 @@
 {
-	"fields": {
-		"Layout": {
-			"removeDefaultNone": true
-		},
-		"Color": {
-			"title": "Choose the Toggle Color",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"Quaternary"
-			],
-			"removeDefaultNone": true
-		},
-		"Size": {
-			"title": "Choose the Toggle Size",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Small",
-				"Large"
-			],
-			"removeDefaultNone": true
-		},
-		"Mode": {
-			"title": "Display Mode",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Simple"
-			],
-			"removeDefaultNone": true
-		},
-		"OneOnly": {
-			"title": "Only One Open at a Time?",
-			"type": "radio",
-			"optionLabels": [
-				"False (default)",
-				"True"
-			],
-			"removeDefaultNone": true
-		},
-		"Faq": {
-			"title": "Run as a FAQ?",
-			"type": "radio",
-			"optionLabels": [
-				"False (default)",
-				"True"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "Layout": {
+      "removeDefaultNone": true
+    },
+    "Color": {
+      "title": "Choose the Toggle Color",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the choose the toggle color from the available options."
+    },
+    "Size": {
+      "title": "Choose the Toggle Size",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Small",
+        "Large"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the choose the toggle size from the available options."
+    },
+    "Mode": {
+      "title": "Display Mode",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Simple"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the display mode from the available options."
+    },
+    "OneOnly": {
+      "title": "Only One Open at a Time?",
+      "type": "radio",
+      "optionLabels": [
+        "False (default)",
+        "True"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the only one open at a time? from the available options."
+    },
+    "Faq": {
+      "title": "Run as a FAQ?",
+      "type": "radio",
+      "optionLabels": [
+        "False (default)",
+        "True"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the run as a faq? from the available options."
+    }
+  }
 }

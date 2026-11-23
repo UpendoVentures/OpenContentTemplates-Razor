@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,12 +11,13 @@
     },
     "Posts": {
       "type": "accordion",
-      "helper": "Need at least one.",
+      "helper": "Add at least one posts item. You can add more items as needed.",
       "items": {
         "fields": {
           "PostTitle": {
             "type": "text",
-            "placeholder": "Keep it short & catchy, if you can!"
+            "placeholder": "Keep it short & catchy, if you can!",
+            "helper": "Enter the post title to use in this template. Use clear wording that visitors will understand."
           },
           "MonthName": {
             "type": "select",
@@ -32,7 +35,8 @@
               "October",
               "November",
               "December"
-            ]
+            ],
+            "helper": "Choose the month name from the available options."
           },
           "MonthDay": {
             "type": "number",
@@ -51,16 +55,17 @@
     },
     "Testimonials": {
       "type": "accordion",
-      "helper": "Must include at least one.",
+      "helper": "Add at least one testimonials item. You can add more items as needed.",
       "items": {
         "fields": {
           "ReviewerName": {
             "type": "text",
-            "helper": "Jane Doe"
+            "helper": "Enter the reviewer's name."
           },
           "TitleCompany": {
             "type": "text",
-            "placeholder": "CEO & Founder, ACME Corp."
+            "placeholder": "CEO & Founder, ACME Corp.",
+            "helper": "Enter the title company to use in this template. Use clear wording that visitors will understand."
           },
           "ImageUrl": {
             "type": "image",

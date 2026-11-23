@@ -1,6 +1,11 @@
 {
   "type": "object",
   "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "pattern": "^[a-zA-Z0-9\\-]+$"
+    },
     "Products": {
       "type": "array",
       "title": "Product List",

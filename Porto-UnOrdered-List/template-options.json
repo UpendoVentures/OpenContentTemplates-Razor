@@ -1,80 +1,88 @@
 {
-	"fields": {		
-		"ListBorder": {
-			"title": "List Border",
-			"type": "select",
-			"optionLabels": [
-				"None",				
-				"Items Bottom",
-				"List Side"
-			],
-			"removeDefaultNone": true
-		},
-		"IconStyle": {
-			"title": "Icon Style",
-			"type": "select",
-			"optionLabels": [
-				"None",				
-				"Rounded Light",
-				"Rounded Bold"
-			],
-			"removeDefaultNone": true
-		},
-		"IconsPosition": {
-			"title": "Icons Position",
-			"type": "select",
-			"optionLabels": [
-				"Left",				
-				"Right"
-			],
-			"removeDefaultNone": true
-		},
-		"IconsSizes": {
-			"title": "Icons Sizes",
-			"type": "select",
-			"optionLabels": [
-				"Small",				
-				"Normal",
-				"Large"
-			],
-			"removeDefaultNone": true
-		},
-		"IconsColor": {
-			"title": "Icons Color",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Primary",				
-				"Secondary",
-				"Tertiary",
-				"Quaternary"
-			],
-			"removeDefaultNone": true
-		},
-		"EnableAnimations": {
-			"label": "Enable Animations",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"AnimationType": {
-			"title": "Animation Type",
-			"type": "select",
-			"optionLabels": [
-				"Fade In Up"
-			],
-			"removeDefaultNone": true
-		},
-		"AnimationDelay": {
-			"title": "Animation Delay",
-			"type": "select",
-			"optionLabels": [
-				"0ms",
-				"300ms",				
-				"600ms",
-				"900ms",
-				"1200ms"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "ListBorder": {
+      "title": "List Border",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Items Bottom",
+        "List Side"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the list border from the available options."
+    },
+    "IconStyle": {
+      "title": "Icon Style",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Rounded Light",
+        "Rounded Bold"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "IconsPosition": {
+      "title": "Icons Position",
+      "type": "select",
+      "optionLabels": [
+        "Left",
+        "Right"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "IconsSizes": {
+      "title": "Icons Sizes",
+      "type": "select",
+      "optionLabels": [
+        "Small",
+        "Normal",
+        "Large"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "IconsColor": {
+      "title": "Icons Color",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "EnableAnimations": {
+      "label": "Enable Animations",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control enable animations."
+    },
+    "AnimationType": {
+      "title": "Animation Type",
+      "type": "select",
+      "optionLabels": [
+        "Fade In Up"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the animation type from the available options."
+    },
+    "AnimationDelay": {
+      "title": "Animation Delay",
+      "type": "select",
+      "optionLabels": [
+        "0ms",
+        "300ms",
+        "600ms",
+        "900ms",
+        "1200ms"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the animation delay from the available options."
+    }
+  }
 }

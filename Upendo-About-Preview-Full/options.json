@@ -2,7 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Internal/admin-friendly title for this content block. This is useful when editors are scanning modules on the page."
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -14,7 +15,8 @@
       "helper": "Short label above the heading. Keep this concise."
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "BodyText1": {
       "type": "textarea",
@@ -25,17 +27,20 @@
       "helper": "Second paragraph of body content."
     },
     "Bullet1": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the bullet1 to use in this template. Use clear wording that visitors will understand."
     },
     "Bullet2": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the bullet2 to use in this template. Use clear wording that visitors will understand."
     },
     "Bullet3": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the bullet3 to use in this template. Use clear wording that visitors will understand."
     },
     "Bullet4": {
       "type": "text",
-      "helper": "Optional extra bullet."
+      "helper": "Optional. Enter a fourth bullet point to show below the other bullets."
     },
     "Image": {
       "type": "image",
@@ -49,9 +54,9 @@
       "type": "select",
       "sort": false,
       "optionLabels": [
-              "left",
-              "right"
-            ],
+        "left",
+        "right"
+      ],
       "helper": "Choose whether the image displays on the left or right on desktop.",
       "removeDefaultNone": true
     },

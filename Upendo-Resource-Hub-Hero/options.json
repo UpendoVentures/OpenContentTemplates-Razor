@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
-      "placeholder": "Resource Hub Hero"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -19,7 +19,14 @@
     "HeadingElement": {
       "type": "select",
       "helper": "Text content. Choose the semantic heading level that fits the page outline.",
-      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6"],
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
       "removeDefaultNone": true
     },
     "Heading": {
@@ -29,7 +36,7 @@
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Text content. Supporting copy shown under the heading. HTML is allowed.",
+      "helper": "Text content. Supporting copy shown under the heading. Formatted text and links are allowed.",
       "placeholder": "Access curated resources, technical briefs, and practical guidance for the work ahead."
     },
     "Image": {
@@ -49,16 +56,30 @@
       "helper": "Describe the image for people using assistive technology. Leave empty only if the image is decorative.",
       "placeholder": "Technical resource preview on a workstation",
       "dependencies": {
-        "ShowImageSettings": [true]
+        "ShowImageSettings": [
+          true
+        ]
       }
     },
     "ImageFocalPosition": {
       "type": "select",
       "helper": "Controls which part of the image remains visible when cropped.",
-      "optionLabels": ["Left Top", "Left Center", "Left Bottom", "Center Top", "Center Center", "Center Bottom", "Right Top", "Right Center", "Right Bottom"],
+      "optionLabels": [
+        "Left Top",
+        "Left Center",
+        "Left Bottom",
+        "Center Top",
+        "Center Center",
+        "Center Bottom",
+        "Right Top",
+        "Right Center",
+        "Right Bottom"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
-        "ShowImageSettings": [true]
+        "ShowImageSettings": [
+          true
+        ]
       }
     },
     "ShowStatusCard": {
@@ -70,7 +91,9 @@
       "helper": "Small uppercase label in the overlapping status badge.",
       "placeholder": "System Status",
       "dependencies": {
-        "ShowStatusCard": [true]
+        "ShowStatusCard": [
+          true
+        ]
       }
     },
     "StatusText": {
@@ -78,7 +101,9 @@
       "helper": "Primary message in the overlapping status badge.",
       "placeholder": "Verified and Current",
       "dependencies": {
-        "ShowStatusCard": [true]
+        "ShowStatusCard": [
+          true
+        ]
       }
     },
     "StatusDescription": {
@@ -86,7 +111,9 @@
       "helper": "Supporting line shown below the primary status message.",
       "placeholder": "Direct engineering access for tier-one partners.",
       "dependencies": {
-        "ShowStatusCard": [true]
+        "ShowStatusCard": [
+          true
+        ]
       }
     },
     "StatusAriaLabel": {
@@ -94,7 +121,9 @@
       "helper": "Optional accessible label for the badge if the visible label and text need extra context.",
       "placeholder": "Resource status: verified and current",
       "dependencies": {
-        "ShowStatusCard": [true]
+        "ShowStatusCard": [
+          true
+        ]
       }
     },
     "SectionAriaLabel": {
@@ -104,74 +133,105 @@
     },
     "CtaMode": {
       "type": "select",
-      "helper": "Choose whether this hero renders no CTA buttons, one CTA button, or two CTA buttons.",
-      "optionLabels": ["None", "With One CTA", "With Two CTAs"],
+      "helper": "Choose whether this hero renders no button buttons, one button button, or two button buttons.",
+      "optionLabels": [
+        "None",
+        "With One CTA",
+        "With Two CTAs"
+      ],
       "removeDefaultNone": true
     },
     "PrimaryCtaText": {
       "type": "text",
-      "helper": "Primary link text. Used only when With CTAs is With One CTA or With Two CTAs. The link renders only when both text and URL are provided.",
+      "helper": "Primary link text. Used only when With CTAs is With One button or With Two CTAs. The link renders only when both text and web addresses are provided.",
       "placeholder": "Latest Technical Brief",
       "dependencies": {
-        "CtaMode": ["one", "two"]
+        "CtaMode": [
+          "one",
+          "two"
+        ]
       }
     },
     "PrimaryCtaUrl": {
       "type": "text",
-      "helper": "Primary link URL. Used only when With CTAs is With One CTA or With Two CTAs.",
+      "helper": "Primary link web addresses. Used only when With CTAs is With One button or With Two CTAs.",
       "placeholder": "/resources/latest",
       "dependencies": {
-        "CtaMode": ["one", "two"]
+        "CtaMode": [
+          "one",
+          "two"
+        ]
       }
     },
     "PrimaryCtaTarget": {
       "type": "select",
-      "helper": "Open the primary link in the same tab or a new tab. New tabs automatically receive noopener and noreferrer. Used only when With CTAs is With One CTA or With Two CTAs.",
-      "optionLabels": ["Same Tab", "New Tab"],
+      "helper": "Open the primary link in the same tab or a new tab. New tabs automatically receive noopener and noreferrer. Used only when With CTAs is With One button or With Two CTAs.",
+      "optionLabels": [
+        "Same Tab",
+        "New Tab"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
-        "CtaMode": ["one", "two"]
+        "CtaMode": [
+          "one",
+          "two"
+        ]
       }
     },
     "PrimaryCtaAriaLabel": {
       "type": "text",
-      "helper": "Optional accessible label for the primary link when visible text needs extra context. Used only when With CTAs is With One CTA or With Two CTAs.",
+      "helper": "Optional accessible label for the primary link when visible text needs extra context. Used only when With CTAs is With One button or With Two CTAs.",
       "placeholder": "Read the latest technical brief",
       "dependencies": {
-        "CtaMode": ["one", "two"]
+        "CtaMode": [
+          "one",
+          "two"
+        ]
       }
     },
     "PrimaryCtaIcon": {
       "type": "text",
-      "helper": "Optional Font Awesome class list shown after the primary CTA text. Use empty or none to hide the icon. Only letters, numbers, hyphen, underscore, and spaces are rendered. Used only when With CTAs is With One CTA or With Two CTAs.",
-      "placeholder": "fas fa-home",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+      "placeholder": "fas fa-heartbeat",
       "dependencies": {
-        "CtaMode": ["one", "two"]
+        "CtaMode": [
+          "one",
+          "two"
+        ]
       }
     },
     "SecondaryCtaText": {
       "type": "text",
-      "helper": "Secondary link text. Used only when With CTAs is With Two CTAs. The link renders only when both text and URL are provided.",
+      "helper": "Secondary link text. Used only when With CTAs is With Two CTAs. The link renders only when both text and web addresses are provided.",
       "placeholder": "View All Categories",
       "dependencies": {
-        "CtaMode": ["two"]
+        "CtaMode": [
+          "two"
+        ]
       }
     },
     "SecondaryCtaUrl": {
       "type": "text",
-      "helper": "Secondary link URL. Used only when With CTAs is With Two CTAs.",
+      "helper": "Secondary link web addresses. Used only when With CTAs is With Two CTAs.",
       "placeholder": "/resources",
       "dependencies": {
-        "CtaMode": ["two"]
+        "CtaMode": [
+          "two"
+        ]
       }
     },
     "SecondaryCtaTarget": {
       "type": "select",
       "helper": "Open the secondary link in the same tab or a new tab. New tabs automatically receive noopener and noreferrer. Used only when With CTAs is With Two CTAs.",
-      "optionLabels": ["Same Tab", "New Tab"],
+      "optionLabels": [
+        "Same Tab",
+        "New Tab"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
-        "CtaMode": ["two"]
+        "CtaMode": [
+          "two"
+        ]
       }
     },
     "SecondaryCtaAriaLabel": {
@@ -179,15 +239,19 @@
       "helper": "Optional accessible label for the secondary link when visible text needs extra context. Used only when With CTAs is With Two CTAs.",
       "placeholder": "View all resource categories",
       "dependencies": {
-        "CtaMode": ["two"]
+        "CtaMode": [
+          "two"
+        ]
       }
     },
     "SecondaryCtaIcon": {
       "type": "text",
-      "helper": "Optional Font Awesome class list shown after the secondary CTA text. Use empty or none to hide the icon. Only letters, numbers, hyphen, underscore, and spaces are rendered. Used only when With CTAs is With Two CTAs.",
-      "placeholder": "fas fa-arrow-right",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+      "placeholder": "fas fa-heartbeat",
       "dependencies": {
-        "CtaMode": ["two"]
+        "CtaMode": [
+          "two"
+        ]
       }
     }
   }

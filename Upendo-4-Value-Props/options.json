@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,43 +11,51 @@
       "showMessages": false
     },
     "SectionEyebrow": {
-      "label": "Section Eyebrow"
+      "label": "Section Eyebrow",
+      "helper": "Enter the section eyebrow to show in this section. Use clear wording that visitors will understand."
     },
     "SectionTitle": {
-      "label": "Section Title"
+      "label": "Section Title",
+      "helper": "Enter the section title to show in this section. Use clear wording that visitors will understand."
     },
     "SectionIntroHtml": {
       "label": "Section Intro HTML",
       "type": "ckeditor",
-      "configset": "basic"
+      "configset": "basic",
+      "helper": "Enter the formatted content for section intro formatted content. Keep the text clear and easy to read."
     },
     "LeftTop": {
       "label": "Feature 1 - Left Top",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
+          "placeholder": "fas fa-heartbeat",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "TitleColor": {
           "label": "Title Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the title color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         },
         "IconBackgroundColor": {
           "label": "Icon Background Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BodyHtml": {
           "label": "Body HTML",
           "type": "ckeditor",
-      "configset": "basic"
+          "configset": "basic",
+          "helper": "Enter the formatted content for body formatted content. Keep the text clear and easy to read."
         }
       }
     },
@@ -53,29 +63,34 @@
       "label": "Feature 2 - Left Bottom",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
+          "placeholder": "fas fa-heartbeat",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "TitleColor": {
           "label": "Title Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the title color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         },
         "IconBackgroundColor": {
           "label": "Icon Background Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BodyHtml": {
           "label": "Body HTML",
           "type": "ckeditor",
-          "configset": "basic"
+          "configset": "basic",
+          "helper": "Enter the formatted content for body formatted content. Keep the text clear and easy to read."
         }
       }
     },
@@ -83,29 +98,34 @@
       "label": "Feature 3 - Right Top",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
+          "placeholder": "fas fa-heartbeat",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "TitleColor": {
           "label": "Title Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the title color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         },
         "IconBackgroundColor": {
           "label": "Icon Background Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BodyHtml": {
           "label": "Body HTML",
           "type": "ckeditor",
-        "configset": "basic"
+          "configset": "basic",
+          "helper": "Enter the formatted content for body formatted content. Keep the text clear and easy to read."
         }
       }
     },
@@ -113,29 +133,34 @@
       "label": "Feature 4 - Right Bottom",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "placeholder": "fas fa-heart",
-          "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>, <code>fas fa-phone</code>, etc."
+          "placeholder": "fas fa-heartbeat",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "TitleColor": {
           "label": "Title Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the title color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         },
         "IconBackgroundColor": {
           "label": "Icon Background Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BodyHtml": {
           "label": "Body HTML",
           "type": "ckeditor",
-        "configset": "basic"
+          "configset": "basic",
+          "helper": "Enter the formatted content for body formatted content. Keep the text clear and easy to read."
         }
       }
     }

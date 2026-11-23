@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -26,7 +28,8 @@
               "Hide Info Hover",
               "FadeIn",
               "Animation Style"
-            ]
+            ],
+            "helper": "Choose the hover styles from the available options."
           },
           "DefaultStyles": {
             "type": "select",
@@ -34,10 +37,12 @@
             "optionLabels": [
               "rounded-circle",
               "img-thumbnail d-inline-block"
-            ]
+            ],
+            "helper": "Choose the default styles from the available options."
           },
           "Image": {
-            "type": "image"
+            "type": "image",
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           },
           "GridWidth": {
             "type": "select",
@@ -55,13 +60,16 @@
               "col-md-3",
               "col-md-2",
               "col-md-1"
-            ]
+            ],
+            "helper": "Choose the grid width from the available options."
           },
           "ProjectTitle": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the project title to use in this template. Use clear wording that visitors will understand."
           },
           "ProjectType": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the project type to use in this template. Use clear wording that visitors will understand."
           },
           "SmallPicture": {
             "type": "image",
@@ -69,7 +77,8 @@
               "HoverStyles": [
                 "FadeIn"
               ]
-            }
+            },
+            "helper": "Choose the image or file to use for small picture. Use a clear file that fits this content."
           },
           "FadeInTitle": {
             "type": "text",
@@ -77,7 +86,8 @@
               "HoverStyles": [
                 "FadeIn"
               ]
-            }
+            },
+            "helper": "Enter the fade in title to use in this template. Use clear wording that visitors will understand."
           },
           "FadeInText": {
             "type": "text",
@@ -85,7 +95,8 @@
               "HoverStyles": [
                 "FadeIn"
               ]
-            }
+            },
+            "helper": "Enter the fade in text to use in this template. Use clear wording that visitors will understand."
           },
           "FadeInButtomText": {
             "type": "text",
@@ -93,7 +104,8 @@
               "HoverStyles": [
                 "FadeIn"
               ]
-            }
+            },
+            "helper": "Enter the fade in buttom text to use in this template. Use clear wording that visitors will understand."
           },
           "FullName": {
             "type": "text",
@@ -101,7 +113,8 @@
               "HoverStyles": [
                 "Animation Style"
               ]
-            }
+            },
+            "helper": "Enter the person's first and last name."
           },
           "SocialMedia": {
             "type": "array",
@@ -114,13 +127,16 @@
               "fields": {
                 "Name": {
                   "type": "text",
-                  "placeholder": "facebook"
+                  "placeholder": "facebook",
+                  "helper": "Enter the name to use in this template. Use clear wording that visitors will understand."
                 },
                 "URL": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the web addresses to use in this template. Use clear wording that visitors will understand."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for social media. Remove any item you do not need."
           },
           "PricipalSocialMedia": {
             "type": "text",
@@ -128,11 +144,12 @@
               "HoverStyles": [
                 "Animation Style"
               ]
-            }
+            },
+            "helper": "Enter the pricipal social media to use in this template. Use clear wording that visitors will understand."
           },
           "PricipalIcon": {
             "type": "text",
-            "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
             "dependencies": {
               "HoverStyles": [
                 "Animation Style"
@@ -149,10 +166,12 @@
             "items": {
               "fields": {
                 "Text": {
-                  "type": "textarea"
+                  "type": "textarea",
+                  "helper": "Enter the text for text. Use short paragraphs so it is easy to read."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for card text. Remove any item you do not need."
           },
           "Icons": {
             "type": "array",
@@ -165,7 +184,7 @@
               "fields": {
                 "Icon": {
                   "type": "text",
-                  "helper": "Find values at: <a href=\\\"https://fontawesome.com/icons?d=gallery\\\" target=\\\"_blank\\\">FontAwesome</a>"
+                  "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
                 },
                 "IconColor": {
                   "type": "select",
@@ -174,13 +193,16 @@
                     "Primary",
                     "Secondary",
                     "Tertiary"
-                  ]
+                  ],
+                  "helper": "Choose the icon color from the available options."
                 },
                 "href": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the href to use in this template. Use clear wording that visitors will understand."
                 }
               }
-            }
+            },
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           },
           "Bottom": {
             "type": "select",
@@ -194,13 +216,16 @@
                 "Centered Icons",
                 "Icons Colors"
               ]
-            }
+            },
+            "helper": "Choose the bottom from the available options."
           },
           "NoBorders": {
-            "type": "checkbox"
+            "type": "checkbox",
+            "helper": "Turn this setting on or off to control no borders."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

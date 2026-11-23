@@ -1,20 +1,20 @@
 {
-    "type": "object",
-    "properties": {
-      "ModuleTitle": {
-        "type": "string",
-        "title": "Module Title"
-      },
-      "ModuleAnchor": {
-        "type": "string",
-        "title": "Module Anchor",
-         "pattern": "^[a-zA-Z0-9\\-]+$"
-      },
-      "Icon": {
-        "type": "string",
-        "title": "Icon (optional) - Example: fab fa-android",
-        "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>",
-        "required": true
-      }
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "ModuleAnchor": {
+      "type": "string",
+      "title": "Module Anchor",
+      "pattern": "^$|^[a-zA-Z0-9\\-]+$"
+    },
+    "Icon": {
+      "type": "string",
+      "title": "Icon (optional) - Example: fab fa-android",
+      "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>",
+      "required": true
     }
   }
+}

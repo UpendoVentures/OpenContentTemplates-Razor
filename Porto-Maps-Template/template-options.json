@@ -1,44 +1,52 @@
 {
-	"fields": {		
-		"ShowBorders": {
-			"label": "Show Borders",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"panControl": {
-			"label": "Show Control Panel",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"zoomControl": {
-			"label": "Show Zoom Control",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"mapTypeControl": {
-			"label": "Show Map Type Control",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"scaleControl": {
-			"label": "Show Scale Control",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"streetViewControl": {
-			"label": "Show Street View Control",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"overviewMapControl": {
-			"label": "Show Overview Map Control",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"scrollwheel": {
-			"label": "Show Scroll Wheel",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "ShowBorders": {
+      "label": "Show Borders",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control show borders."
+    },
+    "panControl": {
+      "label": "Show Control Panel",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control pan control."
+    },
+    "zoomControl": {
+      "label": "Show Zoom Control",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control zoom control."
+    },
+    "mapTypeControl": {
+      "label": "Show Map Type Control",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control map type control."
+    },
+    "scaleControl": {
+      "label": "Show Scale Control",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control scale control."
+    },
+    "streetViewControl": {
+      "label": "Show Street View Control",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control street view control."
+    },
+    "overviewMapControl": {
+      "label": "Show Overview Map Control",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control overview map control."
+    },
+    "scrollwheel": {
+      "label": "Show Scroll Wheel",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control scrollwheel."
+    }
+  }
 }

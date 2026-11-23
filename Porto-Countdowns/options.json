@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -10,10 +12,12 @@
     },
     "DateTime": {
       "type": "text",
-      "placeholder": "Use Format Year/Month/Day Hour:Minutes/Seconds"
+      "placeholder": "Use Format Year/Month/Day Hour:Minutes/Seconds",
+      "helper": "Enter the date time to use in this template. Use clear wording that visitors will understand."
     },
     "ParallaxImage": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for parallax image. Use a clear file that fits this content."
     }
   }
 }

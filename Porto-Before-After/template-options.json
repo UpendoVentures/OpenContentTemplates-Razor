@@ -1,14 +1,15 @@
 {
-	"fields": {		
-		"Style": {
-			"title": "Style",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Move Slider on Hover",
-				"Vertical Orientation"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "Style": {
+      "title": "Style",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Move Slider on Hover",
+        "Vertical Orientation"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the style from the available options."
+    }
+  }
 }

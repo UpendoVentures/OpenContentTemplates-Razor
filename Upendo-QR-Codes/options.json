@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,16 +11,17 @@
     },
     "QRCodes": {
       "type": "array",
-      "helper": "Need at least one slide",
+      "helper": "Add at least one qrcodes item. You can add more items as needed.",
       "items": {
         "fields": {
           "Label": {
             "type": "text",
-            "placeholder": "page name"
+            "placeholder": "page name",
+            "helper": "Enter the text visitors should see for this link."
           },
           "TargetUrl": {
             "type": "url",
-            "helper": "https://example.com/page-name"
+            "helper": "Enter the web address that the QR code should open."
           },
           "ImageUrl": {
             "type": "image",
@@ -26,7 +29,7 @@
             "typeahead": {
               "Folder": "/Images/Carousel/"
             },
-            "helper": "Can be a local image, or an offsite URL"
+            "helper": "Can be a local image, or an offsite web addresses"
           }
         }
       }

@@ -1,17 +1,21 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "PresentationSignUp": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for presentation sign up. You can use a page on this site or another website."
     },
     "MemberOnlineBinder": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for member online binder. You can use a page on this site or another website."
     },
     "NextMeeting": {
       "type": "accordion",
@@ -19,7 +23,8 @@
         "fields": {
           "MeetingTitle": {
             "type": "text",
-            "placeholder": "Next SCBNG Meeting"
+            "placeholder": "Next SCBNG Meeting",
+            "helper": "Enter the meeting title to use in this template. Use clear wording that visitors will understand."
           },
           "StartDate": {
             "type": "date",
@@ -56,19 +61,24 @@
             "items": {
               "fields": {
                 "SpeakerName": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the speaker name to use in this template. Use clear wording that visitors will understand."
                 },
                 "SpeakerPage": {
-                  "type": "url"
+                  "type": "url",
+                  "helper": "Enter the web address for speaker page. You can use a page on this site or another website."
                 },
                 "SpeakerSlot": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the speaker slot to use in this template. Use clear wording that visitors will understand."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for speakers. Remove any item you do not need."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for next meeting. Remove any item you do not need."
     }
   }
 }

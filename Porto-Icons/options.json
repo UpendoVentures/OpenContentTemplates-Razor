@@ -1,23 +1,26 @@
 {
-    "fields": {
-     "ModuleTitle": {
-      "type": "text"
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
       "showMessages": false
     },
-      "Items": {
-        "type": "array",
-        "items": {
-          "fields": {
-            "Icon": {
-              "type": "text",
-              "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
-            }
+    "Items": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Icon": {
+            "type": "text",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
+}

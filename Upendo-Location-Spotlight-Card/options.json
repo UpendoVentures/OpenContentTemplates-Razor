@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this content block. This also helps OpenContent sync with DNN module settings.",
-      "placeholder": "Featured Location Spotlight"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -64,7 +64,7 @@
     },
     "LocationTextUrl": {
       "type": "url",
-      "helper": "Optional. When provided, the location text, button, and image will all link to this URL.",
+      "helper": "Optional. When provided, the location text, button, and image will all link to this web addresses.",
       "placeholder": "https://www.google.com/maps"
     },
     "LocationTextUrlTarget": {

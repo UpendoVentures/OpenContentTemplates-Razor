@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,7 +11,8 @@
       "showMessages": false
     },
     "ActiveTabDefault": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control active tab default."
     },
     "ActiveTabNumber": {
       "type": "number",
@@ -17,25 +20,29 @@
         "ActiveTabDefault": [
           "false"
         ]
-      }
+      },
+      "helper": "Enter a number for active tab number. Use a value that fits the choices and layout shown on the page."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Content": {
             "type": "ckeditor",
-            "configset": "standard"
+            "configset": "standard",
+            "helper": "Enter the formatted content for content. Keep the text clear and easy to read."
           },
           "Icon": {
             "type": "text",
-            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,42 +11,69 @@
       "showMessages": false
     },
     "ButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
     },
     "DialogTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the dialog title to use in this template. Use clear wording that visitors will understand."
     },
     "DialogText": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for dialog text. Use short paragraphs so it is easy to read."
     },
     "href": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the href to use in this template. Use clear wording that visitors will understand."
     },
     "FormTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the form title to use in this template. Use clear wording that visitors will understand."
     },
     "FormSubTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the form sub title to use in this template. Use clear wording that visitors will understand."
     },
     "FormData": {
       "type": "array",
       "items": {
         "fields": {
           "InputText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the input text to use in this template. Use clear wording that visitors will understand."
           },
           "FormDataType": {
             "type": "select",
             "sort": false,
-            "optionLabels": ["text", "email", "url", "textarea"]
+            "optionLabels": [
+              "text",
+              "email",
+              "url",
+              "textarea"
+            ],
+            "helper": "Choose the form data type from the available options."
           },
           "Row": {
             "type": "select",
-            "optionLabels": ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+            "optionLabels": [
+              "10",
+              "9",
+              "8",
+              "7",
+              "6",
+              "5",
+              "4",
+              "3",
+              "2",
+              "1"
+            ],
             "removeDefaultNone": true,
             "dependencies": {
-              "FormDataType": ["textarea"]
-            }
+              "FormDataType": [
+                "textarea"
+              ]
+            },
+            "helper": "Choose the row from the available options."
           },
           "GridWidth": {
             "type": "select",
@@ -62,26 +91,42 @@
               "col-md-3",
               "col-md-2",
               "col-md-1"
-            ]
+            ],
+            "helper": "Choose the grid width from the available options."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for form data. Remove any item you do not need."
     },
     "FormButtonText1": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the form button text1 to use in this template. Use clear wording that visitors will understand."
     },
     "FormButtonText2": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the form button text2 to use in this template. Use clear wording that visitors will understand."
     },
     "ColorFormButton1": {
       "type": "select",
       "sort": false,
-      "optionLabels": ["primary", "secondary", "tertiary", "quaternary"]
+      "optionLabels": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "quaternary"
+      ],
+      "helper": "Choose the color form button1 from the available options."
     },
     "ColorFormButton2": {
       "type": "select",
       "sort": false,
-      "optionLabels": ["primary", "secondary", "tertiary", "quaternary"]
+      "optionLabels": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "quaternary"
+      ],
+      "helper": "Choose the color form button2 from the available options."
     }
   }
 }

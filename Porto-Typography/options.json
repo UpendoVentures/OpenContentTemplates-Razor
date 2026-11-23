@@ -1,65 +1,73 @@
 {
   "fields": {
-    "Sections": {
-      "ModuleTitle": {
-        "type": "text"
-      },
-      "ModuleAnchor": {
-        "type": "text",
-        "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-        "showMessages": false
-      },
-      "type": "array",
-      "items": {
-        "fields": {
-          "Text": {
-            "type": "textarea"
-          },
-          "Class": {
-            "type": "select",
-            "sort": false,
-            "optionLabels": [
-              "Default",
-              "Drop Caps",
-              "Drop Caps Style-2"
-            ],
-            "removeDefaultNone": true
-          },
-          "AlternativeFont": {
-            "type": "text"
-          },
-          "TextWidthColor": {
-            "type": "text"
-          },
-          "Color": {
-            "type": "select",
-            "sort": false,
-            "optionLabels": [
-              "muted",
-              "primary",
-              "success",
-              "info",
-              "warning",
-              "danger"
-            ]
-          },
-          "Size": {
-            "type": "select",
-            "sort": false,
-            "optionLabels": [
-              "h1",
-              "h2",
-              "h3",
-              "h4",
-              "h5",
-              "h6"
-            ]
-          },
-          "OtherText": {
-            "type": "textarea"
-          }
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "type": "array",
+    "items": {
+      "fields": {
+        "Text": {
+          "type": "textarea",
+          "helper": "Enter the text for text. Use short paragraphs so it is easy to read."
+        },
+        "Class": {
+          "type": "select",
+          "sort": false,
+          "optionLabels": [
+            "Default",
+            "Drop Caps",
+            "Drop Caps Style-2"
+          ],
+          "removeDefaultNone": true,
+          "helper": "Choose the class from the available options."
+        },
+        "AlternativeFont": {
+          "type": "text",
+          "helper": "Enter the alternative font to use in this template. Use clear wording that visitors will understand."
+        },
+        "TextWidthColor": {
+          "type": "text",
+          "helper": "Enter the text width color to use in this template. Use clear wording that visitors will understand."
+        },
+        "Color": {
+          "type": "select",
+          "sort": false,
+          "optionLabels": [
+            "muted",
+            "primary",
+            "success",
+            "info",
+            "warning",
+            "danger"
+          ],
+          "helper": "Choose the color from the available options."
+        },
+        "Size": {
+          "type": "select",
+          "sort": false,
+          "optionLabels": [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6"
+          ],
+          "helper": "Choose the size from the available options."
+        },
+        "OtherText": {
+          "type": "textarea",
+          "helper": "Enter the text for other text. Use short paragraphs so it is easy to read."
         }
       }
-    }
+    },
+    "helper": "Add and arrange the items used for fields. Remove any item you do not need."
   }
 }

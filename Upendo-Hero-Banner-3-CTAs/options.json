@@ -1,17 +1,21 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
-      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
+      "helper": "Optional. Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "PageTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the page title to use in this template. Use clear wording that visitors will understand."
     },
     "PageLead": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the page lead to use in this template. Use clear wording that visitors will understand."
     },
     "BackgroundImage": {
       "type": "image",
@@ -22,35 +26,41 @@
       "helper": "Recommended minimum: 1920 x 1080 px. Use a wide landscape image. Keep important content near the center-left, since the image may crop on different screen sizes."
     },
     "PrimaryCtaButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the primary button button text to use in this template. Use clear wording that visitors will understand."
     },
     "PrimaryCtaButtonPage": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for primary button button page. You can use a page on this site or another website."
     },
     "PrimaryCtaButtonFontAwesomeCss": {
       "type": "text",
-      "helper": "Optional. Example: fa-solid fa-leaf"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "SecondaryCtaButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the secondary button button text to use in this template. Use clear wording that visitors will understand."
     },
     "SecondaryCtaButtonPage": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for secondary button button page. You can use a page on this site or another website."
     },
     "SecondaryCtaButtonFontAwesomeCss": {
       "type": "text",
-      "helper": "Optional. Example: fa-solid fa-map-location-dot"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "TertiaryCtaButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the tertiary button button text to use in this template. Use clear wording that visitors will understand."
     },
     "TertiaryCtaButtonPage": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for tertiary button button page. You can use a page on this site or another website."
     },
     "TertiaryCtaButtonFontAwesomeCss": {
       "type": "text",
       "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">FontAwesome</a>. (Examples: <code>fa-solid fa-leaf</code>, <code>fa-solid fa-map-location-dot</code>, <code>fa-solid fa-building</code>)"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     }
   }
 }

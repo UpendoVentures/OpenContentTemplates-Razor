@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Used by OpenContent and DNN module settings. This is not displayed to site visitors.",
-      "placeholder": "Three-Column Benefit Cards"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -13,12 +13,12 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Optional. The main heading displayed above the cards. HTML is allowed and will render as entered.",
+      "helper": "Optional. The main heading displayed above the cards. Formatted text and links are allowed and will render as entered.",
       "placeholder": "Designed for clarity and trust."
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Required. Introduce this group of cards in one or two short sentences. HTML is allowed and will render as entered.",
+      "helper": "Required. Introduce this group of cards in one or two short sentences. Formatted text and links are allowed and will render as entered.",
       "placeholder": "<p>Explain the shared benefit these cards help visitors understand.</p>"
     },
     "Cards": {
@@ -30,35 +30,44 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Add a short, clear heading for this card. HTML is allowed and will render as entered.",
+            "helper": "Required. Add a short, clear heading for this card. Formatted text and links are allowed and will render as entered.",
             "placeholder": "Help customers find the right choice"
           },
           "Description": {
             "type": "text",
-            "helper": "Required. Briefly explain this benefit. HTML is allowed and will render as entered.",
+            "helper": "Required. Briefly explain this benefit. Formatted text and links are allowed and will render as entered.",
             "placeholder": "Organize your offerings so customers can quickly find what they need."
           },
           "Icon": {
             "type": "text",
-            "helper": "Required. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
-            "placeholder": "fas fa-heart"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "IconColor": {
             "type": "select",
-            "helper": "Choose a strong icon color. Its background uses a lighter transparent version of the same color. Default uses the current theme text color.",
-            "optionLabels": ["Default", "Primary", "Secondary", "Success", "Danger", "Warning", "Info", "Dark"],
+            "helper": "Choose the icon color from the available options.",
+            "optionLabels": [
+              "Default",
+              "Primary",
+              "Secondary",
+              "Success",
+              "Danger",
+              "Warning",
+              "Info",
+              "Dark"
+            ],
             "removeDefaultNone": true
           },
           "CardLink": {
             "type": "url",
-            "helper": "Optional. Select a local page or enter a complete http or https URL. When provided, the whole card becomes a link and displays Learn More."
+            "helper": "Optional. Select a local page or enter a complete http or https web addresses. When provided, the whole card becomes a link and displays Learn More."
           }
         }
       }
     },
     "SectionFooter": {
       "type": "text",
-      "helper": "Optional. Add a short note below the cards. HTML is allowed and will render as entered.",
+      "helper": "Optional. Add a short note below the cards. Formatted text and links are allowed and will render as entered.",
       "placeholder": "Choose a benefit to learn more."
     }
   }

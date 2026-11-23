@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -13,40 +15,48 @@
         "fields": {
           "MemberName": {
             "type": "text",
-            "helper": "first & last name"
+            "helper": "Enter the person's first and last name."
           },
           "Image": {
             "type": "image",
             "uploadfolder": "Content/Board/",
             "typeahead": {
               "Folder": "Content/Board/"
-            }
+            },
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           },
           "BoardRole": {
             "type": "text",
-            "placeholder": "Director"
+            "placeholder": "Director",
+            "helper": "Enter the board role to use in this template. Use clear wording that visitors will understand."
           },
           "CompanyName": {
             "type": "text",
-            "placeholder": "ABC Company"
+            "placeholder": "ABC Company",
+            "helper": "Enter the company name to use in this template. Use clear wording that visitors will understand."
           },
           "CompanyUrl": {
             "type": "text",
-            "placeholder": "https://example.com"
+            "placeholder": "https://example.com",
+            "helper": "Enter the company web addresses to use in this template. Use clear wording that visitors will understand."
           },
           "MemberTitle": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the member title to use in this template. Use clear wording that visitors will understand."
           },
           "Email": {
             "type": "email",
-            "placeholder": "you@example.com"
+            "placeholder": "you@example.com",
+            "helper": "Enter the email address to use for email."
           },
           "MemberBio": {
             "type": "ckeditor",
-            "configset": "basic"
+            "configset": "basic",
+            "helper": "Enter the formatted content for member bio. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for members. Remove any item you do not need."
     }
   }
 }

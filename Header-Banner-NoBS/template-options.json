@@ -1,10 +1,12 @@
 {
   "fields": {
     "HeaderBackgroundColor": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header background color to use in this template. Use clear wording that visitors will understand."
     },
     "HeaderTextColor": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header text color to use in this template. Use clear wording that visitors will understand."
     },
     "HeaderTextType": {
       "type": "select",
@@ -16,7 +18,8 @@
         "h4",
         "h5",
         "p"
-      ]
+      ],
+      "helper": "Choose the header text type from the available options."
     },
     "HeaderTextStyle": {
       "type": "select",
@@ -25,7 +28,8 @@
         "bold",
         "italic",
         "underline"
-      ]
+      ],
+      "helper": "Choose the header text style from the available options."
     },
     "TextAlign": {
       "type": "select",
@@ -34,16 +38,20 @@
         "left",
         "center",
         "right"
-      ]
+      ],
+      "helper": "Choose the text align from the available options."
     },
     "HeaderTextShadow": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control header text shadow."
     },
     "HeaderTextShadowValue": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header text shadow value to use in this template. Use clear wording that visitors will understand."
     },
     "WithCloseButton": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control with close button."
     }
   }
 }

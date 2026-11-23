@@ -3,8 +3,12 @@
     "NumberOfItems": {
       "title": "Number of Items",
       "type": "select",
-      "optionLabels": ["1", "4"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "1",
+        "4"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the number of items from the available options."
     },
     "Navigation": {
       "title": "Color",
@@ -15,7 +19,8 @@
         "Show Nav Title",
         "Nav Bottom"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the color from the available options."
     },
     "Style": {
       "title": "Style",
@@ -27,37 +32,44 @@
         "HoverStyle",
         "Videos"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the style from the available options."
     },
     "ShowData": {
       "label": "Show Data",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control show data."
     },
     "RoundedNav": {
       "label": "Rounded Nav",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control rounded nav."
     },
     "Loop": {
       "label": "Loop",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control loop."
     },
     "Autoplay": {
       "label": "Autoplay",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control autoplay."
     },
     "RoundedCircle": {
       "label": "Image Rounded Circle",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control rounded circle."
     },
     "AutoplayTimeout": {
       "title": "Autoplay Timeout",
       "type": "text",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Enter the autoplay timeout to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

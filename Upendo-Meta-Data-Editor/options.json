@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -53,7 +55,7 @@
           },
           "Href": {
             "type": "url",
-            "helper": "Specifies the location of the linked document. Can be a local or external URL."
+            "helper": "Specifies the location of the linked document. Can be a local or external web addresses."
           },
           "Type": {
             "type": "select",

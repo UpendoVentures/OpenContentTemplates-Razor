@@ -1,7 +1,9 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -9,14 +11,16 @@
       "showMessages": false
     },
     "Blockquotes": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the blockquotes to use in this template. Use clear wording that visitors will understand."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "TopText": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for top text. Use short paragraphs so it is easy to read."
           },
           "ColMdTopText": {
             "type": "select",
@@ -34,20 +38,31 @@
               "col-3",
               "col-2",
               "col-1"
-            ]
+            ],
+            "helper": "Choose the col md top text from the available options."
           },
           "Content": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for content. Use short paragraphs so it is easy to read."
           },
           "Color": {
             "type": "select",
             "sort": false,
-            "optionLabels": ["primary", "secondary", "tertiary", "quaternary"]
+            "optionLabels": [
+              "primary",
+              "secondary",
+              "tertiary",
+              "quaternary"
+            ],
+            "helper": "Choose the color from the available options."
           },
           "Align": {
             "type": "select",
             "sort": false,
-            "optionLabels": ["pull right"]
+            "optionLabels": [
+              "pull right"
+            ],
+            "helper": "Choose the align from the available options."
           },
           "ColMdContent": {
             "type": "select",
@@ -65,19 +80,24 @@
               "col-3",
               "col-2",
               "col-1"
-            ]
+            ],
+            "helper": "Choose the col md content from the available options."
           },
           "FooterText1": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the footer text1 to use in this template. Use clear wording that visitors will understand."
           },
           "FooterText2": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the footer text2 to use in this template. Use clear wording that visitors will understand."
           },
           "BottomText": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for bottom text. Use short paragraphs so it is easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

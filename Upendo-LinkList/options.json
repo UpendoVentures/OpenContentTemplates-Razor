@@ -1,17 +1,21 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "SectionTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the section title to use in this template. Use clear wording that visitors will understand."
     },
     "SectionCssClass": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the section style name to use in this template. Use clear wording that visitors will understand."
     },
     "SectionTitleTag": {
       "type": "select",
@@ -23,12 +27,13 @@
         "H4",
         "H5",
         "H6"
-      ]
+      ],
+      "helper": "Choose the section title tag from the available options."
     },
     "SectionIconClass": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find Icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "SectionAriaLabel": {
       "type": "text",
@@ -40,14 +45,16 @@
       "items": {
         "fields": {
           "LinkText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the link text to use in this template. Use clear wording that visitors will understand."
           },
           "LinkUrl": {
             "type": "url",
-            "helper": "Can be a local or external URL. "
+            "helper": "Can be a local or external web addresses. "
           },
           "LinkCssClass": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the link style name to use in this template. Use clear wording that visitors will understand."
           },
           "LinkRel": {
             "type": "select",
@@ -58,7 +65,8 @@
               "No Opener",
               "No Referrrer"
             ],
-			      "removeDefaultNone": true
+            "removeDefaultNone": true,
+            "helper": "Choose the link rel from the available options."
           },
           "OpenInNewTab": {
             "type": "checkbox",
@@ -75,7 +83,7 @@
               "Telephone",
               "URL"
             ],
-            "helper": "If not sure, choose \"URL.\""
+            "helper": "Choose what this link points to. If you are unsure, choose web addresses."
           }
         }
       }

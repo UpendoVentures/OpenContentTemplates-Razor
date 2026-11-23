@@ -1,10 +1,12 @@
 {
   "fields": {
     "HeaderBackgroundColor": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header background color to use in this template. Use clear wording that visitors will understand."
     },
     "HeaderTextColor": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the header text color to use in this template. Use clear wording that visitors will understand."
     },
     "HeaderTextType": {
       "type": "select",
@@ -15,20 +17,24 @@
         "h3",
         "h4",
         "h5"
-      ]
+      ],
+      "helper": "Choose the header text type from the available options."
     },
     "UseCookie": {
       "type": "checkbox",
       "helper": "If you enable this checkbox the modal will only open the first time the user accesses the page."
     },
     "NoUserLoggedInText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the no user logged in text to use in this template. Use clear wording that visitors will understand."
     },
     "MyEmailAddresIsAccurateText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the my email addres is accurate text to use in this template. Use clear wording that visitors will understand."
     },
     "CurrentEmailText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the current email text to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

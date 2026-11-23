@@ -1,37 +1,47 @@
 {
   "fields": {
     "ModuleTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
+      "title": "MModule Anchor",
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-      "showMessages": false
+      "pattern": "^[a-zA-Z0-9\\-]+$"
     },
     "ParallaxImage": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for parallax image. Use a clear file that fits this content."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "Content": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for content. Use short paragraphs so it is easy to read."
           },
           "Image": {
-            "type": "image"
+            "type": "image",
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           },
           "Fullname": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the fullname to use in this template. Use clear wording that visitors will understand."
           },
           "Text": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the text to use in this template. Use clear wording that visitors will understand."
           },
           "Text1": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the text1 to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

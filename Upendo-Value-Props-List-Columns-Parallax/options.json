@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Used by OpenContent to sync with the DNN module title. This does not display to site visitors.",
-      "placeholder": "Value Props - Two Column"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -13,12 +13,12 @@
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Optional. Main heading shown above the two-column list. HTML is allowed.",
+      "helper": "Optional. Main heading shown above the two-column list. Formatted text and links are allowed.",
       "placeholder": "Practices for Modern Vitality"
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "helper": "Optional. Short intro shown below the heading. Formatted text and links are allowed.",
       "placeholder": "Science-backed practices that help people slow down, reconnect, and restore."
     },
     "BackgroundImage": {
@@ -31,8 +31,8 @@
     },
     "ListIcon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "ValueProps": {
       "type": "accordion",
@@ -41,12 +41,12 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Short title for this list item. HTML is allowed.",
+            "helper": "Required. Short title for this list item. Formatted text and links are allowed.",
             "placeholder": "Forest Therapy"
           },
           "Description": {
             "type": "text",
-            "helper": "Optional. Short supporting description. HTML is allowed.",
+            "helper": "Optional. Short supporting description. Formatted text and links are allowed.",
             "placeholder": "Guided nature-based sessions that support attention recovery, stress relief, and reconnection."
           }
         }

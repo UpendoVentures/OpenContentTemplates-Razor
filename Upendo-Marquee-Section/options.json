@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this content block. Used as an accessible label for the marquee section.",
-      "placeholder": "Marquee Section"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -25,7 +25,10 @@
           "ItemType": {
             "type": "select",
             "helper": "Choose whether this marquee item renders as text with an optional icon or as a standalone logo image.",
-            "optionLabels": ["Text + Icon", "Logo Image"],
+            "optionLabels": [
+              "Text + Icon",
+              "Logo Image"
+            ],
             "removeDefaultNone": true
           },
           "Text": {
@@ -40,8 +43,8 @@
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional icon class if the active theme supports icon fonts. Example: <code>fas fa-bolt</code>.",
-            "placeholder": "fas fa-bolt",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat",
             "dependencies": {
               "ItemType": [
                 "text-icon"
@@ -63,11 +66,11 @@
           },
           "WithLink": {
             "type": "checkbox",
-            "helper": "Enable this when the item should link to another page or external URL."
+            "helper": "Enable this when the item should link to another page or external web addresses."
           },
           "LinkUrl": {
             "type": "url",
-            "helper": "Destination URL for this item.",
+            "helper": "Destination web addresses for this item.",
             "dependencies": {
               "WithLink": [
                 true
@@ -77,7 +80,10 @@
           "LinkTarget": {
             "type": "select",
             "helper": "Choose whether the optional link opens in the current browser tab or a new browser tab.",
-            "optionLabels": ["Current Tab", "New Tab"],
+            "optionLabels": [
+              "Current Tab",
+              "New Tab"
+            ],
             "removeDefaultNone": true,
             "dependencies": {
               "WithLink": [

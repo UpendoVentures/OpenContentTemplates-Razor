@@ -2,8 +2,8 @@
   "fields": {
     "ModuleTitle": {
       "type": "text",
-      "helper": "Administrator-facing title for this content block. This does not display to site visitors.",
-      "placeholder": "Hero Header Advanced"
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
     },
     "ModuleAnchor": {
       "type": "text",
@@ -28,7 +28,14 @@
     "TitleHeadingLevel": {
       "type": "select",
       "helper": "Choose the semantic heading level for the top title.",
-      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6"],
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
         "TitleVisible": [
@@ -66,7 +73,15 @@
     "HeroHeadingLevel": {
       "type": "select",
       "helper": "Choose the semantic heading level for the hero heading.",
-      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6", "Paragraph"],
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "Paragraph"
+      ],
       "removeDefaultNone": true
     },
     "HeroSubHeading": {
@@ -77,18 +92,30 @@
     "HeroSubHeadingLevel": {
       "type": "select",
       "helper": "Choose the semantic heading level for the hero sub-heading.",
-      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6", "Paragraph"],
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "Paragraph"
+      ],
       "removeDefaultNone": true
     },
     "HeroBody": {
       "type": "textarea",
-      "helper": "Body copy shown under the hero heading. HTML is allowed.",
+      "helper": "Body copy shown under the hero heading. Formatted text and links are allowed.",
       "placeholder": "Use this area to introduce the page, explain the main value, and guide visitors toward the next step."
     },
     "BackgroundMediaType": {
       "type": "select",
       "helper": "Controls which media fields are shown in this content form and which background media renders.",
-      "optionLabels": ["Background Color", "Image", "Video"],
+      "optionLabels": [
+        "Background Color",
+        "Image",
+        "Video"
+      ],
       "sort": false,
       "removeDefaultNone": true
     },
@@ -129,8 +156,18 @@
     },
     "BackgroundPosition": {
       "type": "select",
-      "helper": "Used when Background Media Type is Image. CSS background-position for the hero image.",
-      "optionLabels": ["Left Top", "Left Center", "Left Bottom", "Center Top", "Center Center", "Center Bottom", "Right Top", "Right Center", "Right Bottom"],
+      "helper": "Used when Background Media Type is Image. image position for the hero image.",
+      "optionLabels": [
+        "Left Top",
+        "Left Center",
+        "Left Bottom",
+        "Center Top",
+        "Center Center",
+        "Center Bottom",
+        "Right Top",
+        "Right Center",
+        "Right Bottom"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
         "BackgroundMediaType": [
@@ -140,8 +177,12 @@
     },
     "BackgroundSize": {
       "type": "select",
-      "helper": "Used when Background Media Type is Image. CSS background-size for the hero image.",
-      "optionLabels": ["Cover", "Contain", "Auto"],
+      "helper": "Used when Background Media Type is Image. image size for the hero image.",
+      "optionLabels": [
+        "Cover",
+        "Contain",
+        "Auto"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
         "BackgroundMediaType": [
@@ -151,8 +192,13 @@
     },
     "BackgroundRepeat": {
       "type": "select",
-      "helper": "Used when Background Media Type is Image. CSS background-repeat for the hero image.",
-      "optionLabels": ["No Repeat", "Repeat", "Repeat X", "Repeat Y"],
+      "helper": "Used when Background Media Type is Image. image repeat setting for the hero image.",
+      "optionLabels": [
+        "No Repeat",
+        "Repeat",
+        "Repeat X",
+        "Repeat Y"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
         "BackgroundMediaType": [
@@ -171,8 +217,12 @@
     },
     "VideoSourceType": {
       "type": "select",
-      "helper": "Used when Background Media Type is Video. Choose Auto Detect unless you need to force the URL to be treated as a regular video file or as YouTube.",
-      "optionLabels": ["Auto Detect", "Local or External Video File", "YouTube"],
+      "helper": "Used when Background Media Type is Video. Choose Auto Detect unless you need to force the web addresses to be treated as a regular video file or as YouTube.",
+      "optionLabels": [
+        "Auto Detect",
+        "Local or External Video File",
+        "YouTube"
+      ],
       "sort": false,
       "removeDefaultNone": true,
       "dependencies": {
@@ -183,7 +233,7 @@
     },
     "VideoUrl": {
       "type": "text",
-      "helper": "Used when Background Media Type is Video. Desktop source video. Local paths, external video file URLs, and YouTube URLs are supported.",
+      "helper": "Used when Background Media Type is Video. Desktop source video. Local paths, external video file web addresses, and YouTube web addresses are supported.",
       "placeholder": "/Portals/0/Videos/hero-desktop.mp4",
       "dependencies": {
         "BackgroundMediaType": [
@@ -204,7 +254,11 @@
     "VideoDisplayMode": {
       "type": "select",
       "helper": "Used when Background Media Type is Video. Crop to Fill works best for hero backgrounds; Fit Whole Video may create empty space; Stretch to Fill can distort the video.",
-      "optionLabels": ["Crop to Fill", "Fit Whole Video", "Stretch to Fill"],
+      "optionLabels": [
+        "Crop to Fill",
+        "Fit Whole Video",
+        "Stretch to Fill"
+      ],
       "sort": false,
       "removeDefaultNone": true,
       "dependencies": {
@@ -216,7 +270,13 @@
     "VideoPosition": {
       "type": "select",
       "helper": "Used when Background Media Type is Video. Controls which part of the video remains visible when cropped.",
-      "optionLabels": ["Center", "Top", "Bottom", "Left", "Right"],
+      "optionLabels": [
+        "Center",
+        "Top",
+        "Bottom",
+        "Left",
+        "Right"
+      ],
       "sort": false,
       "removeDefaultNone": true,
       "dependencies": {
@@ -228,7 +288,10 @@
     "VideoPlaybackMode": {
       "type": "select",
       "helper": "Used when Background Media Type is Video. Controls whether the background video loops or stops when it reaches the end.",
-      "optionLabels": ["Loop Infinitely", "Stop at End"],
+      "optionLabels": [
+        "Loop Infinitely",
+        "Stop at End"
+      ],
       "sort": false,
       "removeDefaultNone": true,
       "dependencies": {

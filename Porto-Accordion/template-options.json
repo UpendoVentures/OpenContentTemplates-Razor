@@ -13,7 +13,8 @@
         "Tertiary",
         "Quaternary"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the choose the accordion color from the available options."
     },
     "Size": {
       "title": "Choose the Accordion Size",
@@ -23,7 +24,8 @@
         "Small",
         "Large"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the choose the accordion size from the available options."
     },
     "Background": {
       "title": "Include the Background?",
@@ -32,7 +34,8 @@
         "Default",
         "Remove"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the include the background? from the available options."
     },
     "Border": {
       "title": "Include the Borders?",
@@ -41,11 +44,13 @@
         "Default",
         "Remove"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the include the borders? from the available options."
     },
     "FaqMode": {
       "type": "checkbox",
-      "title": "FAQ Mode"
+      "title": "FAQ Mode",
+      "helper": "Turn this setting on or off to control faq mode."
     }
   }
 }
