@@ -18,7 +18,7 @@
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Short introduction shown above the resource list. HTML is allowed.",
+      "helper": "Optional. Short introduction shown above the resource list. Formatted text and links are allowed.",
       "placeholder": "Explore videos, organizations, talks, and practices that support mindfulness, stress recovery, and nature-based wellbeing."
     },
     "Resources": {
@@ -38,7 +38,7 @@
           },
           "Url": {
             "type": "url",
-            "helper": "Required. Paste the full website or video URL here."
+            "helper": "Required. Paste the full website or video web addresses here."
           },
           "Category": {
             "type": "select2",
@@ -68,8 +68,8 @@
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional FontAwesome Free icon class. Examples: fas fa-play-circle, fas fa-leaf, fas fa-brain, fas fa-heart, fas fa-book-open.",
-            "placeholder": "fas fa-leaf"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           }
         }
       }

@@ -3,32 +3,38 @@
     "ListPagePath": {
       "title": "List Page Path",
       "type": "text",
-      "default": "/events"
+      "default": "/events",
+      "helper": "Enter the list page path to use in this template. Use clear wording that visitors will understand."
     },
     "DetailPagePath": {
       "title": "Detail Page Path",
       "type": "text",
-      "default": "/events/detail"
+      "default": "/events/detail",
+      "helper": "Enter the detail page path to use in this template. Use clear wording that visitors will understand."
     },
     "RelatedEventCount": {
       "title": "Related Event Count",
       "type": "number",
-      "default": 3
+      "default": 3,
+      "helper": "Enter a number for related event count. Use a value that fits the choices and layout shown on the page."
     },
     "ShowRelatedEvents": {
       "title": "Show Related Events",
       "type": "checkbox",
-      "default": true
+      "default": true,
+      "helper": "Turn this setting on or off to control show related events."
     },
     "ShowAudiences": {
       "title": "Show Audiences",
       "type": "checkbox",
-      "default": true
+      "default": true,
+      "helper": "Turn this setting on or off to control show audiences."
     },
     "ShowFeatures": {
       "title": "Show Features",
       "type": "checkbox",
-      "default": true
+      "default": true,
+      "helper": "Turn this setting on or off to control show features."
     }
   }
 }

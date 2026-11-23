@@ -11,18 +11,22 @@
     },
     "Heading": {
       "type": "ckeditor",
-      "configset": "basic"
+      "configset": "basic",
+      "helper": "Enter the formatted content for heading. Keep the text clear and easy to read."
     },
     "SubHeading": {
       "type": "ckeditor",
-      "configset": "basic"
+      "configset": "basic",
+      "helper": "Enter the formatted content for sub heading. Keep the text clear and easy to read."
     },
     "Button": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button to use in this template. Use clear wording that visitors will understand."
     },
     "ButtonLink": {
       "type": "text",
-      "placeholder": "Example: https://github.com/UpendoVentures/OpenContentTemplates"
+      "placeholder": "Example: https://github.com/UpendoVentures/OpenContentTemplates",
+      "helper": "Enter the button link to use in this template. Use clear wording that visitors will understand."
     },
     "LinkTarget": {
       "type": "select",
@@ -32,7 +36,8 @@
         "Self",
         "Parent",
         "Top"
-      ]
+      ],
+      "helper": "Choose the link target from the available options."
     },
     "Style": {
       "type": "select",
@@ -49,7 +54,8 @@
         "Full Width",
         "Parallax",
         "Footer"
-      ]
+      ],
+      "helper": "Choose the style from the available options."
     },
     "WithBorders": {
       "type": "select",
@@ -63,7 +69,8 @@
         "Style": [
           "WithBorders"
         ]
-      }
+      },
+      "helper": "Choose the with borders from the available options."
     },
     "Featured": {
       "type": "select",
@@ -79,7 +86,8 @@
         "Style": [
           "Featured"
         ]
-      }
+      },
+      "helper": "Choose the featured from the available options."
     },
     "Color": {
       "type": "select",
@@ -98,7 +106,8 @@
           "Small",
           "FullWidth"
         ]
-      }
+      },
+      "helper": "Choose the color from the available options."
     },
     "ParallaxImage": {
       "type": "image",
@@ -106,7 +115,8 @@
         "Style": [
           "Parallax"
         ]
-      }
+      },
+      "helper": "Choose the image or file to use for parallax image. Use a clear file that fits this content."
     },
     "Animation": {
       "type": "select",

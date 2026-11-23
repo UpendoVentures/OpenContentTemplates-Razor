@@ -13,12 +13,12 @@
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Optional. Main heading shown above the job postings. HTML is allowed and will render in the view.",
+      "helper": "Optional. Main heading shown above the job postings. Formatted text and links are allowed and will render in the view.",
       "placeholder": "Open Positions"
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Supporting introduction shown below the heading. HTML is allowed and will render in the view.",
+      "helper": "Optional. Supporting introduction shown below the heading. Formatted text and links are allowed and will render in the view.",
       "placeholder": "<p>Explore current opportunities to join our team.</p>"
     },
     "JobPostings": {
@@ -39,7 +39,7 @@
           },
           "Summary": {
             "type": "textarea",
-            "helper": "Optional. Short summary shown near the top of the posting. HTML is allowed.",
+            "helper": "Optional. Short summary shown near the top of the posting. Formatted text and links are allowed.",
             "placeholder": "<p>Briefly describe the opportunity.</p>"
           },
           "Department": {
@@ -50,15 +50,33 @@
           "EmploymentType": {
             "type": "select",
             "helper": "Optional. Choose the employment arrangement.",
-            "optionLabels": ["Full-Time", "Part-Time", "Contract", "Freelance"],
-            "optionValues": ["Full-Time", "Part-Time", "Contract", "Freelance"],
+            "optionLabels": [
+              "Full-Time",
+              "Part-Time",
+              "Contract",
+              "Freelance"
+            ],
+            "optionValues": [
+              "Full-Time",
+              "Part-Time",
+              "Contract",
+              "Freelance"
+            ],
             "removeDefaultNone": false
           },
           "WorkplaceType": {
             "type": "select",
             "helper": "Optional. Choose how the work is performed.",
-            "optionLabels": ["On-Site", "Offsite", "Hybrid"],
-            "optionValues": ["On-Site", "Offsite", "Hybrid"],
+            "optionLabels": [
+              "On-Site",
+              "Offsite",
+              "Hybrid"
+            ],
+            "optionValues": [
+              "On-Site",
+              "Offsite",
+              "Hybrid"
+            ],
             "removeDefaultNone": false
           },
           "Location": {
@@ -68,17 +86,17 @@
           },
           "Responsibilities": {
             "type": "textarea",
-            "helper": "Optional. Describe the main responsibilities. HTML is allowed and will render in the view.",
+            "helper": "Optional. Describe the main responsibilities. Formatted text and links are allowed and will render in the view.",
             "placeholder": "<ul><li>Lead meaningful work.</li><li>Collaborate with the team.</li></ul>"
           },
           "Qualifications": {
             "type": "textarea",
-            "helper": "Optional. List required qualifications. HTML is allowed and will render in the view.",
+            "helper": "Optional. List required qualifications. Formatted text and links are allowed and will render in the view.",
             "placeholder": "<ul><li>Relevant professional experience.</li></ul>"
           },
           "PreferredQualifications": {
             "type": "textarea",
-            "helper": "Optional. List preferred qualifications. HTML is allowed and will render in the view.",
+            "helper": "Optional. List preferred qualifications. Formatted text and links are allowed and will render in the view.",
             "placeholder": "<ul><li>Additional experience that would help.</li></ul>"
           },
           "Compensation": {
@@ -92,11 +110,11 @@
           },
           "ClosingDate": {
             "type": "date",
-            "helper": "Optional. Last date to apply."
+            "helper": "Optional. Choose the last date when people can apply."
           },
           "DetailUrl": {
             "type": "url",
-            "helper": "Optional. Enter or select a local or external detail-page URL."
+            "helper": "Optional. Enter or select a local or external detail-page web addresses."
           }
         }
       }

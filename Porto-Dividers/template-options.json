@@ -1,145 +1,162 @@
 {
-	"fields": {		
-		"IconsSizes": {
-			"title": "Icons Sizes",
-			"type": "select",
-			"optionLabels": [
-				"Small",				
-				"Normal",
-				"Large"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Divider with Icon"
-            }
-			
-		},
-		"DividerSmallLocation": {
-			"title": "Small Divider Location",
-			"type": "select",
-			"optionLabels": [
-				"Left",				
-				"Center",
-				"Right"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Small"
-            }
-		},
-		"DividerSmallSize": {
-			"title": "Small Divider Size",
-			"type": "select",
-			"optionLabels": [
-				"Small",				
-				"Classic",
-				"Large"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Small"
-            }
-		},
-		"IconsPosition": {
-			"title": "Icons Position",
-			"type": "select",
-			"optionLabels": [
-				"Center",				
-				"Left",
-				"Right"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Divider with Icon"
-            }
-		},
-		"FullWith": {
-			"label": "Divider Full With",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Divider with Icon"
-            }
-		},
-		"Spacements": {
-			"title": "Spacements",
-			"type": "select",
-			"optionLabels": [
-				"Short",
-				"Tall",
-				"Taller"
-			]
-		},
-		"PatternStyle": {
-			"title": "Pattern Style",
-			"type": "select",
-			"optionLabels": [
-				"Solid",
-				"Dashed",
-				"Pattern",
-				"Pattern 2"
-			],
-			"removeDefaultNone": true,
-			"dependencies": {
-                "DividerType": ["Divider with Icon", "Classic"]
-            }
-		},		
-		"Color": {
-			"title": "Color",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"quaternary"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": ["Divider with Icon", "Small"]
-            }
-		},		
-		"DividerStyle": {
-			"title": "Divider Style",
-			"type": "select",
-			"optionLabels": [
-				"Style 1",
-				"Style 2",
-				"Style 3",
-				"Style 4"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Divider with Icon"
-            }
-		},
-		"EnableAnimations": {
-			"label": "Enable Animations",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-                "DividerType": "Divider with Icon"
-            }
-		},
-		"AnimationType": {
-			"title": "Animation Type",
-			"type": "select",
-			"optionLabels": [
-				"Bounce In"
-			],
-			"removeDefaultNone": true
-		},
-		"AnimationDelay": {
-			"title": "Animation Delay",
-			"type": "select",
-			"optionLabels": [
-				"0ms",
-				"300ms",				
-				"600ms",
-				"900ms",
-				"1200ms"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "IconsSizes": {
+      "title": "Icons Sizes",
+      "type": "select",
+      "optionLabels": [
+        "Small",
+        "Normal",
+        "Large"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Divider with Icon"
+      },
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "DividerSmallLocation": {
+      "title": "Small Divider Location",
+      "type": "select",
+      "optionLabels": [
+        "Left",
+        "Center",
+        "Right"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Small"
+      },
+      "helper": "Choose the small divider location from the available options."
+    },
+    "DividerSmallSize": {
+      "title": "Small Divider Size",
+      "type": "select",
+      "optionLabels": [
+        "Small",
+        "Classic",
+        "Large"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Small"
+      },
+      "helper": "Choose the small divider size from the available options."
+    },
+    "IconsPosition": {
+      "title": "Icons Position",
+      "type": "select",
+      "optionLabels": [
+        "Center",
+        "Left",
+        "Right"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Divider with Icon"
+      },
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "FullWith": {
+      "label": "Divider Full With",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Divider with Icon"
+      },
+      "helper": "Turn this setting on or off to control full with."
+    },
+    "Spacements": {
+      "title": "Spacements",
+      "type": "select",
+      "optionLabels": [
+        "Short",
+        "Tall",
+        "Taller"
+      ],
+      "helper": "Choose the spacements from the available options."
+    },
+    "PatternStyle": {
+      "title": "Pattern Style",
+      "type": "select",
+      "optionLabels": [
+        "Solid",
+        "Dashed",
+        "Pattern",
+        "Pattern 2"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": [
+          "Divider with Icon",
+          "Classic"
+        ]
+      },
+      "helper": "Choose the pattern style from the available options."
+    },
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "quaternary"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": [
+          "Divider with Icon",
+          "Small"
+        ]
+      },
+      "helper": "Choose the color from the available options."
+    },
+    "DividerStyle": {
+      "title": "Divider Style",
+      "type": "select",
+      "optionLabels": [
+        "Style 1",
+        "Style 2",
+        "Style 3",
+        "Style 4"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Divider with Icon"
+      },
+      "helper": "Choose the divider style from the available options."
+    },
+    "EnableAnimations": {
+      "label": "Enable Animations",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "DividerType": "Divider with Icon"
+      },
+      "helper": "Turn this setting on or off to control enable animations."
+    },
+    "AnimationType": {
+      "title": "Animation Type",
+      "type": "select",
+      "optionLabels": [
+        "Bounce In"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the animation type from the available options."
+    },
+    "AnimationDelay": {
+      "title": "Animation Delay",
+      "type": "select",
+      "optionLabels": [
+        "0ms",
+        "300ms",
+        "600ms",
+        "900ms",
+        "1200ms"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the animation delay from the available options."
+    }
+  }
 }

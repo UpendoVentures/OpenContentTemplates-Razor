@@ -11,34 +11,40 @@
     },
     "Speakers": {
       "type": "accordion",
-      "helper": "Must have at least one.",
+      "helper": "Add at least one speakers item. You can add more items as needed.",
       "items": {
         "fields": {
           "MemberName": {
             "type": "text",
-            "helper": "first & last name"
+            "helper": "Enter the person's first and last name."
           },
           "CompanyName": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the company name to use in this template. Use clear wording that visitors will understand."
           },
           "MemberTitle": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the member title to use in this template. Use clear wording that visitors will understand."
           },
           "Image": {
             "type": "image",
             "uploadfolder": "/Images/Members/",
             "typeahead": {
               "Folder": "/Images/Members/"
-            }
+            },
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           },
           "MemberPage": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for member page. You can use a page on this site or another website."
           },
           "SpeakerRole": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the speaker role to use in this template. Use clear wording that visitors will understand."
           },
           "RoleDescription": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the role description to use in this template. Use clear wording that visitors will understand."
           }
         }
       }

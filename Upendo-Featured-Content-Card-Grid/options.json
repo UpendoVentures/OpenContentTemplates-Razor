@@ -43,12 +43,12 @@
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Supporting text displayed below the section title. HTML is rendered as entered.",
+      "helper": "Optional. Supporting text displayed below the section title. formatted content is rendered as entered.",
       "placeholder": "Describe what visitors will find in this group of cards."
     },
     "SectionFooter": {
       "type": "text",
-      "helper": "Optional. A short message displayed below all card rows. HTML is rendered as entered.",
+      "helper": "Optional. A short message displayed below all card rows. formatted content is rendered as entered.",
       "placeholder": "Choose a solution to learn more."
     },
     "SectionRows": {
@@ -75,17 +75,17 @@
                 },
                 "CardIcon": {
                   "type": "text",
-                  "helper": "Required. Enter a free Font Awesome class, such as <code>fas fa-file-alt</code>. The icon is decorative and hidden from assistive technology.",
-                  "placeholder": "fas fa-file-alt"
+                  "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+                  "placeholder": "fas fa-heartbeat"
                 },
                 "ActionText": {
                   "type": "text",
-                  "helper": "Optional. Link text displayed at the bottom of the card. The link appears only when both text and URL are provided.",
+                  "helper": "Optional. Link text displayed at the bottom of the card. The link appears only when both text and web addresses are provided.",
                   "placeholder": "Learn More"
                 },
                 "ActionLink": {
                   "type": "url",
-                  "helper": "Optional. Select a local page or enter a valid local or external URL."
+                  "helper": "Optional. Select a local page or enter a valid local or external web addresses."
                 },
                 "Image": {
                   "type": "image",

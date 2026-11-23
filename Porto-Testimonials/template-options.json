@@ -3,13 +3,25 @@
     "Color": {
       "title": "Color",
       "type": "select",
-      "optionLabels": ["Primary", "Secondary", "Tertiary", "Quaternary"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the color from the available options."
     },
     "Style": {
       "title": "Style",
       "type": "select",
-      "optionLabels": ["Style-2", "Style-3", "Style-4", "Style-5"]
+      "optionLabels": [
+        "Style-2",
+        "Style-3",
+        "Style-4",
+        "Style-5"
+      ],
+      "helper": "Choose the style from the available options."
     }
   }
 }

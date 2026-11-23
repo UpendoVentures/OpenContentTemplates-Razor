@@ -12,10 +12,12 @@
     },
     "DateTime": {
       "type": "text",
-      "placeholder": "Use Format Year/Month/Day Hour:Minutes/Seconds"
+      "placeholder": "Use Format Year/Month/Day Hour:Minutes/Seconds",
+      "helper": "Enter the date time to use in this template. Use clear wording that visitors will understand."
     },
     "ParallaxImage": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for parallax image. Use a clear file that fits this content."
     }
   }
 }

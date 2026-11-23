@@ -3,12 +3,14 @@
     "Size": {
       "label": "Progress Bar Size",
       "type": "text",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Enter the size to use in this template. Use clear wording that visitors will understand."
     },
     "lineWidth": {
       "label": "Progress Bar LineWith",
       "type": "text",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Enter the line width to use in this template. Use clear wording that visitors will understand."
     },
     "barColor": {
       "label": "Progress Bar Color",
@@ -19,17 +21,20 @@
     "lineCap": {
       "label": "Progress Bar line Cap",
       "type": "text",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Enter the line cap to use in this template. Use clear wording that visitors will understand."
     },
     "scaleColor": {
       "label": "Progress Bar Scale Color",
       "type": "text",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Enter the scale color to use in this template. Use clear wording that visitors will understand."
     },
     "trackColor": {
       "label": "Progress Bar Track Color",
       "type": "text",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Enter the track color to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

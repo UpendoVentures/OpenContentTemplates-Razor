@@ -3,26 +3,46 @@
     "Style": {
       "title": "Style",
       "type": "select",
-      "optionLabels": ["Animation", "Popup", "Form"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "Animation",
+        "Popup",
+        "Form"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the style from the available options."
     },
     "Animation": {
       "title": "Animation",
       "type": "select",
-      "optionLabels": ["with zoom anim", "with move anim"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "with zoom anim",
+        "with move anim"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the animation from the available options."
     },
     "Popup": {
       "title": "Popup",
       "type": "select",
-      "optionLabels": ["youtube", "vimeo", "gmaps"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "youtube",
+        "vimeo",
+        "gmaps"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the popup from the available options."
     },
     "Color": {
       "type": "select",
       "sort": false,
-      "optionLabels": ["primary", "secondary", "tertiary", "quaternary"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the color from the available options."
     }
   }
 }

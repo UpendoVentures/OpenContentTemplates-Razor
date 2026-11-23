@@ -11,41 +11,64 @@
       "showMessages": false
     },
     "Content": {
-      "type": "ckeditor"
+      "type": "ckeditor",
+      "helper": "Enter the formatted content for content. Keep the text clear and easy to read."
     },
     "Buttom": {
       "type": "object",
       "fields": {
         "Text": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the text to use in this template. Use clear wording that visitors will understand."
         },
         "Color": {
           "type": "select",
           "sort": false,
-          "optionLabels": ["primary", "secondary", "tertiary", "quaternary"],
-          "removeDefaultNone": true
+          "optionLabels": [
+            "primary",
+            "secondary",
+            "tertiary",
+            "quaternary"
+          ],
+          "removeDefaultNone": true,
+          "helper": "Choose the color from the available options."
         },
         "Link": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the link to use in this template. Use clear wording that visitors will understand."
         }
-      }
+      },
+      "helper": "Enter the buttom to use in this template. Use clear wording that visitors will understand."
     },
     "Arrow": {
       "type": "select",
       "sort": false,
-      "optionLabels": ["vtl", "vtr", "vbl", "vbr", "hlb", "hlt", "hrb", "hrt"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "vtl",
+        "vtr",
+        "vbl",
+        "vbr",
+        "hlb",
+        "hlt",
+        "hrb",
+        "hrt"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the arrow from the available options."
     },
     "ArrowPosition": {
       "type": "object",
       "fields": {
         "Top": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the top to use in this template. Use clear wording that visitors will understand."
         },
         "Left": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the left to use in this template. Use clear wording that visitors will understand."
         }
-      }
+      },
+      "helper": "Enter the arrow position to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

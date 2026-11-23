@@ -19,12 +19,13 @@
             "helper": "If left blank, it's not rendered. "
           },
           "Description": {
-            "type": "ckeditor"
+            "type": "ckeditor",
+            "helper": "Enter the formatted content for description. Keep the text clear and easy to read."
           },
           "HtmlSnippet": {
             "type": "textarea",
             "placeholder": "<!-- Expecting HTML snippets -->  ",
-            "helper": "Copy & paste the intended HTML snippets from the respective source. "
+            "helper": "Copy & paste the intended formatted content snippets from the respective source. "
           }
         }
       }

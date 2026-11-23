@@ -12,7 +12,7 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Required. Main section heading. HTML is allowed and will render in the view.",
+      "helper": "Required. Main section heading. Formatted text and links are allowed and will render in the view.",
       "placeholder": "A Calm Start to This Section"
     },
     "SectionTitleCssClass": {
@@ -22,8 +22,8 @@
     },
     "SectionTitleIcon": {
       "type": "text",
-      "placeholder": "fas fa-seedling",
-      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "SectionIntroText": {
       "type": "ckeditor",
@@ -38,8 +38,8 @@
     },
     "SectionIcon": {
       "type": "text",
-      "placeholder": "fas fa-leaf",
-      "helper": "Optional. Decorative icon shown above or beside the title depending on the display format. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     }
   }
 }

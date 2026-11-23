@@ -15,19 +15,23 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Content": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for content. Use short paragraphs so it is easy to read."
           },
           "Active": {
             "type": "radio",
             "sort": false,
             "optionLabels": [],
-            "vertical": false
+            "vertical": false,
+            "helper": "Choose the active from the available options."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

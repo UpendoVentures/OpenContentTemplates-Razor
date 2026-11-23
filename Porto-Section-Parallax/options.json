@@ -11,17 +11,21 @@
       "showMessages": false
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "HeadingClasses": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading classes to use in this template. Use clear wording that visitors will understand."
     },
     "SubHeading": {
       "type": "textarea",
-      "placeholder": "<!-- be sure the HTML is valid! -->"
+      "placeholder": "<!-- be sure the HTML is valid! -->",
+      "helper": "Enter the text for sub heading. Use short paragraphs so it is easy to read."
     },
     "TextLight": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control text light."
     },
     "StyleType": {
       "type": "select",
@@ -33,7 +37,8 @@
         "Half Section (With Custom Background)",
         "Half Section (With Parallax)",
         "Video Section"
-      ]
+      ],
+      "helper": "Choose the style type from the available options."
     },
     "StyleDefault": {
       "type": "select",
@@ -61,7 +66,8 @@
         "StyleType": [
           "Default"
         ]
-      }
+      },
+      "helper": "Choose the style default from the available options."
     },
     "StyleParallax": {
       "type": "select",
@@ -75,7 +81,8 @@
         "StyleType": [
           "ParallaxSection"
         ]
-      }
+      },
+      "helper": "Choose the style parallax from the available options."
     },
     "StyleBackground": {
       "type": "select",
@@ -88,7 +95,8 @@
         "StyleType": [
           "BackgroundSection"
         ]
-      }
+      },
+      "helper": "Choose the style background from the available options."
     },
     "Image": {
       "type": "image",
@@ -99,7 +107,8 @@
           "HalfSection",
           "HalfSectionParallax"
         ]
-      }
+      },
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     },
     "VideoUrl": {
       "type": "file",
@@ -107,7 +116,8 @@
         "StyleType": [
           "VideoSection"
         ]
-      }
+      },
+      "helper": "Choose the image or file to use for video web addresses. Use a clear file that fits this content."
     }
   }
 }

@@ -11,13 +11,16 @@
       "showMessages": false
     },
     "Button": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button to use in this template. Use clear wording that visitors will understand."
     },
     "PopoverTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the popover title to use in this template. Use clear wording that visitors will understand."
     },
     "PopoverContent": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the popover content to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

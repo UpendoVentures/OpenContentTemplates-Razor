@@ -22,33 +22,38 @@
       "helper": "Describe the image for screenreader & other nonvisual web browsers."
     },
     "PageTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the page title to use in this template. Use clear wording that visitors will understand."
     },
     "TitleCssClass": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the title style name to use in this template. Use clear wording that visitors will understand."
     },
     "TitleIcon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "Subtitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the subtitle to use in this template. Use clear wording that visitors will understand."
     },
     "SubtitleCssClass": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the subtitle style name to use in this template. Use clear wording that visitors will understand."
     },
     "SubtitleIcon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "PaText": {
       "type": "text",
       "helper": "If any text is entered, the primary action button will attempt to render."
     },
     "PaUrl": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for pa web addresses. You can use a page on this site or another website."
     },
     "PaCssClass": {
       "type": "text",
@@ -60,15 +65,16 @@
     },
     "PaIcon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "SaText": {
       "type": "text",
       "helper": "If any text is entered, the primary action button will attempt to render."
     },
     "SaUrl": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for sa web addresses. You can use a page on this site or another website."
     },
     "SaCssClass": {
       "type": "text",
@@ -80,8 +86,8 @@
     },
     "SaIcon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\\\"https://fontawesome.com/v5/search?ic=free-collection\\\" rel=\"noopener noreferrer\" target=\\\"_blank\\\">FontAwesome</a>"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     }
   }
 }

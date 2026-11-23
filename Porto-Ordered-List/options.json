@@ -14,9 +14,11 @@
       "type": "array",
       "items": {
         "ListItemText": {
-          "type": "wysihtml"
+          "type": "wysihtml",
+          "helper": "Enter the formatted content for list item text. Keep the text clear and easy to read."
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

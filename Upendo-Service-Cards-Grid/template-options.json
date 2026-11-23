@@ -73,7 +73,7 @@
     },
     "CardBorderRadius": {
       "type": "text",
-      "helper": "CSS border-radius for cards.",
+      "helper": "Choose how rounded the card corners should be.",
       "placeholder": "1.5rem"
     },
     "CardShadow": {
@@ -83,8 +83,8 @@
     },
     "IconColorClass": {
       "type": "text",
-      "helper": "Class applied to FontAwesome icons. Used only when a card does not have Icon Image.",
-      "placeholder": "text-primary"
+      "helper": "Choose the icon color from the available options.",
+      "placeholder": "fas fa-heartbeat"
     },
     "HeadingAnimation": {
       "type": "select",
@@ -137,7 +137,8 @@
         "mt-5",
         "mt-auto"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (top) from the available options."
     },
     "MarginBottom": {
       "title": "Margin (bottom)",
@@ -151,7 +152,8 @@
         "mb-5",
         "mb-auto"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (bottom) from the available options."
     },
     "PaddingTop": {
       "title": "Padding (top)",
@@ -165,7 +167,8 @@
         "pt-5",
         "pt-auto"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (top) from the available options."
     },
     "PaddingBottom": {
       "title": "Padding (bottom)",
@@ -179,7 +182,8 @@
         "pb-5",
         "pb-auto"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (bottom) from the available options."
     }
   }
 }

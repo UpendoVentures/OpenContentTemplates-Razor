@@ -11,19 +11,24 @@
       "showMessages": false
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "Text1": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the text1 to use in this template. Use clear wording that visitors will understand."
     },
     "Text2": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the text2 to use in this template. Use clear wording that visitors will understand."
     },
     "Text3": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the text3 to use in this template. Use clear wording that visitors will understand."
     },
     "Image": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     }
   }
 }

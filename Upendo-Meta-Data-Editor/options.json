@@ -55,7 +55,7 @@
           },
           "Href": {
             "type": "url",
-            "helper": "Specifies the location of the linked document. Can be a local or external URL."
+            "helper": "Specifies the location of the linked document. Can be a local or external web addresses."
           },
           "Type": {
             "type": "select",

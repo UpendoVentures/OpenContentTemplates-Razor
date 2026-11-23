@@ -1,26 +1,28 @@
 {
-	"fields": {				
-		"Striped": {
-			"rightLabel": "Striped",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-        "Bordered": {
-			"rightLabel": "Bordered",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-        "HoverRows": {
-			"rightLabel": "Hover Rows",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-        "Condensed": {
-			"rightLabel": "Condensed Table",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		}
-
-
-	}
+  "fields": {
+    "Striped": {
+      "rightLabel": "Striped",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control striped."
+    },
+    "Bordered": {
+      "rightLabel": "Bordered",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control bordered."
+    },
+    "HoverRows": {
+      "rightLabel": "Hover Rows",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control hover rows."
+    },
+    "Condensed": {
+      "rightLabel": "Condensed Table",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control condensed."
+    }
+  }
 }

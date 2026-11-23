@@ -11,10 +11,12 @@
       "showMessages": false
     },
     "ButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
     },
     "TooltipTitle": {
-      "type": "wysihtml"
+      "type": "wysihtml",
+      "helper": "Enter the formatted content for tooltip title. Keep the text clear and easy to read."
     }
   }
 }

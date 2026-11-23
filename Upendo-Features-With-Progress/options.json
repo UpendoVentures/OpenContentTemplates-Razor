@@ -13,17 +13,17 @@
     },
     "SectionEyebrow": {
       "type": "text",
-      "helper": "Optional. Small label shown above the section heading. HTML is allowed.",
+      "helper": "Optional. Small label shown above the section heading. Formatted text and links are allowed.",
       "placeholder": "Evaluation context"
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Optional. Main heading shown above the cards. HTML is allowed.",
+      "helper": "Optional. Main heading shown above the cards. Formatted text and links are allowed.",
       "placeholder": "Industry contexts to review."
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "helper": "Optional. Short intro shown below the heading. Formatted text and links are allowed.",
       "placeholder": "Use these cards to review industry-specific assumptions before final publication."
     },
     "Cards": {
@@ -34,23 +34,23 @@
         "fields": {
           "Eyebrow": {
             "type": "text",
-            "helper": "Optional. Small label shown above the card title. HTML is allowed.",
+            "helper": "Optional. Small label shown above the card title. Formatted text and links are allowed.",
             "placeholder": ""
           },
           "Title": {
             "type": "text",
-            "helper": "Required. Card title. HTML is allowed.",
+            "helper": "Required. Card title. Formatted text and links are allowed.",
             "placeholder": "Defense and aerospace"
           },
           "Description": {
             "type": "textarea",
-            "helper": "Required. Supporting body copy. HTML is allowed.",
+            "helper": "Required. Supporting body copy. Formatted text and links are allowed.",
             "placeholder": "Placeholder for mission and program environments where final language must be reviewed for compliance, procurement, and claim sensitivity."
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional. Font Awesome class shown in the feature bubble. Leave empty to use the fallback icon.",
-            "placeholder": "fa-solid fa-shield-halved"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "Image": {
             "type": "image",

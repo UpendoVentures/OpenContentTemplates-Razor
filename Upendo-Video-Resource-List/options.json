@@ -23,7 +23,7 @@
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Short introduction shown above the videos. HTML is allowed.",
+      "helper": "Optional. Short introduction shown above the videos. Formatted text and links are allowed.",
       "placeholder": "Watch brief explainers, product conversations, and field notes from the team."
     },
     "Videos": {
@@ -43,12 +43,12 @@
           },
           "YouTubeUrl": {
             "type": "url",
-            "helper": "Optional. Paste a YouTube watch, youtu.be, shorts, or embed URL. The public embed uses youtube-nocookie.com when the video ID can be parsed.",
+            "helper": "Optional. Paste a YouTube watch, youtu.be, shorts, or embed web addresses. The public embed uses youtube-nocookie.com when the video ID can be parsed.",
             "placeholder": "https://www.youtube.com/watch?v=VIDEO_ID"
           },
           "ThumbnailImage": {
             "type": "image",
-            "helper": "Optional fallback image shown when no usable YouTube URL is configured. Recommended minimum: 1280 x 720 px.<br /><br /><strong>Default Thumbnail:</strong> To use the default YouTube thumbnail, <a href=\"https://www.get-youtube-thumbnail.com/\" target=\"_blank\" rel=\"noopener noreferrer\">grab it from this third-party site using the YouTube URL</a>.",
+            "helper": "Optional fallback image shown when no usable YouTube web addresses is configured. Recommended minimum: 1280 x 720 px.<br /><br /><strong>Default Thumbnail:</strong> To use the default YouTube thumbnail, <a href=\"https://www.get-youtube-thumbnail.com/\" target=\"_blank\" rel=\"noopener noreferrer\">grab it from this third-party site using the YouTube web addresses</a>.",
             "uploadfolder": "Content/OpenContent/VideoResourceList/",
             "typeahead": {
               "Folder": "Content/OpenContent/VideoResourceList/"
@@ -71,18 +71,21 @@
           },
           "CtaText": {
             "type": "text",
-            "helper": "Optional. Link text shown below the description. If empty, the YouTube URL is used as a source link only when a fallback card renders.",
+            "helper": "Optional. Link text shown below the description. If empty, the YouTube web addresses is used as a source link only when a fallback card renders.",
             "placeholder": "Watch on YouTube"
           },
           "CtaUrl": {
             "type": "url",
-            "helper": "Optional. Link URL for the CTA. If empty, the YouTube URL is used when CTA text is present.",
+            "helper": "Optional. Link web addresses for the button. If empty, the YouTube web addresses is used when button text is present.",
             "placeholder": "https://www.youtube.com/watch?v=VIDEO_ID"
           },
           "CtaTarget": {
             "type": "select",
-            "helper": "Open the CTA in the same tab or a new tab. New tabs automatically receive noopener and noreferrer.",
-            "optionLabels": ["Same Tab", "New Tab"],
+            "helper": "Open the button in the same tab or a new tab. New tabs automatically receive noopener and noreferrer.",
+            "optionLabels": [
+              "Same Tab",
+              "New Tab"
+            ],
             "removeDefaultNone": true
           }
         }

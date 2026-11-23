@@ -1,32 +1,34 @@
 {
-	"fields": {		
-		"ButtonColor": {
-			"title": "Button Color",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Success",
-				"Info",
-				"Warning",
-				"Danger",
-				"Dark",
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"Quaternary"
-			],
-			"removeDefaultNone": true
-		},
-		"StyleModal": {
-			"title": "Style Modal",
-			"type": "select",
-			"optionLabels": [
-				"Default",
-				"Large",
-				"Small",
-				"No Animate"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "ButtonColor": {
+      "title": "Button Color",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Success",
+        "Info",
+        "Warning",
+        "Danger",
+        "Dark",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the button color from the available options."
+    },
+    "StyleModal": {
+      "title": "Style Modal",
+      "type": "select",
+      "optionLabels": [
+        "Default",
+        "Large",
+        "Small",
+        "No Animate"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the style modal from the available options."
+    }
+  }
 }

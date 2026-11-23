@@ -14,11 +14,12 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Status": {
             "type": "text",
-            "helper": "Ideally, a single, short word"
+            "helper": "Enter a short status that visitors can understand quickly."
           },
           "StatusColor": {
             "type": "select",
@@ -33,7 +34,8 @@
               "Info",
               "Light",
               "Dark"
-            ]
+            ],
+            "helper": "Choose the status color from the available options."
           },
           "UpdateDate": {
             "type": "date",
@@ -43,25 +45,29 @@
             "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM"
           },
           "Summary": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for summary. Use short paragraphs so it is easy to read."
           },
           "Details": {
             "type": "ckeditor",
-            "configset": "basic"
+            "configset": "basic",
+            "helper": "Enter the formatted content for details. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for upendo needs. Remove any item you do not need."
     },
     "SystemUpdates": {
       "type": "accordion",
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Status": {
             "type": "text",
-            "helper": "Ideally, a single, short word"
+            "helper": "Enter a short status that visitors can understand quickly."
           },
           "StatusColor": {
             "type": "select",
@@ -76,7 +82,8 @@
               "Info",
               "Light",
               "Dark"
-            ]
+            ],
+            "helper": "Choose the status color from the available options."
           },
           "UpdateDate": {
             "type": "date",
@@ -86,14 +93,17 @@
             "helper": "Use format: MM/DD/YYYY h:mm AM/PM — e.g., 10/14/2025 8:30 AM"
           },
           "Summary": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for summary. Use short paragraphs so it is easy to read."
           },
           "Details": {
             "type": "ckeditor",
-            "configset": "basic"
+            "configset": "basic",
+            "helper": "Enter the formatted content for details. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for system updates. Remove any item you do not need."
     }
   }
 }

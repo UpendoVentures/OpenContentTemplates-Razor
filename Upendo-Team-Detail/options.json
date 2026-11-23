@@ -7,78 +7,98 @@
     },
     "MemberName": {
       "type": "text",
-      "helper": "first & last name"
+      "helper": "Enter the person's first and last name."
     },
     "CompanyName": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the company name to use in this template. Use clear wording that visitors will understand."
     },
     "Slug": {
       "type": "text",
       "helper": "Something like <code>singleword</code> or <code>single-word</code> would be best."
     },
     "MemberSince": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the member since to use in this template. Use clear wording that visitors will understand."
     },
     "MemberRole": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the member role to use in this template. Use clear wording that visitors will understand."
     },
     "MemberTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the member title to use in this template. Use clear wording that visitors will understand."
     },
     "MemberBio": {
       "type": "ckeditor",
-      "configset": "basic"
+      "configset": "basic",
+      "helper": "Enter the formatted content for member bio. Keep the text clear and easy to read."
     },
     "LongBio": {
       "type": "ckeditor",
-      "configset": "basic"
+      "configset": "basic",
+      "helper": "Enter the formatted content for long bio. Keep the text clear and easy to read."
     },
     "Category": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the category to use in this template. Use clear wording that visitors will understand."
     },
     "Image": {
       "type": "image",
       "uploadfolder": "/Images/Members/",
       "typeahead": {
         "Folder": "/Images/Members/"
-      }
+      },
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     },
     "Website": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for website. You can use a page on this site or another website."
     },
     "Website2": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for website2. You can use a page on this site or another website."
     },
     "Website3": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for website3. You can use a page on this site or another website."
     },
     "LinkedIn": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for linked in. You can use a page on this site or another website."
     },
     "Instagram": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for instagram. You can use a page on this site or another website."
     },
     "Yelp": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for yelp. You can use a page on this site or another website."
     },
     "Google": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for google. You can use a page on this site or another website."
     },
     "Facebook": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for facebook. You can use a page on this site or another website."
     },
     "YouTube": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for you tube. You can use a page on this site or another website."
     },
     "TikTok": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for tik tok. You can use a page on this site or another website."
     },
     "Twitter": {
-      "type": "url"
+      "type": "url",
+      "helper": "Enter the web address for twitter. You can use a page on this site or another website."
     },
     "SortIndex": {
       "type": "number",
-	  "hidden" : true
+      "hidden": true,
+      "helper": "Enter a number for sort index. Use a value that fits the choices and layout shown on the page."
     }
   }
 }

@@ -1,17 +1,18 @@
 {
-    "fields": {
-        "ModuleTitle": {
-            "type": "text",
-            "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
-            "placeholder": "Try entering anything that's somewhat unique"
-        },
-        "ModuleAnchor": {
-            "type": "text",
-            "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-            "showMessages": false
-        },
-        "CompletedAmmount": {
-            "type": "text"
-        }
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "CompletedAmmount": {
+      "type": "text",
+      "helper": "Enter the completed ammount to use in this template. Use clear wording that visitors will understand."
     }
+  }
 }

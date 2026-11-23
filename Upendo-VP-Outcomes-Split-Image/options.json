@@ -12,7 +12,7 @@
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Required. This is the main heading shown for the section. Basic HTML is allowed if needed.",
+      "helper": "Required. This is the main heading shown for the section. Basic Formatted text and links are allowed if needed.",
       "placeholder": "Measurable outcomes for the human ecosystem."
     },
     "Image": {
@@ -30,18 +30,18 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Short title for this value proposition. Basic HTML is allowed.",
+            "helper": "Required. Short title for this value proposition. Basic Formatted text and links are allowed.",
             "placeholder": "Cognitive Restoration"
           },
           "Description": {
             "type": "text",
-            "helper": "Required. Keep this to a few short sentences for the best layout. Basic HTML is allowed.",
+            "helper": "Required. Keep this to a few short sentences for the best layout. Basic Formatted text and links are allowed.",
             "placeholder": "Reducing directed attention fatigue through soft fascination, restoring the group’s capacity for focus and problem-solving."
           },
           "Icon": {
             "type": "text",
-            "placeholder": "fas fa-heart",
-            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+            "placeholder": "fas fa-heartbeat",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           }
         }
       }

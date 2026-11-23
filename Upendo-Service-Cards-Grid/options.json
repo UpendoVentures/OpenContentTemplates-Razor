@@ -13,12 +13,12 @@
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Optional. Main heading shown above the card grid. HTML is allowed.",
+      "helper": "Optional. Main heading shown above the card grid. Formatted text and links are allowed.",
       "placeholder": "Explore solution paths by operational need."
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Optional. Short intro shown below the heading. HTML is allowed.",
+      "helper": "Optional. Short intro shown below the heading. Formatted text and links are allowed.",
       "placeholder": "Find deployable computing, capture, analysis, and mission-support solutions built for field, edge, and operational environments."
     },
     "Cards": {
@@ -30,13 +30,16 @@
           "VisualType": {
             "type": "select",
             "helper": "Choose whether this card uses the existing icon treatment or a full-width top image.",
-            "optionLabels": ["Icon", "Image"],
+            "optionLabels": [
+              "Icon",
+              "Image"
+            ],
             "removeDefaultNone": true
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional. FontAwesome icon class. Used only when Icon Image is empty.",
-            "placeholder": "fas fa-shield-alt",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat",
             "dependencies": {
               "VisualType": [
                 "icon"
@@ -49,7 +52,7 @@
             "typeahead": {
               "Folder": "Content/OpenContent/ServiceCards/"
             },
-            "helper": "Optional. Small icon image shown above the card title. Takes priority over Icon Class.",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
             "dependencies": {
               "VisualType": [
                 "icon"
@@ -92,12 +95,12 @@
           },
           "Title": {
             "type": "text",
-            "helper": "Required. Card title. HTML is allowed.",
+            "helper": "Required. Card title. Formatted text and links are allowed.",
             "placeholder": "Testing and Quality Assurance"
           },
           "Description": {
             "type": "textarea",
-            "helper": "Required. Short supporting description. HTML is allowed.",
+            "helper": "Required. Short supporting description. Formatted text and links are allowed.",
             "placeholder": "We validate every delivery to reduce risk and ensure stable, reliable experiences."
           },
           "Link": {

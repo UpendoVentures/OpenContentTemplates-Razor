@@ -11,13 +11,16 @@
       "showMessages": false
     },
     "BannerId": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the banner id to use in this template. Use clear wording that visitors will understand."
     },
     "BannerContent": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for banner content. Use short paragraphs so it is easy to read."
     },
     "BannerLink": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the banner link to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

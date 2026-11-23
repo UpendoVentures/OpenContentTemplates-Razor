@@ -66,12 +66,12 @@
     },
     "SecondaryCtaButtonText": {
       "type": "text",
-      "helper": "Optional. If both the text and URL are filled in, the second button will be shown.",
+      "helper": "Optional. If both the text and web addresses are filled in, the second button will be shown.",
       "placeholder": "Download Starter Guide"
     },
     "SecondaryCtaButtonUrl": {
       "type": "url",
-      "helper": "Optional. Fill this in along with the second button text to show the second CTA."
+      "helper": "Optional. Fill this in along with the second button text to show the second button."
     }
   }
 }

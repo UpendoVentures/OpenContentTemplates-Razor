@@ -17,12 +17,12 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Optional. Main section heading. HTML is allowed and will render in the view.",
+      "helper": "Optional. Main section heading. Formatted text and links are allowed and will render in the view.",
       "placeholder": "A Clear, Centered Heading"
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Supporting text shown below the heading. HTML is allowed and will render in the view.",
+      "helper": "Optional. Supporting text shown below the heading. Formatted text and links are allowed and will render in the view.",
       "placeholder": "<p>Use this area for a short, centered introduction to the section.</p>"
     },
     "Cta1Text": {
@@ -32,12 +32,12 @@
     },
     "Cta1Icon": {
       "type": "text",
-      "placeholder": "fas fa-heart",
-      "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "Cta1Url": {
       "type": "url",
-      "helper": "Optional. Full URL or relative page path for CTA 1.",
+      "helper": "Optional. Full web addresses or relative page path for button 1.",
       "placeholder": "/contact"
     }
   }

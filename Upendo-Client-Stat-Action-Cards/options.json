@@ -16,13 +16,13 @@
     "SectionTitle": {
       "label": "Section Title",
       "type": "text",
-      "helper": "Optional heading displayed above the activity cards. HTML is allowed and will be rendered as entered.",
+      "helper": "Optional heading displayed above the activity cards. Formatted text and links are allowed and will be rendered as entered.",
       "placeholder": "Website activity"
     },
     "SectionEyebrow": {
       "label": "Section Eyebrow",
       "type": "text",
-      "helper": "Optional short label displayed above the section title. HTML is allowed and will be rendered as entered.",
+      "helper": "Optional short label displayed above the section title. Formatted text and links are allowed and will be rendered as entered.",
       "placeholder": "Management dashboard"
     },
     "SectionEyebrowColor": {
@@ -57,13 +57,13 @@
     "SectionDescription": {
       "label": "Section Description",
       "type": "textarea",
-      "helper": "Optional supporting text below the title. HTML is allowed and will be rendered as entered.",
+      "helper": "Optional supporting text below the title. Formatted text and links are allowed and will be rendered as entered.",
       "placeholder": "A quick view of the work that needs attention."
     },
     "SectionFooter": {
       "label": "Section Footer",
       "type": "text",
-      "helper": "Optional note displayed below the activity cards. HTML is allowed and will be rendered as entered.",
+      "helper": "Optional note displayed below the activity cards. Formatted text and links are allowed and will be rendered as entered.",
       "placeholder": "Select a card to review the related feature."
     },
     "Alerts": {
@@ -76,14 +76,14 @@
           "Content": {
             "label": "Content",
             "type": "textarea",
-            "helper": "Required when this alert is used. HTML is allowed and will be rendered as entered.",
+            "helper": "Required when this alert is used. Formatted text and links are allowed and will be rendered as entered.",
             "placeholder": "A short message about an important website task or update."
           },
           "Icon": {
             "label": "Icon",
             "type": "text",
-            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code> or <code>fas fa-phone</code>.",
-            "placeholder": "fas fa-circle-exclamation"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "ActionLabel": {
             "label": "Action Label",
@@ -94,7 +94,7 @@
           "ActionUrl": {
             "label": "Action URL",
             "type": "url",
-            "helper": "Optional. Local and external URLs are supported. External links open in a new tab.",
+            "helper": "Optional. Local and external web addresses are supported. External links open in a new tab.",
             "placeholder": "/manage/example"
           }
         }

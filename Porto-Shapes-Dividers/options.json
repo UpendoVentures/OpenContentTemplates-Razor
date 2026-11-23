@@ -11,7 +11,8 @@
       "showMessages": false
     },
     "Image": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     }
   }
 }

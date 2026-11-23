@@ -11,17 +11,20 @@
       "showMessages": false
     },
     "ButtonTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button title to use in this template. Use clear wording that visitors will understand."
     },
     "ModalTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the modal title to use in this template. Use clear wording that visitors will understand."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "Item": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the item to use in this template. Use clear wording that visitors will understand."
           },
           "DataType": {
             "type": "select",
@@ -31,10 +34,12 @@
               "email",
               "url",
               "textarea"
-            ]
+            ],
+            "helper": "Choose the data type from the available options."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

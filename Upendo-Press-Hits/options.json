@@ -22,10 +22,12 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Source": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the source to use in this template. Use clear wording that visitors will understand."
           },
           "Type": {
             "type": "select",
@@ -36,46 +38,57 @@
               "Featured Article",
               "Press Release",
               "Other"
-            ]
+            ],
+            "helper": "Choose the type from the available options."
           },
           "Date": {
             "type": "date",
-            "picker": {}
+            "picker": {},
+            "helper": "Choose the date or time to use for date."
           },
           "Thumbnail": {
             "type": "image",
             "uploadfolder": "Images/Press-Hits/",
             "typeahead": {
               "Folder": "Images/Press-Hits/"
-            }
+            },
+            "helper": "Choose the image or file to use for thumbnail. Use a clear file that fits this content."
           },
           "ThumbnailAlt": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the thumbnail alt to use in this template. Use clear wording that visitors will understand."
           },
           "Description": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for description. Keep the text clear and easy to read."
           },
           "UpendoLink": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for upendo link. You can use a page on this site or another website."
           },
           "Links": {
             "type": "array",
             "items": {
               "fields": {
                 "Label": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the text visitors should see for this link."
                 },
                 "Url": {
-                  "type": "url"
+                  "type": "url",
+                  "helper": "Enter the web address for web addresses. You can use a page on this site or another website."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for links. Remove any item you do not need."
           },
           "Featured": {
-            "type": "checkbox"
+            "type": "checkbox",
+            "helper": "Turn this setting on or off to control featured."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for press items. Remove any item you do not need."
     }
   }
 }

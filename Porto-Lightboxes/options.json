@@ -11,17 +11,20 @@
       "showMessages": false
     },
     "SingleImage": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for single image. Use a clear file that fits this content."
     },
     "ImageGallery": {
       "type": "array",
       "items": {
         "fields": {
           "Image": {
-            "type": "image"
+            "type": "image",
+            "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for image gallery. Remove any item you do not need."
     }
   }
 }

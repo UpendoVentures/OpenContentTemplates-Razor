@@ -24,7 +24,11 @@
     "SectionHeadingElement": {
       "type": "select",
       "helper": "Choose the heading level that fits the page outline.",
-      "optionLabels": ["Heading 2", "Heading 3", "Heading 4"],
+      "optionLabels": [
+        "Heading 2",
+        "Heading 3",
+        "Heading 4"
+      ],
       "removeDefaultNone": true
     },
     "IssueLabel": {
@@ -39,7 +43,7 @@
     },
     "FeaturedArticle": {
       "type": "object",
-      "helper": "Large left-side article card. The entire card links when a safe URL is provided.",
+      "helper": "Large left-side article card. The entire card links when a safe web addresses is provided.",
       "fields": {
         "Category": {
           "type": "text",
@@ -68,7 +72,17 @@
         "ImageFocalPosition": {
           "type": "select",
           "helper": "Controls the image object-position used inside the featured card.",
-          "optionLabels": ["Center", "Center Top", "Center Bottom", "Left Center", "Left Top", "Left Bottom", "Right Center", "Right Top", "Right Bottom"],
+          "optionLabels": [
+            "Center",
+            "Center Top",
+            "Center Bottom",
+            "Left Center",
+            "Left Top",
+            "Left Bottom",
+            "Right Center",
+            "Right Top",
+            "Right Bottom"
+          ],
           "removeDefaultNone": true
         },
         "CtaText": {
@@ -78,12 +92,15 @@
         },
         "Url": {
           "type": "url",
-          "helper": "Allowed URL formats: anchors, slash-relative URLs, http, https, mailto, and tel. Protocol-relative URLs are rejected."
+          "helper": "Allowed web addresses formats: anchors, slash-relative web addresses, http, https, mailto, and tel. Protocol-relative web addresses are rejected."
         },
         "LinkTarget": {
           "type": "select",
           "helper": "Choose whether the card opens in the current tab or a new tab.",
-          "optionLabels": ["Current Tab", "New Tab"],
+          "optionLabels": [
+            "Current Tab",
+            "New Tab"
+          ],
           "removeDefaultNone": true
         },
         "CtaAriaLabel": {
@@ -96,7 +113,7 @@
     "SideArticles": {
       "type": "accordion",
       "titleField": "Title",
-      "helper": "Add smaller right-side article cards in display order. Each card links when a safe URL is provided.",
+      "helper": "Add smaller right-side article cards in display order. Each card links when a safe web addresses is provided.",
       "items": {
         "fields": {
           "Category": {
@@ -116,12 +133,15 @@
           },
           "Url": {
             "type": "url",
-            "helper": "Allowed URL formats: anchors, slash-relative URLs, http, https, mailto, and tel. Protocol-relative URLs are rejected."
+            "helper": "Allowed web addresses formats: anchors, slash-relative web addresses, http, https, mailto, and tel. Protocol-relative web addresses are rejected."
           },
           "LinkTarget": {
             "type": "select",
             "helper": "Choose whether the card opens in the current tab or a new tab.",
-            "optionLabels": ["Current Tab", "New Tab"],
+            "optionLabels": [
+              "Current Tab",
+              "New Tab"
+            ],
             "removeDefaultNone": true
           },
           "CtaAriaLabel": {

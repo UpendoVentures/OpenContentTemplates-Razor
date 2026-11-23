@@ -12,12 +12,12 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Optional. Main section heading. HTML is allowed and will render in the view.",
+      "helper": "Optional. Main section heading. Formatted text and links are allowed and will render in the view.",
       "placeholder": "A Clear, Centered Heading"
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Supporting text shown below the heading. HTML is allowed and will render in the view.",
+      "helper": "Optional. Supporting text shown below the heading. Formatted text and links are allowed and will render in the view.",
       "placeholder": "<p>Use this area for a short, centered introduction to the section.</p>"
     }
   }

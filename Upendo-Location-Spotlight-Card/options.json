@@ -64,7 +64,7 @@
     },
     "LocationTextUrl": {
       "type": "url",
-      "helper": "Optional. When provided, the location text, button, and image will all link to this URL.",
+      "helper": "Optional. When provided, the location text, button, and image will all link to this web addresses.",
       "placeholder": "https://www.google.com/maps"
     },
     "LocationTextUrlTarget": {

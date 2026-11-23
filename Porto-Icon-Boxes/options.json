@@ -14,27 +14,31 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Content": {
             "type": "ckeditor",
-            "configset": "basic"
+            "configset": "basic",
+            "helper": "Enter the formatted content for content. Keep the text clear and easy to read."
           },
           "Icon": {
             "type": "text",
-            "placeholder": "fa-solid fa-heart",
-            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+            "placeholder": "fas fa-heartbeat",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           },
           "ButtonText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
           },
           "ButtonIcon": {
             "type": "text",
-            "placeholder": "fa-solid fa-heart",
-            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+            "placeholder": "fas fa-heartbeat",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           },
           "ButtonUrl": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for button web addresses. You can use a page on this site or another website."
           },
           "ButtonTarget": {
             "type": "select",
@@ -44,7 +48,8 @@
               "Parent",
               "Self",
               "Top"
-            ]
+            ],
+            "helper": "Choose the button target from the available options."
           },
           "Animation": {
             "type": "select",
@@ -81,7 +86,8 @@
             "helper": "If specified, how do you want the element to appear when it appears to the visitor? Don't use if also turning on animations in the template settings."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

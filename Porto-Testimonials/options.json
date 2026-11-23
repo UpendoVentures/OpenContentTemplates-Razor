@@ -11,19 +11,24 @@
       "showMessages": false
     },
     "Content": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for content. Use short paragraphs so it is easy to read."
     },
     "Image": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     },
     "Fullname": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the fullname to use in this template. Use clear wording that visitors will understand."
     },
     "Text": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the text to use in this template. Use clear wording that visitors will understand."
     },
     "Text1": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the text1 to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

@@ -13,12 +13,12 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Optional. Renders as the section h3. HTML is allowed and will render in the view.",
+      "helper": "Optional. Renders as the section h3. Formatted text and links are allowed and will render in the view.",
       "placeholder": "Keep Exploring"
     },
     "SectionDescription": {
       "type": "text",
-      "helper": "Optional short text shown below the section title. HTML is allowed and will render in the view.",
+      "helper": "Optional short text shown below the section title. Formatted text and links are allowed and will render in the view.",
       "placeholder": "Guide visitors to the next helpful page with image-based navigation cards."
     },
     "NavigationCards": {
@@ -28,12 +28,12 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Main title shown on the card. HTML is allowed and will render in the view.",
+            "helper": "Required. Main title shown on the card. Formatted text and links are allowed and will render in the view.",
             "placeholder": "Our Methodology"
           },
           "Eyebrow": {
             "type": "text",
-            "helper": "Optional small label shown above the title. HTML is allowed and will render in the view.",
+            "helper": "Optional small label shown above the title. Formatted text and links are allowed and will render in the view.",
             "placeholder": "Our Foundation"
           },
           "Image": {

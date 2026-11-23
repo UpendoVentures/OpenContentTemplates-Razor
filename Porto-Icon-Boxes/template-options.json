@@ -1,273 +1,342 @@
 {
-	"fields": {		
-		"DisplayWidth": {
-			"title": "Display Width",
-			"type": "select",
-			"optionLabels": [
-				"Full Width",
-				"Partial Width, Centered",
-				"Half, Centered"
-			],
-			"removeDefaultNone": true
-		},			
-		"DisplayAxis": {
-			"title": "Display Axis",
-			"type": "select",
-			"optionLabels": [
-				"Display Vertically",
-				"Display Horizontally"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "IconBoxesType": ["Classic"]
-            } 
-		},
-		"ContentContainers": {
-			"title": "Content Containers",
-			"type": "select",
-			"optionLabels": [
-				"No Rows",
-				"One Row",
-				"Two Rows"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "IconBoxesType": ["Classic"]
-            } 
-		},		
-		"UppercaseTitle": {
-			"label": "Uppercase Title",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"EnableAnimations": {
-			"label": "Enable Animations",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-                "IconBoxesType": ["Classic","Simple"]
-            } 
-		},
-		"AnimationType": {
-			"title": "Animation Type",
-			"type": "select",
-			"optionLabels": [
-				"Bounce In", 
-				"Fade In", 
-				"Fade In Up"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "IconBoxesType": ["Classic","Simple"],
-				"EnableAnimations": true
-            } 
-		},
-		"AnimationDelay": {
-			"title": "Animation Delay",
-			"type": "select",
-			"optionLabels": [
-				"0ms",
-				"300ms",				
-				"600ms",
-				"900ms",
-				"1200ms"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-                "IconBoxesType": ["Classic","Simple"],
-				"EnableAnimations": true
-            } 
-		},
-		"IconPosition": {
-			"title": "Icon Position",
-			"type": "select",
-			"optionLabels": [
-				"Left",
-				"Right"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Classic"],
-                "ContentContainers": ["2"]
-            }
-		},
-		"AddTopDivider": {
-			"label": "Add Title Divider",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Classic"],
-                "ContentContainers": ["0","1"]
-            }
-		},
-		"AddBottomDivider": {
-			"label": "Add Action Link Divider",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Classic"],
-                "ContentContainers": ["0","1"]
-            }
-		},
-		"FeaturedBoxesStyle": {
-			"title": "Featured Boxes Style",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Style 1",
-				"Style 2",
-				"Style 3",
-				"Style 4",
-				"Style 5",
-				"Style 6",
-				"Style 7",
-				"Style 8",
-				"Style 9"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Classic"]
-            }
-		},
-		"FeatureBoxStyle": {
-			"title": "Feature Box Style",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Style 1",
-				"Style 2",
-				"Style 3",
-				"Style 4",
-				"Style 5"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Simple"]
-            }
-		},
-		"FeatureBoxFullStyle": {
-			"title": "Feature Box Full Style",
-			"type": "select",
-			"optionLabels": [
-				"Scaled",
-				"Multicolor"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Full"]
-            }
-		},
-		"ApplyReverseClass": {
-			"label": "Reverse Content",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Simple"]
-            }
-		},		
-		"Color": {
-			"title": "Color",
-			"type": "select",
-			"optionLabels": [
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"quaternary"
-			],
-			"removeDefaultNone": true
-		},		
-		"FeaturedBoxEffectFlat": {
-			"title": "Featured Box Flat Effects",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Style 1",
-				"Style 2",
-				"Style 3"
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Classic"],
-                "FeaturedBoxesStyle": ["featured-boxes-flat"]
-            }
-		},
-		"FeaturedBoxEffect": {
-			"title": "Featured Box Effect",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Style 1",
-				"Style 2",
-				"Style 3",
-				"Style 4",
-				"Style 5",
-				"Style 6",
-				"Style 7"
-
-			],
-			"removeDefaultNone": true,
-            "dependencies": {
-				"IconBoxesType": ["Classic"],
-                "FeaturedBoxesStyle": ["","featured-boxes-style-1","featured-boxes-style-2"
-				,"featured-boxes-style-3","featured-boxes-style-4","featured-boxes-style-5"
-			,"featured-boxes-style-6","featured-boxes-style-7","featured-boxes-style-8"]
-            }
-		},
-		"MarginTop": {
-			"title": "Margin (top)",
-			"type": "select",
-			"optionLabels": [
-				"mt-0",
-				"mt-1",
-				"mt-2",
-				"mt-3",
-				"mt-4",
-				"mt-5",
-				"mt-auto"
-			],
-			"removeDefaultNone": true
-		},		
-		"MarginBottom": {
-			"title": "Margin (bottom)",
-			"type": "select",
-			"optionLabels": [
-				"mb-0",
-				"mb-1",
-				"mb-2",
-				"mb-3",
-				"mb-4",
-				"mb-5",
-				"mb-auto"
-			],
-			"removeDefaultNone": true
-		},
-		"PaddingTop": {
-			"title": "Padding (top)",
-			"type": "select",
-			"optionLabels": [
-				"pt-0",
-				"pt-1",
-				"pt-2",
-				"pt-3",
-				"pt-4",
-				"pt-5",
-				"pt-auto"
-			],
-			"removeDefaultNone": true
-		},
-		"PaddingBottom": {
-			"title": "Padding (bottom)",
-			"type": "select",
-			"optionLabels": [
-				"pb-0",
-				"pb-1",
-				"pb-2",
-				"pb-3",
-				"pb-4",
-				"pb-5",
-				"pb-auto"
-			],
-			"removeDefaultNone": true
-		}	
+  "fields": {
+    "DisplayWidth": {
+      "title": "Display Width",
+      "type": "select",
+      "optionLabels": [
+        "Full Width",
+        "Partial Width, Centered",
+        "Half, Centered"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the display width from the available options."
+    },
+    "DisplayAxis": {
+      "title": "Display Axis",
+      "type": "select",
+      "optionLabels": [
+        "Display Vertically",
+        "Display Horizontally"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ]
+      },
+      "helper": "Choose the display axis from the available options."
+    },
+    "ContentContainers": {
+      "title": "Content Containers",
+      "type": "select",
+      "optionLabels": [
+        "No Rows",
+        "One Row",
+        "Two Rows"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ]
+      },
+      "helper": "Choose the content containers from the available options."
+    },
+    "UppercaseTitle": {
+      "label": "Uppercase Title",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control uppercase title."
+    },
+    "EnableAnimations": {
+      "label": "Enable Animations",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic",
+          "Simple"
+        ]
+      },
+      "helper": "Turn this setting on or off to control enable animations."
+    },
+    "AnimationType": {
+      "title": "Animation Type",
+      "type": "select",
+      "optionLabels": [
+        "Bounce In",
+        "Fade In",
+        "Fade In Up"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic",
+          "Simple"
+        ],
+        "EnableAnimations": true
+      },
+      "helper": "Choose the animation type from the available options."
+    },
+    "AnimationDelay": {
+      "title": "Animation Delay",
+      "type": "select",
+      "optionLabels": [
+        "0ms",
+        "300ms",
+        "600ms",
+        "900ms",
+        "1200ms"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic",
+          "Simple"
+        ],
+        "EnableAnimations": true
+      },
+      "helper": "Choose the animation delay from the available options."
+    },
+    "IconPosition": {
+      "title": "Icon Position",
+      "type": "select",
+      "optionLabels": [
+        "Left",
+        "Right"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ],
+        "ContentContainers": [
+          "2"
+        ]
+      },
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+    },
+    "AddTopDivider": {
+      "label": "Add Title Divider",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ],
+        "ContentContainers": [
+          "0",
+          "1"
+        ]
+      },
+      "helper": "Turn this setting on or off to control add top divider."
+    },
+    "AddBottomDivider": {
+      "label": "Add Action Link Divider",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ],
+        "ContentContainers": [
+          "0",
+          "1"
+        ]
+      },
+      "helper": "Turn this setting on or off to control add bottom divider."
+    },
+    "FeaturedBoxesStyle": {
+      "title": "Featured Boxes Style",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Style 1",
+        "Style 2",
+        "Style 3",
+        "Style 4",
+        "Style 5",
+        "Style 6",
+        "Style 7",
+        "Style 8",
+        "Style 9"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ]
+      },
+      "helper": "Choose the featured boxes style from the available options."
+    },
+    "FeatureBoxStyle": {
+      "title": "Feature Box Style",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Style 1",
+        "Style 2",
+        "Style 3",
+        "Style 4",
+        "Style 5"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Simple"
+        ]
+      },
+      "helper": "Choose the feature box style from the available options."
+    },
+    "FeatureBoxFullStyle": {
+      "title": "Feature Box Full Style",
+      "type": "select",
+      "optionLabels": [
+        "Scaled",
+        "Multicolor"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Full"
+        ]
+      },
+      "helper": "Choose the feature box full style from the available options."
+    },
+    "ApplyReverseClass": {
+      "label": "Reverse Content",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Simple"
+        ]
+      },
+      "helper": "Turn this setting on or off to control apply reverse class."
+    },
+    "Color": {
+      "title": "Color",
+      "type": "select",
+      "optionLabels": [
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "quaternary"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the color from the available options."
+    },
+    "FeaturedBoxEffectFlat": {
+      "title": "Featured Box Flat Effects",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Style 1",
+        "Style 2",
+        "Style 3"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ],
+        "FeaturedBoxesStyle": [
+          "featured-boxes-flat"
+        ]
+      },
+      "helper": "Choose the featured box flat effects from the available options."
+    },
+    "FeaturedBoxEffect": {
+      "title": "Featured Box Effect",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Style 1",
+        "Style 2",
+        "Style 3",
+        "Style 4",
+        "Style 5",
+        "Style 6",
+        "Style 7"
+      ],
+      "removeDefaultNone": true,
+      "dependencies": {
+        "IconBoxesType": [
+          "Classic"
+        ],
+        "FeaturedBoxesStyle": [
+          "",
+          "featured-boxes-style-1",
+          "featured-boxes-style-2",
+          "featured-boxes-style-3",
+          "featured-boxes-style-4",
+          "featured-boxes-style-5",
+          "featured-boxes-style-6",
+          "featured-boxes-style-7",
+          "featured-boxes-style-8"
+        ]
+      },
+      "helper": "Choose the featured box effect from the available options."
+    },
+    "MarginTop": {
+      "title": "Margin (top)",
+      "type": "select",
+      "optionLabels": [
+        "mt-0",
+        "mt-1",
+        "mt-2",
+        "mt-3",
+        "mt-4",
+        "mt-5",
+        "mt-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (top) from the available options."
+    },
+    "MarginBottom": {
+      "title": "Margin (bottom)",
+      "type": "select",
+      "optionLabels": [
+        "mb-0",
+        "mb-1",
+        "mb-2",
+        "mb-3",
+        "mb-4",
+        "mb-5",
+        "mb-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (bottom) from the available options."
+    },
+    "PaddingTop": {
+      "title": "Padding (top)",
+      "type": "select",
+      "optionLabels": [
+        "pt-0",
+        "pt-1",
+        "pt-2",
+        "pt-3",
+        "pt-4",
+        "pt-5",
+        "pt-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (top) from the available options."
+    },
+    "PaddingBottom": {
+      "title": "Padding (bottom)",
+      "type": "select",
+      "optionLabels": [
+        "pb-0",
+        "pb-1",
+        "pb-2",
+        "pb-3",
+        "pb-4",
+        "pb-5",
+        "pb-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (bottom) from the available options."
     }
+  }
 }

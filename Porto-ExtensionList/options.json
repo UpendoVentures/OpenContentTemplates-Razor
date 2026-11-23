@@ -15,18 +15,21 @@
       "optionLabels": [
         "Title",
         "Description"
-      ]
+      ],
+      "helper": "Choose the sort by from the available options."
     },
     "Extensions": {
       "type": "accordion",
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Description": {
             "type": "ckeditor",
-            "configset": "basic"
+            "configset": "basic",
+            "helper": "Enter the formatted content for description. Keep the text clear and easy to read."
           },
           "Category": {
             "type": "checkbox",
@@ -40,28 +43,36 @@
               "User Experience",
               "Open-Source",
               "Commercial"
-            ]
+            ],
+            "helper": "Turn this setting on or off to control category."
           },
           "Homepage": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for homepage. You can use a page on this site or another website."
           },
           "Download": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for download. You can use a page on this site or another website."
           },
           "Symbols": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for symbols. You can use a page on this site or another website."
           },
           "Documentation": {
-            "type": "url"
+            "type": "url",
+            "helper": "Enter the web address for documentation. You can use a page on this site or another website."
           },
           "Logo": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the logo to use in this template. Use clear wording that visitors will understand."
           },
           "BadgeText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the badge text to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for extensions. Remove any item you do not need."
     }
   }
 }

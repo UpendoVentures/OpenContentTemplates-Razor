@@ -11,19 +11,24 @@
       "showMessages": false
     },
     "FirstParagraph": {
-      "type": "ckeditor"
+      "type": "ckeditor",
+      "helper": "Enter the formatted content for first paragraph. Keep the text clear and easy to read."
     },
     "Content": {
-      "type": "ckeditor"
+      "type": "ckeditor",
+      "helper": "Enter the formatted content for content. Keep the text clear and easy to read."
     },
     "Image": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     },
     "ImageText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the image text to use in this template. Use clear wording that visitors will understand."
     },
     "LastParagraph": {
-      "type": "ckeditor"
+      "type": "ckeditor",
+      "helper": "Enter the formatted content for last paragraph. Keep the text clear and easy to read."
     }
   }
 }

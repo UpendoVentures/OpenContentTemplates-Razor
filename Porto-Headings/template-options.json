@@ -1,135 +1,146 @@
 {
-	"fields": {		
-		"HeadingType": {
-			"title": "Heading Type",
-			"type": "select",
-			"optionLabels": [
-				"h1",
-				"h2",
-				"h3",
-				"h4",
-				"h5",
-				"h6"
-			],
-			"removeDefaultNone": true
-		},		
-		"HeadingColor": {
-			"title": "Heading Color",
-			"type": "select",
-			"optionLabels": [
-				"None",
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"quaternary",
-				"light"
-			],
-			"removeDefaultNone": true
-		},
-		"Uppercase": {
-			"title": "Uppercase",
-			"type": "select",
-			"optionLabels": [
-				"Enabled",
-				"Disabled"
-			],
-			"removeDefaultNone": true
-		},
-		"EnableHeadingBorder": {
-			"label": "Enable Heading Border",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"BorderStyle": {
-			"title": "Border Style",
-			"type": "select",
-			"optionLabels": [
-				"Single Border Bottom",
-				"Double Border Bottom",
-				"Left Heading With Border",
-				"Right Heading With Border",
-				"Center Heading With Border",
-				"Center Heading With Border"
-			],
-			"removeDefaultNone": true
-		},		
-		"BorderSize": {
-			"title": "Border Size",
-			"type": "select",
-			"optionLabels": [
-				"Simple",
-				"Bold",
-				"Bolder"
-			],
-			"removeDefaultNone": true
-		},
-		"BorderColor": {
-			"title": "Border Color",
-			"type": "select",
-			"optionLabels": [
-				"Primary",
-				"Secondary",
-				"Tertiary",
-				"quaternary",
-				"light"
-			],
-			"removeDefaultNone": true
-		},	
-		"MarginTop": {
-			"title": "Margin (top)",
-			"type": "select",
-			"optionLabels": [
-				"mt-0",
-				"mt-1",
-				"mt-2",
-				"mt-3",
-				"mt-4",
-				"mt-5",
-				"mt-auto"
-			],
-			"removeDefaultNone": true
-		},		
-		"MarginBottom": {
-			"title": "Margin (bottom)",
-			"type": "select",
-			"optionLabels": [
-				"mb-0",
-				"mb-1",
-				"mb-2",
-				"mb-3",
-				"mb-4",
-				"mb-5",
-				"mb-auto"
-			],
-			"removeDefaultNone": true
-		},
-		"PaddingTop": {
-			"title": "Padding (top)",
-			"type": "select",
-			"optionLabels": [
-				"pt-0",
-				"pt-1",
-				"pt-2",
-				"pt-3",
-				"pt-4",
-				"pt-5",
-				"pt-auto"
-			],
-			"removeDefaultNone": true
-		},
-		"PaddingBottom": {
-			"title": "Padding (bottom)",
-			"type": "select",
-			"optionLabels": [
-				"pb-0",
-				"pb-1",
-				"pb-2",
-				"pb-3",
-				"pb-4",
-				"pb-5",
-				"pb-auto"
-			],
-			"removeDefaultNone": true
-		}	
-	}
+  "fields": {
+    "HeadingType": {
+      "title": "Heading Type",
+      "type": "select",
+      "optionLabels": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the heading type from the available options."
+    },
+    "HeadingColor": {
+      "title": "Heading Color",
+      "type": "select",
+      "optionLabels": [
+        "None",
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "quaternary",
+        "light"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the heading color from the available options."
+    },
+    "Uppercase": {
+      "title": "Uppercase",
+      "type": "select",
+      "optionLabels": [
+        "Enabled",
+        "Disabled"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the uppercase from the available options."
+    },
+    "EnableHeadingBorder": {
+      "label": "Enable Heading Border",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control enable heading border."
+    },
+    "BorderStyle": {
+      "title": "Border Style",
+      "type": "select",
+      "optionLabels": [
+        "Single Border Bottom",
+        "Double Border Bottom",
+        "Left Heading With Border",
+        "Right Heading With Border",
+        "Center Heading With Border",
+        "Center Heading With Border"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the border style from the available options."
+    },
+    "BorderSize": {
+      "title": "Border Size",
+      "type": "select",
+      "optionLabels": [
+        "Simple",
+        "Bold",
+        "Bolder"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the border size from the available options."
+    },
+    "BorderColor": {
+      "title": "Border Color",
+      "type": "select",
+      "optionLabels": [
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "quaternary",
+        "light"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the border color from the available options."
+    },
+    "MarginTop": {
+      "title": "Margin (top)",
+      "type": "select",
+      "optionLabels": [
+        "mt-0",
+        "mt-1",
+        "mt-2",
+        "mt-3",
+        "mt-4",
+        "mt-5",
+        "mt-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (top) from the available options."
+    },
+    "MarginBottom": {
+      "title": "Margin (bottom)",
+      "type": "select",
+      "optionLabels": [
+        "mb-0",
+        "mb-1",
+        "mb-2",
+        "mb-3",
+        "mb-4",
+        "mb-5",
+        "mb-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the margin (bottom) from the available options."
+    },
+    "PaddingTop": {
+      "title": "Padding (top)",
+      "type": "select",
+      "optionLabels": [
+        "pt-0",
+        "pt-1",
+        "pt-2",
+        "pt-3",
+        "pt-4",
+        "pt-5",
+        "pt-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (top) from the available options."
+    },
+    "PaddingBottom": {
+      "title": "Padding (bottom)",
+      "type": "select",
+      "optionLabels": [
+        "pb-0",
+        "pb-1",
+        "pb-2",
+        "pb-3",
+        "pb-4",
+        "pb-5",
+        "pb-auto"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the padding (bottom) from the available options."
+    }
+  }
 }

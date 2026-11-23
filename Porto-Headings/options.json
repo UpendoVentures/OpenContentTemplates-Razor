@@ -11,10 +11,12 @@
       "showMessages": false
     },
     "Heading": {
-      "type": "wysihtml"
+      "type": "wysihtml",
+      "helper": "Enter the formatted content for heading. Keep the text clear and easy to read."
     },
     "SubHeading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the sub heading to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

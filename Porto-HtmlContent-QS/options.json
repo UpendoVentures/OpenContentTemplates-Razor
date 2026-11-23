@@ -11,13 +11,16 @@
     },
     "HtmlContent": {
       "type": "textarea",
-      "placeholder": "<!-- be sure the HTML is valid -->"
-    }, 
+      "placeholder": "<!-- be sure the HTML is valid -->",
+      "helper": "Enter the text for formatted content content. Use short paragraphs so it is easy to read."
+    },
     "QueryStringKey": {
-      "type": "text"
-    }, 
+      "type": "text",
+      "helper": "Enter the page address value key to use in this template. Use clear wording that visitors will understand."
+    },
     "QueryStringValue": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the page address value value to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

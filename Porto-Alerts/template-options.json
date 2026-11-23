@@ -15,28 +15,37 @@
         "Tertiary",
         "Quaternary"
       ],
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Choose the color from the available options."
     },
     "Size": {
       "title": "Size",
       "type": "select",
-      "optionLabels": ["", "sm", "lg"],
-      "removeDefaultNone": true
+      "optionLabels": [
+        "",
+        "sm",
+        "lg"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the size from the available options."
     },
     "ShowIcon": {
       "label": "Show Icon",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "ShowBtn": {
       "label": "Show Action Buttons",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control show btn."
     },
     "Dismissible": {
       "label": "Show Close Buttons",
       "type": "checkbox",
-      "removeDefaultNone": true
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control dismissible."
     }
   }
 }

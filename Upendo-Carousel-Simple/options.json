@@ -10,10 +10,12 @@
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "HeadingClasses": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading classes to use in this template. Use clear wording that visitors will understand."
     },
     "MaxWidth": {
       "type": "text",
@@ -22,14 +24,16 @@
     },
     "Slides": {
       "type": "array",
-      "helper": "Need at least one slide",
+      "helper": "Add at least one slides item. You can add more items as needed.",
       "items": {
         "fields": {
           "ImageTitle": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the image title to use in this template. Use clear wording that visitors will understand."
           },
           "ImageDescription": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for image description. Keep the text clear and easy to read."
           },
           "ImagePath": {
             "type": "image",
@@ -37,10 +41,11 @@
             "typeahead": {
               "Folder": "/Images/Carousel/"
             },
-            "helper": "Can be a local image, or an offsite URL"
+            "helper": "Can be a local image, or an offsite web addresses"
           },
           "ImageAlt": {
-            "type": "text"
+            "type": "text",
+            "helper": "Describe the image for people who use screen readers. Leave this blank only when the image is decorative."
           }
         }
       }

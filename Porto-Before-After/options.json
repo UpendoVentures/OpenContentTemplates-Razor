@@ -11,16 +11,20 @@
       "showMessages": false
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "SubHeading": {
-      "type": "text"
-    },   
+      "type": "text",
+      "helper": "Enter the sub heading to use in this template. Use clear wording that visitors will understand."
+    },
     "ImageBefore": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for image before. Use a clear file that fits this content."
     },
     "ImageAfter": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for image after. Use a clear file that fits this content."
     }
   }
 }

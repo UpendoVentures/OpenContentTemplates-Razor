@@ -33,8 +33,8 @@
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional FontAwesome Free icon class.",
-            "placeholder": "fa-brands fa-venmo"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "Subtitle": {
             "type": "text",
@@ -57,7 +57,7 @@
               "fields": {
                 "Label": {
                   "type": "text",
-                  "helper": "Short label shown before the value.",
+                  "helper": "Enter the text visitors should see for this link.",
                   "placeholder": "Payment Handle"
                 },
                 "Value": {
@@ -84,7 +84,7 @@
           },
           "ButtonUrl": {
             "type": "url",
-            "helper": "Optional button URL. Leave blank if this payment method does not have a link.",
+            "helper": "Optional button web addresses. Leave blank if this payment method does not have a link.",
             "placeholder": "https://example.com/payment-link"
           }
         }

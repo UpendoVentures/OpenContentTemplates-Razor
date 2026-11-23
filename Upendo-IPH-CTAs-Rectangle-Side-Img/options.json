@@ -13,12 +13,12 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Required. The main heading for this section. HTML is allowed and will render in the view.",
+      "helper": "Required. The main heading for this section. Formatted text and links are allowed and will render in the view.",
       "placeholder": "Make the next step feel easy."
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Required. Briefly explain the offer or next step. HTML is allowed and will render in the view.",
+      "helper": "Required. Briefly explain the offer or next step. Formatted text and links are allowed and will render in the view.",
       "placeholder": "<p>Help visitors understand the value and what they can do next.</p>"
     },
     "SectionImage": {
@@ -36,35 +36,35 @@
     },
     "PrimaryCTAText": {
       "type": "text",
-      "helper": "Optional. Add this together with a Primary CTA URL to show the main button. HTML is allowed and will render in the view.",
+      "helper": "Optional. Add this together with a Primary button web addresses to show the main button. Formatted text and links are allowed and will render in the view.",
       "placeholder": "Request a Free Demo"
     },
     "PrimaryCTAURL": {
       "type": "url",
-      "helper": "Optional. Select a local page or enter a complete http or https URL. The button appears only when both text and a valid URL are provided."
+      "helper": "Optional. Select a local page or enter a complete http or https web addresses. The button appears only when both text and a valid web addresses are provided."
     },
     "PrimaryCTAIcon": {
       "type": "text",
-      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
-      "placeholder": "fas fa-building"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+      "placeholder": "fas fa-heartbeat"
     },
     "SecondaryCTAText": {
       "type": "text",
-      "helper": "Optional. Add this together with a Secondary CTA URL to show a second button. HTML is allowed and will render in the view.",
+      "helper": "Optional. Add this together with a Secondary button web addresses to show a second button. Formatted text and links are allowed and will render in the view.",
       "placeholder": "Explore All Solutions"
     },
     "SecondaryCTAURL": {
       "type": "url",
-      "helper": "Optional. Select a local page or enter a complete http or https URL. The button appears only when both text and a valid URL are provided."
+      "helper": "Optional. Select a local page or enter a complete http or https web addresses. The button appears only when both text and a valid web addresses are provided."
     },
     "SecondaryCTAIcon": {
       "type": "text",
-      "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
-      "placeholder": "fas fa-arrow-right"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+      "placeholder": "fas fa-heartbeat"
     },
     "SectionFooter": {
       "type": "text",
-      "helper": "Optional. Add a short note below the buttons. HTML is allowed and will render in the view.",
+      "helper": "Optional. Add a short note below the buttons. Formatted text and links are allowed and will render in the view.",
       "placeholder": "No obligation. Choose a time that works for you."
     }
   }

@@ -13,7 +13,7 @@
     },
     "SectionEyebrow": {
       "type": "text",
-      "helper": "Optional. A short label above the section title. HTML is allowed and will render as entered.",
+      "helper": "Optional. A short label above the section title. Formatted text and links are allowed and will render as entered.",
       "placeholder": "Our Story"
     },
     "SectionEyebrowColor": {
@@ -61,12 +61,12 @@
     },
     "SectionTitle": {
       "type": "text",
-      "helper": "Optional. The main heading above the timeline. HTML is allowed and will render as entered.",
+      "helper": "Optional. The main heading above the timeline. Formatted text and links are allowed and will render as entered.",
       "placeholder": "A history of meaningful moments"
     },
     "SectionDescription": {
       "type": "textarea",
-      "helper": "Optional. Introduce the story in one or two short paragraphs. HTML is allowed and will render as entered.",
+      "helper": "Optional. Introduce the story in one or two short paragraphs. Formatted text and links are allowed and will render as entered.",
       "placeholder": "<p>Introduce the milestones visitors are about to explore.</p>"
     },
     "Moments": {
@@ -78,17 +78,17 @@
         "fields": {
           "MomentTitle": {
             "type": "text",
-            "helper": "Required. Add a concise title for this milestone. HTML is allowed and will render as entered.",
+            "helper": "Required. Add a concise title for this milestone. Formatted text and links are allowed and will render as entered.",
             "placeholder": "The beginning"
           },
           "MomentEyebrow": {
             "type": "text",
-            "helper": "Optional. Add a year, period, or short label above the title. HTML is allowed and will render as entered.",
+            "helper": "Optional. Add a year, period, or short label above the title. Formatted text and links are allowed and will render as entered.",
             "placeholder": "1985"
           },
           "MomentDescription": {
             "type": "textarea",
-            "helper": "Optional. Explain why this moment matters. HTML is allowed and will render as entered.",
+            "helper": "Optional. Explain why this moment matters. Formatted text and links are allowed and will render as entered.",
             "placeholder": "<p>Explain what happened and why it matters.</p>"
           },
           "MomentImage": {
@@ -159,24 +159,24 @@
           },
           "LinkText": {
             "type": "text",
-            "helper": "Optional. Add the visible text for the moment link. HTML is allowed and will render as entered.",
+            "helper": "Optional. Add the visible text for the moment link. Formatted text and links are allowed and will render as entered.",
             "placeholder": "Learn more"
           },
           "LinkUrl": {
             "type": "url",
-            "helper": "Optional. Select a local page or enter a complete http or https URL. When provided, the content card becomes a link."
+            "helper": "Optional. Select a local page or enter a complete http or https web addresses. When provided, the content card becomes a link."
           },
           "LinkIcon": {
             "type": "text",
-            "helper": "Optional. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>",
-            "placeholder": "fas fa-heart"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           }
         }
       }
     },
     "SectionFooter": {
       "type": "text",
-      "helper": "Optional. Add a short centered note below the timeline. HTML is allowed and will render as entered.",
+      "helper": "Optional. Add a short centered note below the timeline. Formatted text and links are allowed and will render as entered.",
       "placeholder": "More milestones are still ahead."
     }
   }

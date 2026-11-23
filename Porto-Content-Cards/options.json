@@ -7,12 +7,13 @@
     },
     "ContentTitle": {
       "type": "text",
-      "placeholder": "Optional - not rendered if left empty."
+      "placeholder": "Optional - not rendered if left empty.",
+      "helper": "Enter the content title to use in this template. Use clear wording that visitors will understand."
     },
     "TitleIcon": {
       "type": "text",
-      "placeholder": "fa-solid fa-heart",
-      "helper": "Use the search at <a href=\\\"https://fontawesome.com/v5/search\\\" target=\\\"_blank\\\">FontAwesome</a> to help you."
+      "placeholder": "fas fa-heartbeat",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "ContentItems": {
       "type": "accordion",
@@ -20,11 +21,13 @@
       "items": {
         "fields": {
           "ContentTitle": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the content title to use in this template. Use clear wording that visitors will understand."
           },
           "ContentSubtitle": {
             "type": "text",
-            "placeholder": "Not rendered if left empty"
+            "placeholder": "Not rendered if left empty",
+            "helper": "Enter the content subtitle to use in this template. Use clear wording that visitors will understand."
           },
           "ContentImage": {
             "type": "image",
@@ -32,11 +35,12 @@
             "typeahead": {
               "Folder": "Images"
             },
-            "helper": "Not rendered if left empty"
+            "helper": "Choose the image to show with this content. Leave it blank if no image is needed."
           },
           "ContentBody": {
             "type": "ckeditor",
-            "configset": "basic"
+            "configset": "basic",
+            "helper": "Enter the formatted content for content body. Keep the text clear and easy to read."
           }
         }
       }

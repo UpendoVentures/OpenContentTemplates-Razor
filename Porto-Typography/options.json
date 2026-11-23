@@ -14,7 +14,8 @@
     "items": {
       "fields": {
         "Text": {
-          "type": "textarea"
+          "type": "textarea",
+          "helper": "Enter the text for text. Use short paragraphs so it is easy to read."
         },
         "Class": {
           "type": "select",
@@ -24,13 +25,16 @@
             "Drop Caps",
             "Drop Caps Style-2"
           ],
-          "removeDefaultNone": true
+          "removeDefaultNone": true,
+          "helper": "Choose the class from the available options."
         },
         "AlternativeFont": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the alternative font to use in this template. Use clear wording that visitors will understand."
         },
         "TextWidthColor": {
-          "type": "text"
+          "type": "text",
+          "helper": "Enter the text width color to use in this template. Use clear wording that visitors will understand."
         },
         "Color": {
           "type": "select",
@@ -42,7 +46,8 @@
             "info",
             "warning",
             "danger"
-          ]
+          ],
+          "helper": "Choose the color from the available options."
         },
         "Size": {
           "type": "select",
@@ -54,12 +59,15 @@
             "h4",
             "h5",
             "h6"
-          ]
+          ],
+          "helper": "Choose the size from the available options."
         },
         "OtherText": {
-          "type": "textarea"
+          "type": "textarea",
+          "helper": "Enter the text for other text. Use short paragraphs so it is easy to read."
         }
       }
-    }
+    },
+    "helper": "Add and arrange the items used for fields. Remove any item you do not need."
   }
 }

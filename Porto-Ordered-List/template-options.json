@@ -1,15 +1,16 @@
 {
-	"fields": {		
-		"ListStyle": {
-			"title": "List Style",
-			"type": "select",
-			"optionLabels": [
-				"Simple",
-				"Bold Numbers",
-				"Rounded Numbers Light",
-				"Rounded Numbers Bold"
-			],
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "ListStyle": {
+      "title": "List Style",
+      "type": "select",
+      "optionLabels": [
+        "Simple",
+        "Bold Numbers",
+        "Rounded Numbers Light",
+        "Rounded Numbers Bold"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the list style from the available options."
+    }
+  }
 }

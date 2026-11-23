@@ -11,20 +11,24 @@
       "showMessages": false
     },
     "Title": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
     },
     "Content": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for content. Use short paragraphs so it is easy to read."
     },
     "Icon": {
       "type": "text",
-      "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "btn1Text": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the btn1 text to use in this template. Use clear wording that visitors will understand."
     },
     "btn2Text": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the btn2 text to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

@@ -13,51 +13,51 @@
     },
     "EyebrowText": {
       "type": "text",
-      "helper": "Optional. Small label shown above the heading. HTML is allowed.",
+      "helper": "Optional. Small label shown above the heading. Formatted text and links are allowed.",
       "placeholder": "Connected Stack"
     },
     "Heading": {
       "type": "text",
-      "helper": "Required. Main heading shown in the feature card. HTML is allowed.",
+      "helper": "Required. Main heading shown in the feature card. Formatted text and links are allowed.",
       "placeholder": "Connect the tools behind your workflow."
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Required. Supporting copy shown below the heading. HTML is allowed.",
+      "helper": "Required. Supporting copy shown below the heading. Formatted text and links are allowed.",
       "placeholder": "Show the platforms, services, and systems that support a modern operational stack."
     },
     "PrimaryButtonText": {
       "type": "text",
-      "helper": "Optional. Primary CTA text. The button only displays when text and link are both set.",
+      "helper": "Optional. Primary button text. The button only displays when text and link are both set.",
       "placeholder": "Get Started"
     },
     "PrimaryButtonLink": {
       "type": "text",
-      "helper": "Optional. Primary CTA URL.",
+      "helper": "Optional. Enter the web address for the main button.",
       "placeholder": "/contact"
     },
     "PrimaryButtonOpenInNewWindow": {
       "type": "checkbox",
-      "helper": "Open the primary CTA in a new browser tab."
+      "helper": "Open the primary button in a new browser tab."
     },
     "SecondaryButtonText": {
       "type": "text",
-      "helper": "Optional. Secondary CTA text. The button only displays when text and link are both set.",
+      "helper": "Optional. Secondary button text. The button only displays when text and link are both set.",
       "placeholder": "Learn More"
     },
     "SecondaryButtonLink": {
       "type": "text",
-      "helper": "Optional. Secondary CTA URL.",
+      "helper": "Optional. Enter the web address for the second button.",
       "placeholder": "/solutions"
     },
     "SecondaryButtonOpenInNewWindow": {
       "type": "checkbox",
-      "helper": "Open the secondary CTA in a new browser tab."
+      "helper": "Open the secondary button in a new browser tab."
     },
     "CenterIconClass": {
       "type": "text",
-      "helper": "Icon value to use for the center icon. Used only when Center Image is empty. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
-      "placeholder": "fas fa-cube"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+      "placeholder": "fas fa-heartbeat"
     },
     "CenterImage": {
       "type": "image",
@@ -69,7 +69,7 @@
     },
     "CenterIconColor": {
       "type": "select",
-      "helper": "Choose the center icon color when Center Image is empty.",
+      "helper": "Choose the icon color from the available options.",
       "optionLabels": [
         "Blue",
         "Cyan",
@@ -90,13 +90,13 @@
         "fields": {
           "Label": {
             "type": "text",
-            "helper": "Required. Internal label and hover title for the item.",
+            "helper": "Enter the text visitors should see for this link.",
             "placeholder": "React"
           },
           "IconClass": {
             "type": "text",
-            "helper": "Optional. Used only when Image is empty. Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>",
-            "placeholder": "fab fa-react"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "Image": {
             "type": "image",
@@ -108,7 +108,7 @@
           },
           "IconColor": {
             "type": "select",
-            "helper": "Choose the icon color when Image is empty.",
+            "helper": "Choose the icon color from the available options.",
             "optionLabels": [
               "Blue",
               "Cyan",

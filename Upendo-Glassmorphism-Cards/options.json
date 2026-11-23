@@ -17,12 +17,12 @@
     },
     "SectionIntro": {
       "type": "text",
-      "helper": "Optional. Short supporting text below the heading. Basic HTML is allowed.",
+      "helper": "Optional. Short supporting text below the heading. Basic Formatted text and links are allowed.",
       "placeholder": "Programs designed to be modular and responsive to your group's current state."
     },
     "Eyebrow": {
       "type": "text",
-      "helper": "Optional. Short label shown on the right side of the heading row. Basic HTML is allowed.",
+      "helper": "Optional. Short label shown on the right side of the heading row. Basic Formatted text and links are allowed.",
       "placeholder": "Experience Depth"
     },
     "Cards": {
@@ -33,17 +33,17 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Card heading. Basic HTML is allowed.",
+            "helper": "Required. Card heading. Basic Formatted text and links are allowed.",
             "placeholder": "Guided Forest Bathing"
           },
           "Icon": {
             "type": "text",
-            "placeholder": "fas fa-heart",
-            "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. Example: <code>fas fa-building</code>"
+            "placeholder": "fas fa-heartbeat",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           },
           "Body": {
             "type": "text",
-            "helper": "Required. Main card copy. Basic HTML is allowed.",
+            "helper": "Required. Main card copy. Basic Formatted text and links are allowed.",
             "placeholder": "A sequence of 'invitations' designed to slow the heart rate and open the senses..."
           },
           "Link": {
@@ -52,10 +52,11 @@
           },
           "Tags": {
             "type": "array",
-            "helper": "Optional. Add short bullet-style highlights. Basic HTML is allowed.",
+            "helper": "Optional. Add short bullet-style highlights. Basic Formatted text and links are allowed.",
             "items": {
               "type": "text",
-              "placeholder": "Sensory Awakening"
+              "placeholder": "Sensory Awakening",
+              "helper": "Enter the items to use in this template. Use clear wording that visitors will understand."
             }
           }
         }

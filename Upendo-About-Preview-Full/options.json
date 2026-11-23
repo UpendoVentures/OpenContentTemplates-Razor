@@ -15,7 +15,8 @@
       "helper": "Short label above the heading. Keep this concise."
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "BodyText1": {
       "type": "textarea",
@@ -26,17 +27,20 @@
       "helper": "Second paragraph of body content."
     },
     "Bullet1": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the bullet1 to use in this template. Use clear wording that visitors will understand."
     },
     "Bullet2": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the bullet2 to use in this template. Use clear wording that visitors will understand."
     },
     "Bullet3": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the bullet3 to use in this template. Use clear wording that visitors will understand."
     },
     "Bullet4": {
       "type": "text",
-      "helper": "Optional extra bullet."
+      "helper": "Optional. Enter a fourth bullet point to show below the other bullets."
     },
     "Image": {
       "type": "image",
@@ -50,9 +54,9 @@
       "type": "select",
       "sort": false,
       "optionLabels": [
-              "left",
-              "right"
-            ],
+        "left",
+        "right"
+      ],
       "helper": "Choose whether the image displays on the left or right on desktop.",
       "removeDefaultNone": true
     },

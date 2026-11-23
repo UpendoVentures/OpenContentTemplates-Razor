@@ -15,7 +15,8 @@
       "items": {
         "fields": {
           "Headline": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the headline to use in this template. Use clear wording that visitors will understand."
           },
           "Description": {
             "type": "ckeditor",
@@ -23,8 +24,8 @@
           },
           "IconClass": {
             "type": "text",
-            "placeholder": "fa-solid fa-heart",
-            "helper": "Find values at: <a href=\"https://fontawesome.com/search\" target=\"_blank\">FontAwesome</a>"
+            "placeholder": "fas fa-heartbeat",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           }
         }
       }

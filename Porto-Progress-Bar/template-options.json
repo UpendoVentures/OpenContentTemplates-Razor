@@ -1,94 +1,105 @@
 {
-	"fields": {	
-		"ShowCompletionText": {
-			"label": "Show Completion Text",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"UseTooltip": {
-			"label": "Use Tooltip",
-			"type": "checkbox",
-			"removeDefaultNone": true,
-            "dependencies": {
-                "ShowCompletionText": false
-            }
-		},
-		"ProgressBarSize": {
-			"title": "Progress Bar Size",
-			"type": "select",
-			"optionLabels": [
-				"Small",
-				"Classic",
-				"Large"
-			],
-			"removeDefaultNone": true
-		},
-		"ProgressBorderRadius": {
-			"title": "Progress Border Radius",
-			"type": "select",
-			"optionLabels": [
-				"Small",
-				"Classic",
-				"Square"
-			],
-			"removeDefaultNone": true
-		},
-		"ApplyContextualClass": {
-			"label": "Use Contextual Class",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"ContextualClassType": {
-			"title": "Contextual Class Type",
-			"type": "select",
-			"optionLabels": [
-				"Success",
-				"Info",				
-				"Warning",
-				"Danger"
-			],
-			"removeDefaultNone": true
-		},
-		"ProgressColor": {
-			"title": "Progress Color",
-			"type": "select",
-			"optionLabels": [
-				"Primary",				
-				"Secondary",
-				"Tertiary",
-				"Quaternary"
-			],
-            "dependencies": {
-                "ApplyContextualClass": false
-            },
-			"removeDefaultNone": true
-		},
-		"ProgressAnimated": {
-			"label": "Progress Animated",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"AnimationDelay": {
-			"title": "Animation Delay",
-			"type": "select",
-			"optionLabels": [
-				"0ms",
-				"300ms",				
-				"600ms",
-				"900ms",
-				"1200ms"
-			],
-			"removeDefaultNone": true
-		},
-		"Striped": {
-			"label": "Striped Progress Bar",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		},
-		"StripedAnimated": {
-			"label": "Striped Animated",
-			"type": "checkbox",
-			"removeDefaultNone": true
-		}
-	}
+  "fields": {
+    "ShowCompletionText": {
+      "label": "Show Completion Text",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control show completion text."
+    },
+    "UseTooltip": {
+      "label": "Use Tooltip",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "dependencies": {
+        "ShowCompletionText": false
+      },
+      "helper": "Turn this setting on or off to control use tooltip."
+    },
+    "ProgressBarSize": {
+      "title": "Progress Bar Size",
+      "type": "select",
+      "optionLabels": [
+        "Small",
+        "Classic",
+        "Large"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the progress bar size from the available options."
+    },
+    "ProgressBorderRadius": {
+      "title": "Progress Border Radius",
+      "type": "select",
+      "optionLabels": [
+        "Small",
+        "Classic",
+        "Square"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the progress border radius from the available options."
+    },
+    "ApplyContextualClass": {
+      "label": "Use Contextual Class",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control apply contextual class."
+    },
+    "ContextualClassType": {
+      "title": "Contextual Class Type",
+      "type": "select",
+      "optionLabels": [
+        "Success",
+        "Info",
+        "Warning",
+        "Danger"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the contextual class type from the available options."
+    },
+    "ProgressColor": {
+      "title": "Progress Color",
+      "type": "select",
+      "optionLabels": [
+        "Primary",
+        "Secondary",
+        "Tertiary",
+        "Quaternary"
+      ],
+      "dependencies": {
+        "ApplyContextualClass": false
+      },
+      "removeDefaultNone": true,
+      "helper": "Choose the progress color from the available options."
+    },
+    "ProgressAnimated": {
+      "label": "Progress Animated",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control progress animated."
+    },
+    "AnimationDelay": {
+      "title": "Animation Delay",
+      "type": "select",
+      "optionLabels": [
+        "0ms",
+        "300ms",
+        "600ms",
+        "900ms",
+        "1200ms"
+      ],
+      "removeDefaultNone": true,
+      "helper": "Choose the animation delay from the available options."
+    },
+    "Striped": {
+      "label": "Striped Progress Bar",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control striped."
+    },
+    "StripedAnimated": {
+      "label": "Striped Animated",
+      "type": "checkbox",
+      "removeDefaultNone": true,
+      "helper": "Turn this setting on or off to control striped animated."
+    }
+  }
 }

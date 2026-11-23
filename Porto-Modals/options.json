@@ -11,20 +11,24 @@
       "showMessages": false
     },
     "ModalTitle": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the modal title to use in this template. Use clear wording that visitors will understand."
     },
     "ButtonText": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the button text to use in this template. Use clear wording that visitors will understand."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "Item": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for item. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

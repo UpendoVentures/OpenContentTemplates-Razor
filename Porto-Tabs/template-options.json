@@ -7,7 +7,8 @@
         "Standard",
         "Simple",
         "Navigation (ignores most other settings)"
-      ]
+      ],
+      "helper": "Choose the tab mode from the available options."
     },
     "TabPosition": {
       "type": "select",
@@ -16,7 +17,8 @@
         "Top",
         "Bottom",
         "Vertical"
-      ]
+      ],
+      "helper": "Choose the tab position from the available options."
     },
     "TabAlignment": {
       "type": "select",
@@ -26,7 +28,8 @@
         "Right",
         "Centered (ignored in Navigation mode)",
         "Justified (ignored in Navigation mode)"
-      ]
+      ],
+      "helper": "Choose the tab alignment from the available options."
     },
     "Color": {
       "type": "select",
@@ -37,7 +40,8 @@
         "Secondary",
         "Tertiary",
         "Quaternary"
-      ]
+      ],
+      "helper": "Choose the color from the available options."
     },
     "TabIconMode": {
       "type": "select",
@@ -45,7 +49,8 @@
       "optionLabels": [
         "Default",
         "Big Icons"
-      ]
+      ],
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     }
   }
 }

@@ -11,16 +11,17 @@
     },
     "QRCodes": {
       "type": "array",
-      "helper": "Need at least one slide",
+      "helper": "Add at least one qrcodes item. You can add more items as needed.",
       "items": {
         "fields": {
           "Label": {
             "type": "text",
-            "placeholder": "page name"
+            "placeholder": "page name",
+            "helper": "Enter the text visitors should see for this link."
           },
           "TargetUrl": {
             "type": "url",
-            "helper": "https://example.com/page-name"
+            "helper": "Enter the web address that the QR code should open."
           },
           "ImageUrl": {
             "type": "image",
@@ -28,7 +29,7 @@
             "typeahead": {
               "Folder": "/Images/Carousel/"
             },
-            "helper": "Can be a local image, or an offsite URL"
+            "helper": "Can be a local image, or an offsite web addresses"
           }
         }
       }

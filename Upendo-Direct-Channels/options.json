@@ -48,17 +48,17 @@
           },
           "Icon": {
             "type": "text",
-            "helper": "Font Awesome class list. Only letters, numbers, hyphen, underscore, and spaces are rendered.",
-            "placeholder": "fab fa-instagram"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "Label": {
             "type": "text",
-            "helper": "Visible social link label.",
+            "helper": "Enter the text visitors should see for this link.",
             "placeholder": "Instagram"
           },
           "Url": {
             "type": "text",
-            "helper": "Optional link. Allowed protocols: http, https, mailto, tel, anchors, and relative URLs. If blank, the item renders as non-clickable text.",
+            "helper": "Optional link. Allowed protocols: http, https, mailto, tel, anchors, and relative web addresses. If blank, the item renders as non-clickable text.",
             "placeholder": "https://www.instagram.com/"
           }
         }
@@ -76,7 +76,7 @@
     },
     "ContactIntro": {
       "type": "textarea",
-      "helper": "Introductory contact copy. HTML is encoded for safety; line breaks are preserved.",
+      "helper": "Introductory contact copy. formatted content is encoded for safety; line breaks are preserved.",
       "placeholder": "Reach our team directly through the contact details below."
     },
     "ContactItems": {
@@ -87,12 +87,12 @@
         "fields": {
           "Icon": {
             "type": "text",
-            "helper": "Font Awesome class list. Only letters, numbers, hyphen, underscore, and spaces are rendered.",
-            "placeholder": "fas fa-map-marker-alt"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "Label": {
             "type": "text",
-            "helper": "Bold label shown before the value.",
+            "helper": "Enter the text visitors should see for this link.",
             "placeholder": "Address"
           },
           "Value": {
@@ -121,12 +121,12 @@
         "fields": {
           "Icon": {
             "type": "text",
-            "helper": "Font Awesome class list. Only letters, numbers, hyphen, underscore, and spaces are rendered.",
-            "placeholder": "far fa-clock"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>.",
+            "placeholder": "fas fa-heartbeat"
           },
           "Label": {
             "type": "text",
-            "helper": "Bold label shown before the value.",
+            "helper": "Enter the text visitors should see for this link.",
             "placeholder": "Monday - Friday"
           },
           "Value": {

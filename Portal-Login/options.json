@@ -12,7 +12,8 @@
     },
     "Paragraph": {
       "type": "ckeditor",
-      "configset": "standard"
+      "configset": "standard",
+      "helper": "Enter the formatted content for paragraph. Keep the text clear and easy to read."
     }
   }
 }

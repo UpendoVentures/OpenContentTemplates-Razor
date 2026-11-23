@@ -11,7 +11,8 @@
       "showMessages": false
     },
     "Icon": {
-      "type": "text"
+      "type": "text",
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     }
   }
 }

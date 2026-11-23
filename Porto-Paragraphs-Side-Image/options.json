@@ -10,21 +10,25 @@
       "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only)."
     },
     "Paragraph": {
-      "type": "textarea"
+      "type": "textarea",
+      "helper": "Enter the text for paragraph. Use short paragraphs so it is easy to read."
     },
     "Image": {
       "type": "image",
       "uploadfolder": "Images",
       "typeahead": {
         "Folder": "Images"
-      }
+      },
+      "helper": "Choose the image or file to use for image. Use a clear file that fits this content."
     },
     "Classes": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the classes to use in this template. Use clear wording that visitors will understand."
     },
     "AltText": {
       "type": "text",
-      "placeholder": "Used for SEO"
+      "placeholder": "Used for SEO",
+      "helper": "Describe the image for people who use screen readers. Leave this blank only when the image is decorative."
     }
   }
 }

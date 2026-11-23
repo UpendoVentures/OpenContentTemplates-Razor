@@ -11,10 +11,12 @@
       "showMessages": false
     },
     "InnerContent": {
-      "type": "wysihtml"
+      "type": "wysihtml",
+      "helper": "Enter the formatted content for inner content. Keep the text clear and easy to read."
     },
     "CompletedAmmount": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the completed ammount to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

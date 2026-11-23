@@ -11,7 +11,8 @@
       "showMessages": false
     },
     "Descriptionlists": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control descriptionlists."
     },
     "Type": {
       "type": "select",
@@ -25,7 +26,8 @@
         "Descriptionlists": [
           "false"
         ]
-      }
+      },
+      "helper": "Choose the type from the available options."
     },
     "Items": {
       "type": "array",
@@ -37,27 +39,32 @@
       "items": {
         "fields": {
           "ListItemText": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for list item text. Keep the text clear and easy to read."
           },
           "Icon": {
             "type": "text",
-            "helper": "Find values at: <a href=\"https://fontawesome.com/icons?d=gallery\" target=\"_blank\">FontAwesome</a>"
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
           },
           "SecondLevelListItems": {
             "type": "array",
             "items": {
               "fields": {
                 "SecondLevelListItemText": {
-                  "type": "wysihtml"
+                  "type": "wysihtml",
+                  "helper": "Enter the formatted content for second level list item text. Keep the text clear and easy to read."
                 },
                 "SecondLevelListItemIcon": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for second level list items. Remove any item you do not need."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     },
     "ItemsDescription": {
       "type": "array",
@@ -69,13 +76,16 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "ListItemText": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for list item text. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items description. Remove any item you do not need."
     }
   }
 }

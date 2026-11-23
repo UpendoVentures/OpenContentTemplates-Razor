@@ -11,10 +11,12 @@
       "showMessages": false
     },
     "Heading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the heading to use in this template. Use clear wording that visitors will understand."
     },
     "SubHeading": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the sub heading to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

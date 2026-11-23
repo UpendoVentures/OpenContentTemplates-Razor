@@ -15,9 +15,11 @@
       "items": {
         "TableHeadTDContent": {
           "type": "text",
-          "label": "Table Header Text (required)"
+          "label": "Table Header Text (required)",
+          "helper": "Enter the table head tdcontent to use in this template. Use clear wording that visitors will understand."
         }
-      }
+      },
+      "helper": "Add and arrange the items used for table head td. Remove any item you do not need."
     },
     "TableBodyTR": {
       "type": "array",
@@ -30,17 +32,21 @@
             "Success",
             "Warning"
           ],
-          "removeDefaultNone": true
+          "removeDefaultNone": true,
+          "helper": "Choose the row class from the available options."
         },
         "TableBodyTD": {
           "type": "array",
           "items": {
             "TableBodyTDContent": {
-              "type": "wysihtml"
+              "type": "wysihtml",
+              "helper": "Enter the formatted content for table body tdcontent. Keep the text clear and easy to read."
             }
-          }
+          },
+          "helper": "Add and arrange the items used for table body td. Remove any item you do not need."
         }
-      }
+      },
+      "helper": "Add and arrange the items used for table body tr. Remove any item you do not need."
     }
   }
 }

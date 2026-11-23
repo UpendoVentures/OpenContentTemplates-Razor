@@ -43,7 +43,7 @@
     },
     "CompanyLabel": {
       "type": "text",
-      "helper": "Label for the company input.",
+      "helper": "Enter the label shown next to the company name field.",
       "placeholder": "Company"
     },
     "PhoneLabel": {
@@ -53,7 +53,7 @@
     },
     "EmailLabel": {
       "type": "text",
-      "helper": "Label for the email input.",
+      "helper": "Enter the label shown next to the email address field.",
       "placeholder": "Email"
     },
     "RequestLabel": {

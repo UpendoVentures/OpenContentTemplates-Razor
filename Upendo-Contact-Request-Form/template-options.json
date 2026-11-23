@@ -3,41 +3,94 @@
     "ContainerWidth": {
       "type": "select",
       "helper": "Layout. Controls the maximum width of the inner content container.",
-      "optionLabels": ["Default Container", "Large Container", "Extra Large Container", "Extra Extra Large Container", "Full Width Container"],
+      "optionLabels": [
+        "Default Container",
+        "Large Container",
+        "Extra Large Container",
+        "Extra Extra Large Container",
+        "Full Width Container"
+      ],
       "removeDefaultNone": true
     },
     "MarginTop": {
       "title": "Margin (top)",
       "type": "select",
       "helper": "Spacing. Optional utility class controlling spacing above this section.",
-      "optionLabels": ["None", "mt-0", "mt-1", "mt-2", "mt-3", "mt-4", "mt-5", "mt-auto"],
+      "optionLabels": [
+        "None",
+        "mt-0",
+        "mt-1",
+        "mt-2",
+        "mt-3",
+        "mt-4",
+        "mt-5",
+        "mt-auto"
+      ],
       "removeDefaultNone": true
     },
     "MarginBottom": {
       "title": "Margin (bottom)",
       "type": "select",
       "helper": "Spacing. Optional utility class controlling spacing below this section.",
-      "optionLabels": ["None", "mb-0", "mb-1", "mb-2", "mb-3", "mb-4", "mb-5", "mb-auto"],
+      "optionLabels": [
+        "None",
+        "mb-0",
+        "mb-1",
+        "mb-2",
+        "mb-3",
+        "mb-4",
+        "mb-5",
+        "mb-auto"
+      ],
       "removeDefaultNone": true
     },
     "PaddingTop": {
       "title": "Padding (top)",
       "type": "select",
       "helper": "Spacing. Optional utility class controlling inner spacing above the content.",
-      "optionLabels": ["None", "pt-0", "pt-1", "pt-2", "pt-3", "pt-4", "pt-5", "pt-auto"],
+      "optionLabels": [
+        "None",
+        "pt-0",
+        "pt-1",
+        "pt-2",
+        "pt-3",
+        "pt-4",
+        "pt-5",
+        "pt-auto"
+      ],
       "removeDefaultNone": true
     },
     "PaddingBottom": {
       "title": "Padding (bottom)",
       "type": "select",
       "helper": "Spacing. Optional utility class controlling inner spacing below the content.",
-      "optionLabels": ["None", "pb-0", "pb-1", "pb-2", "pb-3", "pb-4", "pb-5", "pb-auto"],
+      "optionLabels": [
+        "None",
+        "pb-0",
+        "pb-1",
+        "pb-2",
+        "pb-3",
+        "pb-4",
+        "pb-5",
+        "pb-auto"
+      ],
       "removeDefaultNone": true
     },
     "BackgroundColorClass": {
       "type": "select",
       "helper": "Background. Choose a light shared Bootstrap/site background utility.",
-      "optionLabels": ["None", "Light", "White", "Body", "Transparent", "Light Subtle", "Off White", "Warm White", "Cream", "Soft Gray"],
+      "optionLabels": [
+        "None",
+        "Light",
+        "White",
+        "Body",
+        "Transparent",
+        "Light Subtle",
+        "Off White",
+        "Warm White",
+        "Cream",
+        "Soft Gray"
+      ],
       "removeDefaultNone": true
     },
     "AccentColor": {
@@ -46,13 +99,16 @@
     },
     "FormAction": {
       "type": "text",
-      "helper": "Behavior. Submission target for the form. Allowed values are relative URLs, anchors, http, or https. Leave blank to use the default handler.",
+      "helper": "Behavior. Submission target for the form. Allowed values are relative web addresses, anchors, http, or https. Leave blank to use the default handler.",
       "placeholder": "/Portals/_default/Handlers/UpendoContactFormSubmit.ashx"
     },
     "FormMethod": {
       "type": "select",
       "helper": "Behavior. HTTP method used when the configured action receives the form.",
-      "optionLabels": ["POST", "GET"],
+      "optionLabels": [
+        "POST",
+        "GET"
+      ],
       "removeDefaultNone": true
     },
     "NameRequired": {
@@ -76,25 +132,37 @@
       "helper": "reCAPTCHA. Public Google reCAPTCHA site key. Do not enter the secret key here.",
       "placeholder": "Your public site key",
       "dependencies": {
-        "EnableRecaptcha": [true]
+        "EnableRecaptcha": [
+          true
+        ]
       }
     },
     "RecaptchaTheme": {
       "type": "select",
       "helper": "reCAPTCHA. Visual theme for the reCAPTCHA checkbox.",
-      "optionLabels": ["Light", "Dark"],
+      "optionLabels": [
+        "Light",
+        "Dark"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
-        "EnableRecaptcha": [true]
+        "EnableRecaptcha": [
+          true
+        ]
       }
     },
     "RecaptchaSize": {
       "type": "select",
       "helper": "reCAPTCHA. Size for the reCAPTCHA checkbox.",
-      "optionLabels": ["Normal", "Compact"],
+      "optionLabels": [
+        "Normal",
+        "Compact"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
-        "EnableRecaptcha": [true]
+        "EnableRecaptcha": [
+          true
+        ]
       }
     }
   }

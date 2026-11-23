@@ -15,17 +15,20 @@
       "items": {
         "fields": {
           "Text": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for text. Use short paragraphs so it is easy to read."
           },
           "WordRotate": {
             "type": "array",
             "items": {
               "fields": {
                 "Value": {
-                  "type": "text"
+                  "type": "text",
+                  "helper": "Enter the value to use in this template. Use clear wording that visitors will understand."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for word rotate. Remove any item you do not need."
           },
           "Color": {
             "type": "select",
@@ -37,7 +40,8 @@
               "tertiary",
               "quaternary"
             ],
-            "removeDefaultNone": true
+            "removeDefaultNone": true,
+            "helper": "Choose the color from the available options."
           },
           "Size": {
             "type": "select",
@@ -50,13 +54,16 @@
               "h5",
               "h6"
             ],
-            "removeDefaultNone": true
+            "removeDefaultNone": true,
+            "helper": "Choose the size from the available options."
           },
           "OtherText": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for other text. Use short paragraphs so it is easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for sections. Remove any item you do not need."
     }
   }
 }

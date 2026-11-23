@@ -11,7 +11,8 @@
       "showMessages": false
     },
     "Label": {
-      "type": "wysihtml"
-    }    
+      "type": "wysihtml",
+      "helper": "Enter the text visitors should see for this link."
+    }
   }
 }

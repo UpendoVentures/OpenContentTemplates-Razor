@@ -1,41 +1,50 @@
 {
-    "fields": {
-        "ModuleTitle": {
-            "type": "text",
-            "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
-            "placeholder": "Try entering anything that's somewhat unique"
-        },
-        "ModuleAnchor": {
-            "type": "text",
-            "helper": "Used for an optional HTML anchor id."
-        },
-        "DetailBasePath": {
-            "type": "text",
-            "placeholder": "/events"
-        },
-        "DefaultPageSize": {
-            "type": "number"
-        },
-        "ShowTopCategories": {
-            "type": "checkbox"
-        },
-        "ShowTopTags": {
-            "type": "checkbox"
-        },
-        "ShowTopOrganizers": {
-            "type": "checkbox"
-        },
-        "RelatedEventCount": {
-            "type": "number"
-        },
-        "ShowRelatedEvents": {
-            "type": "checkbox"
-        },
-        "ShowAudiences": {
-            "type": "checkbox"
-        },
-        "ShowFeatures": {
-            "type": "checkbox"
-        }
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used for an optional formatted content anchor id."
+    },
+    "DetailBasePath": {
+      "type": "text",
+      "placeholder": "/events",
+      "helper": "Enter the detail base path to use in this template. Use clear wording that visitors will understand."
+    },
+    "DefaultPageSize": {
+      "type": "number",
+      "helper": "Enter a number for default page size. Use a value that fits the choices and layout shown on the page."
+    },
+    "ShowTopCategories": {
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control show top categories."
+    },
+    "ShowTopTags": {
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control show top tags."
+    },
+    "ShowTopOrganizers": {
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control show top organizers."
+    },
+    "RelatedEventCount": {
+      "type": "number",
+      "helper": "Enter a number for related event count. Use a value that fits the choices and layout shown on the page."
+    },
+    "ShowRelatedEvents": {
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control show related events."
+    },
+    "ShowAudiences": {
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control show audiences."
+    },
+    "ShowFeatures": {
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control show features."
     }
+  }
 }

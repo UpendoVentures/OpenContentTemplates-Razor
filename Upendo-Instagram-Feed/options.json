@@ -14,34 +14,40 @@
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Description": {
-            "type": "textarea"
+            "type": "textarea",
+            "helper": "Enter the text for description. Use short paragraphs so it is easy to read."
           },
           "AltText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Describe the image for people who use screen readers. Leave this blank only when the image is decorative."
           },
           "VideoId": {
             "type": "text",
-            "helper": "It's the value in the URL that looks funky, like https://www.youtube.com/watch?v=<code>KXC4fqcYMXA</code>"
+            "helper": "It's the value in the web addresses that looks funky, like https://www.youtube.com/watch?v=<code>KXC4fqcYMXA</code>"
           },
           "UploadDate": {
             "type": "date",
             "picker": {
               "format": "YYYY-MM-DD"
-            }
+            },
+            "helper": "Choose the date or time to use for upload date."
           },
           "Duration": {
             "type": "text",
-            "placeholder": "01:23"
+            "placeholder": "01:23",
+            "helper": "Enter the duration to use in this template. Use clear wording that visitors will understand."
           },
           "IsShort": {
             "type": "checkbox",
             "helper": "If it's a short, then it's basically a vertical TikTok or Instagram reel."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for video list. Remove any item you do not need."
     }
   }
 }

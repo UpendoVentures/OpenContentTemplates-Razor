@@ -11,42 +11,52 @@
       "pattern": "^[a-zA-Z0-9\\-]+$"
     },
     "ParallaxImage": {
-      "type": "image"
+      "type": "image",
+      "helper": "Choose the image or file to use for parallax image. Use a clear file that fits this content."
     },
     "Items": {
       "type": "array",
       "items": {
         "fields": {
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Description": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for description. Keep the text clear and easy to read."
           },
           "Price": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the price to use in this template. Use clear wording that visitors will understand."
           },
           "ActionButtonText": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the action button text to use in this template. Use clear wording that visitors will understand."
           },
           "MostPopular": {
-            "type": "checkbox"
+            "type": "checkbox",
+            "helper": "Turn this setting on or off to control most popular."
           },
           "ShowPopularRibbon": {
-            "type": "checkbox"
+            "type": "checkbox",
+            "helper": "Turn this setting on or off to control show popular ribbon."
           },
           "Features": {
             "type": "array",
             "items": {
               "fields": {
                 "FeatureDescriptionText": {
-                  "type": "wysihtml"
+                  "type": "wysihtml",
+                  "helper": "Enter the formatted content for feature description text. Keep the text clear and easy to read."
                 }
               }
-            }
+            },
+            "helper": "Add and arrange the items used for features. Remove any item you do not need."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

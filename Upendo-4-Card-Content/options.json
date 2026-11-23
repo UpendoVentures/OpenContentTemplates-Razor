@@ -14,23 +14,27 @@
       "label": "Card 1 - Left Column",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "Description": {
           "label": "Description",
-          "type": "textarea"
+          "type": "textarea",
+          "helper": "Enter the text for description. Use short paragraphs so it is easy to read."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-user-tie</code>"
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BorderColor": {
           "label": "Top Border Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the border color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         }
       }
     },
@@ -38,23 +42,27 @@
       "label": "Card 2 - Center Column - Top",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "Description": {
           "label": "Description",
-          "type": "textarea"
+          "type": "textarea",
+          "helper": "Enter the text for description. Use short paragraphs so it is easy to read."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-people-group</code>"
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BorderColor": {
           "label": "Top Border Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the border color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         }
       }
     },
@@ -62,23 +70,27 @@
       "label": "Card 3 - Center Column - Bottom",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "Description": {
           "label": "Description",
-          "type": "textarea"
+          "type": "textarea",
+          "helper": "Enter the text for description. Use short paragraphs so it is easy to read."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-lightbulb</code>"
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BorderColor": {
           "label": "Top Border Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the border color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         }
       }
     },
@@ -86,23 +98,27 @@
       "label": "Card 4 - Right Column",
       "fields": {
         "Title": {
-          "label": "Title"
+          "label": "Title",
+          "helper": "Enter the title to show in this section. Use clear wording that visitors will understand."
         },
         "Description": {
           "label": "Description",
-          "type": "textarea"
+          "type": "textarea",
+          "helper": "Enter the text for description. Use short paragraphs so it is easy to read."
         },
         "IconClass": {
           "label": "FontAwesome Icon Class",
-          "helper": "Use a <a href='https://fontawesome.com/v5/search?q=marketing&ic=free-collection' target='_blank' rel='noopener noreferrer'>FontAwesome Free icon class</a>. Example: <code>fa-solid fa-calculator</code>"
+          "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
         },
         "BorderColor": {
           "label": "Top Border Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the border color from the available options."
         },
         "IconColor": {
           "label": "Icon Color",
-          "type": "select"
+          "type": "select",
+          "helper": "Choose the icon color from the available options."
         }
       }
     }

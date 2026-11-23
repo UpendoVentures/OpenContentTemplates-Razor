@@ -19,16 +19,20 @@
             "helper": "Find values at: <a href=\"https://porto.mandeeps.com/shortcodes/shortcodes-1/social-media-icons\" target=\"_blank\">Porto Homepage</a>"
           },
           "Href": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the href to use in this template. Use clear wording that visitors will understand."
           },
           "Title": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the title to use in this template. Use clear wording that visitors will understand."
           },
           "Content": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the content to use in this template. Use clear wording that visitors will understand."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

@@ -12,13 +12,16 @@
         "Id",
         "Class",
         "Custom"
-      ]
+      ],
+      "helper": "Choose the page element selector from the available options."
     },
     "queryValue": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the query value to use in this template. Use clear wording that visitors will understand."
     },
     "editMode": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control edit mode."
     },
     "modType": {
       "type": "select",
@@ -26,7 +29,8 @@
       "optionLabels": [
         "Hidden",
         "Move Position"
-      ]
+      ],
+      "helper": "Choose the mod type from the available options."
     },
     "moveTop": {
       "type": "checkbox",
@@ -34,7 +38,8 @@
         "modType": [
           "2"
         ]
-      }
+      },
+      "helper": "Turn this setting on or off to control move top."
     },
     "currentTop": {
       "type": "text",
@@ -45,7 +50,8 @@
         "editMode": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the current top to use in this template. Use clear wording that visitors will understand."
     },
     "newTop": {
       "type": "text",
@@ -53,7 +59,8 @@
         "moveTop": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the new top to use in this template. Use clear wording that visitors will understand."
     },
     "moveLeft": {
       "type": "checkbox",
@@ -61,7 +68,8 @@
         "modType": [
           "2"
         ]
-      }
+      },
+      "helper": "Turn this setting on or off to control move left."
     },
     "currentLeft": {
       "type": "text",
@@ -72,7 +80,8 @@
         "editMode": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the current left to use in this template. Use clear wording that visitors will understand."
     },
     "newLeft": {
       "type": "text",
@@ -80,7 +89,8 @@
         "moveLeft": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the new left to use in this template. Use clear wording that visitors will understand."
     },
     "moveRight": {
       "type": "checkbox",
@@ -88,7 +98,8 @@
         "modType": [
           "2"
         ]
-      }
+      },
+      "helper": "Turn this setting on or off to control move right."
     },
     "currentRight": {
       "type": "text",
@@ -99,7 +110,8 @@
         "editMode": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the current right to use in this template. Use clear wording that visitors will understand."
     },
     "newRight": {
       "type": "text",
@@ -107,7 +119,8 @@
         "moveRight": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the new right to use in this template. Use clear wording that visitors will understand."
     },
     "moveDown": {
       "type": "checkbox",
@@ -115,7 +128,8 @@
         "modType": [
           "2"
         ]
-      }
+      },
+      "helper": "Turn this setting on or off to control move down."
     },
     "currentBottom": {
       "type": "text",
@@ -126,7 +140,8 @@
         "editMode": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the current bottom to use in this template. Use clear wording that visitors will understand."
     },
     "newBottom": {
       "type": "text",
@@ -134,7 +149,8 @@
         "moveDown": [
           "true"
         ]
-      }
+      },
+      "helper": "Enter the new bottom to use in this template. Use clear wording that visitors will understand."
     }
   }
 }

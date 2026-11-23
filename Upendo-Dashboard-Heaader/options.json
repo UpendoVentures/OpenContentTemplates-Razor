@@ -11,14 +11,16 @@
     },
     "HtmlContent": {
       "type": "textarea",
-      "placeholder": "<!-- be sure the HTML is valid -->"
+      "placeholder": "<!-- be sure the HTML is valid -->",
+      "helper": "Enter the text for formatted content content. Use short paragraphs so it is easy to read."
     },
     "UseHtmlWrapper": {
       "type": "checkbox",
       "helper": "If checked, a BS3 contaner+row will be used. Otherwise, just a &lt;div&gt;."
     },
     "IncludeContentWrapperClass": {
-      "type": "checkbox"
+      "type": "checkbox",
+      "helper": "Turn this setting on or off to control include content wrapper class."
     }
   }
 }

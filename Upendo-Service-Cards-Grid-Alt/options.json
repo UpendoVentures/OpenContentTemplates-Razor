@@ -13,7 +13,7 @@
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Optional. Main heading shown above the card grid. HTML is allowed.",
+      "helper": "Optional. Main heading shown above the card grid. Formatted text and links are allowed.",
       "placeholder": "The right result should feel easy to find."
     },
     "HeadingCss": {
@@ -23,7 +23,7 @@
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Optional. Short introduction shown below the heading. HTML is allowed.",
+      "helper": "Optional. Short introduction shown below the heading. Formatted text and links are allowed.",
       "placeholder": "Experience a seamless journey from intent to connection."
     },
     "Cards": {
@@ -34,7 +34,7 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Card title. HTML is allowed.",
+            "helper": "Required. Card title. Formatted text and links are allowed.",
             "placeholder": "Search"
           },
           "TitleCss": {
@@ -44,7 +44,7 @@
           },
           "Description": {
             "type": "textarea",
-            "helper": "Required. Short supporting description. HTML is allowed.",
+            "helper": "Required. Short supporting description. Formatted text and links are allowed.",
             "placeholder": "Type a need, see immediate, relevant suggestions."
           },
           "Eyebrow": {

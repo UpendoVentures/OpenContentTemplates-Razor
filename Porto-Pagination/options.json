@@ -15,13 +15,16 @@
       "items": {
         "fields": {
           "ListItemNumber": {
-            "type": "number"
+            "type": "number",
+            "helper": "Enter a number for list item number. Use a value that fits the choices and layout shown on the page."
           },
           "Active": {
-            "type": "checkbox"
+            "type": "checkbox",
+            "helper": "Turn this setting on or off to control active."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for items. Remove any item you do not need."
     }
   }
 }

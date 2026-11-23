@@ -1,74 +1,74 @@
 {
-    "fields": {
-        "ModuleTitle": {
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
+      "placeholder": "Try entering anything that's somewhat unique"
+    },
+    "ModuleAnchor": {
+      "type": "text",
+      "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
+      "showMessages": false
+    },
+    "SectionHeading": {
+      "type": "text",
+      "helper": "Heading shown above the card grid."
+    },
+    "Cards": {
+      "type": "accordion",
+      "helper": "Add at least one cards item. You can add more items as needed.",
+      "items": {
+        "fields": {
+          "CardTitle": {
             "type": "text",
-            "helper": "Used to sync with the system's module title. This does not display to site visitors. It makes it useful to restore and share content, if/when needed.",
-            "placeholder": "Try entering anything that's somewhat unique"
-        },
-        "ModuleAnchor": {
+            "helper": "Required. Short heading shown on the card."
+          },
+          "CardIcon": {
             "type": "text",
-            "helper": "Used to create #anchor-links on the page (numbers, letters, hyphens only).",
-            "showMessages": false
-        },
-        "SectionHeading": {
-            "type": "text",
-            "helper": "Heading shown above the card grid."
-        },
-        "Cards": {
-            "type": "accordion",
-            "helper": "Add at least 5 cards. Only the first 5 cards are rendered in the template. Any additional cards are ignored.",
-            "items": {
-                "fields": {
-                    "CardTitle": {
-                        "type": "text",
-                        "helper": "Required. Short heading shown on the card."
-                    },
-                    "CardIcon": {
-                        "type": "text",
-                        "placeholder": "fas fa-heart",
-                        "helper": "Find icons at <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" rel=\"noopener noreferrer\" target=\"_blank\">FontAwesome</a>. (Examples: <code>fas fa-heart</code>, <code>fas fa-leaf</code>, <code>fas fa-tree</code>, etc.)"
-                    },
-                    "CardDescription": {
-                        "type": "textarea",
-                        "helper": "Required. Keep this concise for the best layout."
-                    },
-                    "Url": {
-                        "type": "url",
-                        "helper": "Optional. If a URL is added, the entire card becomes clickable."
-                    },
-                    "BackgroundColorClass": {
-                        "type": "select",
-                        "helper": "Choose a built-in Bootstrap background color class for this section.",
-                        "optionLabels": [
-                            "None / Theme Default",
-                            "Primary",
-                            "Secondary",
-                            "Success",
-                            "Danger",
-                            "Warning",
-                            "Info",
-                            "Light",
-                            "Dark",
-                            "White",
-                            "Body",
-                            "Transparent",
-                            "Primary Subtle",
-                            "Secondary Subtle",
-                            "Success Subtle",
-                            "Danger Subtle",
-                            "Warning Subtle",
-                            "Info Subtle",
-                            "Light Subtle",
-                            "Dark Subtle"
-                        ],
-                        "removeDefaultNone": true
-                    },
-                    "CardImage": {
-                        "type": "image",
-                        "helper": "Optional. Primarily used by the 5th card. Recommended minimum width: 1200px. Landscape image works best."
-                    }
-                }
-            }
+            "placeholder": "fas fa-heartbeat",
+            "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
+          },
+          "CardDescription": {
+            "type": "textarea",
+            "helper": "Required. Keep this concise for the best layout."
+          },
+          "Url": {
+            "type": "url",
+            "helper": "Optional. If a web addresses is added, the entire card becomes clickable."
+          },
+          "BackgroundColorClass": {
+            "type": "select",
+            "helper": "Choose a built-in Bootstrap background color class for this section.",
+            "optionLabels": [
+              "None / Theme Default",
+              "Primary",
+              "Secondary",
+              "Success",
+              "Danger",
+              "Warning",
+              "Info",
+              "Light",
+              "Dark",
+              "White",
+              "Body",
+              "Transparent",
+              "Primary Subtle",
+              "Secondary Subtle",
+              "Success Subtle",
+              "Danger Subtle",
+              "Warning Subtle",
+              "Info Subtle",
+              "Light Subtle",
+              "Dark Subtle"
+            ],
+            "removeDefaultNone": true
+          },
+          "CardImage": {
+            "type": "image",
+            "helper": "Optional. Primarily used by the 5th card. Recommended minimum width: 1200px. Landscape image works best."
+          }
         }
+      }
     }
+  }
 }

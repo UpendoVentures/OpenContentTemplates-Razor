@@ -13,29 +13,39 @@
     },
     "Eyebrow": {
       "type": "text",
-      "helper": "Optional short label shown above the main heading. HTML is allowed.",
+      "helper": "Optional short label shown above the main heading. Formatted text and links are allowed.",
       "placeholder": "MILITARY DEPLOYMENT"
     },
     "SectionHeading": {
       "type": "text",
-      "helper": "Required. Main heading shown in the section. HTML is allowed.",
+      "helper": "Required. Main heading shown in the section. Formatted text and links are allowed.",
       "placeholder": "Computing Across the Mission Environment"
     },
     "SectionHeadingElement": {
       "type": "select",
-      "helper": "Choose the semantic HTML element used for the main section heading. Styling stays the same.",
-      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6"],
+      "helper": "Choose the semantic formatted content element used for the main section heading. Styling stays the same.",
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
       "removeDefaultNone": true
     },
     "IntroText": {
       "type": "textarea",
-      "helper": "Required. Main introductory content. HTML is allowed.",
+      "helper": "Required. Main introductory content. Formatted text and links are allowed.",
       "placeholder": "Military computing requirements extend across fixed facilities, vehicles, deployable environments, communications infrastructure, intelligence workflows, and temporary field operations."
     },
     "ImageCount": {
       "type": "select",
       "helper": "Choose whether this section renders only the primary image or the current two-image editorial composition. Secondary image fields are used only when Two Images is selected.",
-      "optionLabels": ["One Image", "Two Images"],
+      "optionLabels": [
+        "One Image",
+        "Two Images"
+      ],
       "removeDefaultNone": true
     },
     "PrimaryImage": {
@@ -77,7 +87,17 @@
     "SecondaryImagePosition": {
       "type": "select",
       "helper": "Used only when Image Count is Two Images and both images are present. Controls the secondary image focal point used by CSS object-position.",
-      "optionLabels": ["Top Left", "Top Center", "Top Right", "Center Left", "Center Center", "Center Right", "Bottom Left", "Bottom Center", "Bottom Right"],
+      "optionLabels": [
+        "Top Left",
+        "Top Center",
+        "Top Right",
+        "Center Left",
+        "Center Center",
+        "Center Right",
+        "Bottom Left",
+        "Bottom Center",
+        "Bottom Right"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
         "ImageCount": [
@@ -87,7 +107,7 @@
     },
     "SecondaryHeading": {
       "type": "text",
-      "helper": "Optional. Used only when Image Count is Two Images. Secondary heading shown in the editorial panel. HTML is allowed.",
+      "helper": "Optional. Used only when Image Count is Two Images. Secondary heading shown in the editorial panel. Formatted text and links are allowed.",
       "placeholder": "From Fixed Operations to Forward Deployment",
       "dependencies": {
         "ImageCount": [
@@ -97,8 +117,15 @@
     },
     "SecondaryHeadingElement": {
       "type": "select",
-      "helper": "Choose the semantic HTML element used for the secondary heading. Styling stays the same.",
-      "optionLabels": ["H1", "H2", "H3", "H4", "H5", "H6"],
+      "helper": "Choose the semantic formatted content element used for the secondary heading. Styling stays the same.",
+      "optionLabels": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
       "removeDefaultNone": true,
       "dependencies": {
         "ImageCount": [
@@ -108,7 +135,7 @@
     },
     "SecondaryText": {
       "type": "textarea",
-      "helper": "Optional. Used only when Image Count is Two Images. Supporting text shown in the editorial panel. HTML is allowed.",
+      "helper": "Optional. Used only when Image Count is Two Images. Supporting text shown in the editorial panel. Formatted text and links are allowed.",
       "placeholder": "The right platform depends on where it will operate, how it will be transported or installed, what it must connect to, and the workload it needs to support. Portexa can help evaluate these requirements before narrowing the configuration path.",
       "dependencies": {
         "ImageCount": [

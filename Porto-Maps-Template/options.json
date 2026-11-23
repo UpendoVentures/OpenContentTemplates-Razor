@@ -11,27 +11,32 @@
       "showMessages": false
     },
     "Latitud": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the latitud to use in this template. Use clear wording that visitors will understand."
     },
     "Longitud": {
-      "type": "text"
+      "type": "text",
+      "helper": "Enter the longitud to use in this template. Use clear wording that visitors will understand."
     },
     "MarkerIcon": {
       "type": "image",
-      "helper": "Url of the image"
+      "helper": "Optional. Enter a Font Awesome icon name, such as <code>fas fa-heartbeat</code> or <code>fas fa-briefcase</code>. <a href=\"https://fontawesome.com/v5/search?ic=free-collection\" target=\"_blank\" rel=\"noopener noreferrer\">Browse free icons on FontAwesome.com</a>."
     },
     "Markers": {
       "type": "array",
       "items": {
         "fields": {
           "Address": {
-            "type": "text"
+            "type": "text",
+            "helper": "Enter the address to use in this template. Use clear wording that visitors will understand."
           },
           "Html": {
-            "type": "wysihtml"
+            "type": "wysihtml",
+            "helper": "Enter the formatted content for formatted content. Keep the text clear and easy to read."
           }
         }
-      }
+      },
+      "helper": "Add and arrange the items used for markers. Remove any item you do not need."
     }
   }
 }

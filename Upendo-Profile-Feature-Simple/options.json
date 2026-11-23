@@ -12,17 +12,17 @@
     },
     "Heading": {
       "type": "text",
-      "helper": "Optional. Main heading shown beside the image. HTML is allowed.",
+      "helper": "Optional. Main heading shown beside the image. Formatted text and links are allowed.",
       "placeholder": "Meet Wendy"
     },
     "Quote": {
       "type": "text",
-      "helper": "Optional. Short highlighted quote shown beneath the heading. HTML is allowed.",
+      "helper": "Optional. Short highlighted quote shown beneath the heading. Formatted text and links are allowed.",
       "placeholder": "<em>\"A short mission-driven quote goes here.\"</em>"
     },
     "Description": {
       "type": "textarea",
-      "helper": "Optional. Main descriptive text shown beneath the quote. HTML is allowed.",
+      "helper": "Optional. Main descriptive text shown beneath the quote. Formatted text and links are allowed.",
       "placeholder": "<p>Use this area for a short profile, introduction, or credibility statement.</p>"
     },
     "Image": {
@@ -44,7 +44,7 @@
         "fields": {
           "Title": {
             "type": "text",
-            "helper": "Required. Keep this short for the best layout. HTML is allowed.",
+            "helper": "Required. Keep this short for the best layout. Formatted text and links are allowed.",
             "placeholder": "ANFT Certified"
           }
         }
